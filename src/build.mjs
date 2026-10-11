@@ -115,15 +115,14 @@ function adSlot(lang, slotId) {
   const 内链 = a.href.indexOf("http") === 0 ? a.href : pathOf(lang, a.href.replace(/^\//, "").replace(/^(zh|ja)\//, ""));
   return `<aside class="ad">
   <span class="ad-label">${rich(a.label)}</span>
+  <span class="ad-ico" aria-hidden="true">${a.icon || "📌"}</span>
   <div class="ad-body">
     <b>${rich(a.title)}</b>
     <p>${rich(a.body)}</p>
-    <a class="ad-cta" href="${esc(内链)}">${rich(a.cta)} →</a>
-    ${a.contactUser ? `<span class="ad-mail">${contactHtml(a)}</span>` : ""}
   </div>
+  <a class="ad-cta" href="${esc(内链)}">${rich(a.cta)} →</a>
 </aside>`;
 }
-
 
 /** 联系方式：页面里不出现完整邮箱明文。
     做法 = 把 user 与 domain 拆到 data-* 属性里，由一小段脚本现场拼装；
@@ -133,6 +132,7 @@ function contactHtml(t) {
   if (!t.contactUser) return "";
   return `<code class="email" data-u="${esc(t.contactUser)}" data-d="${esc(t.contactDomain)}"><noscript>${rich(t.contactNoJs || (t.contactUser + " [at] " + t.contactDomain))}</noscript></code>`;
 }
+
 const CONTACT_SCRIPT = `<script>
 /* 把 data-u / data-d 拼成邮箱 —— 放在页面里而不是服务端，是为了防爬虫 */
 [].forEach.call(document.querySelectorAll(".email"), function (el) {
@@ -250,13 +250,13 @@ ${topbar(lang, out)}
 
 ${body}
 
+${adSlot(lang, "tool-game")}
+
   <section class="faq">
     <h2>${lang.code === "ja" ? "よくある質問" : lang.code === "zh" ? "常见问题" : "FAQ"}</h2>
 ${faq}
   </section>
 
-${adSlot(lang, "tool-game")}
-${adSlot(lang, "tool-bottom")}
 </main>
 
 ${footer(lang)}
@@ -303,6 +303,8 @@ ${topbar(lang, out)}
 ${cards}
   </ul>
 
+${adSlot(lang, "home-self")}
+
   <section class="why">
     <h2>${rich(t.whyHeading)}</h2>
     <p>${rich(t.why)}</p>
@@ -310,8 +312,6 @@ ${cards}
     <p>${rich(t.safe)}</p>
   </section>
 
-${adSlot(lang, "home-self")}
-${adSlot(lang, "home-bottom")}
 </main>
 
 ${CONTACT_SCRIPT}
