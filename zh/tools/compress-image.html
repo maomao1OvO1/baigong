@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>在线图片压缩 — 免费、不上传、免注册、不限量 | ToolPocket</title>
+<meta name="description" content="在浏览器里直接压缩 JPG、PNG、WebP 图片。支持批量，不上传、不注册、没有数量限制。照片不会离开你的设备。">
+<link rel="canonical" href="https://maomao1OvO1.github.io/toolpocket/zh/tools/compress-image.html">
+<meta property="og:title" content="在线图片压缩 — 免费、不上传、免注册、不限量 | ToolPocket">
+<meta property="og:description" content="在浏览器里直接压缩 JPG、PNG、WebP 图片。支持批量，不上传、不注册、没有数量限制。照片不会离开你的设备。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://maomao1OvO1.github.io/toolpocket/zh/tools/compress-image.html">
+<link rel="alternate" hreflang="en" href="https://maomao1OvO1.github.io/toolpocket/tools/compress-image.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://maomao1OvO1.github.io/toolpocket/zh/tools/compress-image.html">
+<link rel="alternate" hreflang="ja" href="https://maomao1OvO1.github.io/toolpocket/ja/tools/compress-image.html">
+<link rel="alternate" hreflang="x-default" href="https://maomao1OvO1.github.io/toolpocket/tools/compress-image.html">
+<link rel="stylesheet" href="/toolpocket/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Image Compressor — ToolPocket","applicationCategory":"MultimediaApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"在浏览器里直接压缩 JPG、PNG、WebP 图片。支持批量，不上传、不注册、没有数量限制。照片不会离开你的设备。"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"能压小多少？","acceptedAnswer":{"@type":"Answer","text":"JPEG 照片在 72% 质量下通常小 50~85%，具体看原图 —— 截图和 PNG 有时能小得多。"}},{"@type":"Question","name":"手机上能用吗？","acceptedAnswer":{"@type":"Answer","text":"能，而且手机照片是最受益的：1200 万像素的照片经常从 4 MB 掉到几百 KB。"}},{"@type":"Question","name":"为什么选 PNG 时质量滑块没反应？","acceptedAnswer":{"@type":"Answer","text":"PNG 是无损格式，没有「画质」可以牺牲。要压照片就选 JPEG 或 WebP。"}},{"@type":"Question","name":"一次能压多少张？","acceptedAnswer":{"@type":"Answer","text":"不限。300 张也行 —— 活是你自己的处理器在干，一张大概一两秒。"}},{"@type":"Question","name":"必须一直开着这个页面吗？","acceptedAnswer":{"@type":"Answer","text":"是的，压缩是在你设备上跑的，所以页面得开着。也正因为不上传，没有「服务器那边慢慢处理」这回事。"}}]}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/toolpocket/zh/index.html">🧰 ToolPocket</a>
+  <nav class="langs"><a href="/toolpocket/tools/compress-image.html">English</a><a href="/toolpocket/zh/tools/compress-image.html" class="on" aria-current="page">中文</a><a href="/toolpocket/ja/tools/compress-image.html">日本語</a></nav>
+</header>
+
+<main>
+  <h1>压缩图片，不用把它传给别人</h1>
+  <p class="lead">照片拖进来，就在<b>这儿</b>变小。不用账号、不用上传、没有「升级会员去水印」、也没有每天几张的限制。碰上「文件太大传不上去」的时候正好用。</p>
+
+  <div class="panel">
+    <div class="drop" id="drop">
+      <b>点这里选图片，或者直接拖进来</b><br>
+      <span class="note">JPG · PNG · WebP · 想选多少张都行</span>
+      <input type="file" id="picker" accept="image/*" multiple>
+    </div>
+
+    <label class="row">压缩质量
+      <input type="range" id="quality" min="30" max="95" value="72">
+      <span id="qualityVal" class="badge">72%</span>
+    </label>
+
+    <label class="row">最大宽度（像素）
+      <input type="number" id="maxw" value="1920" min="0" step="10" style="width:110px">
+      <span class="note">填 0 就保持原尺寸</span>
+    </label>
+
+    <label class="row">保存为
+      <select id="format" style="padding:9px 11px;border-radius:9px;border:1px solid var(--line);background:var(--bg);color:var(--fg)">
+        <option value="image/jpeg">JPEG —— 照片首选</option>
+        <option value="image/webp">WebP —— 体积最小</option>
+        <option value="image/png">PNG —— 无损（质量滑块不起作用）</option>
+      </select>
+    </label>
+
+    <div class="btnrow">
+      <button id="run" disabled>压缩并全部下载</button>
+      <button class="ghost" id="clear" disabled>清空</button>
+    </div>
+    <p class="note" id="hint"></p>
+  </div>
+
+  <ul class="results" id="results"></ul>
+
+  <section class="why">
+    <h2>真会有人问的问题</h2>
+    <details><summary>能压小多少？</summary><p>JPEG 照片在 72% 质量下通常小 50~85%，具体看原图 —— 截图和 PNG 有时能小得多。</p></details>
+    <details><summary>手机上能用吗？</summary><p>能，而且手机照片是最受益的：1200 万像素的照片经常从 4 MB 掉到几百 KB。</p></details>
+    <details><summary>为什么选 PNG 时质量滑块没反应？</summary><p>PNG 是无损格式，没有「画质」可以牺牲。要压照片就选 JPEG 或 WebP。</p></details>
+    <details><summary>一次能压多少张？</summary><p>不限。300 张也行 —— 活是你自己的处理器在干，一张大概一两秒。</p></details>
+    <details><summary>必须一直开着这个页面吗？</summary><p>是的，压缩是在你设备上跑的，所以页面得开着。也正因为不上传，没有「服务器那边慢慢处理」这回事。</p></details>
+  </section>
+</main>
+
+<footer><p>ToolPocket · 全部处理都在你的设备上完成</p></footer>
+<script>window.T = {"selected":"已就绪 {n} 个文件。","working":"处理中…","download":"下载","saved":"小了 {p}%","bigger":"大了 {p}%","failed":"这个文件浏览器读不了。","run":"压缩并全部下载"};</script>
+<script src="/toolpocket/assets/compress.js"></script>
+</body>
+</html>

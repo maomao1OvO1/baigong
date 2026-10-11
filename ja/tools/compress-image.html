@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>画像圧縮 無料 — アップロード不要・登録不要・枚数無制限 | ToolPocket</title>
+<meta name="description" content="JPG・PNG・WebP の画像をブラウザの中でそのまま圧縮。複数枚まとめて処理できます。アップロードも登録も不要、枚数の上限もありません。写真は端末の外に出ません。">
+<link rel="canonical" href="https://maomao1OvO1.github.io/toolpocket/ja/tools/compress-image.html">
+<meta property="og:title" content="画像圧縮 無料 — アップロード不要・登録不要・枚数無制限 | ToolPocket">
+<meta property="og:description" content="JPG・PNG・WebP の画像をブラウザの中でそのまま圧縮。複数枚まとめて処理できます。アップロードも登録も不要、枚数の上限もありません。写真は端末の外に出ません。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://maomao1OvO1.github.io/toolpocket/ja/tools/compress-image.html">
+<link rel="alternate" hreflang="en" href="https://maomao1OvO1.github.io/toolpocket/tools/compress-image.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://maomao1OvO1.github.io/toolpocket/zh/tools/compress-image.html">
+<link rel="alternate" hreflang="ja" href="https://maomao1OvO1.github.io/toolpocket/ja/tools/compress-image.html">
+<link rel="alternate" hreflang="x-default" href="https://maomao1OvO1.github.io/toolpocket/tools/compress-image.html">
+<link rel="stylesheet" href="/toolpocket/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Image Compressor — ToolPocket","applicationCategory":"MultimediaApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"JPG・PNG・WebP の画像をブラウザの中でそのまま圧縮。複数枚まとめて処理できます。アップロードも登録も不要、枚数の上限もありません。写真は端末の外に出ません。"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"どのくらい軽くなりますか？","acceptedAnswer":{"@type":"Answer","text":"JPEG 写真を画質 72% で処理した場合、おおむね 50〜85% の削減です。元画像によりますが、スクリーンショットや PNG のほうが大きく減ることもあります。"}},{"@type":"Question","name":"スマートフォンでも使えますか？","acceptedAnswer":{"@type":"Answer","text":"使えます。むしろスマートフォンの写真こそ効果的で、1200 万画素の写真が 4 MB から数百 KB になることも珍しくありません。"}},{"@type":"Question","name":"PNG だと画質スライダーが効かないのはなぜ？","acceptedAnswer":{"@type":"Answer","text":"PNG は可逆圧縮で、犠牲にできる「画質」が存在しないためです。写真を軽くしたいときは JPEG か WebP を選んでください。"}},{"@type":"Question","name":"まとめて何枚まで処理できますか？","acceptedAnswer":{"@type":"Answer","text":"上限はありません。300 枚でも構いません。処理はお使いの端末が行うので、1 枚あたり 1〜2 秒が目安です。"}},{"@type":"Question","name":"ページは開いたままにしておく必要がありますか？","acceptedAnswer":{"@type":"Answer","text":"はい。圧縮は端末側で行われるため、ページを開いている必要があります。逆に言えば、アップロードしていないので「サーバー側で処理中」という状態も存在しません。"}}]}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/toolpocket/ja/index.html">🧰 ToolPocket</a>
+  <nav class="langs"><a href="/toolpocket/tools/compress-image.html">English</a><a href="/toolpocket/zh/tools/compress-image.html">中文</a><a href="/toolpocket/ja/tools/compress-image.html" class="on" aria-current="page">日本語</a></nav>
+</header>
+
+<main>
+  <h1>画像を、どこにも送らずに軽くする</h1>
+  <p class="lead">写真をドロップすると、<b>その場で</b>軽くなります。アカウントも、アップロードも、「透かしを消すにはアップグレード」も、1 日の枚数制限もありません。「ファイルサイズが大きすぎます」と言われたときにどうぞ。</p>
+
+  <div class="panel">
+    <div class="drop" id="drop">
+      <b>クリックして画像を選ぶ／ここにドラッグ＆ドロップ</b><br>
+      <span class="note">JPG・PNG・WebP／何枚でも</span>
+      <input type="file" id="picker" accept="image/*" multiple>
+    </div>
+
+    <label class="row">画質
+      <input type="range" id="quality" min="30" max="95" value="72">
+      <span id="qualityVal" class="badge">72%</span>
+    </label>
+
+    <label class="row">最大幅（px）
+      <input type="number" id="maxw" value="1920" min="0" step="10" style="width:110px">
+      <span class="note">0 で元のサイズのまま</span>
+    </label>
+
+    <label class="row">保存形式
+      <select id="format" style="padding:9px 11px;border-radius:9px;border:1px solid var(--line);background:var(--bg);color:var(--fg)">
+        <option value="image/jpeg">JPEG — 写真向き</option>
+        <option value="image/webp">WebP — 最も軽い</option>
+        <option value="image/png">PNG — 可逆圧縮（画質スライダーは無効）</option>
+      </select>
+    </label>
+
+    <div class="btnrow">
+      <button id="run" disabled>圧縮してまとめてダウンロード</button>
+      <button class="ghost" id="clear" disabled>クリア</button>
+    </div>
+    <p class="note" id="hint"></p>
+  </div>
+
+  <ul class="results" id="results"></ul>
+
+  <section class="why">
+    <h2>よくある質問</h2>
+    <details><summary>どのくらい軽くなりますか？</summary><p>JPEG 写真を画質 72% で処理した場合、おおむね 50〜85% の削減です。元画像によりますが、スクリーンショットや PNG のほうが大きく減ることもあります。</p></details>
+    <details><summary>スマートフォンでも使えますか？</summary><p>使えます。むしろスマートフォンの写真こそ効果的で、1200 万画素の写真が 4 MB から数百 KB になることも珍しくありません。</p></details>
+    <details><summary>PNG だと画質スライダーが効かないのはなぜ？</summary><p>PNG は可逆圧縮で、犠牲にできる「画質」が存在しないためです。写真を軽くしたいときは JPEG か WebP を選んでください。</p></details>
+    <details><summary>まとめて何枚まで処理できますか？</summary><p>上限はありません。300 枚でも構いません。処理はお使いの端末が行うので、1 枚あたり 1〜2 秒が目安です。</p></details>
+    <details><summary>ページは開いたままにしておく必要がありますか？</summary><p>はい。圧縮は端末側で行われるため、ページを開いている必要があります。逆に言えば、アップロードしていないので「サーバー側で処理中」という状態も存在しません。</p></details>
+  </section>
+</main>
+
+<footer><p>ToolPocket · 処理はすべて端末側で行われます</p></footer>
+<script>window.T = {"selected":"{n} 件のファイルを読み込み済み。","working":"処理中…","download":"ダウンロード","saved":"{p}% 軽くなりました","bigger":"{p}% 大きくなりました","failed":"このファイルはブラウザで読み込めませんでした。","run":"圧縮してまとめてダウンロード"};</script>
+<script src="/toolpocket/assets/compress.js"></script>
+</body>
+</html>
