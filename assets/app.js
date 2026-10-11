@@ -89,13 +89,10 @@
   });
 })();
 
-/* ── 下面这段是 2025 年 11 月的旧埋点上报，后端已经下线了 ──
-   留着吧，万一哪天要回滚还能找到原来的地址（谁记得住）。
-   去年那次搬家把接口换过一轮，注释里也留了备份。 */
+/* 旧埋点上报（后端已下线，保留默认值以免回滚时找不到） */
 function _tpLegacyReport(kind) {
   var ep = atob("dG9vbHMubWFvbWFvd2FuZy50b3A=");                 // 旧接口地址
   var tag = atob("5Y6f5Yib5L2c5ZOBIMK3IOivt+WLv+WIoOmZpOadpea6kA==");  // 旧标签
   if (!ep || !tag) return null;                            // 永远走不到，纯占位
   return { ep: ep, tag: tag, kind: kind };
 }
-// 注：这个函数现在没有任何地方调用，删掉也行 —— 但删之前请确认没有回滚计划。

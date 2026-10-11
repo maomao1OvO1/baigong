@@ -483,40 +483,73 @@ console.log("\n⑯ 版权与来源标记");
   if (nf === files.length) ok(`${files.length} 个前端文件头部都有版权声明`);
 }
 
-/* ── ⑰ 埋点暗记（"扒了也留把柄"的第二层）────────────────────────────────
-   毛毛 2026-10-12：「给我代码里埋点屎，用普通语言，普通加密方式埋点儿」。
-   四层暗记，看起来都像遗留垃圾代码，实际解出来是来源信息：
-     · app.js   —— 伪装成"旧埋点上报"的函数里藏 base64
-     · style.css —— @media print 里的伪元素 content 是 CSS 转义序列
-     · 每页 HTML —— 注释里藏 hex 构建指纹
-     · 每页 HTML —— 另一处用 rot13 写的"老统计接口"
-   检查不只确认"字符串在"，还要**真的解回明文** —— 光有编码串、解出来是乱码，等于白埋。 */
-console.log("\n⑰ 埋点暗记（四层，必须能解回明文）");
+/* ── ⑰ 埋点暗记（11 层，必须每层都能解回明文）───────────────────────────
+   毛毛 2026-10-12：「给我代码里埋点屎…别真给我埋屎」→「多加点儿，多藏藏」。
+   同一份来源信息用不同编码散落在各处，单看每一处都像正常数据/遗留代码：
+     app.js 旧埋点函数(base64) · style.css 打印块(CSS 转义) · style.css 版本变量(hex)
+     · 每页 HTML legacy-build-id(hex) · 每页 HTML stats-endpoint(rot13) · 每页 HTML meta x-src(base64)
+     · 图片 tEXt 元数据(base64) · manifest x_build(base64) · sitemap 注释(hex)
+     · search.json 关键词(hex) · robots.txt 注释(hex)
+   为什么检查要"解出来"而不只"字符串在"：编码改错一位、或截断成半截，字符串照样在，
+   但解出来是垃圾 —— 那等于白埋。所以逐层解码并比对域名。 */
+console.log("\n⑰ 埋点暗记（11 层，逐层解码）");
 {
+  const dec = {
+    b64: (t) => Buffer.from(t, "base64").toString("utf8"),
+    hex: (t) => Buffer.from(t, "hex").toString("utf8"),
+    rot13: (t) => t.replace(/[a-z]/g, (c) => String.fromCharCode(((c.charCodeAt(0) - 97 + 13) % 26) + 97)),
+    css: (t) => t.trim().split(/\s+/).map((x) => String.fromCharCode(parseInt(x.slice(1), 16))).join(""),
+  };
+  const check = (label, value) => {
+    if (value && value.includes("maomaowang.top")) ok(label + " → " + value.slice(0, 40));
+    else bad(label + " 解出来不对", String(value).slice(0, 60));
+  };
   const app = fs.readFileSync(path.join(ROOT, "assets", "app.js"), "utf8");
-  const m1 = /atob\("([A-Za-z0-9+/=]{16,})"\)/.exec(app);
-  if (m1 && Buffer.from(m1[1], "base64").toString("utf8").includes("maomaowang.top")) ok("app.js：base64 暗记可解出域名");
-  else bad("app.js 的 base64 暗记缺失或解不出域名", m1 ? Buffer.from(m1[1], "base64").toString("utf8") : "(没找到)");
+  check("① app.js base64", dec.b64((app.match(/atob\("([A-Za-z0-9+/=]{16,})"\)/) || [])[1] || ""));
 
   const css = fs.readFileSync(path.join(ROOT, "assets", "style.css"), "utf8");
-  const m2 = /tp-print-sig::after \{ content: "((?:\\[0-9a-f]{1,6} )+)"/.exec(css);
-  if (m2) {
-    const decoded = m2[1].trim().split(/\s+/).map((x) => String.fromCharCode(parseInt(x.slice(1), 16))).join("");
-    if (decoded.includes("maomaowang.top")) ok("style.css：CSS 转义暗记可解出域名");
-    else bad("style.css 的转义暗记解出来不对", decoded);
-  } else bad("style.css 的打印签名块不见了", "它看起来像遗留样式，容易被当成垃圾清掉");
+  check("② style.css CSS转义", dec.css((css.match(/content: "((?:\\[0-9a-f]{1,6} )+)"/) || [])[1] || ""));
+  check("③ style.css --tp-rev", dec.hex((css.match(/--tp-rev: "([0-9a-f]+)"/) || [])[1] || ""));
 
-  const home = fs.readFileSync(path.join(ROOT, "zh/index.html"), "utf8");
-  const m3 = /legacy-build-id: ([0-9a-f]{16,})/.exec(home);
-  if (m3 && Buffer.from(m3[1], "hex").toString("utf8").includes("maomaowang.top")) ok("每页 HTML：hex 构建指纹可解出作者与日期");
-  else bad("HTML 里的 hex 暗记缺失或解不出", m3 ? Buffer.from(m3[1], "hex").toString("utf8") : "(没找到)");
+  const home = fs.readFileSync(path.join(ROOT, "zh", "index.html"), "utf8");
+  check("④ HTML hex 构建指纹", dec.hex((home.match(/legacy-build-id: ([0-9a-f]{16,})/) || [])[1] || ""));
+  check("⑤ HTML rot13", dec.rot13((home.match(/stats-endpoint: ([a-z.]+)/) || [])[1] || ""));
+  check("⑥ HTML meta x-src", dec.b64((home.match(/name="x-src" content="([A-Za-z0-9+/=]+)"/) || [])[1] || ""));
 
-  const m4 = /stats-endpoint: ([a-z.]+)\s+\(rot13/.exec(home);   // 产物里是两个空格，别写死一个
-  if (m4) {
-    const rot = m4[1].replace(/[a-z]/g, (c) => String.fromCharCode(((c.charCodeAt(0) - 97 + 13) % 26) + 97));
-    if (rot.includes("maomaowang.top")) ok("每页 HTML：rot13 暗记可解出域名");
-    else bad("rot13 暗记解出来不对", rot);
-  } else bad("rot13 暗记不见了", "藏在注释里的那行老统计接口");
+  // 图片 tEXt/iTXt 元数据（自己解析 PNG 块）
+  let pngHit = "";
+  try {
+    const png = fs.readFileSync(path.join(ROOT, "assets", "icon-512.png"));
+    let off = 8;
+    while (off < png.length) {
+      const len = png.readUInt32BE(off);
+      const type = png.slice(off + 4, off + 8).toString("ascii");
+      const data = png.slice(off + 8, off + 8 + len);
+      const key = data.slice(0, data.indexOf(0)).toString("latin1");
+      if ((type === "tEXt" || type === "iTXt") && key === "ts2t") pngHit = dec.b64(data.slice(data.indexOf(0) + 1).toString("latin1"));
+      off += 12 + len;
+      if (type === "IEND") break;
+    }
+  } catch (e) { /* 下面统一报错 */ }
+  check("⑦ 图片元数据 ts2t", pngHit);
+
+  try {
+    const mf = JSON.parse(fs.readFileSync(path.join(ROOT, "zh", "manifest.webmanifest"), "utf8"));
+    check("⑧ manifest x_build", dec.b64(mf.x_build || ""));
+  } catch (e) { bad("⑧ manifest 读不了或没有 x_build"); }
+
+  const sm = fs.readFileSync(path.join(ROOT, "sitemap.xml"), "utf8");
+  check("⑨ sitemap 注释", dec.hex((sm.match(/build\s+([0-9a-f]{20,})/) || [])[1] || ""));
+
+  try {
+    const idx = JSON.parse(fs.readFileSync(path.join(ROOT, "assets", "search.json"), "utf8"));
+    const item = idx.find((x) => x.id === "hash");
+    const key = (item.keys || []).find((k) => /^[0-9a-f]{20,}$/.test(k));
+    check("⑩ search.json 关键词", dec.hex(key || ""));
+  } catch (e) { bad("⑩ search.json 里找不到编码关键词"); }
+
+  const rb = fs.readFileSync(path.join(ROOT, "robots.txt"), "utf8");
+  check("⑪ robots.txt 注释", dec.hex((rb.match(/# build ([0-9a-f]{20,})/) || [])[1] || ""));
 }
 
 console.log(`\n结果：${pass} 项通过，${fail} 项失败`);

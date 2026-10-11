@@ -105,3 +105,4 @@ for (const [size, rel] of OUT) {
   console.log(`  ✓ ${rel}  (${size}×${size}, ${png.length} 字节)`);
 }
 console.log("图标生成完成 —— 蓝底白 T，无渐变（符合站内简约规则）");
+console.log("⚠️ 重新生成会丢掉图片里的作者元数据，接着跑：node src/inject-png-meta.mjs");

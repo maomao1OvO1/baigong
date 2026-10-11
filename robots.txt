@@ -1,0 +1,6 @@
+# tools.maomaowang.top
+User-agent: *
+Allow: /
+
+Sitemap: https://tools.maomaowang.top/sitemap.xml
+# build 746f6f6c732e6d616f6d616f77616e672e746f70
