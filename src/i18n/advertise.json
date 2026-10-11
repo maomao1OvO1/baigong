@@ -54,7 +54,23 @@
     "note": "I'm an independent developer, not an ad network — so replies are personal and there's no minimum spend to negotiate.",
     "contactUser": "ad",
     "contactDomain": "maomaowang.top",
-    "contactNoJs": "ad [at] maomaowang [dot] top"
+    "contactNoJs": "ad [at] maomaowang [dot] top",
+    "payHeading": "Payment",
+    "payMethods": [
+      [
+        "Bank transfer — UnionPay / SWIFT",
+        "Works from overseas; your bank may charge a wire fee, so it suits larger amounts"
+      ],
+      [
+        "WeChat Pay / Alipay",
+        "If you happen to have a Chinese payment account"
+      ],
+      [
+        "Other arrangements",
+        "Just ask — I'm flexible"
+      ]
+    ],
+    "payNote": "Payment details are shared after we agree on the placement, not published here."
   },
   "zh": {
     "title": "广告投放 — ToolPocket｜免费工具站的广告位",
@@ -109,7 +125,27 @@
     "note": "我是个人开发者，不是广告联盟 —— 所以回复是人写的，也没有「最低消费」要走流程。",
     "contactUser": "ad",
     "contactDomain": "maomaowang.top",
-    "contactNoJs": "ad [at] maomaowang [dot] top"
+    "contactNoJs": "ad [at] maomaowang [dot] top",
+    "payHeading": "付款方式",
+    "payMethods": [
+      [
+        "微信支付",
+        "国内客户最方便，扫码即付"
+      ],
+      [
+        "支付宝",
+        "同样即时到账"
+      ],
+      [
+        "银联储蓄卡（银行转账）",
+        "适合金额较大、需要走账的情况"
+      ],
+      [
+        "其它方式",
+        "可协商"
+      ]
+    ],
+    "payNote": "具体收款信息在你确认投放后再提供（不写在公开页面上）。"
   },
   "ja": {
     "title": "広告掲載 — ToolPocket｜無料ツールサイトの広告枠",
@@ -164,6 +200,22 @@
     "note": "個人開発者であり広告ネットワークではありません。返信は人が書き、最低出稿額のような手続きもありません。",
     "contactUser": "ad",
     "contactDomain": "maomaowang.top",
-    "contactNoJs": "ad [at] maomaowang [dot] top"
+    "contactNoJs": "ad [at] maomaowang [dot] top",
+    "payHeading": "お支払い方法",
+    "payMethods": [
+      [
+        "銀行振込（銀聯カード / SWIFT 対応）",
+        "海外からの送金も可能です。送金手数料はご負担いただく形になりますため、ある程度の金額からがおすすめです"
+      ],
+      [
+        "WeChat Pay / Alipay",
+        "中国の決済口座をお持ちの場合"
+      ],
+      [
+        "その他の方法",
+        "ご相談ください"
+      ]
+    ],
+    "payNote": "具体的な振込先は、掲載内容が決まった後にご案内します（このページには記載しません）。"
   }
 }

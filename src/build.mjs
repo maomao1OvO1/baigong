@@ -369,6 +369,16 @@ ${rows(t.specs)}
     <p>${rich(t.numbers)}</p>
   </section>
 
+  <section>
+    <h2>${rich(t.payHeading)}</h2>
+    <table class="spec">
+      <tbody>
+${rows(t.payMethods)}
+      </tbody>
+    </table>
+    <p class="note">${rich(t.payNote)}</p>
+  </section>
+
   <section class="why">
     <h2>${rich(t.contactHeading)}</h2>
     <p>${rich(t.contact)}</p>
