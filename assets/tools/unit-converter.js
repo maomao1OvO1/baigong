@@ -48,11 +48,19 @@
   function run() {
     var cat = category.value;
     var v = parseFloat(value.value);
-    // 输入单位提示（长度 m / 重量 kg / 数据 MB / 温度 °C）
     var unitBadge = $("unitLabel");
-    if (unitBadge) unitBadge.textContent = cat === "temp" ? "°C" : tables[cat].base;
-    if (!isFinite(v)) { output.value = ""; return; }
-    output.value = (cat === "temp" ? fromCelsius(v) : toAll(v, cat)).join("\n");
+
+    // ⚠️ 温度必须先处理：它不在 tables 里（非线性，用公式算），
+    //    如果先查 tables 再防御，温度会被当成「未知类别」直接清空输出（测试抓到过这个）。
+    if (cat === "temp") {
+      if (unitBadge) unitBadge.textContent = "°C";
+      output.value = isFinite(v) ? fromCelsius(v).join("\n") : "";
+      return;
+    }
+    var table = tables[cat];
+    if (!table) { output.value = ""; return; }            // 类别值异常时安静清空，不抛错
+    if (unitBadge) unitBadge.textContent = table.base;    // 输入单位提示（m / kg / MB）
+    output.value = isFinite(v) ? toAll(v, cat).join("\n") : "";
   }
 
   category.addEventListener("change", run);
