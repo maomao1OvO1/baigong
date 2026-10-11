@@ -718,7 +718,45 @@ console.log("\n⑱ 三语适配（专业名词不翻译）");
     else bad("页面级文案有三语不对齐", pageBad.slice(0, 5).join(" · "));
   }
 
-  // ⑥ 页面级：lang 与 hreflang
+  /* ⑥ 串台检查：英文页面里不该出现中日文字符（这条一次能抓住所有"没翻译"的地方）
+     为什么只查英文页：**日文本身就用汉字**（登録・送信・要りません），
+     拿"含汉字"去判日文页会全是误报。而英文页里出现 CJK 字符，
+     一定是漏翻 —— 这是最干净的判据。
+     两类正常的例外要放行：① 语言切换里的「中文」二字（语言名用母语写是惯例）；
+     ② number-words 举例时的中文大写数字（那是工具要演示的内容本身）；③ HTML 注释（我们自己写的中文说明）。 */
+  {
+    const CJK = /[\u4e00-\u9fff]/;
+    /* 白名单：① 语言切换里的语言名（「中文」「日本語」用母语写是惯例）
+       ② number-words 举例用的中文大写数字（那是工具要演示的内容本身）
+       ③ 404 页整体排除 —— 它是**一个文件服务三种语言**（按路径前缀切块显示），
+          英文访问者看到的那一份里当然也躺着中文块，这是设计使然，不是漏翻。 */
+    /* 另几个单字是**示例内容**，不是漏翻：
+       · number-words 的英文 FAQ 要讲清「一能改成二、所以要用壹」—— 必须写出中文数字；
+       · url-parser 演示解码时会把 %E4%B8%AD 还原成「中」—— 那是示例输出本身。 */
+    const ALLOW = ["中文", "日本語", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖", "佰", "仟", "拾", "万", "亿",
+      "一", "二", "十", "中"];
+    const enPages = ["index.html"]
+      .concat(fs.readdirSync(path.join(ROOT, "tools")).filter((f) => f.endsWith(".html")).map((f) => "tools/" + f));
+    let leaked = [];
+    for (const f of enPages) {
+      let h = fs.readFileSync(path.join(ROOT, f), "utf8");
+      h = h.replace(/<main>[\s\S]*?<\/main>/g, (m) => m);      // 只查主体
+      h = h.replace(/<!--[\s\S]*?-->/g, "");                    // HTML 注释不算（中文注释是我们自己写的）
+      h = h.replace(/<script[\s\S]*?<\/script>/g, (m) =>      // 内联脚本里的 JS 注释也不算
+        m.replace(/\/\*[\s\S]*?\*\//g, "").replace(/^\s*\/\/[^\n]*$/gm, ""));
+      h = h.replace(/<[^>]*data-lang[^>]*>[\s\S]*?<\/[^>]*>/g, "");
+      for (const w of ALLOW) h = h.split(w).join("");
+      const hit = h.match(CJK);
+      if (hit) {
+        const i = h.search(CJK);
+        leaked.push(f + " → …" + h.slice(Math.max(0, i - 20), i + 14).replace(/\s+/g, " ") + "…");
+      }
+    }
+    if (!leaked.length) ok(`${enPages.length} 个英文页面没有中日文串台（漏翻会在这里现形）`);
+    else bad("英文页面里出现中日文字符（说明有文案没走翻译）", leaked.slice(0, 4).join(" · "));
+  }
+
+  // ⑦ 页面级：lang 与 hreflang
   const pages = [["en", "index.html"], ["zh", "zh/index.html"], ["ja", "ja/index.html"],
                  ["zh", "zh/tools/base64.html"], ["ja", "ja/tools/markdown.html"]];
   let langBad = [];
@@ -732,6 +770,40 @@ console.log("\n⑱ 三语适配（专业名词不翻译）");
   }
   if (!langBad.length) ok("页面 lang 与 hreflang（en / zh-Hans / ja + x-default）齐全");
   else bad("语言标注有问题", langBad.slice(0, 6).join(" · "));
+}
+
+/* ── ⑲ 自制弹窗（毛毛：弹窗别走系统的，太丑）──────────────────────────────
+   站内不许出现系统的 alert / confirm / prompt —— 它们是浏览器画的黑框，
+   样式完全不受控，还会冻住页面。检查三件事：代码里没有系统弹窗调用、
+   自制弹窗的样式与文案都在。 */
+console.log("\n⑲ 自制弹窗（不用系统 alert/confirm）");
+{
+  const files = [path.join(ROOT, "assets", "tools", "_shared.js"), path.join(ROOT, "assets", "app.js")]
+    .concat(fs.readdirSync(path.join(ROOT, "assets", "tools")).filter((f) => f.endsWith(".js")).map((f) => path.join(ROOT, "assets", "tools", f)));
+  let sysCalls = [];
+  for (const f of files) {
+    const src = fs.readFileSync(f, "utf8").replace(/\/\*[\s\S]*?\*\//g, "").replace(/^\s*\/\/[^\n]*$/gm, "");
+    // 排除 deferred.prompt()（PWA 安装提示，是浏览器事件对象的方法，不是 window.prompt）
+    if (/(?<![.\w])(alert|confirm|prompt)\s*\(/.test(src)) sysCalls.push(path.basename(f));
+  }
+  if (!sysCalls.length) ok("全场没有系统 alert / confirm / prompt 调用");
+  else bad("还在用系统弹窗", sysCalls.join(" · "));
+
+  const shared = fs.readFileSync(path.join(ROOT, "assets", "tools", "_shared.js"), "utf8");
+  if (shared.includes("function confirmBox") && shared.includes("confirm: confirmBox")) ok("TP.confirm 自制弹窗已就位（返回 Promise）");
+  else bad("_shared.js 里找不到自制弹窗");
+
+  const css = fs.readFileSync(path.join(ROOT, "assets", "style.css"), "utf8");
+  if (/\.modal-mask/.test(css) && /\.modal\s*\{/.test(css)) ok("弹窗样式在内（细边框 + 遮罩，未加阴影）");
+  else bad("弹窗样式缺失");
+  if (/\.modal[\s\S]{0,400}box-shadow/.test(css)) bad("弹窗加了阴影", "站内规则：阴影只留给 toast 一处");
+  else ok("弹窗没破坏「阴影只用一处」的规则");
+
+  const ui = JSON.parse(fs.readFileSync(path.join(ROOT, "src", "i18n", "ui.json"), "utf8"));
+  const need = ["cancel", "confirmOk", "clearAsk", "clearOk"];
+  const miss = need.filter((k) => !ui[k] || !["en", "zh", "ja"].every((lg) => ui[k][lg]));
+  if (!miss.length) ok("弹窗文案三语齐全（取消 / 确定 / 清空确认）");
+  else bad("弹窗文案缺三语", miss.join(" "));
 }
 
 console.log(`\n结果：${pass} 项通过，${fail} 项失败`);

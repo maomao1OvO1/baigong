@@ -3,7 +3,7 @@
   "en": {
     "title": "Numbers to words and Chinese financial capitals — ToolPocket",
     "desc": "Turn a number into English words, Chinese reading, or the Chinese financial uppercase used on invoices.",
-    "h1": "Numbers to words / 中文大写",
+    "h1": "Numbers to words / Chinese uppercase",
     "lead": "Turn a number into English words, plain Chinese reading, or the <b>Chinese financial uppercase</b> required on invoices and contracts (壹佰贰拾叁万). Hand-writing that form is error-prone in exactly two places: where the zeros go, and where the 万 / 亿 sections break.",
     "faq": [
       [
@@ -55,7 +55,7 @@
   "ja": {
     "title": "数字を英語・中国語の読みに変換 — ToolPocket",
     "desc": "数値を英語の読み、中国語の読み、または中国語の財務用大字に変換します。",
-    "h1": "数字 → 読み / 中文大字",
+    "h1": "数字 → 読み / 中国語の大字",
     "lead": "数値を英語の読み、中国語の通常の読み、または請求書や契約書で使う<b>中国語の財務用大字</b>（壹佰贰拾叁万）に変換します。手書きで間違えやすいのは 2 点：ゼロの位置と、万・億の区切りです。",
     "faq": [
       [

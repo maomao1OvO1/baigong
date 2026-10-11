@@ -158,5 +158,25 @@
     "en": "© 2026 ToolPocket — all rights reserved. Please don’t republish this site or its code without permission.",
     "zh": "© 2026 ToolPocket —— 保留所有权利。未经许可，请勿转载或复制本站内容与代码。",
     "ja": "© 2026 ToolPocket — All rights reserved. 当サイトの内容・コードの無断転載を禁じます。"
+  },
+  "cancel": {
+    "en": "Cancel",
+    "zh": "取消",
+    "ja": "キャンセル"
+  },
+  "confirmOk": {
+    "en": "OK",
+    "zh": "确定",
+    "ja": "OK"
+  },
+  "clearAsk": {
+    "en": "Clear what you typed? This can't be undone.",
+    "zh": "清空刚输入的内容？这一步没法撤销。",
+    "ja": "入力した内容を消しますか？元には戻せません。"
+  },
+  "clearOk": {
+    "en": "Clear",
+    "zh": "清空",
+    "ja": "消去"
   }
 }

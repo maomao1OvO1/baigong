@@ -15,18 +15,11 @@
   var input = $("input"), output = $("output"), zone = $("zone"), status = $("status");
   var copyBtn = $("copy"), clearBtn = $("clear");
 
-  // 常用时区（挑的是国内用户最常打交道的几个）
-  var ZONES = [
-    ["UTC", "UTC"],
-    ["Asia/Shanghai", "北京 / 上海"],
-    ["Asia/Tokyo", "东京"],
-    ["Asia/Singapore", "新加坡"],
-    ["Europe/London", "伦敦"],
-    ["Europe/Berlin", "柏林 / 巴黎"],
-    ["America/New_York", "纽约"],
-    ["America/Los_Angeles", "洛杉矶"],
-    ["Australia/Sydney", "悉尼"],
-  ];
+  /* 常用时区（挑的是最常打交道的几个）。
+     ⚠️ 显示名走 window.T.zones（三语）—— 别在这里写死城市名，
+     否则英文页面上会冒出中文（2026-10-12 修）。时区 ID 本身是标准值，任何语言都不翻。 */
+  var ZONES = ["UTC", "Asia/Shanghai", "Asia/Tokyo", "Asia/Singapore", "Europe/London",
+    "Europe/Berlin", "America/New_York", "America/Los_Angeles", "Australia/Sydney"];
 
   function fmtIn(tz, date) {
     try {
@@ -71,11 +64,13 @@
       return;
     }
     var baseOff = offsetMin("Asia/Shanghai", base);
-    var lines = ZONES.map(function (z) {
-      var off = offsetMin(z[0], base);
+    var zoneNames = T.zones || {};
+    var lines = ZONES.map(function (tz) {
+      var off = offsetMin(tz, base);
       var diff = (off - baseOff) / 60;
       var sign = diff === 0 ? "±0" : (diff > 0 ? "+" + diff : String(diff));
-      return (z[1] + "                     ").slice(0, 21) + fmtIn(z[0], base) + "   " + sign + "h";
+      var name = zoneNames[tz] || tz;
+      return (name + "                         ").slice(0, 22) + fmtIn(tz, base) + "   " + sign + "h";
     });
     output.value = lines.join("\n");
     status.textContent = T.shown || "times shown";

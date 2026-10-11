@@ -24,7 +24,18 @@
       "zoneCn": "Beijing / Shanghai (UTC+8)",
       "zoneJp": "Tokyo (UTC+9)",
       "zoneUs": "New York (UTC-5/-4)",
-      "zoneUk": "London (UTC+0/+1)"
+      "zoneUk": "London (UTC+0/+1)",
+      "zones": {
+        "UTC": "UTC",
+        "Asia/Shanghai": "Beijing / Shanghai",
+        "Asia/Tokyo": "Tokyo",
+        "Asia/Singapore": "Singapore",
+        "Europe/London": "London",
+        "Europe/Berlin": "Berlin / Paris",
+        "America/New_York": "New York",
+        "America/Los_Angeles": "Los Angeles",
+        "Australia/Sydney": "Sydney"
+      }
     }
   },
   "zh": {
@@ -51,7 +62,18 @@
       "zoneCn": "北京 / 上海 (UTC+8)",
       "zoneJp": "东京 (UTC+9)",
       "zoneUs": "纽约 (UTC-5/-4)",
-      "zoneUk": "伦敦 (UTC+0/+1)"
+      "zoneUk": "伦敦 (UTC+0/+1)",
+      "zones": {
+        "UTC": "UTC",
+        "Asia/Shanghai": "北京 / 上海",
+        "Asia/Tokyo": "东京",
+        "Asia/Singapore": "新加坡",
+        "Europe/London": "伦敦",
+        "Europe/Berlin": "柏林 / 巴黎",
+        "America/New_York": "纽约",
+        "America/Los_Angeles": "洛杉矶",
+        "Australia/Sydney": "悉尼"
+      }
     }
   },
   "ja": {
@@ -78,7 +100,18 @@
       "zoneCn": "北京・上海 (UTC+8)",
       "zoneJp": "東京 (UTC+9)",
       "zoneUs": "ニューヨーク (UTC-5/-4)",
-      "zoneUk": "ロンドン (UTC+0/+1)"
+      "zoneUk": "ロンドン (UTC+0/+1)",
+      "zones": {
+        "UTC": "UTC",
+        "Asia/Shanghai": "北京・上海",
+        "Asia/Tokyo": "東京",
+        "Asia/Singapore": "シンガポール",
+        "Europe/London": "ロンドン",
+        "Europe/Berlin": "ベルリン・パリ",
+        "America/New_York": "ニューヨーク",
+        "America/Los_Angeles": "ロサンゼルス",
+        "Australia/Sydney": "シドニー"
+      }
     }
   }
 }
