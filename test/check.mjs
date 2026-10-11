@@ -191,5 +191,42 @@ console.log("\n⑥ 移动端自检");
   else bad(`${noViewport} 个页面缺 viewport meta`, "手机上会按桌面宽度渲染");
 }
 
+/* ── ⑦ PWA 自检（装成桌面应用的必要条件）──────────────────────────────────
+   Chrome 判定「可安装」要同时满足：HTTPS + manifest（name/short_name/start_url/display/icons）
+   + 注册了带 fetch 处理器的 service worker + 192 与 512 两种图标。少一样就装不上，
+   而浏览器不会给你报错 —— 只是那个安装图标永远不出现。所以这里逐条核对。 */
+console.log("\n⑦ PWA 自检（桌面应用安装条件）");
+{
+  const need = ["manifest.webmanifest", "zh/manifest.webmanifest", "ja/manifest.webmanifest", "sw.js",
+                "assets/icon-192.png", "assets/icon-512.png", "assets/apple-touch-icon.png", "assets/app.js"];
+  const missing = need.filter((f) => !fs.existsSync(path.join(ROOT, f)));
+  if (!missing.length) ok(`${need.length} 个 PWA 文件都在`);
+  else bad("缺 PWA 文件：" + missing.join(", "), "少了就装不上桌面应用");
+
+  for (const [dir, want] of [["", "/"], ["zh/", "/zh/"], ["ja/", "/ja/"]]) {
+    const mf = path.join(ROOT, dir + "manifest.webmanifest");
+    if (!fs.existsSync(mf)) continue;
+    const m = JSON.parse(fs.readFileSync(mf, "utf8"));
+    const bads = [];
+    if (!m.name || !m.short_name) bads.push("缺 name/short_name");
+    if (m.start_url !== want) bads.push(`start_url 应为 ${want}，实际 ${m.start_url}`);
+    if (m.display !== "standalone") bads.push("display 不是 standalone");
+    const sizes = (m.icons || []).map((i) => i.sizes);
+    if (!sizes.includes("192x192") || !sizes.includes("512x512")) bads.push("缺 192 或 512 图标");
+    if (bads.length) bad("manifest " + (dir || "(根)") + "：" + bads.join(" · "));
+    else ok("manifest " + (dir || "(根)") + "：start_url=" + m.start_url + " · 图标齐全");
+  }
+
+  const sw = fs.readFileSync(path.join(ROOT, "sw.js"), "utf8");
+  if (/addEventListener\("fetch"/.test(sw)) ok("service worker 有 fetch 处理器（可安装的硬条件）");
+  else bad("sw.js 没有 fetch 处理器", "Chrome 不会认为它可安装");
+  if (/addEventListener\("install"/.test(sw) && /addEventListener\("activate"/.test(sw)) ok("service worker 有 install / activate（能预缓存与清旧缓存）");
+  else bad("sw.js 缺 install 或 activate");
+
+  const home = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
+  if (home.includes('rel="manifest"') && home.includes("app.js")) ok("首页引用了 manifest 与 app.js");
+  else bad("首页没引用 manifest 或 app.js");
+}
+
 console.log(`\n结果：${pass} 项通过，${fail} 项失败`);
 process.exit(fail ? 1 : 0);
