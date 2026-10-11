@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IP 子网计算器 —— CIDR / 掩码 / 可用主机范围 | ToolPocket</title>
+<meta name="description" content="输入带前缀的 IPv4 地址，算出网络地址、广播地址、可用主机范围、掩码、通配符掩码与二进制视图。">
+<link rel="canonical" href="https://tools.maomaowang.top/zh/tools/ip-cidr.html">
+<meta property="og:title" content="IP 子网计算器 —— CIDR / 掩码 / 可用主机范围 | ToolPocket">
+<meta property="og:description" content="输入带前缀的 IPv4 地址，算出网络地址、广播地址、可用主机范围、掩码、通配符掩码与二进制视图。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/zh/tools/ip-cidr.html">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/ip-cidr.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/ip-cidr.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/ip-cidr.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/ip-cidr.html">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"IPv4 / CIDR 子网计算","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"输入带前缀的 IPv4 地址，算出网络地址、广播地址、可用主机范围、掩码、通配符掩码与二进制视图。"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"为什么可用地址比总数少 2 个？","acceptedAnswer":{"@type":"Answer","text":"普通子网里第一个地址是网络号、最后一个地址是广播地址，两者都不能分配给主机。例外是 /31 与 /32（RFC 3021）—— 这时工具按实际可用数报，不会给出负数。"}},{"@type":"Question","name":"为什么 255.255.255.255 的二进制看着怪？","acceptedAnswer":{"@type":"Answer","text":"JavaScript 的位运算按**32 位有符号**整数做，这个值会被当成 −1。本工具在打印前都转成无符号，否则掩码会显示成负数。"}}]}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/zh/index.html">🧰 ToolPocket</a>
+  <nav class="langs"><a href="/zh/index.html#search" title="search" aria-label="search">🔍</a><a href="/tools/ip-cidr.html">English</a><a href="/zh/tools/ip-cidr.html" class="on" aria-current="page">中文</a><a href="/ja/tools/ip-cidr.html">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/zh/index.html">← 全部工具</a></p>
+  <h1>IPv4 / CIDR 子网计算</h1>
+  <p class="lead">输入 <code>192.168.1.10/24</code>，直接得到网络地址、广播地址、主机范围、两种掩码和地址总数，并告诉你它是私有、回环还是公网地址。</p>
+
+  <div class="searchbox">
+    <span class="s-ico" aria-hidden="true">🔍</span>
+    <input id="searchInput" type="search" autocomplete="off" placeholder="搜索工具 —— 例如：压缩、json、密码…" aria-label="搜索工具 —— 例如：压缩、json、密码…">
+  </div>
+  <ul class="searchresults" id="searchResults" hidden></ul>
+  <p class="badge-line"><span class="pill">完全在你的浏览器里运行，不上传、不保存。</span></p>
+
+<div class="panel">
+<label class="row lbl" for="input">输入</label>
+  <textarea id="input" class="tall" placeholder=""></textarea>
+  <div class="opts">
+
+  </div>
+<label class="row lbl" for="output">结果</label>
+  <textarea id="output" readonly placeholder=""></textarea>
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">复制结果</button>
+    <button class="ghost" id="clear">清空</button>
+  </div>
+</div>
+
+<aside class="ad">
+  <span class="ad-label">自己人做的</span>
+  <span class="ad-ico" aria-hidden="true">🎮</span>
+  <div class="ad-body">
+    <b>🎮 自己写的小游戏合集</b>
+    <p>塔防、2048、五子棋、打字测试、猜数字…都是一个人从零写的，没有用现成引擎。</p>
+  </div>
+  <a class="ad-cta" href="https://maomaowang.top/games.html">去玩两把 →</a>
+</aside>
+
+  <section class="faq">
+    <h2>常见问题</h2>
+    <details><summary>为什么可用地址比总数少 2 个？</summary><p>普通子网里第一个地址是网络号、最后一个地址是广播地址，两者都不能分配给主机。例外是 /31 与 /32（RFC 3021）—— 这时工具按实际可用数报，不会给出负数。</p></details>
+    <details><summary>为什么 255.255.255.255 的二进制看着怪？</summary><p>JavaScript 的位运算按**32 位有符号**整数做，这个值会被当成 −1。本工具在打印前都转成无符号，否则掩码会显示成负数。</p></details>
+  </section>
+
+</main>
+
+<footer><p>ToolPocket · 全部在你的设备上完成，不上传任何文件。</p></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = {"langName":"中文","footer":"ToolPocket · 全部在你的设备上完成，不上传任何文件。","nav":"全部工具","backToTools":"← 全部工具","copy":"复制结果","swap":"互换","clear":"清空","download":"下载","copied":"已复制到剪贴板","copyFail":"复制失败 —— 请手动选中复制","inputLabel":"输入","outputLabel":"结果","privacyNote":"完全在你的浏览器里运行，不上传、不保存。","searchPlaceholder":"搜索工具 —— 例如：压缩、json、密码…","noResults":"没找到匹配的工具，换个词试试？","badIp":"不是合法的 IPv4 地址（例如 192.168.1.10/24）","badPrefix":"前缀长度必须在 0 到 32 之间","rAddress":"地址","rNetwork":"网络地址","rBroadcast":"广播地址","rRange":"主机范围","rMask":"子网掩码","rWildcard":"通配符掩码","rCount":"地址总数","rUsable":"个可用","rType":"类型","rBinary":"二进制","rBinMask":"       掩码","kinds":{"private":"私有地址（RFC 1918）","public":"公网地址","loopback":"回环地址","link-local":"链路本地（APIPA）","cgnat":"运营商级 NAT","multicast":"组播","reserved":"保留"}};</script>
+<script src="/assets/tools/_shared.js" defer></script>
+<script src="/assets/tools/ip-cidr.js" defer></script>
+</body>
+</html>

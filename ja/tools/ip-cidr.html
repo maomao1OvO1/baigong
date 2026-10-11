@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IP サブネット計算 — CIDR・ネットマスク・ホスト範囲 | ToolPocket</title>
+<meta name="description" content="CIDR 付きの IPv4 アドレスから、ネットワークアドレス・ブロードキャスト・利用可能ホスト範囲・マスク・バイナリ表示を計算します。">
+<link rel="canonical" href="https://tools.maomaowang.top/ja/tools/ip-cidr.html">
+<meta property="og:title" content="IP サブネット計算 — CIDR・ネットマスク・ホスト範囲 | ToolPocket">
+<meta property="og:description" content="CIDR 付きの IPv4 アドレスから、ネットワークアドレス・ブロードキャスト・利用可能ホスト範囲・マスク・バイナリ表示を計算します。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/ja/tools/ip-cidr.html">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/ip-cidr.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/ip-cidr.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/ip-cidr.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/ip-cidr.html">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"IPv4 / CIDR サブネット計算","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"CIDR 付きの IPv4 アドレスから、ネットワークアドレス・ブロードキャスト・利用可能ホスト範囲・マスク・バイナリ表示を計算します。"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"利用可能数が総数より 2 少ないのはなぜ？","acceptedAnswer":{"@type":"Answer","text":"通常のサブネットでは先頭がネットワークアドレス、末尾がブロードキャストで、どちらもホストに割り当てられません。/31 と /32（RFC 3021）は例外で、本ツールは負の数ではなく実際の利用可能数を表示します。"}},{"@type":"Question","name":"255.255.255.255 のバイナリが変に見えるのは？","acceptedAnswer":{"@type":"Answer","text":"JavaScript のビット演算は **32 ビット符号付き**整数で行われるため、この値は −1 になります。本ツールは表示前に符号なしへ変換するので、マスクが負の数になることはありません。"}}]}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/ja/index.html">🧰 ToolPocket</a>
+  <nav class="langs"><a href="/ja/index.html#search" title="search" aria-label="search">🔍</a><a href="/tools/ip-cidr.html">English</a><a href="/zh/tools/ip-cidr.html">中文</a><a href="/ja/tools/ip-cidr.html" class="on" aria-current="page">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/ja/index.html">← ツール一覧</a></p>
+  <h1>IPv4 / CIDR サブネット計算</h1>
+  <p class="lead"><code>192.168.1.10/24</code> のように入力すると、ネットワーク・ブロードキャスト・ホスト範囲・2 種類のマスク・アドレス数が得られ、プライベート／ループバック／グローバルの別も表示します。</p>
+
+  <div class="searchbox">
+    <span class="s-ico" aria-hidden="true">🔍</span>
+    <input id="searchInput" type="search" autocomplete="off" placeholder="ツールを検索 — 例：圧縮、json、パスワード…" aria-label="ツールを検索 — 例：圧縮、json、パスワード…">
+  </div>
+  <ul class="searchresults" id="searchResults" hidden></ul>
+  <p class="badge-line"><span class="pill">すべてブラウザ内で処理されます。送信も保存もしていません。</span></p>
+
+<div class="panel">
+<label class="row lbl" for="input">入力</label>
+  <textarea id="input" class="tall" placeholder=""></textarea>
+  <div class="opts">
+
+  </div>
+<label class="row lbl" for="output">結果</label>
+  <textarea id="output" readonly placeholder=""></textarea>
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">結果をコピー</button>
+    <button class="ghost" id="clear">クリア</button>
+  </div>
+</div>
+
+<aside class="ad">
+  <span class="ad-label">製作者より</span>
+  <span class="ad-ico" aria-hidden="true">🎮</span>
+  <div class="ad-body">
+    <b>ブラウザで遊べるタワーディフェンス</b>
+    <p>同じ開発者がゼロから作ったゲームです.</p>
+  </div>
+  <a class="ad-cta" href="https://maomaowang.top/games/td/source/game.html">遊んでみる →</a>
+</aside>
+
+  <section class="faq">
+    <h2>よくある質問</h2>
+    <details><summary>利用可能数が総数より 2 少ないのはなぜ？</summary><p>通常のサブネットでは先頭がネットワークアドレス、末尾がブロードキャストで、どちらもホストに割り当てられません。/31 と /32（RFC 3021）は例外で、本ツールは負の数ではなく実際の利用可能数を表示します。</p></details>
+    <details><summary>255.255.255.255 のバイナリが変に見えるのは？</summary><p>JavaScript のビット演算は **32 ビット符号付き**整数で行われるため、この値は −1 になります。本ツールは表示前に符号なしへ変換するので、マスクが負の数になることはありません。</p></details>
+  </section>
+
+</main>
+
+<footer><p>ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。</p></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = {"langName":"日本語","footer":"ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"コピーできませんでした。手動で選択してください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理されます。送信も保存もしていません。","searchPlaceholder":"ツールを検索 — 例：圧縮、json、パスワード…","noResults":"該当するツールがありません。別の言葉でお試しを。","badIp":"有効な IPv4 アドレスではありません（例：192.168.1.10/24）","badPrefix":"プレフィックス長は 0〜32 の範囲で指定してください","rAddress":"アドレス","rNetwork":"ネットワーク","rBroadcast":"ブロードキャスト","rRange":"ホスト範囲","rMask":"ネットマスク","rWildcard":"ワイルドカード","rCount":"アドレス数","rUsable":"利用可能","rType":"種別","rBinary":"バイナリ","rBinMask":"        マスク","kinds":{"private":"プライベート（RFC 1918）","public":"グローバル","loopback":"ループバック","link-local":"リンクローカル（APIPA）","cgnat":"キャリア NAT","multicast":"マルチキャスト","reserved":"予約済み"}};</script>
+<script src="/assets/tools/_shared.js" defer></script>
+<script src="/assets/tools/ip-cidr.js" defer></script>
+</body>
+</html>

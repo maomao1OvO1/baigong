@@ -19,6 +19,69 @@
   },
   "tools": [
     {
+      "id": "html-entities",
+      "icon": "🧷",
+      "kind": "text",
+      "script": "html-entities.js",
+      "i18n": "html-entities",
+      "buttons": ["copy", "swap", "clear"],
+      "options": [
+        { "type": "select", "id": "mode", "label": "mode", "choices": [["encode", "encode"], ["decode", "decode"]], "hint": "modeHint" },
+        { "type": "checkbox", "id": "all", "label": "all", "hint": "allHint" }
+      ]
+    },
+    {
+      "id": "date-calc",
+      "icon": "📅",
+      "kind": "text",
+      "script": "date-calc.js",
+      "i18n": "date-calc",
+      "buttons": ["copy", "clear"],
+      "options": [
+        { "type": "number", "id": "days", "label": "days", "value": 30, "step": 1, "note": "daysNote" }
+      ]
+    },
+    {
+      "id": "url-parser",
+      "icon": "🔗",
+      "kind": "text",
+      "script": "url-parser.js",
+      "i18n": "url-parser",
+      "buttons": ["copy", "clear"],
+      "options": [
+        { "type": "checkbox", "id": "decode", "label": "decode", "checked": true, "hint": "decodeHint" }
+      ]
+    },
+    {
+      "id": "color-palette",
+      "icon": "🎨",
+      "kind": "text",
+      "script": "color-palette.js",
+      "i18n": "color-palette",
+      "buttons": ["copy", "clear"],
+      "options": [
+        { "type": "color", "id": "color", "label": "color" }
+      ]
+    },
+    {
+      "id": "ip-cidr",
+      "icon": "🌐",
+      "kind": "text",
+      "script": "ip-cidr.js",
+      "i18n": "ip-cidr",
+      "buttons": ["copy", "clear"],
+      "options": []
+    },
+    {
+      "id": "cron",
+      "icon": "⏰",
+      "kind": "text",
+      "script": "cron.js",
+      "i18n": "cron",
+      "buttons": ["copy", "clear"],
+      "options": []
+    },
+    {
       "id": "hash",
       "icon": "🔐",
       "kind": "text",

@@ -61,6 +61,7 @@ function loadTool(scriptFile, ids, strings, defaults = {}, extra = {}) {
     setTimeout: (fn) => { fn(); return 0; },
     clearTimeout: () => {},
     Promise, TextEncoder, TextDecoder, Uint8Array, Uint32Array, Int32Array, ArrayBuffer, DataView, BigInt,
+    URL, URLSearchParams,
     Math, JSON, String, Number, parseFloat, parseInt, isFinite, Object, Array, Date, RegExp, Error, Set, Map,
     btoa: (s) => Buffer.from(s, "binary").toString("base64"),
     atob: (s) => Buffer.from(s, "base64").toString("binary"),
@@ -617,6 +618,172 @@ console.log("\n⑱ CSV ⇄ JSON（引号、字段内逗号、字段内换行）"
   els.input.fire("input");
   if (els.status.className.includes("err")) ok("坏 JSON 给出错误提示");
   else bad("坏 JSON 没报错", els.status.textContent);
+}
+
+console.log("\n⑲ HTML 实体（编码顺序不能反、emoji 不能被拆半）");
+{
+  const ui = Object.assign(readUi("en"), readI18n("html-entities", "en"));
+  const { els } = loadTool("html-entities.js",
+    ["mode", "all", "input", "output", "status", "copy", "swap", "clear", "toast"], ui,
+    { mode: "encode" });
+  els.input.value = 'a < b & "c"';
+  els.input.fire("input");
+  if (els.output.value === "a &lt; b &amp; &quot;c&quot;") ok("五个特殊字符都转义正确（& 没有被二次转义）");
+  else bad("编码结果不对", els.output.value);
+  els.mode.value = "decode";
+  els.mode.fire("change");
+  if (els.output.value === 'a < b & "c"') ok("解码能还原回原文（往返一致）");
+  else bad("解码结果不对", els.output.value);
+
+  els.mode.value = "encode"; els.mode.fire("change");
+  els.input.value = "中文 🐋";
+  els.input.fire("input");
+  if (els.output.value === "中文 🐋") ok("默认不转义非 ASCII（开关关闭）");
+  else bad("默认行为不对", els.output.value);
+  els.all.checked = true;
+  els.input.fire("input");
+  if (els.output.value === "&#x4E2D;&#x6587; &#x1F40B;") ok("打开开关后中文与 emoji 都按码点转义（emoji 没被拆成两半）");
+  else bad("非 ASCII 转义不对", els.output.value);
+
+  els.mode.value = "decode"; els.mode.fire("change");
+  if (els.output.value === "中文 🐋") ok("十六进制实体能解回 emoji（码点 > 0xFFFF 也正确）");
+  else bad("emoji 解码失败", els.output.value);
+
+  els.input.value = "&unknown; &amp;";
+  els.input.fire("input");
+  if (els.output.value === "&unknown; &") ok("认不出的实体原样保留（不擅自删掉）");
+  else bad("未知实体处理不对", els.output.value);
+}
+
+console.log("\n⑳ 日期计算（相差天数 / 加减 / 非法日期要拒绝）");
+{
+  const ui = Object.assign(readUi("en"), readI18n("date-calc", "en"));
+  const { els } = loadTool("date-calc.js", ["input", "output", "days", "status", "copy", "clear", "toast"], ui,
+    { days: "30" });
+  els.input.value = "2026-01-01";
+  els.input.fire("input");
+  if (els.output.value.includes("2026-01-01") && els.output.value.includes("2026-01-31")) ok("偏移 +30 天 = 2026-01-31");
+  else bad("日期偏移算错", els.output.value.replace(/\n/g, " | "));
+  if (/day of year\s+1 \/ 365/.test(els.output.value)) ok("2026-01-01 是年内第 1 天 / 共 365 天");
+  else bad("年内序算错", els.output.value.split("\n")[2]);
+
+  els.input.value = "2024-02-29";
+  els.input.fire("input");
+  if (!els.status.className.includes("err")) ok("闰年 2 月 29 日被接受");
+  else bad("闰年日期被拒", els.status.textContent);
+  if (els.output.value.includes("yes")) ok("2024 识别为闰年");
+  else bad("闰年判断错了", els.output.value);
+
+  els.input.value = "2026-02-29";
+  els.input.fire("input");
+  if (els.status.className.includes("err") && els.output.value === "") ok("非闰年的 2 月 29 日被明确拒绝（不会偷偷进位到 3 月）");
+  else bad("非法日期处理不对", els.status.textContent + " / " + els.output.value.split("\n")[0]);
+
+  els.input.value = "2026/03/05";
+  els.input.fire("input");
+  if (!els.status.className.includes("err")) ok("斜杠写法 2026/03/05 也能识别");
+  else bad("斜杠日期没识别", els.status.textContent);
+}
+
+console.log("\n㉑ URL 拆解（主机/路径/查询参数逐条）");
+{
+  const ui = Object.assign(readUi("en"), readI18n("url-parser", "en"));
+  const { els } = loadTool("url-parser.js", ["input", "output", "decode", "status", "copy", "clear", "toast"], ui, {});
+  els.decode.checked = false;
+  els.input.value = "https://shop.example.com:8443/a/b?q=hello%20world&lang=zh#top";
+  els.input.fire("input");
+  const out = els.output.value;
+  if (out.includes("https") && out.includes("shop.example.com") && out.includes("8443")) ok("协议 / 主机 / 端口都拆出来了");
+  else bad("基础字段不对", out.replace(/\n/g, " | ").slice(0, 160));
+  if (out.includes("1. q  =  hello%20world")) ok("查询参数逐条列出（带序号，未解码时显示原文）");
+  else bad("查询参数没列出来", out.replace(/\n/g, " | ").slice(0, 200));
+  els.decode.checked = true;
+  els.input.fire("input");
+  if (els.output.value.includes("hello world")) ok("打开解码后 %20 显示为空格");
+  else bad("解码开关失效", els.output.value.slice(-160));
+  els.input.value = "notaurl";
+  els.input.fire("input");
+  if (els.status.className.includes("err") && els.output.value === "") ok("非法 URL 给出提示");
+  else bad("非法 URL 处理不对", els.status.textContent);
+}
+
+console.log("\n㉒ 配色板（互补色与明度阶梯）");
+{
+  const ui = Object.assign(readUi("en"), readI18n("color-palette", "en"));
+  const { els } = loadTool("color-palette.js", ["input", "output", "color", "status", "copy", "clear", "toast"], ui, {});
+  els.input.value = "#ff0000";
+  els.input.fire("input");
+  const out = els.output.value;
+  if ((out.match(/#[0-9a-f]{6}/g) || []).length >= 13) ok("一次生成 6 组配色 + 7 档明度（共 13 个以上 hex）");
+  else bad("配色数量不足", out.replace(/\n/g, " | ").slice(0, 200));
+  if (out.includes("#00ffff")) ok("#ff0000 的互补色 = #00ffff（按 HSL 转 180°）");
+  else bad("互补色算错", out.split("\n")[1]);
+  els.input.value = "#2f6df6";
+  els.input.fire("input");
+  if (!els.status.className.includes("err")) ok("三位/六位 hex 都能用（本轮测 6 位）");
+  else bad("六位 hex 被拒", els.status.textContent);
+  els.input.value = "xyz";
+  els.input.fire("input");
+  if (els.status.className.includes("err")) ok("非法颜色被拒绝");
+  else bad("非法颜色没报错", els.status.textContent);
+}
+
+console.log("\n㉓ IP / CIDR（掩码运算不能出负数）");
+{
+  const ui = Object.assign(readUi("en"), readI18n("ip-cidr", "en"));
+  const { els } = loadTool("ip-cidr.js", ["input", "output", "status", "copy", "clear", "toast"], ui, {});
+  els.input.value = "192.168.1.10/24";
+  els.input.fire("input");
+  const out = els.output.value;
+  if (out.includes("192.168.1.0/24") && out.includes("192.168.1.255")) ok("/24 的网络地址与广播地址正确");
+  else bad("网络/广播算错", out.replace(/\n/g, " | ").slice(0, 200));
+  if (out.includes("192.168.1.1 – 192.168.1.254")) ok("可用主机范围 = .1 – .254");
+  else bad("主机范围不对", out.replace(/\n/g, " | ").slice(0, 200));
+  if (out.includes("256") && out.includes("254")) ok("地址总数 256 / 可用 254");
+  else bad("地址计数不对", out.split("\n")[6]);
+  if (!/-\d/.test(out.split("\n")[4] + out.split("\n")[5])) ok("掩码与通配符没有出现负数（32 位有符号的坑已挡住）");
+  else bad("掩码出现负数", out.split("\n")[4] + " / " + out.split("\n")[5]);
+  if (out.includes("private")) ok("识别为私有地址");
+  else bad("地址类型判断错了", out.split("\n")[7]);
+
+  els.input.value = "10.0.0.5/32";
+  els.input.fire("input");
+  if (/usable\s+1\b/.test(els.output.value)) ok("/32 的可用地址按 1 报（不是 −1）");
+  else bad("/32 特例处理不对", els.output.value.split("\n")[6]);
+  els.input.value = "999.1.1.1/24";
+  els.input.fire("input");
+  if (els.status.className.includes("err")) ok("非法 IP 被拒绝");
+  else bad("非法 IP 没报错", els.status.textContent);
+}
+
+console.log("\n㉔ Cron 解析（未来运行时间与「日/周是或关系」）");
+{
+  const ui = Object.assign(readUi("en"), readI18n("cron", "en"));
+  const { els } = loadTool("cron.js", ["input", "output", "status", "copy", "clear", "toast"], ui, {});
+  els.input.value = "*/15 9-18 * * 1-5";
+  els.input.fire("input");
+  const lines = els.output.value.split("\n").filter((l) => /^\s+\d{4}-\d{2}-\d{2} /.test(l));
+  if (lines.length === 5) ok("列出未来 5 次运行时间");
+  else bad("运行时间数量不对", lines.length + " 行");
+  const okAll = lines.length === 5 && lines.every((l) => {
+    const m = /(\d{2}):(\d{2})/.exec(l);
+    return +m[1] >= 9 && +m[1] <= 18 && [0, 15, 30, 45].includes(+m[2]);
+  });
+  if (okAll) ok("5 次时间都落在 9–18 点、整 15 分上");
+  else bad("时间不符合表达式", lines.join(" | "));
+  const weekdaysOnly = lines.length === 5 && lines.every((l) => !/Saturday|Sunday/.test(l));
+  if (weekdaysOnly) ok("周一至周五限定生效（没有周末）");
+  else bad("星期限定没生效", lines.join(" | "));
+
+  els.input.value = "* * * *";
+  els.input.fire("input");
+  if (els.status.className.includes("err")) ok("段数不对（4 段）时给出明确提示");
+  else bad("段数校验失效", els.status.textContent);
+
+  els.input.value = "0 0 1 * 1";
+  els.input.fire("input");
+  if (els.output.value.includes("OR")) ok("日与周同时限定时说明是「或」关系（Vixie cron 语义）");
+  else bad("日/周语义说明缺失", els.output.value.split("\n")[2]);
 }
 
 console.log(`\n结果：${pass} 项通过，${fail} 项失败`);

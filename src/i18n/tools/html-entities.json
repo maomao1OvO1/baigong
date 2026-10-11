@@ -1,0 +1,63 @@
+{
+  "_说明": "HTML 实体编解码 —— 三语文案。",
+  "en": {
+    "title": "HTML Entity Encoder / Decoder — Escape & Unescape Online | ToolPocket",
+    "desc": "Escape HTML special characters into entities (&amp; &lt; &gt; &quot;) or decode entities back to text, including numeric and hex forms.",
+    "h1": "HTML entity encode / decode",
+    "lead": "Turn <code>&lt;script&gt;</code> into text that displays safely, or read back a string full of <code>&amp;#x4E2D;</code>. Useful when you need ASCII-only output for an email template or an old API.",
+    "faq": [
+      ["Do I need to escape quotes too?", "Inside an HTML text node, only <code>&amp;</code> and <code>&lt;</code> are strictly required. Inside an attribute value (in double quotes), escape <code>&quot;</code> as well. This tool escapes the five common characters, which is always safe."],
+      ["Should I convert Chinese into entities?", "Only if something downstream demands pure ASCII. Otherwise it triples the file size and makes the source unreadable. That is why it is a separate switch, off by default."]
+    ],
+    "ui": {
+      "mode": "Direction",
+      "modeHint": "Encoding escapes special characters; decoding turns entities back into real characters.",
+      "encode": "Text → entities",
+      "decode": "Entities → text",
+      "all": "Also escape non-ASCII (Chinese, emoji…)",
+      "allHint": "Off by default: converting every CJK character into &#xNNNN; makes the output much longer.",
+      "entitiesOut": "entities produced",
+      "entitiesIn": "entities decoded"
+    }
+  },
+  "zh": {
+    "title": "HTML 实体编解码 —— 转义与还原 | ToolPocket",
+    "desc": "把 HTML 特殊字符转义成实体（&amp; &lt; &gt; &quot;），或把实体还原成原字符，支持十进制与十六进制写法。",
+    "h1": "HTML 实体编码 / 解码",
+    "lead": "把 <code>&lt;script&gt;</code> 变成页面上能安全显示的文字，或者把一串 <code>&amp;#x4E2D;</code> 还原回来。需要给邮件模板或老系统输出纯 ASCII 时，这个工具正好用得上。",
+    "faq": [
+      ["引号需要转义吗？", "在 HTML 文本节点里，严格来说只有 <code>&amp;</code> 和 <code>&lt;</code> 是必须转义的；但写在双引号属性里时，<code>&quot;</code> 也必须转义。本工具把 5 个常用字符一起转，任何场合都安全。"],
+      ["中文要不要转成实体？", "只有下游强制要求纯 ASCII 时才需要。否则体积会涨两三倍，源码也变得没法读 —— 所以这里单独做成开关，默认关闭。"]
+    ],
+    "ui": {
+      "mode": "转换方向",
+      "modeHint": "编码把特殊字符转义；解码把实体还原成真正的字符。",
+      "encode": "文本 → 实体",
+      "decode": "实体 → 文本",
+      "all": "同时转义非 ASCII（中文、emoji…）",
+      "allHint": "默认关闭：把每个汉字都转成 &#xNNNN; 会让输出长好几倍。",
+      "entitiesOut": "生成了多少个实体",
+      "entitiesIn": "还原了多少个实体"
+    }
+  },
+  "ja": {
+    "title": "HTML エンティティ変換 — エスケープと復元 | ToolPocket",
+    "desc": "HTML の特殊文字をエンティティ（&amp; &lt; &gt; &quot;）に変換したり、数値・16 進表記のエンティティを元の文字に戻します。",
+    "h1": "HTML エンティティのエンコード / デコード",
+    "lead": "<code>&lt;script&gt;</code> を安全に表示できる文字列に変換したり、<code>&amp;#x4E2D;</code> のような表記を元に戻せます。ASCII のみが要求されるメールテンプレートや旧システムでも役立ちます。",
+    "faq": [
+      ["引用符もエスケープが必要ですか？", "テキストノードでは <code>&amp;</code> と <code>&lt;</code> だけで十分ですが、二重引用符で囲んだ属性値では <code>&quot;</code> も必要です。本ツールは 5 文字をまとめて変換するため、どの場面でも安全です。"],
+      ["日本語をエンティティに変換すべきですか？", "下流が純粋な ASCII を要求する場合のみです。それ以外ではサイズが数倍になり、ソースも読めなくなります。そのため既定ではオフの独立スイッチにしています。"]
+    ],
+    "ui": {
+      "mode": "変換方向",
+      "modeHint": "エンコードは特殊文字を実体参照に、デコードは実体参照を元の文字に戻します。",
+      "encode": "テキスト → エンティティ",
+      "decode": "エンティティ → テキスト",
+      "all": "非 ASCII も変換（日本語・絵文字など）",
+      "allHint": "既定はオフです。すべての漢字を &#xNNNN; にすると出力が数倍長くなります。",
+      "entitiesOut": "生成したエンティティ数",
+      "entitiesIn": "復元したエンティティ数"
+    }
+  }
+}

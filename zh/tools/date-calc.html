@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>日期计算器 —— 相差天数 / 日期加减 | ToolPocket</title>
+<meta name="description" content="算一个日期离今天多少天、加减 N 天是哪天，并给出星期、年内第几天与 ISO 周号。">
+<link rel="canonical" href="https://tools.maomaowang.top/zh/tools/date-calc.html">
+<meta property="og:title" content="日期计算器 —— 相差天数 / 日期加减 | ToolPocket">
+<meta property="og:description" content="算一个日期离今天多少天、加减 N 天是哪天，并给出星期、年内第几天与 ISO 周号。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/zh/tools/date-calc.html">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/date-calc.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/date-calc.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/date-calc.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/date-calc.html">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"日期计算器","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"算一个日期离今天多少天、加减 N 天是哪天，并给出星期、年内第几天与 ISO 周号。"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"为什么和我日历 App 算的差一天？","acceptedAnswer":{"@type":"Answer","text":"多半是时区与夏令时。这里把两个日期都当作 UTC 的「日历天」相减，所以夏令时切换不会让结果变成半天。"}},{"@type":"Question","name":"ISO 周号是什么？","acceptedAnswer":{"@type":"Answer","text":"ISO-8601 的周编号：一周从周一开始，且「包含当年第一个周四的那一周」算第 1 周。所以 1 月 1 日有可能属于上一年的第 52 或 53 周。"}}]}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/zh/index.html">🧰 ToolPocket</a>
+  <nav class="langs"><a href="/zh/index.html#search" title="search" aria-label="search">🔍</a><a href="/tools/date-calc.html">English</a><a href="/zh/tools/date-calc.html" class="on" aria-current="page">中文</a><a href="/ja/tools/date-calc.html">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/zh/index.html">← 全部工具</a></p>
+  <h1>日期计算器</h1>
+  <p class="lead">填一个日期（留空就是今天），立刻得到它离今天多少天、加 N 天之后是哪天，以及星期几、年内第几天、ISO 周号。</p>
+
+  <div class="searchbox">
+    <span class="s-ico" aria-hidden="true">🔍</span>
+    <input id="searchInput" type="search" autocomplete="off" placeholder="搜索工具 —— 例如：压缩、json、密码…" aria-label="搜索工具 —— 例如：压缩、json、密码…">
+  </div>
+  <ul class="searchresults" id="searchResults" hidden></ul>
+  <p class="badge-line"><span class="pill">完全在你的浏览器里运行，不上传、不保存。</span></p>
+
+<div class="panel">
+<label class="row lbl" for="input">输入</label>
+  <textarea id="input" class="tall" placeholder=""></textarea>
+  <div class="opts">
+<label class="row"><span class="lbl">加 / 减天数</span><input type="number" id="days" value="30" step="1"> <span class="note">填负数就是往前推</span></label>
+  </div>
+<label class="row lbl" for="output">结果</label>
+  <textarea id="output" readonly placeholder=""></textarea>
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">复制结果</button>
+    <button class="ghost" id="clear">清空</button>
+  </div>
+</div>
+
+<aside class="ad">
+  <span class="ad-label">自己人做的</span>
+  <span class="ad-ico" aria-hidden="true">🎮</span>
+  <div class="ad-body">
+    <b>🎮 自己写的小游戏合集</b>
+    <p>塔防、2048、五子棋、打字测试、猜数字…都是一个人从零写的，没有用现成引擎。</p>
+  </div>
+  <a class="ad-cta" href="https://maomaowang.top/games.html">去玩两把 →</a>
+</aside>
+
+  <section class="faq">
+    <h2>常见问题</h2>
+    <details><summary>为什么和我日历 App 算的差一天？</summary><p>多半是时区与夏令时。这里把两个日期都当作 UTC 的「日历天」相减，所以夏令时切换不会让结果变成半天。</p></details>
+    <details><summary>ISO 周号是什么？</summary><p>ISO-8601 的周编号：一周从周一开始，且「包含当年第一个周四的那一周」算第 1 周。所以 1 月 1 日有可能属于上一年的第 52 或 53 周。</p></details>
+  </section>
+
+</main>
+
+<footer><p>ToolPocket · 全部在你的设备上完成，不上传任何文件。</p></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = {"langName":"中文","footer":"ToolPocket · 全部在你的设备上完成，不上传任何文件。","nav":"全部工具","backToTools":"← 全部工具","copy":"复制结果","swap":"互换","clear":"清空","download":"下载","copied":"已复制到剪贴板","copyFail":"复制失败 —— 请手动选中复制","inputLabel":"输入","outputLabel":"结果","privacyNote":"完全在你的浏览器里运行，不上传、不保存。","searchPlaceholder":"搜索工具 —— 例如：压缩、json、密码…","noResults":"没找到匹配的工具，换个词试试？","days":"加 / 减天数","daysNote":"填负数就是往前推","badDate":"日期格式不对（用 YYYY-MM-DD）","weekNames":["周日","周一","周二","周三","周四","周五","周六"],"baseLabel":"基准日期","vsToday":"距今天","daysUnit":"天","dayOfYear":"年内第","isoWeek":"ISO 周","leap":"闰年","offsetLabel":"偏移","usingToday":"按今天计算"};</script>
+<script src="/assets/tools/_shared.js" defer></script>
+<script src="/assets/tools/date-calc.js" defer></script>
+</body>
+</html>

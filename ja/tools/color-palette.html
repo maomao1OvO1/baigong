@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>カラーパレット生成 — 補色・類似色・明度ステップ | ToolPocket</title>
+<meta name="description" content="色を 1 つ入力すると、補色・類似色・トライアドと 7 段階の明度ラダーをコピー可能な hex 値で出力します。">
+<link rel="canonical" href="https://tools.maomaowang.top/ja/tools/color-palette.html">
+<meta property="og:title" content="カラーパレット生成 — 補色・類似色・明度ステップ | ToolPocket">
+<meta property="og:description" content="色を 1 つ入力すると、補色・類似色・トライアドと 7 段階の明度ラダーをコピー可能な hex 値で出力します。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/ja/tools/color-palette.html">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/color-palette.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/color-palette.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/color-palette.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/color-palette.html">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"カラーパレット生成","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"色を 1 つ入力すると、補色・類似色・トライアドと 7 段階の明度ラダーをコピー可能な hex 値で出力します。"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"なぜ HSL を経由するのですか？","acceptedAnswer":{"@type":"Answer","text":"色相環は HSL でのみ意味を持ちます。RGB で「180 度回す」のは無意味で、3 チャンネルがそれぞれ線形に変化し、濁った色になるだけです。"}},{"@type":"Question","name":"明度ラダーはどう使いますか？","acceptedAnswer":{"@type":"Answer","text":"中間をベースに、明るい側を hover や背景、暗い側を押下状態や枠線に使います。色相と彩度を固定することが、まとまりのある配色に見せるコツです。"}}]}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/ja/index.html">🧰 ToolPocket</a>
+  <nav class="langs"><a href="/ja/index.html#search" title="search" aria-label="search">🔍</a><a href="/tools/color-palette.html">English</a><a href="/zh/tools/color-palette.html">中文</a><a href="/ja/tools/color-palette.html" class="on" aria-current="page">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/ja/index.html">← ツール一覧</a></p>
+  <h1>カラーパレット生成</h1>
+  <p class="lead">1 色から配色一式が得られます。補色、類似色、トライアド、そして同じ色相の明度 7 段階。UI で hover／押下／無効状態の色が必要なときに便利です。</p>
+
+  <div class="searchbox">
+    <span class="s-ico" aria-hidden="true">🔍</span>
+    <input id="searchInput" type="search" autocomplete="off" placeholder="ツールを検索 — 例：圧縮、json、パスワード…" aria-label="ツールを検索 — 例：圧縮、json、パスワード…">
+  </div>
+  <ul class="searchresults" id="searchResults" hidden></ul>
+  <p class="badge-line"><span class="pill">すべてブラウザ内で処理されます。送信も保存もしていません。</span></p>
+
+<div class="panel">
+<label class="row lbl" for="input">入力</label>
+  <textarea id="input" class="tall" placeholder=""></textarea>
+  <div class="opts">
+<label class="row"><span class="lbl">色を選ぶ</span><input type="color" id="color" value="#2f6df6"></label>
+  </div>
+<label class="row lbl" for="output">結果</label>
+  <textarea id="output" readonly placeholder=""></textarea>
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">結果をコピー</button>
+    <button class="ghost" id="clear">クリア</button>
+  </div>
+</div>
+
+<aside class="ad">
+  <span class="ad-label">製作者より</span>
+  <span class="ad-ico" aria-hidden="true">🎮</span>
+  <div class="ad-body">
+    <b>ブラウザで遊べるタワーディフェンス</b>
+    <p>同じ開発者がゼロから作ったゲームです.</p>
+  </div>
+  <a class="ad-cta" href="https://maomaowang.top/games/td/source/game.html">遊んでみる →</a>
+</aside>
+
+  <section class="faq">
+    <h2>よくある質問</h2>
+    <details><summary>なぜ HSL を経由するのですか？</summary><p>色相環は HSL でのみ意味を持ちます。RGB で「180 度回す」のは無意味で、3 チャンネルがそれぞれ線形に変化し、濁った色になるだけです。</p></details>
+    <details><summary>明度ラダーはどう使いますか？</summary><p>中間をベースに、明るい側を hover や背景、暗い側を押下状態や枠線に使います。色相と彩度を固定することが、まとまりのある配色に見せるコツです。</p></details>
+  </section>
+
+</main>
+
+<footer><p>ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。</p></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = {"langName":"日本語","footer":"ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"コピーできませんでした。手動で選択してください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理されます。送信も保存もしていません。","searchPlaceholder":"ツールを検索 — 例：圧縮、json、パスワード…","noResults":"該当するツールがありません。別の言葉でお試しを。","color":"色を選ぶ","badColor":"有効な hex カラーではありません（#2f6df6 や #36f など）","cBase":"ベース","cComplement":"補色","cAnalog1":"類似色 -30","cAnalog2":"類似色 +30","cTriad1":"トライアド +120","cTriad2":"トライアド +240","cShades":"明度ラダー（7 段階）","cOk":"パレットを生成しました"};</script>
+<script src="/assets/tools/_shared.js" defer></script>
+<script src="/assets/tools/color-palette.js" defer></script>
+</body>
+</html>

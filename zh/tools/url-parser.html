@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>URL 拆解 —— 看清主机、路径与查询参数 | ToolPocket</title>
+<meta name="description" content="把一条 URL 拆成协议、主机、端口、路径、锚点与逐条列出的查询参数，可选择性百分号解码。">
+<link rel="canonical" href="https://tools.maomaowang.top/zh/tools/url-parser.html">
+<meta property="og:title" content="URL 拆解 —— 看清主机、路径与查询参数 | ToolPocket">
+<meta property="og:description" content="把一条 URL 拆成协议、主机、端口、路径、锚点与逐条列出的查询参数，可选择性百分号解码。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/zh/tools/url-parser.html">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/url-parser.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/url-parser.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/url-parser.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/url-parser.html">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"URL 拆解 / 查询参数查看","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"把一条 URL 拆成协议、主机、端口、路径、锚点与逐条列出的查询参数，可选择性百分号解码。"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"为什么显示的主机名和我输入的不一样？","acceptedAnswer":{"@type":"Answer","text":"浏览器和 <code>new URL()</code> 都按 WHATWG 标准解析：中文域名会转成 punycode，非法字符会被百分号编码。这正是实际发出去的请求内容，所以在这里看到它反而是好事。"}},{"@type":"Question","name":"「解码」开关有什么用？","acceptedAnswer":{"@type":"Answer","text":"打开后会把 <code>%E4%B8%AD</code> 显示成「中」，并把 <code>+</code> 当成空格 —— 和服务端读取表单值的方式一致。关掉则看原始字符串。"}}]}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/zh/index.html">🧰 ToolPocket</a>
+  <nav class="langs"><a href="/zh/index.html#search" title="search" aria-label="search">🔍</a><a href="/tools/url-parser.html">English</a><a href="/zh/tools/url-parser.html" class="on" aria-current="page">中文</a><a href="/ja/tools/url-parser.html">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/zh/index.html">← 全部工具</a></p>
+  <h1>URL 拆解 / 查询参数查看</h1>
+  <p class="lead">贴一条长链接，看清它真正的组成部分，查询参数一条一行。「这链接怎么不对」的问题九成出在查询串：少一个 <code>&amp;</code>、值没编码对，或者 <code>#</code> 把整个查询串吃掉了。</p>
+
+  <div class="searchbox">
+    <span class="s-ico" aria-hidden="true">🔍</span>
+    <input id="searchInput" type="search" autocomplete="off" placeholder="搜索工具 —— 例如：压缩、json、密码…" aria-label="搜索工具 —— 例如：压缩、json、密码…">
+  </div>
+  <ul class="searchresults" id="searchResults" hidden></ul>
+  <p class="badge-line"><span class="pill">完全在你的浏览器里运行，不上传、不保存。</span></p>
+
+<div class="panel">
+<label class="row lbl" for="input">输入</label>
+  <textarea id="input" class="tall" placeholder=""></textarea>
+  <div class="opts">
+<label class="row check"><input type="checkbox" id="decode" checked><span>百分号解码</span></label>
+    <span class="hint">把 %E4%B8%AD 显示成「中」、把 + 当成空格 —— 与服务端读表单值的方式一致。</span>
+  </div>
+<label class="row lbl" for="output">结果</label>
+  <textarea id="output" readonly placeholder=""></textarea>
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">复制结果</button>
+    <button class="ghost" id="clear">清空</button>
+  </div>
+</div>
+
+<aside class="ad">
+  <span class="ad-label">自己人做的</span>
+  <span class="ad-ico" aria-hidden="true">🎮</span>
+  <div class="ad-body">
+    <b>🎮 自己写的小游戏合集</b>
+    <p>塔防、2048、五子棋、打字测试、猜数字…都是一个人从零写的，没有用现成引擎。</p>
+  </div>
+  <a class="ad-cta" href="https://maomaowang.top/games.html">去玩两把 →</a>
+</aside>
+
+  <section class="faq">
+    <h2>常见问题</h2>
+    <details><summary>为什么显示的主机名和我输入的不一样？</summary><p>浏览器和 <code>new URL()</code> 都按 WHATWG 标准解析：中文域名会转成 punycode，非法字符会被百分号编码。这正是实际发出去的请求内容，所以在这里看到它反而是好事。</p></details>
+    <details><summary>「解码」开关有什么用？</summary><p>打开后会把 <code>%E4%B8%AD</code> 显示成「中」，并把 <code>+</code> 当成空格 —— 和服务端读取表单值的方式一致。关掉则看原始字符串。</p></details>
+  </section>
+
+</main>
+
+<footer><p>ToolPocket · 全部在你的设备上完成，不上传任何文件。</p></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = {"langName":"中文","footer":"ToolPocket · 全部在你的设备上完成，不上传任何文件。","nav":"全部工具","backToTools":"← 全部工具","copy":"复制结果","swap":"互换","clear":"清空","download":"下载","copied":"已复制到剪贴板","copyFail":"复制失败 —— 请手动选中复制","inputLabel":"输入","outputLabel":"结果","privacyNote":"完全在你的浏览器里运行，不上传、不保存。","searchPlaceholder":"搜索工具 —— 例如：压缩、json、密码…","noResults":"没找到匹配的工具，换个词试试？","decode":"百分号解码","decodeHint":"把 %E4%B8%AD 显示成「中」、把 + 当成空格 —— 与服务端读表单值的方式一致。","badUrl":"不是合法的完整 URL（需要以 http:// 或 https:// 开头）","pProtocol":"协议","pHost":"主机","pPort":"端口","pPath":"路径","pUser":"用户名","pPass":"密码","pHash":"锚点","pQuery":"查询参数","pNoQuery":"没有","pCount":"个参数"};</script>
+<script src="/assets/tools/_shared.js" defer></script>
+<script src="/assets/tools/url-parser.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>URL パーサー — ホスト・パス・クエリを分解表示 | ToolPocket</title>
+<meta name="description" content="URL をプロトコル・ホスト・ポート・パス・フラグメントとクエリパラメータの一覧に分解します。パーセントデコードの切り替えも可能です。">
+<link rel="canonical" href="https://tools.maomaowang.top/ja/tools/url-parser.html">
+<meta property="og:title" content="URL パーサー — ホスト・パス・クエリを分解表示 | ToolPocket">
+<meta property="og:description" content="URL をプロトコル・ホスト・ポート・パス・フラグメントとクエリパラメータの一覧に分解します。パーセントデコードの切り替えも可能です。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/ja/tools/url-parser.html">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/url-parser.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/url-parser.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/url-parser.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/url-parser.html">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"URL パーサー / クエリパラメータ表示","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"URL をプロトコル・ホスト・ポート・パス・フラグメントとクエリパラメータの一覧に分解します。パーセントデコードの切り替えも可能です。"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"入力したホスト名と表示が違うのはなぜ？","acceptedAnswer":{"@type":"Answer","text":"ブラウザと <code>new URL()</code> は WHATWG 標準に従って解析します。国際化ドメインは punycode に変換され、不正な文字はパーセントエンコードされます。これは実際に送信される内容なので、ここで確認できるのは有益です。"}},{"@type":"Question","name":"「デコード」スイッチの役割は？","acceptedAnswer":{"@type":"Answer","text":"オンにすると <code>%E4%B8%AD</code> を「中」として表示し、<code>+</code> を空白として扱います。サーバーがフォーム値を読む方法と同じです。オフにすると生の文字列を確認できます。"}}]}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/ja/index.html">🧰 ToolPocket</a>
+  <nav class="langs"><a href="/ja/index.html#search" title="search" aria-label="search">🔍</a><a href="/tools/url-parser.html">English</a><a href="/zh/tools/url-parser.html">中文</a><a href="/ja/tools/url-parser.html" class="on" aria-current="page">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/ja/index.html">← ツール一覧</a></p>
+  <h1>URL パーサー / クエリパラメータ表示</h1>
+  <p class="lead">長いリンクを貼り付けると、実際の構成要素とクエリパラメータが 1 行ずつ表示されます。「このリンクが動かない」原因の多くはクエリ文字列です。<code>&amp;</code> の欠落、値のエンコードミス、<code>#</code> によるクエリ全体の飲み込みなどが典型です。</p>
+
+  <div class="searchbox">
+    <span class="s-ico" aria-hidden="true">🔍</span>
+    <input id="searchInput" type="search" autocomplete="off" placeholder="ツールを検索 — 例：圧縮、json、パスワード…" aria-label="ツールを検索 — 例：圧縮、json、パスワード…">
+  </div>
+  <ul class="searchresults" id="searchResults" hidden></ul>
+  <p class="badge-line"><span class="pill">すべてブラウザ内で処理されます。送信も保存もしていません。</span></p>
+
+<div class="panel">
+<label class="row lbl" for="input">入力</label>
+  <textarea id="input" class="tall" placeholder=""></textarea>
+  <div class="opts">
+<label class="row check"><input type="checkbox" id="decode" checked><span>パーセントデコード</span></label>
+    <span class="hint">%E4%B8%AD を「中」と表示し、+ を空白として扱います。サーバーの解釈と同じです。</span>
+  </div>
+<label class="row lbl" for="output">結果</label>
+  <textarea id="output" readonly placeholder=""></textarea>
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">結果をコピー</button>
+    <button class="ghost" id="clear">クリア</button>
+  </div>
+</div>
+
+<aside class="ad">
+  <span class="ad-label">製作者より</span>
+  <span class="ad-ico" aria-hidden="true">🎮</span>
+  <div class="ad-body">
+    <b>ブラウザで遊べるタワーディフェンス</b>
+    <p>同じ開発者がゼロから作ったゲームです.</p>
+  </div>
+  <a class="ad-cta" href="https://maomaowang.top/games/td/source/game.html">遊んでみる →</a>
+</aside>
+
+  <section class="faq">
+    <h2>よくある質問</h2>
+    <details><summary>入力したホスト名と表示が違うのはなぜ？</summary><p>ブラウザと <code>new URL()</code> は WHATWG 標準に従って解析します。国際化ドメインは punycode に変換され、不正な文字はパーセントエンコードされます。これは実際に送信される内容なので、ここで確認できるのは有益です。</p></details>
+    <details><summary>「デコード」スイッチの役割は？</summary><p>オンにすると <code>%E4%B8%AD</code> を「中」として表示し、<code>+</code> を空白として扱います。サーバーがフォーム値を読む方法と同じです。オフにすると生の文字列を確認できます。</p></details>
+  </section>
+
+</main>
+
+<footer><p>ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。</p></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = {"langName":"日本語","footer":"ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"コピーできませんでした。手動で選択してください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理されます。送信も保存もしていません。","searchPlaceholder":"ツールを検索 — 例：圧縮、json、パスワード…","noResults":"該当するツールがありません。別の言葉でお試しを。","decode":"パーセントデコード","decodeHint":"%E4%B8%AD を「中」と表示し、+ を空白として扱います。サーバーの解釈と同じです。","badUrl":"有効な絶対 URL ではありません（http:// か https:// が必要です）","pProtocol":"プロトコル","pHost":"ホスト","pPort":"ポート","pPath":"パス","pUser":"ユーザー名","pPass":"パスワード","pHash":"フラグメント","pQuery":"クエリパラメータ","pNoQuery":"なし","pCount":"個のパラメータ"};</script>
+<script src="/assets/tools/_shared.js" defer></script>
+<script src="/assets/tools/url-parser.js" defer></script>
+</body>
+</html>

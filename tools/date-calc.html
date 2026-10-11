@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Date Calculator — Days Between Dates &amp; Date Offset | ToolPocket</title>
+<meta name="description" content="Find out how many days away a date is, add or subtract days, and get the weekday, day of year and ISO week number.">
+<link rel="canonical" href="https://tools.maomaowang.top/tools/date-calc.html">
+<meta property="og:title" content="Date Calculator — Days Between Dates &amp; Date Offset | ToolPocket">
+<meta property="og:description" content="Find out how many days away a date is, add or subtract days, and get the weekday, day of year and ISO week number.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/tools/date-calc.html">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/date-calc.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/date-calc.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/date-calc.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/date-calc.html">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Date calculator","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Find out how many days away a date is, add or subtract days, and get the weekday, day of year and ISO week number."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why does the day count differ from a calendar app?","acceptedAnswer":{"@type":"Answer","text":"Time zones and daylight saving. This tool compares the two dates as calendar days in UTC, so a DST switch cannot turn the result into a fraction of a day."}},{"@type":"Question","name":"What is an ISO week number?","acceptedAnswer":{"@type":"Answer","text":"The ISO-8601 week: weeks start on Monday, and week 1 is the week containing the year's first Thursday. That is why 1 January can belong to week 52 or 53 of the previous year."}}]}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/index.html">🧰 ToolPocket</a>
+  <nav class="langs"><a href="/index.html#search" title="search" aria-label="search">🔍</a><a href="/tools/date-calc.html" class="on" aria-current="page">English</a><a href="/zh/tools/date-calc.html">中文</a><a href="/ja/tools/date-calc.html">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/index.html">← All tools</a></p>
+  <h1>Date calculator</h1>
+  <p class="lead">Type a date (or leave it empty for today) and get the distance from today, the result of adding N days, the weekday, the day of the year and the ISO week.</p>
+
+  <div class="searchbox">
+    <span class="s-ico" aria-hidden="true">🔍</span>
+    <input id="searchInput" type="search" autocomplete="off" placeholder="Search tools — e.g. compress, json, 密码…" aria-label="Search tools — e.g. compress, json, 密码…">
+  </div>
+  <ul class="searchresults" id="searchResults" hidden></ul>
+  <p class="badge-line"><span class="pill">Runs entirely in your browser. Nothing is uploaded or stored.</span></p>
+
+<div class="panel">
+<label class="row lbl" for="input">Input</label>
+  <textarea id="input" class="tall" placeholder=""></textarea>
+  <div class="opts">
+<label class="row"><span class="lbl">Add / subtract days</span><input type="number" id="days" value="30" step="1"> <span class="note">negative values go backwards</span></label>
+  </div>
+<label class="row lbl" for="output">Result</label>
+  <textarea id="output" readonly placeholder=""></textarea>
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">Copy result</button>
+    <button class="ghost" id="clear">Clear</button>
+  </div>
+</div>
+
+<aside class="ad">
+  <span class="ad-label">From the maker</span>
+  <span class="ad-ico" aria-hidden="true">🎮</span>
+  <div class="ad-body">
+    <b>A tower-defence game, in your browser</b>
+    <p>Built from scratch by the same developer — no engine, no assets from a store.</p>
+  </div>
+  <a class="ad-cta" href="https://maomaowang.top/games/td/source/game.html">Play it →</a>
+</aside>
+
+  <section class="faq">
+    <h2>FAQ</h2>
+    <details><summary>Why does the day count differ from a calendar app?</summary><p>Time zones and daylight saving. This tool compares the two dates as calendar days in UTC, so a DST switch cannot turn the result into a fraction of a day.</p></details>
+    <details><summary>What is an ISO week number?</summary><p>The ISO-8601 week: weeks start on Monday, and week 1 is the week containing the year's first Thursday. That is why 1 January can belong to week 52 or 53 of the previous year.</p></details>
+  </section>
+
+</main>
+
+<footer><p>ToolPocket · Everything runs on your device — nothing is uploaded.</p></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = {"langName":"English","footer":"ToolPocket · Everything runs on your device — nothing is uploaded.","nav":"All tools","backToTools":"← All tools","copy":"Copy result","swap":"Swap","clear":"Clear","download":"Download","copied":"Copied to clipboard","copyFail":"Copy failed — select the text manually","inputLabel":"Input","outputLabel":"Result","privacyNote":"Runs entirely in your browser. Nothing is uploaded or stored.","searchPlaceholder":"Search tools — e.g. compress, json, 密码…","noResults":"No tool matches that. Try another word?","days":"Add / subtract days","daysNote":"negative values go backwards","badDate":"Not a valid date (use YYYY-MM-DD)","weekNames":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"baseLabel":"Date","vsToday":"vs today","daysUnit":"days","dayOfYear":"day of year","isoWeek":"ISO week","leap":"leap year","offsetLabel":"with offset","usingToday":"using today"};</script>
+<script src="/assets/tools/_shared.js" defer></script>
+<script src="/assets/tools/date-calc.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+{
+  "_说明": "日期计算器 —— 三语文案（含各语言星期名数组）。",
+  "en": {
+    "title": "Date Calculator — Days Between Dates & Date Offset | ToolPocket",
+    "desc": "Find out how many days away a date is, add or subtract days, and get the weekday, day of year and ISO week number.",
+    "h1": "Date calculator",
+    "lead": "Type a date (or leave it empty for today) and get the distance from today, the result of adding N days, the weekday, the day of the year and the ISO week.",
+    "faq": [
+      ["Why does the day count differ from a calendar app?", "Time zones and daylight saving. This tool compares the two dates as calendar days in UTC, so a DST switch cannot turn the result into a fraction of a day."],
+      ["What is an ISO week number?", "The ISO-8601 week: weeks start on Monday, and week 1 is the week containing the year's first Thursday. That is why 1 January can belong to week 52 or 53 of the previous year."]
+    ],
+    "ui": {
+      "days": "Add / subtract days",
+      "daysNote": "negative values go backwards",
+      "badDate": "Not a valid date (use YYYY-MM-DD)",
+      "weekNames": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "baseLabel": "Date",
+      "vsToday": "vs today",
+      "daysUnit": "days",
+      "dayOfYear": "day of year",
+      "isoWeek": "ISO week",
+      "leap": "leap year",
+      "offsetLabel": "with offset",
+      "usingToday": "using today"
+    }
+  },
+  "zh": {
+    "title": "日期计算器 —— 相差天数 / 日期加减 | ToolPocket",
+    "desc": "算一个日期离今天多少天、加减 N 天是哪天，并给出星期、年内第几天与 ISO 周号。",
+    "h1": "日期计算器",
+    "lead": "填一个日期（留空就是今天），立刻得到它离今天多少天、加 N 天之后是哪天，以及星期几、年内第几天、ISO 周号。",
+    "faq": [
+      ["为什么和我日历 App 算的差一天？", "多半是时区与夏令时。这里把两个日期都当作 UTC 的「日历天」相减，所以夏令时切换不会让结果变成半天。"],
+      ["ISO 周号是什么？", "ISO-8601 的周编号：一周从周一开始，且「包含当年第一个周四的那一周」算第 1 周。所以 1 月 1 日有可能属于上一年的第 52 或 53 周。"]
+    ],
+    "ui": {
+      "days": "加 / 减天数",
+      "daysNote": "填负数就是往前推",
+      "badDate": "日期格式不对（用 YYYY-MM-DD）",
+      "weekNames": ["周日", "周一", "周二", "周三", "周四", "周五", "周六"],
+      "baseLabel": "基准日期",
+      "vsToday": "距今天",
+      "daysUnit": "天",
+      "dayOfYear": "年内第",
+      "isoWeek": "ISO 周",
+      "leap": "闰年",
+      "offsetLabel": "偏移",
+      "usingToday": "按今天计算"
+    }
+  },
+  "ja": {
+    "title": "日付計算ツール — 日数差と日付の加減算 | ToolPocket",
+    "desc": "指定した日付が今日から何日後（前）か、N 日後の日付はいつか、曜日・年内通算日・ISO 週番号までまとめて表示します。",
+    "h1": "日付計算",
+    "lead": "日付を入力する（空欄なら今日）と、今日との差、N 日後の日付、曜日、年内通算日、ISO 週番号が一度に表示されます。",
+    "faq": [
+      ["カレンダーアプリと 1 日ずれるのはなぜ？", "多くはタイムゾーンと夏時間が原因です。本ツールは両方の日付を UTC の暦日として差を取るため、夏時間の切り替えで半日になることはありません。"],
+      ["ISO 週番号とは？", "ISO-8601 の週番号です。週は月曜始まりで、その年の最初の木曜を含む週が第 1 週になります。そのため 1 月 1 日が前年の第 52 週・第 53 週に属することがあります。"]
+    ],
+    "ui": {
+      "days": "日数の加減",
+      "daysNote": "負の値で過去にさかのぼります",
+      "badDate": "日付の形式が正しくありません（YYYY-MM-DD）",
+      "weekNames": ["日曜日", "月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日"],
+      "baseLabel": "基準日",
+      "vsToday": "今日との差",
+      "daysUnit": "日",
+      "dayOfYear": "年内通算",
+      "isoWeek": "ISO 週",
+      "leap": "うるう年",
+      "offsetLabel": "オフセット",
+      "usingToday": "今日として計算"
+    }
+  }
+}

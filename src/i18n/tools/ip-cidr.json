@@ -1,0 +1,105 @@
+{
+  "_说明": "IPv4 / CIDR 子网计算 —— 三语文案。",
+  "en": {
+    "title": "IP Subnet Calculator — CIDR, Netmask, Host Range | ToolPocket",
+    "desc": "Enter an IPv4 address with a CIDR prefix and get the network address, broadcast, usable host range, netmask, wildcard mask and binary view.",
+    "h1": "IPv4 / CIDR subnet calculator",
+    "lead": "Type <code>192.168.1.10/24</code> and get the network, broadcast, host range, masks and the address count — plus whether the address is private, loopback or public.",
+    "faq": [
+      ["Why is the usable count 2 less than the total?", "In a normal subnet the first address is the network ID and the last is the broadcast, so neither can be assigned to a host. The exception is /31 and /32 (RFC 3021), where this tool reports the real usable count instead of a negative number."],
+      ["Why do the binary values look odd for 255.255.255.255?", "JavaScript bitwise operators work on 32-bit **signed** integers, so that value becomes −1. This tool converts to unsigned before printing — otherwise masks come out as negative numbers."]
+    ],
+    "ui": {
+      "badIp": "Not a valid IPv4 address (e.g. 192.168.1.10/24)",
+      "badPrefix": "Prefix length must be between 0 and 32",
+      "rAddress": "Address",
+      "rNetwork": "Network",
+      "rBroadcast": "Broadcast",
+      "rRange": "Host range",
+      "rMask": "Netmask",
+      "rWildcard": "Wildcard",
+      "rCount": "Addresses",
+      "rUsable": "usable",
+      "rType": "Type",
+      "rBinary": "Binary",
+      "rBinMask": "        mask",
+      "kinds": {
+        "private": "private (RFC 1918)",
+        "public": "public",
+        "loopback": "loopback",
+        "link-local": "link-local (APIPA)",
+        "cgnat": "CGNAT (carrier NAT)",
+        "multicast": "multicast",
+        "reserved": "reserved"
+      }
+    }
+  },
+  "zh": {
+    "title": "IP 子网计算器 —— CIDR / 掩码 / 可用主机范围 | ToolPocket",
+    "desc": "输入带前缀的 IPv4 地址，算出网络地址、广播地址、可用主机范围、掩码、通配符掩码与二进制视图。",
+    "h1": "IPv4 / CIDR 子网计算",
+    "lead": "输入 <code>192.168.1.10/24</code>，直接得到网络地址、广播地址、主机范围、两种掩码和地址总数，并告诉你它是私有、回环还是公网地址。",
+    "faq": [
+      ["为什么可用地址比总数少 2 个？", "普通子网里第一个地址是网络号、最后一个地址是广播地址，两者都不能分配给主机。例外是 /31 与 /32（RFC 3021）—— 这时工具按实际可用数报，不会给出负数。"],
+      ["为什么 255.255.255.255 的二进制看着怪？", "JavaScript 的位运算按**32 位有符号**整数做，这个值会被当成 −1。本工具在打印前都转成无符号，否则掩码会显示成负数。"]
+    ],
+    "ui": {
+      "badIp": "不是合法的 IPv4 地址（例如 192.168.1.10/24）",
+      "badPrefix": "前缀长度必须在 0 到 32 之间",
+      "rAddress": "地址",
+      "rNetwork": "网络地址",
+      "rBroadcast": "广播地址",
+      "rRange": "主机范围",
+      "rMask": "子网掩码",
+      "rWildcard": "通配符掩码",
+      "rCount": "地址总数",
+      "rUsable": "个可用",
+      "rType": "类型",
+      "rBinary": "二进制",
+      "rBinMask": "       掩码",
+      "kinds": {
+        "private": "私有地址（RFC 1918）",
+        "public": "公网地址",
+        "loopback": "回环地址",
+        "link-local": "链路本地（APIPA）",
+        "cgnat": "运营商级 NAT",
+        "multicast": "组播",
+        "reserved": "保留"
+      }
+    }
+  },
+  "ja": {
+    "title": "IP サブネット計算 — CIDR・ネットマスク・ホスト範囲 | ToolPocket",
+    "desc": "CIDR 付きの IPv4 アドレスから、ネットワークアドレス・ブロードキャスト・利用可能ホスト範囲・マスク・バイナリ表示を計算します。",
+    "h1": "IPv4 / CIDR サブネット計算",
+    "lead": "<code>192.168.1.10/24</code> のように入力すると、ネットワーク・ブロードキャスト・ホスト範囲・2 種類のマスク・アドレス数が得られ、プライベート／ループバック／グローバルの別も表示します。",
+    "faq": [
+      ["利用可能数が総数より 2 少ないのはなぜ？", "通常のサブネットでは先頭がネットワークアドレス、末尾がブロードキャストで、どちらもホストに割り当てられません。/31 と /32（RFC 3021）は例外で、本ツールは負の数ではなく実際の利用可能数を表示します。"],
+      ["255.255.255.255 のバイナリが変に見えるのは？", "JavaScript のビット演算は **32 ビット符号付き**整数で行われるため、この値は −1 になります。本ツールは表示前に符号なしへ変換するので、マスクが負の数になることはありません。"]
+    ],
+    "ui": {
+      "badIp": "有効な IPv4 アドレスではありません（例：192.168.1.10/24）",
+      "badPrefix": "プレフィックス長は 0〜32 の範囲で指定してください",
+      "rAddress": "アドレス",
+      "rNetwork": "ネットワーク",
+      "rBroadcast": "ブロードキャスト",
+      "rRange": "ホスト範囲",
+      "rMask": "ネットマスク",
+      "rWildcard": "ワイルドカード",
+      "rCount": "アドレス数",
+      "rUsable": "利用可能",
+      "rType": "種別",
+      "rBinary": "バイナリ",
+      "rBinMask": "        マスク",
+      "kinds": {
+        "private": "プライベート（RFC 1918）",
+        "public": "グローバル",
+        "loopback": "ループバック",
+        "link-local": "リンクローカル（APIPA）",
+        "cgnat": "キャリア NAT",
+        "multicast": "マルチキャスト",
+        "reserved": "予約済み"
+      }
+    }
+  }
+}

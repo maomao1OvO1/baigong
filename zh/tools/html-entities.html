@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HTML 实体编解码 —— 转义与还原 | ToolPocket</title>
+<meta name="description" content="把 HTML 特殊字符转义成实体（&amp;amp; &amp;lt; &amp;gt; &amp;quot;），或把实体还原成原字符，支持十进制与十六进制写法。">
+<link rel="canonical" href="https://tools.maomaowang.top/zh/tools/html-entities.html">
+<meta property="og:title" content="HTML 实体编解码 —— 转义与还原 | ToolPocket">
+<meta property="og:description" content="把 HTML 特殊字符转义成实体（&amp;amp; &amp;lt; &amp;gt; &amp;quot;），或把实体还原成原字符，支持十进制与十六进制写法。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/zh/tools/html-entities.html">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/html-entities.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/html-entities.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/html-entities.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/html-entities.html">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"HTML 实体编码 / 解码","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"把 HTML 特殊字符转义成实体（&amp; &lt; &gt; &quot;），或把实体还原成原字符，支持十进制与十六进制写法。"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"引号需要转义吗？","acceptedAnswer":{"@type":"Answer","text":"在 HTML 文本节点里，严格来说只有 <code>&amp;</code> 和 <code>&lt;</code> 是必须转义的；但写在双引号属性里时，<code>&quot;</code> 也必须转义。本工具把 5 个常用字符一起转，任何场合都安全。"}},{"@type":"Question","name":"中文要不要转成实体？","acceptedAnswer":{"@type":"Answer","text":"只有下游强制要求纯 ASCII 时才需要。否则体积会涨两三倍，源码也变得没法读 —— 所以这里单独做成开关，默认关闭。"}}]}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/zh/index.html">🧰 ToolPocket</a>
+  <nav class="langs"><a href="/zh/index.html#search" title="search" aria-label="search">🔍</a><a href="/tools/html-entities.html">English</a><a href="/zh/tools/html-entities.html" class="on" aria-current="page">中文</a><a href="/ja/tools/html-entities.html">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/zh/index.html">← 全部工具</a></p>
+  <h1>HTML 实体编码 / 解码</h1>
+  <p class="lead">把 <code>&lt;script&gt;</code> 变成页面上能安全显示的文字，或者把一串 <code>&amp;#x4E2D;</code> 还原回来。需要给邮件模板或老系统输出纯 ASCII 时，这个工具正好用得上。</p>
+
+  <div class="searchbox">
+    <span class="s-ico" aria-hidden="true">🔍</span>
+    <input id="searchInput" type="search" autocomplete="off" placeholder="搜索工具 —— 例如：压缩、json、密码…" aria-label="搜索工具 —— 例如：压缩、json、密码…">
+  </div>
+  <ul class="searchresults" id="searchResults" hidden></ul>
+  <p class="badge-line"><span class="pill">完全在你的浏览器里运行，不上传、不保存。</span></p>
+
+<div class="panel">
+<label class="row lbl" for="input">输入</label>
+  <textarea id="input" class="tall" placeholder=""></textarea>
+  <div class="opts">
+<label class="row"><span class="lbl">转换方向</span><select id="mode"><option value="encode">文本 → 实体</option><option value="decode">实体 → 文本</option></select></label>
+    <span class="hint">编码把特殊字符转义；解码把实体还原成真正的字符。</span>
+<label class="row check"><input type="checkbox" id="all"><span>同时转义非 ASCII（中文、emoji…）</span></label>
+    <span class="hint">默认关闭：把每个汉字都转成 &#xNNNN; 会让输出长好几倍。</span>
+  </div>
+<label class="row lbl" for="output">结果</label>
+  <textarea id="output" readonly placeholder=""></textarea>
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">复制结果</button>
+    <button class="ghost" id="swap">互换</button>
+    <button class="ghost" id="clear">清空</button>
+  </div>
+</div>
+
+<aside class="ad">
+  <span class="ad-label">自己人做的</span>
+  <span class="ad-ico" aria-hidden="true">🎮</span>
+  <div class="ad-body">
+    <b>🎮 自己写的小游戏合集</b>
+    <p>塔防、2048、五子棋、打字测试、猜数字…都是一个人从零写的，没有用现成引擎。</p>
+  </div>
+  <a class="ad-cta" href="https://maomaowang.top/games.html">去玩两把 →</a>
+</aside>
+
+  <section class="faq">
+    <h2>常见问题</h2>
+    <details><summary>引号需要转义吗？</summary><p>在 HTML 文本节点里，严格来说只有 <code>&amp;</code> 和 <code>&lt;</code> 是必须转义的；但写在双引号属性里时，<code>&quot;</code> 也必须转义。本工具把 5 个常用字符一起转，任何场合都安全。</p></details>
+    <details><summary>中文要不要转成实体？</summary><p>只有下游强制要求纯 ASCII 时才需要。否则体积会涨两三倍，源码也变得没法读 —— 所以这里单独做成开关，默认关闭。</p></details>
+  </section>
+
+</main>
+
+<footer><p>ToolPocket · 全部在你的设备上完成，不上传任何文件。</p></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = {"langName":"中文","footer":"ToolPocket · 全部在你的设备上完成，不上传任何文件。","nav":"全部工具","backToTools":"← 全部工具","copy":"复制结果","swap":"互换","clear":"清空","download":"下载","copied":"已复制到剪贴板","copyFail":"复制失败 —— 请手动选中复制","inputLabel":"输入","outputLabel":"结果","privacyNote":"完全在你的浏览器里运行，不上传、不保存。","searchPlaceholder":"搜索工具 —— 例如：压缩、json、密码…","noResults":"没找到匹配的工具，换个词试试？","mode":"转换方向","modeHint":"编码把特殊字符转义；解码把实体还原成真正的字符。","encode":"文本 → 实体","decode":"实体 → 文本","all":"同时转义非 ASCII（中文、emoji…）","allHint":"默认关闭：把每个汉字都转成 &#xNNNN; 会让输出长好几倍。","entitiesOut":"生成了多少个实体","entitiesIn":"还原了多少个实体"};</script>
+<script src="/assets/tools/_shared.js" defer></script>
+<script src="/assets/tools/html-entities.js" defer></script>
+</body>
+</html>

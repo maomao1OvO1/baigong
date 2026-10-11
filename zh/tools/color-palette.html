@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>配色板生成 —— 互补色 / 类似色 / 明度阶梯 | ToolPocket</title>
+<meta name="description" content="输入一个颜色，得到它的互补色、类似色、三角色以及 7 档明度阶梯，全部是可直接复制的 hex 值。">
+<link rel="canonical" href="https://tools.maomaowang.top/zh/tools/color-palette.html">
+<meta property="og:title" content="配色板生成 —— 互补色 / 类似色 / 明度阶梯 | ToolPocket">
+<meta property="og:description" content="输入一个颜色，得到它的互补色、类似色、三角色以及 7 档明度阶梯，全部是可直接复制的 hex 值。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/zh/tools/color-palette.html">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/color-palette.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/color-palette.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/color-palette.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/color-palette.html">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"配色板生成","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"输入一个颜色，得到它的互补色、类似色、三角色以及 7 档明度阶梯，全部是可直接复制的 hex 值。"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"为什么要绕 HSL 一圈？","acceptedAnswer":{"@type":"Answer","text":"因为色相环只在 HSL 里成立。在 RGB 里「转 180 度」没有意义 —— 三个通道各自线性变化，得到的是一坨发灰的颜色，不是互补色。"}},{"@type":"Question","name":"明度阶梯怎么用？","acceptedAnswer":{"@type":"Answer","text":"中间几档做主色，浅的做 hover 和底纹，深的做按下态和描边。色相与饱和度固定不动，整套看起来才像是「设计过的」。"}}]}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/zh/index.html">🧰 ToolPocket</a>
+  <nav class="langs"><a href="/zh/index.html#search" title="search" aria-label="search">🔍</a><a href="/tools/color-palette.html">English</a><a href="/zh/tools/color-palette.html" class="on" aria-current="page">中文</a><a href="/ja/tools/color-palette.html">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/zh/index.html">← 全部工具</a></p>
+  <h1>配色板生成</h1>
+  <p class="lead">一个颜色进去，一整套搭配色出来：互补、类似、三角，外加同色相的 7 档明度。界面里需要 hover / 按下 / 禁用这几个变体时，按这个改就不会跑色。</p>
+
+  <div class="searchbox">
+    <span class="s-ico" aria-hidden="true">🔍</span>
+    <input id="searchInput" type="search" autocomplete="off" placeholder="搜索工具 —— 例如：压缩、json、密码…" aria-label="搜索工具 —— 例如：压缩、json、密码…">
+  </div>
+  <ul class="searchresults" id="searchResults" hidden></ul>
+  <p class="badge-line"><span class="pill">完全在你的浏览器里运行，不上传、不保存。</span></p>
+
+<div class="panel">
+<label class="row lbl" for="input">输入</label>
+  <textarea id="input" class="tall" placeholder=""></textarea>
+  <div class="opts">
+<label class="row"><span class="lbl">取色</span><input type="color" id="color" value="#2f6df6"></label>
+  </div>
+<label class="row lbl" for="output">结果</label>
+  <textarea id="output" readonly placeholder=""></textarea>
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">复制结果</button>
+    <button class="ghost" id="clear">清空</button>
+  </div>
+</div>
+
+<aside class="ad">
+  <span class="ad-label">自己人做的</span>
+  <span class="ad-ico" aria-hidden="true">🎮</span>
+  <div class="ad-body">
+    <b>🎮 自己写的小游戏合集</b>
+    <p>塔防、2048、五子棋、打字测试、猜数字…都是一个人从零写的，没有用现成引擎。</p>
+  </div>
+  <a class="ad-cta" href="https://maomaowang.top/games.html">去玩两把 →</a>
+</aside>
+
+  <section class="faq">
+    <h2>常见问题</h2>
+    <details><summary>为什么要绕 HSL 一圈？</summary><p>因为色相环只在 HSL 里成立。在 RGB 里「转 180 度」没有意义 —— 三个通道各自线性变化，得到的是一坨发灰的颜色，不是互补色。</p></details>
+    <details><summary>明度阶梯怎么用？</summary><p>中间几档做主色，浅的做 hover 和底纹，深的做按下态和描边。色相与饱和度固定不动，整套看起来才像是「设计过的」。</p></details>
+  </section>
+
+</main>
+
+<footer><p>ToolPocket · 全部在你的设备上完成，不上传任何文件。</p></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = {"langName":"中文","footer":"ToolPocket · 全部在你的设备上完成，不上传任何文件。","nav":"全部工具","backToTools":"← 全部工具","copy":"复制结果","swap":"互换","clear":"清空","download":"下载","copied":"已复制到剪贴板","copyFail":"复制失败 —— 请手动选中复制","inputLabel":"输入","outputLabel":"结果","privacyNote":"完全在你的浏览器里运行，不上传、不保存。","searchPlaceholder":"搜索工具 —— 例如：压缩、json、密码…","noResults":"没找到匹配的工具，换个词试试？","color":"取色","badColor":"不是合法的 hex 颜色（试试 #2f6df6 或 #36f）","cBase":"主色","cComplement":"互补色","cAnalog1":"类似色 -30","cAnalog2":"类似色 +30","cTriad1":"三角色 +120","cTriad2":"三角色 +240","cShades":"明度阶梯（7 档）","cOk":"配色已生成"};</script>
+<script src="/assets/tools/_shared.js" defer></script>
+<script src="/assets/tools/color-palette.js" defer></script>
+</body>
+</html>

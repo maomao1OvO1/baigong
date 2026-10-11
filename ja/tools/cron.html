@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cron 式の解説 — 次回 5 回の実行時刻 | ToolPocket</title>
+<meta name="description" content="5 フィールドの cron 式を貼り付けると、各フィールドの意味と、ローカル時間での次回 5 回の実行時刻を表示します。">
+<link rel="canonical" href="https://tools.maomaowang.top/ja/tools/cron.html">
+<meta property="og:title" content="Cron 式の解説 — 次回 5 回の実行時刻 | ToolPocket">
+<meta property="og:description" content="5 フィールドの cron 式を貼り付けると、各フィールドの意味と、ローカル時間での次回 5 回の実行時刻を表示します。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/ja/tools/cron.html">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/cron.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/cron.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/cron.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/cron.html">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Cron 式エクスプレイナー","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"5 フィールドの cron 式を貼り付けると、各フィールドの意味と、ローカル時間での次回 5 回の実行時刻を表示します。"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"「日」と「曜日」は OR ですか？","acceptedAnswer":{"@type":"Answer","text":"標準の Vixie cron では **OR** です。<code>0 0 1 * 1</code> は「毎月 1 日**または**毎週月曜」であり、「1 日かつ月曜」ではありません。ここは多くの人が誤解します。"}},{"@type":"Question","name":"0 と 7 はどちらも日曜ですか？","acceptedAnswer":{"@type":"Answer","text":"曜日フィールドでは両方とも有効です。本ツールは 7 を 0 に正規化して説明がぶれないようにしています。"}},{"@type":"Question","name":"どのタイムゾーンを使いますか？","acceptedAnswer":{"@type":"Answer","text":"端末のローカルタイムゾーンです。手元のジョブを調べる場合はこれが正解です。サーバーは通常 UTC なので、時刻を比べるときはサーバー時計も確認してください。"}}]}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/ja/index.html">🧰 ToolPocket</a>
+  <nav class="langs"><a href="/ja/index.html#search" title="search" aria-label="search">🔍</a><a href="/tools/cron.html">English</a><a href="/zh/tools/cron.html">中文</a><a href="/ja/tools/cron.html" class="on" aria-current="page">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/ja/index.html">← ツール一覧</a></p>
+  <h1>Cron 式エクスプレイナー</h1>
+  <p class="lead"><code>*/15 9-18 * * 1-5</code> のような式を貼り付けると、フィールドごとに意味を説明し、次回 5 回の実行時刻を一覧表示します。「なぜジョブが動かないのか」はほぼ 1 フィールドの書き間違いです。</p>
+
+  <div class="searchbox">
+    <span class="s-ico" aria-hidden="true">🔍</span>
+    <input id="searchInput" type="search" autocomplete="off" placeholder="ツールを検索 — 例：圧縮、json、パスワード…" aria-label="ツールを検索 — 例：圧縮、json、パスワード…">
+  </div>
+  <ul class="searchresults" id="searchResults" hidden></ul>
+  <p class="badge-line"><span class="pill">すべてブラウザ内で処理されます。送信も保存もしていません。</span></p>
+
+<div class="panel">
+<label class="row lbl" for="input">入力</label>
+  <textarea id="input" class="tall" placeholder=""></textarea>
+  <div class="opts">
+
+  </div>
+<label class="row lbl" for="output">結果</label>
+  <textarea id="output" readonly placeholder=""></textarea>
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">結果をコピー</button>
+    <button class="ghost" id="clear">クリア</button>
+  </div>
+</div>
+
+<aside class="ad">
+  <span class="ad-label">製作者より</span>
+  <span class="ad-ico" aria-hidden="true">🎮</span>
+  <div class="ad-body">
+    <b>ブラウザで遊べるタワーディフェンス</b>
+    <p>同じ開発者がゼロから作ったゲームです.</p>
+  </div>
+  <a class="ad-cta" href="https://maomaowang.top/games/td/source/game.html">遊んでみる →</a>
+</aside>
+
+  <section class="faq">
+    <h2>よくある質問</h2>
+    <details><summary>「日」と「曜日」は OR ですか？</summary><p>標準の Vixie cron では **OR** です。<code>0 0 1 * 1</code> は「毎月 1 日**または**毎週月曜」であり、「1 日かつ月曜」ではありません。ここは多くの人が誤解します。</p></details>
+    <details><summary>0 と 7 はどちらも日曜ですか？</summary><p>曜日フィールドでは両方とも有効です。本ツールは 7 を 0 に正規化して説明がぶれないようにしています。</p></details>
+    <details><summary>どのタイムゾーンを使いますか？</summary><p>端末のローカルタイムゾーンです。手元のジョブを調べる場合はこれが正解です。サーバーは通常 UTC なので、時刻を比べるときはサーバー時計も確認してください。</p></details>
+  </section>
+
+</main>
+
+<footer><p>ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。</p></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = {"langName":"日本語","footer":"ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"コピーできませんでした。手動で選択してください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理されます。送信も保存もしていません。","searchPlaceholder":"ツールを検索 — 例：圧縮、json、パスワード…","noResults":"該当するツールがありません。別の言葉でお試しを。","badCron":"cron 式は 5 フィールド必要です（分 時 日 月 曜日）","badField":"不正なフィールド","weekNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"cFields":"式","cExplain":"意味","cMin":"分","cHour":"時","cDom":"日","cMonth":"月","cDow":"曜日","cCombo":"注意","cComboAny":"日と曜日はともに未指定（毎日）","cComboBoth":"日と曜日を両方指定 ⇒ OR（Vixie cron の仕様）","cNext":"次回 5 回","cNone":"139 日以内に実行時刻が見つかりません —— 日・月フィールドを確認してください"};</script>
+<script src="/assets/tools/_shared.js" defer></script>
+<script src="/assets/tools/cron.js" defer></script>
+</body>
+</html>

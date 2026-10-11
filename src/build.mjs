@@ -105,7 +105,7 @@ function renderOptions(lang, tool, t) {
     }
     if (o.type === "checkbox") {
       // onchange 用 addEventListener，这里不写内联事件（方便以后加 CSP）
-      return `<label class="row check"><input type="checkbox" id="${o.id}"${o.checked ? " checked" : ""}><span>${rich(ui[o.label] || o.label)}</span></label>`;
+      return `<label class="row check"><input type="checkbox" id="${o.id}"${o.checked ? " checked" : ""}><span>${rich(ui[o.label] || o.label)}</span></label>${hintOf(o)}`;
     }
     if (o.type === "color") return `<label class="row">${label}<input type="color" id="${o.id}" value="#2f6df6"></label>${hintOf(o)}`;
     return "";
@@ -184,7 +184,19 @@ const SEARCH_KEYS = {
   "jwt": ["jwt", "token", "json web token", "decode", "claims", "bearer", "auth", "oauth",
           "令牌", "解码", "解析", "过期", "登录", "鉴权"],
   "csv-json": ["csv", "json", "convert", "excel", "table", "spreadsheet", "tsv", "parse",
-               "表格", "转换", "逗号分隔", "导入导出", "数据转换"]
+               "表格", "转换", "逗号分隔", "导入导出", "数据转换"],
+  "html-entities": ["html", "entity", "entities", "escape", "unescape", "amp", "nbsp", "encode", "decode",
+                    "实体", "转义", "反转义", "特殊字符", "编码", "解码"],
+  "date-calc": ["date", "days", "difference", "between", "add days", "weekday", "calendar", "duration",
+                "日期", "天数", "相差", "加减", "星期", "日历", "几天后"],
+  "url-parser": ["url", "parse", "query", "parameter", "host", "path", "link", "uri", "utm",
+                 "网址", "链接", "参数", "拆解", "解析", "查询串"],
+  "color-palette": ["color", "palette", "complementary", "analogous", "triadic", "shades", "scheme", "harmony",
+                    "配色", "调色板", "互补色", "类似色", "明度", "色板", "搭配"],
+  "ip-cidr": ["ip", "cidr", "subnet", "netmask", "ipv4", "network", "broadcast", "wildcard", "calculator",
+              "子网", "掩码", "网段", "广播地址", "可用主机", "ip 计算"],
+  "cron": ["cron", "crontab", "schedule", "expression", "next run", "timer", "job",
+           "定时", "计划任务", "表达式", "下次运行", "调度"]
 };
 
 function searchIndex() {

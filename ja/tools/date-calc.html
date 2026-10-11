@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>日付計算ツール — 日数差と日付の加減算 | ToolPocket</title>
+<meta name="description" content="指定した日付が今日から何日後（前）か、N 日後の日付はいつか、曜日・年内通算日・ISO 週番号までまとめて表示します。">
+<link rel="canonical" href="https://tools.maomaowang.top/ja/tools/date-calc.html">
+<meta property="og:title" content="日付計算ツール — 日数差と日付の加減算 | ToolPocket">
+<meta property="og:description" content="指定した日付が今日から何日後（前）か、N 日後の日付はいつか、曜日・年内通算日・ISO 週番号までまとめて表示します。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/ja/tools/date-calc.html">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/date-calc.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/date-calc.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/date-calc.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/date-calc.html">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"日付計算","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"指定した日付が今日から何日後（前）か、N 日後の日付はいつか、曜日・年内通算日・ISO 週番号までまとめて表示します。"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"カレンダーアプリと 1 日ずれるのはなぜ？","acceptedAnswer":{"@type":"Answer","text":"多くはタイムゾーンと夏時間が原因です。本ツールは両方の日付を UTC の暦日として差を取るため、夏時間の切り替えで半日になることはありません。"}},{"@type":"Question","name":"ISO 週番号とは？","acceptedAnswer":{"@type":"Answer","text":"ISO-8601 の週番号です。週は月曜始まりで、その年の最初の木曜を含む週が第 1 週になります。そのため 1 月 1 日が前年の第 52 週・第 53 週に属することがあります。"}}]}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/ja/index.html">🧰 ToolPocket</a>
+  <nav class="langs"><a href="/ja/index.html#search" title="search" aria-label="search">🔍</a><a href="/tools/date-calc.html">English</a><a href="/zh/tools/date-calc.html">中文</a><a href="/ja/tools/date-calc.html" class="on" aria-current="page">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/ja/index.html">← ツール一覧</a></p>
+  <h1>日付計算</h1>
+  <p class="lead">日付を入力する（空欄なら今日）と、今日との差、N 日後の日付、曜日、年内通算日、ISO 週番号が一度に表示されます。</p>
+
+  <div class="searchbox">
+    <span class="s-ico" aria-hidden="true">🔍</span>
+    <input id="searchInput" type="search" autocomplete="off" placeholder="ツールを検索 — 例：圧縮、json、パスワード…" aria-label="ツールを検索 — 例：圧縮、json、パスワード…">
+  </div>
+  <ul class="searchresults" id="searchResults" hidden></ul>
+  <p class="badge-line"><span class="pill">すべてブラウザ内で処理されます。送信も保存もしていません。</span></p>
+
+<div class="panel">
+<label class="row lbl" for="input">入力</label>
+  <textarea id="input" class="tall" placeholder=""></textarea>
+  <div class="opts">
+<label class="row"><span class="lbl">日数の加減</span><input type="number" id="days" value="30" step="1"> <span class="note">負の値で過去にさかのぼります</span></label>
+  </div>
+<label class="row lbl" for="output">結果</label>
+  <textarea id="output" readonly placeholder=""></textarea>
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">結果をコピー</button>
+    <button class="ghost" id="clear">クリア</button>
+  </div>
+</div>
+
+<aside class="ad">
+  <span class="ad-label">製作者より</span>
+  <span class="ad-ico" aria-hidden="true">🎮</span>
+  <div class="ad-body">
+    <b>ブラウザで遊べるタワーディフェンス</b>
+    <p>同じ開発者がゼロから作ったゲームです.</p>
+  </div>
+  <a class="ad-cta" href="https://maomaowang.top/games/td/source/game.html">遊んでみる →</a>
+</aside>
+
+  <section class="faq">
+    <h2>よくある質問</h2>
+    <details><summary>カレンダーアプリと 1 日ずれるのはなぜ？</summary><p>多くはタイムゾーンと夏時間が原因です。本ツールは両方の日付を UTC の暦日として差を取るため、夏時間の切り替えで半日になることはありません。</p></details>
+    <details><summary>ISO 週番号とは？</summary><p>ISO-8601 の週番号です。週は月曜始まりで、その年の最初の木曜を含む週が第 1 週になります。そのため 1 月 1 日が前年の第 52 週・第 53 週に属することがあります。</p></details>
+  </section>
+
+</main>
+
+<footer><p>ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。</p></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = {"langName":"日本語","footer":"ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"コピーできませんでした。手動で選択してください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理されます。送信も保存もしていません。","searchPlaceholder":"ツールを検索 — 例：圧縮、json、パスワード…","noResults":"該当するツールがありません。別の言葉でお試しを。","days":"日数の加減","daysNote":"負の値で過去にさかのぼります","badDate":"日付の形式が正しくありません（YYYY-MM-DD）","weekNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"baseLabel":"基準日","vsToday":"今日との差","daysUnit":"日","dayOfYear":"年内通算","isoWeek":"ISO 週","leap":"うるう年","offsetLabel":"オフセット","usingToday":"今日として計算"};</script>
+<script src="/assets/tools/_shared.js" defer></script>
+<script src="/assets/tools/date-calc.js" defer></script>
+</body>
+</html>
