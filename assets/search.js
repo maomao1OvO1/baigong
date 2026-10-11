@@ -62,7 +62,12 @@
   /** 首次输入时才加载索引 —— 首页因此不用背这 6KB，体积与速度都不受影响 */
   function loadIndex() {
     if (index !== null) return Promise.resolve(index);
-    return fetch("assets/search.json")
+    /* ⚠️ 索引路径必须由页面注入绝对路径（首页写的是 /assets/search.json）。
+       原来这里写死相对路径 "assets/search.json"：在 /index.html 下没问题，
+       但在 /zh/index.html 与 /ja/index.html 下会被解析成 /zh/assets/search.json ⇒ 404，
+       于是中英日三个首页里只有英文那一个搜得出来 —— 毛毛 2026-10-12 报的「搜索框用不了」就是它。 */
+    var url = window.TP_INDEX_URL || "assets/search.json";
+    return fetch(url)
       .then(function (r) { return r.json(); })
       .then(function (j) { index = j; return index; })
       .catch(function () { index = []; return index; });   // 失败就安静地当空索引，不炸页面

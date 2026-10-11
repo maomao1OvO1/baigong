@@ -786,5 +786,54 @@ console.log("\n㉔ Cron 解析（未来运行时间与「日/周是或关系」�
   else bad("日/周语义说明缺失", els.output.value.split("\n")[2]);
 }
 
+console.log("\n㉕ 站内搜索（索引路径 / 打分 / 结果渲染）");
+{
+  /* search.js 不走 TP.$（它直接用 document.getElementById + fetch），所以这里单独造沙箱。
+     为什么要测：毛毛 2026-10-12 报「主页的搜索框用不了」—— 根因是索引路径写死成相对路径，
+     在 /zh/ 与 /ja/ 页面会 404。这条用例把「路径来自页面注入」钉死，防止以后再退化。 */
+  const index = JSON.parse(fs.readFileSync(path.join(ROOT, "assets/search.json"), "utf8"));
+  const els = { search: makeEl("search"), searchInput: makeEl("searchInput"), searchResults: makeEl("searchResults") };
+  let fetchedUrl = null;
+  const sb = {
+    console, Promise, JSON, String, Array, Object, RegExp, Error, Math, Number, Boolean,
+    setTimeout: (fn) => { fn(); return 0; }, clearTimeout: () => {},
+    document: { getElementById: (id) => els[id] || null, documentElement: { lang: "zh" }, createElement: () => makeEl("tmp"), body: { appendChild() {}, removeChild() {} } },
+    location: { hash: "", href: "" },
+    navigator: { clipboard: { writeText: () => Promise.resolve() } },
+    fetch: (url) => { fetchedUrl = url; return Promise.resolve({ json: () => Promise.resolve(index) }); },
+  };
+  sb.window = sb;
+  sb.window.T = { noResults: "nothing" };
+  sb.window.TP_INDEX_URL = "/assets/search.json";          // 首页注入的绝对路径
+  const ctx = vm.createContext(sb);
+  vm.runInContext(fs.readFileSync(path.join(ROOT, "assets/search.js"), "utf8"), ctx, { filename: "search.js" });
+
+  els.searchInput.value = "hash";
+  els.searchInput.fire("input");
+  await new Promise((r) => setImmediate(r));
+  await new Promise((r) => setImmediate(r));
+  if (fetchedUrl === "/assets/search.json") ok("索引路径来自页面注入（修掉 /zh/ /ja/ 页面 404 的根因）");
+  else bad("索引路径不对", String(fetchedUrl));
+  if (els.searchResults.innerHTML.indexOf("hash") >= 0) ok("搜「hash」命中哈希工具");
+  else bad("搜索没出结果", els.searchResults.innerHTML.slice(0, 100));
+
+  els.searchInput.value = "压缩";
+  els.searchInput.fire("input");
+  await new Promise((r) => setImmediate(r));
+  if (els.searchResults.innerHTML.indexOf("compress-image") >= 0 || els.searchResults.innerHTML.indexOf("压缩") >= 0) ok("中文关键词「压缩」走 keywords 命中了图片压缩");
+  else bad("中文关键词没命中", els.searchResults.innerHTML.slice(0, 120));
+
+  els.searchInput.value = "zzzznotfound";
+  els.searchInput.fire("input");
+  await new Promise((r) => setImmediate(r));
+  if (els.searchResults.innerHTML.indexOf("nothing") >= 0) ok("查不到时显示空状态文案（不是空白一片）");
+  else bad("空状态不对", els.searchResults.innerHTML.slice(0, 100));
+
+  els.searchInput.value = "";
+  els.searchInput.fire("input");
+  if (els.searchResults.hidden === true) ok("清空输入后结果区收起来");
+  else bad("清空后没收起", String(els.searchResults.hidden));
+}
+
 console.log(`\n结果：${pass} 项通过，${fail} 项失败`);
 process.exit(fail ? 1 : 0);

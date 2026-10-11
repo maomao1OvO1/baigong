@@ -1,11 +1,29 @@
 {
-  "_说明": "「广告位招租」页文案（三语）。给潜在广告主看的：我们是谁、有什么流量、位置多大、怎么联系。",
+  "_说明": "「广告位招租」页文案（三语）。给潜在广告主看的：我们是谁、有什么流量、位置多大、怎么联系。 slots = 可投放位置表（A/B/C 与 ads.json 的 home-top / tool-* / home-bottom 对应）。",
   "_注意": "当前数字要如实（不要虚报流量）—— 编数据只会让对方第一次沟通就失去信任。等有统计了再填实测值。",
   "en": {
     "title": "Advertise — ToolPocket | Sponsored placement on a free tools site",
     "desc": "Put your product in front of developers and designers searching in English, Chinese and Japanese. Static placements only — no tracking scripts, no popups, no layout shift.",
     "h1": "Advertise on ToolPocket",
     "lead": "ToolPocket is a free browser-tools site in <b>three languages</b> (English, Chinese, Japanese). The audience arrives from search with a specific task in mind — compressing an image, checking a password, converting a timestamp.",
+    "slotsHeading": "Where your ad can appear",
+    "slots": [
+      [
+        "A",
+        "Home page — directly under the search box",
+        "728×90 or 300×250 · the first thing every visitor sees"
+      ],
+      [
+        "B",
+        "Tool pages — below the tool itself",
+        "728×90 · appears on all 25 tool pages"
+      ],
+      [
+        "C",
+        "Home page — footer",
+        "728×90 · seen by anyone who reads to the end"
+      ]
+    ],
     "whoHeading": "Who visits",
     "who": "People who need a tool right now: developers, designers, students. They arrive from search engines, use the tool and leave — which means the page they see is exactly the page your placement sits on.",
     "marketsHeading": "Three markets, three audiences",
@@ -77,6 +95,24 @@
     "desc": "把你的产品放到用中英日三种语言搜索的开发者和设计师面前。只做静态展示：不挂跟踪脚本、不弹窗、不引起布局跳动。",
     "h1": "在 ToolPocket 投放广告",
     "lead": "ToolPocket 是一个<b>三语</b>（中 / 英 / 日）浏览器工具站。来访者是从搜索引擎带着明确需求来的 —— 压一张图、查一个密码、转一个时间戳。",
+    "slotsHeading": "可以投放的位置",
+    "slots": [
+      [
+        "A",
+        "首页 —— 搜索框正下方",
+        "728×90 或 300×250 · 访客打开首页第一眼看到的就是它"
+      ],
+      [
+        "B",
+        "工具页 —— 工具内容下方",
+        "728×90 · 25 个工具页都会出现"
+      ],
+      [
+        "C",
+        "首页 —— 页尾",
+        "728×90 · 读完整页的人一定看得到"
+      ]
+    ],
     "whoHeading": "谁在访问",
     "who": "临时需要一个工具的人：开发者、设计、学生。他们从搜索进来、用完就走 —— 也就是说，他们看到的那一页，就是你的广告所在的那一页。",
     "marketsHeading": "三个市场，三拨人",
@@ -152,6 +188,24 @@
     "desc": "英語・中国語・日本語で検索する開発者・デザイナーに商品を届けます。静的な掲載のみ：追跡スクリプト、ポップアップ、レイアウトシフトはありません。",
     "h1": "ToolPocket への広告掲載",
     "lead": "ToolPocket は<b>3 言語</b>（日本語・英語・中国語）の無料ブラウザツールサイトです。訪問者は検索から、明確な目的を持って来ます — 画像を圧縮する、パスワードを確認する、タイムスタンプを変換する。",
+    "slotsHeading": "掲載できる位置",
+    "slots": [
+      [
+        "A",
+        "トップページ — 検索ボックスの真下",
+        "728×90 または 300×250 · 訪問者が最初に目にする位置"
+      ],
+      [
+        "B",
+        "ツールページ — ツールの下",
+        "728×90 · 25 のツールページすべてに表示"
+      ],
+      [
+        "C",
+        "トップページ — フッター",
+        "728×90 · 最後まで読む人には必ず見えます"
+      ]
+    ],
     "whoHeading": "誰が見ているか",
     "who": "「今すぐ道具が要る」人たちです：開発者、デザイナー、学生。検索から来て、使って、帰ります。つまり彼らが見ているそのページが、広告が載るページそのものです。",
     "marketsHeading": "3 つの市場、3 つの読者層",

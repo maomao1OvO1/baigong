@@ -20,7 +20,7 @@
 <body>
 <header class="top">
   <a class="brand" href="/ja/index.html">🧰 ToolPocket</a>
-  <nav class="langs"><a href="/ja/index.html#search" title="search" aria-label="search">🔍</a><a href="/advertise.html">English</a><a href="/zh/advertise.html">中文</a><a href="/ja/advertise.html" class="on" aria-current="page">日本語</a></nav>
+  <nav class="langs"><a href="/advertise.html">English</a><a href="/zh/advertise.html">中文</a><a href="/ja/advertise.html" class="on" aria-current="page">日本語</a></nav>
 </header>
 
 <main>
@@ -28,11 +28,16 @@
   <h1>ToolPocket への広告掲載</h1>
   <p class="lead">ToolPocket は<b>3 言語</b>（日本語・英語・中国語）の無料ブラウザツールサイトです。訪問者は検索から、明確な目的を持って来ます — 画像を圧縮する、パスワードを確認する、タイムスタンプを変換する。</p>
 
-  <div class="searchbox">
-    <span class="s-ico" aria-hidden="true">🔍</span>
-    <input id="searchInput" type="search" autocomplete="off" placeholder="ツールを検索 — 例：圧縮、json、パスワード…" aria-label="ツールを検索 — 例：圧縮、json、パスワード…">
-  </div>
-  <ul class="searchresults" id="searchResults" hidden></ul>
+  <!-- 可投放位置（2026-10-12 新增）：广告主进来第一件事就是找"能投哪儿、多大、多少钱"，
+       所以位置表紧跟开场白，而不是埋在最后的联系方式里。 -->
+  <section>
+    <h2>掲載できる位置</h2>
+    <ul class="slots">
+      <li><span class="slot-tag">A</span><div><b>トップページ — 検索ボックスの真下</b><span class="note">728×90 または 300×250 · 訪問者が最初に目にする位置</span></div></li>
+      <li><span class="slot-tag">B</span><div><b>ツールページ — ツールの下</b><span class="note">728×90 · 25 のツールページすべてに表示</span></div></li>
+      <li><span class="slot-tag">C</span><div><b>トップページ — フッター</b><span class="note">728×90 · 最後まで読む人には必ず見えます</span></div></li>
+    </ul>
+  </section>
 
   <section>
     <h2>誰が見ているか</h2>
@@ -88,7 +93,6 @@
 </main>
 
 <footer><p>ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。</p></footer>
-<script src="/assets/search.js" defer></script>
 <script>
 /* 把 data-u / data-d 拼成邮箱 —— 放在页面里而不是服务端，是为了防爬虫 */
 [].forEach.call(document.querySelectorAll(".email"), function (el) {

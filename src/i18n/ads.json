@@ -1,10 +1,36 @@
 {
-  "_说明": "按语言配置的广告位（数据驱动）。改这里就能换广告，不用碰页面代码。",
+  "_说明": "按语言配置的广告位（数据驱动）。改这里就能换广告，不用碰页面代码。 home-top = 首页搜索框正下方（最显眼，招租用）；tool-bottom/tool-game = 工具页内容下方；home-self = 自家作品；home-bottom = 首页页尾招租。",
   "_为什么按语言配": "毛毛的点子：不同语言的页面面向不同市场 —— 英文页对欧美、日文页对日本、中文页对中文圈。",
   "_现在放什么": "还没有广告主，所以先放自家项目 + 「招租」入口。有客户后把 items 换成对方的链接即可。",
   "_性能约束": "广告位必须是纯 HTML + CSS：不引第三方脚本、不加 iframe、不产生额外请求 —— 否则会拖慢站点，也会砸掉「零外部请求」这个信任点。",
   "_合规约束": "中文页不放任何翻墙/VPN 类推广（国内法律风险）；英文页与日文页不设此限制。每条推荐都标注「广告/Sponsored」，不做伪装。",
   "slots": {
+    "home-top": {
+      "en": {
+        "label": "Advertise here",
+        "title": "This slot is for rent — directly under the search box",
+        "body": "The first thing every visitor sees. 728×90 or 300×250 both fit. One-person site, honest pricing, no agency in between.",
+        "cta": "See slots & pricing",
+        "href": "/advertise.html",
+        "icon": "📣"
+      },
+      "zh": {
+        "label": "广告位招租",
+        "title": "这一格在招租 —— 就在搜索框正下方",
+        "body": "访客打开首页第一眼看到的位置。728×90 或 300×250 都放得下；个人站直租，没有中间商加价。",
+        "cta": "看位置与价格",
+        "href": "/zh/advertise.html",
+        "icon": "📣"
+      },
+      "ja": {
+        "label": "広告募集中",
+        "title": "この枠、貸し出し中 —— 検索ボックスの真下",
+        "body": "訪問者が最初に目にする位置です。728×90 も 300×250 も収まります。個人運営のため中間マージンはありません。",
+        "cta": "枠と料金を見る",
+        "href": "/ja/advertise.html",
+        "icon": "📣"
+      }
+    },
     "home-bottom": {
       "en": {
         "label": "Sponsored",

@@ -58,6 +58,16 @@ main { max-width: var(--maxw); margin: 0 auto; }
 .langs a:hover { color: var(--fg); text-decoration: none; }
 .langs a.on { color: var(--fg); font-weight: 600; }
 
+/* ── 顶栏「广告位招租」入口（2026-10-12）──
+   广告主也是访客，只是目标不同：他们要看的是「位置和价格」。
+   给一个常驻的、看得见的门，比让他在页脚找邮箱强得多。样式克制到只用一个描边药丸。 */
+.ad-link {
+  font-size: 13px; font-weight: 600; color: var(--brand);
+  padding: 4px 11px; border: 1px solid var(--line); border-radius: 999px;
+  transition: border-color .15s;
+}
+.ad-link:hover { border-color: var(--brand); text-decoration: none; }
+
 /* ── 排版层级：只分四档 ── */
 h1 { font-size: 33px; line-height: 1.25; margin: 26px 0 12px; letter-spacing: -.02em; font-weight: 650; }
 h2 { font-size: 17px; margin: 44px 0 10px; letter-spacing: -.01em; font-weight: 600; }
@@ -82,6 +92,17 @@ code { background: var(--soft); padding: 2px 6px; border-radius: 6px; font-size:
 .grid .ico { grid-row: 1 / span 2; font-size: 20px; line-height: 1.4; opacity: .9; }
 .grid b { font-size: 15px; font-weight: 600; }
 .grid .sub { color: var(--muted); font-size: 13px; line-height: 1.6; }
+
+/* ── 分类分组（2026-10-12）──
+   工具从 11 涨到 25 之后，平铺就是一堵墙。分成 6 堆以后，
+   访客能按"我要干的是哪类事"直接跳到对应那一堆，广告位也不会被卡片淹掉。 */
+.group { margin-top: 44px; }
+.group h2 { display: flex; align-items: center; gap: 9px; margin: 0 0 12px; font-size: 15px; }
+.group .g-ico { font-size: 16px; opacity: .85; }
+.group .g-count {
+  font-size: 11.5px; font-weight: 600; color: var(--muted);
+  background: var(--soft); border-radius: 999px; padding: 1px 8px;
+}
 
 .why { border-top: 1px solid var(--line); margin-top: 46px; padding-top: 8px; }
 
@@ -154,6 +175,14 @@ summary::before { content: "+ "; color: var(--muted); font-weight: 400; }
 details[open] summary::before { content: "− "; }
 details p { margin: 10px 0 0; color: var(--muted); font-size: 14px; }
 
+/* ── 首页 hero（2026-10-12）──
+   首页只干一件事：让人在 3 秒内找到工具。所以是「一句话 + 一个搜索框」，
+   别的（25 张卡片、广告位）全部退到下面去。 */
+.hero { padding-top: 4px; }
+.hero h1 { margin-bottom: 10px; }
+.hero .searchbox { margin-top: 24px; padding: 15px 18px; }
+.hero .searchbox input { font-size: 16px; }
+
 /* ── 搜索（纯前端过滤，零请求）── */
 .searchbox {
   display: flex; align-items: center; gap: 10px; margin: 22px 0 0;
@@ -192,12 +221,29 @@ details p { margin: 10px 0 0; color: var(--muted); font-size: 14px; }
 .ad-cta { flex: 0 0 auto; font-size: 13px; font-weight: 600; padding: 7px 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); white-space: nowrap; }
 .ad-cta:hover { border-color: var(--brand); text-decoration: none; }
 .ad-mail { display: block; font-size: 12px; margin-top: 4px; }
+
+/* ── 首页第一格（招租）：全站最显眼的一格广告位 ──
+   毛毛的原话「广告主根本就看不到导入广告的位置了」—— 所以首页那格用虚线描边 + 强调色标签，
+   一眼就能认出"这是广告位、而且能租"，和旁边的内容卡片明确区分开。 */
+.ad-home-top {
+  border-style: dashed; border-color: var(--brand);
+  padding: 20px 18px; margin-top: 26px;
+}
+.ad-home-top .ad-label { color: var(--brand); border-color: var(--brand); }
 @media (max-width: 520px) {
   .ad { flex-wrap: wrap; }
   .ad-cta { width: 100%; text-align: center; }
 }
 
 /* ── 招租页规格表 ── */
+.slots { list-style: none; padding: 0; margin: 8px 0 0; display: grid; gap: 10px; }
+.slots li { display: flex; gap: 14px; align-items: flex-start; padding: 15px 16px; border: 1px solid var(--line); border-radius: var(--radius); }
+.slots b { display: block; font-size: 14.5px; font-weight: 600; }
+.slots .note { display: block; margin-top: 3px; }
+.slot-tag {
+  flex: 0 0 auto; width: 26px; height: 26px; display: grid; place-items: center;
+  border: 1px solid var(--line); border-radius: 8px; font-size: 12.5px; font-weight: 700; color: var(--muted);
+}
 table.spec { width: 100%; border-collapse: collapse; font-size: 14px; margin: 4px 0 0; }
 table.spec td { padding: 13px 14px 13px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
 table.spec td:first-child { width: 32%; font-weight: 600; }

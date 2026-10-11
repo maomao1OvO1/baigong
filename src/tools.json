@@ -20,6 +20,7 @@
   "tools": [
     {
       "id": "html-entities",
+      "cat": "text",
       "icon": "🧷",
       "kind": "text",
       "script": "html-entities.js",
@@ -32,6 +33,7 @@
     },
     {
       "id": "date-calc",
+      "cat": "time",
       "icon": "📅",
       "kind": "text",
       "script": "date-calc.js",
@@ -43,6 +45,7 @@
     },
     {
       "id": "url-parser",
+      "cat": "dev",
       "icon": "🔗",
       "kind": "text",
       "script": "url-parser.js",
@@ -54,6 +57,7 @@
     },
     {
       "id": "color-palette",
+      "cat": "color",
       "icon": "🎨",
       "kind": "text",
       "script": "color-palette.js",
@@ -65,6 +69,7 @@
     },
     {
       "id": "ip-cidr",
+      "cat": "dev",
       "icon": "🌐",
       "kind": "text",
       "script": "ip-cidr.js",
@@ -74,6 +79,7 @@
     },
     {
       "id": "cron",
+      "cat": "dev",
       "icon": "⏰",
       "kind": "text",
       "script": "cron.js",
@@ -83,6 +89,7 @@
     },
     {
       "id": "hash",
+      "cat": "dev",
       "icon": "🔐",
       "kind": "text",
       "script": "hash.js",
@@ -95,6 +102,7 @@
     },
     {
       "id": "regex",
+      "cat": "dev",
       "icon": "🧪",
       "kind": "text",
       "script": "regex.js",
@@ -112,6 +120,7 @@
     },
     {
       "id": "uuid",
+      "cat": "dev",
       "icon": "🆔",
       "kind": "text",
       "script": "uuid.js",
@@ -127,6 +136,7 @@
     },
     {
       "id": "diff",
+      "cat": "text",
       "icon": "🆚",
       "kind": "text",
       "script": "diff.js",
@@ -136,6 +146,7 @@
     },
     {
       "id": "case-converter",
+      "cat": "text",
       "icon": "🔤",
       "kind": "text",
       "script": "case-converter.js",
@@ -147,6 +158,7 @@
     },
     {
       "id": "radix",
+      "cat": "dev",
       "icon": "🔢",
       "kind": "text",
       "script": "radix.js",
@@ -159,6 +171,7 @@
     },
     {
       "id": "jwt",
+      "cat": "dev",
       "icon": "🎫",
       "kind": "text",
       "script": "jwt.js",
@@ -168,6 +181,7 @@
     },
     {
       "id": "csv-json",
+      "cat": "text",
       "icon": "📊",
       "kind": "text",
       "script": "csv-json.js",
@@ -181,6 +195,7 @@
     },
     {
       "id": "compress-image",
+      "cat": "image",
       "icon": "🗜️",
       "kind": "image",
       "script": "compress-image.js",
@@ -230,6 +245,7 @@
     },
     {
       "id": "convert-image",
+      "cat": "image",
       "icon": "🔄",
       "kind": "image",
       "script": "convert-image.js",
@@ -270,6 +286,7 @@
     },
     {
       "id": "base64",
+      "cat": "text",
       "icon": "🔠",
       "kind": "text",
       "script": "base64.js",
@@ -300,6 +317,7 @@
     },
     {
       "id": "json-format",
+      "cat": "text",
       "icon": "🧩",
       "kind": "text",
       "script": "json-format.js",
@@ -329,6 +347,7 @@
     },
     {
       "id": "color-converter",
+      "cat": "color",
       "icon": "🎨",
       "kind": "text",
       "script": "color-converter.js",
@@ -350,6 +369,7 @@
     },
     {
       "id": "text-tools",
+      "cat": "text",
       "icon": "✍️",
       "kind": "text",
       "script": "text-tools.js",
@@ -403,6 +423,7 @@
     },
     {
       "id": "unit-converter",
+      "cat": "time",
       "icon": "📏",
       "kind": "text",
       "script": "unit-converter.js",
@@ -449,6 +470,7 @@
     },
     {
       "id": "url-codec",
+      "cat": "text",
       "icon": "🔗",
       "kind": "text",
       "script": "url-codec.js",
@@ -495,6 +517,7 @@
     },
     {
       "id": "timestamp",
+      "cat": "time",
       "icon": "⏱️",
       "kind": "text",
       "script": "timestamp.js",
@@ -525,6 +548,7 @@
     },
     {
       "id": "password-gen",
+      "cat": "security",
       "icon": "🔑",
       "kind": "text",
       "script": "password-gen.js",
@@ -577,6 +601,7 @@
     },
     {
       "id": "password-strength",
+      "cat": "security",
       "icon": "🛡️",
       "kind": "text",
       "script": "password-strength.js",

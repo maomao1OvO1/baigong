@@ -66,9 +66,14 @@ ${alts}
 function topbar(lang, out) {
   const links = LANGS.map((l) =>
     `<a href="${pathOf(l, out)}"${l.code === lang.code ? ' class="on" aria-current="page"' : ""}>${UI.langName[l.code]}</a>`).join("");
+  // 工具页不再放搜索框（毛毛 2026-10-12：「每个功能都有一个搜索框，主页有就好了」），
+  // 所以原先那个指向首页 #search 的 🔍 快捷图标也一并去掉 —— 顶栏只留「招租入口 + 语言」两件事。
+  const adLink = out === "advertise.html"
+    ? ""
+    : `<a class="ad-link" href="${pathOf(lang, "advertise.html")}">${ADVERTISE_LABEL[lang.code]}</a>`;
   return `<header class="top">
   <a class="brand" href="${pathOf(lang, "index.html")}">🧰 ${UI.brand}</a>
-  <nav class="langs"><a href="${pathOf(lang, "index.html")}#search" title="search" aria-label="search">🔍</a>${links}</nav>
+  <nav class="langs">${adLink}${links}</nav>
 </header>`;
 }
 
@@ -119,7 +124,7 @@ function adSlot(lang, slotId) {
   const a = (ADS[slotId] || {})[lang.code];
   if (!a) return "";
   const 内链 = a.href.indexOf("http") === 0 ? a.href : pathOf(lang, a.href.replace(/^\//, "").replace(/^(zh|ja)\//, ""));
-  return `<aside class="ad">
+  return `<aside class="ad ad-${slotId}">
   <span class="ad-label">${rich(a.label)}</span>
   <span class="ad-ico" aria-hidden="true">${a.icon || "📌"}</span>
   <div class="ad-body">
@@ -146,6 +151,23 @@ const CONTACT_SCRIPT = `<script>
 });
 </script>`;
 
+
+/* ── 首页分类（2026-10-12 新增）────────────────────────────────────────────
+   为什么分组：工具从 11 个涨到 25 个以后，一屏平铺变成"一堵墙"——
+   访客扫不到自己要的东西，也看不见广告位。按用途分组后一屏能扫完。
+   分类名直接写在这里而不进 ui.json：它只服务首页这一处，放本地比散在三个语言文件里更好维护。
+   tools.json 里每个工具的 cat 字段与此处的 id 一一对应（加工具时别忘了填 cat）。 */
+const CATS = [
+  { id: "image",    icon: "🖼️", name: { en: "Images", zh: "图片", ja: "画像" } },
+  { id: "text",     icon: "✍️", name: { en: "Text & data", zh: "文本与数据", ja: "テキストとデータ" } },
+  { id: "dev",      icon: "⌨️", name: { en: "Developer", zh: "开发者", ja: "開発者向け" } },
+  { id: "color",    icon: "🎨", name: { en: "Colour", zh: "颜色", ja: "カラー" } },
+  { id: "time",     icon: "🕒", name: { en: "Time & units", zh: "时间与单位", ja: "時間と単位" } },
+  { id: "security", icon: "🔒", name: { en: "Security", zh: "安全", ja: "セキュリティ" } },
+];
+
+/** 顶栏的「广告位招租」入口文案 —— 广告主是站点的另一类访客，得让他们一眼找到入口 */
+const ADVERTISE_LABEL = { en: "Advertise", zh: "广告位招租", ja: "広告掲載" };
 
 /* ── 站内搜索 ──────────────────────────────────────────────────────────── */
 /** 生成内嵌首页的搜索索引：每个工具一条，含三语名称/描述与手工关键词。
@@ -319,11 +341,6 @@ ${topbar(lang, out)}
   <h1>${rich(t.h1)}</h1>
   <p class="lead">${rich(t.lead)}</p>
 
-  <div class="searchbox">
-    <span class="s-ico" aria-hidden="true">🔍</span>
-    <input id="searchInput" type="search" autocomplete="off" placeholder="${esc(UI.searchPlaceholder[lang.code])}" aria-label="${esc(UI.searchPlaceholder[lang.code])}">
-  </div>
-  <ul class="searchresults" id="searchResults" hidden></ul>
   <p class="badge-line"><span class="pill">${rich(UI.privacyNote[lang.code])}</span></p>
 
 ${body}
@@ -353,15 +370,32 @@ function homePage(lang) {
   const t = HOME[lang.code];
   const out = "index.html";
   const jsonld = { "@context": "https://schema.org", "@type": "WebSite", name: UI.brand, url: SITE + "/" };
-  const cards = TOOLS.map((tool) => {
+
+  /** 一张工具卡（分组里复用同一个模板，避免两处写法漂移） */
+  const card = (tool) => {
     const tt = TOOL_I18N[tool.id][lang.code];
     const short = tt.lead.replace(/<[^>]+>/g, "");
-    return `    <li><a href="${pathOf(lang, "tools/" + tool.id + ".html")}">
-      <span class="ico">${tool.icon}</span>
-      <b>${rich(tt.h1)}</b>
-      <span class="sub">${rich(short.length > 96 ? short.slice(0, 96) + "…" : short)}</span>
-    </a></li>`;
-  }).join("\n");
+    return `      <li><a href="${pathOf(lang, "tools/" + tool.id + ".html")}">
+        <span class="ico">${tool.icon}</span>
+        <b>${rich(tt.h1)}</b>
+        <span class="sub">${rich(short.length > 92 ? short.slice(0, 92) + "…" : short)}</span>
+      </a></li>`;
+  };
+
+  /* 按用途分组（CATS 在文件顶部）。没填 cat 的工具兜底进「更多」——
+     漏掉一个工具比分组不整齐严重得多，所以宁可多一组也不让谁消失。 */
+  const groups = CATS
+    .map((c) => ({ cat: c, list: TOOLS.filter((x) => x.cat === c.id) }))
+    .filter((g) => g.list.length);
+  const rest = TOOLS.filter((x) => !CATS.some((c) => c.id === x.cat));
+  if (rest.length) groups.push({ cat: { icon: "📦", name: { en: "More", zh: "更多", ja: "その他" } }, list: rest });
+
+  const groupsHtml = groups.map((g) => `  <section class="group">
+    <h2><span class="g-ico">${g.cat.icon}</span>${rich(g.cat.name[lang.code] || g.cat.name.en)}<span class="g-count">${g.list.length}</span></h2>
+    <ul class="grid">
+${g.list.map(card).join("\n")}
+    </ul>
+  </section>`).join("\n\n");
 
   return `<!DOCTYPE html>
 <html lang="${lang.code}">
@@ -372,21 +406,20 @@ ${head(lang, { out, title: t.title, desc: t.desc, jsonld })}
 ${topbar(lang, out)}
 
 <main>
-  <h1>${rich(t.h1)}</h1>
-  <p class="lead">${rich(t.lead)}</p>
+  <section class="hero">
+    <h1>${rich(t.h1)}</h1>
+    <p class="lead">${rich(t.lead)}</p>
 
-  <div class="searchbox">
-    <span class="s-ico" aria-hidden="true">🔍</span>
-    <input id="searchInput" type="search" autocomplete="off" placeholder="${esc(UI.searchPlaceholder[lang.code])}" aria-label="${esc(UI.searchPlaceholder[lang.code])}">
-  </div>
-  <ul class="searchresults" id="searchResults" hidden></ul>
+    <div class="searchbox">
+      <span class="s-ico" aria-hidden="true">🔍</span>
+      <input id="searchInput" type="search" autocomplete="off" placeholder="${esc(UI.searchPlaceholder[lang.code])}" aria-label="${esc(UI.searchPlaceholder[lang.code])}">
+    </div>
+    <ul class="searchresults" id="searchResults" hidden></ul>
+  </section>
 
-  <h2>${rich(t.toolsHeading)}</h2>
-  <ul class="grid">
-${cards}
-  </ul>
+${adSlot(lang, "home-top")}
 
-${adSlot(lang, "home-self")}
+${groupsHtml}
 
   <section class="why">
     <h2>${rich(t.whyHeading)}</h2>
@@ -395,9 +428,13 @@ ${adSlot(lang, "home-self")}
     <p>${rich(t.safe)}</p>
   </section>
 
+${adSlot(lang, "home-self")}
+
 ${adSlot(lang, "home-bottom")}
 </main>
 
+<!-- 搜索索引的绝对路径：/zh/ 与 /ja/ 页面用相对路径会 404（2026-10-12 修） -->
+<script>window.TP_INDEX_URL = ${JSON.stringify(asset("search.json"))};</script>
 <script src="${asset("search.js")}" defer></script>
 ${CONTACT_SCRIPT}
 
@@ -428,11 +465,14 @@ ${topbar(lang, out)}
   <h1>${rich(t.h1)}</h1>
   <p class="lead">${rich(t.lead)}</p>
 
-  <div class="searchbox">
-    <span class="s-ico" aria-hidden="true">🔍</span>
-    <input id="searchInput" type="search" autocomplete="off" placeholder="${esc(UI.searchPlaceholder[lang.code])}" aria-label="${esc(UI.searchPlaceholder[lang.code])}">
-  </div>
-  <ul class="searchresults" id="searchResults" hidden></ul>
+  <!-- 可投放位置（2026-10-12 新增）：广告主进来第一件事就是找"能投哪儿、多大、多少钱"，
+       所以位置表紧跟开场白，而不是埋在最后的联系方式里。 -->
+  <section>
+    <h2>${rich(t.slotsHeading)}</h2>
+    <ul class="slots">
+${t.slots.map(([tag, title, meta]) => `      <li><span class="slot-tag">${rich(tag)}</span><div><b>${rich(title)}</b><span class="note">${rich(meta)}</span></div></li>`).join("\n")}
+    </ul>
+  </section>
 
   <section>
     <h2>${rich(t.whoHeading)}</h2>
@@ -481,7 +521,6 @@ ${rows(t.payMethods)}
 </main>
 
 ${footer(lang)}
-<script src="${asset("search.js")}" defer></script>
 ${CONTACT_SCRIPT}
 </body>
 </html>

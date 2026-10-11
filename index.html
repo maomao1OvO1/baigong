@@ -20,149 +20,200 @@
 <body>
 <header class="top">
   <a class="brand" href="/index.html">🧰 ToolPocket</a>
-  <nav class="langs"><a href="/index.html#search" title="search" aria-label="search">🔍</a><a href="/index.html" class="on" aria-current="page">English</a><a href="/zh/index.html">中文</a><a href="/ja/index.html">日本語</a></nav>
+  <nav class="langs"><a class="ad-link" href="/advertise.html">Advertise</a><a href="/index.html" class="on" aria-current="page">English</a><a href="/zh/index.html">中文</a><a href="/ja/index.html">日本語</a></nav>
 </header>
 
 <main>
-  <h1>Tools that don't want your email address</h1>
-  <p class="lead">Most free tools ask for an account first and your files second. These don't. Everything here runs <b>inside your browser</b>, so your files never touch a server — no signup, no “3 files per hour”, no queue.</p>
+  <section class="hero">
+    <h1>Tools that don't want your email address</h1>
+    <p class="lead">Most free tools ask for an account first and your files second. These don't. Everything here runs <b>inside your browser</b>, so your files never touch a server — no signup, no “3 files per hour”, no queue.</p>
 
-  <div class="searchbox">
-    <span class="s-ico" aria-hidden="true">🔍</span>
-    <input id="searchInput" type="search" autocomplete="off" placeholder="Search tools — e.g. compress, json, 密码…" aria-label="Search tools — e.g. compress, json, 密码…">
+    <div class="searchbox">
+      <span class="s-ico" aria-hidden="true">🔍</span>
+      <input id="searchInput" type="search" autocomplete="off" placeholder="Search tools — e.g. compress, json, 密码…" aria-label="Search tools — e.g. compress, json, 密码…">
+    </div>
+    <ul class="searchresults" id="searchResults" hidden></ul>
+  </section>
+
+<aside class="ad ad-home-top">
+  <span class="ad-label">Advertise here</span>
+  <span class="ad-ico" aria-hidden="true">📣</span>
+  <div class="ad-body">
+    <b>This slot is for rent — directly under the search box</b>
+    <p>The first thing every visitor sees. 728×90 or 300×250 both fit. One-person site, honest pricing, no agency in between.</p>
   </div>
-  <ul class="searchresults" id="searchResults" hidden></ul>
+  <a class="ad-cta" href="/advertise.html">See slots & pricing →</a>
+</aside>
 
-  <h2>What's here</h2>
-  <ul class="grid">
-    <li><a href="/tools/html-entities.html">
-      <span class="ico">🧷</span>
-      <b>HTML entity encode / decode</b>
-      <span class="sub">Turn &lt;script&gt; into text that displays safely, or read back a string full of &amp;#x4E2D;. …</span>
-    </a></li>
-    <li><a href="/tools/date-calc.html">
-      <span class="ico">📅</span>
-      <b>Date calculator</b>
-      <span class="sub">Type a date (or leave it empty for today) and get the distance from today, the result of adding …</span>
-    </a></li>
-    <li><a href="/tools/url-parser.html">
-      <span class="ico">🔗</span>
-      <b>URL parser / query parameter viewer</b>
-      <span class="sub">Paste a long link and see its real parts, one query parameter per line. Most “this link doesn’t …</span>
-    </a></li>
-    <li><a href="/tools/color-palette.html">
-      <span class="ico">🎨</span>
-      <b>Color palette generator</b>
-      <span class="sub">One color in, a full set of partners out: complement, analogous, triadic, and seven lightness st…</span>
-    </a></li>
-    <li><a href="/tools/ip-cidr.html">
-      <span class="ico">🌐</span>
-      <b>IPv4 / CIDR subnet calculator</b>
-      <span class="sub">Type 192.168.1.10/24 and get the network, broadcast, host range, masks and the address count — p…</span>
-    </a></li>
-    <li><a href="/tools/cron.html">
-      <span class="ico">⏰</span>
-      <b>Cron expression explainer</b>
-      <span class="sub">Paste something like */15 9-18 * * 1-5 and read it back field by field, with the next five run t…</span>
-    </a></li>
-    <li><a href="/tools/hash.html">
-      <span class="ico">🔐</span>
-      <b>Hash generator (MD5 / SHA-1 / SHA-256 / SHA-512)</b>
-      <span class="sub">Paste text, pick an algorithm, get both hex and base64. Everything is computed on your device — …</span>
-    </a></li>
-    <li><a href="/tools/regex.html">
-      <span class="ico">🧪</span>
-      <b>Regular expression tester</b>
-      <span class="sub">Write a pattern, paste the text it should match, and watch every hit get listed with its line, p…</span>
-    </a></li>
-    <li><a href="/tools/uuid.html">
-      <span class="ico">🆔</span>
-      <b>UUID / ULID / NanoID generator</b>
-      <span class="sub">Pick the flavour your project needs, choose how many, and copy the whole batch. Randomness comes…</span>
-    </a></li>
-    <li><a href="/tools/diff.html">
-      <span class="ico">🆚</span>
-      <b>Text diff (line by line)</b>
-      <span class="sub">Paste the old version, a line with ===, then the new version. The result lists every line prefix…</span>
-    </a></li>
-    <li><a href="/tools/case-converter.html">
-      <span class="ico">🔤</span>
-      <b>Naming case converter</b>
-      <span class="sub">Paste a name or a whole list (one per line) and get every common naming style at once. Acronyms …</span>
-    </a></li>
-    <li><a href="/tools/radix.html">
-      <span class="ico">🔢</span>
-      <b>Base converter (2 / 8 / 10 / 16 / 36)</b>
-      <span class="sub">Type a number and see every common base at once, plus how many bits and bytes it takes. Long val…</span>
-    </a></li>
-    <li><a href="/tools/jwt.html">
-      <span class="ico">🎫</span>
-      <b>JWT decoder</b>
-      <span class="sub">Paste a token and read its header and payload in plain JSON, with exp, iat and nbf translated in…</span>
-    </a></li>
-    <li><a href="/tools/csv-json.html">
-      <span class="ico">📊</span>
-      <b>CSV ⇄ JSON converter</b>
-      <span class="sub">Paste either format and switch direction. Fields wrapped in quotes, commas inside a field and li…</span>
-    </a></li>
-    <li><a href="/tools/compress-image.html">
-      <span class="ico">🗜️</span>
-      <b>Compress images without uploading them</b>
-      <span class="sub">Drop your photos in and they get smaller right here. No account, no upload, no “upgrade to remov…</span>
-    </a></li>
-    <li><a href="/tools/convert-image.html">
-      <span class="ico">🔄</span>
-      <b>Convert image formats without uploading</b>
-      <span class="sub">HEIC aside, most format headaches are PNG ↔ JPG ↔ WebP. Drop your files, pick the output, done —…</span>
-    </a></li>
-    <li><a href="/tools/base64.html">
-      <span class="ico">🔠</span>
-      <b>Base64 encode and decode</b>
-      <span class="sub">Works with any language and emoji — many online converters break on non-English text because the…</span>
-    </a></li>
-    <li><a href="/tools/json-format.html">
-      <span class="ico">🧩</span>
-      <b>Format and validate JSON</b>
-      <span class="sub">Paste messy JSON, get it readable. If it's broken, you get where it's broken — not just “unexpec…</span>
-    </a></li>
-    <li><a href="/tools/color-converter.html">
-      <span class="ico">🎨</span>
-      <b>Color converter — HEX, RGB, HSL</b>
-      <span class="sub">Paste whatever you have. It figures out the format and shows the other two — no dropdowns, no “s…</span>
-    </a></li>
-    <li><a href="/tools/text-tools.html">
-      <span class="ico">✍️</span>
-      <b>Everyday text tools in one place</b>
-      <span class="sub">Seven small jobs that used to need seven websites: change case, reverse text, trim each line, dr…</span>
-    </a></li>
-    <li><a href="/tools/unit-converter.html">
-      <span class="ico">📏</span>
-      <b>Unit converter</b>
-      <span class="sub">Type one value and see every unit in that category at once — no “pick from and to” dropdown danc…</span>
-    </a></li>
-    <li><a href="/tools/url-codec.html">
-      <span class="ico">🔗</span>
-      <b>URL encode and decode</b>
-      <span class="sub">The classic trap: encode a whole link with the wrong function and it stops working. Here you pic…</span>
-    </a></li>
-    <li><a href="/tools/timestamp.html">
-      <span class="ico">⏱️</span>
-      <b>Unix timestamp converter</b>
-      <span class="sub">Paste a timestamp or a date and see both local time and UTC side by side — plus ISO 8601. Auto-d…</span>
-    </a></li>
-    <li><a href="/tools/password-gen.html">
-      <span class="ico">🔑</span>
-      <b>Password generator</b>
-      <span class="sub">Uses crypto.getRandomValues — the same OS-level randomness browsers use for encryption keys — no…</span>
-    </a></li>
-    <li><a href="/tools/password-strength.html">
-      <span class="ico">🛡️</span>
-      <b>Password strength check</b>
-      <span class="sub">Drop a password in and get a real report: entropy estimate, which weak patterns it contains, and…</span>
-    </a></li>
-  </ul>
+  <section class="group">
+    <h2><span class="g-ico">🖼️</span>Images<span class="g-count">2</span></h2>
+    <ul class="grid">
+      <li><a href="/tools/compress-image.html">
+        <span class="ico">🗜️</span>
+        <b>Compress images without uploading them</b>
+        <span class="sub">Drop your photos in and they get smaller right here. No account, no upload, no “upgrade to r…</span>
+      </a></li>
+      <li><a href="/tools/convert-image.html">
+        <span class="ico">🔄</span>
+        <b>Convert image formats without uploading</b>
+        <span class="sub">HEIC aside, most format headaches are PNG ↔ JPG ↔ WebP. Drop your files, pick the output, do…</span>
+      </a></li>
+    </ul>
+  </section>
 
-<aside class="ad">
+  <section class="group">
+    <h2><span class="g-ico">✍️</span>Text & data<span class="g-count">8</span></h2>
+    <ul class="grid">
+      <li><a href="/tools/html-entities.html">
+        <span class="ico">🧷</span>
+        <b>HTML entity encode / decode</b>
+        <span class="sub">Turn &lt;script&gt; into text that displays safely, or read back a string full of &amp;#x4E2…</span>
+      </a></li>
+      <li><a href="/tools/diff.html">
+        <span class="ico">🆚</span>
+        <b>Text diff (line by line)</b>
+        <span class="sub">Paste the old version, a line with ===, then the new version. The result lists every line pr…</span>
+      </a></li>
+      <li><a href="/tools/case-converter.html">
+        <span class="ico">🔤</span>
+        <b>Naming case converter</b>
+        <span class="sub">Paste a name or a whole list (one per line) and get every common naming style at once. Acron…</span>
+      </a></li>
+      <li><a href="/tools/csv-json.html">
+        <span class="ico">📊</span>
+        <b>CSV ⇄ JSON converter</b>
+        <span class="sub">Paste either format and switch direction. Fields wrapped in quotes, commas inside a field an…</span>
+      </a></li>
+      <li><a href="/tools/base64.html">
+        <span class="ico">🔠</span>
+        <b>Base64 encode and decode</b>
+        <span class="sub">Works with any language and emoji — many online converters break on non-English text because…</span>
+      </a></li>
+      <li><a href="/tools/json-format.html">
+        <span class="ico">🧩</span>
+        <b>Format and validate JSON</b>
+        <span class="sub">Paste messy JSON, get it readable. If it's broken, you get where it's broken — not just “une…</span>
+      </a></li>
+      <li><a href="/tools/text-tools.html">
+        <span class="ico">✍️</span>
+        <b>Everyday text tools in one place</b>
+        <span class="sub">Seven small jobs that used to need seven websites: change case, reverse text, trim each line…</span>
+      </a></li>
+      <li><a href="/tools/url-codec.html">
+        <span class="ico">🔗</span>
+        <b>URL encode and decode</b>
+        <span class="sub">The classic trap: encode a whole link with the wrong function and it stops working. Here you…</span>
+      </a></li>
+    </ul>
+  </section>
+
+  <section class="group">
+    <h2><span class="g-ico">⌨️</span>Developer<span class="g-count">8</span></h2>
+    <ul class="grid">
+      <li><a href="/tools/url-parser.html">
+        <span class="ico">🔗</span>
+        <b>URL parser / query parameter viewer</b>
+        <span class="sub">Paste a long link and see its real parts, one query parameter per line. Most “this link does…</span>
+      </a></li>
+      <li><a href="/tools/ip-cidr.html">
+        <span class="ico">🌐</span>
+        <b>IPv4 / CIDR subnet calculator</b>
+        <span class="sub">Type 192.168.1.10/24 and get the network, broadcast, host range, masks and the address count…</span>
+      </a></li>
+      <li><a href="/tools/cron.html">
+        <span class="ico">⏰</span>
+        <b>Cron expression explainer</b>
+        <span class="sub">Paste something like */15 9-18 * * 1-5 and read it back field by field, with the next five r…</span>
+      </a></li>
+      <li><a href="/tools/hash.html">
+        <span class="ico">🔐</span>
+        <b>Hash generator (MD5 / SHA-1 / SHA-256 / SHA-512)</b>
+        <span class="sub">Paste text, pick an algorithm, get both hex and base64. Everything is computed on your devic…</span>
+      </a></li>
+      <li><a href="/tools/regex.html">
+        <span class="ico">🧪</span>
+        <b>Regular expression tester</b>
+        <span class="sub">Write a pattern, paste the text it should match, and watch every hit get listed with its lin…</span>
+      </a></li>
+      <li><a href="/tools/uuid.html">
+        <span class="ico">🆔</span>
+        <b>UUID / ULID / NanoID generator</b>
+        <span class="sub">Pick the flavour your project needs, choose how many, and copy the whole batch. Randomness c…</span>
+      </a></li>
+      <li><a href="/tools/radix.html">
+        <span class="ico">🔢</span>
+        <b>Base converter (2 / 8 / 10 / 16 / 36)</b>
+        <span class="sub">Type a number and see every common base at once, plus how many bits and bytes it takes. Long…</span>
+      </a></li>
+      <li><a href="/tools/jwt.html">
+        <span class="ico">🎫</span>
+        <b>JWT decoder</b>
+        <span class="sub">Paste a token and read its header and payload in plain JSON, with exp, iat and nbf translate…</span>
+      </a></li>
+    </ul>
+  </section>
+
+  <section class="group">
+    <h2><span class="g-ico">🎨</span>Colour<span class="g-count">2</span></h2>
+    <ul class="grid">
+      <li><a href="/tools/color-palette.html">
+        <span class="ico">🎨</span>
+        <b>Color palette generator</b>
+        <span class="sub">One color in, a full set of partners out: complement, analogous, triadic, and seven lightnes…</span>
+      </a></li>
+      <li><a href="/tools/color-converter.html">
+        <span class="ico">🎨</span>
+        <b>Color converter — HEX, RGB, HSL</b>
+        <span class="sub">Paste whatever you have. It figures out the format and shows the other two — no dropdowns, n…</span>
+      </a></li>
+    </ul>
+  </section>
+
+  <section class="group">
+    <h2><span class="g-ico">🕒</span>Time & units<span class="g-count">3</span></h2>
+    <ul class="grid">
+      <li><a href="/tools/date-calc.html">
+        <span class="ico">📅</span>
+        <b>Date calculator</b>
+        <span class="sub">Type a date (or leave it empty for today) and get the distance from today, the result of add…</span>
+      </a></li>
+      <li><a href="/tools/unit-converter.html">
+        <span class="ico">📏</span>
+        <b>Unit converter</b>
+        <span class="sub">Type one value and see every unit in that category at once — no “pick from and to” dropdown …</span>
+      </a></li>
+      <li><a href="/tools/timestamp.html">
+        <span class="ico">⏱️</span>
+        <b>Unix timestamp converter</b>
+        <span class="sub">Paste a timestamp or a date and see both local time and UTC side by side — plus ISO 8601. Au…</span>
+      </a></li>
+    </ul>
+  </section>
+
+  <section class="group">
+    <h2><span class="g-ico">🔒</span>Security<span class="g-count">2</span></h2>
+    <ul class="grid">
+      <li><a href="/tools/password-gen.html">
+        <span class="ico">🔑</span>
+        <b>Password generator</b>
+        <span class="sub">Uses crypto.getRandomValues — the same OS-level randomness browsers use for encryption keys …</span>
+      </a></li>
+      <li><a href="/tools/password-strength.html">
+        <span class="ico">🛡️</span>
+        <b>Password strength check</b>
+        <span class="sub">Drop a password in and get a real report: entropy estimate, which weak patterns it contains,…</span>
+      </a></li>
+    </ul>
+  </section>
+
+  <section class="why">
+    <h2>So how is this free?</h2>
+    <p>Because it costs almost nothing to run. Tools that make you upload files are paying for servers to process them — that's why they cap you, watermark you, or slow you down until you subscribe. Your browser already knows how to compress an image, convert a format and encode text. We just let it do the job. <b>Zero servers, zero limits.</b></p>
+    <h2>Can I trust it with my files?</h2>
+    <p>Don't take our word for it — <b>turn off your Wi-Fi after the page loads and keep using it</b>. Nothing is uploaded, stored or logged.</p>
+  </section>
+
+<aside class="ad ad-home-self">
   <span class="ad-label">From the maker</span>
   <span class="ad-ico" aria-hidden="true">✨</span>
   <div class="ad-body">
@@ -172,14 +223,7 @@
   <a class="ad-cta" href="https://maomaowang.top/">Visit the personal site →</a>
 </aside>
 
-  <section class="why">
-    <h2>So how is this free?</h2>
-    <p>Because it costs almost nothing to run. Tools that make you upload files are paying for servers to process them — that's why they cap you, watermark you, or slow you down until you subscribe. Your browser already knows how to compress an image, convert a format and encode text. We just let it do the job. <b>Zero servers, zero limits.</b></p>
-    <h2>Can I trust it with my files?</h2>
-    <p>Don't take our word for it — <b>turn off your Wi-Fi after the page loads and keep using it</b>. Nothing is uploaded, stored or logged.</p>
-  </section>
-
-<aside class="ad">
+<aside class="ad ad-home-bottom">
   <span class="ad-label">Sponsored</span>
   <span class="ad-ico" aria-hidden="true">📣</span>
   <div class="ad-body">
@@ -190,6 +234,8 @@
 </aside>
 </main>
 
+<!-- 搜索索引的绝对路径：/zh/ 与 /ja/ 页面用相对路径会 404（2026-10-12 修） -->
+<script>window.TP_INDEX_URL = "/assets/search.json";</script>
 <script src="/assets/search.js" defer></script>
 <script>
 /* 把 data-u / data-d 拼成邮箱 —— 放在页面里而不是服务端，是为了防爬虫 */
