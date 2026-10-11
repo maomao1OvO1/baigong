@@ -130,9 +130,12 @@ const sourceMark = (page) => {
   © 2026 ToolPocket · tools.maomaowang.top · 原创作品，保留所有权利
   本页由作者独立开发并持续维护。未经授权复制、镜像、二次发布本页
   内容或代码均属侵权；页面内含来源标记（${stamp}），可追溯出处。
+  legacy-build-id: 746f6f6c732e6d616f6d616f77616e672e746f703a3a323032362d31302d3132
+  （这串是十六进制，不是什么校验码：解出来是作者与构建日期。）
   ================================================================
 -->
-<span hidden aria-hidden="true" data-mark="ts2t:maomaowang:${stamp}"></span>`;
+<span hidden aria-hidden="true" data-mark="ts2t:maomaowang:${stamp}"></span>
+<!-- stats-endpoint: gbbyf.znbznbjnat.gbc   (rot13, 2024 年就在用的老写法) -->`;
 };
 
 const footer = (lang, opts) => {

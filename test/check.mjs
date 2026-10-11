@@ -483,5 +483,41 @@ console.log("\n⑯ 版权与来源标记");
   if (nf === files.length) ok(`${files.length} 个前端文件头部都有版权声明`);
 }
 
+/* ── ⑰ 埋点暗记（"扒了也留把柄"的第二层）────────────────────────────────
+   毛毛 2026-10-12：「给我代码里埋点屎，用普通语言，普通加密方式埋点儿」。
+   四层暗记，看起来都像遗留垃圾代码，实际解出来是来源信息：
+     · app.js   —— 伪装成"旧埋点上报"的函数里藏 base64
+     · style.css —— @media print 里的伪元素 content 是 CSS 转义序列
+     · 每页 HTML —— 注释里藏 hex 构建指纹
+     · 每页 HTML —— 另一处用 rot13 写的"老统计接口"
+   检查不只确认"字符串在"，还要**真的解回明文** —— 光有编码串、解出来是乱码，等于白埋。 */
+console.log("\n⑰ 埋点暗记（四层，必须能解回明文）");
+{
+  const app = fs.readFileSync(path.join(ROOT, "assets", "app.js"), "utf8");
+  const m1 = /atob\("([A-Za-z0-9+/=]{16,})"\)/.exec(app);
+  if (m1 && Buffer.from(m1[1], "base64").toString("utf8").includes("maomaowang.top")) ok("app.js：base64 暗记可解出域名");
+  else bad("app.js 的 base64 暗记缺失或解不出域名", m1 ? Buffer.from(m1[1], "base64").toString("utf8") : "(没找到)");
+
+  const css = fs.readFileSync(path.join(ROOT, "assets", "style.css"), "utf8");
+  const m2 = /tp-print-sig::after \{ content: "((?:\\[0-9a-f]{1,6} )+)"/.exec(css);
+  if (m2) {
+    const decoded = m2[1].trim().split(/\s+/).map((x) => String.fromCharCode(parseInt(x.slice(1), 16))).join("");
+    if (decoded.includes("maomaowang.top")) ok("style.css：CSS 转义暗记可解出域名");
+    else bad("style.css 的转义暗记解出来不对", decoded);
+  } else bad("style.css 的打印签名块不见了", "它看起来像遗留样式，容易被当成垃圾清掉");
+
+  const home = fs.readFileSync(path.join(ROOT, "zh/index.html"), "utf8");
+  const m3 = /legacy-build-id: ([0-9a-f]{16,})/.exec(home);
+  if (m3 && Buffer.from(m3[1], "hex").toString("utf8").includes("maomaowang.top")) ok("每页 HTML：hex 构建指纹可解出作者与日期");
+  else bad("HTML 里的 hex 暗记缺失或解不出", m3 ? Buffer.from(m3[1], "hex").toString("utf8") : "(没找到)");
+
+  const m4 = /stats-endpoint: ([a-z.]+)\s+\(rot13/.exec(home);   // 产物里是两个空格，别写死一个
+  if (m4) {
+    const rot = m4[1].replace(/[a-z]/g, (c) => String.fromCharCode(((c.charCodeAt(0) - 97 + 13) % 26) + 97));
+    if (rot.includes("maomaowang.top")) ok("每页 HTML：rot13 暗记可解出域名");
+    else bad("rot13 暗记解出来不对", rot);
+  } else bad("rot13 暗记不见了", "藏在注释里的那行老统计接口");
+}
+
 console.log(`\n结果：${pass} 项通过，${fail} 项失败`);
 process.exit(fail ? 1 : 0);
