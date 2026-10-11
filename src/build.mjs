@@ -57,6 +57,12 @@ function head(lang, { out, title, desc, jsonld }) {
 <meta property="og:description" content="${esc(desc)}">
 <meta property="og:type" content="website">
 <meta property="og:url" content="${urlOf(lang, out)}">
+<!-- 分享预览图：微信/QQ/Telegram/Twitter 都读这几行。尺寸按通用标准 1200×630（1.91:1），
+     微信会把它裁成正方形显示，所以图里关键信息都放在中间。三语各一张。 -->
+<meta property="og:image" content="${SITE}/assets/og-${lang.code}.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 ${alts}
 <link rel="alternate" hreflang="x-default" href="${urlOf(LANGS[0], out)}">
 <link rel="stylesheet" href="${asset("style.css")}?v=2">

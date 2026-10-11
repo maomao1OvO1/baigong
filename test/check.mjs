@@ -429,5 +429,29 @@ console.log("\n⑭ 邮箱分流（反馈 hi@ · 招租 ad@）");
   else bad("招租页邮箱不对", "投放联系应是 ad@，页脚反馈应是 hi@ —— 两处都该在");
 }
 
+/* ── ⑮ 社交分享图 ─────────────────────────────────────────────────────
+   分享到微信/QQ 时，卡片有没有缩略图全看 og:image 这几行；尺寸不对（比如声明 1200×630
+   实际却是别的）会让部分客户端直接不显示。这两点肉眼在浏览器里都看不出来，
+   只有真去分享一次才发现，所以按文件核对。 */
+console.log("\n⑮ 社交分享图（og:image）");
+{
+  const sizes = { zh: null, en: null, ja: null };
+  for (const l of ["zh", "en", "ja"]) {
+    const f = path.join(ROOT, "assets", "og-" + l + ".png");
+    if (!fs.existsSync(f)) { bad(`缺分享图 assets/og-${l}.png`); continue; }
+    const buf = fs.readFileSync(f);
+    // PNG 的宽高在 IHDR 里（偏移 16 起的两个大端 32 位）
+    const w = buf.readUInt32BE(16), h = buf.readUInt32BE(20);
+    sizes[l] = w + "x" + h;
+    if (w === 1200 && h === 630) ok(`og-${l}.png：1200×630（通用社交卡片尺寸）`);
+    else bad(`og-${l}.png 尺寸不对`, `${w}×${h}，应为 1200×630`);
+  }
+  for (const [file, lang] of [["index.html", "en"], ["zh/index.html", "zh"], ["ja/index.html", "ja"]]) {
+    const html = fs.readFileSync(path.join(ROOT, file), "utf8");
+    if (html.includes(`/assets/og-${lang}.png`) && html.includes("og:image")) ok(`${file}：引用了自己语言的分享图`);
+    else bad(`${file}：分享图引用不对`, `应指向 og-${lang}.png`);
+  }
+}
+
 console.log(`\n结果：${pass} 项通过，${fail} 项失败`);
 process.exit(fail ? 1 : 0);
