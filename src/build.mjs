@@ -312,6 +312,7 @@ ${adSlot(lang, "home-self")}
     <p>${rich(t.safe)}</p>
   </section>
 
+${adSlot(lang, "home-bottom")}
 </main>
 
 ${CONTACT_SCRIPT}
