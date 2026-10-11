@@ -552,5 +552,187 @@ console.log("\n⑰ 埋点暗记（11 层，逐层解码）");
   check("⑪ robots.txt 注释", dec.hex((rb.match(/# build ([0-9a-f]{20,})/) || [])[1] || ""));
 }
 
+/* ── ⑱ 三语适配（专业名词保留原文，只本地化动词与地名）──────────────────
+   毛毛 2026-10-12：「像专业名词这么写的，你就别翻译了…别都翻译成三国语言很奇怪，
+   我之前就遇到过一个傻逼网站，居然音译」。
+   所以这里检查的不是「有没有翻」，而是**翻对了没有**：
+     · 专业名词（JSON / SQL / Base32 / UUID / camelCase…）必须在三种语言里**原样出现** ——
+       翻成「杰森」或「乌利德」是最糟的做法，比不翻还难懂；
+     · 界面选项要么走文案键（能本地化），要么是白名单里的专业名词，不允许第三种情况；
+     · hreflang / lang 属性、FAQ 条数、术语在三语中的一致性。 */
+console.log("\n⑱ 三语适配（专业名词不翻译）");
+{
+  /* 术语表：t = 英文原形（在任何语言里都该保留），ok = 允许出现的写法（含标准译名）。
+     ⚠️ 允许"正则/正規表現"这类**标准译名**，但绝不允许音译（「杰森」「乌利德」那种）——
+     毛毛的原话：「别都翻译成三国语言很奇怪…居然音译」。 */
+  const TERMS = [
+    { t: "JSON", ok: ["JSON"] },
+    { t: "JS", ok: ["JS", "JavaScript"] },
+    { t: "SQL", ok: ["SQL"] },
+    { t: "HTML", ok: ["HTML"] },
+    { t: "URL", ok: ["URL"] },
+    { t: "regex", ok: ["regex", "正则", "正規表現"] },
+    { t: "Base32", ok: ["Base32"] },
+    { t: "Base58", ok: ["Base58"] },
+    { t: "Base64", ok: ["Base64"] },
+    { t: "UTC", ok: ["UTC"] },
+    { t: "IPv6", ok: ["IPv6"] },
+    { t: "CIDR", ok: ["CIDR"] },
+    { t: "JWT", ok: ["JWT"] },
+    { t: "UUID", ok: ["UUID"] },
+    { t: "ULID", ok: ["ULID"] },
+    { t: "NanoID", ok: ["NanoID", "Nano ID"] },
+    { t: "MD5", ok: ["MD5"] },
+    { t: "SHA", ok: ["SHA"] },
+    { t: "YAML", ok: ["YAML"] },
+    { t: "K8s", ok: ["K8s", "Kubernetes"] },
+    { t: "HTTP", ok: ["HTTP"] },
+    { t: "API", ok: ["API", "接口", "インターフェース"] },
+    { t: "Markdown", ok: ["Markdown"] },
+    { t: "Cron", ok: ["Cron", "cron"] },
+    { t: "Luhn", ok: ["Luhn"] },
+    { t: "camelCase", ok: ["camelCase"] },
+    { t: "PascalCase", ok: ["PascalCase"] },
+    { t: "snake_case", ok: ["snake_case"] },
+    { t: "kebab-case", ok: ["kebab-case"] },
+    // 命名法本身也是行话：写 CONSTANT_CASE / Title Case 是通用写法，翻成中文反而没人认
+    { t: "CONSTANT_CASE", ok: ["CONSTANT_CASE"] },
+    { t: "dot.case", ok: ["dot.case"] },
+    { t: "Title Case", ok: ["Title Case"] },
+    { t: "SCREAMING-KEBAB", ok: ["SCREAMING-KEBAB"] },
+    { t: "CSV", ok: ["CSV"] },
+    { t: "PNG", ok: ["PNG"] },
+    { t: "JPEG", ok: ["JPEG", "JPG"] },
+    { t: "WebP", ok: ["WebP"] },
+    { t: "HEIC", ok: ["HEIC"] },
+    { t: "Nginx", ok: ["Nginx"] },
+    { t: "TOTP", ok: ["TOTP"] },
+  ];
+  const I18N = (tid) => JSON.parse(fs.readFileSync(path.join(ROOT, "src", "i18n", "tools", tid + ".json"), "utf8"));
+
+  // ① 界面选项：必须要么是文案键，要么是白名单里的专业名词
+  const tools = JSON.parse(fs.readFileSync(path.join(ROOT, "src", "tools.json"), "utf8")).tools;
+  let rawOk = 0, rawBad = [];
+  for (const t of tools) {
+    const ui = I18N(t.i18n).zh.ui || {};
+    for (const o of t.options || []) {
+      if (o.type !== "select") continue;
+      for (const [v, k] of o.choices || []) {
+        if (k in ui) continue;                                   // 走了翻译，好
+        // 术语可能带后缀（SHA-1、UUID v4、Base32hex），所以用"以术语开头"来判断
+        if (TERMS.some((x) => k === x.t || k.startsWith(x.t)) || /^[\d.,;\s+]+$/.test(k)) { rawOk++; continue; }
+        rawBad.push(t.id + " / " + o.id + " → " + k);
+      }
+    }
+  }
+  if (!rawBad.length) ok(`${rawOk} 个未翻译的选项全是专业名词或纯符号（这是对的）`);
+  else bad("有选项既没翻译、也不是专业名词", rawBad.slice(0, 5).join(" · "));
+
+  // ② 术语一致性：英文文案里出现的专业名词，中/日文案里也必须原样出现（防音译）
+  let termMiss = [];
+  for (const t of tools) {
+    const d = I18N(t.i18n);
+    const found = TERMS.filter((x) => (d.en.lead + d.en.h1).includes(x.t));
+    for (const x of found) {
+      for (const lg of ["zh", "ja"]) {
+        const text = d[lg].lead + d[lg].h1;
+        if (!x.ok.some((form) => text.includes(form))) termMiss.push(`${t.id}: ${lg} 缺 ${x.t}`);
+      }
+    }
+  }
+  if (!termMiss.length) ok("三语文案里的专业名词原样一致（没有被翻成音译）");
+  else bad("专业名词在译文里被改了", termMiss.slice(0, 6).join(" · "));
+
+  // ③ FAQ 条数与文案键数三语一致
+  let mismatch = [];
+  const files = fs.readdirSync(path.join(ROOT, "src", "i18n", "tools")).filter((f) => f.endsWith(".json"));
+  for (const f of files) {
+    const d = JSON.parse(fs.readFileSync(path.join(ROOT, "src", "i18n", "tools", f), "utf8"));
+    const faq = ["en", "zh", "ja"].map((lg) => (d[lg].faq || []).length);
+    const keys = ["en", "zh", "ja"].map((lg) => Object.keys(d[lg].ui || {}).length);
+    if (new Set(faq).size !== 1) mismatch.push(f + " FAQ " + faq.join("/"));
+    if (new Set(keys).size !== 1) mismatch.push(f + " 文案键 " + keys.join("/"));
+  }
+  if (!mismatch.length) ok(`${files.length} 个工具的 FAQ 条数与文案键数三语一致`);
+  else bad("三语结构不一致", mismatch.slice(0, 5).join(" · "));
+
+  // ④ 每个工具的三语标题/描述都不为空，且描述长度像话
+  let thin = [];
+  for (const t of tools) {
+    const d = I18N(t.i18n);
+    for (const lg of ["en", "zh", "ja"]) {
+      const desc = (d[lg].desc || "").trim();
+      if (desc.length < 20) thin.push(`${t.id}/${lg} 描述过短`);
+      if (!(d[lg].title || "").trim()) thin.push(`${t.id}/${lg} 缺标题`);
+    }
+  }
+  if (!thin.length) ok("35 个工具 × 三语的标题与描述都完整");
+  else bad("有语言缺标题或缺描述", thin.slice(0, 6).join(" · "));
+
+  // ⑤ 页面级文案：三语的键必须对齐（⚠️ 列表长度允许不同 —— 例如招租页的支付方式
+  //    按当地习惯排序，国内优先微信/支付宝、海外优先银行转账，这是有意的本地化）
+  {
+    const dir = path.join(ROOT, "src", "i18n");
+    /* 数组索引归一化成 []：列表长度允许各语言不同（本地化排序是有意的），
+       只比对"结构对不对"—— 例如 payMethods 各语言可能 3 项或 4 项，但每项都必须是
+       [名称, 说明] 两个字段。写死索引会让这种正常差异变成误报。 */
+    const flat = (obj, prefix, out) => {
+      if (Array.isArray(obj)) { obj.forEach((v) => flat(v, prefix + "[].", out)); return out; }
+      if (obj && typeof obj === "object") {
+        Object.keys(obj).forEach((k) => { if (!k.startsWith("_")) flat(obj[k], prefix + k + ".", out); });
+        return out;
+      }
+      out.add(prefix.replace(/\.$/, ""));
+      return out;
+    };
+    const LANGS = ["en", "zh", "ja"];
+    let pageBad = [];
+    for (const f of fs.readdirSync(dir).filter((x) => x.endsWith(".json"))) {
+      const d = JSON.parse(fs.readFileSync(path.join(dir, f), "utf8"));
+      // 顶层就是语言块（home.json / advertise.json / tools/*）
+      if (LANGS.every((lg) => d[lg])) {
+        const sets = {};
+        for (const lg of LANGS) {
+          // 列表长度差异不算错：逐元素拍平后，取"最长语言"的键路径作基准
+          sets[lg] = flat(d[lg], "", new Set());
+        }
+        const union = new Set([...sets.en, ...sets.zh, ...sets.ja]);
+        for (const lg of LANGS) {
+          const miss = [...union].filter((k) => !sets[lg].has(k));
+          if (miss.length) pageBad.push(f + " / " + lg + " 缺 " + miss.slice(0, 4).join(","));
+        }
+      } else {
+        // 语言键在更内层（ads.json / ui.json 那种 {key:{en,zh,ja}}）
+        const walk = (node, trail) => {
+          if (!node || typeof node !== "object" || Array.isArray(node)) return;
+          const hasLang = LANGS.filter((lg) => lg in node);
+          if (hasLang.length >= 2 && hasLang.length < 3) {
+            pageBad.push(f + " 「" + trail + "」只有 " + hasLang.join("/") + "（缺 " + LANGS.filter((l) => !hasLang.includes(l)).join(",") + "）");
+          }
+          Object.keys(node).forEach((k) => { if (!k.startsWith("_")) walk(node[k], trail + k + "."); });
+        };
+        walk(d, "");
+      }
+    }
+    if (!pageBad.length) ok("页面级文案（首页 / 招租 / 界面 / 广告位）三语键全部对齐");
+    else bad("页面级文案有三语不对齐", pageBad.slice(0, 5).join(" · "));
+  }
+
+  // ⑥ 页面级：lang 与 hreflang
+  const pages = [["en", "index.html"], ["zh", "zh/index.html"], ["ja", "ja/index.html"],
+                 ["zh", "zh/tools/base64.html"], ["ja", "ja/tools/markdown.html"]];
+  let langBad = [];
+  for (const [lang, f] of pages) {
+    const h = fs.readFileSync(path.join(ROOT, f), "utf8");
+    const m = /<html lang="([^"]+)"/.exec(h);
+    if (!m || !m[1].startsWith(lang)) langBad.push(f + " lang=" + (m ? m[1] : "无"));
+    for (const want of ["en", "zh-Hans", "ja"]) {
+      if (!h.includes('hreflang="' + want + '"')) langBad.push(f + " 缺 hreflang:" + want);
+    }
+  }
+  if (!langBad.length) ok("页面 lang 与 hreflang（en / zh-Hans / ja + x-default）齐全");
+  else bad("语言标注有问题", langBad.slice(0, 6).join(" · "));
+}
+
 console.log(`\n结果：${pass} 项通过，${fail} 项失败`);
 process.exit(fail ? 1 : 0);

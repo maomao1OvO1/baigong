@@ -21,7 +21,19 @@
       "escaped": "escaped",
       "noChange": "nothing to escape",
       "fail": "failed",
-      "mode": "Format"
+      "mode": "Format",
+      "escJsonEnc": "JSON → escaped",
+      "escJsonDec": "JSON → plain",
+      "escJsEnc": "JS → escaped",
+      "escJsDec": "JS → plain",
+      "escSqlEnc": "SQL → escaped",
+      "escSqlDec": "SQL → plain",
+      "escHtmlEnc": "HTML → entities",
+      "escHtmlDec": "HTML → plain",
+      "escUrlEnc": "URL → percent",
+      "escUrlDec": "URL → plain",
+      "escRegexEnc": "regex → escaped",
+      "escRegexDec": "regex → plain"
     }
   },
   "zh": {
@@ -45,7 +57,19 @@
       "escaped": "已转义",
       "noChange": "没有需要转义的字符",
       "fail": "失败",
-      "mode": "目标格式"
+      "mode": "目标格式",
+      "escJsonEnc": "JSON → 转义",
+      "escJsonDec": "JSON → 还原",
+      "escJsEnc": "JS → 转义",
+      "escJsDec": "JS → 还原",
+      "escSqlEnc": "SQL → 转义",
+      "escSqlDec": "SQL → 还原",
+      "escHtmlEnc": "HTML → 实体",
+      "escHtmlDec": "HTML → 还原",
+      "escUrlEnc": "URL → 百分号编码",
+      "escUrlDec": "URL → 还原",
+      "escRegexEnc": "正则 → 转义",
+      "escRegexDec": "正则 → 还原"
     }
   },
   "ja": {
@@ -69,7 +93,19 @@
       "escaped": "エスケープしました",
       "noChange": "エスケープが必要な文字はありません",
       "fail": "失敗しました",
-      "mode": "対象の形式"
+      "mode": "対象の形式",
+      "escJsonEnc": "JSON → エスケープ",
+      "escJsonDec": "JSON → 復元",
+      "escJsEnc": "JS → エスケープ",
+      "escJsDec": "JS → 復元",
+      "escSqlEnc": "SQL → エスケープ",
+      "escSqlDec": "SQL → 復元",
+      "escHtmlEnc": "HTML → 実体参照",
+      "escHtmlDec": "HTML → 復元",
+      "escUrlEnc": "URL → パーセント",
+      "escUrlDec": "URL → 復元",
+      "escRegexEnc": "正規表現 → エスケープ",
+      "escRegexDec": "正規表現 → 復元"
     }
   }
 }

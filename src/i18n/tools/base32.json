@@ -19,7 +19,11 @@
       "decoded": "decoded",
       "encoded": "encoded",
       "fail": "failed",
-      "mode": "Format & direction"
+      "mode": "Format & direction",
+      "b32Enc": "Base32 → encode",
+      "b32Dec": "Base32 → decode",
+      "b58Enc": "Base58 → encode",
+      "b58Dec": "Base58 → decode"
     }
   },
   "zh": {
@@ -41,7 +45,11 @@
       "decoded": "已解码",
       "encoded": "已编码",
       "fail": "失败",
-      "mode": "格式与方向"
+      "mode": "格式与方向",
+      "b32Enc": "Base32 → 编码",
+      "b32Dec": "Base32 → 解码",
+      "b58Enc": "Base58 → 编码",
+      "b58Dec": "Base58 → 解码"
     }
   },
   "ja": {
@@ -63,7 +71,11 @@
       "decoded": "デコードしました",
       "encoded": "エンコードしました",
       "fail": "失敗しました",
-      "mode": "形式と方向"
+      "mode": "形式と方向",
+      "b32Enc": "Base32 → エンコード",
+      "b32Dec": "Base32 → デコード",
+      "b58Enc": "Base58 → エンコード",
+      "b58Dec": "Base58 → デコード"
     }
   }
 }

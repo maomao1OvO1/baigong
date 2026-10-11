@@ -50,7 +50,7 @@
       "i18n": "timezone",
       "buttons": ["copy", "clear"],
       "options": [
-        { "type": "select", "id": "zone", "label": "zone", "choices": [["local", "zoneLocal"], ["UTC", "UTC (UTC+0)"], ["Asia/Shanghai", "北京 / 上海 (UTC+8)"], ["Asia/Tokyo", "东京 (UTC+9)"], ["America/New_York", "纽约 (UTC-5/-4)"], ["Europe/London", "伦敦 (UTC+0/+1)"]] }
+        { "type": "select", "id": "zone", "label": "zone", "choices": [["local", "zoneLocal"], ["UTC", "zoneUtc"], ["Asia/Shanghai", "zoneCn"], ["Asia/Tokyo", "zoneJp"], ["America/New_York", "zoneUs"], ["Europe/London", "zoneUk"]] }
       ]
     },
     {
@@ -106,7 +106,7 @@
       "i18n": "string-escape",
       "buttons": ["copy", "swap", "clear"],
       "options": [
-        { "type": "select", "id": "mode", "label": "mode", "choices": [["json-enc", "JSON → escaped"], ["json-dec", "JSON → plain"], ["js-enc", "JS → escaped"], ["js-dec", "JS → plain"], ["sql-enc", "SQL → escaped"], ["sql-dec", "SQL → plain"], ["html-enc", "HTML → entities"], ["html-dec", "HTML → plain"], ["url-enc", "URL → percent"], ["url-dec", "URL → plain"], ["regex-enc", "regex → escaped"], ["regex-dec", "regex → plain"]] }
+        { "type": "select", "id": "mode", "label": "mode", "choices": [["json-enc", "escJsonEnc"], ["json-dec", "escJsonDec"], ["js-enc", "escJsEnc"], ["js-dec", "escJsDec"], ["sql-enc", "escSqlEnc"], ["sql-dec", "escSqlDec"], ["html-enc", "escHtmlEnc"], ["html-dec", "escHtmlDec"], ["url-enc", "escUrlEnc"], ["url-dec", "escUrlDec"], ["regex-enc", "escRegexEnc"], ["regex-dec", "escRegexDec"]] }
       ]
     },
     {
@@ -118,7 +118,7 @@
       "i18n": "base32",
       "buttons": ["copy", "swap", "clear"],
       "options": [
-        { "type": "select", "id": "mode", "label": "mode", "choices": [["b32-enc", "Base32 → encode"], ["b32-dec", "Base32 → decode"], ["b58-enc", "Base58 → encode"], ["b58-dec", "Base58 → decode"]] }
+        { "type": "select", "id": "mode", "label": "mode", "choices": [["b32-enc", "b32Enc"], ["b32-dec", "b32Dec"], ["b58-enc", "b58Enc"], ["b58-dec", "b58Dec"]] }
       ]
     },
     {
@@ -278,8 +278,8 @@
       "i18n": "radix",
       "buttons": ["copy", "clear"],
       "options": [
-        { "type": "select", "id": "base", "label": "base", "choices": [["auto", "Auto"], ["2", "2"], ["8", "8"], ["10", "10"], ["16", "16"], ["36", "36"]], "hint": "baseHint" },
-        { "type": "select", "id": "group", "label": "group", "choices": [["4", "4 bit"], ["8", "8 bit"]], "hint": "groupHint" }
+        { "type": "select", "id": "base", "label": "base", "choices": [["auto", "radixAuto"], ["2", "2"], ["8", "8"], ["10", "10"], ["16", "16"], ["36", "36"]], "hint": "baseHint" },
+        { "type": "select", "id": "group", "label": "group", "choices": [["4", "radix4bit"], ["8", "radix8bit"]], "hint": "groupHint" }
       ]
     },
     {
@@ -302,7 +302,7 @@
       "buttons": ["copy", "swap", "clear"],
       "options": [
         { "type": "select", "id": "mode", "label": "mode", "choices": [["csv2json", "csv2json"], ["json2csv", "json2csv"]], "hint": "modeHint" },
-        { "type": "select", "id": "delim", "label": "delim", "choices": [["comma", ","], ["tab", "Tab"], ["semicolon", ";"]], "hint": "delimHint" },
+        { "type": "select", "id": "delim", "label": "delim", "choices": [["comma", ","], ["tab", "sepTab"], ["semicolon", ";"]], "hint": "delimHint" },
         { "type": "checkbox", "id": "header", "label": "header", "checked": true }
       ]
     },

@@ -19,7 +19,12 @@
       "badTime": "not a valid time",
       "shown": "time zones shown",
       "zone": "Input is in",
-      "zoneLocal": "my device's zone"
+      "zoneLocal": "my device's zone",
+      "zoneUtc": "UTC (UTC+0)",
+      "zoneCn": "Beijing / Shanghai (UTC+8)",
+      "zoneJp": "Tokyo (UTC+9)",
+      "zoneUs": "New York (UTC-5/-4)",
+      "zoneUk": "London (UTC+0/+1)"
     }
   },
   "zh": {
@@ -41,7 +46,12 @@
       "badTime": "时间格式不对",
       "shown": "个时区已换算",
       "zone": "输入时间所属时区",
-      "zoneLocal": "我设备的时区"
+      "zoneLocal": "我设备的时区",
+      "zoneUtc": "UTC (UTC+0)",
+      "zoneCn": "北京 / 上海 (UTC+8)",
+      "zoneJp": "东京 (UTC+9)",
+      "zoneUs": "纽约 (UTC-5/-4)",
+      "zoneUk": "伦敦 (UTC+0/+1)"
     }
   },
   "ja": {
@@ -63,7 +73,12 @@
       "badTime": "時刻の形式が正しくありません",
       "shown": "件のタイムゾーンを表示",
       "zone": "入力のタイムゾーン",
-      "zoneLocal": "端末のタイムゾーン"
+      "zoneLocal": "端末のタイムゾーン",
+      "zoneUtc": "UTC (UTC+0)",
+      "zoneCn": "北京・上海 (UTC+8)",
+      "zoneJp": "東京 (UTC+9)",
+      "zoneUs": "ニューヨーク (UTC-5/-4)",
+      "zoneUk": "ロンドン (UTC+0/+1)"
     }
   }
 }

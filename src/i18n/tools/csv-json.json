@@ -30,7 +30,8 @@
       "headerHint": "When on, the first row supplies the object keys. When off, keys are named col1, col2, …",
       "emptyInput": "Nothing to convert",
       "badJson": "Invalid JSON",
-      "needArray": "Expected an array of objects"
+      "needArray": "Expected an array of objects",
+      "sepTab": "Tab"
     }
   },
   "zh": {
@@ -63,7 +64,8 @@
       "headerHint": "勾上时第一行作为字段名；不勾则字段名依次叫 col1、col2……",
       "emptyInput": "没有可转换的内容",
       "badJson": "JSON 格式有误",
-      "needArray": "需要一个对象数组"
+      "needArray": "需要一个对象数组",
+      "sepTab": "制表符"
     }
   },
   "ja": {
@@ -96,7 +98,8 @@
       "headerHint": "有効にすると 1 行目をキーにします。無効の場合は col1、col2… になります。",
       "emptyInput": "変換する内容がありません",
       "badJson": "JSON の形式が不正です",
-      "needArray": "オブジェクトの配列が必要です"
+      "needArray": "オブジェクトの配列が必要です",
+      "sepTab": "タブ"
     }
   }
 }

@@ -28,7 +28,10 @@
       "bitsLabel": "bits",
       "bytesLabel": "bytes",
       "groupLabel": "grouped",
-      "digitsLabel": "digits"
+      "digitsLabel": "digits",
+      "radixAuto": "Auto",
+      "radix4bit": "4 bit",
+      "radix8bit": "8 bit"
     }
   },
   "zh": {
@@ -59,7 +62,10 @@
       "bitsLabel": "位",
       "bytesLabel": "字节",
       "groupLabel": "分组",
-      "digitsLabel": "位十进制数字"
+      "digitsLabel": "位十进制数字",
+      "radixAuto": "自动",
+      "radix4bit": "4 位",
+      "radix8bit": "8 位"
     }
   },
   "ja": {
@@ -90,7 +96,10 @@
       "bitsLabel": "ビット",
       "bytesLabel": "バイト",
       "groupLabel": "区切り表示",
-      "digitsLabel": "桁（10 進）"
+      "digitsLabel": "桁（10 進）",
+      "radixAuto": "自動",
+      "radix4bit": "4 ビット",
+      "radix8bit": "8 ビット"
     }
   }
 }
