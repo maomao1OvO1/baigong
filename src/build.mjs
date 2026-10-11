@@ -240,7 +240,7 @@ const CONTACT_SCRIPT = `<script>
 
 
 /* ── 首页分类（2026-10-12 新增）────────────────────────────────────────────
-   为什么分组：工具从 11 个涨到 25 个以后，一屏平铺变成"一堵墙"——
+   为什么分组：工具越加越多（现在 35 个），一屏平铺会变成"一堵墙"——
    访客扫不到自己要的东西，也看不见广告位。按用途分组后一屏能扫完。
    分类名直接写在这里而不进 ui.json：它只服务首页这一处，放本地比散在三个语言文件里更好维护。
    tools.json 里每个工具的 cat 字段与此处的 id 一一对应（加工具时别忘了填 cat）。 */
@@ -888,7 +888,7 @@ for (const lang of LANGS) {
   }, null, 2) + "\n");
 }
 
-const SW_CACHE = "toolpocket-v1";   // 改这里的版本号 = 让所有访客重新拉一次（升级页面/样式时顺手 +1）
+const SW_CACHE = "toolpocket-v2";   // 改这里的版本号 = 让所有访客重新拉一次（升级页面/样式时顺手 +1）
 const SW_CORE = [
   "/", "/zh/", "/ja/", "/advertise.html", "/zh/advertise.html", "/ja/advertise.html",
   "/assets/style.css?v=2", "/assets/app.js?v=2", "/assets/search.js?v=2",

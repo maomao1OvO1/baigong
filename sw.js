@@ -1,5 +1,5 @@
 /* 由 src/build.mjs 生成，请勿直接编辑（改模板去 build.mjs）*/
-const CACHE = "toolpocket-v1";
+const CACHE = "toolpocket-v2";
 const CORE = [
   "/",
   "/zh/",
