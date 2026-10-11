@@ -491,6 +491,152 @@ ${footer(lang)}
 `;
 }
 
+/* ── 404 页（2026-10-12 毛毛要求）───────────────────────────────────────────
+   几个刻意的选择：
+     · 一个文件服务三种语言：GitHub Pages 只认根目录的 404.html，访问 /zh/xxx 与 /ja/xxx
+       也走这一个文件。所以文案全部内联、由一小段脚本按「路径前缀 → 浏览器语言」挑一份显示。
+     · **所有资源都写绝对路径**：404 页可能在任意深度被打开（/a/b/c），相对路径必炸。
+     · 迷路的人最需要的是"找到东西"，所以这页**带搜索框**（复用站内搜索），
+       下面再放几个最常用的工具，而不是干巴巴一句"页面不存在"。
+     · 顺手接上反馈入口：真找不到就让他直接说。 */
+const NF = {
+  en: { h1: "That page doesn't exist", lead: "Either the link is out of date, or the address has a typo in it. Nothing is broken on your side.", searchLabel: "Looking for a tool? Search here:", popular: "Tools people usually want", back: "← Back to the homepage" },
+  zh: { h1: "这个页面不存在", lead: "要么是链接过期了，要么是地址敲错了一个字符。你这边没出问题。", searchLabel: "在找某个工具？在这儿搜一下：", popular: "大家常找的几个", back: "← 回首页" },
+  ja: { h1: "ページが見つかりません", lead: "リンクが古いか、アドレスに打ち間違いがあるようです。お使いの環境に問題はありません。", searchLabel: "お探しのツールはありますか？", popular: "よく使われるツール", back: "← トップページへ戻る" },
+};
+const NF_PH = {
+  en: "Search tools — try “compress”, “json”, “password”…",
+  zh: "搜索工具 —— 试试「压缩」「json」「密码」…",
+  ja: "ツールを検索 — 「圧縮」「json」「パスワード」など",
+};
+/** 404 页推荐的常用工具（挑各语言都有人用、且一看就懂的几个） */
+const NF_POPULAR = ["compress-image", "convert-image", "json-format", "hash", "password-strength", "timestamp"];
+
+function notFoundPage() {
+  const blocks = LANGS.map((l) => `  <div data-lang="${l.code}" hidden>
+    <p class="nf-code">404</p>
+    <h1>${rich(NF[l.code].h1)}</h1>
+    <p class="lead">${rich(NF[l.code].lead)}</p>
+  </div>`).join("\n");
+
+  const cards = NF_POPULAR.map((id) => {
+    const tool = TOOLS.find((t) => t.id === id);
+    if (!tool) return "";
+    // 卡片文字按语言给三份，由同一段脚本挑（避免为三个语言各生成一份 404 页）
+    const names = LANGS.map((l) => `<b data-lang="${l.code}" hidden>${rich(TOOL_I18N[id][l.code].h1)}</b>`).join("");
+    return `    <li><a href="${pathOf(LANGS[0], "tools/" + id + ".html")}" data-tool="${id}">
+      <span class="ico">${tool.icon}</span>
+      ${names}
+    </a></li>`;
+  }).join("\n");
+
+  const titles = JSON.stringify({
+    en: "Page not found — ToolPocket",
+    zh: "页面不存在 —— ToolPocket",
+    ja: "ページが見つかりません — ToolPocket",
+  });
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page not found — ToolPocket</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="${asset("style.css")}?v=2">
+<meta name="theme-color" content="#2563eb">
+<link rel="icon" href="${asset("icon-192.png")}">
+<link rel="apple-touch-icon" href="${asset("apple-touch-icon.png")}">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="${pathOf(LANGS[0], "index.html")}">🧰 ${UI.brand}</a>
+  <nav class="langs" id="nfLangs"></nav>
+</header>
+
+<main id="nfMain">
+${blocks}
+
+  <p class="lbl" id="nfSearchLabel"></p>
+  <div class="searchbox">
+    <span class="s-ico" aria-hidden="true">🔍</span>
+    <input id="searchInput" type="search" autocomplete="off" aria-label="search">
+  </div>
+  <ul class="searchresults" id="searchResults" hidden></ul>
+
+  <h2 id="nfPopular"></h2>
+  <ul class="grid">
+${cards}
+  </ul>
+
+  <div class="btnrow"><a class="nf-back" id="nfBack" href="${pathOf(LANGS[0], "index.html")}"></a></div>
+</main>
+
+<script>
+/* 挑语言：先看路径前缀（/zh/ /ja/ 下的失效链接多半是这两个语言的读者），
+   再看浏览器语言，最后落到英文。不跳转、不重定向 —— 404 页自己就地显示。 */
+window.T = ${scriptStringsOf("en")};
+window.TP_INDEX_URL = ${JSON.stringify(asset("search.json"))};
+(function () {
+  var NF = ${JSON.stringify(NF)};
+  var PH = ${JSON.stringify(NF_PH)};
+  var TITLES = ${titles};
+  var path = location.pathname.toLowerCase();
+  var lang = /^\/zh(\/|$)/.test(path) ? "zh" : /^\/ja(\/|$)/.test(path) ? "ja" : null;
+  if (!lang) {
+    var n = (navigator.language || "en").toLowerCase();
+    lang = n.indexOf("zh") === 0 ? "zh" : n.indexOf("ja") === 0 ? "ja" : "en";
+  }
+  // 手动切过语言的话，这一次听他的（随读随删，别让它永久压过浏览器语言）
+  try {
+    var saved = localStorage.getItem("tp_404_lang");
+    if (saved) {
+      localStorage.removeItem("tp_404_lang");
+      if (saved === "en" || saved === "zh" || saved === "ja") lang = saved;
+    }
+  } catch (err) {}
+  document.documentElement.lang = lang;
+  document.title = TITLES[lang] || TITLES.en;
+  var t = NF[lang] || NF.en;
+
+  // 显示该语言的所有块（文案、卡片标题、语言切换的当前项）
+  [].forEach.call(document.querySelectorAll("[data-lang]"), function (el) {
+    el.hidden = el.getAttribute("data-lang") !== lang;
+  });
+  [].forEach.call(document.querySelectorAll("[data-tool]"), function (a) {
+    a.setAttribute("href", "/" + (lang === "en" ? "" : lang + "/") + "tools/" + a.getAttribute("data-tool") + ".html");
+  });
+  document.getElementById("nfSearchLabel").textContent = t.searchLabel;
+  document.getElementById("nfPopular").textContent = t.popular;
+  var back = document.getElementById("nfBack");
+  back.textContent = t.back;
+  back.setAttribute("href", "/" + (lang === "en" ? "" : lang + "/"));
+  document.getElementById("searchInput").placeholder = PH[lang] || PH.en;
+
+  // 语言切换：就地换显示，不跳转（404 页没有对应的语言版本可跳）
+  var nav = document.getElementById("nfLangs");
+  [["en", "English"], ["zh", "中文"], ["ja", "日本語"]].forEach(function (pair) {
+    var a = document.createElement("a");
+    a.href = "#";
+    a.textContent = pair[1];
+    if (pair[0] === lang) a.className = "on";
+    a.addEventListener("click", function (e) {
+      e.preventDefault();
+      try { localStorage.setItem("tp_404_lang", pair[0]); } catch (err) {}
+      location.reload();
+    });
+    nav.appendChild(a);
+  });
+})();
+</script>
+<script src="${asset("search.js")}?v=2" defer></script>
+<script src="${asset("app.js")}?v=2" defer></script>
+${footer("en")}
+</body>
+</html>
+`;
+}
+
 /* ── 广告位招租页 ───────────────────────────────────────────────────────── */
 function advertisePage(lang) {
   const t = ADVERTISE[lang.code];
@@ -587,6 +733,9 @@ const write = (rel, html) => {
   count++;
   console.log("  ✓ " + rel + "  (" + Buffer.byteLength(html) + " 字节)");
 };
+
+/* 404 页只写一份，必须在站点根目录 —— GitHub Pages 靠根目录的 404.html 处理所有找不到的路径 */
+write("404.html", notFoundPage());
 
 for (const lang of LANGS) {
   write(path.join(lang.dir, "index.html"), homePage(lang));

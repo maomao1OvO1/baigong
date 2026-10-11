@@ -265,5 +265,31 @@ console.log("\n⑧ 文案注入检查（window.T）");
   else bad("页面里出现了明文邮箱", "会被垃圾邮件爬虫抓走");
 }
 
+/* ── ⑨ 404 页检查 ──────────────────────────────────────────────────────
+   GitHub Pages 只认**站点根目录**的 404.html，而且 /zh/ 与 /ja/ 下的失效链接也走这一份 ——
+   所以三个语言的文案必须内联在一个文件里。它还可能在任何深度被打开（/a/b/c），
+   因此凡引用一律绝对路径，相对路径必炸。这几条都属于"错了就很难发现"，逐条核对。 */
+console.log("\n⑨ 404 页检查");
+{
+  const f = path.join(ROOT, "404.html");
+  if (fs.existsSync(f)) ok("404.html 在站点根目录（GitHub Pages 只认这个位置）");
+  else bad("缺 404.html", "访问不存在的地址会看到 GitHub 的默认 404");
+
+  const html = fs.existsSync(f) ? fs.readFileSync(f, "utf8") : "";
+  const langs = ["en", "zh", "ja"].filter((l) => html.includes('data-lang="' + l + '"'));
+  if (langs.length === 3) ok("三语文案内联在同一个文件里（按路径前缀 → 浏览器语言挑一份显示）");
+  else bad("404 页缺语言块", langs.join(", "));
+
+  const rel = [...html.matchAll(/(?:href|src)="(?!\/|#|http|mailto)([^"]*)"/g)].map((m) => m[1]).filter(Boolean);
+  if (!rel.length) ok("链接与资源全部使用绝对路径");
+  else bad("404 页存在相对路径引用", rel.join(", "));
+
+  if (html.includes("noindex")) ok("标了 noindex（不让搜索引擎把 404 页收进去）");
+  else bad("404 页缺 noindex");
+
+  if (html.includes('id="searchInput"') && html.includes('id="feedbackBtn"')) ok("带搜索框与反馈入口（迷路的人先给条路）");
+  else bad("404 页缺搜索框或反馈入口");
+}
+
 console.log(`\n结果：${pass} 项通过，${fail} 项失败`);
 process.exit(fail ? 1 : 0);

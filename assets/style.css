@@ -271,6 +271,20 @@ table.spec td:not(:first-child) { color: var(--muted); }
 .pwn .confirm { margin-top: 14px; padding: 14px 16px; border-radius: var(--radius); background: var(--soft); }
 .pwn .confirm .note { color: var(--fg); }
 
+/* ── 404 页（2026-10-12）──
+   大号 404 用最浅的边框色，当装饰不当主角 —— 主角是下面的搜索框。
+   返回按钮做成实心描边（和工具页的主按钮同一档），因为"回首页"是这页唯一的确定动作。 */
+.nf-code {
+  font: 700 62px/1 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color: var(--line); margin: 8px 0 -4px; letter-spacing: -.04em;
+}
+.nf-back {
+  display: inline-block; font-size: 14px; font-weight: 600; padding: 11px 20px;
+  border: 1px solid var(--fg); border-radius: 8px; color: var(--fg); text-decoration: none;
+}
+.nf-back:hover { opacity: .85; text-decoration: none; }
+#nfLangs a { cursor: pointer; }
+
 /* ── 提示条（唯一的浮层，给一点点阴影）── */
 .toast {
   position: fixed; left: 50%; bottom: 28px; transform: translate(-50%, 12px);
@@ -354,4 +368,5 @@ footer .fb button { font-size: 13px; padding: 9px 15px; }
   .mobile-tip { margin-top: 12px; font-size: 12.5px; padding: 11px 12px; }
   .tip-close { min-height: 44px; padding: 11px 14px; }   /* 触控目标 */
   .install { margin-top: 34px; }
+  .nf-code { font-size: 46px; }
 }

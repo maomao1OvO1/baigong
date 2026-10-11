@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page not found — ToolPocket</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="/assets/style.css?v=2">
+<meta name="theme-color" content="#2563eb">
+<link rel="icon" href="/assets/icon-192.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/index.html">🧰 ToolPocket</a>
+  <nav class="langs" id="nfLangs"></nav>
+</header>
+
+<main id="nfMain">
+  <div data-lang="en" hidden>
+    <p class="nf-code">404</p>
+    <h1>That page doesn't exist</h1>
+    <p class="lead">Either the link is out of date, or the address has a typo in it. Nothing is broken on your side.</p>
+  </div>
+  <div data-lang="zh" hidden>
+    <p class="nf-code">404</p>
+    <h1>这个页面不存在</h1>
+    <p class="lead">要么是链接过期了，要么是地址敲错了一个字符。你这边没出问题。</p>
+  </div>
+  <div data-lang="ja" hidden>
+    <p class="nf-code">404</p>
+    <h1>ページが見つかりません</h1>
+    <p class="lead">リンクが古いか、アドレスに打ち間違いがあるようです。お使いの環境に問題はありません。</p>
+  </div>
+
+  <p class="lbl" id="nfSearchLabel"></p>
+  <div class="searchbox">
+    <span class="s-ico" aria-hidden="true">🔍</span>
+    <input id="searchInput" type="search" autocomplete="off" aria-label="search">
+  </div>
+  <ul class="searchresults" id="searchResults" hidden></ul>
+
+  <h2 id="nfPopular"></h2>
+  <ul class="grid">
+    <li><a href="/tools/compress-image.html" data-tool="compress-image">
+      <span class="ico">🗜️</span>
+      <b data-lang="en" hidden>Compress images without uploading them</b><b data-lang="zh" hidden>压缩图片，不用把它传给别人</b><b data-lang="ja" hidden>画像を、どこにも送らずに軽くする</b>
+    </a></li>
+    <li><a href="/tools/convert-image.html" data-tool="convert-image">
+      <span class="ico">🔄</span>
+      <b data-lang="en" hidden>Convert image formats without uploading</b><b data-lang="zh" hidden>换图片格式，不用先上传</b><b data-lang="ja" hidden>アップロードせずに画像形式を変換</b>
+    </a></li>
+    <li><a href="/tools/json-format.html" data-tool="json-format">
+      <span class="ico">🧩</span>
+      <b data-lang="en" hidden>Format and validate JSON</b><b data-lang="zh" hidden>JSON 格式化与校验</b><b data-lang="ja" hidden>JSON の整形と検証</b>
+    </a></li>
+    <li><a href="/tools/hash.html" data-tool="hash">
+      <span class="ico">🔐</span>
+      <b data-lang="en" hidden>Hash generator (MD5 / SHA-1 / SHA-256 / SHA-512)</b><b data-lang="zh" hidden>哈希计算（MD5 / SHA-1 / SHA-256 / SHA-512）</b><b data-lang="ja" hidden>ハッシュ生成（MD5 / SHA-1 / SHA-256 / SHA-512）</b>
+    </a></li>
+    <li><a href="/tools/password-strength.html" data-tool="password-strength">
+      <span class="ico">🛡️</span>
+      <b data-lang="en" hidden>Password strength check</b><b data-lang="zh" hidden>密码强度检测</b><b data-lang="ja" hidden>パスワード強度チェック</b>
+    </a></li>
+    <li><a href="/tools/timestamp.html" data-tool="timestamp">
+      <span class="ico">⏱️</span>
+      <b data-lang="en" hidden>Unix timestamp converter</b><b data-lang="zh" hidden>Unix 时间戳转换</b><b data-lang="ja" hidden>Unix タイムスタンプ変換</b>
+    </a></li>
+  </ul>
+
+  <div class="btnrow"><a class="nf-back" id="nfBack" href="/index.html"></a></div>
+</main>
+
+<script>
+/* 挑语言：先看路径前缀（/zh/ /ja/ 下的失效链接多半是这两个语言的读者），
+   再看浏览器语言，最后落到英文。不跳转、不重定向 —— 404 页自己就地显示。 */
+window.T = {};
+window.TP_INDEX_URL = "/assets/search.json";
+(function () {
+  var NF = {"en":{"h1":"That page doesn't exist","lead":"Either the link is out of date, or the address has a typo in it. Nothing is broken on your side.","searchLabel":"Looking for a tool? Search here:","popular":"Tools people usually want","back":"← Back to the homepage"},"zh":{"h1":"这个页面不存在","lead":"要么是链接过期了，要么是地址敲错了一个字符。你这边没出问题。","searchLabel":"在找某个工具？在这儿搜一下：","popular":"大家常找的几个","back":"← 回首页"},"ja":{"h1":"ページが見つかりません","lead":"リンクが古いか、アドレスに打ち間違いがあるようです。お使いの環境に問題はありません。","searchLabel":"お探しのツールはありますか？","popular":"よく使われるツール","back":"← トップページへ戻る"}};
+  var PH = {"en":"Search tools — try “compress”, “json”, “password”…","zh":"搜索工具 —— 试试「压缩」「json」「密码」…","ja":"ツールを検索 — 「圧縮」「json」「パスワード」など"};
+  var TITLES = {"en":"Page not found — ToolPocket","zh":"页面不存在 —— ToolPocket","ja":"ページが見つかりません — ToolPocket"};
+  var path = location.pathname.toLowerCase();
+  var lang = /^/zh(/|$)/.test(path) ? "zh" : /^/ja(/|$)/.test(path) ? "ja" : null;
+  if (!lang) {
+    var n = (navigator.language || "en").toLowerCase();
+    lang = n.indexOf("zh") === 0 ? "zh" : n.indexOf("ja") === 0 ? "ja" : "en";
+  }
+  // 手动切过语言的话，这一次听他的（随读随删，别让它永久压过浏览器语言）
+  try {
+    var saved = localStorage.getItem("tp_404_lang");
+    if (saved) {
+      localStorage.removeItem("tp_404_lang");
+      if (saved === "en" || saved === "zh" || saved === "ja") lang = saved;
+    }
+  } catch (err) {}
+  document.documentElement.lang = lang;
+  document.title = TITLES[lang] || TITLES.en;
+  var t = NF[lang] || NF.en;
+
+  // 显示该语言的所有块（文案、卡片标题、语言切换的当前项）
+  [].forEach.call(document.querySelectorAll("[data-lang]"), function (el) {
+    el.hidden = el.getAttribute("data-lang") !== lang;
+  });
+  [].forEach.call(document.querySelectorAll("[data-tool]"), function (a) {
+    a.setAttribute("href", "/" + (lang === "en" ? "" : lang + "/") + "tools/" + a.getAttribute("data-tool") + ".html");
+  });
+  document.getElementById("nfSearchLabel").textContent = t.searchLabel;
+  document.getElementById("nfPopular").textContent = t.popular;
+  var back = document.getElementById("nfBack");
+  back.textContent = t.back;
+  back.setAttribute("href", "/" + (lang === "en" ? "" : lang + "/"));
+  document.getElementById("searchInput").placeholder = PH[lang] || PH.en;
+
+  // 语言切换：就地换显示，不跳转（404 页没有对应的语言版本可跳）
+  var nav = document.getElementById("nfLangs");
+  [["en", "English"], ["zh", "中文"], ["ja", "日本語"]].forEach(function (pair) {
+    var a = document.createElement("a");
+    a.href = "#";
+    a.textContent = pair[1];
+    if (pair[0] === lang) a.className = "on";
+    a.addEventListener("click", function (e) {
+      e.preventDefault();
+      try { localStorage.setItem("tp_404_lang", pair[0]); } catch (err) {}
+      location.reload();
+    });
+    nav.appendChild(a);
+  });
+})();
+</script>
+<script src="/assets/search.js?v=2" defer></script>
+<script src="/assets/app.js?v=2" defer></script>
+<footer>
+  <p>undefined</p>
+  <p class="fb">
+    <span>undefined</span>
+    <button type="button" class="ghost fb-btn" id="feedbackBtn" data-u="ad" data-d="maomaowang.top">undefined</button>
+  </p>
+</footer>
+</body>
+</html>
