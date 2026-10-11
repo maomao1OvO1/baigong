@@ -4,17 +4,18 @@
     "1. tools[] 里加一条：id / icon / kind / script / i18n / options",
     "2. src/i18n/tools/<i18n>.json 加三语文案",
     "3. assets/tools/<script> 写逻辑（用 TP 共享函数，控件 id 与 options 里一致）",
-    "4. node src/build.mjs —— 首页列表、工具页、sitemap 一起生成"
+    "4. node test/check.mjs && node test/runtime.mjs —— 全绿再 node src/build.mjs 上传"
   ],
   "_kind": {
     "image": "拖拽区 + 控件 + 主按钮 + 结果列表（图片类）",
     "text": "输入框 + 控件 + 结果框 + 复制/清空按钮（文本类）"
   },
   "_options 类型": {
-    "range": "滑块：id, label, min, max, value, suffix, showValue(显示数值的元素 id)",
+    "range": "滑块：id, label, min, max, value, suffix, showValue(显示数值的元素 id), hint(说明文案键)",
     "number": "数字框：id, label, value, min, step, placeholder, note(说明文案键)",
-    "select": "下拉：id, label, choices[[值, 文案键], ...]",
-    "color": "系统取色器：id（color 类工具用）"
+    "select": "下拉：id, label, choices[[值, 文案键], ...], hint(说明文案键)",
+    "color": "系统取色器：id（color 类工具用）",
+    "checkbox": "复选框：id, label, checked（成组出现）"
   },
   "tools": [
     {
@@ -32,7 +33,8 @@
           "max": 95,
           "value": 72,
           "suffix": "%",
-          "showValue": "qualityVal"
+          "showValue": "qualityVal",
+          "hint": "qualityHint"
         },
         {
           "type": "number",
@@ -60,7 +62,8 @@
               "image/png",
               "fmtPng"
             ]
-          ]
+          ],
+          "hint": "formatHint"
         }
       ]
     },
@@ -88,7 +91,8 @@
               "image/png",
               "fmtPng"
             ]
-          ]
+          ],
+          "hint": "formatHint"
         },
         {
           "type": "range",
@@ -98,7 +102,8 @@
           "max": 100,
           "value": 92,
           "suffix": "%",
-          "showValue": "qualityVal"
+          "showValue": "qualityVal",
+          "hint": "qualityHint"
         }
       ]
     },
@@ -127,7 +132,8 @@
               "decode",
               "decode"
             ]
-          ]
+          ],
+          "hint": "modeHint"
         }
       ]
     },
@@ -155,7 +161,8 @@
               "minify",
               "minify"
             ]
-          ]
+          ],
+          "hint": "modeHint"
         }
       ]
     },
@@ -175,7 +182,8 @@
       "options": [
         {
           "type": "color",
-          "id": "picker"
+          "id": "picker",
+          "hint": "pickerHint"
         }
       ]
     },
@@ -227,7 +235,8 @@
               "count",
               "count"
             ]
-          ]
+          ],
+          "hint": "actionHint"
         }
       ]
     },
@@ -263,14 +272,144 @@
               "temp",
               "catTemp"
             ]
-          ]
+          ],
+          "hint": "categoryHint"
         },
         {
           "type": "number",
           "id": "value",
           "label": "value",
           "placeholder": "valuePh",
-          "unitLabel": "unitLabel"
+          "unitLabel": "unitLabel",
+          "hint": "valueHint"
+        }
+      ],
+      "hideInput": true
+    },
+    {
+      "id": "url-codec",
+      "icon": "🔗",
+      "kind": "text",
+      "script": "url-codec.js",
+      "i18n": "url-codec",
+      "buttons": [
+        "copy",
+        "swap",
+        "clear"
+      ],
+      "options": [
+        {
+          "type": "select",
+          "id": "mode",
+          "label": "mode",
+          "hint": "modeHint",
+          "choices": [
+            [
+              "encode",
+              "encode"
+            ],
+            [
+              "decode",
+              "decode"
+            ]
+          ]
+        },
+        {
+          "type": "select",
+          "id": "scope",
+          "label": "scope",
+          "hint": "scopeHint",
+          "choices": [
+            [
+              "component",
+              "component"
+            ],
+            [
+              "whole",
+              "whole"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "timestamp",
+      "icon": "⏱️",
+      "kind": "text",
+      "script": "timestamp.js",
+      "i18n": "timestamp",
+      "buttons": [
+        "now",
+        "copy",
+        "clear"
+      ],
+      "options": [
+        {
+          "type": "select",
+          "id": "mode",
+          "label": "mode",
+          "hint": "modeHint",
+          "choices": [
+            [
+              "toDate",
+              "toDate"
+            ],
+            [
+              "toSec",
+              "toSec"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "password-gen",
+      "icon": "🔑",
+      "kind": "text",
+      "script": "password-gen.js",
+      "i18n": "password-gen",
+      "buttons": [
+        "run",
+        "copy",
+        "clear"
+      ],
+      "extras": [
+        "meter"
+      ],
+      "options": [
+        {
+          "type": "range",
+          "id": "length",
+          "label": "length",
+          "min": 8,
+          "max": 64,
+          "value": 16,
+          "showValue": "lengthVal",
+          "hint": "lengthHint"
+        },
+        {
+          "type": "checkbox",
+          "id": "upper",
+          "label": "upper",
+          "checked": true
+        },
+        {
+          "type": "checkbox",
+          "id": "lower",
+          "label": "lower",
+          "checked": true
+        },
+        {
+          "type": "checkbox",
+          "id": "digits",
+          "label": "digits",
+          "checked": true
+        },
+        {
+          "type": "checkbox",
+          "id": "symbols",
+          "label": "symbols",
+          "checked": true
         }
       ],
       "hideInput": true

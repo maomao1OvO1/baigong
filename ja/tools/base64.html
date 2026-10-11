@@ -35,6 +35,7 @@
   <textarea id="input" class="tall" placeholder="テキストまたは Base64 文字列を貼り付けてください…"></textarea>
   <div class="opts">
 <label class="row"><span class="lbl">方向</span><select id="mode"><option value="encode">テキスト → Base64</option><option value="decode">Base64 → テキスト</option></select></label>
+    <span class="hint">方向を選びます。貼り付けて「入れ替え」を押せば逆方向にも変換できます。</span>
   </div>
 <label class="row lbl" for="output">結果</label>
   <textarea id="output" readonly placeholder="入力と同時に結果が表示されます"></textarea>
@@ -56,7 +57,7 @@
 
 <footer><p>ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。</p></footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script>window.T = {"langName":"日本語","footer":"ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"コピーできませんでした。手動で選択してください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理されます。送信も保存もしていません。","mode":"方向","encode":"テキスト → Base64","decode":"Base64 → テキスト","inputPh":"テキストまたは Base64 文字列を貼り付けてください…","outputPh":"入力と同時に結果が表示されます","badBase64":"有効な Base64 ではないようです"};</script>
+<script>window.T = {"langName":"日本語","footer":"ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"コピーできませんでした。手動で選択してください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理されます。送信も保存もしていません。","mode":"方向","encode":"テキスト → Base64","decode":"Base64 → テキスト","inputPh":"テキストまたは Base64 文字列を貼り付けてください…","outputPh":"入力と同時に結果が表示されます","badBase64":"有効な Base64 ではないようです","modeHint":"方向を選びます。貼り付けて「入れ替え」を押せば逆方向にも変換できます。"};</script>
 <script src="/assets/tools/_shared.js" defer></script>
 <script src="/assets/tools/base64.js" defer></script>
 </body>

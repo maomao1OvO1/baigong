@@ -72,27 +72,34 @@ function topbar(lang, out) {
 
 const footer = (lang) => `<footer><p>${rich(UI.footer[lang.code])}</p></footer>`;
 
-/** 把 tools.json 里的声明式控件渲染成 HTML（label/选项文案从该工具的三语 ui 里取） */
+/** 把 tools.json 里的声明式控件渲染成 HTML（label/选项文案从该工具的三语 ui 里取）
+    每个控件下面可以带一行 hint 说明 —— 用户要求「每个按钮干嘛的标清楚点」，
+    与其让他在界面上试，不如直接把「这个滑块会影响什么」写出来。 */
 function renderOptions(lang, tool, t) {
   const ui = t.ui;
+  const hintOf = (o) => (o.hint && ui[o.hint] ? `\n    <span class="hint">${rich(ui[o.hint])}</span>` : "");
   const parts = (tool.options || []).map((o) => {
     const label = o.label ? `<span class="lbl">${rich(ui[o.label] || o.label)}</span>` : "";
     if (o.type === "range") {
       const show = o.showValue ? `<span class="badge" id="${o.showValue}"></span>` : "";
-      return `<label class="row">${label}<input type="range" id="${o.id}" min="${o.min}" max="${o.max}" value="${o.value}">${show}</label>`;
+      return `<label class="row">${label}<input type="range" id="${o.id}" min="${o.min}" max="${o.max}" value="${o.value}">${show}</label>${hintOf(o)}`;
     }
     if (o.type === "number") {
       const ph = o.placeholder ? ` placeholder="${esc(ui[o.placeholder] || "")}"` : "";
       const attrs = [o.value !== undefined ? `value="${o.value}"` : "", o.min !== undefined ? `min="${o.min}"` : "", o.step ? `step="${o.step}"` : ""].filter(Boolean).join(" ");
       const note = o.note ? ` <span class="note">${rich(ui[o.note])}</span>` : "";
       const unit = o.unitLabel ? ` <span class="badge" id="${o.unitLabel}"></span>` : "";
-      return `<label class="row">${label}<input type="number" id="${o.id}" ${attrs}${ph}>${unit}${note}</label>`;
+      return `<label class="row">${label}<input type="number" id="${o.id}" ${attrs}${ph}>${unit}${note}</label>${hintOf(o)}`;
     }
     if (o.type === "select") {
       const opts = o.choices.map(([v, k]) => `<option value="${esc(v)}">${rich(ui[k] || k)}</option>`).join("");
-      return `<label class="row">${label}<select id="${o.id}">${opts}</select></label>`;
+      return `<label class="row">${label}<select id="${o.id}">${opts}</select></label>${hintOf(o)}`;
     }
-    if (o.type === "color") return `<label class="row"><input type="color" id="${o.id}" value="#2f6df6"></label>`;
+    if (o.type === "checkbox") {
+      // onchange 用 addEventListener，这里不写内联事件（方便以后加 CSP）
+      return `<label class="row check"><input type="checkbox" id="${o.id}"${o.checked ? " checked" : ""}><span>${rich(ui[o.label] || o.label)}</span></label>`;
+    }
+    if (o.type === "color") return `<label class="row">${label}<input type="color" id="${o.id}" value="#2f6df6"></label>${hintOf(o)}`;
     return "";
   });
   return parts.join("\n");
@@ -148,10 +155,13 @@ ${renderOptions(lang, tool, t)}
 <ul class="results" id="results"></ul>`;
   } else {
     const buttons = tool.buttons || ["copy", "clear"];
-    const btnHtml = buttons.map((b, i) =>
+    // 按钮文案：先找该工具自己的 ui（如 now / run），再退回全局 UI
+    const labelOf = (name) => (ui[name] ? ui[name] : (UI[name] ? UI[name][lang.code] : name));
+    const btnHtml = buttons.map((b) =>
       b === "copy" ? `<button id="copy">${rich(UI.copy[lang.code])}</button>`
-        : `<button class="ghost" id="${b}">${rich(UI[b][lang.code])}</button>`).join("\n    ");
+        : `<button class="ghost" id="${b}">${rich(labelOf(b))}</button>`).join("\n    ");
     const swatch = (tool.extras || []).indexOf("swatch") >= 0 ? `\n  <div class="swatch" id="swatch" aria-hidden="true"></div>` : "";
+    const meter = (tool.extras || []).indexOf("meter") >= 0 ? `\n  <p class="status" id="meter"></p>` : "";
     // hideInput：极少数工具不需要大输入框（如单位换算只填一个数字），但**输出框永远要有**
     const inputArea = tool.hideInput
       ? ""
@@ -165,7 +175,7 @@ ${inputArea}
 ${renderOptions(lang, tool, t)}
   </div>${swatch}
 ${outputArea}
-  <p class="status" id="status"></p>
+  <p class="status" id="status"></p>${meter}
   <div class="btnrow">
     ${btnHtml}
   </div>

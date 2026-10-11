@@ -37,8 +37,10 @@
   </div>
   <div class="opts">
 <label class="row"><span class="lbl">Quality</span><input type="range" id="quality" min="30" max="95" value="72"><span class="badge" id="qualityVal"></span></label>
+    <span class="hint">Lower = smaller file, rougher image. 70–80% is usually indistinguishable for photos.</span>
 <label class="row"><span class="lbl">Max width (px)</span><input type="number" id="maxw" value="1920" min="0" step="10"> <span class="note">0 keeps the original size</span></label>
 <label class="row"><span class="lbl">Save as</span><select id="format"><option value="image/jpeg">JPEG — best for photos</option><option value="image/webp">WebP — smallest files</option><option value="image/png">PNG — lossless</option></select></label>
+    <span class="hint">JPEG is the most compatible, WebP is the smallest, PNG keeps transparency.</span>
   </div>
   <div class="btnrow">
     <button id="run" disabled>Compress and download all</button>
@@ -58,7 +60,7 @@
 
 <footer><p>ToolPocket · Everything runs on your device — nothing is uploaded.</p></footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script>window.T = {"langName":"English","footer":"ToolPocket · Everything runs on your device — nothing is uploaded.","nav":"All tools","backToTools":"← All tools","copy":"Copy result","swap":"Swap","clear":"Clear","download":"Download","copied":"Copied to clipboard","copyFail":"Copy failed — select the text manually","inputLabel":"Input","outputLabel":"Result","privacyNote":"Runs entirely in your browser. Nothing is uploaded or stored.","drop":"Click to pick images — or drop them here","dropNote":"JPG · PNG · WebP · as many as you like","quality":"Quality","maxw":"Max width (px)","maxwNote":"0 keeps the original size","format":"Save as","fmtJpeg":"JPEG — best for photos","fmtWebp":"WebP — smallest files","fmtPng":"PNG — lossless","run":"Compress and download all","selected":"{n} file(s) ready.","working":"Working…","saved":"{p}% smaller","bigger":"{p}% bigger","failed":"Couldn't read this file in the browser."};</script>
+<script>window.T = {"langName":"English","footer":"ToolPocket · Everything runs on your device — nothing is uploaded.","nav":"All tools","backToTools":"← All tools","copy":"Copy result","swap":"Swap","clear":"Clear","download":"Download","copied":"Copied to clipboard","copyFail":"Copy failed — select the text manually","inputLabel":"Input","outputLabel":"Result","privacyNote":"Runs entirely in your browser. Nothing is uploaded or stored.","drop":"Click to pick images — or drop them here","dropNote":"JPG · PNG · WebP · as many as you like","quality":"Quality","maxw":"Max width (px)","maxwNote":"0 keeps the original size","format":"Save as","fmtJpeg":"JPEG — best for photos","fmtWebp":"WebP — smallest files","fmtPng":"PNG — lossless","run":"Compress and download all","selected":"{n} file(s) ready.","working":"Working…","saved":"{p}% smaller","bigger":"{p}% bigger","failed":"Couldn't read this file in the browser.","qualityHint":"Lower = smaller file, rougher image. 70–80% is usually indistinguishable for photos.","formatHint":"JPEG is the most compatible, WebP is the smallest, PNG keeps transparency."};</script>
 <script src="/assets/tools/_shared.js" defer></script>
 <script src="/assets/tools/compress-image.js" defer></script>
 </body>

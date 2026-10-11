@@ -6,13 +6,23 @@
     "h1": "Color converter — HEX, RGB, HSL",
     "lead": "Paste whatever you have. It figures out the format and shows the other two — no dropdowns, no “select your input type” dance.",
     "faq": [
-      ["Which formats does it accept?", "#abc, #aabbcc, rgb(r,g,b), rgba(...) and hsl(h,s%,l%) — with or without spaces."],
-      ["Is it exact?", "RGB ↔ HEX is exact. HSL is rounded for readability but the underlying conversion is standard CSS math."],
-      ["Why not a color picker?", "There is one below the input — but most people arrive with a color already copied, so pasting is the fast path."]
+      [
+        "Which formats does it accept?",
+        "#abc, #aabbcc, rgb(r,g,b), rgba(...) and hsl(h,s%,l%) — with or without spaces."
+      ],
+      [
+        "Is it exact?",
+        "RGB ↔ HEX is exact. HSL is rounded for readability but the underlying conversion is standard CSS math."
+      ],
+      [
+        "Why not a color picker?",
+        "There is one below the input — but most people arrive with a color already copied, so pasting is the fast path."
+      ]
     ],
     "ui": {
       "inputPh": "Paste a color: #2f6df6, rgb(47,109,246), hsl(220, 91%, 57%)…",
-      "outputPh": "HEX / RGB / HSL appear here"
+      "outputPh": "HEX / RGB / HSL appear here",
+      "pickerHint": "Pick a colour here and it fills the input above automatically."
     }
   },
   "zh": {
@@ -21,13 +31,23 @@
     "h1": "颜色转换 —— HEX / RGB / HSL",
     "lead": "手里有什么就粘什么，自动识别格式，另外两种直接给你 —— 不用先选“输入类型”，少一步就是少一次放弃。",
     "faq": [
-      ["支持哪些写法？", "#abc、#aabbcc、rgb(r,g,b)、rgba(...)、hsl(h,s%,l%)，带不带空格都行。"],
-      ["结果准吗？", "RGB ↔ HEX 是精确的；HSL 为方便阅读做了取整，换算用的是标准 CSS 算法。"],
-      ["为什么不做个取色器？", "下面就有取色器。但多数人是带着一个已复制的色值来的，直接粘最快。"]
+      [
+        "支持哪些写法？",
+        "#abc、#aabbcc、rgb(r,g,b)、rgba(...)、hsl(h,s%,l%)，带不带空格都行。"
+      ],
+      [
+        "结果准吗？",
+        "RGB ↔ HEX 是精确的；HSL 为方便阅读做了取整，换算用的是标准 CSS 算法。"
+      ],
+      [
+        "为什么不做个取色器？",
+        "下面就有取色器。但多数人是带着一个已复制的色值来的，直接粘最快。"
+      ]
     ],
     "ui": {
       "inputPh": "粘一个颜色： #2f6df6、rgb(47,109,246)、hsl(220, 91%, 57%)…",
-      "outputPh": "HEX / RGB / HSL 会显示在这里"
+      "outputPh": "HEX / RGB / HSL 会显示在这里",
+      "pickerHint": "点这里选颜色，会自动填进上面的输入框。"
     }
   },
   "ja": {
@@ -36,13 +56,23 @@
     "h1": "カラー変換 — HEX / RGB / HSL",
     "lead": "手元にある形式をそのまま貼ってください。形式は自動判別し、残り 2 つを表示します。「入力形式を選択」といった手順は不要です。",
     "faq": [
-      ["どの形式に対応していますか？", "#abc、#aabbcc、rgb(r,g,b)、rgba(...)、hsl(h,s%,l%)。スペースの有無は問いません。"],
-      ["値は正確ですか？", "RGB ↔ HEX は正確です。HSL は読みやすさのため丸めていますが、計算は標準的な CSS の式に従っています。"],
-      ["カラーピッカーはありますか？", "入力欄の下にあります。ただし多くの方は既にコピーした色値を持っているため、貼り付けが最短です。"]
+      [
+        "どの形式に対応していますか？",
+        "#abc、#aabbcc、rgb(r,g,b)、rgba(...)、hsl(h,s%,l%)。スペースの有無は問いません。"
+      ],
+      [
+        "値は正確ですか？",
+        "RGB ↔ HEX は正確です。HSL は読みやすさのため丸めていますが、計算は標準的な CSS の式に従っています。"
+      ],
+      [
+        "カラーピッカーはありますか？",
+        "入力欄の下にあります。ただし多くの方は既にコピーした色値を持っているため、貼り付けが最短です。"
+      ]
     ],
     "ui": {
       "inputPh": "色を貼り付け： #2f6df6、rgb(47,109,246)、hsl(220, 91%, 57%)…",
-      "outputPh": "HEX / RGB / HSL がここに表示されます"
+      "outputPh": "HEX / RGB / HSL がここに表示されます",
+      "pickerHint": "ここで色を選ぶと、上の入力欄に自動で入ります。"
     }
   }
 }

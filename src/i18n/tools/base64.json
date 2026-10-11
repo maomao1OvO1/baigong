@@ -6,15 +6,27 @@
     "h1": "Base64 encode and decode",
     "lead": "Works with any language and emoji — many online converters break on non-English text because they use the browser's raw <code>btoa</code>. This one converts through UTF-8 first, so nothing gets mangled.",
     "faq": [
-      ["Why does my Chinese/Japanese text turn into garbage elsewhere?", "Because those tools call btoa directly, which only understands Latin-1. This page encodes to UTF-8 bytes first, then to Base64 — the correct way."],
-      ["Can I decode a Base64 string from an email or API?", "Yes, and if it isn't valid Base64 you get a clear error instead of silent nonsense."],
-      ["Is my text sent anywhere?", "No. It never leaves the page."]
+      [
+        "Why does my Chinese/Japanese text turn into garbage elsewhere?",
+        "Because those tools call btoa directly, which only understands Latin-1. This page encodes to UTF-8 bytes first, then to Base64 — the correct way."
+      ],
+      [
+        "Can I decode a Base64 string from an email or API?",
+        "Yes, and if it isn't valid Base64 you get a clear error instead of silent nonsense."
+      ],
+      [
+        "Is my text sent anywhere?",
+        "No. It never leaves the page."
+      ]
     ],
     "ui": {
-      "mode": "Direction", "encode": "Text → Base64", "decode": "Base64 → Text",
+      "mode": "Direction",
+      "encode": "Text → Base64",
+      "decode": "Base64 → Text",
       "inputPh": "Paste your text or Base64 string here…",
       "outputPh": "Result appears here as you type",
-      "badBase64": "That doesn't look like valid Base64"
+      "badBase64": "That doesn't look like valid Base64",
+      "modeHint": "Pick a direction — or just paste anything and press Swap to go the other way."
     }
   },
   "zh": {
@@ -23,15 +35,27 @@
     "h1": "Base64 编码 / 解码",
     "lead": "中文、日文、emoji 都不会乱码 —— 很多在线工具遇到非英文就出错，因为它们直接用了浏览器的 <code>btoa</code>。这里是先转 UTF-8 再编码，才是正确做法。",
     "faq": [
-      ["为什么我的中文在别的工具里会变成乱码？", "因为它们直接调用 btoa，而 btoa 只认 Latin-1。这里先把文本按 UTF-8 转成字节，再做 Base64 —— 这才是对的顺序。"],
-      ["能解码邮件或接口里拿到的 Base64 吗？", "能。而且如果内容不是合法 Base64，会明确报错，不会给你一堆看不懂的结果。"],
-      ["文本会被传到哪去吗？", "不会，全程不出这个页面。"]
+      [
+        "为什么我的中文在别的工具里会变成乱码？",
+        "因为它们直接调用 btoa，而 btoa 只认 Latin-1。这里先把文本按 UTF-8 转成字节，再做 Base64 —— 这才是对的顺序。"
+      ],
+      [
+        "能解码邮件或接口里拿到的 Base64 吗？",
+        "能。而且如果内容不是合法 Base64，会明确报错，不会给你一堆看不懂的结果。"
+      ],
+      [
+        "文本会被传到哪去吗？",
+        "不会，全程不出这个页面。"
+      ]
     ],
     "ui": {
-      "mode": "方向", "encode": "文本 → Base64", "decode": "Base64 → 文本",
+      "mode": "方向",
+      "encode": "文本 → Base64",
+      "decode": "Base64 → 文本",
       "inputPh": "把文本或 Base64 字符串粘到这里…",
       "outputPh": "边输入边出结果",
-      "badBase64": "这看起来不是合法的 Base64"
+      "badBase64": "这看起来不是合法的 Base64",
+      "modeHint": "选方向 —— 或者直接粘内容，按「互换」反向转换。"
     }
   },
   "ja": {
@@ -40,15 +64,27 @@
     "h1": "Base64 のエンコードとデコード",
     "lead": "日本語や絵文字も文字化けしません。多くのオンラインツールは非英語圏の文字で崩れますが、それはブラウザの <code>btoa</code> をそのまま使っているためです。ここでは先に UTF-8 のバイト列に変換してから Base64 にします。",
     "faq": [
-      ["他のツールだと日本語が文字化けするのはなぜ？", "btoa を直接呼んでいるからです。btoa は Latin-1 しか扱えません。このページは先に UTF-8 のバイト列へ変換してから Base64 化します。"],
-      ["メールや API で受け取った Base64 もデコードできますか？", "できます。不正な Base64 の場合は、意味不明な結果ではなくエラーを表示します。"],
-      ["入力したテキストは送信されますか？", "いいえ。このページから出ることはありません。"]
+      [
+        "他のツールだと日本語が文字化けするのはなぜ？",
+        "btoa を直接呼んでいるからです。btoa は Latin-1 しか扱えません。このページは先に UTF-8 のバイト列へ変換してから Base64 化します。"
+      ],
+      [
+        "メールや API で受け取った Base64 もデコードできますか？",
+        "できます。不正な Base64 の場合は、意味不明な結果ではなくエラーを表示します。"
+      ],
+      [
+        "入力したテキストは送信されますか？",
+        "いいえ。このページから出ることはありません。"
+      ]
     ],
     "ui": {
-      "mode": "方向", "encode": "テキスト → Base64", "decode": "Base64 → テキスト",
+      "mode": "方向",
+      "encode": "テキスト → Base64",
+      "decode": "Base64 → テキスト",
       "inputPh": "テキストまたは Base64 文字列を貼り付けてください…",
       "outputPh": "入力と同時に結果が表示されます",
-      "badBase64": "有効な Base64 ではないようです"
+      "badBase64": "有効な Base64 ではないようです",
+      "modeHint": "方向を選びます。貼り付けて「入れ替え」を押せば逆方向にも変換できます。"
     }
   }
 }

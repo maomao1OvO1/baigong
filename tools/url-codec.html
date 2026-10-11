@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>URL Encoder / Decoder Online — Percent-Encoding, No Upload | ToolPocket</title>
+<meta name="description" content="Encode or decode URLs and query parameters in your browser, with the difference between encodeURI and encodeURIComponent made clear.">
+<link rel="canonical" href="https://tools.maomaowang.top/tools/url-codec.html">
+<meta property="og:title" content="URL Encoder / Decoder Online — Percent-Encoding, No Upload | ToolPocket">
+<meta property="og:description" content="Encode or decode URLs and query parameters in your browser, with the difference between encodeURI and encodeURIComponent made clear.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/tools/url-codec.html">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/url-codec.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/url-codec.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/url-codec.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/url-codec.html">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"URL encode and decode","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Encode or decode URLs and query parameters in your browser, with the difference between encodeURI and encodeURIComponent made clear."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What's the difference between the two scopes?","acceptedAnswer":{"@type":"Answer","text":"A parameter value (component) also escapes / : ? & = # — that's what you want inside a query string. A whole URL keeps those characters intact, which is what you want for a full link."}},{"@type":"Question","name":"Why did my encoded link stop working?","acceptedAnswer":{"@type":"Answer","text":"Almost always this: the whole URL was encoded as a component, so its / and ? became %2F and %3F and the server saw one long filename."}},{"@type":"Question","name":"Is anything sent to a server?","acceptedAnswer":{"@type":"Answer","text":"No. It's plain string work in your browser."}}]}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/index.html">🧰 ToolPocket</a>
+  <nav class="langs"><a href="/tools/url-codec.html" class="on" aria-current="page">English</a><a href="/zh/tools/url-codec.html">中文</a><a href="/ja/tools/url-codec.html">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/index.html">← All tools</a></p>
+  <h1>URL encode and decode</h1>
+  <p class="lead">The classic trap: encode a whole link with the wrong function and it stops working. Here you pick <b>what you're encoding</b> and the right function is used — no guessing.</p>
+  <p class="badge-line"><span class="pill">Runs entirely in your browser. Nothing is uploaded or stored.</span></p>
+
+<div class="panel">
+<label class="row lbl" for="input">Input</label>
+  <textarea id="input" class="tall" placeholder="Paste a URL or a value…"></textarea>
+  <div class="opts">
+<label class="row"><span class="lbl">Direction</span><select id="mode"><option value="encode">Encode</option><option value="decode">Decode</option></select></label>
+    <span class="hint">Encode turns text into %XX form; decode turns it back.</span>
+<label class="row"><span class="lbl">What are you encoding?</span><select id="scope"><option value="component">A single value (query string safe) — encodes / : ? & = too</option><option value="whole">A whole URL (keeps / : ? & = intact)</option></select></label>
+    <span class="hint">This is the part people get wrong: encoding a whole URL as a component breaks it.</span>
+  </div>
+<label class="row lbl" for="output">Result</label>
+  <textarea id="output" readonly placeholder="Result appears here"></textarea>
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">Copy result</button>
+    <button class="ghost" id="swap">Swap</button>
+    <button class="ghost" id="clear">Clear</button>
+  </div>
+</div>
+
+  <section class="faq">
+    <h2>FAQ</h2>
+    <details><summary>What's the difference between the two scopes?</summary><p>A parameter value (component) also escapes / : ? & = # — that's what you want inside a query string. A whole URL keeps those characters intact, which is what you want for a full link.</p></details>
+    <details><summary>Why did my encoded link stop working?</summary><p>Almost always this: the whole URL was encoded as a component, so its / and ? became %2F and %3F and the server saw one long filename.</p></details>
+    <details><summary>Is anything sent to a server?</summary><p>No. It's plain string work in your browser.</p></details>
+  </section>
+</main>
+
+<footer><p>ToolPocket · Everything runs on your device — nothing is uploaded.</p></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = {"langName":"English","footer":"ToolPocket · Everything runs on your device — nothing is uploaded.","nav":"All tools","backToTools":"← All tools","copy":"Copy result","swap":"Swap","clear":"Clear","download":"Download","copied":"Copied to clipboard","copyFail":"Copy failed — select the text manually","inputLabel":"Input","outputLabel":"Result","privacyNote":"Runs entirely in your browser. Nothing is uploaded or stored.","mode":"Direction","encode":"Encode","decode":"Decode","scope":"What are you encoding?","component":"A single value (query string safe) — encodes / : ? & = too","whole":"A whole URL (keeps / : ? & = intact)","badUri":"This isn't valid percent-encoding","inputPh":"Paste a URL or a value…","outputPh":"Result appears here","modeHint":"Encode turns text into %XX form; decode turns it back.","scopeHint":"This is the part people get wrong: encoding a whole URL as a component breaks it."};</script>
+<script src="/assets/tools/_shared.js" defer></script>
+<script src="/assets/tools/url-codec.js" defer></script>
+</body>
+</html>

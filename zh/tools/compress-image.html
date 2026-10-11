@@ -37,8 +37,10 @@
   </div>
   <div class="opts">
 <label class="row"><span class="lbl">压缩质量</span><input type="range" id="quality" min="30" max="95" value="72"><span class="badge" id="qualityVal"></span></label>
+    <span class="hint">越低体积越小、画质越差。照片一般 70~80% 就看不出差别。</span>
 <label class="row"><span class="lbl">最大宽度（像素）</span><input type="number" id="maxw" value="1920" min="0" step="10"> <span class="note">填 0 就保持原尺寸</span></label>
 <label class="row"><span class="lbl">保存为</span><select id="format"><option value="image/jpeg">JPEG —— 照片首选</option><option value="image/webp">WebP —— 体积最小</option><option value="image/png">PNG —— 无损</option></select></label>
+    <span class="hint">JPEG 兼容性最好，WebP 体积最小，PNG 保留透明背景。</span>
   </div>
   <div class="btnrow">
     <button id="run" disabled>压缩并全部下载</button>
@@ -58,7 +60,7 @@
 
 <footer><p>ToolPocket · 全部在你的设备上完成，不上传任何文件。</p></footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script>window.T = {"langName":"中文","footer":"ToolPocket · 全部在你的设备上完成，不上传任何文件。","nav":"全部工具","backToTools":"← 全部工具","copy":"复制结果","swap":"互换","clear":"清空","download":"下载","copied":"已复制到剪贴板","copyFail":"复制失败 —— 请手动选中复制","inputLabel":"输入","outputLabel":"结果","privacyNote":"完全在你的浏览器里运行，不上传、不保存。","drop":"点这里选图片，或者直接拖进来","dropNote":"JPG · PNG · WebP · 想选多少张都行","quality":"压缩质量","maxw":"最大宽度（像素）","maxwNote":"填 0 就保持原尺寸","format":"保存为","fmtJpeg":"JPEG —— 照片首选","fmtWebp":"WebP —— 体积最小","fmtPng":"PNG —— 无损","run":"压缩并全部下载","selected":"已就绪 {n} 个文件。","working":"处理中…","saved":"小了 {p}%","bigger":"大了 {p}%","failed":"这个文件浏览器读不了。"};</script>
+<script>window.T = {"langName":"中文","footer":"ToolPocket · 全部在你的设备上完成，不上传任何文件。","nav":"全部工具","backToTools":"← 全部工具","copy":"复制结果","swap":"互换","clear":"清空","download":"下载","copied":"已复制到剪贴板","copyFail":"复制失败 —— 请手动选中复制","inputLabel":"输入","outputLabel":"结果","privacyNote":"完全在你的浏览器里运行，不上传、不保存。","drop":"点这里选图片，或者直接拖进来","dropNote":"JPG · PNG · WebP · 想选多少张都行","quality":"压缩质量","maxw":"最大宽度（像素）","maxwNote":"填 0 就保持原尺寸","format":"保存为","fmtJpeg":"JPEG —— 照片首选","fmtWebp":"WebP —— 体积最小","fmtPng":"PNG —— 无损","run":"压缩并全部下载","selected":"已就绪 {n} 个文件。","working":"处理中…","saved":"小了 {p}%","bigger":"大了 {p}%","failed":"这个文件浏览器读不了。","qualityHint":"越低体积越小、画质越差。照片一般 70~80% 就看不出差别。","formatHint":"JPEG 兼容性最好，WebP 体积最小，PNG 保留透明背景。"};</script>
 <script src="/assets/tools/_shared.js" defer></script>
 <script src="/assets/tools/compress-image.js" defer></script>
 </body>

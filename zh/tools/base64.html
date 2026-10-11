@@ -35,6 +35,7 @@
   <textarea id="input" class="tall" placeholder="把文本或 Base64 字符串粘到这里…"></textarea>
   <div class="opts">
 <label class="row"><span class="lbl">方向</span><select id="mode"><option value="encode">文本 → Base64</option><option value="decode">Base64 → 文本</option></select></label>
+    <span class="hint">选方向 —— 或者直接粘内容，按「互换」反向转换。</span>
   </div>
 <label class="row lbl" for="output">结果</label>
   <textarea id="output" readonly placeholder="边输入边出结果"></textarea>
@@ -56,7 +57,7 @@
 
 <footer><p>ToolPocket · 全部在你的设备上完成，不上传任何文件。</p></footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script>window.T = {"langName":"中文","footer":"ToolPocket · 全部在你的设备上完成，不上传任何文件。","nav":"全部工具","backToTools":"← 全部工具","copy":"复制结果","swap":"互换","clear":"清空","download":"下载","copied":"已复制到剪贴板","copyFail":"复制失败 —— 请手动选中复制","inputLabel":"输入","outputLabel":"结果","privacyNote":"完全在你的浏览器里运行，不上传、不保存。","mode":"方向","encode":"文本 → Base64","decode":"Base64 → 文本","inputPh":"把文本或 Base64 字符串粘到这里…","outputPh":"边输入边出结果","badBase64":"这看起来不是合法的 Base64"};</script>
+<script>window.T = {"langName":"中文","footer":"ToolPocket · 全部在你的设备上完成，不上传任何文件。","nav":"全部工具","backToTools":"← 全部工具","copy":"复制结果","swap":"互换","clear":"清空","download":"下载","copied":"已复制到剪贴板","copyFail":"复制失败 —— 请手动选中复制","inputLabel":"输入","outputLabel":"结果","privacyNote":"完全在你的浏览器里运行，不上传、不保存。","mode":"方向","encode":"文本 → Base64","decode":"Base64 → 文本","inputPh":"把文本或 Base64 字符串粘到这里…","outputPh":"边输入边出结果","badBase64":"这看起来不是合法的 Base64","modeHint":"选方向 —— 或者直接粘内容，按「互换」反向转换。"};</script>
 <script src="/assets/tools/_shared.js" defer></script>
 <script src="/assets/tools/base64.js" defer></script>
 </body>

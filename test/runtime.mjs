@@ -66,6 +66,7 @@ function loadTool(scriptFile, ids, strings, defaults = {}) {
     document: doc,
     navigator: { clipboard: { writeText: () => Promise.resolve() } },
     isSecureContext: true,
+    crypto: globalThis.crypto,
   };
   sandbox.window = sandbox;
   sandbox.window.T = strings;
@@ -212,6 +213,81 @@ console.log("\n⑤ 单位换算（四类都要出数，不能有 NaN / —）");
   // 输入单位徽标要跟着类别变
   run("weight", 1);
   if (els.unitLabel.textContent === "kg") ok("输入单位提示会随类别切换（kg）"); else bad("单位提示不对：", els.unitLabel.textContent);
+}
+
+
+console.log("\n⑥ URL 编解码（两种范围的区别必须正确）");
+{
+  const ui = Object.assign(readUi("en"), readI18n("url-codec", "en"));
+  const { els } = loadTool("url-codec.js", ["mode", "scope", "input", "output", "status", "copy", "swap", "clear", "toast"], ui, { mode: "encode", scope: "component" });
+  // 单个值：斜杠也要被编码
+  els.input.value = "a/b c"; els.input.fire("input");
+  if (els.output.value === "a%2Fb%20c") ok("单个值：a/b c → a%2Fb%20c（斜杠被编码）");
+  else bad("单个值编码不对", els.output.value);
+  // 整条网址：结构字符保留
+  els.scope.value = "whole"; els.scope.fire("change");
+  if (els.output.value === "a/b%20c") ok("整条网址：a/b c → a/b%20c（斜杠保留）");
+  else bad("整条网址编码不对", els.output.value);
+  // 往返
+  els.scope.value = "component"; els.scope.fire("change");
+  els.input.value = "中文 参数&x=1"; els.input.fire("input");
+  const enc = els.output.value;
+  els.mode.value = "decode"; els.input.value = enc; els.input.fire("input");
+  if (els.output.value === "中文 参数&x=1") ok("往返：中文与 & 都还原正确");
+  else bad("往返失败", enc + " → " + els.output.value);
+  // 非法输入要有反馈
+  els.input.value = "%E4%B8"; els.input.fire("input");
+  if (els.output.value === "" && els.status.classList.contains("bad")) ok("残缺的百分号编码 → 清空 + 报错");
+  else bad("非法 URI 没报错", els.output.value);
+}
+
+console.log("\n⑦ 时间戳转换（秒/毫秒自动识别 + 双向）");
+{
+  const ui = Object.assign(readUi("en"), readI18n("timestamp", "en"));
+  const { els } = loadTool("timestamp.js", ["mode", "input", "output", "now", "copy", "clear", "toast"], ui, { mode: "toDate" });
+  els.input.value = "1000000000"; els.input.fire("input");
+  if (/2001-09-09/.test(els.output.value) && /UTC/.test(els.output.value)) ok("10 位秒：1000000000 → 2001-09-09");
+  else bad("秒转日期不对", els.output.value.replace(/\n/g, " | "));
+  els.input.value = "1000000000000"; els.input.fire("input");
+  if (/2001-09-09/.test(els.output.value)) ok("13 位毫秒：1000000000000 → 同样日期（自动识别）");
+  else bad("毫秒识别失败", els.output.value.replace(/\n/g, " | "));
+  // 日期→时间戳：不要写死某个 UTC 数字（脚本按本地时区解析，写死会在别的时区误报）。
+  // 这里测「自洽性」：秒 → 本地时间文本 → 再转回秒，必须回到原值。
+  const localText = els.output.value.split("\n").find((l) => l.startsWith("Local"))?.replace(/^Local\s+/, "");
+  els.mode.value = "toSec"; els.mode.fire("change");
+  els.input.value = localText; els.input.fire("input");
+  if (/Seconds\s+1000000000/.test(els.output.value)) ok("往返自洽：1000000000 秒 → 本地时间 → 回到 1000000000 秒");
+  else bad("日期转时间戳往返不自洽", "本地时间文本=" + localText + " | " + els.output.value.replace(/\n/g, " | "));
+  els.input.value = "完全不是日期"; els.input.fire("input");
+  if (els.output.value === "") ok("乱输入 → 清空（不显示 Invalid Date）");
+  else bad("乱输入没清空", els.output.value);
+}
+
+console.log("\n⑧ 密码生成器（长度/字符集/随机性/强度）");
+{
+  const ui = Object.assign(readUi("en"), readI18n("password-gen", "en"));
+  const { els } = loadTool("password-gen.js",
+    ["length", "lengthVal", "output", "upper", "lower", "digits", "symbols", "run", "copy", "clear", "meter", "toast"],
+    ui, { length: "16" });
+  els.upper.checked = true; els.lower.checked = true; els.digits.checked = true; els.symbols.checked = true;
+  els.run.click();
+  const pw = els.output.value;
+  if (pw.length === 16) ok("长度正确（16 位）"); else bad("长度不对：" + pw.length);
+  if (/[A-Z]/.test(pw) && /[a-z]/.test(pw) && /[0-9]/.test(pw) && /[^A-Za-z0-9]/.test(pw))
+    ok("四类字符都至少出现一个（勾了就必须有）");
+  else bad("字符集不满足：" + pw);
+  els.run.click();
+  if (els.output.value !== pw) ok("两次生成结果不同（真随机，不是写死的）"); else bad("两次结果相同，随机性可疑");
+  // 只留数字
+  els.upper.checked = false; els.lower.checked = false; els.digits.checked = true; els.symbols.checked = false;
+  els.run.click();
+  if (/^[0-9]+$/.test(els.output.value)) ok("只勾数字 → 结果全是数字");
+  else bad("字符集过滤失效：" + els.output.value);
+  els.length.value = "32"; els.length.fire("input");
+  if (els.output.value.length === 32 && els.lengthVal.textContent === "32") ok("滑块改长度即时生效，数值同步显示");
+  else bad("长度滑块失效", els.output.value.length + " / badge=" + els.lengthVal.textContent);
+  if (els.meter.textContent && els.meter.textContent.length > 0) ok("强度提示已显示：" + els.meter.textContent.slice(0, 40));
+  else bad("强度提示为空");
 }
 
 console.log(`\n结果：${pass} 项通过，${fail} 项失败`);

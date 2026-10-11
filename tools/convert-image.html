@@ -37,7 +37,9 @@
   </div>
   <div class="opts">
 <label class="row"><span class="lbl">Convert to</span><select id="format"><option value="image/jpeg">JPG — photos, smallest for camera images</option><option value="image/webp">WebP — best size/quality balance</option><option value="image/png">PNG — keeps transparency</option></select></label>
+    <span class="hint">Choose the format you need. Transparency survives in PNG and WebP, not in JPG.</span>
 <label class="row"><span class="lbl">Quality</span><input type="range" id="quality" min="60" max="100" value="92"><span class="badge" id="qualityVal"></span></label>
+    <span class="hint">Only applies to JPG and WebP. 90%+ is visually lossless for most images.</span>
   </div>
   <div class="btnrow">
     <button id="run" disabled>Convert and download all</button>
@@ -57,7 +59,7 @@
 
 <footer><p>ToolPocket · Everything runs on your device — nothing is uploaded.</p></footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script>window.T = {"langName":"English","footer":"ToolPocket · Everything runs on your device — nothing is uploaded.","nav":"All tools","backToTools":"← All tools","copy":"Copy result","swap":"Swap","clear":"Clear","download":"Download","copied":"Copied to clipboard","copyFail":"Copy failed — select the text manually","inputLabel":"Input","outputLabel":"Result","privacyNote":"Runs entirely in your browser. Nothing is uploaded or stored.","drop":"Click to pick images — or drop them here","dropNote":"PNG · JPG · WebP · multiple files","format":"Convert to","quality":"Quality","fmtJpeg":"JPG — photos, smallest for camera images","fmtWebp":"WebP — best size/quality balance","fmtPng":"PNG — keeps transparency","run":"Convert and download all","selected":"{n} file(s) ready.","working":"Converting…","failed":"Couldn't read this file in the browser."};</script>
+<script>window.T = {"langName":"English","footer":"ToolPocket · Everything runs on your device — nothing is uploaded.","nav":"All tools","backToTools":"← All tools","copy":"Copy result","swap":"Swap","clear":"Clear","download":"Download","copied":"Copied to clipboard","copyFail":"Copy failed — select the text manually","inputLabel":"Input","outputLabel":"Result","privacyNote":"Runs entirely in your browser. Nothing is uploaded or stored.","drop":"Click to pick images — or drop them here","dropNote":"PNG · JPG · WebP · multiple files","format":"Convert to","quality":"Quality","fmtJpeg":"JPG — photos, smallest for camera images","fmtWebp":"WebP — best size/quality balance","fmtPng":"PNG — keeps transparency","run":"Convert and download all","selected":"{n} file(s) ready.","working":"Converting…","failed":"Couldn't read this file in the browser.","formatHint":"Choose the format you need. Transparency survives in PNG and WebP, not in JPG.","qualityHint":"Only applies to JPG and WebP. 90%+ is visually lossless for most images."};</script>
 <script src="/assets/tools/_shared.js" defer></script>
 <script src="/assets/tools/convert-image.js" defer></script>
 </body>

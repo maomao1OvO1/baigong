@@ -35,6 +35,7 @@
   <textarea id="input" class="tall" placeholder="ここにテキストを貼り付けてください…"></textarea>
   <div class="opts">
 <label class="row"><span class="lbl">処理内容</span><select id="action"><option value="upper">すべて大文字</option><option value="lower">すべて小文字</option><option value="title">各単語の先頭を大文字</option><option value="reverse">文字を逆順</option><option value="trim">各行の前後の空白を削除</option><option value="dedup">重複行を削除</option><option value="sort">行を並べ替え A→Z</option><option value="count">文字数・単語数・行数を数える</option></select></label>
+    <span class="hint">処理を 1 つ選ぶと、入力に応じて結果が更新されます。「カウント」は文字数・単語数・行数を表示します。</span>
   </div>
 <label class="row lbl" for="output">結果</label>
   <textarea id="output" readonly placeholder="結果がここに表示されます"></textarea>
@@ -55,7 +56,7 @@
 
 <footer><p>ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。</p></footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script>window.T = {"langName":"日本語","footer":"ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"コピーできませんでした。手動で選択してください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理されます。送信も保存もしていません。","action":"処理内容","upper":"すべて大文字","lower":"すべて小文字","reverse":"文字を逆順","trim":"各行の前後の空白を削除","dedup":"重複行を削除","sort":"行を並べ替え A→Z","count":"文字数・単語数・行数を数える","inputPh":"ここにテキストを貼り付けてください…","outputPh":"結果がここに表示されます","emptyHint":"上にテキストを貼り付けてください","countChars":"文字数","countNoSpace":"文字数（空白を除く）","countWords":"単語数","countLines":"行数"};</script>
+<script>window.T = {"langName":"日本語","footer":"ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"コピーできませんでした。手動で選択してください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理されます。送信も保存もしていません。","action":"処理内容","upper":"すべて大文字","lower":"すべて小文字","reverse":"文字を逆順","trim":"各行の前後の空白を削除","dedup":"重複行を削除","sort":"行を並べ替え A→Z","count":"文字数・単語数・行数を数える","inputPh":"ここにテキストを貼り付けてください…","outputPh":"結果がここに表示されます","emptyHint":"上にテキストを貼り付けてください","countChars":"文字数","countNoSpace":"文字数（空白を除く）","countWords":"単語数","countLines":"行数","actionHint":"処理を 1 つ選ぶと、入力に応じて結果が更新されます。「カウント」は文字数・単語数・行数を表示します。"};</script>
 <script src="/assets/tools/_shared.js" defer></script>
 <script src="/assets/tools/text-tools.js" defer></script>
 </body>

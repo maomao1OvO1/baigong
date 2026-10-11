@@ -37,8 +37,10 @@
   </div>
   <div class="opts">
 <label class="row"><span class="lbl">画質</span><input type="range" id="quality" min="30" max="95" value="72"><span class="badge" id="qualityVal"></span></label>
+    <span class="hint">低いほど軽く、画質は粗くなります。写真なら 70〜80% で違いはほとんど分かりません。</span>
 <label class="row"><span class="lbl">最大幅（px）</span><input type="number" id="maxw" value="1920" min="0" step="10"> <span class="note">0 で元のサイズのまま</span></label>
 <label class="row"><span class="lbl">保存形式</span><select id="format"><option value="image/jpeg">JPEG — 写真向き</option><option value="image/webp">WebP — 最も軽い</option><option value="image/png">PNG — 可逆圧縮</option></select></label>
+    <span class="hint">JPEG は互換性が最も高く、WebP は最も軽く、PNG は透過を保持します。</span>
   </div>
   <div class="btnrow">
     <button id="run" disabled>圧縮してまとめてダウンロード</button>
@@ -58,7 +60,7 @@
 
 <footer><p>ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。</p></footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script>window.T = {"langName":"日本語","footer":"ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"コピーできませんでした。手動で選択してください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理されます。送信も保存もしていません。","drop":"クリックして画像を選ぶ／ここにドラッグ＆ドロップ","dropNote":"JPG・PNG・WebP／何枚でも","quality":"画質","maxw":"最大幅（px）","maxwNote":"0 で元のサイズのまま","format":"保存形式","fmtJpeg":"JPEG — 写真向き","fmtWebp":"WebP — 最も軽い","fmtPng":"PNG — 可逆圧縮","run":"圧縮してまとめてダウンロード","selected":"{n} 件のファイルを読み込み済み。","working":"処理中…","saved":"{p}% 軽くなりました","bigger":"{p}% 大きくなりました","failed":"このファイルはブラウザで読み込めませんでした。"};</script>
+<script>window.T = {"langName":"日本語","footer":"ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"コピーできませんでした。手動で選択してください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理されます。送信も保存もしていません。","drop":"クリックして画像を選ぶ／ここにドラッグ＆ドロップ","dropNote":"JPG・PNG・WebP／何枚でも","quality":"画質","maxw":"最大幅（px）","maxwNote":"0 で元のサイズのまま","format":"保存形式","fmtJpeg":"JPEG — 写真向き","fmtWebp":"WebP — 最も軽い","fmtPng":"PNG — 可逆圧縮","run":"圧縮してまとめてダウンロード","selected":"{n} 件のファイルを読み込み済み。","working":"処理中…","saved":"{p}% 軽くなりました","bigger":"{p}% 大きくなりました","failed":"このファイルはブラウザで読み込めませんでした。","qualityHint":"低いほど軽く、画質は粗くなります。写真なら 70〜80% で違いはほとんど分かりません。","formatHint":"JPEG は互換性が最も高く、WebP は最も軽く、PNG は透過を保持します。"};</script>
 <script src="/assets/tools/_shared.js" defer></script>
 <script src="/assets/tools/compress-image.js" defer></script>
 </body>

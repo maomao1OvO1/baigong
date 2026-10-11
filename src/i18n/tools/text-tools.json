@@ -6,20 +6,37 @@
     "h1": "Everyday text tools in one place",
     "lead": "Seven small jobs that used to need seven websites: change case, reverse text, trim each line, drop duplicate lines, sort lines, and count characters, words and lines.",
     "faq": [
-      ["Why are these on one page instead of seven?", "Because each alone is too small to remember the URL of. One page, one bookmark, and every option is one click away."],
-      ["Does it handle Chinese/Japanese text?", "Yes. Case conversion is a no-op for CJK (there is no case), but counting, trimming, deduplicating and sorting all work — sorting uses locale-aware order."],
-      ["Is my text uploaded?", "No. Nothing leaves this page."]
+      [
+        "Why are these on one page instead of seven?",
+        "Because each alone is too small to remember the URL of. One page, one bookmark, and every option is one click away."
+      ],
+      [
+        "Does it handle Chinese/Japanese text?",
+        "Yes. Case conversion is a no-op for CJK (there is no case), but counting, trimming, deduplicating and sorting all work — sorting uses locale-aware order."
+      ],
+      [
+        "Is my text uploaded?",
+        "No. Nothing leaves this page."
+      ]
     ],
     "ui": {
       "action": "What to do",
-      "upper": "UPPERCASE", "lower": "lowercase", "title": "Title Case", "reverse": "Reverse text",
-      "trim": "Trim spaces on each line", "dedup": "Remove duplicate lines", "sort": "Sort lines A→Z",
+      "upper": "UPPERCASE",
+      "lower": "lowercase",
+      "title": "Title Case",
+      "reverse": "Reverse text",
+      "trim": "Trim spaces on each line",
+      "dedup": "Remove duplicate lines",
+      "sort": "Sort lines A→Z",
       "count": "Count characters / words / lines",
       "inputPh": "Paste your text here…",
       "outputPh": "Result appears here",
       "emptyHint": "Paste some text above to get started",
-      "countChars": "Characters", "countNoSpace": "Characters (no spaces)",
-      "countWords": "Words", "countLines": "Lines"
+      "countChars": "Characters",
+      "countNoSpace": "Characters (no spaces)",
+      "countWords": "Words",
+      "countLines": "Lines",
+      "actionHint": "Pick one operation — the result updates as you type. Counting shows characters, words and lines."
     }
   },
   "zh": {
@@ -28,20 +45,37 @@
     "h1": "日常文本处理，一个页面搞定",
     "lead": "以前要开七个网站的小事：大小写转换、文本反序、逐行去空格、删重复行、按行排序、统计字数/词数/行数。现在都在这儿。",
     "faq": [
-      ["为什么合成一页，不分成七个页面？", "因为每一个都小到记不住网址。合成一页、收藏一次，所有选项都在一次点击之内。"],
-      ["中文日文能用吗？", "能。大小写对中日文没有意义（本来就没有大小写），但统计、去空格、去重、排序都能正常用，排序按语言习惯来。"],
-      ["文本会上传吗？", "不会，不出这个页面。"]
+      [
+        "为什么合成一页，不分成七个页面？",
+        "因为每一个都小到记不住网址。合成一页、收藏一次，所有选项都在一次点击之内。"
+      ],
+      [
+        "中文日文能用吗？",
+        "能。大小写对中日文没有意义（本来就没有大小写），但统计、去空格、去重、排序都能正常用，排序按语言习惯来。"
+      ],
+      [
+        "文本会上传吗？",
+        "不会，不出这个页面。"
+      ]
     ],
     "ui": {
       "action": "要做什么",
-      "upper": "全部转大写", "lower": "全部转小写", "title": "每词首字母大写", "reverse": "文字反序",
-      "trim": "去掉每行首尾空格", "dedup": "删除重复行", "sort": "按行排序 A→Z",
+      "upper": "全部转大写",
+      "lower": "全部转小写",
+      "title": "每词首字母大写",
+      "reverse": "文字反序",
+      "trim": "去掉每行首尾空格",
+      "dedup": "删除重复行",
+      "sort": "按行排序 A→Z",
       "count": "统计字数 / 词数 / 行数",
       "inputPh": "把文本粘到这里…",
       "outputPh": "结果显示在这里",
       "emptyHint": "先在上面粘一段文本",
-      "countChars": "字符数", "countNoSpace": "字符数（不含空格）",
-      "countWords": "词数", "countLines": "行数"
+      "countChars": "字符数",
+      "countNoSpace": "字符数（不含空格）",
+      "countWords": "词数",
+      "countLines": "行数",
+      "actionHint": "选一个操作，边输入边出结果。「统计」会给出字符数、词数、行数。"
     }
   },
   "ja": {
@@ -50,20 +84,37 @@
     "h1": "日常のテキスト処理を 1 ページに",
     "lead": "以前は 7 つのサイトが必要だった小さな作業をまとめました。大文字小文字の変換、逆順、各行の空白除去、重複行の削除、行の並べ替え、文字・単語・行のカウント。",
     "faq": [
-      ["なぜ 7 ページに分けないのですか？", "どれも単体では URL を覚えられないほど小さいからです。1 ページをブックマークすれば、すべての機能が 1 クリック先にあります。"],
-      ["日本語でも使えますか？", "はい。大小変換は日本語では意味を持ちませんが、カウント・空白除去・重複削除・並べ替えは問題なく動作します（並べ替えは locale 準拠）。"],
-      ["入力したテキストは送信されますか？", "いいえ。このページから出ることはありません。"]
+      [
+        "なぜ 7 ページに分けないのですか？",
+        "どれも単体では URL を覚えられないほど小さいからです。1 ページをブックマークすれば、すべての機能が 1 クリック先にあります。"
+      ],
+      [
+        "日本語でも使えますか？",
+        "はい。大小変換は日本語では意味を持ちませんが、カウント・空白除去・重複削除・並べ替えは問題なく動作します（並べ替えは locale 準拠）。"
+      ],
+      [
+        "入力したテキストは送信されますか？",
+        "いいえ。このページから出ることはありません。"
+      ]
     ],
     "ui": {
       "action": "処理内容",
-      "upper": "すべて大文字", "lower": "すべて小文字", "title": "各単語の先頭を大文字", "reverse": "文字を逆順",
-      "trim": "各行の前後の空白を削除", "dedup": "重複行を削除", "sort": "行を並べ替え A→Z",
+      "upper": "すべて大文字",
+      "lower": "すべて小文字",
+      "title": "各単語の先頭を大文字",
+      "reverse": "文字を逆順",
+      "trim": "各行の前後の空白を削除",
+      "dedup": "重複行を削除",
+      "sort": "行を並べ替え A→Z",
       "count": "文字数・単語数・行数を数える",
       "inputPh": "ここにテキストを貼り付けてください…",
       "outputPh": "結果がここに表示されます",
       "emptyHint": "上にテキストを貼り付けてください",
-      "countChars": "文字数", "countNoSpace": "文字数（空白を除く）",
-      "countWords": "単語数", "countLines": "行数"
+      "countChars": "文字数",
+      "countNoSpace": "文字数（空白を除く）",
+      "countWords": "単語数",
+      "countLines": "行数",
+      "actionHint": "処理を 1 つ選ぶと、入力に応じて結果が更新されます。「カウント」は文字数・単語数・行数を表示します。"
     }
   }
 }

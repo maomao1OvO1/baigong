@@ -1,0 +1,93 @@
+{
+  "_说明": "时间戳转换 —— 三语文案。",
+  "en": {
+    "title": "Unix Timestamp Converter — Seconds, Milliseconds, UTC & Local | ToolPocket",
+    "desc": "Convert Unix timestamps to readable dates (and back), showing local time, UTC, ISO 8601 and weekday. Handles both 10-digit and 13-digit timestamps.",
+    "h1": "Unix timestamp converter",
+    "lead": "Paste a timestamp or a date and see both <b>local time and UTC</b> side by side — plus ISO 8601. Auto-detects seconds vs milliseconds, which is the part people usually get wrong.",
+    "faq": [
+      [
+        "Seconds or milliseconds?",
+        "Both. 10 digits is treated as seconds, 13 as milliseconds — that's the convention in virtually every API."
+      ],
+      [
+        "Why do I see two times?",
+        "Because servers store UTC while you think in local time. Showing both is how you spot an off-by-hours bug in one glance."
+      ],
+      [
+        "What date formats can I type?",
+        "2026-10-11 12:30:45, 2026/10/11, 2026-10-11T12:30 and similar — slashes are accepted and converted."
+      ]
+    ],
+    "ui": {
+      "mode": "Direction",
+      "toDate": "Timestamp → Date",
+      "toSec": "Date → Timestamp",
+      "inputPh": "e.g. 1791734016  or  2026-10-11 12:30:45",
+      "outputPh": "Result appears here",
+      "localTime": "Local",
+      "now": "Use current time",
+      "modeHint": "Either direction. Seconds (10 digits) and milliseconds (13 digits) are auto-detected."
+    }
+  },
+  "zh": {
+    "title": "Unix 时间戳转换 — 秒/毫秒、UTC 与本地时间 | ToolPocket",
+    "desc": "时间戳与日期互转，同时给出本地时间、UTC、ISO 8601 和星期。自动识别 10 位（秒）与 13 位（毫秒）。",
+    "h1": "Unix 时间戳转换",
+    "lead": "粘一个时间戳或日期，<b>本地时间和 UTC 并排显示</b>，外加 ISO 8601。秒/毫秒自动识别 —— 这正是最容易搞错的地方。",
+    "faq": [
+      [
+        "是秒还是毫秒？",
+        "两种都认。10 位当秒、13 位当毫秒 —— 几乎所有接口都是这个约定。"
+      ],
+      [
+        "为什么显示两个时间？",
+        "因为服务端存的是 UTC，而你按本地时间思考。并排显示，一眼就能看出差了几个小时的 bug。"
+      ],
+      [
+        "日期可以怎么输？",
+        "2026-10-11 12:30:45、2026/10/11、2026-10-11T12:30 这类写法都行 —— 斜杠会自动转换。"
+      ]
+    ],
+    "ui": {
+      "mode": "方向",
+      "toDate": "时间戳 → 日期",
+      "toSec": "日期 → 时间戳",
+      "inputPh": "例如 1791734016  或  2026-10-11 12:30:45",
+      "outputPh": "结果显示在这里",
+      "localTime": "本地",
+      "now": "用当前时间",
+      "modeHint": "两个方向都行。10 位当秒、13 位当毫秒，自动识别。"
+    }
+  },
+  "ja": {
+    "title": "Unix タイムスタンプ変換 — 秒・ミリ秒、UTC とローカル | ToolPocket",
+    "desc": "Unix タイムスタンプと日時を相互変換し、ローカル時刻・UTC・ISO 8601・曜日をまとめて表示。10 桁（秒）と 13 桁（ミリ秒）を自動判別します。",
+    "h1": "Unix タイムスタンプ変換",
+    "lead": "タイムスタンプか日時を貼ると、<b>ローカル時刻と UTC が並んで</b>表示され、ISO 8601 も出ます。秒とミリ秒は自動判別 —— ここが一番間違えやすい部分です。",
+    "faq": [
+      [
+        "秒ですか、ミリ秒ですか？",
+        "どちらも対応します。10 桁は秒、13 桁はミリ秒として扱います。ほぼすべての API がこの慣習です。"
+      ],
+      [
+        "なぜ時刻が 2 つ表示されるのですか？",
+        "サーバーは UTC で保存し、人はローカル時刻で考えるからです。並べて表示すれば、数時間ずれるバグが一目で分かります。"
+      ],
+      [
+        "日付はどんな形式で入力できますか？",
+        "2026-10-11 12:30:45、2026/10/11、2026-10-11T12:30 など。スラッシュも自動変換します。"
+      ]
+    ],
+    "ui": {
+      "mode": "方向",
+      "toDate": "タイムスタンプ → 日時",
+      "toSec": "日時 → タイムスタンプ",
+      "inputPh": "例：1791734016　または　2026-10-11 12:30:45",
+      "outputPh": "結果がここに表示されます",
+      "localTime": "ローカル",
+      "now": "現在時刻を使う",
+      "modeHint": "どちらの方向にも対応。10 桁は秒、13 桁はミリ秒として自動判別します。"
+    }
+  }
+}

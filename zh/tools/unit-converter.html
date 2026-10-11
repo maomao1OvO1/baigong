@@ -34,7 +34,9 @@
 
   <div class="opts">
 <label class="row"><span class="lbl">类别</span><select id="category"><option value="length">长度</option><option value="weight">重量</option><option value="data">数据大小</option><option value="temp">温度</option></select></label>
+    <span class="hint">长度、重量、数据大小或温度。选好后会一次列出该类别下所有单位。</span>
 <label class="row"><span class="lbl">数值</span><input type="number" id="value"  placeholder="输入一个数字"> <span class="badge" id="unitLabel"></span></label>
+    <span class="hint">输入数字 —— 输入框旁边会显示它按哪个单位算（m / kg / MB / °C）。</span>
   </div>
 <label class="row lbl" for="output">结果</label>
   <textarea id="output" readonly placeholder="所有单位的结果显示在这里"></textarea>
@@ -55,7 +57,7 @@
 
 <footer><p>ToolPocket · 全部在你的设备上完成，不上传任何文件。</p></footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script>window.T = {"langName":"中文","footer":"ToolPocket · 全部在你的设备上完成，不上传任何文件。","nav":"全部工具","backToTools":"← 全部工具","copy":"复制结果","swap":"互换","clear":"清空","download":"下载","copied":"已复制到剪贴板","copyFail":"复制失败 —— 请手动选中复制","inputLabel":"输入","outputLabel":"结果","privacyNote":"完全在你的浏览器里运行，不上传、不保存。","category":"类别","catLength":"长度","catWeight":"重量","catData":"数据大小","catTemp":"温度","value":"数值","valuePh":"输入一个数字","outputPh":"所有单位的结果显示在这里","fromCelsius":"输入值按摄氏度计算","unitLabel":"单位"};</script>
+<script>window.T = {"langName":"中文","footer":"ToolPocket · 全部在你的设备上完成，不上传任何文件。","nav":"全部工具","backToTools":"← 全部工具","copy":"复制结果","swap":"互换","clear":"清空","download":"下载","copied":"已复制到剪贴板","copyFail":"复制失败 —— 请手动选中复制","inputLabel":"输入","outputLabel":"结果","privacyNote":"完全在你的浏览器里运行，不上传、不保存。","category":"类别","catLength":"长度","catWeight":"重量","catData":"数据大小","catTemp":"温度","value":"数值","valuePh":"输入一个数字","outputPh":"所有单位的结果显示在这里","fromCelsius":"输入值按摄氏度计算","unitLabel":"单位","categoryHint":"长度、重量、数据大小或温度。选好后会一次列出该类别下所有单位。","valueHint":"输入数字 —— 输入框旁边会显示它按哪个单位算（m / kg / MB / °C）。"};</script>
 <script src="/assets/tools/_shared.js" defer></script>
 <script src="/assets/tools/unit-converter.js" defer></script>
 </body>

@@ -6,19 +6,39 @@
     "h1": "Compress images without uploading them",
     "lead": "Drop your photos in and they get smaller <b>right here</b>. No account, no upload, no “upgrade to remove the watermark”, no daily cap. Handy when a form says your file is too big.",
     "faq": [
-      ["How much smaller will they get?", "Typically 50–85% off a JPEG photo at 72% quality. It depends on the original — screenshots and PNGs sometimes shrink much more."],
-      ["Why does the quality slider do nothing with PNG?", "PNG is lossless, so there is no quality to trade away. For photos, pick JPEG or WebP."],
-      ["Is there a batch limit?", "No. It's your processor doing the work, so expect about a second per image."]
+      [
+        "How much smaller will they get?",
+        "Typically 50–85% off a JPEG photo at 72% quality. It depends on the original — screenshots and PNGs sometimes shrink much more."
+      ],
+      [
+        "Why does the quality slider do nothing with PNG?",
+        "PNG is lossless, so there is no quality to trade away. For photos, pick JPEG or WebP."
+      ],
+      [
+        "Is there a batch limit?",
+        "No. It's your processor doing the work, so expect about a second per image."
+      ]
     ],
     "ui": {
       "drop": "Click to pick images — or drop them here",
       "dropNote": "JPG · PNG · WebP · as many as you like",
-      "quality": "Quality", "maxw": "Max width (px)", "maxwNote": "0 keeps the original size",
+      "quality": "Quality",
+      "maxw": "Max width (px)",
+      "maxwNote": "0 keeps the original size",
       "format": "Save as",
-      "fmtJpeg": "JPEG — best for photos", "fmtWebp": "WebP — smallest files", "fmtPng": "PNG — lossless",
-      "run": "Compress and download all", "clear": "Clear",
-      "selected": "{n} file(s) ready.", "working": "Working…", "download": "Download",
-      "saved": "{p}% smaller", "bigger": "{p}% bigger", "failed": "Couldn't read this file in the browser."
+      "fmtJpeg": "JPEG — best for photos",
+      "fmtWebp": "WebP — smallest files",
+      "fmtPng": "PNG — lossless",
+      "run": "Compress and download all",
+      "clear": "Clear",
+      "selected": "{n} file(s) ready.",
+      "working": "Working…",
+      "download": "Download",
+      "saved": "{p}% smaller",
+      "bigger": "{p}% bigger",
+      "failed": "Couldn't read this file in the browser.",
+      "qualityHint": "Lower = smaller file, rougher image. 70–80% is usually indistinguishable for photos.",
+      "formatHint": "JPEG is the most compatible, WebP is the smallest, PNG keeps transparency."
     }
   },
   "zh": {
@@ -27,19 +47,39 @@
     "h1": "压缩图片，不用把它传给别人",
     "lead": "照片拖进来，就在<b>这儿</b>变小。不用账号、不用上传、没有「升级会员去水印」、也没有每天几张的限制。碰上「文件太大传不上去」的时候正好用。",
     "faq": [
-      ["能压小多少？", "JPEG 照片在 72% 质量下通常小 50~85%，具体看原图 —— 截图和 PNG 有时能小得多。"],
-      ["为什么选 PNG 时质量滑块没反应？", "PNG 是无损格式，没有「画质」可以牺牲。要压照片就选 JPEG 或 WebP。"],
-      ["一次能压多少张？", "不限。活是你自己的处理器在干，一张大概一两秒。"]
+      [
+        "能压小多少？",
+        "JPEG 照片在 72% 质量下通常小 50~85%，具体看原图 —— 截图和 PNG 有时能小得多。"
+      ],
+      [
+        "为什么选 PNG 时质量滑块没反应？",
+        "PNG 是无损格式，没有「画质」可以牺牲。要压照片就选 JPEG 或 WebP。"
+      ],
+      [
+        "一次能压多少张？",
+        "不限。活是你自己的处理器在干，一张大概一两秒。"
+      ]
     ],
     "ui": {
       "drop": "点这里选图片，或者直接拖进来",
       "dropNote": "JPG · PNG · WebP · 想选多少张都行",
-      "quality": "压缩质量", "maxw": "最大宽度（像素）", "maxwNote": "填 0 就保持原尺寸",
+      "quality": "压缩质量",
+      "maxw": "最大宽度（像素）",
+      "maxwNote": "填 0 就保持原尺寸",
       "format": "保存为",
-      "fmtJpeg": "JPEG —— 照片首选", "fmtWebp": "WebP —— 体积最小", "fmtPng": "PNG —— 无损",
-      "run": "压缩并全部下载", "clear": "清空",
-      "selected": "已就绪 {n} 个文件。", "working": "处理中…", "download": "下载",
-      "saved": "小了 {p}%", "bigger": "大了 {p}%", "failed": "这个文件浏览器读不了。"
+      "fmtJpeg": "JPEG —— 照片首选",
+      "fmtWebp": "WebP —— 体积最小",
+      "fmtPng": "PNG —— 无损",
+      "run": "压缩并全部下载",
+      "clear": "清空",
+      "selected": "已就绪 {n} 个文件。",
+      "working": "处理中…",
+      "download": "下载",
+      "saved": "小了 {p}%",
+      "bigger": "大了 {p}%",
+      "failed": "这个文件浏览器读不了。",
+      "qualityHint": "越低体积越小、画质越差。照片一般 70~80% 就看不出差别。",
+      "formatHint": "JPEG 兼容性最好，WebP 体积最小，PNG 保留透明背景。"
     }
   },
   "ja": {
@@ -48,19 +88,39 @@
     "h1": "画像を、どこにも送らずに軽くする",
     "lead": "写真をドロップすると、<b>その場で</b>軽くなります。アカウントも、アップロードも、「透かしを消すにはアップグレード」も、1 日の枚数制限もありません。",
     "faq": [
-      ["どのくらい軽くなりますか？", "JPEG 写真を画質 72% で処理した場合、おおむね 50〜85% の削減です。スクリーンショットや PNG のほうが大きく減ることもあります。"],
-      ["PNG だと画質スライダーが効かないのはなぜ？", "PNG は可逆圧縮で、犠牲にできる「画質」が存在しないためです。写真は JPEG か WebP を選んでください。"],
-      ["まとめて何枚まで処理できますか？", "上限はありません。処理はお使いの端末が行うので、1 枚あたり 1〜2 秒が目安です。"]
+      [
+        "どのくらい軽くなりますか？",
+        "JPEG 写真を画質 72% で処理した場合、おおむね 50〜85% の削減です。スクリーンショットや PNG のほうが大きく減ることもあります。"
+      ],
+      [
+        "PNG だと画質スライダーが効かないのはなぜ？",
+        "PNG は可逆圧縮で、犠牲にできる「画質」が存在しないためです。写真は JPEG か WebP を選んでください。"
+      ],
+      [
+        "まとめて何枚まで処理できますか？",
+        "上限はありません。処理はお使いの端末が行うので、1 枚あたり 1〜2 秒が目安です。"
+      ]
     ],
     "ui": {
       "drop": "クリックして画像を選ぶ／ここにドラッグ＆ドロップ",
       "dropNote": "JPG・PNG・WebP／何枚でも",
-      "quality": "画質", "maxw": "最大幅（px）", "maxwNote": "0 で元のサイズのまま",
+      "quality": "画質",
+      "maxw": "最大幅（px）",
+      "maxwNote": "0 で元のサイズのまま",
       "format": "保存形式",
-      "fmtJpeg": "JPEG — 写真向き", "fmtWebp": "WebP — 最も軽い", "fmtPng": "PNG — 可逆圧縮",
-      "run": "圧縮してまとめてダウンロード", "clear": "クリア",
-      "selected": "{n} 件のファイルを読み込み済み。", "working": "処理中…", "download": "ダウンロード",
-      "saved": "{p}% 軽くなりました", "bigger": "{p}% 大きくなりました", "failed": "このファイルはブラウザで読み込めませんでした。"
+      "fmtJpeg": "JPEG — 写真向き",
+      "fmtWebp": "WebP — 最も軽い",
+      "fmtPng": "PNG — 可逆圧縮",
+      "run": "圧縮してまとめてダウンロード",
+      "clear": "クリア",
+      "selected": "{n} 件のファイルを読み込み済み。",
+      "working": "処理中…",
+      "download": "ダウンロード",
+      "saved": "{p}% 軽くなりました",
+      "bigger": "{p}% 大きくなりました",
+      "failed": "このファイルはブラウザで読み込めませんでした。",
+      "qualityHint": "低いほど軽く、画質は粗くなります。写真なら 70〜80% で違いはほとんど分かりません。",
+      "formatHint": "JPEG は互換性が最も高く、WebP は最も軽く、PNG は透過を保持します。"
     }
   }
 }
