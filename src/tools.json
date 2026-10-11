@@ -18,68 +18,262 @@
   },
   "tools": [
     {
-      "id": "compress-image", "icon": "🗜️", "kind": "image",
-      "script": "compress-image.js", "i18n": "compress-image",
+      "id": "compress-image",
+      "icon": "🗜️",
+      "kind": "image",
+      "script": "compress-image.js",
+      "i18n": "compress-image",
       "options": [
-        { "type": "range", "id": "quality", "label": "quality", "min": 30, "max": 95, "value": 72, "suffix": "%", "showValue": "qualityVal" },
-        { "type": "number", "id": "maxw", "label": "maxw", "value": 1920, "min": 0, "step": 10, "note": "maxwNote" },
-        { "type": "select", "id": "format", "label": "format", "choices": [["image/jpeg", "fmtJpeg"], ["image/webp", "fmtWebp"], ["image/png", "fmtPng"]] }
+        {
+          "type": "range",
+          "id": "quality",
+          "label": "quality",
+          "min": 30,
+          "max": 95,
+          "value": 72,
+          "suffix": "%",
+          "showValue": "qualityVal"
+        },
+        {
+          "type": "number",
+          "id": "maxw",
+          "label": "maxw",
+          "value": 1920,
+          "min": 0,
+          "step": 10,
+          "note": "maxwNote"
+        },
+        {
+          "type": "select",
+          "id": "format",
+          "label": "format",
+          "choices": [
+            [
+              "image/jpeg",
+              "fmtJpeg"
+            ],
+            [
+              "image/webp",
+              "fmtWebp"
+            ],
+            [
+              "image/png",
+              "fmtPng"
+            ]
+          ]
+        }
       ]
     },
     {
-      "id": "convert-image", "icon": "🔄", "kind": "image",
-      "script": "convert-image.js", "i18n": "convert-image",
+      "id": "convert-image",
+      "icon": "🔄",
+      "kind": "image",
+      "script": "convert-image.js",
+      "i18n": "convert-image",
       "options": [
-        { "type": "select", "id": "format", "label": "format", "choices": [["image/jpeg", "fmtJpeg"], ["image/webp", "fmtWebp"], ["image/png", "fmtPng"]] },
-        { "type": "range", "id": "quality", "label": "quality", "min": 60, "max": 100, "value": 92, "suffix": "%", "showValue": "qualityVal" }
+        {
+          "type": "select",
+          "id": "format",
+          "label": "format",
+          "choices": [
+            [
+              "image/jpeg",
+              "fmtJpeg"
+            ],
+            [
+              "image/webp",
+              "fmtWebp"
+            ],
+            [
+              "image/png",
+              "fmtPng"
+            ]
+          ]
+        },
+        {
+          "type": "range",
+          "id": "quality",
+          "label": "quality",
+          "min": 60,
+          "max": 100,
+          "value": 92,
+          "suffix": "%",
+          "showValue": "qualityVal"
+        }
       ]
     },
     {
-      "id": "base64", "icon": "🔠", "kind": "text",
-      "script": "base64.js", "i18n": "base64",
-      "buttons": ["copy", "swap", "clear"],
+      "id": "base64",
+      "icon": "🔠",
+      "kind": "text",
+      "script": "base64.js",
+      "i18n": "base64",
+      "buttons": [
+        "copy",
+        "swap",
+        "clear"
+      ],
       "options": [
-        { "type": "select", "id": "mode", "label": "mode", "choices": [["encode", "encode"], ["decode", "decode"]] }
+        {
+          "type": "select",
+          "id": "mode",
+          "label": "mode",
+          "choices": [
+            [
+              "encode",
+              "encode"
+            ],
+            [
+              "decode",
+              "decode"
+            ]
+          ]
+        }
       ]
     },
     {
-      "id": "json-format", "icon": "🧩", "kind": "text",
-      "script": "json-format.js", "i18n": "json-format",
-      "buttons": ["copy", "clear"],
+      "id": "json-format",
+      "icon": "🧩",
+      "kind": "text",
+      "script": "json-format.js",
+      "i18n": "json-format",
+      "buttons": [
+        "copy",
+        "clear"
+      ],
       "options": [
-        { "type": "select", "id": "mode", "label": "mode", "choices": [["pretty", "pretty"], ["minify", "minify"]] }
+        {
+          "type": "select",
+          "id": "mode",
+          "label": "mode",
+          "choices": [
+            [
+              "pretty",
+              "pretty"
+            ],
+            [
+              "minify",
+              "minify"
+            ]
+          ]
+        }
       ]
     },
     {
-      "id": "color-converter", "icon": "🎨", "kind": "text",
-      "script": "color-converter.js", "i18n": "color-converter",
-      "buttons": ["copy", "clear"],
-      "extras": ["swatch"],
+      "id": "color-converter",
+      "icon": "🎨",
+      "kind": "text",
+      "script": "color-converter.js",
+      "i18n": "color-converter",
+      "buttons": [
+        "copy",
+        "clear"
+      ],
+      "extras": [
+        "swatch"
+      ],
       "options": [
-        { "type": "color", "id": "picker" }
+        {
+          "type": "color",
+          "id": "picker"
+        }
       ]
     },
     {
-      "id": "text-tools", "icon": "✍️", "kind": "text",
-      "script": "text-tools.js", "i18n": "text-tools",
-      "buttons": ["copy", "clear"],
+      "id": "text-tools",
+      "icon": "✍️",
+      "kind": "text",
+      "script": "text-tools.js",
+      "i18n": "text-tools",
+      "buttons": [
+        "copy",
+        "clear"
+      ],
       "options": [
-        { "type": "select", "id": "action", "label": "action", "choices": [
-          ["upper", "upper"], ["lower", "lower"], ["title", "title"], ["reverse", "reverse"],
-          ["trim", "trim"], ["dedup", "dedup"], ["sort", "sort"], ["count", "count"]
-        ] }
+        {
+          "type": "select",
+          "id": "action",
+          "label": "action",
+          "choices": [
+            [
+              "upper",
+              "upper"
+            ],
+            [
+              "lower",
+              "lower"
+            ],
+            [
+              "title",
+              "title"
+            ],
+            [
+              "reverse",
+              "reverse"
+            ],
+            [
+              "trim",
+              "trim"
+            ],
+            [
+              "dedup",
+              "dedup"
+            ],
+            [
+              "sort",
+              "sort"
+            ],
+            [
+              "count",
+              "count"
+            ]
+          ]
+        }
       ]
     },
     {
-      "id": "unit-converter", "icon": "📏", "kind": "text", "noInput": true,
-      "script": "unit-converter.js", "i18n": "unit-converter",
-      "buttons": ["copy", "clear"],
+      "id": "unit-converter",
+      "icon": "📏",
+      "kind": "text",
+      "script": "unit-converter.js",
+      "i18n": "unit-converter",
+      "buttons": [
+        "copy",
+        "clear"
+      ],
       "options": [
-        { "type": "select", "id": "category", "label": "category", "choices": [
-          ["length", "catLength"], ["weight", "catWeight"], ["data", "catData"], ["temp", "catTemp"]
-        ] },
-        { "type": "number", "id": "value", "label": "value", "placeholder": "valuePh", "unitLabel": "unitLabel" }
-      ]
+        {
+          "type": "select",
+          "id": "category",
+          "label": "category",
+          "choices": [
+            [
+              "length",
+              "catLength"
+            ],
+            [
+              "weight",
+              "catWeight"
+            ],
+            [
+              "data",
+              "catData"
+            ],
+            [
+              "temp",
+              "catTemp"
+            ]
+          ]
+        },
+        {
+          "type": "number",
+          "id": "value",
+          "label": "value",
+          "placeholder": "valuePh",
+          "unitLabel": "unitLabel"
+        }
+      ],
+      "hideInput": true
     }
   ]
 }

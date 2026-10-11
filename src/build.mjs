@@ -117,7 +117,16 @@ function toolPage(lang, tool) {
     + `\n<script type="application/ld+json">${JSON.stringify(faqLd)}</script>`;
 
   // 传给人看的那部分界面文案（脚本用到的键，去掉 title/desc 等）
-  const scriptStrings = Object.assign({}, ui);
+  // ⚠️ 两件事都踩过坑：
+  //   ① 必须「全局 UI + 该工具的 ui」合并 —— 像 copied / copyFail 是全局共用的提示语；
+  //   ② 全局 UI 的每一项形如 {en, zh, ja}，**必须按当前语言拍平**，否则注入的是对象，
+  //      界面上会显示 "[object Object]"。
+  const flatGlobal = Object.fromEntries(
+    Object.entries(UI)
+      .filter(([, v]) => v && typeof v === "object" && !Array.isArray(v))
+      .map(([k, v]) => [k, v[lang.code]])
+  );
+  const scriptStrings = Object.assign({}, flatGlobal, ui);
   delete scriptStrings.title; delete scriptStrings.desc; delete scriptStrings.h1; delete scriptStrings.lead;
 
   let body;
@@ -143,13 +152,12 @@ ${renderOptions(lang, tool, t)}
       b === "copy" ? `<button id="copy">${rich(UI.copy[lang.code])}</button>`
         : `<button class="ghost" id="${b}">${rich(UI[b][lang.code])}</button>`).join("\n    ");
     const swatch = (tool.extras || []).indexOf("swatch") >= 0 ? `\n  <div class="swatch" id="swatch" aria-hidden="true"></div>` : "";
-    const inputArea = tool.noInput
+    // hideInput：极少数工具不需要大输入框（如单位换算只填一个数字），但**输出框永远要有**
+    const inputArea = tool.hideInput
       ? ""
       : `<label class="row lbl" for="input">${rich(UI.inputLabel[lang.code])}</label>
   <textarea id="input" class="tall" placeholder="${esc(ui.inputPh || "")}"></textarea>`;
-    const outputArea = tool.noInput
-      ? ""
-      : `<label class="row lbl" for="output">${rich(UI.outputLabel[lang.code])}</label>
+    const outputArea = `<label class="row lbl" for="output">${rich(UI.outputLabel[lang.code])}</label>
   <textarea id="output" readonly placeholder="${esc(ui.outputPh || "")}"></textarea>`;
     body = `<div class="panel">
 ${inputArea}

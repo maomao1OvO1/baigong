@@ -1,7 +1,12 @@
 /* ============================================================================
-   文件：unit-converter.js —— 单位换算（长度 / 重量 / 温度）
-   设计取舍：不做「一个页面一个单位对」那种站群（那是 SEO 垃圾做法）。
-   这里用一张换算表 + 一次输入算出全部同类别单位 —— 用户要的是答案，不是点击。
+   文件：unit-converter.js —— 单位换算（长度 / 重量 / 数据大小 / 温度）
+   设计取舍：不做「一个页面一个单位对」那种站群（SEO 垃圾做法）。
+             这里一张换算表 + 一次输入，同类别单位全部算出来。
+   ⚠️ 修过的坑（2026-10-11，毛毛反馈「单位换算用不了」）：
+     1) 原算法写死 `units["m"]` 当基准 —— 但重量表里没有 m、数据表里也没有 m，
+        结果 NaN，重量与数据两类直接废掉。改成用每张表自己的 `base` 字段。
+     2) 页面曾经没有 #output 元素（生成器把输入输出一起省了），脚本往空元素写值直接报错。
+        生成器已改为「输出区永远生成」。
    ============================================================================ */
 (function () {
   "use strict";
@@ -9,20 +14,11 @@
   var T = window.T || {};
   var category = $("category"), value = $("value"), output = $("output");
 
-  /* 换算表：一律「1 单位 = 多少基准单位」。温度不是线性比例，单独处理。 */
+  /* units：1 个该单位等于多少「基准单位」；base 同时表示「输入框里填的是哪个单位」 */
   var tables = {
-    length: {
-      label: T.catLength, base: "m",
-      units: { mm: 0.001, cm: 0.01, m: 1, km: 1000, in: 0.0254, ft: 0.3048, yd: 0.9144, mi: 1609.344 }
-    },
-    weight: {
-      label: T.catWeight, base: "kg",
-      units: { mg: 1e-6, g: 0.001, kg: 1, t: 1000, oz: 0.028349523125, lb: 0.45359237 }
-    },
-    data: {
-      label: T.catData, base: "MB",
-      units: { B: 1e-6, KB: 0.001, MB: 1, GB: 1000, TB: 1e6 }
-    }
+    length: { base: "m",  units: { mm: 0.001, cm: 0.01, m: 1, km: 1000, in: 0.0254, ft: 0.3048, yd: 0.9144, mi: 1609.344 } },
+    weight: { base: "kg", units: { mg: 1e-6, g: 0.001, kg: 1, t: 1000, oz: 0.028349523125, lb: 0.45359237 } },
+    data:   { base: "MB", units: { B: 1e-6, KB: 0.001, MB: 1, GB: 1000, TB: 1e6 } }
   };
 
   function format(n) {
@@ -33,47 +29,39 @@
     return String(parseFloat(n.toPrecision(8)));
   }
 
-  function convertTemperature(v, from, to) {
-    var c = from === "C" ? v : (from === "F" ? (v - 32) * 5 / 9 : v - 273.15);
-    return to === "C" ? c : (to === "F" ? c * 9 / 5 + 32 : c + 273.15);
+  function toAll(v, cat) {
+    var table = tables[cat];
+    if (!table) return [];
+    var baseValue = v * table.units[table.base];   // 先换成基准单位，再换成其它单位
+    return Object.keys(table.units).map(function (u) {
+      return u + "  " + format(baseValue / table.units[u]);
+    });
+  }
+
+  function fromCelsius(v) {
+    return ["C", "F", "K"].map(function (u) {
+      var r = u === "C" ? v : (u === "F" ? v * 9 / 5 + 32 : v + 273.15);
+      return u + "  " + format(r);
+    });
   }
 
   function run() {
+    var cat = category.value;
     var v = parseFloat(value.value);
-    var cat = category.value;
-    var out = [];
-    if (cat === "temp") {
-      if (!isFinite(v)) { output.value = ""; return; }
-      out = ["C", "F", "K"].map(function (u) {
-        return u + "  " + format(convertTemperature(v, "C", u));
-      });
-      output.value = (T.fromCelsius || "Input is °C") + "\n" + out.join("\n");
-      return;
-    }
-    var table = tables[cat];
+    // 输入单位提示（长度 m / 重量 kg / 数据 MB / 温度 °C）
+    var unitBadge = $("unitLabel");
+    if (unitBadge) unitBadge.textContent = cat === "temp" ? "°C" : tables[cat].base;
     if (!isFinite(v)) { output.value = ""; return; }
-    var 基准 = v * table.units["m"] * (cat === "length" ? 1 : 1);   // 输入按表格里的第一个单位算（m/kg/MB）
-    Object.keys(table.units).forEach(function (u) {
-      out.push(u + "  " + format(基准 / table.units[u]));
-    });
-    output.value = out.join("\n");
+    output.value = (cat === "temp" ? fromCelsius(v) : toAll(v, cat)).join("\n");
   }
 
-  /** 温度类别时把提示换掉（其它类别首行写「输入按 X 计」） */
-  function initCategory() {
-    var cat = category.value;
-    var first = cat === "temp" ? "C" : (cat === "weight" ? "kg" : (cat === "data" ? "MB" : "m"));
-    $("unitLabel").textContent = first;
-    run();
-  }
-
-  category.addEventListener("change", initCategory);
-  value.addEventListener("input", TP.debounce(run, 150));
+  category.addEventListener("change", run);
+  value.addEventListener("input", TP.debounce(run, 120));
   $("copy").addEventListener("click", function () {
     if (!output.value) return;
     TP.copy(output.value).then(function () { TP.toast(T.copied); }, function () { TP.toast(T.copyFail); });
   });
   $("clear").addEventListener("click", function () { value.value = ""; output.value = ""; });
 
-  initCategory();
+  run();
 })();

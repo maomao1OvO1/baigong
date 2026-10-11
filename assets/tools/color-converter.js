@@ -72,6 +72,9 @@
   }
 
   input.addEventListener("input", TP.debounce(run, 120));
+  // 取色器：选了颜色就回填到输入框（否则用户点它没反应，会以为坏了）
+  var picker = $("picker");
+  if (picker) picker.addEventListener("input", function () { input.value = picker.value; run(); });
   $("copy").addEventListener("click", function () {
     if (!output.value) return;
     TP.copy(output.value).then(function () { TP.toast(T.copied); }, function () { TP.toast(T.copyFail); });

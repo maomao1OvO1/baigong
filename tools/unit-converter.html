@@ -36,7 +36,8 @@
 <label class="row"><span class="lbl">Category</span><select id="category"><option value="length">Length</option><option value="weight">Weight</option><option value="data">Data size</option><option value="temp">Temperature</option></select></label>
 <label class="row"><span class="lbl">Value</span><input type="number" id="value"  placeholder="Enter a number"> <span class="badge" id="unitLabel"></span></label>
   </div>
-
+<label class="row lbl" for="output">Result</label>
+  <textarea id="output" readonly placeholder="All units appear here"></textarea>
   <p class="status" id="status"></p>
   <div class="btnrow">
     <button id="copy">Copy result</button>
@@ -54,7 +55,7 @@
 
 <footer><p>ToolPocket · Everything runs on your device — nothing is uploaded.</p></footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script>window.T = {"category":"Category","catLength":"Length","catWeight":"Weight","catData":"Data size","catTemp":"Temperature","value":"Value","valuePh":"Enter a number","outputPh":"All units appear here","fromCelsius":"Input is treated as °C","unitLabel":"Unit"};</script>
+<script>window.T = {"langName":"English","footer":"ToolPocket · Everything runs on your device — nothing is uploaded.","nav":"All tools","backToTools":"← All tools","copy":"Copy result","swap":"Swap","clear":"Clear","download":"Download","copied":"Copied to clipboard","copyFail":"Copy failed — select the text manually","inputLabel":"Input","outputLabel":"Result","privacyNote":"Runs entirely in your browser. Nothing is uploaded or stored.","category":"Category","catLength":"Length","catWeight":"Weight","catData":"Data size","catTemp":"Temperature","value":"Value","valuePh":"Enter a number","outputPh":"All units appear here","fromCelsius":"Input is treated as °C","unitLabel":"Unit"};</script>
 <script src="/assets/tools/_shared.js" defer></script>
 <script src="/assets/tools/unit-converter.js" defer></script>
 </body>
