@@ -24,7 +24,7 @@
 </head>
 <body>
 <div class="mobile-tip" id="mobileTip" hidden>
-  <span>📱 手机能用，但<b>桌面版 Chrome 更顺</b> —— 大图压缩、批量处理会快很多。</span>
+  <span>📱 手机上能用，但<b>桌面版 Chrome 更顺</b> —— 大图压缩、批量处理快很多。</span>
   <button type="button" id="tipClose" class="tip-close">知道了</button>
 </div>
 <header class="top">
@@ -35,9 +35,9 @@
 <main>
   <p class="crumb"><a href="/zh/index.html">← 全部工具</a></p>
   <h1>URL 编码 / 解码</h1>
-  <p class="lead">经典坑：用错函数把整条链接编码了，结果链接直接失效。这里你选<b>要编码什么</b>，工具自动用对的那个函数 —— 不用猜。</p>
+  <p class="lead">URL 和查询串的百分号编解码。特意把「整个网址编码」和「只编码一个参数值」分开 —— 回调地址接不上，九成是这两种混着用了。</p>
 
-  <p class="badge-line"><span class="pill">完全在你的浏览器里运行，不上传、不保存。</span></p>
+  <p class="badge-line"><span class="pill">全程在你浏览器里跑完 —— 不上传、不保存、不留底。</span></p>
 
 <div class="panel">
 <label class="row lbl" for="input">输入</label>
@@ -77,9 +77,9 @@
 
 </main>
 
-<footer><p>ToolPocket · 全部在你的设备上完成，不上传任何文件。</p></footer>
+<footer><p>ToolPocket · 文件不出你的设备 —— 不上传、不注册、不追踪。</p></footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script>window.T = {"langName":"中文","footer":"ToolPocket · 全部在你的设备上完成，不上传任何文件。","nav":"全部工具","backToTools":"← 全部工具","copy":"复制结果","swap":"互换","clear":"清空","download":"下载","copied":"已复制到剪贴板","copyFail":"复制失败 —— 请手动选中复制","inputLabel":"输入","outputLabel":"结果","privacyNote":"完全在你的浏览器里运行，不上传、不保存。","searchPlaceholder":"搜索工具 —— 例如：压缩、json、密码…","noResults":"没找到匹配的工具，换个词试试？","mobileTip":"📱 手机能用，但<b>桌面版 Chrome 更顺</b> —— 大图压缩、批量处理会快很多。","mobileTipClose":"知道了","desktopHeading":"桌面端更好用","installApp":"装成桌面应用","installHint":"用桌面版 Chrome / Edge 打开本页，点地址栏右侧的「安装」图标 —— 它会变成一个独立窗口的桌面应用，断网也能用。不用下载安装包、不用账号。","installed":"已安装","offlineNote":"装好之后断网也能用 —— 这些工具本来就是在你机器上跑的，不需要服务器。","mode":"方向","encode":"编码","decode":"解码","scope":"你要编码的是？","component":"单个值（可安全放进参数）—— 连 / : ? & = 也编码","whole":"整条网址（保留 / : ? & = 结构）","badUri":"这不是合法的百分号编码","inputPh":"粘贴网址或一个值…","outputPh":"结果显示在这里","modeHint":"编码把文字变成 %XX 形式，解码变回来。","scopeHint":"这里最常出错：把整条网址当成「单个参数值」来编码，链接就会失效。"};</script>
+<script>window.T = {"langName":"中文","footer":"ToolPocket · 文件不出你的设备 —— 不上传、不注册、不追踪。","nav":"全部工具","backToTools":"← 全部工具","copy":"复制结果","swap":"互换","clear":"清空","download":"下载","copied":"已复制到剪贴板","copyFail":"浏览器拦住了自动复制 —— 手动选中再复制即可","inputLabel":"输入","outputLabel":"结果","privacyNote":"全程在你浏览器里跑完 —— 不上传、不保存、不留底。","searchPlaceholder":"搜索工具 —— 试试「压缩」「json」「密码」…","noResults":"没找到匹配的工具。换个说法试试，比如「压缩」「哈希」「json」。","mobileTip":"📱 手机上能用，但<b>桌面版 Chrome 更顺</b> —— 大图压缩、批量处理快很多。","mobileTipClose":"知道了","desktopHeading":"桌面端更好用","installApp":"装成桌面应用","installHint":"用桌面版 Chrome / Edge 打开本页，点地址栏右侧的「安装」图标 —— 它会变成一个独立窗口，断网也能继续用。不用下载安装包，也不用登录。","installed":"已安装","offlineNote":"装好之后，断网也能照常用 —— 本来这些活就是在你机器上干的，跟网络没关系。","mode":"方向","encode":"编码","decode":"解码","scope":"你要编码的是？","component":"单个值（可安全放进参数）—— 连 / : ? & = 也编码","whole":"整条网址（保留 / : ? & = 结构）","badUri":"这不是合法的百分号编码","inputPh":"粘贴网址或一个值…","outputPh":"结果显示在这里","modeHint":"编码把文字变成 %XX 形式，解码变回来。","scopeHint":"这里最常出错：把整条网址当成「单个参数值」来编码，链接就会失效。"};</script>
 <script src="/assets/tools/_shared.js" defer></script>
 <!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
 <script src="/assets/tools/url-codec.js?v=2" defer></script>

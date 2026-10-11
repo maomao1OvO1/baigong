@@ -24,8 +24,8 @@
 </head>
 <body>
 <div class="mobile-tip" id="mobileTip" hidden>
-  <span>📱 スマホでも動きますが、大きな画像やまとめての処理はデスクトップ版 Chrome が快適です。</span>
-  <button type="button" id="tipClose" class="tip-close">閉じる</button>
+  <span>📱 スマホでも使えますが、大きな画像やまとめての処理はデスクトップ版 Chrome のほうが快適です。</span>
+  <button type="button" id="tipClose" class="tip-close">了解しました</button>
 </div>
 <header class="top">
   <a class="brand" href="/ja/index.html">🧰 ToolPocket</a>
@@ -35,9 +35,9 @@
 <main>
   <p class="crumb"><a href="/ja/index.html">← ツール一覧</a></p>
   <h1>ハッシュ生成（MD5 / SHA-1 / SHA-256 / SHA-512）</h1>
-  <p class="lead">テキストを貼り付けてアルゴリズムを選ぶと、<code>hex</code> と <code>base64</code> の両方が得られます。計算はすべて端末内で完結します。</p>
+  <p class="lead">MD5・SHA-1・SHA-256・SHA-512 をまとめて計算し、hex と Base64 の両方を表示します。ブラウザが MD5 を提供しなくなったため、ここでは自前で実装しています。</p>
 
-  <p class="badge-line"><span class="pill">すべてブラウザ内で処理されます。送信も保存もしていません。</span></p>
+  <p class="badge-line"><span class="pill">すべてブラウザ内で処理。送信も保存もしていません。</span></p>
 
 <div class="panel">
 <label class="row lbl" for="input">入力</label>
@@ -75,9 +75,9 @@
 
 </main>
 
-<footer><p>ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。</p></footer>
+<footer><p>ToolPocket · ファイルは端末から出ません。送信も登録も、追跡もありません。</p></footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script>window.T = {"langName":"日本語","footer":"ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"コピーできませんでした。手動で選択してください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理されます。送信も保存もしていません。","searchPlaceholder":"ツールを検索 — 例：圧縮、json、パスワード…","noResults":"該当するツールがありません。別の言葉でお試しを。","mobileTip":"📱 スマホでも動きますが、大きな画像やまとめての処理はデスクトップ版 Chrome が快適です。","mobileTipClose":"閉じる","desktopHeading":"デスクトップ版がおすすめ","installApp":"デスクトップアプリとして追加","installHint":"デスクトップ版 Chrome / Edge で開き、アドレスバー右側のインストールアイコンをクリックしてください。独立したウィンドウのアプリになり、オフラインでも動作します。","installed":"インストール済み","offlineNote":"インストール後はネットワークなしでも動作します。もともと処理は端末内で完結しているためです。","algo":"アルゴリズム","algoHint":"MD5 と SHA-1 はチェックサム専用です。パスワードや署名には使わないでください。","upper":"16 進数を大文字にする","bytesUnit":"バイト","done":"計算に使用したアルゴリズム","noSubtle":"WebCrypto が利用できません（HTTPS で開いてください）。","fail":"計算に失敗しました。"};</script>
+<script>window.T = {"langName":"日本語","footer":"ToolPocket · ファイルは端末から出ません。送信も登録も、追跡もありません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"ブラウザがコピーを許可しませんでした。テキストを選択して手動でコピーしてください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理。送信も保存もしていません。","searchPlaceholder":"ツールを検索 — 「圧縮」「json」「パスワード」など","noResults":"該当するツールがありませんでした。「圧縮」「ハッシュ」など、別の言葉でお試しください。","mobileTip":"📱 スマホでも使えますが、大きな画像やまとめての処理はデスクトップ版 Chrome のほうが快適です。","mobileTipClose":"了解しました","desktopHeading":"デスクトップ版がおすすめ","installApp":"デスクトップアプリとして追加","installHint":"デスクトップ版 Chrome / Edge でこのサイトを開き、アドレスバー右側のインストールアイコンをクリックしてください。独立したウィンドウになり、ネットワークが無くても動作します。インストーラのダウンロードも登録も不要です。","installed":"インストール済み","offlineNote":"インストール後はネットワークを切ったままでも使えます。もともと通信していないのですから、当然といえば当然です。","algo":"アルゴリズム","algoHint":"MD5 と SHA-1 はチェックサム専用です。パスワードや署名には使わないでください。","upper":"16 進数を大文字にする","bytesUnit":"バイト","done":"計算に使用したアルゴリズム","noSubtle":"WebCrypto が利用できません（HTTPS で開いてください）。","fail":"計算に失敗しました。"};</script>
 <script src="/assets/tools/_shared.js" defer></script>
 <!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
 <script src="/assets/tools/hash.js?v=2" defer></script>

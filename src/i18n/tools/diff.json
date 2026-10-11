@@ -4,11 +4,20 @@
     "title": "Text Diff Online — Compare Two Texts Line by Line | ToolPocket",
     "desc": "Compare two blocks of text and see which lines were added, removed or unchanged. Line-based diff computed locally in your browser.",
     "h1": "Text diff (line by line)",
-    "lead": "Paste the old version, a line with <code>===</code>, then the new version. The result lists every line prefixed with <code>-</code> (removed), <code>+</code> (added) or a space (unchanged).",
+    "lead": "Compare two versions line by line and see what actually changed — including the invisible differences (a trailing space, a Windows line ending) that make two identical-looking lines behave differently.",
     "faq": [
-      ["How do I put two texts in one box?", "Separate them with a line containing only <code>===</code>. Create a few that way and you can diff several pairs in a row."],
-      ["Why is a line marked as changed when it looks identical?", "Invisible characters: a trailing space, a non-breaking space, or Windows line endings. That is exactly the kind of thing a diff is good at catching."],
-      ["Is there a size limit?", "Yes — around 4000 lines per side. Beyond that the comparison needs too much memory and is refused instead of freezing your tab."]
+      [
+        "How do I put two texts in one box?",
+        "Separate them with a line containing only <code>===</code>. Create a few that way and you can diff several pairs in a row."
+      ],
+      [
+        "Why is a line marked as changed when it looks identical?",
+        "Invisible characters: a trailing space, a non-breaking space, or Windows line endings. That is exactly the kind of thing a diff is good at catching."
+      ],
+      [
+        "Is there a size limit?",
+        "Yes — around 4000 lines per side. Beyond that the comparison needs too much memory and is refused instead of freezing your tab."
+      ]
     ],
     "ui": {
       "needSep": "Add a line with === between the two texts",
@@ -21,11 +30,20 @@
     "title": "在线文本对比 —— 逐行找出差异 | ToolPocket",
     "desc": "对比两段文本，逐行标出新增、删除与未变动的行。差异在本机浏览器里算，文本不会上传。",
     "h1": "文本对比（逐行）",
-    "lead": "先贴旧版本，写一行 <code>===</code>，再贴新版本。结果里每行前面会有标记：<code>-</code> 是删掉的、<code>+</code> 是新增的、空格是没变的。",
+    "lead": "两段文本逐行对比，看清到底哪里变了 —— 连看不见的差异也揪得出来：行尾多一个空格、换行符是 Windows 的。这种「看着一样、其实不一样」最容易误事。",
     "faq": [
-      ["两段文本怎么放进一个框里？", "中间用单独一行 <code>===</code> 隔开。它同时也是分隔符，可以一次对比好几组。"],
-      ["明明一样的行，为什么被标成改动？", "多半是看不见的字符：行尾多一个空格、夹杂了不换行空格、或者是 Windows 的换行符。这类问题恰好是对比工具最擅长抓的。"],
-      ["有长度限制吗？", "有，每边约 4000 行。再长的话对比要占的内存太大，这时会直接提示而不是把你的标签页卡死。"]
+      [
+        "两段文本怎么放进一个框里？",
+        "中间用单独一行 <code>===</code> 隔开。它同时也是分隔符，可以一次对比好几组。"
+      ],
+      [
+        "明明一样的行，为什么被标成改动？",
+        "多半是看不见的字符：行尾多一个空格、夹杂了不换行空格、或者是 Windows 的换行符。这类问题恰好是对比工具最擅长抓的。"
+      ],
+      [
+        "有长度限制吗？",
+        "有，每边约 4000 行。再长的话对比要占的内存太大，这时会直接提示而不是把你的标签页卡死。"
+      ]
     ],
     "ui": {
       "needSep": "两段文本之间要有一行 ===",
@@ -38,11 +56,20 @@
     "title": "テキスト差分ツール — 2 つのテキストを行単位で比較 | ToolPocket",
     "desc": "2 つのテキストを比較し、追加・削除・変更なしの行を表示します。差分はブラウザ内で計算され、送信されません。",
     "h1": "テキスト差分（行単位）",
-    "lead": "旧バージョンを貼り、<code>===</code> だけの行を挟んで、新バージョンを貼ってください。各行の先頭に <code>-</code>（削除）、<code>+</code>（追加）、空白（変更なし）が付きます。",
+    "lead": "2 つのテキストを行単位で比較し、実際に変わった箇所を示します。行末の空白や Windows の改行コードなど、目に見えない違いも見つけられます。",
     "faq": [
-      ["2 つのテキストを 1 つの欄に入れるには？", "間に <code>===</code> だけの行を入れて区切ります。この区切りを使えば複数組をまとめて比較できます。"],
-      ["見た目が同じ行が変更扱いになるのは？", "不可視文字が原因のことが多いです。行末の空白、改行しない空白、Windows の改行コードなど。それを見つけるのが差分ツールの役目です。"],
-      ["サイズ制限はありますか？", "片側およそ 4000 行までです。それを超えると比較に必要なメモリが過大になるため、タブを固まらせずに警告して中止します。"]
+      [
+        "2 つのテキストを 1 つの欄に入れるには？",
+        "間に <code>===</code> だけの行を入れて区切ります。この区切りを使えば複数組をまとめて比較できます。"
+      ],
+      [
+        "見た目が同じ行が変更扱いになるのは？",
+        "不可視文字が原因のことが多いです。行末の空白、改行しない空白、Windows の改行コードなど。それを見つけるのが差分ツールの役目です。"
+      ],
+      [
+        "サイズ制限はありますか？",
+        "片側およそ 4000 行までです。それを超えると比較に必要なメモリが過大になるため、タブを固まらせずに警告して中止します。"
+      ]
     ],
     "ui": {
       "needSep": "2 つのテキストの間に === だけの行を入れてください",

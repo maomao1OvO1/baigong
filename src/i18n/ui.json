@@ -7,9 +7,9 @@
   },
   "brand": "ToolPocket",
   "footer": {
-    "en": "ToolPocket · Everything runs on your device — nothing is uploaded.",
-    "zh": "ToolPocket · 全部在你的设备上完成，不上传任何文件。",
-    "ja": "ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。"
+    "en": "ToolPocket — your files never leave your device. No upload, no account, no tracking.",
+    "zh": "ToolPocket · 文件不出你的设备 —— 不上传、不注册、不追踪。",
+    "ja": "ToolPocket · ファイルは端末から出ません。送信も登録も、追跡もありません。"
   },
   "nav": {
     "en": "All tools",
@@ -47,9 +47,9 @@
     "ja": "クリップボードにコピーしました"
   },
   "copyFail": {
-    "en": "Copy failed — select the text manually",
-    "zh": "复制失败 —— 请手动选中复制",
-    "ja": "コピーできませんでした。手動で選択してください"
+    "en": "Copying was blocked by the browser — select the text and copy it manually",
+    "zh": "浏览器拦住了自动复制 —— 手动选中再复制即可",
+    "ja": "ブラウザがコピーを許可しませんでした。テキストを選択して手動でコピーしてください"
   },
   "inputLabel": {
     "en": "Input",
@@ -62,29 +62,29 @@
     "ja": "結果"
   },
   "privacyNote": {
-    "en": "Runs entirely in your browser. Nothing is uploaded or stored.",
-    "zh": "完全在你的浏览器里运行，不上传、不保存。",
-    "ja": "すべてブラウザ内で処理されます。送信も保存もしていません。"
+    "en": "Runs 100% in your browser — nothing is uploaded, stored, or kept.",
+    "zh": "全程在你浏览器里跑完 —— 不上传、不保存、不留底。",
+    "ja": "すべてブラウザ内で処理。送信も保存もしていません。"
   },
   "searchPlaceholder": {
-    "en": "Search tools — e.g. compress, json, 密码…",
-    "zh": "搜索工具 —— 例如：压缩、json、密码…",
-    "ja": "ツールを検索 — 例：圧縮、json、パスワード…"
+    "en": "Search tools — try “compress”, “json”, “password”…",
+    "zh": "搜索工具 —— 试试「压缩」「json」「密码」…",
+    "ja": "ツールを検索 — 「圧縮」「json」「パスワード」など"
   },
   "noResults": {
-    "en": "No tool matches that. Try another word?",
-    "zh": "没找到匹配的工具，换个词试试？",
-    "ja": "該当するツールがありません。別の言葉でお試しを。"
+    "en": "Nothing matched. Try another word — “compress”, “hash”, “json”…",
+    "zh": "没找到匹配的工具。换个说法试试，比如「压缩」「哈希」「json」。",
+    "ja": "該当するツールがありませんでした。「圧縮」「ハッシュ」など、別の言葉でお試しください。"
   },
   "mobileTip": {
-    "en": "📱 You are on a phone — it works here, but desktop Chrome is much smoother for big images and batch jobs.",
-    "zh": "📱 手机能用，但<b>桌面版 Chrome 更顺</b> —— 大图压缩、批量处理会快很多。",
-    "ja": "📱 スマホでも動きますが、大きな画像やまとめての処理はデスクトップ版 Chrome が快適です。"
+    "en": "📱 It works on a phone, but desktop Chrome handles large images and batch jobs far better.",
+    "zh": "📱 手机上能用，但<b>桌面版 Chrome 更顺</b> —— 大图压缩、批量处理快很多。",
+    "ja": "📱 スマホでも使えますが、大きな画像やまとめての処理はデスクトップ版 Chrome のほうが快適です。"
   },
   "mobileTipClose": {
     "en": "Got it",
     "zh": "知道了",
-    "ja": "閉じる"
+    "ja": "了解しました"
   },
   "desktopHeading": {
     "en": "Better on desktop",
@@ -97,9 +97,9 @@
     "ja": "デスクトップアプリとして追加"
   },
   "installHint": {
-    "en": "Open this site in desktop Chrome or Edge and click the install icon at the right of the address bar. It becomes its own window and keeps working offline — no download, no account.",
-    "zh": "用桌面版 Chrome / Edge 打开本页，点地址栏右侧的「安装」图标 —— 它会变成一个独立窗口的桌面应用，断网也能用。不用下载安装包、不用账号。",
-    "ja": "デスクトップ版 Chrome / Edge で開き、アドレスバー右側のインストールアイコンをクリックしてください。独立したウィンドウのアプリになり、オフラインでも動作します。"
+    "en": "Open this site in desktop Chrome or Edge, then click the install icon at the right of the address bar. It becomes its own window and keeps working with no network at all — no installer to download, no account.",
+    "zh": "用桌面版 Chrome / Edge 打开本页，点地址栏右侧的「安装」图标 —— 它会变成一个独立窗口，断网也能继续用。不用下载安装包，也不用登录。",
+    "ja": "デスクトップ版 Chrome / Edge でこのサイトを開き、アドレスバー右側のインストールアイコンをクリックしてください。独立したウィンドウになり、ネットワークが無くても動作します。インストーラのダウンロードも登録も不要です。"
   },
   "installed": {
     "en": "Already installed",
@@ -107,8 +107,8 @@
     "ja": "インストール済み"
   },
   "offlineNote": {
-    "en": "Once installed, the tools work with no network at all — everything runs on your machine anyway.",
-    "zh": "装好之后断网也能用 —— 这些工具本来就是在你机器上跑的，不需要服务器。",
-    "ja": "インストール後はネットワークなしでも動作します。もともと処理は端末内で完結しているためです。"
+    "en": "After that, the tools work with the network switched off — which makes sense, since they were never using it.",
+    "zh": "装好之后，断网也能照常用 —— 本来这些活就是在你机器上干的，跟网络没关系。",
+    "ja": "インストール後はネットワークを切ったままでも使えます。もともと通信していないのですから、当然といえば当然です。"
   }
 }

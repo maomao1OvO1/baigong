@@ -4,7 +4,7 @@
     "title": "Compress Images Free — No Upload, No Signup, No Limit | ToolPocket",
     "desc": "Shrink JPG, PNG and WebP images right in your browser. Batch compress hundreds of photos with no upload and no account.",
     "h1": "Compress images without uploading them",
-    "lead": "Drop your photos in and they get smaller <b>right here</b>. No account, no upload, no “upgrade to remove the watermark”, no daily cap. Handy when a form says your file is too big.",
+    "lead": "Shrink a photo without handing it to someone else's server. Your image is decoded, resized and re-encoded in this tab, so a phone photo usually ends up a fraction of its original size — and the original never leaves your device.",
     "faq": [
       [
         "How much smaller will they get?",
@@ -45,7 +45,7 @@
     "title": "在线图片压缩 — 免费、不上传、免注册、不限量 | ToolPocket",
     "desc": "在浏览器里直接压缩 JPG、PNG、WebP 图片。支持批量，不上传、不注册、没有数量限制。",
     "h1": "压缩图片，不用把它传给别人",
-    "lead": "照片拖进来，就在<b>这儿</b>变小。不用账号、不用上传、没有「升级会员去水印」、也没有每天几张的限制。碰上「文件太大传不上去」的时候正好用。",
+    "lead": "把照片压小，不用先传到别人服务器上。图片在你浏览器里解码、缩放、重新编码，手机拍的原图常常能压到原来的几分之一 —— 原图始终留在你手机里。",
     "faq": [
       [
         "能压小多少？",
@@ -86,7 +86,7 @@
     "title": "画像圧縮 無料 — アップロード不要・登録不要・枚数無制限 | ToolPocket",
     "desc": "JPG・PNG・WebP の画像をブラウザ上でそのまま圧縮。複数枚まとめて処理でき、アップロードも登録も不要です。",
     "h1": "画像を、どこにも送らずに軽くする",
-    "lead": "写真をドロップすると、<b>その場で</b>軽くなります。アカウントも、アップロードも、「透かしを消すにはアップグレード」も、1 日の枚数制限もありません。",
+    "lead": "写真を軽くするために、他人のサーバーへ預ける必要はありません。画像はこのタブ内でデコード・縮小・再エンコードされ、スマホで撮った写真は多くの場合、元の数分の一程度になります。元の画像は端末から出ません。",
     "faq": [
       [
         "どのくらい軽くなりますか？",

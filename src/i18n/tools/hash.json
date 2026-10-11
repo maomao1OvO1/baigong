@@ -4,11 +4,20 @@
     "title": "MD5, SHA-1, SHA-256, SHA-512 Hash Generator Online | ToolPocket",
     "desc": "Compute MD5, SHA-1, SHA-256 or SHA-512 of any text, in hex and Base64. Runs entirely in your browser — nothing is uploaded.",
     "h1": "Hash generator (MD5 / SHA-1 / SHA-256 / SHA-512)",
-    "lead": "Paste text, pick an algorithm, get both <code>hex</code> and <code>base64</code>. Everything is computed on your device — checksums often come from private files, so sending them to a server would be careless.",
+    "lead": "MD5, SHA-1, SHA-256 and SHA-512 in one place, in hex and Base64. MD5 is implemented right here, since browsers stopped providing it — computing a checksum shouldn't require sending the file anywhere.",
     "faq": [
-      ["Is MD5 still safe to use?", "Not for security. MD5 and SHA-1 collisions are practical, so never use them for signatures or password storage. They remain fine as plain checksums (comparing two files, cache keys, legacy APIs that demand MD5)."],
-      ["Why do I get a different hash than a website told me?", "Nine times out of ten it is trailing whitespace or line endings. Copy the exact bytes: a trailing newline changes the digest completely."],
-      ["Can I hash a file here?", "This page hashes text. For files, open the file and paste its contents, or use your system's <code>md5sum</code> / <code>certutil</code> command."]
+      [
+        "Is MD5 still safe to use?",
+        "Not for security. MD5 and SHA-1 collisions are practical, so never use them for signatures or password storage. They remain fine as plain checksums (comparing two files, cache keys, legacy APIs that demand MD5)."
+      ],
+      [
+        "Why do I get a different hash than a website told me?",
+        "Nine times out of ten it is trailing whitespace or line endings. Copy the exact bytes: a trailing newline changes the digest completely."
+      ],
+      [
+        "Can I hash a file here?",
+        "This page hashes text. For files, open the file and paste its contents, or use your system's <code>md5sum</code> / <code>certutil</code> command."
+      ]
     ],
     "ui": {
       "algo": "Algorithm",
@@ -24,11 +33,20 @@
     "title": "MD5 / SHA-1 / SHA-256 / SHA-512 在线哈希计算 | ToolPocket",
     "desc": "在浏览器本地计算文本的 MD5、SHA-1、SHA-256、SHA-512，同时给出 hex 与 Base64 两种写法，内容不上传。",
     "h1": "哈希计算（MD5 / SHA-1 / SHA-256 / SHA-512）",
-    "lead": "粘一段文字，选一个算法，直接拿到 <code>hex</code> 与 <code>base64</code> 两种结果。整个过程在你设备上完成 —— 校验值往往来自不方便外发的文件，传给服务器是不必要的风险。",
+    "lead": "MD5、SHA-1、SHA-256、SHA-512 一次算完，同时给 hex 和 Base64。浏览器早就不提供 MD5 了，这里是手写的实现 —— 算个校验值，不该还要把内容发出去。",
     "faq": [
-      ["MD5 还能用吗？", "看用途。做加密、签名、存密码不行（MD5 与 SHA-1 的碰撞已被实际构造出来）；当普通校验值完全可以（比对两个文件、做缓存键、对接只认 MD5 的老接口）。"],
-      ["为什么我算出来的和别人给的不一样？", "九成是末尾的空白或换行。哈希对字节完全敏感，末尾多一个换行，结果就完全不同 —— 复制时把首尾空白一起去掉再试。"],
-      ["这里能算文件的哈希吗？", "这一页处理文本。要算文件，可以用系统命令（Linux/macOS 的 <code>md5sum</code> / <code>sha256sum</code>，Windows 的 <code>certutil -hashfile</code>）。"]
+      [
+        "MD5 还能用吗？",
+        "看用途。做加密、签名、存密码不行（MD5 与 SHA-1 的碰撞已被实际构造出来）；当普通校验值完全可以（比对两个文件、做缓存键、对接只认 MD5 的老接口）。"
+      ],
+      [
+        "为什么我算出来的和别人给的不一样？",
+        "九成是末尾的空白或换行。哈希对字节完全敏感，末尾多一个换行，结果就完全不同 —— 复制时把首尾空白一起去掉再试。"
+      ],
+      [
+        "这里能算文件的哈希吗？",
+        "这一页处理文本。要算文件，可以用系统命令（Linux/macOS 的 <code>md5sum</code> / <code>sha256sum</code>，Windows 的 <code>certutil -hashfile</code>）。"
+      ]
     ],
     "ui": {
       "algo": "算法",
@@ -44,11 +62,20 @@
     "title": "MD5 / SHA-1 / SHA-256 / SHA-512 ハッシュ生成ツール | ToolPocket",
     "desc": "テキストの MD5・SHA-1・SHA-256・SHA-512 をブラウザ内で計算し、hex と Base64 の両方を表示します。送信は行いません。",
     "h1": "ハッシュ生成（MD5 / SHA-1 / SHA-256 / SHA-512）",
-    "lead": "テキストを貼り付けてアルゴリズムを選ぶと、<code>hex</code> と <code>base64</code> の両方が得られます。計算はすべて端末内で完結します。",
+    "lead": "MD5・SHA-1・SHA-256・SHA-512 をまとめて計算し、hex と Base64 の両方を表示します。ブラウザが MD5 を提供しなくなったため、ここでは自前で実装しています。",
     "faq": [
-      ["MD5 はまだ使えますか？", "用途次第です。署名やパスワード保存には使えません（MD5 と SHA-1 の衝突は現実に構成されています）。単純なチェックサムとしては今も十分使えます。"],
-      ["計算結果が他サイトと違うのはなぜ？", "多くは末尾の空白や改行が原因です。ハッシュはバイト単位で厳密なので、改行が 1 つ増えるだけで値が変わります。"],
-      ["ファイルのハッシュは計算できますか？", "このページはテキスト用です。ファイルは <code>md5sum</code> / <code>certutil -hashfile</code> などのコマンドをご利用ください。"]
+      [
+        "MD5 はまだ使えますか？",
+        "用途次第です。署名やパスワード保存には使えません（MD5 と SHA-1 の衝突は現実に構成されています）。単純なチェックサムとしては今も十分使えます。"
+      ],
+      [
+        "計算結果が他サイトと違うのはなぜ？",
+        "多くは末尾の空白や改行が原因です。ハッシュはバイト単位で厳密なので、改行が 1 つ増えるだけで値が変わります。"
+      ],
+      [
+        "ファイルのハッシュは計算できますか？",
+        "このページはテキスト用です。ファイルは <code>md5sum</code> / <code>certutil -hashfile</code> などのコマンドをご利用ください。"
+      ]
     ],
     "ui": {
       "algo": "アルゴリズム",

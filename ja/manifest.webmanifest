@@ -1,7 +1,7 @@
 {
-  "name": "ToolPocket — ファイルをアップロードしない無料ツール",
+  "name": "登録不要・ファイルを送信しない無料オンラインツール | ToolPocket",
   "short_name": "ToolPocket",
-  "description": "画像の圧縮と形式変換、テキストのエンコード、JSON の整形。すべてブラウザ内で完結します。登録不要、アップロード不要、制限なし。",
+  "description": "画像の圧縮と形式変換、JSON の整形、ハッシュの計算。すべてブラウザ内で処理します。会員登録もアップロードも不要、回数制限もありません。",
   "start_url": "/ja/",
   "scope": "/",
   "display": "standalone",

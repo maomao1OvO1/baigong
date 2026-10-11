@@ -4,7 +4,7 @@
     "title": "Unix Timestamp Converter — Seconds, Milliseconds, UTC & Local | ToolPocket",
     "desc": "Convert Unix timestamps to readable dates (and back), showing local time, UTC, ISO 8601 and weekday. Handles both 10-digit and 13-digit timestamps.",
     "h1": "Unix timestamp converter",
-    "lead": "Paste a timestamp or a date and see both <b>local time and UTC</b> side by side — plus ISO 8601. Auto-detects seconds vs milliseconds, which is the part people usually get wrong.",
+    "lead": "Turn a Unix timestamp into a readable date (local and UTC side by side) or go the other way. Ten digits are read as seconds and thirteen as milliseconds — the detail these numbers usually trip over.",
     "faq": [
       [
         "Seconds or milliseconds?",
@@ -34,7 +34,7 @@
     "title": "Unix 时间戳转换 — 秒/毫秒、UTC 与本地时间 | ToolPocket",
     "desc": "时间戳与日期互转，同时给出本地时间、UTC、ISO 8601 和星期。自动识别 10 位（秒）与 13 位（毫秒）。",
     "h1": "Unix 时间戳转换",
-    "lead": "粘一个时间戳或日期，<b>本地时间和 UTC 并排显示</b>，外加 ISO 8601。秒/毫秒自动识别 —— 这正是最容易搞错的地方。",
+    "lead": "Unix 时间戳和日期时间互转，本地时间与 UTC 并排显示。10 位当秒、13 位当毫秒自动判断 —— 这类数字出错，多半就错在这儿。",
     "faq": [
       [
         "是秒还是毫秒？",
@@ -64,7 +64,7 @@
     "title": "Unix タイムスタンプ変換 — 秒・ミリ秒、UTC とローカル | ToolPocket",
     "desc": "Unix タイムスタンプと日時を相互変換し、ローカル時刻・UTC・ISO 8601・曜日をまとめて表示。10 桁（秒）と 13 桁（ミリ秒）を自動判別します。",
     "h1": "Unix タイムスタンプ変換",
-    "lead": "タイムスタンプか日時を貼ると、<b>ローカル時刻と UTC が並んで</b>表示され、ISO 8601 も出ます。秒とミリ秒は自動判別 —— ここが一番間違えやすい部分です。",
+    "lead": "Unix タイムスタンプと日時の相互変換。ローカル時刻と UTC を並べて表示します。10 桁は秒、13 桁はミリ秒として自動判定します。",
     "faq": [
       [
         "秒ですか、ミリ秒ですか？",

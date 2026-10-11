@@ -4,16 +4,33 @@
     "title": "Cron Expression Explainer — Next 5 Run Times | ToolPocket",
     "desc": "Paste a 5-field cron expression to see what each field means and the next five times it will run, computed in your local time zone.",
     "h1": "Cron expression explainer",
-    "lead": "Paste something like <code>*/15 9-18 * * 1-5</code> and read it back field by field, with the next five run times listed. “Why didn’t my job run?” is almost always one wrong field.",
+    "lead": "Paste a cron expression and read it back field by field, with the next five run times in your own time zone. Worth checking before you spend an hour wondering why a job never fired.",
     "faq": [
-      ["Does the day field OR with the weekday field?", "Yes, in standard Vixie cron. <code>0 0 1 * 1</code> means “the 1st of the month **or** every Monday”, not “the 1st when it is also a Monday”. This trips people up constantly."],
-      ["Are 0 and 7 both Sunday?", "In the weekday field, yes — both are accepted, and this tool normalises 7 to 0 so the explanation stays consistent."],
-      ["What time zone is used?", "Your device's local time zone, which is what matters when you debug a job that runs on your own machine. Servers usually run UTC, so double-check against the server clock."]
+      [
+        "Does the day field OR with the weekday field?",
+        "Yes, in standard Vixie cron. <code>0 0 1 * 1</code> means “the 1st of the month **or** every Monday”, not “the 1st when it is also a Monday”. This trips people up constantly."
+      ],
+      [
+        "Are 0 and 7 both Sunday?",
+        "In the weekday field, yes — both are accepted, and this tool normalises 7 to 0 so the explanation stays consistent."
+      ],
+      [
+        "What time zone is used?",
+        "Your device's local time zone, which is what matters when you debug a job that runs on your own machine. Servers usually run UTC, so double-check against the server clock."
+      ]
     ],
     "ui": {
       "badCron": "A cron expression needs exactly 5 fields: minute hour day month weekday",
       "badField": "Invalid field",
-      "weekNames": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "weekNames": [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ],
       "cFields": "Fields",
       "cExplain": "Meaning",
       "cMin": "minute",
@@ -32,16 +49,33 @@
     "title": "Cron 表达式解析 —— 未来 5 次运行时间 | ToolPocket",
     "desc": "贴一条 5 段 cron 表达式，逐段说明含义，并按本地时区算出接下来 5 次运行时间。",
     "h1": "Cron 表达式解析",
-    "lead": "贴一条 <code>*/15 9-18 * * 1-5</code>，逐段翻译成人话，并列出未来 5 次运行时间。「任务怎么没跑」几乎都是某一格写错了。",
+    "lead": "贴一条 cron 表达式，逐段翻译成人话，并按你的时区算出接下来 5 次运行时间。省得盯着 5 个星号猜半天，最后才发现是某一格写错了。",
     "faq": [
-      ["「日」和「星期」是「或」还是「与」？", "标准 Vixie cron 里是**或**。<code>0 0 1 * 1</code> 表示「每月 1 号**或**每周一」，不是「每月 1 号且是周一」。这一点坑过很多人。"],
-      ["0 和 7 都是周日吗？", "在星期字段里是的，两个写法都接受。本工具会把 7 归一化成 0，保证解释前后一致。"],
-      ["用的是哪个时区？", "你设备的本地时区 —— 调试本机任务时这才是对的。服务器通常跑 UTC，比时间的时候记得对一下服务器时钟。"]
+      [
+        "「日」和「星期」是「或」还是「与」？",
+        "标准 Vixie cron 里是**或**。<code>0 0 1 * 1</code> 表示「每月 1 号**或**每周一」，不是「每月 1 号且是周一」。这一点坑过很多人。"
+      ],
+      [
+        "0 和 7 都是周日吗？",
+        "在星期字段里是的，两个写法都接受。本工具会把 7 归一化成 0，保证解释前后一致。"
+      ],
+      [
+        "用的是哪个时区？",
+        "你设备的本地时区 —— 调试本机任务时这才是对的。服务器通常跑 UTC，比时间的时候记得对一下服务器时钟。"
+      ]
     ],
     "ui": {
       "badCron": "cron 表达式必须是 5 段：分 时 日 月 周",
       "badField": "有字段写错了",
-      "weekNames": ["周日", "周一", "周二", "周三", "周四", "周五", "周六"],
+      "weekNames": [
+        "周日",
+        "周一",
+        "周二",
+        "周三",
+        "周四",
+        "周五",
+        "周六"
+      ],
       "cFields": "表达式",
       "cExplain": "字段含义",
       "cMin": "分",
@@ -60,16 +94,33 @@
     "title": "Cron 式の解説 — 次回 5 回の実行時刻 | ToolPocket",
     "desc": "5 フィールドの cron 式を貼り付けると、各フィールドの意味と、ローカル時間での次回 5 回の実行時刻を表示します。",
     "h1": "Cron 式エクスプレイナー",
-    "lead": "<code>*/15 9-18 * * 1-5</code> のような式を貼り付けると、フィールドごとに意味を説明し、次回 5 回の実行時刻を一覧表示します。「なぜジョブが動かないのか」はほぼ 1 フィールドの書き間違いです。",
+    "lead": "cron 式を貼り付けると、フィールドごとに意味を説明し、お使いのタイムゾーンで次回 5 回の実行時刻を示します。1 つの書き間違いを探して 1 時間を潰す前に。",
     "faq": [
-      ["「日」と「曜日」は OR ですか？", "標準の Vixie cron では **OR** です。<code>0 0 1 * 1</code> は「毎月 1 日**または**毎週月曜」であり、「1 日かつ月曜」ではありません。ここは多くの人が誤解します。"],
-      ["0 と 7 はどちらも日曜ですか？", "曜日フィールドでは両方とも有効です。本ツールは 7 を 0 に正規化して説明がぶれないようにしています。"],
-      ["どのタイムゾーンを使いますか？", "端末のローカルタイムゾーンです。手元のジョブを調べる場合はこれが正解です。サーバーは通常 UTC なので、時刻を比べるときはサーバー時計も確認してください。"]
+      [
+        "「日」と「曜日」は OR ですか？",
+        "標準の Vixie cron では **OR** です。<code>0 0 1 * 1</code> は「毎月 1 日**または**毎週月曜」であり、「1 日かつ月曜」ではありません。ここは多くの人が誤解します。"
+      ],
+      [
+        "0 と 7 はどちらも日曜ですか？",
+        "曜日フィールドでは両方とも有効です。本ツールは 7 を 0 に正規化して説明がぶれないようにしています。"
+      ],
+      [
+        "どのタイムゾーンを使いますか？",
+        "端末のローカルタイムゾーンです。手元のジョブを調べる場合はこれが正解です。サーバーは通常 UTC なので、時刻を比べるときはサーバー時計も確認してください。"
+      ]
     ],
     "ui": {
       "badCron": "cron 式は 5 フィールド必要です（分 時 日 月 曜日）",
       "badField": "不正なフィールド",
-      "weekNames": ["日曜日", "月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日"],
+      "weekNames": [
+        "日曜日",
+        "月曜日",
+        "火曜日",
+        "水曜日",
+        "木曜日",
+        "金曜日",
+        "土曜日"
+      ],
       "cFields": "式",
       "cExplain": "意味",
       "cMin": "分",

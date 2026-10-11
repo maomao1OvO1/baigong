@@ -4,11 +4,20 @@
     "title": "Number Base Converter — Binary, Octal, Decimal, Hex (BigInt) | ToolPocket",
     "desc": "Convert a number between binary, octal, decimal, hexadecimal and base 36, with a grouped bit view. Uses BigInt so long IDs stay exact.",
     "h1": "Base converter (2 / 8 / 10 / 16 / 36)",
-    "lead": "Type a number and see every common base at once, plus how many bits and bytes it takes. Long values are handled with <code>BigInt</code>, so an 18-digit snowflake ID will not be silently rounded.",
+    "lead": "Convert between binary, octal, decimal, hex and base 36, with a grouped bit view for reading flags and masks. Long values are handled with BigInt, so an 18-digit ID doesn't quietly lose its last digits.",
     "faq": [
-      ["Why does this differ from my calculator?", "Most calculators and JavaScript itself store integers as double-precision floats, which are only exact up to 2^53. Here everything goes through BigInt, so 20-digit IDs and permission masks stay accurate."],
-      ["What does “auto” detect?", "A <code>0x</code>/<code>0b</code>/<code>0o</code> prefix selects hex/binary/octal; otherwise a number containing a-f is read as hex, and anything else as decimal."],
-      ["What is the grouped bit view for?", "Reading flags and masks. Grouping into nibbles (4 bits) lets you map each group to one hex digit; bytes (8 bits) match how the value is laid out in memory."]
+      [
+        "Why does this differ from my calculator?",
+        "Most calculators and JavaScript itself store integers as double-precision floats, which are only exact up to 2^53. Here everything goes through BigInt, so 20-digit IDs and permission masks stay accurate."
+      ],
+      [
+        "What does “auto” detect?",
+        "A <code>0x</code>/<code>0b</code>/<code>0o</code> prefix selects hex/binary/octal; otherwise a number containing a-f is read as hex, and anything else as decimal."
+      ],
+      [
+        "What is the grouped bit view for?",
+        "Reading flags and masks. Grouping into nibbles (4 bits) lets you map each group to one hex digit; bytes (8 bits) match how the value is laid out in memory."
+      ]
     ],
     "ui": {
       "base": "Input base",
@@ -26,11 +35,20 @@
     "title": "进制转换 —— 二进制 / 八进制 / 十进制 / 十六进制（BigInt）| ToolPocket",
     "desc": "在二、八、十、十六进制与 36 进制之间转换数字，并给出分组位视图。内部使用 BigInt，长数字不会丢精度。",
     "h1": "进制转换（2 / 8 / 10 / 16 / 36）",
-    "lead": "输入一个数，同时得到各常见进制的写法，以及它占多少位、多少字节。长数字走的是 <code>BigInt</code>，18 位的雪花 ID 不会被悄悄四舍五入。",
+    "lead": "二进制、八进制、十进制、十六进制、36 进制互转，还给一个分组位视图，用来看标志位和掩码。长数字走 BigInt —— 18 位的 ID 不会被悄悄改掉末几位。",
     "faq": [
-      ["为什么和我用计算器算的不一样？", "多数计算器（以及 JavaScript 本身）把整数存成双精度浮点，只能精确到 2 的 53 次方。这一页全程用 BigInt，所以 20 位的 ID、权限掩码都能保持准确。"],
-      ["「自动」是按什么判断的？", "有 <code>0x</code> / <code>0b</code> / <code>0o</code> 前缀就按十六 / 二 / 八进制；没有前缀时，含 a-f 字母的当十六进制，其余当十进制。"],
-      ["那个分组的位视图有什么用？", "看标志位和掩码用。每 4 位一组正好对应一个十六进制字符；每 8 位一组则对应内存里的一个字节。"]
+      [
+        "为什么和我用计算器算的不一样？",
+        "多数计算器（以及 JavaScript 本身）把整数存成双精度浮点，只能精确到 2 的 53 次方。这一页全程用 BigInt，所以 20 位的 ID、权限掩码都能保持准确。"
+      ],
+      [
+        "「自动」是按什么判断的？",
+        "有 <code>0x</code> / <code>0b</code> / <code>0o</code> 前缀就按十六 / 二 / 八进制；没有前缀时，含 a-f 字母的当十六进制，其余当十进制。"
+      ],
+      [
+        "那个分组的位视图有什么用？",
+        "看标志位和掩码用。每 4 位一组正好对应一个十六进制字符；每 8 位一组则对应内存里的一个字节。"
+      ]
     ],
     "ui": {
       "base": "输入进制",
@@ -48,11 +66,20 @@
     "title": "基数変換 — 2 / 8 / 10 / 16 進数（BigInt 対応）| ToolPocket",
     "desc": "2・8・10・16・36 進数の相互変換とビット表示。BigInt を使うため、桁の多い ID でも値がずれません。",
     "h1": "基数変換（2 / 8 / 10 / 16 / 36）",
-    "lead": "数値を入力すると、各基数での表記と、必要なビット数・バイト数が一度に表示されます。長い値は <code>BigInt</code> で扱うため、18 桁の ID が丸められることはありません。",
+    "lead": "2・8・10・16・36 進数の相互変換と、フラグやマスクを読むためのビット表示。桁の多い値は BigInt で扱うため、18 桁の ID でも下位の桁が変わりません。",
     "faq": [
-      ["電卓と結果が違うのはなぜ？", "多くの電卓や JavaScript の数値は倍精度浮動小数点で、正確に表せるのは 2 の 53 乗までです。このページは BigInt を使うため、20 桁の ID やパーミッションマスクも正確に扱えます。"],
-      ["「自動」は何で判定しますか？", "<code>0x</code> / <code>0b</code> / <code>0o</code> の接頭辞があればそれぞれ 16 / 2 / 8 進数、なければ a〜f を含む場合は 16 進数、それ以外は 10 進数として扱います。"],
-      ["グループ化したビット表示の用途は？", "フラグやマスクの確認用です。4 ビットごとに区切ると 16 進数の 1 桁に対応し、8 ビットごとに区切るとメモリ上のバイト配置に対応します。"]
+      [
+        "電卓と結果が違うのはなぜ？",
+        "多くの電卓や JavaScript の数値は倍精度浮動小数点で、正確に表せるのは 2 の 53 乗までです。このページは BigInt を使うため、20 桁の ID やパーミッションマスクも正確に扱えます。"
+      ],
+      [
+        "「自動」は何で判定しますか？",
+        "<code>0x</code> / <code>0b</code> / <code>0o</code> の接頭辞があればそれぞれ 16 / 2 / 8 進数、なければ a〜f を含む場合は 16 進数、それ以外は 10 進数として扱います。"
+      ],
+      [
+        "グループ化したビット表示の用途は？",
+        "フラグやマスクの確認用です。4 ビットごとに区切ると 16 進数の 1 桁に対応し、8 ビットごとに区切るとメモリ上のバイト配置に対応します。"
+      ]
     ],
     "ui": {
       "base": "入力の基数",

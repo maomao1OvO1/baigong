@@ -4,11 +4,20 @@
     "title": "UUID v4 / v7, ULID & NanoID Generator | ToolPocket",
     "desc": "Generate up to 100 unique IDs at once: UUID v4, time-sortable UUID v7, ULID or NanoID. Copy them all with one click. Generated in your browser.",
     "h1": "UUID / ULID / NanoID generator",
-    "lead": "Pick the flavour your project needs, choose how many, and copy the whole batch. Randomness comes from <code>crypto.getRandomValues</code>, not <code>Math.random</code>.",
+    "lead": "Generate UUID v4, time-sortable UUID v7, ULID or NanoID — up to 100 at a time. The randomness comes from the browser's cryptographic source, not Math.random.",
     "faq": [
-      ["UUID v4 or v7 — which should I use?", "New projects: v7. It starts with a millisecond timestamp, so IDs sort by creation time and your database index stays happy. v4 is pure random: fine as an identifier, but random inserts fragment B-tree indexes at scale."],
-      ["ULID vs UUID v7 — they look similar?", "Both are time-sortable. ULID is 26 characters of Crockford Base32 (no dashes, easier to read and shorter in URLs); UUID v7 is the standard 36-character RFC form most databases have a native type for."],
-      ["Are these IDs safe for secrets?", "They are strongly random, but an ID is not a password: it is usually stored and logged somewhere. For tokens use a dedicated secret generator."]
+      [
+        "UUID v4 or v7 — which should I use?",
+        "New projects: v7. It starts with a millisecond timestamp, so IDs sort by creation time and your database index stays happy. v4 is pure random: fine as an identifier, but random inserts fragment B-tree indexes at scale."
+      ],
+      [
+        "ULID vs UUID v7 — they look similar?",
+        "Both are time-sortable. ULID is 26 characters of Crockford Base32 (no dashes, easier to read and shorter in URLs); UUID v7 is the standard 36-character RFC form most databases have a native type for."
+      ],
+      [
+        "Are these IDs safe for secrets?",
+        "They are strongly random, but an ID is not a password: it is usually stored and logged somewhere. For tokens use a dedicated secret generator."
+      ]
     ],
     "ui": {
       "type": "Type",
@@ -25,11 +34,20 @@
     "title": "UUID v4 / v7、ULID、NanoID 在线生成器 | ToolPocket",
     "desc": "一次生成最多 100 个唯一 ID：UUID v4、可按时间排序的 UUID v7、ULID 或 NanoID，一键全选复制。全部在浏览器里生成。",
     "h1": "UUID / ULID / NanoID 生成器",
-    "lead": "挑项目需要的那种，选好数量，整批复制走。随机源用的是 <code>crypto.getRandomValues</code>，不是 <code>Math.random</code>。",
+    "lead": "生成 UUID v4、可按时间排序的 v7、ULID、NanoID，一次最多 100 个。随机源是浏览器的加密级随机数，不是 Math.random。",
     "faq": [
-      ["UUID v4 和 v7 选哪个？", "新项目建议 v7。它开头就是毫秒时间戳，ID 按创建时间递增，数据库索引不会因为随机插入而碎掉。v4 是纯随机：当标识符没问题，但量大以后随机写会拖慢 B 树索引。"],
-      ["ULID 和 UUID v7 看着差不多？", "两者都可按时间排序，区别在写法：ULID 是 26 位 Crockford Base32（无连字符、更短、适合放 URL），UUID v7 是标准的 36 位带连字符写法，多数数据库对它有原生类型。"],
-      ["这些 ID 能当密钥用吗？", "随机性够强，但标识符不等于密码 —— 它通常会被存进库、写进日志。要令牌请用专门的密钥生成器。"]
+      [
+        "UUID v4 和 v7 选哪个？",
+        "新项目建议 v7。它开头就是毫秒时间戳，ID 按创建时间递增，数据库索引不会因为随机插入而碎掉。v4 是纯随机：当标识符没问题，但量大以后随机写会拖慢 B 树索引。"
+      ],
+      [
+        "ULID 和 UUID v7 看着差不多？",
+        "两者都可按时间排序，区别在写法：ULID 是 26 位 Crockford Base32（无连字符、更短、适合放 URL），UUID v7 是标准的 36 位带连字符写法，多数数据库对它有原生类型。"
+      ],
+      [
+        "这些 ID 能当密钥用吗？",
+        "随机性够强，但标识符不等于密码 —— 它通常会被存进库、写进日志。要令牌请用专门的密钥生成器。"
+      ]
     ],
     "ui": {
       "type": "类型",
@@ -46,11 +64,20 @@
     "title": "UUID v4 / v7・ULID・NanoID 生成ツール | ToolPocket",
     "desc": "最大 100 個の一意な ID をまとめて生成：UUID v4、時刻順に並ぶ UUID v7、ULID、NanoID。ワンクリックでコピーできます。",
     "h1": "UUID / ULID / NanoID 生成",
-    "lead": "用途に合う種類と個数を選んで、まとめてコピーするだけです。乱数は <code>Math.random</code> ではなく <code>crypto.getRandomValues</code> から取得します。",
+    "lead": "UUID v4、時刻順に並ぶ UUID v7、ULID、NanoID を最大 100 個まで生成します。乱数は Math.random ではなく、ブラウザの暗号学的乱数から取得します。",
     "faq": [
-      ["UUID v4 と v7、どちらを使うべき？", "新規プロジェクトなら v7 をおすすめします。先頭がミリ秒タイムスタンプなので生成順に並び、データベースのインデックスが断片化しません。v4 は完全ランダムで識別子としては十分ですが、大量のランダム挿入は B-tree インデックスを劣化させます。"],
-      ["ULID と UUID v7 は似ていますが？", "どちらも時刻順に並びます。ULID は Crockford Base32 の 26 文字（ハイフンなし・短く URL 向き）、UUID v7 は標準の 36 文字形式で、多くのデータベースがネイティブ型を持っています。"],
-      ["これらの ID を秘密情報に使えますか？", "乱数強度は十分ですが、ID はパスワードではありません。保存やログ出力が前提の値です。トークンには専用の生成器をお使いください。"]
+      [
+        "UUID v4 と v7、どちらを使うべき？",
+        "新規プロジェクトなら v7 をおすすめします。先頭がミリ秒タイムスタンプなので生成順に並び、データベースのインデックスが断片化しません。v4 は完全ランダムで識別子としては十分ですが、大量のランダム挿入は B-tree インデックスを劣化させます。"
+      ],
+      [
+        "ULID と UUID v7 は似ていますが？",
+        "どちらも時刻順に並びます。ULID は Crockford Base32 の 26 文字（ハイフンなし・短く URL 向き）、UUID v7 は標準の 36 文字形式で、多くのデータベースがネイティブ型を持っています。"
+      ],
+      [
+        "これらの ID を秘密情報に使えますか？",
+        "乱数強度は十分ですが、ID はパスワードではありません。保存やログ出力が前提の値です。トークンには専用の生成器をお使いください。"
+      ]
     ],
     "ui": {
       "type": "種類",

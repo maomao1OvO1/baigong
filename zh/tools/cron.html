@@ -24,7 +24,7 @@
 </head>
 <body>
 <div class="mobile-tip" id="mobileTip" hidden>
-  <span>📱 手机能用，但<b>桌面版 Chrome 更顺</b> —— 大图压缩、批量处理会快很多。</span>
+  <span>📱 手机上能用，但<b>桌面版 Chrome 更顺</b> —— 大图压缩、批量处理快很多。</span>
   <button type="button" id="tipClose" class="tip-close">知道了</button>
 </div>
 <header class="top">
@@ -35,9 +35,9 @@
 <main>
   <p class="crumb"><a href="/zh/index.html">← 全部工具</a></p>
   <h1>Cron 表达式解析</h1>
-  <p class="lead">贴一条 <code>*/15 9-18 * * 1-5</code>，逐段翻译成人话，并列出未来 5 次运行时间。「任务怎么没跑」几乎都是某一格写错了。</p>
+  <p class="lead">贴一条 cron 表达式，逐段翻译成人话，并按你的时区算出接下来 5 次运行时间。省得盯着 5 个星号猜半天，最后才发现是某一格写错了。</p>
 
-  <p class="badge-line"><span class="pill">完全在你的浏览器里运行，不上传、不保存。</span></p>
+  <p class="badge-line"><span class="pill">全程在你浏览器里跑完 —— 不上传、不保存、不留底。</span></p>
 
 <div class="panel">
 <label class="row lbl" for="input">输入</label>
@@ -73,9 +73,9 @@
 
 </main>
 
-<footer><p>ToolPocket · 全部在你的设备上完成，不上传任何文件。</p></footer>
+<footer><p>ToolPocket · 文件不出你的设备 —— 不上传、不注册、不追踪。</p></footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script>window.T = {"langName":"中文","footer":"ToolPocket · 全部在你的设备上完成，不上传任何文件。","nav":"全部工具","backToTools":"← 全部工具","copy":"复制结果","swap":"互换","clear":"清空","download":"下载","copied":"已复制到剪贴板","copyFail":"复制失败 —— 请手动选中复制","inputLabel":"输入","outputLabel":"结果","privacyNote":"完全在你的浏览器里运行，不上传、不保存。","searchPlaceholder":"搜索工具 —— 例如：压缩、json、密码…","noResults":"没找到匹配的工具，换个词试试？","mobileTip":"📱 手机能用，但<b>桌面版 Chrome 更顺</b> —— 大图压缩、批量处理会快很多。","mobileTipClose":"知道了","desktopHeading":"桌面端更好用","installApp":"装成桌面应用","installHint":"用桌面版 Chrome / Edge 打开本页，点地址栏右侧的「安装」图标 —— 它会变成一个独立窗口的桌面应用，断网也能用。不用下载安装包、不用账号。","installed":"已安装","offlineNote":"装好之后断网也能用 —— 这些工具本来就是在你机器上跑的，不需要服务器。","badCron":"cron 表达式必须是 5 段：分 时 日 月 周","badField":"有字段写错了","weekNames":["周日","周一","周二","周三","周四","周五","周六"],"cFields":"表达式","cExplain":"字段含义","cMin":"分","cHour":"时","cDom":"日","cMonth":"月","cDow":"周","cCombo":"注意","cComboAny":"日与周都未限定（每天都跑）","cComboBoth":"日与周同时被限定 ⇒ 按「或」处理（Vixie cron 语义）","cNext":"未来 5 次","cNone":"139 天内没有可运行时间 —— 检查「日」「月」两格"};</script>
+<script>window.T = {"langName":"中文","footer":"ToolPocket · 文件不出你的设备 —— 不上传、不注册、不追踪。","nav":"全部工具","backToTools":"← 全部工具","copy":"复制结果","swap":"互换","clear":"清空","download":"下载","copied":"已复制到剪贴板","copyFail":"浏览器拦住了自动复制 —— 手动选中再复制即可","inputLabel":"输入","outputLabel":"结果","privacyNote":"全程在你浏览器里跑完 —— 不上传、不保存、不留底。","searchPlaceholder":"搜索工具 —— 试试「压缩」「json」「密码」…","noResults":"没找到匹配的工具。换个说法试试，比如「压缩」「哈希」「json」。","mobileTip":"📱 手机上能用，但<b>桌面版 Chrome 更顺</b> —— 大图压缩、批量处理快很多。","mobileTipClose":"知道了","desktopHeading":"桌面端更好用","installApp":"装成桌面应用","installHint":"用桌面版 Chrome / Edge 打开本页，点地址栏右侧的「安装」图标 —— 它会变成一个独立窗口，断网也能继续用。不用下载安装包，也不用登录。","installed":"已安装","offlineNote":"装好之后，断网也能照常用 —— 本来这些活就是在你机器上干的，跟网络没关系。","badCron":"cron 表达式必须是 5 段：分 时 日 月 周","badField":"有字段写错了","weekNames":["周日","周一","周二","周三","周四","周五","周六"],"cFields":"表达式","cExplain":"字段含义","cMin":"分","cHour":"时","cDom":"日","cMonth":"月","cDow":"周","cCombo":"注意","cComboAny":"日与周都未限定（每天都跑）","cComboBoth":"日与周同时被限定 ⇒ 按「或」处理（Vixie cron 语义）","cNext":"未来 5 次","cNone":"139 天内没有可运行时间 —— 检查「日」「月」两格"};</script>
 <script src="/assets/tools/_shared.js" defer></script>
 <!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
 <script src="/assets/tools/cron.js?v=2" defer></script>

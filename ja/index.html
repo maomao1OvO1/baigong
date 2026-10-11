@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ToolPocket — ファイルをアップロードしない無料ツール</title>
-<meta name="description" content="画像の圧縮と形式変換、テキストのエンコード、JSON の整形。すべてブラウザ内で完結します。登録不要、アップロード不要、制限なし。">
+<title>登録不要・ファイルを送信しない無料オンラインツール | ToolPocket</title>
+<meta name="description" content="画像の圧縮と形式変換、JSON の整形、ハッシュの計算。すべてブラウザ内で処理します。会員登録もアップロードも不要、回数制限もありません。">
 <link rel="canonical" href="https://tools.maomaowang.top/ja/index.html">
-<meta property="og:title" content="ToolPocket — ファイルをアップロードしない無料ツール">
-<meta property="og:description" content="画像の圧縮と形式変換、テキストのエンコード、JSON の整形。すべてブラウザ内で完結します。登録不要、アップロード不要、制限なし。">
+<meta property="og:title" content="登録不要・ファイルを送信しない無料オンラインツール | ToolPocket">
+<meta property="og:description" content="画像の圧縮と形式変換、JSON の整形、ハッシュの計算。すべてブラウザ内で処理します。会員登録もアップロードも不要、回数制限もありません。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://tools.maomaowang.top/ja/index.html">
 <link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/index.html">
@@ -23,8 +23,8 @@
 </head>
 <body>
 <div class="mobile-tip" id="mobileTip" hidden>
-  <span>📱 スマホでも動きますが、大きな画像やまとめての処理はデスクトップ版 Chrome が快適です。</span>
-  <button type="button" id="tipClose" class="tip-close">閉じる</button>
+  <span>📱 スマホでも使えますが、大きな画像やまとめての処理はデスクトップ版 Chrome のほうが快適です。</span>
+  <button type="button" id="tipClose" class="tip-close">了解しました</button>
 </div>
 <header class="top">
   <a class="brand" href="/ja/index.html">🧰 ToolPocket</a>
@@ -33,12 +33,12 @@
 
 <main>
   <section class="hero">
-    <h1>メールアドレスを聞いてこないツール</h1>
-    <p class="lead">世の中の「無料ツール」は、まずアカウントを求めてきます。ここでは求めません。すべて<b>お使いのブラウザの中で</b>動くので、ファイルがサーバーを経由することはありません。登録も、たったの 3 枚までといった制限も、順番待ちもありません。</p>
+    <h1>登録も、ファイルの送信も要りません</h1>
+    <p class="lead">「無料ツール」の多くは、まず会員登録を求め、次にファイルを預かろうとします。ここではどちらもありません。<b>処理はすべてお使いのブラウザの中で完結する</b>ため、写真も JSON も、入力したパスワードも端末から出ません。1 日 3 枚までといった回数制限や、透かしの類もありません。</p>
 
     <div class="searchbox">
       <span class="s-ico" aria-hidden="true">🔍</span>
-      <input id="searchInput" type="search" autocomplete="off" placeholder="ツールを検索 — 例：圧縮、json、パスワード…" aria-label="ツールを検索 — 例：圧縮、json、パスワード…">
+      <input id="searchInput" type="search" autocomplete="off" placeholder="ツールを検索 — 「圧縮」「json」「パスワード」など" aria-label="ツールを検索 — 「圧縮」「json」「パスワード」など">
     </div>
     <ul class="searchresults" id="searchResults" hidden></ul>
   </section>
@@ -59,12 +59,12 @@
       <li><a href="/ja/tools/compress-image.html">
         <span class="ico">🗜️</span>
         <b>画像を、どこにも送らずに軽くする</b>
-        <span class="sub">写真をドロップすると、その場で軽くなります。アカウントも、アップロードも、「透かしを消すにはアップグレード」も、1 日の枚数制限もありません。</span>
+        <span class="sub">写真を軽くするために、他人のサーバーへ預ける必要はありません。画像はこのタブ内でデコード・縮小・再エンコードされ、スマホで撮った写真は多くの場合、元の数分の一程度になります。元の画像は…</span>
       </a></li>
       <li><a href="/ja/tools/convert-image.html">
         <span class="ico">🔄</span>
         <b>アップロードせずに画像形式を変換</b>
-        <span class="sub">HEIC のような特殊な例を除けば、形式の悩みはほぼ PNG ↔ JPG ↔ WebP です。ドロップして出力形式を選ぶだけ —— ファイルは端末の外に出ません。</span>
+        <span class="sub">HEIC・PNG・JPEG・WebP をアップロードせずに相互変換します。パソコンで開けないスマホの写真、JPEG しか受け付けないサイト——よくある 2 つの場面のために。</span>
       </a></li>
     </ul>
   </section>
@@ -75,42 +75,42 @@
       <li><a href="/ja/tools/html-entities.html">
         <span class="ico">🧷</span>
         <b>HTML エンティティのエンコード / デコード</b>
-        <span class="sub">&lt;script&gt; を安全に表示できる文字列に変換したり、&amp;#x4E2D; のような表記を元に戻せます。ASCII のみが要求されるメールテンプレートや旧システムでも…</span>
+        <span class="sub">HTML をエスケープして文字として表示させたり、&#x4E2D; のような実体参照を元に戻したりできます。ASCII のみを要求する古いメールテンプレートや API にも。</span>
       </a></li>
       <li><a href="/ja/tools/diff.html">
         <span class="ico">🆚</span>
         <b>テキスト差分（行単位）</b>
-        <span class="sub">旧バージョンを貼り、=== だけの行を挟んで、新バージョンを貼ってください。各行の先頭に -（削除）、+（追加）、空白（変更なし）が付きます。</span>
+        <span class="sub">2 つのテキストを行単位で比較し、実際に変わった箇所を示します。行末の空白や Windows の改行コードなど、目に見えない違いも見つけられます。</span>
       </a></li>
       <li><a href="/ja/tools/case-converter.html">
         <span class="ico">🔤</span>
         <b>命名規則の変換</b>
-        <span class="sub">名前を 1 つ、または一覧をそのまま貼り付けると、一般的な命名規則をまとめて出力します。略語は人の感覚で分割し、HTTPServer は http_server になります（h_t_t…</span>
+        <span class="sub">camelCase・PascalCase・snake_case・kebab-case・CONSTANT_CASE の相互変換。略語は人の感覚で分割します（HTTPServer → ht…</span>
       </a></li>
       <li><a href="/ja/tools/csv-json.html">
         <span class="ico">📊</span>
         <b>CSV ⇄ JSON 変換</b>
-        <span class="sub">どちらの形式でも貼り付けて、方向を切り替えるだけです。引用符で囲まれたフィールド、フィールド内のカンマ、セル内の改行——単純な split(&quot;,&quot;) が壊れる 3 つのケースに対応して…</span>
+        <span class="sub">CSV と JSON の相互変換。単純なツールが壊れる 3 つのケース——引用符内のカンマ、セル内の改行、二重引用符によるエスケープ——に対応します。Excel の書き出しには概ね 3…</span>
       </a></li>
       <li><a href="/ja/tools/base64.html">
         <span class="ico">🔠</span>
         <b>Base64 のエンコードとデコード</b>
-        <span class="sub">日本語や絵文字も文字化けしません。多くのオンラインツールは非英語圏の文字で崩れますが、それはブラウザの btoa をそのまま使っているためです。ここでは先に UTF-8 のバイト列に変…</span>
+        <span class="sub">日本語や絵文字が壊れない Base64 変換です。多くのツールはブラウザの生の関数をそのまま使うため、非 ASCII 文字が「?」に化けます。ここでは UTF-8 を経由して処理します…</span>
       </a></li>
       <li><a href="/ja/tools/json-format.html">
         <span class="ico">🧩</span>
         <b>JSON の整形と検証</b>
-        <span class="sub">ぐちゃぐちゃの JSON を貼れば、読める形になります。壊れている場合はどこが壊れているかを示します。「unexpected token」だけでは分かりませんから。</span>
+        <span class="sub">JSON の整形・圧縮・検証。壊れている場合はエラー行を示します。API のレスポンスを確認する場面で便利です——そしてそれは、見知らぬサイトに貼るべきではない類のテキストでもあります…</span>
       </a></li>
       <li><a href="/ja/tools/text-tools.html">
         <span class="ico">✍️</span>
         <b>日常のテキスト処理を 1 ページに</b>
-        <span class="sub">以前は 7 つのサイトが必要だった小さな作業をまとめました。大文字小文字の変換、逆順、各行の空白除去、重複行の削除、行の並べ替え、文字・単語・行のカウント。</span>
+        <span class="sub">ちょっとしたテキスト処理：大文字小文字の変換、反転、空行の除去、重複削除、行の並べ替え、文字数のカウント。広告まみれのページにテキストを貼る必要はありません。</span>
       </a></li>
       <li><a href="/ja/tools/url-codec.html">
         <span class="ico">🔗</span>
         <b>URL のエンコードとデコード</b>
-        <span class="sub">よくある罠：リンク全体を間違った関数でエンコードして、動かなくなる。ここでは何をエンコードするかを選べば、正しい関数が使われます。</span>
+        <span class="sub">URL とクエリ文字列のパーセントエンコード／デコード。「URL 全体を変換」と「値だけを変換」を分けています。コールバック URL が動かなくなる原因は、たいていこの混同です。</span>
       </a></li>
     </ul>
   </section>
@@ -121,42 +121,42 @@
       <li><a href="/ja/tools/url-parser.html">
         <span class="ico">🔗</span>
         <b>URL パーサー / クエリパラメータ表示</b>
-        <span class="sub">長いリンクを貼り付けると、実際の構成要素とクエリパラメータが 1 行ずつ表示されます。「このリンクが動かない」原因の多くはクエリ文字列です。&amp; の欠落、値のエンコードミス、# …</span>
+        <span class="sub">長い URL を構成要素に分解し、クエリパラメータを 1 行ずつ表示します。「このリンクが動かない」原因の多くはクエリ文字列にあります。& の欠落、二重エンコード、# によるクエリ全体…</span>
       </a></li>
       <li><a href="/ja/tools/ip-cidr.html">
         <span class="ico">🌐</span>
         <b>IPv4 / CIDR サブネット計算</b>
-        <span class="sub">192.168.1.10/24 のように入力すると、ネットワーク・ブロードキャスト・ホスト範囲・2 種類のマスク・アドレス数が得られ、プライベート／ループバック／グローバルの別も表示し…</span>
+        <span class="sub">192.168.1.10/24 のようなアドレスから、ネットワークアドレス・ブロードキャスト・利用可能なホスト範囲・マスク・ワイルドカードマスクを算出します。プライベート／ループバック…</span>
       </a></li>
       <li><a href="/ja/tools/cron.html">
         <span class="ico">⏰</span>
         <b>Cron 式エクスプレイナー</b>
-        <span class="sub">*/15 9-18 * * 1-5 のような式を貼り付けると、フィールドごとに意味を説明し、次回 5 回の実行時刻を一覧表示します。「なぜジョブが動かないのか」はほぼ 1 フィールドの…</span>
+        <span class="sub">cron 式を貼り付けると、フィールドごとに意味を説明し、お使いのタイムゾーンで次回 5 回の実行時刻を示します。1 つの書き間違いを探して 1 時間を潰す前に。</span>
       </a></li>
       <li><a href="/ja/tools/hash.html">
         <span class="ico">🔐</span>
         <b>ハッシュ生成（MD5 / SHA-1 / SHA-256 / SHA-512）</b>
-        <span class="sub">テキストを貼り付けてアルゴリズムを選ぶと、hex と base64 の両方が得られます。計算はすべて端末内で完結します。</span>
+        <span class="sub">MD5・SHA-1・SHA-256・SHA-512 をまとめて計算し、hex と Base64 の両方を表示します。ブラウザが MD5 を提供しなくなったため、ここでは自前で実装してい…</span>
       </a></li>
       <li><a href="/ja/tools/regex.html">
         <span class="ico">🧪</span>
         <b>正規表現テスター</b>
-        <span class="sub">パターンを書き、対象テキストを貼り付けると、一致した箇所が行番号・位置・キャプチャグループ付きで一覧表示されます。置換文字列を入れると結果もプレビューできます。</span>
+        <span class="sub">手元のテキストで正規表現を試せます。一致箇所を行番号・位置・キャプチャグループ付きで一覧表示します。ログには顧客情報が含まれることが多く、外部サイトに貼るのは避けたいところです。</span>
       </a></li>
       <li><a href="/ja/tools/uuid.html">
         <span class="ico">🆔</span>
         <b>UUID / ULID / NanoID 生成</b>
-        <span class="sub">用途に合う種類と個数を選んで、まとめてコピーするだけです。乱数は Math.random ではなく crypto.getRandomValues から取得します。</span>
+        <span class="sub">UUID v4、時刻順に並ぶ UUID v7、ULID、NanoID を最大 100 個まで生成します。乱数は Math.random ではなく、ブラウザの暗号学的乱数から取得します。</span>
       </a></li>
       <li><a href="/ja/tools/radix.html">
         <span class="ico">🔢</span>
         <b>基数変換（2 / 8 / 10 / 16 / 36）</b>
-        <span class="sub">数値を入力すると、各基数での表記と、必要なビット数・バイト数が一度に表示されます。長い値は BigInt で扱うため、18 桁の ID が丸められることはありません。</span>
+        <span class="sub">2・8・10・16・36 進数の相互変換と、フラグやマスクを読むためのビット表示。桁の多い値は BigInt で扱うため、18 桁の ID でも下位の桁が変わりません。</span>
       </a></li>
       <li><a href="/ja/tools/jwt.html">
         <span class="ico">🎫</span>
         <b>JWT デコーダー</b>
-        <span class="sub">トークンを貼り付けると、ヘッダーとペイロードが読みやすい JSON で表示され、exp・iat・nbf は実際の日時に変換されます。デコードは検証ではありません —— 署名の確認は行い…</span>
+        <span class="sub">JWT のヘッダー・ペイロード・有効期限を、他人の解析ダッシュボードに貼らずに確認できます。デコードはこのページ内で完結します。なお、デコードは検証ではありません。署名の確認はサーバー…</span>
       </a></li>
     </ul>
   </section>
@@ -167,12 +167,12 @@
       <li><a href="/ja/tools/color-palette.html">
         <span class="ico">🎨</span>
         <b>カラーパレット生成</b>
-        <span class="sub">1 色から配色一式が得られます。補色、類似色、トライアド、そして同じ色相の明度 7 段階。UI で hover／押下／無効状態の色が必要なときに便利です。</span>
+        <span class="sub">1 色から配色一式を得られます。補色・類似色・トライアドと、同じ色相の明度 7 段階。hover・押下・無効状態の色が濁らずに揃います。</span>
       </a></li>
       <li><a href="/ja/tools/color-converter.html">
         <span class="ico">🎨</span>
         <b>カラー変換 — HEX / RGB / HSL</b>
-        <span class="sub">手元にある形式をそのまま貼ってください。形式は自動判別し、残り 2 つを表示します。「入力形式を選択」といった手順は不要です。</span>
+        <span class="sub">色を HEX・RGB・HSL の間で変換し、3 つの表記を同時に表示します。デザインの HSL 値を CSS に落とし込むときに便利です。</span>
       </a></li>
     </ul>
   </section>
@@ -183,17 +183,17 @@
       <li><a href="/ja/tools/date-calc.html">
         <span class="ico">📅</span>
         <b>日付計算</b>
-        <span class="sub">日付を入力する（空欄なら今日）と、今日との差、N 日後の日付、曜日、年内通算日、ISO 週番号が一度に表示されます。</span>
+        <span class="sub">指定した日付が今日から何日後か、N 日後はいつかを計算し、曜日・年内通算日・ISO 週番号も表示します。暦日単位で計算するため、夏時間の切り替えで半日ずれることはありません。</span>
       </a></li>
       <li><a href="/ja/tools/unit-converter.html">
         <span class="ico">📏</span>
         <b>単位変換</b>
-        <span class="sub">数値を 1 つ入力すると、同じカテゴリのすべての単位が一度に表示されます。「変換元と変換先を選ぶ」手間はありません。長さ・重さ・データ容量・温度に対応。</span>
+        <span class="sub">長さ・重さ・データ量・温度をまとめて変換し、換算係数も併記します。結果が正しいかどうか、自分の目で確認できます。</span>
       </a></li>
       <li><a href="/ja/tools/timestamp.html">
         <span class="ico">⏱️</span>
         <b>Unix タイムスタンプ変換</b>
-        <span class="sub">タイムスタンプか日時を貼ると、ローカル時刻と UTC が並んで表示され、ISO 8601 も出ます。秒とミリ秒は自動判別 —— ここが一番間違えやすい部分です。</span>
+        <span class="sub">Unix タイムスタンプと日時の相互変換。ローカル時刻と UTC を並べて表示します。10 桁は秒、13 桁はミリ秒として自動判定します。</span>
       </a></li>
     </ul>
   </section>
@@ -204,21 +204,21 @@
       <li><a href="/ja/tools/password-gen.html">
         <span class="ico">🔑</span>
         <b>パスワード生成</b>
-        <span class="sub">crypto.getRandomValues を使っています。ブラウザが暗号鍵の生成に使うのと同じ OS レベルの乱数で、予測可能な Math.random は使いません。パスワードが…</span>
+        <span class="sub">ブラウザの暗号学的乱数でパスワードを生成します。紛らわしい文字（0 と O、1 と l）を除外するオプション付き。口頭で伝えたり、テレビのリモコンで入力したりする場面で役立ちます。</span>
       </a></li>
       <li><a href="/ja/tools/password-strength.html">
         <span class="ico">🛡️</span>
         <b>パスワード強度チェック</b>
-        <span class="sub">パスワードを入れると本気のレポートが出ます：エントロピー推定、含まれている弱いパターン、解読にかかる時間 —— すべて端末側で計算します。漏洩確認は任意で、明示的に同意した場合のみ通信…</span>
+        <span class="sub">パスワードが総当たり攻撃にどれだけ耐えるか、そして何が弱点か（繰り返し、キーボード配列、誕生日、電話番号）を確認できます。漏洩照合は明示的に確認した場合のみ実行され、ハッシュの先頭 5…</span>
       </a></li>
     </ul>
   </section>
 
   <section class="why">
-    <h2>なぜ無料でいられるのか</h2>
-    <p>維持費がほとんどかからないからです。ファイルをアップロードさせるタイプのツールは、処理用のサーバー代を払っています。だから回数制限をつけたり、透かしを入れたり、課金するまで待たせたりする。でも画像の圧縮も形式の変換も文字のエンコードも、ブラウザはもともとできます。<b>サーバーがなければ、制限も生まれません。</b></p>
-    <h2>ファイルを預けて大丈夫？</h2>
-    <p>私たちの言葉を信じる必要はありません。<b>ページを開いたあと Wi-Fi を切って、そのまま使ってみてください。</b>送信も保存も記録もしていません。</p>
+    <h2>無料で成り立つ理由</h2>
+    <p>処理を行う<b>サーバーが存在しない</b>からです。画像の圧縮も形式の変換も、ブラウザにもともと備わっている機能で足ります。アップロードを求めるサービスは、その処理のためにサーバー代を支払っています。だからこそ回数制限や透かし、会員登録への誘導が生まれます。ここにはその費用がないため、制限もありません。アカウントの販売やデータの提供、広告配信のための追跡も行っていません。</p>
+    <h2>本当に大丈夫なのか</h2>
+    <p>私たちの説明を信じる必要はありません。<b>どれか一つのツールを開き、Wi-Fi を切ってそのまま操作してみてください。</b>問題なく動きます。送信する仕組みがそもそも無いためです。ファイルは端末の中に留まります。これは約束ではなく、このサイトの作りそのものです。</p>
   </section>
 
 <aside class="ad ad-home-self">
@@ -246,8 +246,8 @@
        不给"点了没反应"的假按钮。 -->
   <section class="install">
     <h2>デスクトップ版がおすすめ</h2>
-    <p id="installNote">デスクトップ版 Chrome / Edge で開き、アドレスバー右側のインストールアイコンをクリックしてください。独立したウィンドウのアプリになり、オフラインでも動作します。</p>
-    <p class="note">インストール後はネットワークなしでも動作します。もともと処理は端末内で完結しているためです。</p>
+    <p id="installNote">デスクトップ版 Chrome / Edge でこのサイトを開き、アドレスバー右側のインストールアイコンをクリックしてください。独立したウィンドウになり、ネットワークが無くても動作します。インストーラのダウンロードも登録も不要です。</p>
+    <p class="note">インストール後はネットワークを切ったままでも使えます。もともと通信していないのですから、当然といえば当然です。</p>
     <div class="btnrow"><button id="installApp" hidden>デスクトップアプリとして追加</button></div>
   </section>
 </main>
@@ -262,7 +262,7 @@
 });
 </script>
 
-<footer><p>ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。</p></footer>
+<footer><p>ToolPocket · ファイルは端末から出ません。送信も登録も、追跡もありません。</p></footer>
 <script src="/assets/app.js?v=2" defer></script>
 </body>
 </html>

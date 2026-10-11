@@ -1,7 +1,7 @@
 {
-  "name": "ToolPocket — 不上传文件的免费在线工具",
+  "name": "不用注册、不用关注公众号的在线工具 | ToolPocket",
   "short_name": "ToolPocket",
-  "description": "图片压缩与格式转换、文本编码、JSON 格式化 —— 全部在浏览器里完成。不用注册、不上传、无限制。",
+  "description": "图片压缩、格式转换、JSON 格式化、哈希计算 —— 全部在你自己的浏览器里完成。不用注册、文件不上传、不限次数、没有水印。",
   "start_url": "/zh/",
   "scope": "/",
   "display": "standalone",

@@ -24,7 +24,7 @@
 </head>
 <body>
 <div class="mobile-tip" id="mobileTip" hidden>
-  <span>📱 手机能用，但<b>桌面版 Chrome 更顺</b> —— 大图压缩、批量处理会快很多。</span>
+  <span>📱 手机上能用，但<b>桌面版 Chrome 更顺</b> —— 大图压缩、批量处理快很多。</span>
   <button type="button" id="tipClose" class="tip-close">知道了</button>
 </div>
 <header class="top">
@@ -35,9 +35,9 @@
 <main>
   <p class="crumb"><a href="/zh/index.html">← 全部工具</a></p>
   <h1>进制转换（2 / 8 / 10 / 16 / 36）</h1>
-  <p class="lead">输入一个数，同时得到各常见进制的写法，以及它占多少位、多少字节。长数字走的是 <code>BigInt</code>，18 位的雪花 ID 不会被悄悄四舍五入。</p>
+  <p class="lead">二进制、八进制、十进制、十六进制、36 进制互转，还给一个分组位视图，用来看标志位和掩码。长数字走 BigInt —— 18 位的 ID 不会被悄悄改掉末几位。</p>
 
-  <p class="badge-line"><span class="pill">完全在你的浏览器里运行，不上传、不保存。</span></p>
+  <p class="badge-line"><span class="pill">全程在你浏览器里跑完 —— 不上传、不保存、不留底。</span></p>
 
 <div class="panel">
 <label class="row lbl" for="input">输入</label>
@@ -76,9 +76,9 @@
 
 </main>
 
-<footer><p>ToolPocket · 全部在你的设备上完成，不上传任何文件。</p></footer>
+<footer><p>ToolPocket · 文件不出你的设备 —— 不上传、不注册、不追踪。</p></footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script>window.T = {"langName":"中文","footer":"ToolPocket · 全部在你的设备上完成，不上传任何文件。","nav":"全部工具","backToTools":"← 全部工具","copy":"复制结果","swap":"互换","clear":"清空","download":"下载","copied":"已复制到剪贴板","copyFail":"复制失败 —— 请手动选中复制","inputLabel":"输入","outputLabel":"结果","privacyNote":"完全在你的浏览器里运行，不上传、不保存。","searchPlaceholder":"搜索工具 —— 例如：压缩、json、密码…","noResults":"没找到匹配的工具，换个词试试？","mobileTip":"📱 手机能用，但<b>桌面版 Chrome 更顺</b> —— 大图压缩、批量处理会快很多。","mobileTipClose":"知道了","desktopHeading":"桌面端更好用","installApp":"装成桌面应用","installHint":"用桌面版 Chrome / Edge 打开本页，点地址栏右侧的「安装」图标 —— 它会变成一个独立窗口的桌面应用，断网也能用。不用下载安装包、不用账号。","installed":"已安装","offlineNote":"装好之后断网也能用 —— 这些工具本来就是在你机器上跑的，不需要服务器。","base":"输入进制","baseHint":"选「自动」时，按前缀或出现的字母来判断进制。","group":"位分组","groupHint":"分组之后，标志位与掩码一眼就能读出来。","badNumber":"这个进制下不是合法数字","bitsLabel":"位","bytesLabel":"字节","groupLabel":"分组","digitsLabel":"位十进制数字"};</script>
+<script>window.T = {"langName":"中文","footer":"ToolPocket · 文件不出你的设备 —— 不上传、不注册、不追踪。","nav":"全部工具","backToTools":"← 全部工具","copy":"复制结果","swap":"互换","clear":"清空","download":"下载","copied":"已复制到剪贴板","copyFail":"浏览器拦住了自动复制 —— 手动选中再复制即可","inputLabel":"输入","outputLabel":"结果","privacyNote":"全程在你浏览器里跑完 —— 不上传、不保存、不留底。","searchPlaceholder":"搜索工具 —— 试试「压缩」「json」「密码」…","noResults":"没找到匹配的工具。换个说法试试，比如「压缩」「哈希」「json」。","mobileTip":"📱 手机上能用，但<b>桌面版 Chrome 更顺</b> —— 大图压缩、批量处理快很多。","mobileTipClose":"知道了","desktopHeading":"桌面端更好用","installApp":"装成桌面应用","installHint":"用桌面版 Chrome / Edge 打开本页，点地址栏右侧的「安装」图标 —— 它会变成一个独立窗口，断网也能继续用。不用下载安装包，也不用登录。","installed":"已安装","offlineNote":"装好之后，断网也能照常用 —— 本来这些活就是在你机器上干的，跟网络没关系。","base":"输入进制","baseHint":"选「自动」时，按前缀或出现的字母来判断进制。","group":"位分组","groupHint":"分组之后，标志位与掩码一眼就能读出来。","badNumber":"这个进制下不是合法数字","bitsLabel":"位","bytesLabel":"字节","groupLabel":"分组","digitsLabel":"位十进制数字"};</script>
 <script src="/assets/tools/_shared.js" defer></script>
 <!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
 <script src="/assets/tools/radix.js?v=2" defer></script>

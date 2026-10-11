@@ -4,10 +4,16 @@
     "title": "URL Parser — Split a Link into Host, Path & Query Parameters | ToolPocket",
     "desc": "Break a URL into protocol, host, port, path, fragment and a numbered list of query parameters, with optional percent-decoding.",
     "h1": "URL parser / query parameter viewer",
-    "lead": "Paste a long link and see its real parts, one query parameter per line. Most “this link doesn’t work” bugs are in the query string — a missing <code>&amp;</code>, a mis-encoded value, or a <code>#</code> that swallowed the whole query.",
+    "lead": "Break a long link into its real parts and list every query parameter on its own line. Most “this link doesn't work” cases live in the query string: a missing &, a value encoded twice, or a # that swallowed the entire query.",
     "faq": [
-      ["Why does the host look different from what I typed?", "Browsers and <code>new URL()</code> apply the WHATWG standard: international domains are converted to punycode and illegal characters are percent-encoded. That is exactly what gets sent on the wire, so seeing it here is useful."],
-      ["What does the decode switch do?", "It shows <code>%E4%B8%AD</code> as the character it stands for, and turns <code>+</code> into a space — the way a form submission would be read. Turn it off to see the raw string."]
+      [
+        "Why does the host look different from what I typed?",
+        "Browsers and <code>new URL()</code> apply the WHATWG standard: international domains are converted to punycode and illegal characters are percent-encoded. That is exactly what gets sent on the wire, so seeing it here is useful."
+      ],
+      [
+        "What does the decode switch do?",
+        "It shows <code>%E4%B8%AD</code> as the character it stands for, and turns <code>+</code> into a space — the way a form submission would be read. Turn it off to see the raw string."
+      ]
     ],
     "ui": {
       "decode": "Decode percent-encoding",
@@ -29,10 +35,16 @@
     "title": "URL 拆解 —— 看清主机、路径与查询参数 | ToolPocket",
     "desc": "把一条 URL 拆成协议、主机、端口、路径、锚点与逐条列出的查询参数，可选择性百分号解码。",
     "h1": "URL 拆解 / 查询参数查看",
-    "lead": "贴一条长链接，看清它真正的组成部分，查询参数一条一行。「这链接怎么不对」的问题九成出在查询串：少一个 <code>&amp;</code>、值没编码对，或者 <code>#</code> 把整个查询串吃掉了。",
+    "lead": "把长链接拆开，查询参数一条一行。所谓「这链接怎么不对」，九成坏在查询串：少一个 &、值被编码了两遍，或者 # 把整个查询串吃掉了。",
     "faq": [
-      ["为什么显示的主机名和我输入的不一样？", "浏览器和 <code>new URL()</code> 都按 WHATWG 标准解析：中文域名会转成 punycode，非法字符会被百分号编码。这正是实际发出去的请求内容，所以在这里看到它反而是好事。"],
-      ["「解码」开关有什么用？", "打开后会把 <code>%E4%B8%AD</code> 显示成「中」，并把 <code>+</code> 当成空格 —— 和服务端读取表单值的方式一致。关掉则看原始字符串。"]
+      [
+        "为什么显示的主机名和我输入的不一样？",
+        "浏览器和 <code>new URL()</code> 都按 WHATWG 标准解析：中文域名会转成 punycode，非法字符会被百分号编码。这正是实际发出去的请求内容，所以在这里看到它反而是好事。"
+      ],
+      [
+        "「解码」开关有什么用？",
+        "打开后会把 <code>%E4%B8%AD</code> 显示成「中」，并把 <code>+</code> 当成空格 —— 和服务端读取表单值的方式一致。关掉则看原始字符串。"
+      ]
     ],
     "ui": {
       "decode": "百分号解码",
@@ -54,10 +66,16 @@
     "title": "URL パーサー — ホスト・パス・クエリを分解表示 | ToolPocket",
     "desc": "URL をプロトコル・ホスト・ポート・パス・フラグメントとクエリパラメータの一覧に分解します。パーセントデコードの切り替えも可能です。",
     "h1": "URL パーサー / クエリパラメータ表示",
-    "lead": "長いリンクを貼り付けると、実際の構成要素とクエリパラメータが 1 行ずつ表示されます。「このリンクが動かない」原因の多くはクエリ文字列です。<code>&amp;</code> の欠落、値のエンコードミス、<code>#</code> によるクエリ全体の飲み込みなどが典型です。",
+    "lead": "長い URL を構成要素に分解し、クエリパラメータを 1 行ずつ表示します。「このリンクが動かない」原因の多くはクエリ文字列にあります。& の欠落、二重エンコード、# によるクエリ全体の飲み込みなどです。",
     "faq": [
-      ["入力したホスト名と表示が違うのはなぜ？", "ブラウザと <code>new URL()</code> は WHATWG 標準に従って解析します。国際化ドメインは punycode に変換され、不正な文字はパーセントエンコードされます。これは実際に送信される内容なので、ここで確認できるのは有益です。"],
-      ["「デコード」スイッチの役割は？", "オンにすると <code>%E4%B8%AD</code> を「中」として表示し、<code>+</code> を空白として扱います。サーバーがフォーム値を読む方法と同じです。オフにすると生の文字列を確認できます。"]
+      [
+        "入力したホスト名と表示が違うのはなぜ？",
+        "ブラウザと <code>new URL()</code> は WHATWG 標準に従って解析します。国際化ドメインは punycode に変換され、不正な文字はパーセントエンコードされます。これは実際に送信される内容なので、ここで確認できるのは有益です。"
+      ],
+      [
+        "「デコード」スイッチの役割は？",
+        "オンにすると <code>%E4%B8%AD</code> を「中」として表示し、<code>+</code> を空白として扱います。サーバーがフォーム値を読む方法と同じです。オフにすると生の文字列を確認できます。"
+      ]
     ],
     "ui": {
       "decode": "パーセントデコード",

@@ -24,8 +24,8 @@
 </head>
 <body>
 <div class="mobile-tip" id="mobileTip" hidden>
-  <span>📱 スマホでも動きますが、大きな画像やまとめての処理はデスクトップ版 Chrome が快適です。</span>
-  <button type="button" id="tipClose" class="tip-close">閉じる</button>
+  <span>📱 スマホでも使えますが、大きな画像やまとめての処理はデスクトップ版 Chrome のほうが快適です。</span>
+  <button type="button" id="tipClose" class="tip-close">了解しました</button>
 </div>
 <header class="top">
   <a class="brand" href="/ja/index.html">🧰 ToolPocket</a>
@@ -35,9 +35,9 @@
 <main>
   <p class="crumb"><a href="/ja/index.html">← ツール一覧</a></p>
   <h1>URL パーサー / クエリパラメータ表示</h1>
-  <p class="lead">長いリンクを貼り付けると、実際の構成要素とクエリパラメータが 1 行ずつ表示されます。「このリンクが動かない」原因の多くはクエリ文字列です。<code>&amp;</code> の欠落、値のエンコードミス、<code>#</code> によるクエリ全体の飲み込みなどが典型です。</p>
+  <p class="lead">長い URL を構成要素に分解し、クエリパラメータを 1 行ずつ表示します。「このリンクが動かない」原因の多くはクエリ文字列にあります。& の欠落、二重エンコード、# によるクエリ全体の飲み込みなどです。</p>
 
-  <p class="badge-line"><span class="pill">すべてブラウザ内で処理されます。送信も保存もしていません。</span></p>
+  <p class="badge-line"><span class="pill">すべてブラウザ内で処理。送信も保存もしていません。</span></p>
 
 <div class="panel">
 <label class="row lbl" for="input">入力</label>
@@ -73,9 +73,9 @@
 
 </main>
 
-<footer><p>ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。</p></footer>
+<footer><p>ToolPocket · ファイルは端末から出ません。送信も登録も、追跡もありません。</p></footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script>window.T = {"langName":"日本語","footer":"ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"コピーできませんでした。手動で選択してください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理されます。送信も保存もしていません。","searchPlaceholder":"ツールを検索 — 例：圧縮、json、パスワード…","noResults":"該当するツールがありません。別の言葉でお試しを。","mobileTip":"📱 スマホでも動きますが、大きな画像やまとめての処理はデスクトップ版 Chrome が快適です。","mobileTipClose":"閉じる","desktopHeading":"デスクトップ版がおすすめ","installApp":"デスクトップアプリとして追加","installHint":"デスクトップ版 Chrome / Edge で開き、アドレスバー右側のインストールアイコンをクリックしてください。独立したウィンドウのアプリになり、オフラインでも動作します。","installed":"インストール済み","offlineNote":"インストール後はネットワークなしでも動作します。もともと処理は端末内で完結しているためです。","decode":"パーセントデコード","decodeHint":"%E4%B8%AD を「中」と表示し、+ を空白として扱います。サーバーの解釈と同じです。","badUrl":"有効な絶対 URL ではありません（http:// か https:// が必要です）","pProtocol":"プロトコル","pHost":"ホスト","pPort":"ポート","pPath":"パス","pUser":"ユーザー名","pPass":"パスワード","pHash":"フラグメント","pQuery":"クエリパラメータ","pNoQuery":"なし","pCount":"個のパラメータ"};</script>
+<script>window.T = {"langName":"日本語","footer":"ToolPocket · ファイルは端末から出ません。送信も登録も、追跡もありません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"ブラウザがコピーを許可しませんでした。テキストを選択して手動でコピーしてください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理。送信も保存もしていません。","searchPlaceholder":"ツールを検索 — 「圧縮」「json」「パスワード」など","noResults":"該当するツールがありませんでした。「圧縮」「ハッシュ」など、別の言葉でお試しください。","mobileTip":"📱 スマホでも使えますが、大きな画像やまとめての処理はデスクトップ版 Chrome のほうが快適です。","mobileTipClose":"了解しました","desktopHeading":"デスクトップ版がおすすめ","installApp":"デスクトップアプリとして追加","installHint":"デスクトップ版 Chrome / Edge でこのサイトを開き、アドレスバー右側のインストールアイコンをクリックしてください。独立したウィンドウになり、ネットワークが無くても動作します。インストーラのダウンロードも登録も不要です。","installed":"インストール済み","offlineNote":"インストール後はネットワークを切ったままでも使えます。もともと通信していないのですから、当然といえば当然です。","decode":"パーセントデコード","decodeHint":"%E4%B8%AD を「中」と表示し、+ を空白として扱います。サーバーの解釈と同じです。","badUrl":"有効な絶対 URL ではありません（http:// か https:// が必要です）","pProtocol":"プロトコル","pHost":"ホスト","pPort":"ポート","pPath":"パス","pUser":"ユーザー名","pPass":"パスワード","pHash":"フラグメント","pQuery":"クエリパラメータ","pNoQuery":"なし","pCount":"個のパラメータ"};</script>
 <script src="/assets/tools/_shared.js" defer></script>
 <!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
 <script src="/assets/tools/url-parser.js?v=2" defer></script>

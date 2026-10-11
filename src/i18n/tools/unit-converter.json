@@ -4,7 +4,7 @@
     "title": "Unit Converter — Length, Weight, Data Size, Temperature | ToolPocket",
     "desc": "Convert mm/cm/m/km, inches/feet/miles, grams/ounces/pounds, KB/MB/GB, and Celsius/Fahrenheit/Kelvin — all at once, no upload.",
     "h1": "Unit converter",
-    "lead": "Type one value and see <b>every</b> unit in that category at once — no “pick from and to” dropdown dance. Handles length, weight, data size and temperature.",
+    "lead": "Length, weight, data size and temperature in one place — with the conversion factor shown, so you can check the result yourself instead of trusting a black box.",
     "faq": [
       [
         "What's the difference between MB and MiB?",
@@ -38,7 +38,7 @@
     "title": "单位换算 — 长度 / 重量 / 数据大小 / 温度 | ToolPocket",
     "desc": "毫米、厘米、米、公里、英寸、英尺、英里、克、盎司、磅、KB、MB、GB、摄氏度、华氏度、开尔文 —— 一次全出，不上传。",
     "h1": "单位换算",
-    "lead": "输一个数，同类别里<b>所有单位</b>一起出来 —— 不用先选“从哪个换到哪个”。支持长度、重量、数据大小、温度。",
+    "lead": "长度、重量、数据大小、温度一站换算，并把换算系数一并写出来 —— 结果对不对，你自己能核对，不用信一个黑盒。",
     "faq": [
       [
         "MB 和 MiB 有什么区别？",
@@ -72,7 +72,7 @@
     "title": "単位変換 — 長さ・重さ・データ容量・温度 | ToolPocket",
     "desc": "mm・cm・m・km・インチ・フィート・マイル、グラム・オンス・ポンド、KB・MB・GB、摂氏・華氏・ケルビンを一括変換。アップロード不要。",
     "h1": "単位変換",
-    "lead": "数値を 1 つ入力すると、同じカテゴリの<b>すべての単位</b>が一度に表示されます。「変換元と変換先を選ぶ」手間はありません。長さ・重さ・データ容量・温度に対応。",
+    "lead": "長さ・重さ・データ量・温度をまとめて変換し、換算係数も併記します。結果が正しいかどうか、自分の目で確認できます。",
     "faq": [
       [
         "MB と MiB は何が違いますか？",

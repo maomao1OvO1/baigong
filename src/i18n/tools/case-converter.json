@@ -4,11 +4,20 @@
     "title": "Case Converter — camelCase, snake_case, kebab-case & More | ToolPocket",
     "desc": "Convert text or variable names between camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE and Title Case. Handles acronyms like HTTPServer correctly.",
     "h1": "Naming case converter",
-    "lead": "Paste a name or a whole list (one per line) and get every common naming style at once. Acronyms are split the way a human would: <code>HTTPServer</code> becomes <code>http_server</code>, not <code>h_t_t_p_server</code>.",
+    "lead": "Convert names between camelCase, PascalCase, snake_case, kebab-case and CONSTANT_CASE — with acronyms split the way a person would. HTTPServer becomes http_server, not h_t_t_p_server.",
     "faq": [
-      ["Which style should I use in code?", "Follow the language's convention: camelCase for JavaScript/Java variables, snake_case for Python/Rust, PascalCase for types and classes, CONSTANT_CASE for module-level constants. Consistency inside one file matters more than which one you pick."],
-      ["What about Chinese or Japanese text?", "CJK characters have no case, so they pass through unchanged. That is expected: camelCase is a convention for Latin-script identifiers and gives no benefit to CJK."],
-      ["Does it handle multiple lines?", "Yes. Each non-empty line is converted independently, which makes it handy for turning a pasted list of column names into one style."]
+      [
+        "Which style should I use in code?",
+        "Follow the language's convention: camelCase for JavaScript/Java variables, snake_case for Python/Rust, PascalCase for types and classes, CONSTANT_CASE for module-level constants. Consistency inside one file matters more than which one you pick."
+      ],
+      [
+        "What about Chinese or Japanese text?",
+        "CJK characters have no case, so they pass through unchanged. That is expected: camelCase is a convention for Latin-script identifiers and gives no benefit to CJK."
+      ],
+      [
+        "Does it handle multiple lines?",
+        "Yes. Each non-empty line is converted independently, which makes it handy for turning a pasted list of column names into one style."
+      ]
     ],
     "ui": {
       "style": "Output style",
@@ -21,11 +30,20 @@
     "title": "命名风格转换 —— 驼峰 / 下划线 / 连字符 一键互换 | ToolPocket",
     "desc": "在 camelCase、PascalCase、snake_case、kebab-case、CONSTANT_CASE、Title Case 之间互转，并正确处理 HTTPServer 这类含缩写的名字。",
     "h1": "命名风格转换",
-    "lead": "贴一个名字或一整列名字（每行一个），一次得到所有常见风格。缩写会按人的习惯拆开：<code>HTTPServer</code> 转成 <code>http_server</code>，而不是 <code>h_t_t_p_server</code>。",
+    "lead": "命名风格互转：camelCase、PascalCase、snake_case、kebab-case、CONSTANT_CASE。缩写按人的习惯拆 —— HTTPServer 会变成 http_server，而不是 h_t_t_p_server。",
     "faq": [
-      ["代码里该用哪种风格？", "跟着语言约定走：JavaScript / Java 的变量用 camelCase，Python / Rust 用 snake_case，类型与类名用 PascalCase，模块级常量用 CONSTANT_CASE。同一个文件里保持一致，比选哪一种更重要。"],
-      ["中文、日文会怎么样？", "中日文没有大小写，会原样保留 —— 这是正常的：驼峰是拉丁字母命名的约定，对中日文不产生变化。"],
-      ["支持多行吗？", "支持。每个非空行单独转换，所以把一列字段名贴进来统一改风格很方便。"]
+      [
+        "代码里该用哪种风格？",
+        "跟着语言约定走：JavaScript / Java 的变量用 camelCase，Python / Rust 用 snake_case，类型与类名用 PascalCase，模块级常量用 CONSTANT_CASE。同一个文件里保持一致，比选哪一种更重要。"
+      ],
+      [
+        "中文、日文会怎么样？",
+        "中日文没有大小写，会原样保留 —— 这是正常的：驼峰是拉丁字母命名的约定，对中日文不产生变化。"
+      ],
+      [
+        "支持多行吗？",
+        "支持。每个非空行单独转换，所以把一列字段名贴进来统一改风格很方便。"
+      ]
     ],
     "ui": {
       "style": "输出风格",
@@ -38,11 +56,20 @@
     "title": "命名規則コンバーター — camelCase / snake_case / kebab-case | ToolPocket",
     "desc": "camelCase、PascalCase、snake_case、kebab-case、CONSTANT_CASE、Title Case を相互変換します。HTTPServer のような略語も正しく分割します。",
     "h1": "命名規則の変換",
-    "lead": "名前を 1 つ、または一覧をそのまま貼り付けると、一般的な命名規則をまとめて出力します。略語は人の感覚で分割し、<code>HTTPServer</code> は <code>http_server</code> になります（<code>h_t_t_p_server</code> にはなりません）。",
+    "lead": "camelCase・PascalCase・snake_case・kebab-case・CONSTANT_CASE の相互変換。略語は人の感覚で分割します（HTTPServer → http_server。h_t_t_p_server にはなりません）。",
     "faq": [
-      ["コードではどの規則を使うべき？", "言語の慣習に従ってください。JavaScript / Java の変数は camelCase、Python / Rust は snake_case、型やクラスは PascalCase、モジュール定数は CONSTANT_CASE が一般的です。同じファイル内で統一することが最も重要です。"],
-      ["日本語や中国語はどうなりますか？", "CJK には大文字小文字がないため、そのまま保持されます。camelCase はラテン文字向けの規則なので、これは正常な動作です。"],
-      ["複数行に対応していますか？", "はい。空行以外の各行を個別に変換します。列名の一覧を貼り付けて一括変換するのに便利です。"]
+      [
+        "コードではどの規則を使うべき？",
+        "言語の慣習に従ってください。JavaScript / Java の変数は camelCase、Python / Rust は snake_case、型やクラスは PascalCase、モジュール定数は CONSTANT_CASE が一般的です。同じファイル内で統一することが最も重要です。"
+      ],
+      [
+        "日本語や中国語はどうなりますか？",
+        "CJK には大文字小文字がないため、そのまま保持されます。camelCase はラテン文字向けの規則なので、これは正常な動作です。"
+      ],
+      [
+        "複数行に対応していますか？",
+        "はい。空行以外の各行を個別に変換します。列名の一覧を貼り付けて一括変換するのに便利です。"
+      ]
     ],
     "ui": {
       "style": "出力スタイル",

@@ -4,7 +4,7 @@
     "title": "HEX to RGB, RGB to HSL Color Converter — Free, Instant | ToolPocket",
     "desc": "Paste any color (#hex, rgb() or hsl()) and get all three formats at once, plus a live preview. Runs in your browser.",
     "h1": "Color converter — HEX, RGB, HSL",
-    "lead": "Paste whatever you have. It figures out the format and shows the other two — no dropdowns, no “select your input type” dance.",
+    "lead": "Move a colour between HEX, RGB and HSL, and see all three at once — which is what you actually need when turning a designer's HSL values into CSS.",
     "faq": [
       [
         "Which formats does it accept?",
@@ -29,7 +29,7 @@
     "title": "颜色转换 HEX / RGB / HSL — 免费即时 | ToolPocket",
     "desc": "粘任意一种颜色写法（#hex、rgb()、hsl()），一次给出三种格式，还带实时预览。全部在浏览器里算。",
     "h1": "颜色转换 —— HEX / RGB / HSL",
-    "lead": "手里有什么就粘什么，自动识别格式，另外两种直接给你 —— 不用先选“输入类型”，少一步就是少一次放弃。",
+    "lead": "颜色在 HEX、RGB、HSL 之间互转，一次把三种写法都摆出来 —— 把设计稿里的 HSL 值落到 CSS 时，这样最省事。",
     "faq": [
       [
         "支持哪些写法？",
@@ -54,7 +54,7 @@
     "title": "カラー変換 HEX / RGB / HSL — 無料・即時 | ToolPocket",
     "desc": "#hex・rgb()・hsl() のどれを貼っても、3 形式すべてを一度に表示。プレビュー付き。ブラウザ内で計算します。",
     "h1": "カラー変換 — HEX / RGB / HSL",
-    "lead": "手元にある形式をそのまま貼ってください。形式は自動判別し、残り 2 つを表示します。「入力形式を選択」といった手順は不要です。",
+    "lead": "色を HEX・RGB・HSL の間で変換し、3 つの表記を同時に表示します。デザインの HSL 値を CSS に落とし込むときに便利です。",
     "faq": [
       [
         "どの形式に対応していますか？",

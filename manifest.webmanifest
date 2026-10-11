@@ -1,7 +1,7 @@
 {
-  "name": "ToolPocket — Free Tools That Never Upload Your Files",
+  "name": "ToolPocket — Free tools that never see your files",
   "short_name": "ToolPocket",
-  "description": "Compress and convert images, encode text, format JSON — all inside your browser. No account, no upload, no limits.",
+  "description": "Compress images, convert formats, format JSON, hash text — all inside your browser. No sign-up, no upload, no file limits, nothing tracked.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
