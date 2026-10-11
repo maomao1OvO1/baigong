@@ -180,6 +180,29 @@ details p { margin: 9px 0 0; color: var(--muted); font-size: 14px; }
 .pwn .confirm .note { color: var(--fg); }
 .pwn .confirm button:not(.ghost) { background: var(--brand); }
 
+
+/* ── 广告位（纯静态卡片：无脚本、无 iframe、无额外请求）── */
+.ad {
+  position: relative; margin: 34px 0 0; padding: 18px 18px 16px;
+  border: 1px solid var(--line); border-radius: var(--radius);
+  background: linear-gradient(180deg, var(--brand-soft), transparent 70%);
+}
+.ad-label {
+  position: absolute; top: -9px; left: 14px; font-size: 11px; letter-spacing: .04em;
+  padding: 2px 9px; border-radius: 999px; background: var(--bg);
+  border: 1px solid var(--line); color: var(--muted); text-transform: uppercase;
+}
+.ad-body b { display: block; font-size: 15.5px; margin-bottom: 5px; }
+.ad-body p { margin: 0 0 8px; color: var(--muted); font-size: 13.5px; }
+.ad-cta { font-size: 13.5px; font-weight: 620; text-decoration: none; }
+
+/* ── 招租页的规格表 ── */
+table.spec { width: 100%; border-collapse: collapse; font-size: 14px; margin: 6px 0 0; }
+table.spec td { padding: 11px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.spec td:first-child { width: 30%; }
+table.spec td:not(:first-child) { color: var(--muted); }
+.contact code { font-size: 13px; padding: 4px 9px; }
+
 /* ── 提示条 ── */
 .toast {
   position: fixed; left: 50%; bottom: 26px; transform: translate(-50%, 14px);

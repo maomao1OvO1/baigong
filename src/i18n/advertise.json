@@ -1,0 +1,88 @@
+{
+  "_说明": "「广告位招租」页文案（三语）。给潜在广告主看的：我们是谁、有什么流量、位置多大、怎么联系。",
+  "_注意": "当前数字要如实（不要虚报流量）—— 编数据只会让对方第一次沟通就失去信任。等有统计了再填实测值。",
+  "en": {
+    "title": "Advertise — ToolPocket | Sponsored placement on a free tools site",
+    "desc": "Put your product in front of developers and designers searching in English, Chinese and Japanese. Static placements only — no tracking scripts, no popups, no layout shift.",
+    "h1": "Advertise on ToolPocket",
+    "lead": "ToolPocket is a free browser-tools site in <b>three languages</b> (English, Chinese, Japanese). The audience arrives from search with a specific task in mind — compressing an image, checking a password, converting a timestamp.",
+    "whoHeading": "Who visits",
+    "who": "People who need a tool right now: developers, designers, students. They arrive from search engines, use the tool and leave — which means the page they see is exactly the page your placement sits on.",
+    "marketsHeading": "Three markets, three audiences",
+    "markets": [
+      ["English", "US / EU / global", "Developer & SaaS products, hosting, privacy tools"],
+      ["日本語", "Japan", "Japanese-language services — one of the highest ad-value markets in Asia"],
+      ["中文", "Chinese-speaking users", "Apps, tutorials, productivity tools (no circumvention/VPN products, by policy)"]
+    ],
+    "specsHeading": "What you get",
+    "specs": [
+      ["Placement", "Home page and tool pages, matched to the language you choose"],
+      ["Format", "Plain HTML text + link card (I can match your brand colours)"],
+      ["Not included", "Third-party scripts, iframes, popups, tracking pixels, autoplay — I don't run them"],
+      ["Why that matters", "The site loads in a fraction of a second with zero external requests; ad slots keep it that way, so nobody blocks them"]
+    ],
+    "numbersHeading": "Current numbers",
+    "numbers": "The site launched recently and is still being indexed by search engines. I publish real numbers rather than invented ones — ask me and I'll send you the latest data I can measure.",
+    "contactHeading": "Get in touch",
+    "contact": "Email me with what you'd like to promote and which language page(s) you want. If it fits the audience, I'll send an offer.",
+    "contactLabel": "Contact",
+    "contactValue": "（待填：这里写你的邮箱）",
+    "note": "I'm an independent developer, not an ad network — so replies are personal and there's no minimum spend to negotiate."
+  },
+  "zh": {
+    "title": "广告投放 — ToolPocket｜免费工具站的广告位",
+    "desc": "把你的产品放到用中英日三种语言搜索的开发者和设计师面前。只做静态展示：不挂跟踪脚本、不弹窗、不引起布局跳动。",
+    "h1": "在 ToolPocket 投放广告",
+    "lead": "ToolPocket 是一个<b>三语</b>（中 / 英 / 日）浏览器工具站。来访者是从搜索引擎带着明确需求来的 —— 压一张图、查一个密码、转一个时间戳。",
+    "whoHeading": "谁在访问",
+    "who": "临时需要一个工具的人：开发者、设计、学生。他们从搜索进来、用完就走 —— 也就是说，他们看到的那一页，就是你的广告所在的那一页。",
+    "marketsHeading": "三个市场，三拨人",
+    "markets": [
+      ["English", "美 / 欧 / 全球", "开发者与 SaaS 产品、主机、隐私类工具"],
+      ["日本語", "日本", "日语服务 —— 亚洲广告价值最高的市场之一"],
+      ["中文", "中文用户", "App、教程、效率工具（按本站原则，不接任何翻墙/VPN 类）"]
+    ],
+    "specsHeading": "你能拿到什么",
+    "specs": [
+      ["位置", "首页与工具页，按你选的语言版本展示"],
+      ["形式", "纯 HTML 文字 + 链接卡片（颜色可以按你的品牌调）"],
+      ["不包含", "第三方脚本、iframe、弹窗、跟踪像素、自动播放 —— 本站一律不跑这些"],
+      ["为什么这反而是好事", "全站零外部请求、首屏很快；广告位也保持这个标准，所以没人会去屏蔽它"]
+    ],
+    "numbersHeading": "当前数据",
+    "numbers": "站点刚上线，还在被搜索引擎收录中。我只发真实数字，不发编的 —— 你问我要，我把能测到的最新数据发给你。",
+    "contactHeading": "联系我",
+    "contact": "写清楚你想推广什么、想投哪个语言的页面，我看看合不合适，合适就给你报价。",
+    "contactLabel": "联系方式",
+    "contactValue": "（待填：这里写你的邮箱）",
+    "note": "我是个人开发者，不是广告联盟 —— 所以回复是人写的，也没有「最低消费」要走流程。"
+  },
+  "ja": {
+    "title": "広告掲載 — ToolPocket｜無料ツールサイトの広告枠",
+    "desc": "英語・中国語・日本語で検索する開発者・デザイナーに商品を届けます。静的な掲載のみ：追跡スクリプト、ポップアップ、レイアウトシフトはありません。",
+    "h1": "ToolPocket への広告掲載",
+    "lead": "ToolPocket は<b>3 言語</b>（日本語・英語・中国語）の無料ブラウザツールサイトです。訪問者は検索から、明確な目的を持って来ます — 画像を圧縮する、パスワードを確認する、タイムスタンプを変換する。",
+    "whoHeading": "誰が見ているか",
+    "who": "「今すぐ道具が要る」人たちです：開発者、デザイナー、学生。検索から来て、使って、帰ります。つまり彼らが見ているそのページが、広告が載るページそのものです。",
+    "marketsHeading": "3 つの市場、3 つの読者層",
+    "markets": [
+      ["English", "米国 / 欧州 / 世界", "開発者向け・SaaS、ホスティング、プライバシー系ツール"],
+      ["日本語", "日本", "日本語サービス — アジアでも広告単価の高い市場です"],
+      ["中文", "中国語圏", "アプリ、チュートリアル、生産性ツール（方針として VPN 等の掲載は行いません）"]
+    ],
+    "specsHeading": "掲載内容",
+    "specs": [
+      ["掲載位置", "トップページとツールページ。言語を選んでいただけます"],
+      ["形式", "静的な HTML テキスト＋リンクカード（ブランドカラーに合わせられます）"],
+      ["含まれないもの", "第三者スクリプト、iframe、ポップアップ、追跡ピクセル、自動再生 — 当サイトでは一切使いません"],
+      ["それが利点になる理由", "外部リクエストゼロで表示が速く、広告枠も同じ基準を守るため、ブロックされにくいのです"]
+    ],
+    "numbersHeading": "現在の数値",
+    "numbers": "サイトは開設まもなく、検索エンジンへの登録が進行中です。数値は作り話ではなく実際のものだけを公開します。ご連絡いただければ、計測できる最新データをお送りします。",
+    "contactHeading": "お問い合わせ",
+    "contact": "宣伝したい内容と、掲載したい言語のページをお知らせください。相性を確認して、条件をご案内します。",
+    "contactLabel": "連絡先",
+    "contactValue": "（未記入：ここにメールアドレスを書く）",
+    "note": "個人開発者であり広告ネットワークではありません。返信は人が書き、最低出稿額のような手続きもありません。"
+  }
+}

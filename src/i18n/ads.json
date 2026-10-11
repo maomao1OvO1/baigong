@@ -1,0 +1,56 @@
+{
+  "_说明": "按语言配置的广告位（数据驱动）。改这里就能换广告，不用碰页面代码。",
+  "_为什么按语言配": "毛毛的点子：不同语言的页面面向不同市场 —— 英文页对欧美、日文页对日本、中文页对中文圈。",
+  "_现在放什么": "还没有广告主，所以先放自家项目 + 「招租」入口。有客户后把 items 换成对方的链接即可。",
+  "_性能约束": "广告位必须是纯 HTML + CSS：不引第三方脚本、不加 iframe、不产生额外请求 —— 否则会拖慢站点，也会砸掉「零外部请求」这个信任点。",
+  "_合规约束": "中文页不放任何翻墙/VPN 类推广（国内法律风险）；英文页与日文页不设此限制。每条推荐都标注「广告/Sponsored」，不做伪装。",
+
+  "slots": {
+    "home-bottom": {
+      "en": {
+        "label": "Sponsored",
+        "title": "Want this slot?",
+        "body": "This site gets developers and designers from English, Chinese and Japanese search. Your product can sit right here — plain HTML, no tracking scripts, no popups.",
+        "cta": "See the media kit",
+        "href": "/advertise.html"
+      },
+      "zh": {
+        "label": "广告",
+        "title": "这个位置可以租",
+        "body": "这个站有来自中英日三种语言的搜索流量，受众是开发者和设计从业者。你的产品可以放在这里 —— 纯静态展示，不挂跟踪脚本，不弹窗。",
+        "cta": "查看投放说明",
+        "href": "/zh/advertise.html"
+      },
+      "ja": {
+        "label": "広告",
+        "title": "この枠、募集中です",
+        "body": "英語・中国語・日本語の 3 言語で検索から訪問者が来る技術系ツールサイトです。ここに商品を掲載できます。静的 HTML のみで、追跡スクリプトやポップアップは使いません。",
+        "cta": "掲載について見る",
+        "href": "/ja/advertise.html"
+      }
+    },
+    "tool-bottom": {
+      "en": {
+        "label": "From us",
+        "title": "Made by the same person",
+        "body": "This tool set is built by one developer. The same person also made a tower-defence game and a few other things.",
+        "cta": "Have a look",
+        "href": "https://maomaowang.top/"
+      },
+      "zh": {
+        "label": "自己人做的",
+        "title": "同一双手做的别的东西",
+        "body": "这套工具是一个人做的。同一个人还写了一个塔防游戏，以及一些别的小玩意。",
+        "cta": "去看看",
+        "href": "https://maomaowang.top/"
+      },
+      "ja": {
+        "label": "製作者より",
+        "title": "同じ人が作ったもの",
+        "body": "このツール群は一人の開発者が作っています。同じ人がタワーディフェンスのゲームなども作っています。",
+        "cta": "見てみる",
+        "href": "https://maomaowang.top/"
+      }
+    }
+  }
+}

@@ -27,6 +27,8 @@ const TOOLS = readJson("src/tools.json").tools;
 const UI = readJson("src/i18n/ui.json");
 const HOME = readJson("src/i18n/home.json");
 const TOOL_I18N = Object.fromEntries(TOOLS.map((t) => [t.id, readJson(`src/i18n/tools/${t.i18n}.json`)]));
+const ADS = readJson("src/i18n/ads.json").slots;        // 广告位：按语言配置，改这里就换广告
+const ADVERTISE = readJson("src/i18n/advertise.json");  // 「广告位招租」页文案
 
 const LANGS = [
   { code: "en", hreflang: "en", dir: "" },
@@ -103,6 +105,22 @@ function renderOptions(lang, tool, t) {
     return "";
   });
   return parts.join("\n");
+}
+
+/** 广告位：纯静态卡片。刻意不引任何第三方脚本/iframe —— 既保速度，也保「零外部请求」这个信任点。
+    每条都明确标注「广告 / Sponsored」，不做伪装（伪装成内容会挨骂，也违反平台政策）。 */
+function adSlot(lang, slotId) {
+  const a = (ADS[slotId] || {})[lang.code];
+  if (!a) return "";
+  const 内链 = a.href.indexOf("http") === 0 ? a.href : pathOf(lang, a.href.replace(/^\//, "").replace(/^(zh|ja)\//, ""));
+  return `<aside class="ad">
+  <span class="ad-label">${rich(a.label)}</span>
+  <div class="ad-body">
+    <b>${rich(a.title)}</b>
+    <p>${rich(a.body)}</p>
+    <a class="ad-cta" href="${esc(内链)}">${rich(a.cta)} →</a>
+  </div>
+</aside>`;
 }
 
 /* ── 工具页 ─────────────────────────────────────────────────────────────── */
@@ -219,6 +237,8 @@ ${body}
     <h2>${lang.code === "ja" ? "よくある質問" : lang.code === "zh" ? "常见问题" : "FAQ"}</h2>
 ${faq}
   </section>
+
+${adSlot(lang, "tool-bottom")}
 </main>
 
 ${footer(lang)}
@@ -270,6 +290,71 @@ ${cards}
     <h2>${rich(t.safeHeading)}</h2>
     <p>${rich(t.safe)}</p>
   </section>
+
+${adSlot(lang, "home-bottom")}
+</main>
+
+${footer(lang)}
+</body>
+</html>
+`;
+}
+
+/* ── 广告位招租页 ───────────────────────────────────────────────────────── */
+function advertisePage(lang) {
+  const t = ADVERTISE[lang.code];
+  const out = "advertise.html";
+  const jsonld = { "@context": "https://schema.org", "@type": "WebPage", name: t.h1, description: t.desc };
+  const rows = (arr) => arr.map(([a, b, c]) =>
+    c ? `      <tr><td><b>${rich(a)}</b></td><td>${rich(b)}</td><td>${rich(c)}</td></tr>`
+      : `      <tr><td><b>${rich(a)}</b></td><td>${rich(b)}</td></tr>`).join("\n");
+  return `<!DOCTYPE html>
+<html lang="${lang.code}">
+<head>
+${head(lang, { out, title: t.title, desc: t.desc, jsonld })}
+</head>
+<body>
+${topbar(lang, out)}
+
+<main>
+  <p class="crumb"><a href="${pathOf(lang, "index.html")}">${rich(UI.backToTools[lang.code])}</a></p>
+  <h1>${rich(t.h1)}</h1>
+  <p class="lead">${rich(t.lead)}</p>
+
+  <section>
+    <h2>${rich(t.whoHeading)}</h2>
+    <p>${rich(t.who)}</p>
+  </section>
+
+  <section>
+    <h2>${rich(t.marketsHeading)}</h2>
+    <table class="spec">
+      <tbody>
+${rows(t.markets)}
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>${rich(t.specsHeading)}</h2>
+    <table class="spec">
+      <tbody>
+${rows(t.specs)}
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>${rich(t.numbersHeading)}</h2>
+    <p>${rich(t.numbers)}</p>
+  </section>
+
+  <section class="why">
+    <h2>${rich(t.contactHeading)}</h2>
+    <p>${rich(t.contact)}</p>
+    <p class="contact"><b>${rich(t.contactLabel)}</b>：<code>${rich(t.contactValue)}</code></p>
+    <p class="note">${rich(t.note)}</p>
+  </section>
 </main>
 
 ${footer(lang)}
@@ -291,13 +376,14 @@ const write = (rel, html) => {
 
 for (const lang of LANGS) {
   write(path.join(lang.dir, "index.html"), homePage(lang));
+  write(path.join(lang.dir, "advertise.html"), advertisePage(lang));
   for (const tool of TOOLS) write(path.join(lang.dir, "tools", tool.id + ".html"), toolPage(lang, tool));
 }
 
 /* sitemap：多语言站要点
    ① 每种语言的版本都单独列一条 <url>（Google 明确建议这样，别只列默认语言）；
    ② 每条里用 xhtml:link 标注该页所有语言版本 + x-default（与页面里的 hreflang 一致）。 */
-const PAGES = ["index.html", ...TOOLS.map((t) => "tools/" + t.id + ".html")];
+const PAGES = ["index.html", "advertise.html", ...TOOLS.map((t) => "tools/" + t.id + ".html")];
 const entries = [];
 for (const out of PAGES) {
   for (const lang of LANGS) {
