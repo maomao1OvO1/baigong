@@ -210,7 +210,13 @@ details p { margin: 10px 0 0; color: var(--muted); font-size: 14px; }
 .searchresults .s-meta { min-width: 0; }
 .searchresults .s-meta b { display: block; font-size: 14.5px; font-weight: 600; transition: color .15s; }
 .searchresults .s-meta span { color: var(--muted); font-size: 12.5px; }
-.searchresults .empty { padding: 14px 2px; color: var(--muted); font-size: 13.5px; border: 0; }
+.searchresults .empty {
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  padding: 14px; color: var(--muted); font-size: 13.5px; border: 0;
+}
+.searchresults .empty span { flex: 1; min-width: 200px; }
+.searchresults .empty small { display: block; margin-top: 4px; color: var(--fg); }
+.searchresults .empty button { font-size: 13px; padding: 9px 15px; }
 
 /* ── 广告位：细边框 + 右侧小按钮，不做渐变不做阴影 ── */
 .ad {

@@ -250,6 +250,14 @@ console.log("\n⑧ 文案注入检查（window.T）");
   if (new Set(vals).size === 3 && /[\u4e00-\u9fa5]/.test(ui.noResults.zh)) ok("空结果文案三语互不相同，中文确实是中文");
   else bad("空结果文案不对", JSON.stringify(vals));
 
+  const asks = ["en", "zh", "ja"].filter((l) => !ui.noResultsAsk || !ui.noResultsAsk[l]);
+  if (!asks.length) ok("空结果引导文案三语齐全（noResultsAsk）");
+  else bad("空结果引导文案缺语言：" + asks.join(", "));
+
+  const js = fs.readFileSync(path.join(ROOT, "assets", "search.js"), "utf8");
+  if (js.includes("fb-btn") && js.includes("noResultsAsk")) ok("搜索空结果里带了反馈按钮与引导句");
+  else bad("搜索空结果没接上反馈入口");
+
   const home = fs.readFileSync(path.join(ROOT, "zh/index.html"), "utf8");
   if (home.includes('id="feedbackBtn"') && home.includes("data-u=")) ok("页脚有反馈入口（邮箱拆成 data 属性）");
   else bad("页脚缺反馈入口");

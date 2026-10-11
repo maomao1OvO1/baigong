@@ -72,13 +72,16 @@
      报 bug、想要新工具都可以从这儿写信。做成 mailto 而不是表单：静态站没有后端，
      表单要么收不到、要么得引第三方服务（那就违背全站「零外部请求」这条了）。
      邮箱拆成 data-u / data-d，点了才拼 —— 明文写在 href 里会被垃圾邮件爬虫秒收。 */
-  var fb = document.getElementById("feedbackBtn");
-  if (fb) {
-    fb.addEventListener("click", function () {
-      var u = fb.getAttribute("data-u"), dom = fb.getAttribute("data-d");
-      if (!u || !dom) return;
-      var subject = encodeURIComponent((window.T && window.T.feedbackSubject) || "ToolPocket");
-      location.href = "mailto:" + u + "@" + dom + "?subject=" + subject;
-    });
-  }
+  /* 用事件委托而不是逐个绑定：搜索结果里的反馈按钮是**动态插入**的，
+     普通 addEventListener 绑不到它（这个坑在"搜不到时给反馈入口"这个需求上必然会踩）。 */
+  document.addEventListener("click", function (e) {
+    var el = e.target;
+    while (el && el !== document && !(el.className && String(el.className).indexOf("fb-btn") >= 0)) el = el.parentNode;
+    if (!el || el === document) return;
+    var u = el.getAttribute("data-u"), dom = el.getAttribute("data-d");
+    if (!u || !dom) return;
+    e.preventDefault();
+    var subject = encodeURIComponent((window.T && window.T.feedbackSubject) || "ToolPocket");
+    location.href = "mailto:" + u + "@" + dom + "?subject=" + subject;
+  });
 })();

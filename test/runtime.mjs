@@ -799,7 +799,16 @@ console.log("\n㉕ 站内搜索（索引路径 / 打分 / 结果渲染）");
   const sb = {
     console, Promise, JSON, String, Array, Object, RegExp, Error, Math, Number, Boolean,
     setTimeout: (fn) => { fn(); return 0; }, clearTimeout: () => {},
-    document: { getElementById: (id) => els[id] || null, documentElement: { lang: "zh" }, createElement: () => makeEl("tmp"), body: { appendChild() {}, removeChild() {} } },
+    document: {
+      getElementById: (id) => els[id] || null,
+      documentElement: { lang: "zh" },
+      createElement: () => makeEl("tmp"),
+      body: { appendChild() {}, removeChild() {} },
+      // 页脚那个反馈按钮：空结果里的按钮会从它身上读邮箱（页面里只存一份 data-u / data-d）
+      querySelector: (sel) => (sel === ".fb-btn"
+        ? { getAttribute: (k) => (k === "data-u" ? "ad" : k === "data-d" ? "maomaowang.top" : null) }
+        : null),
+    },
     location: { hash: "", href: "" },
     navigator: { clipboard: { writeText: () => Promise.resolve() } },
     fetch: (url) => { fetchedUrl = url; return Promise.resolve({ json: () => Promise.resolve(index) }); },
@@ -833,6 +842,10 @@ console.log("\n㉕ 站内搜索（索引路径 / 打分 / 结果渲染）");
   await new Promise((r) => setImmediate(r));
   if (els.searchResults.innerHTML.indexOf("没找到") >= 0) ok("中文页面查不到时提示是中文（不再是英文兜底）");
   else bad("空状态文案没走注入的文案", els.searchResults.innerHTML.slice(0, 120));
+  // 毛毛的要求：搜不出来的时候，这里要能直接联系作者
+  if (els.searchResults.innerHTML.indexOf("fb-btn") >= 0 &&
+      els.searchResults.innerHTML.indexOf('data-u="ad"') >= 0) ok("空结果里有反馈按钮（邮箱从页脚按钮读，页面里不留第二份明文）");
+  else bad("空结果里没有反馈按钮", els.searchResults.innerHTML.slice(0, 160));
 
   els.searchInput.value = "";
   els.searchInput.fire("input");

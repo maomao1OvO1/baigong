@@ -48,11 +48,25 @@
     return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   }
 
+  /** 空结果里的反馈按钮：邮箱从页脚那个按钮上读（页面里只存一份 data-u / data-d，
+      免得邮箱又多一处明文）。读不到就只显示文字、不加按钮 —— 降级也要好看。 */
+  function emptyState() {
+    var src = document.querySelector(".fb-btn");
+    var u = src && src.getAttribute("data-u");
+    var dom = src && src.getAttribute("data-d");
+    var text = escapeHtml(T.noResults || "Nothing matched.");
+    var ask = T.noResultsAsk ? "<small>" + escapeHtml(T.noResultsAsk) + "</small>" : "";
+    if (!u || !dom) return '<li class="empty"><span>' + text + ask + "</span></li>";
+    return '<li class="empty"><span>' + text + ask + "</span>" +
+      '<button type="button" class="ghost fb-btn" data-u="' + escapeHtml(u) + '" data-d="' + escapeHtml(dom) + '">' +
+      escapeHtml(T.feedbackButton || "Email me") + "</button></li>";
+  }
+
   function render(items, query) {
     if (!query) { out.innerHTML = ""; out.hidden = true; return; }
     out.hidden = false;
     if (!items.length) {
-      out.innerHTML = '<li class="empty">' + escapeHtml(T.noResults || "Nothing matched.") + "</li>";
+      out.innerHTML = emptyState();
       return;
     }
     out.innerHTML = items.slice(0, 8).map(function (it) {

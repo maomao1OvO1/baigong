@@ -127,5 +127,10 @@
     "ja": "ToolPocket へのフィードバック"
   },
   "feedbackUser": "ad",
-  "feedbackDomain": "maomaowang.top"
+  "feedbackDomain": "maomaowang.top",
+  "noResultsAsk": {
+    "en": "Can't find it? Tell me what you were looking for — I read every message.",
+    "zh": "没找到你想要的？告诉我你需要什么工具 —— 每条都会看。",
+    "ja": "お探しのものが見つかりませんか？必要なツールをお知らせください。すべて目を通します。"
+  }
 }

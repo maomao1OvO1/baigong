@@ -110,7 +110,7 @@ const footer = (lang) => `<footer>
   <p>${rich(UI.footer[lang.code])}</p>
   <p class="fb">
     <span>${rich(UI.feedbackAsk[lang.code])}</span>
-    <button type="button" class="ghost" id="feedbackBtn" data-u="${esc(UI.feedbackUser)}" data-d="${esc(UI.feedbackDomain)}">${rich(UI.feedbackButton[lang.code])}</button>
+    <button type="button" class="ghost fb-btn" id="feedbackBtn" data-u="${esc(UI.feedbackUser)}" data-d="${esc(UI.feedbackDomain)}">${rich(UI.feedbackButton[lang.code])}</button>
   </p>
 </footer>`;
 
