@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://maomaowang.top/toolpocket/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://maomaowang.top/toolpocket/index.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://maomaowang.top/toolpocket/zh/index.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://maomaowang.top/toolpocket/ja/index.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://maomaowang.top/toolpocket/index.html"/>
+  </url>
+  <url>
+    <loc>https://maomaowang.top/toolpocket/tools/compress-image.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://maomaowang.top/toolpocket/tools/compress-image.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://maomaowang.top/toolpocket/zh/tools/compress-image.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://maomaowang.top/toolpocket/ja/tools/compress-image.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://maomaowang.top/toolpocket/tools/compress-image.html"/>
+  </url>
+</urlset>

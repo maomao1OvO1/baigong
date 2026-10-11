@@ -214,4 +214,26 @@ for (const lang of LANGS) {
     console.log("  ✓ " + path.relative(ROOT, 目标) + "  (" + Buffer.byteLength(html) + " 字节)");
   }
 }
+
+/* ── 顺便生成 sitemap.xml（搜索引擎的"站点地图"）──
+   为什么每个 URL 里都带三行 xhtml:link：这是 sitemap 规范里声明「多语言版本」的写法，
+   和页面 <head> 里的 hreflang 是同一件事的两种表述，两边都写搜索引擎才最不容易搞混。
+   注意：这里用 xhtml 命名空间，格式写错会被 Search Console 判为无效。 */
+const 条目 = [];
+for (const page of PAGES) {
+  条目.push(`  <url>
+    <loc>${网址(LANGS[0], page.out)}</loc>
+${LANGS.map((l) => `    <xhtml:link rel="alternate" hreflang="${l.hreflang}" href="${网址(l, page.out)}"/>`).join("\n")}
+    <xhtml:link rel="alternate" hreflang="x-default" href="${网址(LANGS[0], page.out)}"/>
+  </url>`);
+}
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+${条目.join("\n")}
+</urlset>
+`;
+fs.writeFileSync(path.join(ROOT, "sitemap.xml"), sitemap, "utf8");
+console.log("  ✓ sitemap.xml  (" + Buffer.byteLength(sitemap) + " 字节)");
+
 console.log(`生成完成：${生成数} 个页面 · ${LANGS.length} 种语言 · ${PAGES.length} 个页面模板`);
