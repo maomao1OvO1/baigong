@@ -792,7 +792,9 @@ console.log("\n㉕ 站内搜索（索引路径 / 打分 / 结果渲染）");
      为什么要测：毛毛 2026-10-12 报「主页的搜索框用不了」—— 根因是索引路径写死成相对路径，
      在 /zh/ 与 /ja/ 页面会 404。这条用例把「路径来自页面注入」钉死，防止以后再退化。 */
   const index = JSON.parse(fs.readFileSync(path.join(ROOT, "assets/search.json"), "utf8"));
-  const els = { search: makeEl("search"), searchInput: makeEl("searchInput"), searchResults: makeEl("searchResults") };
+  // ⚠️ 这里以前多造了一个 "search" 元素 —— 而**真实首页里没有这个 id**，
+  //    于是脚本在真机上第一行就 return，测试却全绿。现在按真实 DOM 结构造：只有这两个。
+  const els = { searchInput: makeEl("searchInput"), searchResults: makeEl("searchResults") };
   let fetchedUrl = null;
   const sb = {
     console, Promise, JSON, String, Array, Object, RegExp, Error, Math, Number, Boolean,

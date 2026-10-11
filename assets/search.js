@@ -9,10 +9,15 @@
    ============================================================================ */
 (function () {
   "use strict";
-  var box = document.getElementById("search");
-  if (!box) return;
+  /* ⚠️ 这里曾经先去找一个外层容器（id 为 search），找不到就 return ——
+     那是早期版本的写法，后来首页改版把那个容器去掉了，于是脚本一加载就退出：
+     **输入任何东西都没有反应**（毛毛 2026-10-12 报的「我输入任何东西都没反应」就是它）。
+     教训：脚本依赖的 DOM 必须在「生成出来的真实页面」里核对，不能只在测试沙箱里造一个同名元素
+     —— check.mjs 现在也加了这项契约检查（搜索所需的 id 必须在首页里真实存在）。
+     注意：本文件里不要写被检查正则匹配的代码原文（包括注释里），否则契约检查会误报。 */
   var input = document.getElementById("searchInput");
   var out = document.getElementById("searchResults");
+  if (!input || !out) return;      // 搜索框只存在于首页；工具页与招租页已按需求去掉，安静退出即可
   var index = null;          // 懒加载：用户真的开始搜了才去取索引
   var T = window.T || {};
   var lang = document.documentElement.lang || "en";

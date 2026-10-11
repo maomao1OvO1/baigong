@@ -147,5 +147,25 @@ for (const f of htmls) {
 }
 if (!broken) ok(`${htmls.length} 个 HTML 的本地资源引用全部有效`);
 
+/* ── ⑤ 搜索契约：search.js 依赖的 id 必须在「生成出来的首页」里真实存在 ────────
+   为什么单独加这项：2026-10-12 的 bug 就是搜索脚本依赖一个页面上并不存在的 id（外层容器 search），
+   脚本第一行就 return ⇒ 输入任何东西都没反应；而当时的运行时测试沙箱里恰好造了那个元素，
+   于是测试全绿、真机全瞎。凡是「脚本找 DOM」的依赖，都得拿真实页面核对。 */
+console.log("\n⑤ 搜索契约（search.js 的 DOM 依赖 ↔ 三个语言的首页）");
+{
+  const js = fs.readFileSync(path.join(ROOT, "assets", "search.js"), "utf8");
+  const needed = [...new Set([...js.matchAll(/getElementById\("([\w-]+)"\)/g)].map((m) => m[1]))];
+  for (const lang of LANGS) {
+    const file = lang === "en" ? "index.html" : lang + "/index.html";
+    const page = fs.readFileSync(path.join(ROOT, file), "utf8");
+    const present = new Set([...page.matchAll(/id="([\w-]+)"/g)].map((m) => m[1]));
+    const missing = needed.filter((id) => !present.has(id));
+    if (missing.length) bad(`${file}：搜索脚本要的 id 不存在 → ${missing.join(", ")}`, "脚本会直接 return，输入毫无反应");
+    else ok(`${file}：搜索依赖的 ${needed.length} 个 id 都在`);
+    if (page.includes("TP_INDEX_URL")) ok(`${file}：注入了索引绝对路径`);
+    else bad(`${file}：缺 TP_INDEX_URL 注入`, "在 /zh/ 与 /ja/ 下 fetch 会 404");
+  }
+}
+
 console.log(`\n结果：${pass} 项通过，${fail} 项失败`);
 process.exit(fail ? 1 : 0);
