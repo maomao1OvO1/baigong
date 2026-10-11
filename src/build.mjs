@@ -260,16 +260,23 @@ for (const lang of LANGS) {
   for (const tool of TOOLS) write(path.join(lang.dir, "tools", tool.id + ".html"), toolPage(lang, tool));
 }
 
-/* sitemap：多语言站要用 xhtml:link 标注各语言版本（与页面里的 hreflang 是同一件事） */
+/* sitemap：多语言站要点
+   ① 每种语言的版本都单独列一条 <url>（Google 明确建议这样，别只列默认语言）；
+   ② 每条里用 xhtml:link 标注该页所有语言版本 + x-default（与页面里的 hreflang 一致）。 */
 const PAGES = ["index.html", ...TOOLS.map((t) => "tools/" + t.id + ".html")];
-const urls = PAGES.map((out) => `  <url>
-    <loc>${urlOf(LANGS[0], out)}</loc>
+const entries = [];
+for (const out of PAGES) {
+  for (const lang of LANGS) {
+    entries.push(`  <url>
+    <loc>${urlOf(lang, out)}</loc>
 ${LANGS.map((l) => `    <xhtml:link rel="alternate" hreflang="${l.hreflang}" href="${urlOf(l, out)}"/>`).join("\n")}
     <xhtml:link rel="alternate" hreflang="x-default" href="${urlOf(LANGS[0], out)}"/>
-  </url>`).join("\n");
+  </url>`);
+  }
+}
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-${urls}
+${entries.join("\n")}
 </urlset>
 `;
 write("sitemap.xml", sitemap);
