@@ -2,17 +2,17 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://maomaowang.top/toolpocket/index.html</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://maomaowang.top/toolpocket/index.html"/>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://maomaowang.top/toolpocket/zh/index.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://maomaowang.top/toolpocket/ja/index.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://maomaowang.top/toolpocket/index.html"/>
+    <loc>https://tools.maomaowang.top/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/index.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/index.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/index.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/index.html"/>
   </url>
   <url>
-    <loc>https://maomaowang.top/toolpocket/tools/compress-image.html</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://maomaowang.top/toolpocket/tools/compress-image.html"/>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://maomaowang.top/toolpocket/zh/tools/compress-image.html"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://maomaowang.top/toolpocket/ja/tools/compress-image.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://maomaowang.top/toolpocket/tools/compress-image.html"/>
+    <loc>https://tools.maomaowang.top/tools/compress-image.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/compress-image.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/compress-image.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/compress-image.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/compress-image.html"/>
   </url>
 </urlset>
