@@ -22,6 +22,9 @@
 <link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/date-calc.html">
 <link rel="stylesheet" href="/assets/style.css?v=2">
 <meta name="theme-color" content="#2563eb">
+<!-- 作者信息：既是署名，也是"这站有主"的凭据（扒站的人容易忽略，但删掉它就是加重侵权情节） -->
+<meta name="author" content="maomaowang.top">
+<link rel="author" href="https://maomaowang.top/">
 <link rel="icon" href="/assets/icon-192.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="manifest" href="/ja/manifest.webmanifest">
@@ -29,6 +32,14 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"カレンダーアプリと 1 日ずれるのはなぜ？","acceptedAnswer":{"@type":"Answer","text":"多くはタイムゾーンと夏時間が原因です。本ツールは両方の日付を UTC の暦日として差を取るため、夏時間の切り替えで半日になることはありません。"}},{"@type":"Question","name":"ISO 週番号とは？","acceptedAnswer":{"@type":"Answer","text":"ISO-8601 の週番号です。週は月曜始まりで、その年の最初の木曜を含む週が第 1 週になります。そのため 1 月 1 日が前年の第 52 週・第 53 週に属することがあります。"}}]}</script>
 </head>
 <body>
+<!--
+  ================================================================
+  © 2026 ToolPocket · tools.maomaowang.top · 原创作品，保留所有权利
+  本页由作者独立开发并持续维护。未经授权复制、镜像、二次发布本页
+  内容或代码均属侵权；页面内含来源标记（ts2t-tools/date-calc），可追溯出处。
+  ================================================================
+-->
+<span hidden aria-hidden="true" data-mark="ts2t:maomaowang:ts2t-tools/date-calc"></span>
 <div class="mobile-tip" id="mobileTip" hidden>
   <span>📱 スマホでも使えますが、大きな画像やまとめての処理はデスクトップ版 Chrome のほうが快適です。</span>
   <button type="button" id="tipClose" class="tip-close">了解しました</button>
@@ -80,13 +91,14 @@
 
 <footer>
   <p>ToolPocket · ファイルは端末から出ません。送信も登録も、追跡もありません。</p>
+  <p class="copy">© 2026 ToolPocket — All rights reserved. 当サイトの内容・コードの無断転載を禁じます。</p>
   <p class="fb">
     <span>不具合を見つけましたか？お知らせください。すべて目を通します。</span>
     <button type="button" class="ghost fb-btn" id="feedbackBtn" data-u="hi" data-d="maomaowang.top">不具合を報告</button>
   </p>
 </footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script>window.T = "{\"langName\":\"日本語\",\"footer\":\"ToolPocket · ファイルは端末から出ません。送信も登録も、追跡もありません。\",\"nav\":\"ツール一覧\",\"backToTools\":\"← ツール一覧\",\"copy\":\"結果をコピー\",\"swap\":\"入れ替え\",\"clear\":\"クリア\",\"download\":\"ダウンロード\",\"copied\":\"クリップボードにコピーしました\",\"copyFail\":\"ブラウザがコピーを許可しませんでした。テキストを選択して手動でコピーしてください\",\"inputLabel\":\"入力\",\"outputLabel\":\"結果\",\"privacyNote\":\"すべてブラウザ内で処理。送信も保存もしていません。\",\"searchPlaceholder\":\"ツールを検索 — 「圧縮」「json」「パスワード」など\",\"noResults\":\"該当するツールがありませんでした。「圧縮」「ハッシュ」など、別の言葉でお試しください。\",\"mobileTip\":\"📱 スマホでも使えますが、大きな画像やまとめての処理はデスクトップ版 Chrome のほうが快適です。\",\"mobileTipClose\":\"了解しました\",\"desktopHeading\":\"デスクトップ版がおすすめ\",\"installApp\":\"デスクトップアプリとして追加\",\"installHint\":\"デスクトップ版 Chrome / Edge でこのサイトを開き、アドレスバー右側のインストールアイコンをクリックしてください。独立したウィンドウになり、ネットワークが無くても動作します。インストーラのダウンロードも登録も不要です。\",\"installed\":\"インストール済み\",\"offlineNote\":\"インストール後はネットワークを切ったままでも使えます。もともと通信していないのですから、当然といえば当然です。\",\"feedbackAsk\":\"不具合を見つけましたか？お知らせください。すべて目を通します。\",\"feedbackButton\":\"不具合を報告\",\"feedbackSubject\":\"ToolPocket へのフィードバック\",\"noResultsAsk\":\"お探しのものが見つかりませんか？必要なツールをお知らせください。すべて目を通します。\",\"feedbackAskHome\":\"不具合の報告や「こんなツールがほしい」というご要望は、お気軽にお知らせください。\",\"feedbackButtonHome\":\"メールを書く\",\"noResultsBtn\":\"ツールをリクエスト\",\"noResultsSubject\":\"ToolPocket ツールのリクエスト\",\"days\":\"日数の加減\",\"daysNote\":\"負の値で過去にさかのぼります\",\"badDate\":\"日付の形式が正しくありません（YYYY-MM-DD）\",\"weekNames\":[\"日曜日\",\"月曜日\",\"火曜日\",\"水曜日\",\"木曜日\",\"金曜日\",\"土曜日\"],\"baseLabel\":\"基準日\",\"vsToday\":\"今日との差\",\"daysUnit\":\"日\",\"dayOfYear\":\"年内通算\",\"isoWeek\":\"ISO 週\",\"leap\":\"うるう年\",\"offsetLabel\":\"オフセット\",\"usingToday\":\"今日として計算\"}";</script>
+<script>window.T = "{\"langName\":\"日本語\",\"footer\":\"ToolPocket · ファイルは端末から出ません。送信も登録も、追跡もありません。\",\"nav\":\"ツール一覧\",\"backToTools\":\"← ツール一覧\",\"copy\":\"結果をコピー\",\"swap\":\"入れ替え\",\"clear\":\"クリア\",\"download\":\"ダウンロード\",\"copied\":\"クリップボードにコピーしました\",\"copyFail\":\"ブラウザがコピーを許可しませんでした。テキストを選択して手動でコピーしてください\",\"inputLabel\":\"入力\",\"outputLabel\":\"結果\",\"privacyNote\":\"すべてブラウザ内で処理。送信も保存もしていません。\",\"searchPlaceholder\":\"ツールを検索 — 「圧縮」「json」「パスワード」など\",\"noResults\":\"該当するツールがありませんでした。「圧縮」「ハッシュ」など、別の言葉でお試しください。\",\"mobileTip\":\"📱 スマホでも使えますが、大きな画像やまとめての処理はデスクトップ版 Chrome のほうが快適です。\",\"mobileTipClose\":\"了解しました\",\"desktopHeading\":\"デスクトップ版がおすすめ\",\"installApp\":\"デスクトップアプリとして追加\",\"installHint\":\"デスクトップ版 Chrome / Edge でこのサイトを開き、アドレスバー右側のインストールアイコンをクリックしてください。独立したウィンドウになり、ネットワークが無くても動作します。インストーラのダウンロードも登録も不要です。\",\"installed\":\"インストール済み\",\"offlineNote\":\"インストール後はネットワークを切ったままでも使えます。もともと通信していないのですから、当然といえば当然です。\",\"feedbackAsk\":\"不具合を見つけましたか？お知らせください。すべて目を通します。\",\"feedbackButton\":\"不具合を報告\",\"feedbackSubject\":\"ToolPocket へのフィードバック\",\"noResultsAsk\":\"お探しのものが見つかりませんか？必要なツールをお知らせください。すべて目を通します。\",\"feedbackAskHome\":\"不具合の報告や「こんなツールがほしい」というご要望は、お気軽にお知らせください。\",\"feedbackButtonHome\":\"メールを書く\",\"noResultsBtn\":\"ツールをリクエスト\",\"noResultsSubject\":\"ToolPocket ツールのリクエスト\",\"copyright\":\"© 2026 ToolPocket — All rights reserved. 当サイトの内容・コードの無断転載を禁じます。\",\"days\":\"日数の加減\",\"daysNote\":\"負の値で過去にさかのぼります\",\"badDate\":\"日付の形式が正しくありません（YYYY-MM-DD）\",\"weekNames\":[\"日曜日\",\"月曜日\",\"火曜日\",\"水曜日\",\"木曜日\",\"金曜日\",\"土曜日\"],\"baseLabel\":\"基準日\",\"vsToday\":\"今日との差\",\"daysUnit\":\"日\",\"dayOfYear\":\"年内通算\",\"isoWeek\":\"ISO 週\",\"leap\":\"うるう年\",\"offsetLabel\":\"オフセット\",\"usingToday\":\"今日として計算\"}";</script>
 <script src="/assets/tools/_shared.js" defer></script>
 <!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
 <script src="/assets/tools/date-calc.js?v=2" defer></script>

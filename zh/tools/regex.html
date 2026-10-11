@@ -22,6 +22,9 @@
 <link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/regex.html">
 <link rel="stylesheet" href="/assets/style.css?v=2">
 <meta name="theme-color" content="#2563eb">
+<!-- 作者信息：既是署名，也是"这站有主"的凭据（扒站的人容易忽略，但删掉它就是加重侵权情节） -->
+<meta name="author" content="maomaowang.top">
+<link rel="author" href="https://maomaowang.top/">
 <link rel="icon" href="/assets/icon-192.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="manifest" href="/zh/manifest.webmanifest">
@@ -29,6 +32,14 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"报错了，怎么看我这条正则哪里写错了？","acceptedAnswer":{"@type":"Answer","text":"错误信息来自 JavaScript 引擎本身，通常挺准：括号没闭合、方括号没配对、量词前面没东西。看消息后半段，它会指出出错的位置。"}},{"@type":"Question","name":"为什么没勾 g 的时候只匹配到第一处？","acceptedAnswer":{"@type":"Answer","text":"这是正则的规范行为：不带 <code>g</code> 时引擎只返回第一个匹配。要列出全部匹配，把 global 标志勾上。"}},{"@type":"Question","name":"输出里的 $1、$2 是什么？","acceptedAnswer":{"@type":"Answer","text":"捕获组 —— 正则里用括号括起来的那几段。替换时用 <code>$1</code>、<code>$2</code> 引用它们，<code>$&amp;</code> 表示整个匹配。"}}]}</script>
 </head>
 <body>
+<!--
+  ================================================================
+  © 2026 ToolPocket · tools.maomaowang.top · 原创作品，保留所有权利
+  本页由作者独立开发并持续维护。未经授权复制、镜像、二次发布本页
+  内容或代码均属侵权；页面内含来源标记（ts2t-tools/regex），可追溯出处。
+  ================================================================
+-->
+<span hidden aria-hidden="true" data-mark="ts2t:maomaowang:ts2t-tools/regex"></span>
 <div class="mobile-tip" id="mobileTip" hidden>
   <span>📱 手机上能用，但<b>桌面版 Chrome 更顺</b> —— 大图压缩、批量处理快很多。</span>
   <button type="button" id="tipClose" class="tip-close">知道了</button>
@@ -89,13 +100,14 @@
 
 <footer>
   <p>ToolPocket · 文件不出你的设备 —— 不上传、不注册、不追踪。</p>
+  <p class="copy">© 2026 ToolPocket —— 保留所有权利。未经许可，请勿转载或复制本站内容与代码。</p>
   <p class="fb">
     <span>发现 bug 了？告诉我 —— 每封都看。</span>
     <button type="button" class="ghost fb-btn" id="feedbackBtn" data-u="hi" data-d="maomaowang.top">反馈 bug</button>
   </p>
 </footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script>window.T = "{\"langName\":\"中文\",\"footer\":\"ToolPocket · 文件不出你的设备 —— 不上传、不注册、不追踪。\",\"nav\":\"全部工具\",\"backToTools\":\"← 全部工具\",\"copy\":\"复制结果\",\"swap\":\"互换\",\"clear\":\"清空\",\"download\":\"下载\",\"copied\":\"已复制到剪贴板\",\"copyFail\":\"浏览器拦住了自动复制 —— 手动选中再复制即可\",\"inputLabel\":\"输入\",\"outputLabel\":\"结果\",\"privacyNote\":\"全程在你浏览器里跑完 —— 不上传、不保存、不留底。\",\"searchPlaceholder\":\"搜索工具 —— 试试「压缩」「json」「密码」…\",\"noResults\":\"没找到匹配的工具。换个说法试试，比如「压缩」「哈希」「json」。\",\"mobileTip\":\"📱 手机上能用，但<b>桌面版 Chrome 更顺</b> —— 大图压缩、批量处理快很多。\",\"mobileTipClose\":\"知道了\",\"desktopHeading\":\"桌面端更好用\",\"installApp\":\"装成桌面应用\",\"installHint\":\"用桌面版 Chrome / Edge 打开本页，点地址栏右侧的「安装」图标 —— 它会变成一个独立窗口，断网也能继续用。不用下载安装包，也不用登录。\",\"installed\":\"已安装\",\"offlineNote\":\"装好之后，断网也能照常用 —— 本来这些活就是在你机器上干的，跟网络没关系。\",\"feedbackAsk\":\"发现 bug 了？告诉我 —— 每封都看。\",\"feedbackButton\":\"反馈 bug\",\"feedbackSubject\":\"ToolPocket 反馈\",\"noResultsAsk\":\"没找到你想要的？告诉我你需要什么工具 —— 每条都会看。\",\"feedbackAskHome\":\"发现 bug 了？或者想要某个还没有的工具？直接说 —— 每封都看。\",\"feedbackButtonHome\":\"写封邮件\",\"noResultsBtn\":\"提个需求\",\"noResultsSubject\":\"ToolPocket 工具需求\",\"pattern\":\"正则表达式\",\"patternHint\":\"不用写两边的斜杠 —— 直接写 \\\\d+，不要写 /\\\\d+/。\",\"replace\":\"替换为\",\"replaceHint\":\"可选。$1 / $2 引用捕获组；留空则不显示替换预览。\",\"flagsHint\":\"标志含义：g = 全部匹配 · i = 忽略大小写 · m = ^$ 匹配每一行 · s = . 匹配换行 · u = Unicode\",\"cbG\":\"g（全局）\",\"cbI\":\"i（忽略大小写）\",\"cbM\":\"m（多行）\",\"cbS\":\"s（点匹配换行）\",\"cbU\":\"u（Unicode）\",\"summary\":\"匹配到\",\"noMatch\":\"（没有匹配）\",\"replaced\":\"── 替换预览 ──\",\"truncated\":\"已达上限，提前停止：\",\"badRegex\":\"正则表达式有误\",\"tooLong\":\"文本过长，无法安全测试\"}";</script>
+<script>window.T = "{\"langName\":\"中文\",\"footer\":\"ToolPocket · 文件不出你的设备 —— 不上传、不注册、不追踪。\",\"nav\":\"全部工具\",\"backToTools\":\"← 全部工具\",\"copy\":\"复制结果\",\"swap\":\"互换\",\"clear\":\"清空\",\"download\":\"下载\",\"copied\":\"已复制到剪贴板\",\"copyFail\":\"浏览器拦住了自动复制 —— 手动选中再复制即可\",\"inputLabel\":\"输入\",\"outputLabel\":\"结果\",\"privacyNote\":\"全程在你浏览器里跑完 —— 不上传、不保存、不留底。\",\"searchPlaceholder\":\"搜索工具 —— 试试「压缩」「json」「密码」…\",\"noResults\":\"没找到匹配的工具。换个说法试试，比如「压缩」「哈希」「json」。\",\"mobileTip\":\"📱 手机上能用，但<b>桌面版 Chrome 更顺</b> —— 大图压缩、批量处理快很多。\",\"mobileTipClose\":\"知道了\",\"desktopHeading\":\"桌面端更好用\",\"installApp\":\"装成桌面应用\",\"installHint\":\"用桌面版 Chrome / Edge 打开本页，点地址栏右侧的「安装」图标 —— 它会变成一个独立窗口，断网也能继续用。不用下载安装包，也不用登录。\",\"installed\":\"已安装\",\"offlineNote\":\"装好之后，断网也能照常用 —— 本来这些活就是在你机器上干的，跟网络没关系。\",\"feedbackAsk\":\"发现 bug 了？告诉我 —— 每封都看。\",\"feedbackButton\":\"反馈 bug\",\"feedbackSubject\":\"ToolPocket 反馈\",\"noResultsAsk\":\"没找到你想要的？告诉我你需要什么工具 —— 每条都会看。\",\"feedbackAskHome\":\"发现 bug 了？或者想要某个还没有的工具？直接说 —— 每封都看。\",\"feedbackButtonHome\":\"写封邮件\",\"noResultsBtn\":\"提个需求\",\"noResultsSubject\":\"ToolPocket 工具需求\",\"copyright\":\"© 2026 ToolPocket —— 保留所有权利。未经许可，请勿转载或复制本站内容与代码。\",\"pattern\":\"正则表达式\",\"patternHint\":\"不用写两边的斜杠 —— 直接写 \\\\d+，不要写 /\\\\d+/。\",\"replace\":\"替换为\",\"replaceHint\":\"可选。$1 / $2 引用捕获组；留空则不显示替换预览。\",\"flagsHint\":\"标志含义：g = 全部匹配 · i = 忽略大小写 · m = ^$ 匹配每一行 · s = . 匹配换行 · u = Unicode\",\"cbG\":\"g（全局）\",\"cbI\":\"i（忽略大小写）\",\"cbM\":\"m（多行）\",\"cbS\":\"s（点匹配换行）\",\"cbU\":\"u（Unicode）\",\"summary\":\"匹配到\",\"noMatch\":\"（没有匹配）\",\"replaced\":\"── 替换预览 ──\",\"truncated\":\"已达上限，提前停止：\",\"badRegex\":\"正则表达式有误\",\"tooLong\":\"文本过长，无法安全测试\"}";</script>
 <script src="/assets/tools/_shared.js" defer></script>
 <!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
 <script src="/assets/tools/regex.js?v=2" defer></script>

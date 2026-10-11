@@ -22,6 +22,9 @@
 <link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/case-converter.html">
 <link rel="stylesheet" href="/assets/style.css?v=2">
 <meta name="theme-color" content="#2563eb">
+<!-- 作者信息：既是署名，也是"这站有主"的凭据（扒站的人容易忽略，但删掉它就是加重侵权情节） -->
+<meta name="author" content="maomaowang.top">
+<link rel="author" href="https://maomaowang.top/">
 <link rel="icon" href="/assets/icon-192.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="manifest" href="/zh/manifest.webmanifest">
@@ -29,6 +32,14 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"代码里该用哪种风格？","acceptedAnswer":{"@type":"Answer","text":"跟着语言约定走：JavaScript / Java 的变量用 camelCase，Python / Rust 用 snake_case，类型与类名用 PascalCase，模块级常量用 CONSTANT_CASE。同一个文件里保持一致，比选哪一种更重要。"}},{"@type":"Question","name":"中文、日文会怎么样？","acceptedAnswer":{"@type":"Answer","text":"中日文没有大小写，会原样保留 —— 这是正常的：驼峰是拉丁字母命名的约定，对中日文不产生变化。"}},{"@type":"Question","name":"支持多行吗？","acceptedAnswer":{"@type":"Answer","text":"支持。每个非空行单独转换，所以把一列字段名贴进来统一改风格很方便。"}}]}</script>
 </head>
 <body>
+<!--
+  ================================================================
+  © 2026 ToolPocket · tools.maomaowang.top · 原创作品，保留所有权利
+  本页由作者独立开发并持续维护。未经授权复制、镜像、二次发布本页
+  内容或代码均属侵权；页面内含来源标记（ts2t-tools/case-converter），可追溯出处。
+  ================================================================
+-->
+<span hidden aria-hidden="true" data-mark="ts2t:maomaowang:ts2t-tools/case-converter"></span>
 <div class="mobile-tip" id="mobileTip" hidden>
   <span>📱 手机上能用，但<b>桌面版 Chrome 更顺</b> —— 大图压缩、批量处理快很多。</span>
   <button type="button" id="tipClose" class="tip-close">知道了</button>
@@ -82,13 +93,14 @@
 
 <footer>
   <p>ToolPocket · 文件不出你的设备 —— 不上传、不注册、不追踪。</p>
+  <p class="copy">© 2026 ToolPocket —— 保留所有权利。未经许可，请勿转载或复制本站内容与代码。</p>
   <p class="fb">
     <span>发现 bug 了？告诉我 —— 每封都看。</span>
     <button type="button" class="ghost fb-btn" id="feedbackBtn" data-u="hi" data-d="maomaowang.top">反馈 bug</button>
   </p>
 </footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script>window.T = "{\"langName\":\"中文\",\"footer\":\"ToolPocket · 文件不出你的设备 —— 不上传、不注册、不追踪。\",\"nav\":\"全部工具\",\"backToTools\":\"← 全部工具\",\"copy\":\"复制结果\",\"swap\":\"互换\",\"clear\":\"清空\",\"download\":\"下载\",\"copied\":\"已复制到剪贴板\",\"copyFail\":\"浏览器拦住了自动复制 —— 手动选中再复制即可\",\"inputLabel\":\"输入\",\"outputLabel\":\"结果\",\"privacyNote\":\"全程在你浏览器里跑完 —— 不上传、不保存、不留底。\",\"searchPlaceholder\":\"搜索工具 —— 试试「压缩」「json」「密码」…\",\"noResults\":\"没找到匹配的工具。换个说法试试，比如「压缩」「哈希」「json」。\",\"mobileTip\":\"📱 手机上能用，但<b>桌面版 Chrome 更顺</b> —— 大图压缩、批量处理快很多。\",\"mobileTipClose\":\"知道了\",\"desktopHeading\":\"桌面端更好用\",\"installApp\":\"装成桌面应用\",\"installHint\":\"用桌面版 Chrome / Edge 打开本页，点地址栏右侧的「安装」图标 —— 它会变成一个独立窗口，断网也能继续用。不用下载安装包，也不用登录。\",\"installed\":\"已安装\",\"offlineNote\":\"装好之后，断网也能照常用 —— 本来这些活就是在你机器上干的，跟网络没关系。\",\"feedbackAsk\":\"发现 bug 了？告诉我 —— 每封都看。\",\"feedbackButton\":\"反馈 bug\",\"feedbackSubject\":\"ToolPocket 反馈\",\"noResultsAsk\":\"没找到你想要的？告诉我你需要什么工具 —— 每条都会看。\",\"feedbackAskHome\":\"发现 bug 了？或者想要某个还没有的工具？直接说 —— 每封都看。\",\"feedbackButtonHome\":\"写封邮件\",\"noResultsBtn\":\"提个需求\",\"noResultsSubject\":\"ToolPocket 工具需求\",\"style\":\"输出风格\",\"styleHint\":\"选「全部风格」时，每一行都会列出所有命名写法。\",\"all\":\"★ 全部风格\",\"linesUnit\":\"行已转换\"}";</script>
+<script>window.T = "{\"langName\":\"中文\",\"footer\":\"ToolPocket · 文件不出你的设备 —— 不上传、不注册、不追踪。\",\"nav\":\"全部工具\",\"backToTools\":\"← 全部工具\",\"copy\":\"复制结果\",\"swap\":\"互换\",\"clear\":\"清空\",\"download\":\"下载\",\"copied\":\"已复制到剪贴板\",\"copyFail\":\"浏览器拦住了自动复制 —— 手动选中再复制即可\",\"inputLabel\":\"输入\",\"outputLabel\":\"结果\",\"privacyNote\":\"全程在你浏览器里跑完 —— 不上传、不保存、不留底。\",\"searchPlaceholder\":\"搜索工具 —— 试试「压缩」「json」「密码」…\",\"noResults\":\"没找到匹配的工具。换个说法试试，比如「压缩」「哈希」「json」。\",\"mobileTip\":\"📱 手机上能用，但<b>桌面版 Chrome 更顺</b> —— 大图压缩、批量处理快很多。\",\"mobileTipClose\":\"知道了\",\"desktopHeading\":\"桌面端更好用\",\"installApp\":\"装成桌面应用\",\"installHint\":\"用桌面版 Chrome / Edge 打开本页，点地址栏右侧的「安装」图标 —— 它会变成一个独立窗口，断网也能继续用。不用下载安装包，也不用登录。\",\"installed\":\"已安装\",\"offlineNote\":\"装好之后，断网也能照常用 —— 本来这些活就是在你机器上干的，跟网络没关系。\",\"feedbackAsk\":\"发现 bug 了？告诉我 —— 每封都看。\",\"feedbackButton\":\"反馈 bug\",\"feedbackSubject\":\"ToolPocket 反馈\",\"noResultsAsk\":\"没找到你想要的？告诉我你需要什么工具 —— 每条都会看。\",\"feedbackAskHome\":\"发现 bug 了？或者想要某个还没有的工具？直接说 —— 每封都看。\",\"feedbackButtonHome\":\"写封邮件\",\"noResultsBtn\":\"提个需求\",\"noResultsSubject\":\"ToolPocket 工具需求\",\"copyright\":\"© 2026 ToolPocket —— 保留所有权利。未经许可，请勿转载或复制本站内容与代码。\",\"style\":\"输出风格\",\"styleHint\":\"选「全部风格」时，每一行都会列出所有命名写法。\",\"all\":\"★ 全部风格\",\"linesUnit\":\"行已转换\"}";</script>
 <script src="/assets/tools/_shared.js" defer></script>
 <!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
 <script src="/assets/tools/case-converter.js?v=2" defer></script>

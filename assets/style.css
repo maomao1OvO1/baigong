@@ -1,3 +1,5 @@
+/* © 2026 ToolPocket · tools.maomaowang.top · 保留所有权利（All rights reserved）
+   本文件为原创代码，未经许可不得复制、镜像或二次发布；删除本声明不改变侵权性质。 */
 /* ============================================================================
    文件：style.css —— ToolPocket 全站样式（小鲸 · 2026-10-11 精简版）
    设计目标：**简约美**（毛毛的要求）。落成六条可检查的规则：
@@ -301,6 +303,8 @@ footer { max-width: var(--maxw); margin: 60px auto 0; padding-top: 20px; border-
 footer .fb { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 14px; color: var(--fg); }
 footer .fb span { flex: 1; min-width: 210px; }
 footer .fb button { font-size: 13px; padding: 9px 15px; }
+/* 版权行：小一号、更淡 —— 它要在场，但不该抢注意力（毛毛要求「能防就防」） */
+footer .copy { margin-top: 8px; font-size: 12px; color: var(--muted); opacity: .85; }
 
 /* ── 宽屏：只把网格铺成两列，正文仍保持窄栏（窄栏更像阅读，也更简约）── */
 @media (min-width: 680px) {

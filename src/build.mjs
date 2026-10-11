@@ -67,6 +67,9 @@ ${alts}
 <link rel="alternate" hreflang="x-default" href="${urlOf(LANGS[0], out)}">
 <link rel="stylesheet" href="${asset("style.css")}?v=2">
 <meta name="theme-color" content="#2563eb">
+<!-- 作者信息：既是署名，也是"这站有主"的凭据（扒站的人容易忽略，但删掉它就是加重侵权情节） -->
+<meta name="author" content="maomaowang.top">
+<link rel="author" href="https://maomaowang.top/">
 <link rel="icon" href="${asset("icon-192.png")}">
 <link rel="apple-touch-icon" href="${asset("apple-touch-icon.png")}">
 <link rel="manifest" href="${pathOf(lang, "manifest.webmanifest")}">
@@ -116,12 +119,29 @@ function topbar(lang, out) {
    「主页写缺工具那个可以，但是你进入工具了，你还嫌缺工具就不行了」
    ⇒ 首页与 404 页传 { home: true }（可以说"想要某个还没有的工具"）；
      工具页与招租页用默认口吻（只讲反馈问题，不暗示这里缺东西）。 */
+/* 来源标记（2026-10-12 毛毛要求「让别人能扒不了尽量扒不了，就算扒下去也有风险」）：
+   静态站拦不住人下载源码，但可以让"扒走"变成**可追溯的侵权**而不是"无主代码"。
+   三件叠加：① 页脚显式版权；② 每页一段声明式注释（写明内含来源标记、可追溯 —— 这本身就是威慑）；
+   ③ 一个 hidden 元素带页面级指纹（删掉版权也无法摆脱它）。都不影响渲染、体积与 SEO。 */
+const sourceMark = (page) => {
+  const stamp = "ts2t-" + page.replace(/\\/g, "-").replace(/\.html$/, "");
+  return `<!--
+  ================================================================
+  © 2026 ToolPocket · tools.maomaowang.top · 原创作品，保留所有权利
+  本页由作者独立开发并持续维护。未经授权复制、镜像、二次发布本页
+  内容或代码均属侵权；页面内含来源标记（${stamp}），可追溯出处。
+  ================================================================
+-->
+<span hidden aria-hidden="true" data-mark="ts2t:maomaowang:${stamp}"></span>`;
+};
+
 const footer = (lang, opts) => {
   const home = !!(opts && opts.home);
   const ask = home ? UI.feedbackAskHome[lang.code] : UI.feedbackAsk[lang.code];
   const btn = home ? UI.feedbackButtonHome[lang.code] : UI.feedbackButton[lang.code];
   return `<footer>
   <p>${rich(UI.footer[lang.code])}</p>
+  <p class="copy">${rich(UI.copyright[lang.code])}</p>
   <p class="fb">
     <span>${rich(ask)}</span>
     <button type="button" class="ghost fb-btn" id="feedbackBtn" data-u="${esc(UI.feedbackUser)}" data-d="${esc(UI.feedbackDomain)}">${rich(btn)}</button>
@@ -378,6 +398,7 @@ ${outputArea}
 ${head_html}
 </head>
 <body>
+${sourceMark(out)}
 ${mobileTip(lang)}
 ${topbar(lang, out)}
 
@@ -450,6 +471,7 @@ ${g.list.map(card).join("\n")}
 ${head(lang, { out, title: t.title, desc: t.desc, jsonld })}
 </head>
 <body>
+${sourceMark(out)}
 ${mobileTip(lang)}
 ${topbar(lang, out)}
 
@@ -533,6 +555,7 @@ const FOOT_STRINGS = Object.fromEntries(LANGS.map((l) => [l.code, {
   ask: UI.feedbackAskHome[l.code],      // 404 页与首页同属"还没进工具"的场景，可以说缺工具
   btn: UI.feedbackButtonHome[l.code],
   subject: UI.feedbackSubject[l.code],
+  copy: UI.copyright[l.code],
 }]));
 
 function notFoundPage() {
@@ -568,10 +591,13 @@ function notFoundPage() {
 <meta name="robots" content="noindex">
 <link rel="stylesheet" href="${asset("style.css")}?v=2">
 <meta name="theme-color" content="#2563eb">
+<meta name="author" content="maomaowang.top">
+<link rel="author" href="https://maomaowang.top/">
 <link rel="icon" href="${asset("icon-192.png")}">
 <link rel="apple-touch-icon" href="${asset("apple-touch-icon.png")}">
 </head>
 <body>
+${sourceMark("404.html")}
 <header class="top">
   <a class="brand" href="${pathOf(LANGS[0], "index.html")}">🧰 ${UI.brand}</a>
   <nav class="langs" id="nfLangs"></nav>
@@ -645,6 +671,7 @@ window.TP_INDEX_URL = ${JSON.stringify(asset("search.json"))};
   document.getElementById("nfFootText").textContent = f.footer;
   document.getElementById("nfFbAsk").textContent = f.ask;
   document.getElementById("nfFbBtn").textContent = f.btn;
+  document.getElementById("nfCopy").textContent = f.copy;
 
   // 语言切换：就地换显示，不跳转（404 页没有对应的语言版本可跳）
   var nav = document.getElementById("nfLangs");
@@ -666,6 +693,7 @@ window.TP_INDEX_URL = ${JSON.stringify(asset("search.json"))};
 <script src="${asset("app.js")}?v=2" defer></script>
 <footer>
   <p id="nfFootText"></p>
+  <p class="copy" id="nfCopy"></p>
   <p class="fb">
     <span id="nfFbAsk"></span>
     <button type="button" class="ghost fb-btn" id="feedbackBtn" data-u="${esc(UI.feedbackUser)}" data-d="${esc(UI.feedbackDomain)}"><span id="nfFbBtn"></span></button>
@@ -690,6 +718,7 @@ function advertisePage(lang) {
 ${head(lang, { out, title: t.title, desc: t.desc, jsonld })}
 </head>
 <body>
+${sourceMark(out)}
 ${mobileTip(lang)}
 ${topbar(lang, out)}
 

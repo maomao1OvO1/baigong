@@ -280,7 +280,7 @@ console.log("\n⑨ 404 页检查");
   if (langs.length === 3) ok("三语文案内联在同一个文件里（按路径前缀 → 浏览器语言挑一份显示）");
   else bad("404 页缺语言块", langs.join(", "));
 
-  const rel = [...html.matchAll(/(?:href|src)="(?!\/|#|http|mailto)([^"]*)"/g)].map((m) => m[1]).filter(Boolean);
+  const rel = [...html.matchAll(/(?<!data-)(?:href|src)="(?!\/|#|http|mailto)([^"]*)"/g)].map((m) => m[1]).filter(Boolean);
   if (!rel.length) ok("链接与资源全部使用绝对路径");
   else bad("404 页存在相对路径引用", rel.join(", "));
 
@@ -451,6 +451,36 @@ console.log("\n⑮ 社交分享图（og:image）");
     if (html.includes(`/assets/og-${lang}.png`) && html.includes("og:image")) ok(`${file}：引用了自己语言的分享图`);
     else bad(`${file}：分享图引用不对`, `应指向 og-${lang}.png`);
   }
+}
+
+/* ── ⑯ 版权与来源标记 ─────────────────────────────────────────────────
+   毛毛 2026-10-12：「让别人能扒不了尽量扒不了，就算扒下去也有风险」。
+   静态站拦不住下载，但这三样让"扒走"变成可追溯的侵权：① 页脚显式版权；② 每页来源标记
+   （隐藏元素 + 声明式注释）；③ 代码文件头的版权声明。它们都容易被后来人无意删掉，
+   所以专门设一条检查盯着 —— 版权这种东西丢了不会报错，但等于白做。 */
+console.log("\n⑯ 版权与来源标记");
+{
+  const pages = ["index.html", "zh/index.html", "ja/index.html", "404.html",
+                 "zh/advertise.html", "zh/tools/base64.html"];
+  let miss = 0;
+  for (const f of pages) {
+    const html = fs.readFileSync(path.join(ROOT, f), "utf8");
+    const problems = [];
+    if (!html.includes("ts2t:maomaowang:")) problems.push("缺来源标记");
+    if (!html.includes('name="author"')) problems.push("缺作者元数据");
+    if (!/© 2026 ToolPocket/.test(html)) problems.push("缺版权文案");
+    if (problems.length) { miss++; bad(`${f}：${problems.join(" · ")}`); }
+  }
+  if (!miss) ok(`${pages.length} 个代表性页面都有版权 + 作者元数据 + 来源标记`);
+
+  const files = ["assets/app.js", "assets/search.js", "assets/style.css", "assets/tools/hash.js"];
+  let nf = 0;
+  for (const f of files) {
+    const src = fs.readFileSync(path.join(ROOT, f), "utf8");
+    if (src.includes("All rights reserved") && src.includes("保留所有权利")) nf++;
+    else bad(`${f}：缺文件头版权声明`, "扒走的人删掉它就是故意侵权，但我们得先有");
+  }
+  if (nf === files.length) ok(`${files.length} 个前端文件头部都有版权声明`);
 }
 
 console.log(`\n结果：${pass} 项通过，${fail} 项失败`);

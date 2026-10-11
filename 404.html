@@ -7,10 +7,20 @@
 <meta name="robots" content="noindex">
 <link rel="stylesheet" href="/assets/style.css?v=2">
 <meta name="theme-color" content="#2563eb">
+<meta name="author" content="maomaowang.top">
+<link rel="author" href="https://maomaowang.top/">
 <link rel="icon" href="/assets/icon-192.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 </head>
 <body>
+<!--
+  ================================================================
+  © 2026 ToolPocket · tools.maomaowang.top · 原创作品，保留所有权利
+  本页由作者独立开发并持续维护。未经授权复制、镜像、二次发布本页
+  内容或代码均属侵权；页面内含来源标记（ts2t-404），可追溯出处。
+  ================================================================
+-->
+<span hidden aria-hidden="true" data-mark="ts2t:maomaowang:ts2t-404"></span>
 <header class="top">
   <a class="brand" href="/index.html">🧰 ToolPocket</a>
   <nav class="langs" id="nfLangs"></nav>
@@ -116,11 +126,12 @@ window.TP_INDEX_URL = "/assets/search.json";
 
   /* 页脚也必须跟着语言走 —— 之前这里写死了英文（footer(LANGS[0])），
      中文读者会在 404 页看到一整段英文页脚（毛毛 2026-10-12 截图报「没翻译完全」）。 */
-  var FOOT = {"en":{"footer":"ToolPocket — your files never leave your device. No upload, no account, no tracking.","ask":"Found a bug, or want a tool that isn't here yet? Tell me — I read every message.","btn":"Send an email","subject":"ToolPocket feedback"},"zh":{"footer":"ToolPocket · 文件不出你的设备 —— 不上传、不注册、不追踪。","ask":"发现 bug 了？或者想要某个还没有的工具？直接说 —— 每封都看。","btn":"写封邮件","subject":"ToolPocket 反馈"},"ja":{"footer":"ToolPocket · ファイルは端末から出ません。送信も登録も、追跡もありません。","ask":"不具合の報告や「こんなツールがほしい」というご要望は、お気軽にお知らせください。","btn":"メールを書く","subject":"ToolPocket へのフィードバック"}};
+  var FOOT = {"en":{"footer":"ToolPocket — your files never leave your device. No upload, no account, no tracking.","ask":"Found a bug, or want a tool that isn't here yet? Tell me — I read every message.","btn":"Send an email","subject":"ToolPocket feedback","copy":"© 2026 ToolPocket — all rights reserved. Please don’t republish this site or its code without permission."},"zh":{"footer":"ToolPocket · 文件不出你的设备 —— 不上传、不注册、不追踪。","ask":"发现 bug 了？或者想要某个还没有的工具？直接说 —— 每封都看。","btn":"写封邮件","subject":"ToolPocket 反馈","copy":"© 2026 ToolPocket —— 保留所有权利。未经许可，请勿转载或复制本站内容与代码。"},"ja":{"footer":"ToolPocket · ファイルは端末から出ません。送信も登録も、追跡もありません。","ask":"不具合の報告や「こんなツールがほしい」というご要望は、お気軽にお知らせください。","btn":"メールを書く","subject":"ToolPocket へのフィードバック","copy":"© 2026 ToolPocket — All rights reserved. 当サイトの内容・コードの無断転載を禁じます。"}};
   var f = FOOT[lang] || FOOT.en;
   document.getElementById("nfFootText").textContent = f.footer;
   document.getElementById("nfFbAsk").textContent = f.ask;
   document.getElementById("nfFbBtn").textContent = f.btn;
+  document.getElementById("nfCopy").textContent = f.copy;
 
   // 语言切换：就地换显示，不跳转（404 页没有对应的语言版本可跳）
   var nav = document.getElementById("nfLangs");
@@ -142,6 +153,7 @@ window.TP_INDEX_URL = "/assets/search.json";
 <script src="/assets/app.js?v=2" defer></script>
 <footer>
   <p id="nfFootText"></p>
+  <p class="copy" id="nfCopy"></p>
   <p class="fb">
     <span id="nfFbAsk"></span>
     <button type="button" class="ghost fb-btn" id="feedbackBtn" data-u="hi" data-d="maomaowang.top"><span id="nfFbBtn"></span></button>

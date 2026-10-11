@@ -153,5 +153,10 @@
     "zh": "ToolPocket 工具需求",
     "ja": "ToolPocket ツールのリクエスト"
   },
-  "_说明_user": "feedbackUser / feedbackDomain 只服务「反馈」入口（页脚、搜索空结果、404 页）＝ hi@；招租那条线仍用 ad@（在 advertise.json 的 contactUser 里），两条线不要互相串。"
+  "_说明_user": "feedbackUser / feedbackDomain 只服务「反馈」入口（页脚、搜索空结果、404 页）＝ hi@；招租那条线仍用 ad@（在 advertise.json 的 contactUser 里），两条线不要互相串。",
+  "copyright": {
+    "en": "© 2026 ToolPocket — all rights reserved. Please don’t republish this site or its code without permission.",
+    "zh": "© 2026 ToolPocket —— 保留所有权利。未经许可，请勿转载或复制本站内容与代码。",
+    "ja": "© 2026 ToolPocket — All rights reserved. 当サイトの内容・コードの無断転載を禁じます。"
+  }
 }

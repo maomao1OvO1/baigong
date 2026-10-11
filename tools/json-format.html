@@ -22,6 +22,9 @@
 <link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/json-format.html">
 <link rel="stylesheet" href="/assets/style.css?v=2">
 <meta name="theme-color" content="#2563eb">
+<!-- 作者信息：既是署名，也是"这站有主"的凭据（扒站的人容易忽略，但删掉它就是加重侵权情节） -->
+<meta name="author" content="maomaowang.top">
+<link rel="author" href="https://maomaowang.top/">
 <link rel="icon" href="/assets/icon-192.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="manifest" href="/manifest.webmanifest">
@@ -29,6 +32,14 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What does it do with invalid JSON?","acceptedAnswer":{"@type":"Answer","text":"It tells you the error and tries to point at the line and column, so you can fix it instead of guessing."}},{"@type":"Question","name":"Is there a size limit?","acceptedAnswer":{"@type":"Answer","text":"No hard limit — it runs on your machine, so it handles large pastes as fast as your device does."}},{"@type":"Question","name":"Does it send my data anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. Useful if the JSON contains API keys or customer data."}}]}</script>
 </head>
 <body>
+<!--
+  ================================================================
+  © 2026 ToolPocket · tools.maomaowang.top · 原创作品，保留所有权利
+  本页由作者独立开发并持续维护。未经授权复制、镜像、二次发布本页
+  内容或代码均属侵权；页面内含来源标记（ts2t-tools/json-format），可追溯出处。
+  ================================================================
+-->
+<span hidden aria-hidden="true" data-mark="ts2t:maomaowang:ts2t-tools/json-format"></span>
 <div class="mobile-tip" id="mobileTip" hidden>
   <span>📱 It works on a phone, but desktop Chrome handles large images and batch jobs far better.</span>
   <button type="button" id="tipClose" class="tip-close">Got it</button>
@@ -82,13 +93,14 @@
 
 <footer>
   <p>ToolPocket — your files never leave your device. No upload, no account, no tracking.</p>
+  <p class="copy">© 2026 ToolPocket — all rights reserved. Please don’t republish this site or its code without permission.</p>
   <p class="fb">
     <span>Found a bug? Tell me — I read every message.</span>
     <button type="button" class="ghost fb-btn" id="feedbackBtn" data-u="hi" data-d="maomaowang.top">Report a bug</button>
   </p>
 </footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script>window.T = "{\"langName\":\"English\",\"footer\":\"ToolPocket — your files never leave your device. No upload, no account, no tracking.\",\"nav\":\"All tools\",\"backToTools\":\"← All tools\",\"copy\":\"Copy result\",\"swap\":\"Swap\",\"clear\":\"Clear\",\"download\":\"Download\",\"copied\":\"Copied to clipboard\",\"copyFail\":\"Copying was blocked by the browser — select the text and copy it manually\",\"inputLabel\":\"Input\",\"outputLabel\":\"Result\",\"privacyNote\":\"Runs 100% in your browser — nothing is uploaded, stored, or kept.\",\"searchPlaceholder\":\"Search tools — try “compress”, “json”, “password”…\",\"noResults\":\"Nothing matched. Try another word — “compress”, “hash”, “json”…\",\"mobileTip\":\"📱 It works on a phone, but desktop Chrome handles large images and batch jobs far better.\",\"mobileTipClose\":\"Got it\",\"desktopHeading\":\"Better on desktop\",\"installApp\":\"Install as desktop app\",\"installHint\":\"Open this site in desktop Chrome or Edge, then click the install icon at the right of the address bar. It becomes its own window and keeps working with no network at all — no installer to download, no account.\",\"installed\":\"Already installed\",\"offlineNote\":\"After that, the tools work with the network switched off — which makes sense, since they were never using it.\",\"feedbackAsk\":\"Found a bug? Tell me — I read every message.\",\"feedbackButton\":\"Report a bug\",\"feedbackSubject\":\"ToolPocket feedback\",\"noResultsAsk\":\"Can't find it? Tell me what you were looking for — I read every message.\",\"feedbackAskHome\":\"Found a bug, or want a tool that isn't here yet? Tell me — I read every message.\",\"feedbackButtonHome\":\"Send an email\",\"noResultsBtn\":\"Request a tool\",\"noResultsSubject\":\"ToolPocket tool request\",\"mode\":\"Mode\",\"pretty\":\"Pretty print\",\"minify\":\"Minify\",\"inputPh\":\"Paste JSON here…\",\"outputPh\":\"Formatted result appears here\",\"valid\":\"Valid JSON ✓\",\"invalid\":\"Invalid JSON: \",\"modeHint\":\"Pretty print adds indentation for reading; Minify removes all whitespace for shipping.\"}";</script>
+<script>window.T = "{\"langName\":\"English\",\"footer\":\"ToolPocket — your files never leave your device. No upload, no account, no tracking.\",\"nav\":\"All tools\",\"backToTools\":\"← All tools\",\"copy\":\"Copy result\",\"swap\":\"Swap\",\"clear\":\"Clear\",\"download\":\"Download\",\"copied\":\"Copied to clipboard\",\"copyFail\":\"Copying was blocked by the browser — select the text and copy it manually\",\"inputLabel\":\"Input\",\"outputLabel\":\"Result\",\"privacyNote\":\"Runs 100% in your browser — nothing is uploaded, stored, or kept.\",\"searchPlaceholder\":\"Search tools — try “compress”, “json”, “password”…\",\"noResults\":\"Nothing matched. Try another word — “compress”, “hash”, “json”…\",\"mobileTip\":\"📱 It works on a phone, but desktop Chrome handles large images and batch jobs far better.\",\"mobileTipClose\":\"Got it\",\"desktopHeading\":\"Better on desktop\",\"installApp\":\"Install as desktop app\",\"installHint\":\"Open this site in desktop Chrome or Edge, then click the install icon at the right of the address bar. It becomes its own window and keeps working with no network at all — no installer to download, no account.\",\"installed\":\"Already installed\",\"offlineNote\":\"After that, the tools work with the network switched off — which makes sense, since they were never using it.\",\"feedbackAsk\":\"Found a bug? Tell me — I read every message.\",\"feedbackButton\":\"Report a bug\",\"feedbackSubject\":\"ToolPocket feedback\",\"noResultsAsk\":\"Can't find it? Tell me what you were looking for — I read every message.\",\"feedbackAskHome\":\"Found a bug, or want a tool that isn't here yet? Tell me — I read every message.\",\"feedbackButtonHome\":\"Send an email\",\"noResultsBtn\":\"Request a tool\",\"noResultsSubject\":\"ToolPocket tool request\",\"copyright\":\"© 2026 ToolPocket — all rights reserved. Please don’t republish this site or its code without permission.\",\"mode\":\"Mode\",\"pretty\":\"Pretty print\",\"minify\":\"Minify\",\"inputPh\":\"Paste JSON here…\",\"outputPh\":\"Formatted result appears here\",\"valid\":\"Valid JSON ✓\",\"invalid\":\"Invalid JSON: \",\"modeHint\":\"Pretty print adds indentation for reading; Minify removes all whitespace for shipping.\"}";</script>
 <script src="/assets/tools/_shared.js" defer></script>
 <!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
 <script src="/assets/tools/json-format.js?v=2" defer></script>

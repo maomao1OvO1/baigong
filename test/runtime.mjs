@@ -380,11 +380,17 @@ console.log("\n⑪ 哈希（手写 MD5 + WebCrypto 的 SHA 系列）");
   const { els } = loadTool("hash.js",
     ["input", "output", "algo", "upper", "status", "copy", "clear", "toast"], ui, { algo: "md5" });
   // 算完是异步的（SHA 走 Promise），所以等输出非空再断言
+  /* ⚠️ 等待条件必须同时看「输出非空」和「状态行有内容」：
+     只盯输出非空的话，在 SHA-512 这种较慢的算法上会偶发抢跑（2026-10-12 真抓到过一次 flaky，
+     同一份代码时过时不过 —— 那种"全绿"是没有意义的）。hash.js 算完会写 status，用它当完成信号更靠谱。 */
   const run = async (text, algorithm, upper) => {
     els.input.value = text; els.algo.value = algorithm; els.upper.checked = !!upper;
-    els.output.value = "";
+    els.output.value = ""; els.status.textContent = "";
     els.input.fire("input");
-    for (let i = 0; i < 200 && !els.output.value; i++) await new Promise((r) => setImmediate(r));
+    for (let i = 0; i < 2000; i++) {
+      await new Promise((r) => setImmediate(r));
+      if (els.output.value && els.status.textContent) break;
+    }
     return els.output.value;
   };
   const md5abc = await run("abc", "md5");
