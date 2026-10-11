@@ -110,5 +110,22 @@
     "en": "After that, the tools work with the network switched off — which makes sense, since they were never using it.",
     "zh": "装好之后，断网也能照常用 —— 本来这些活就是在你机器上干的，跟网络没关系。",
     "ja": "インストール後はネットワークを切ったままでも使えます。もともと通信していないのですから、当然といえば当然です。"
-  }
+  },
+  "feedbackAsk": {
+    "en": "Found a bug, or want a tool that isn't here yet? Tell me — I read every message.",
+    "zh": "发现 bug 了？或者想要某个还没有的工具？直接说 —— 每封都看。",
+    "ja": "不具合の報告や「こんなツールがほしい」というご要望は、お気軽にお知らせください。すべて目を通します。"
+  },
+  "feedbackButton": {
+    "en": "Send an email",
+    "zh": "写封邮件",
+    "ja": "メールを書く"
+  },
+  "feedbackSubject": {
+    "en": "ToolPocket feedback",
+    "zh": "ToolPocket 反馈",
+    "ja": "ToolPocket へのフィードバック"
+  },
+  "feedbackUser": "ad",
+  "feedbackDomain": "maomaowang.top"
 }

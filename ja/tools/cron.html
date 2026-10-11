@@ -73,9 +73,15 @@
 
 </main>
 
-<footer><p>ToolPocket · ファイルは端末から出ません。送信も登録も、追跡もありません。</p></footer>
+<footer>
+  <p>ToolPocket · ファイルは端末から出ません。送信も登録も、追跡もありません。</p>
+  <p class="fb">
+    <span>不具合の報告や「こんなツールがほしい」というご要望は、お気軽にお知らせください。すべて目を通します。</span>
+    <button type="button" class="ghost" id="feedbackBtn" data-u="ad" data-d="maomaowang.top">メールを書く</button>
+  </p>
+</footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script>window.T = {"langName":"日本語","footer":"ToolPocket · ファイルは端末から出ません。送信も登録も、追跡もありません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"ブラウザがコピーを許可しませんでした。テキストを選択して手動でコピーしてください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理。送信も保存もしていません。","searchPlaceholder":"ツールを検索 — 「圧縮」「json」「パスワード」など","noResults":"該当するツールがありませんでした。「圧縮」「ハッシュ」など、別の言葉でお試しください。","mobileTip":"📱 スマホでも使えますが、大きな画像やまとめての処理はデスクトップ版 Chrome のほうが快適です。","mobileTipClose":"了解しました","desktopHeading":"デスクトップ版がおすすめ","installApp":"デスクトップアプリとして追加","installHint":"デスクトップ版 Chrome / Edge でこのサイトを開き、アドレスバー右側のインストールアイコンをクリックしてください。独立したウィンドウになり、ネットワークが無くても動作します。インストーラのダウンロードも登録も不要です。","installed":"インストール済み","offlineNote":"インストール後はネットワークを切ったままでも使えます。もともと通信していないのですから、当然といえば当然です。","badCron":"cron 式は 5 フィールド必要です（分 時 日 月 曜日）","badField":"不正なフィールド","weekNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"cFields":"式","cExplain":"意味","cMin":"分","cHour":"時","cDom":"日","cMonth":"月","cDow":"曜日","cCombo":"注意","cComboAny":"日と曜日はともに未指定（毎日）","cComboBoth":"日と曜日を両方指定 ⇒ OR（Vixie cron の仕様）","cNext":"次回 5 回","cNone":"139 日以内に実行時刻が見つかりません —— 日・月フィールドを確認してください"};</script>
+<script>window.T = "{\"langName\":\"日本語\",\"footer\":\"ToolPocket · ファイルは端末から出ません。送信も登録も、追跡もありません。\",\"nav\":\"ツール一覧\",\"backToTools\":\"← ツール一覧\",\"copy\":\"結果をコピー\",\"swap\":\"入れ替え\",\"clear\":\"クリア\",\"download\":\"ダウンロード\",\"copied\":\"クリップボードにコピーしました\",\"copyFail\":\"ブラウザがコピーを許可しませんでした。テキストを選択して手動でコピーしてください\",\"inputLabel\":\"入力\",\"outputLabel\":\"結果\",\"privacyNote\":\"すべてブラウザ内で処理。送信も保存もしていません。\",\"searchPlaceholder\":\"ツールを検索 — 「圧縮」「json」「パスワード」など\",\"noResults\":\"該当するツールがありませんでした。「圧縮」「ハッシュ」など、別の言葉でお試しください。\",\"mobileTip\":\"📱 スマホでも使えますが、大きな画像やまとめての処理はデスクトップ版 Chrome のほうが快適です。\",\"mobileTipClose\":\"了解しました\",\"desktopHeading\":\"デスクトップ版がおすすめ\",\"installApp\":\"デスクトップアプリとして追加\",\"installHint\":\"デスクトップ版 Chrome / Edge でこのサイトを開き、アドレスバー右側のインストールアイコンをクリックしてください。独立したウィンドウになり、ネットワークが無くても動作します。インストーラのダウンロードも登録も不要です。\",\"installed\":\"インストール済み\",\"offlineNote\":\"インストール後はネットワークを切ったままでも使えます。もともと通信していないのですから、当然といえば当然です。\",\"feedbackAsk\":\"不具合の報告や「こんなツールがほしい」というご要望は、お気軽にお知らせください。すべて目を通します。\",\"feedbackButton\":\"メールを書く\",\"feedbackSubject\":\"ToolPocket へのフィードバック\",\"badCron\":\"cron 式は 5 フィールド必要です（分 時 日 月 曜日）\",\"badField\":\"不正なフィールド\",\"weekNames\":[\"日曜日\",\"月曜日\",\"火曜日\",\"水曜日\",\"木曜日\",\"金曜日\",\"土曜日\"],\"cFields\":\"式\",\"cExplain\":\"意味\",\"cMin\":\"分\",\"cHour\":\"時\",\"cDom\":\"日\",\"cMonth\":\"月\",\"cDow\":\"曜日\",\"cCombo\":\"注意\",\"cComboAny\":\"日と曜日はともに未指定（毎日）\",\"cComboBoth\":\"日と曜日を両方指定 ⇒ OR（Vixie cron の仕様）\",\"cNext\":\"次回 5 回\",\"cNone\":\"139 日以内に実行時刻が見つかりません —— 日・月フィールドを確認してください\"}";</script>
 <script src="/assets/tools/_shared.js" defer></script>
 <!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
 <script src="/assets/tools/cron.js?v=2" defer></script>

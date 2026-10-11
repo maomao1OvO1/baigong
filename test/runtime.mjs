@@ -805,7 +805,10 @@ console.log("\n㉕ 站内搜索（索引路径 / 打分 / 结果渲染）");
     fetch: (url) => { fetchedUrl = url; return Promise.resolve({ json: () => Promise.resolve(index) }); },
   };
   sb.window = sb;
-  sb.window.T = { noResults: "nothing" };
+  // 用**真实的中文文案**注入 —— 毛毛截图报的场景就是「中文页面蹦出英文」，
+  // 所以这里必须验证「注入的文案真的被用上了」，而不是随便塞一个字符串自证。
+  const uiJson = JSON.parse(fs.readFileSync(path.join(ROOT, "src/i18n/ui.json"), "utf8"));
+  sb.window.T = { noResults: uiJson.noResults.zh };
   sb.window.TP_INDEX_URL = "/assets/search.json";          // 首页注入的绝对路径
   const ctx = vm.createContext(sb);
   vm.runInContext(fs.readFileSync(path.join(ROOT, "assets/search.js"), "utf8"), ctx, { filename: "search.js" });
@@ -828,8 +831,8 @@ console.log("\n㉕ 站内搜索（索引路径 / 打分 / 结果渲染）");
   els.searchInput.value = "zzzznotfound";
   els.searchInput.fire("input");
   await new Promise((r) => setImmediate(r));
-  if (els.searchResults.innerHTML.indexOf("nothing") >= 0) ok("查不到时显示空状态文案（不是空白一片）");
-  else bad("空状态不对", els.searchResults.innerHTML.slice(0, 100));
+  if (els.searchResults.innerHTML.indexOf("没找到") >= 0) ok("中文页面查不到时提示是中文（不再是英文兜底）");
+  else bad("空状态文案没走注入的文案", els.searchResults.innerHTML.slice(0, 120));
 
   els.searchInput.value = "";
   els.searchInput.fire("input");

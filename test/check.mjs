@@ -228,5 +228,34 @@ console.log("\n⑦ PWA 自检（桌面应用安装条件）");
   else bad("首页没引用 manifest 或 app.js");
 }
 
+/* ── ⑧ 文案注入检查（window.T）──────────────────────────────────────────
+   2026-10-12 毛毛截图报「这个你没翻译？」：中文首页搜不到结果时蹦出英文 No tool matches that。
+   根因是**首页没给脚本注入文案对象**（工具页有、首页漏了），于是掉进脚本里的英文硬编码兜底。
+   这类问题靠肉眼很难发现（只有特定操作才触发），所以按页面逐个核对。 */
+console.log("\n⑧ 文案注入检查（window.T）");
+{
+  const spot = ["index.html", "zh/index.html", "ja/index.html",
+                "advertise.html", "zh/advertise.html", "ja/advertise.html",
+                "tools/base64.html", "zh/tools/json-format.html", "ja/tools/hash.html"];
+  let miss = 0;
+  for (const f of spot) {
+    if (!fs.readFileSync(path.join(ROOT, f), "utf8").includes("window.T = ")) {
+      miss++; bad(`${f}：没有注入 window.T`, "脚本文案会掉回英文硬编码兜底");
+    }
+  }
+  if (!miss) ok(`${spot.length} 个代表性页面都注入了文案对象`);
+
+  const ui = JSON.parse(fs.readFileSync(path.join(ROOT, "src/i18n/ui.json"), "utf8"));
+  const vals = ["en", "zh", "ja"].map((l) => ui.noResults[l]);
+  if (new Set(vals).size === 3 && /[\u4e00-\u9fa5]/.test(ui.noResults.zh)) ok("空结果文案三语互不相同，中文确实是中文");
+  else bad("空结果文案不对", JSON.stringify(vals));
+
+  const home = fs.readFileSync(path.join(ROOT, "zh/index.html"), "utf8");
+  if (home.includes('id="feedbackBtn"') && home.includes("data-u=")) ok("页脚有反馈入口（邮箱拆成 data 属性）");
+  else bad("页脚缺反馈入口");
+  if (!/mailto:[^"]*@/.test(home)) ok("页面源码里没有明文邮箱（防爬虫）");
+  else bad("页面里出现了明文邮箱", "会被垃圾邮件爬虫抓走");
+}
+
 console.log(`\n结果：${pass} 项通过，${fail} 项失败`);
 process.exit(fail ? 1 : 0);

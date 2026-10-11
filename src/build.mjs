@@ -74,6 +74,21 @@ const mobileTip = (lang) => `<div class="mobile-tip" id="mobileTip" hidden>
   <button type="button" id="tipClose" class="tip-close">${rich(UI.mobileTipClose[lang.code])}</button>
 </div>`;
 
+/** 注入给页面脚本的文案对象（window.T）：全局 UI 按当前语言拍平 + 该工具自己的 ui。
+   ⚠️ 为什么每个页面都得注入：搜索框的「没找到」、安装提示、复制失败这些提示语，
+   统统来自 window.T —— 漏注入就会掉进脚本里的英文硬编码兜底。
+   2026-10-12 毛毛截图报的「这个你没翻译？」正是首页漏注入造成的（中文页面上蹦出英文 No tool matches that）。 */
+function scriptStringsOf(lang, toolUi) {
+  const flatGlobal = Object.fromEntries(
+    Object.entries(UI)
+      .filter(([, v]) => v && typeof v === "object" && !Array.isArray(v))
+      .map(([k, v]) => [k, v[lang.code]])
+  );
+  const out = Object.assign({}, flatGlobal, toolUi || {});
+  delete out.title; delete out.desc; delete out.h1; delete out.lead;
+  return JSON.stringify(out);
+}
+
 function topbar(lang, out) {
   const links = LANGS.map((l) =>
     `<a href="${pathOf(l, out)}"${l.code === lang.code ? ' class="on" aria-current="page"' : ""}>${UI.langName[l.code]}</a>`).join("");
@@ -88,7 +103,16 @@ function topbar(lang, out) {
 </header>`;
 }
 
-const footer = (lang) => `<footer><p>${rich(UI.footer[lang.code])}</p></footer>`;
+/* 页脚（2026-10-12 加反馈入口）：毛毛要求「加一个用户反馈按钮，像什么有 bug 呀、想加什么功能啊、可以联系我之类的」。
+   做成 mailto 而不是表单：静态站没有后端，表单要么收不到、要么得引第三方（那就违背"零外部请求"了）。
+   邮箱同样拆成 data-u / data-d，点了才拼 —— 明文写进 href 会被爬虫秒收。 */
+const footer = (lang) => `<footer>
+  <p>${rich(UI.footer[lang.code])}</p>
+  <p class="fb">
+    <span>${rich(UI.feedbackAsk[lang.code])}</span>
+    <button type="button" class="ghost" id="feedbackBtn" data-u="${esc(UI.feedbackUser)}" data-d="${esc(UI.feedbackDomain)}">${rich(UI.feedbackButton[lang.code])}</button>
+  </p>
+</footer>`;
 
 /** 把 tools.json 里的声明式控件渲染成 HTML（label/选项文案从该工具的三语 ui 里取）
     每个控件下面可以带一行 hint 说明 —— 用户要求「每个按钮干嘛的标清楚点」，
@@ -268,13 +292,7 @@ function toolPage(lang, tool) {
   //   ① 必须「全局 UI + 该工具的 ui」合并 —— 像 copied / copyFail 是全局共用的提示语；
   //   ② 全局 UI 的每一项形如 {en, zh, ja}，**必须按当前语言拍平**，否则注入的是对象，
   //      界面上会显示 "[object Object]"。
-  const flatGlobal = Object.fromEntries(
-    Object.entries(UI)
-      .filter(([, v]) => v && typeof v === "object" && !Array.isArray(v))
-      .map(([k, v]) => [k, v[lang.code]])
-  );
-  const scriptStrings = Object.assign({}, flatGlobal, ui);
-  delete scriptStrings.title; delete scriptStrings.desc; delete scriptStrings.h1; delete scriptStrings.lead;
+  const scriptStrings = scriptStringsOf(lang, ui);
 
   let body;
   if (tool.kind === "image") {
@@ -459,7 +477,10 @@ ${adSlot(lang, "home-bottom")}
 </main>
 
 <!-- 搜索索引的绝对路径：/zh/ 与 /ja/ 页面用相对路径会 404（2026-10-12 修） -->
-<script>window.TP_INDEX_URL = ${JSON.stringify(asset("search.json"))};</script>
+<script>
+  window.T = ${scriptStringsOf(lang)};
+  window.TP_INDEX_URL = ${JSON.stringify(asset("search.json"))};
+</script>
 <script src="${asset("search.js")}?v=2" defer></script>
 ${CONTACT_SCRIPT}
 
@@ -547,6 +568,7 @@ ${rows(t.payMethods)}
   </section>
 </main>
 
+<script>window.T = ${scriptStringsOf(lang)};</script>
 ${footer(lang)}
 ${CONTACT_SCRIPT}
 <script src="${asset("app.js")}?v=2" defer></script>

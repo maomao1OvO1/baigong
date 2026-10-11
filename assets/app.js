@@ -67,4 +67,18 @@
     // 已经装过了（独立窗口里运行）也把按钮收起来，避免给用户一个没用的按钮
     if (window.matchMedia("(display-mode: standalone)").matches) installBtn.hidden = true;
   }
+
+  /* ── ④ 页脚反馈入口 ──────────────────────────────────────────────────
+     报 bug、想要新工具都可以从这儿写信。做成 mailto 而不是表单：静态站没有后端，
+     表单要么收不到、要么得引第三方服务（那就违背全站「零外部请求」这条了）。
+     邮箱拆成 data-u / data-d，点了才拼 —— 明文写在 href 里会被垃圾邮件爬虫秒收。 */
+  var fb = document.getElementById("feedbackBtn");
+  if (fb) {
+    fb.addEventListener("click", function () {
+      var u = fb.getAttribute("data-u"), dom = fb.getAttribute("data-d");
+      if (!u || !dom) return;
+      var subject = encodeURIComponent((window.T && window.T.feedbackSubject) || "ToolPocket");
+      location.href = "mailto:" + u + "@" + dom + "?subject=" + subject;
+    });
+  }
 })();

@@ -52,7 +52,7 @@
     if (!query) { out.innerHTML = ""; out.hidden = true; return; }
     out.hidden = false;
     if (!items.length) {
-      out.innerHTML = '<li class="empty">' + escapeHtml(T.noResults || "No tool matches that") + "</li>";
+      out.innerHTML = '<li class="empty">' + escapeHtml(T.noResults || "Nothing matched.") + "</li>";
       return;
     }
     out.innerHTML = items.slice(0, 8).map(function (it) {

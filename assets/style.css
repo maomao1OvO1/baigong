@@ -277,6 +277,10 @@ table.spec td:not(:first-child) { color: var(--muted); }
 
 /* ── 页脚 ── */
 footer { max-width: var(--maxw); margin: 60px auto 0; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+/* 页脚反馈入口（2026-10-12）：一句话 + 一个按钮，不做成表单 —— 静态站没有后端，表单收不到信 */
+footer .fb { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 14px; color: var(--fg); }
+footer .fb span { flex: 1; min-width: 210px; }
+footer .fb button { font-size: 13px; padding: 9px 15px; }
 
 /* ── 宽屏：只把网格铺成两列，正文仍保持窄栏（窄栏更像阅读，也更简约）── */
 @media (min-width: 680px) {
