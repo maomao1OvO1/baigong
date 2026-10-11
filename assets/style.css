@@ -69,7 +69,7 @@ main { max-width: var(--maxw); margin: 0 auto; }
 .ad-link:hover { border-color: var(--brand); text-decoration: none; }
 
 /* ── 排版层级：只分四档 ── */
-h1 { font-size: 33px; line-height: 1.25; margin: 26px 0 12px; letter-spacing: -.02em; font-weight: 650; }
+h1 { font-size: clamp(25px, 6.4vw, 33px); line-height: 1.25; margin: 26px 0 12px; letter-spacing: -.02em; font-weight: 650; }
 h2 { font-size: 17px; margin: 44px 0 10px; letter-spacing: -.01em; font-weight: 600; }
 .lead { color: var(--muted); margin: 0 0 20px; font-size: 15.5px; }
 p { margin: 14px 0; }
@@ -192,10 +192,19 @@ details p { margin: 10px 0 0; color: var(--muted); font-size: 14px; }
 .searchbox:focus-within { border-color: var(--fg); }
 .searchbox .s-ico { font-size: 15px; opacity: .55; }
 .searchbox input { flex: 1; border: 0; background: transparent; color: var(--fg); font-size: 15px; outline: none; min-width: 0; }
-.searchresults { list-style: none; padding: 0; margin: 6px 0 0; }
+/* ── 搜索结果：做成一「块」弹出的下拉面板 ──
+   毛毛的期望原话：「我输入东西的底下不应该要弹出一个选项，然后我点击进入那个界面吗」。
+   所以这里不再是几条裸链接，而是一个有边框、有底色的面板，每一行都够大、点得准。 */
+.searchresults {
+  list-style: none; padding: 0; margin: 10px 0 0;
+  border: 1px solid var(--line); border-radius: var(--radius);
+  background: var(--bg); overflow: hidden;
+}
+.searchresults[hidden] { display: none; }
 .searchresults li { border-bottom: 1px solid var(--line); }
-.searchresults a { display: flex; align-items: center; gap: 12px; padding: 12px 2px; text-decoration: none; color: inherit; }
-.searchresults a:hover { text-decoration: none; }
+.searchresults li:last-child { border-bottom: 0; }
+.searchresults a { display: flex; align-items: center; gap: 12px; padding: 14px; min-height: 44px; text-decoration: none; color: inherit; }
+.searchresults a:hover, .searchresults a:active { background: var(--soft); text-decoration: none; }
 .searchresults a:hover b { color: var(--brand); }
 .searchresults .s-ico { font-size: 18px; opacity: .9; }
 .searchresults .s-meta { min-width: 0; }
@@ -273,4 +282,37 @@ footer { max-width: var(--maxw); margin: 60px auto 0; padding-top: 20px; border-
 @media (min-width: 680px) {
   h1 { font-size: 36px; }
   .grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   移动端适配（2026-10-12 补 · 毛毛：「手机端没有适配，只有网页端适配了 UI」）
+   四条原则：
+     ① 断点 560px 手机 / 680px 桌面两列（业界通行的 480~600 区间，见 BrowserStack 断点指南）；
+     ② 触控目标一律 ≥ 44px（手指不是鼠标，点不准等于没有这个功能）；
+     ③ 小屏不许横向溢出：三列规格表在手机上改成「一行一块」的堆叠布局；
+     ④ 字号跟着屏幕走（clamp），不做「桌面版缩小版」。
+   ══════════════════════════════════════════════════════════════════════════ */
+@media (max-width: 560px) {
+  body { padding: 0 16px 56px; }
+  .top { flex-wrap: wrap; padding: 18px 0 12px; gap: 10px; }
+  .brand { font-size: 15px; }
+  .langs { gap: 2px; }
+  .langs a { padding: 6px 8px; }              /* 撑到 44px 上下的点击区 */
+  .ad-link { font-size: 12.5px; padding: 6px 10px; }
+  h2 { margin-top: 34px; }
+  .group { margin-top: 32px; }
+  .grid a { padding: 14px 15px; gap: 3px 12px; grid-template-columns: 28px 1fr; }
+  .grid .ico { font-size: 18px; }
+  .panel { padding: 15px; }
+  .btnrow button { flex: 1 1 auto; }          /* 按钮铺满一行，拇指好按 */
+  .ad { padding: 14px; }
+  .ad-cta { padding: 10px 14px; }             /* ≥ 44px 高 */
+  .slots li { padding: 13px 14px; }
+  /* 招租页的三列规格表：手机上挤成一团，改成一行一块 */
+  table.spec tr { display: block; border-bottom: 1px solid var(--line); padding: 12px 0; }
+  table.spec tr:last-child { border-bottom: 0; }
+  table.spec td { display: block; padding: 2px 0; border: 0; }
+  table.spec td:first-child { width: auto; }
+  /* 长串（URL、哈希、代码）不许把页面撑宽 */
+  code, .grid .sub, .searchresults .s-meta span { overflow-wrap: anywhere; }
 }

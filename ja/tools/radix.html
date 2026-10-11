@@ -14,7 +14,7 @@
 <link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/radix.html">
 <link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/radix.html">
 <link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/radix.html">
-<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/assets/style.css?v=2">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"基数変換（2 / 8 / 10 / 16 / 36）","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"2・8・10・16・36 進数の相互変換とビット表示。BigInt を使うため、桁の多い ID でも値がずれません。"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"電卓と結果が違うのはなぜ？","acceptedAnswer":{"@type":"Answer","text":"多くの電卓や JavaScript の数値は倍精度浮動小数点で、正確に表せるのは 2 の 53 乗までです。このページは BigInt を使うため、20 桁の ID やパーミッションマスクも正確に扱えます。"}},{"@type":"Question","name":"「自動」は何で判定しますか？","acceptedAnswer":{"@type":"Answer","text":"<code>0x</code> / <code>0b</code> / <code>0o</code> の接頭辞があればそれぞれ 16 / 2 / 8 進数、なければ a〜f を含む場合は 16 進数、それ以外は 10 進数として扱います。"}},{"@type":"Question","name":"グループ化したビット表示の用途は？","acceptedAnswer":{"@type":"Answer","text":"フラグやマスクの確認用です。4 ビットごとに区切ると 16 進数の 1 桁に対応し、8 ビットごとに区切るとメモリ上のバイト配置に対応します。"}}]}</script>
 </head>
@@ -72,6 +72,7 @@
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>window.T = {"langName":"日本語","footer":"ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"コピーできませんでした。手動で選択してください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理されます。送信も保存もしていません。","searchPlaceholder":"ツールを検索 — 例：圧縮、json、パスワード…","noResults":"該当するツールがありません。別の言葉でお試しを。","base":"入力の基数","baseHint":"「自動」は接頭辞や使用文字から判定します。","group":"ビットの区切り","groupHint":"区切るとフラグやマスクの値が読みやすくなります。","badNumber":"この基数では有効な数値ではありません","bitsLabel":"ビット","bytesLabel":"バイト","groupLabel":"区切り表示","digitsLabel":"桁（10 進）"};</script>
 <script src="/assets/tools/_shared.js" defer></script>
-<script src="/assets/tools/radix.js" defer></script>
+<!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
+<script src="/assets/tools/radix.js?v=2" defer></script>
 </body>
 </html>

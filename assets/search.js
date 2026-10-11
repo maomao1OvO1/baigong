@@ -92,7 +92,12 @@
     render(hits, q);
   }
 
-  input.addEventListener("input", run);
+  /* 手机上用输入法打中文时，组合期间的 input 事件非常密集 —— 加一层轻防抖，避免结果面板闪烁 */
+  var timer = null;
+  input.addEventListener("input", function () {
+    clearTimeout(timer);
+    timer = setTimeout(run, 120);
+  });
   input.addEventListener("keydown", function (e) {
     if (e.key === "Escape") { input.value = ""; run(); }
     // 回车 ⇒ 打开第一个结果（搜索框最常见的期待行为）

@@ -14,7 +14,7 @@
 <link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/json-format.html">
 <link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/json-format.html">
 <link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/json-format.html">
-<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/assets/style.css?v=2">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"JSON 格式化与校验","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"在浏览器里美化、压缩、校验 JSON。出错时告诉你**第几行第几列**，而不是一句看不懂的报错。"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"遇到非法 JSON 会怎样？","acceptedAnswer":{"@type":"Answer","text":"显示错误信息，并尽量指出出错的行列号，让你能直接改，而不是猜。"}},{"@type":"Question","name":"有大小限制吗？","acceptedAnswer":{"@type":"Answer","text":"没有硬限制 —— 跑在你自己的设备上，你的机器多快就有多快。"}},{"@type":"Question","name":"数据会被传走吗？","acceptedAnswer":{"@type":"Answer","text":"不会。如果 JSON 里含 API key 或客户数据，这点尤其重要。"}}]}</script>
 </head>
@@ -70,6 +70,7 @@
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>window.T = {"langName":"中文","footer":"ToolPocket · 全部在你的设备上完成，不上传任何文件。","nav":"全部工具","backToTools":"← 全部工具","copy":"复制结果","swap":"互换","clear":"清空","download":"下载","copied":"已复制到剪贴板","copyFail":"复制失败 —— 请手动选中复制","inputLabel":"输入","outputLabel":"结果","privacyNote":"完全在你的浏览器里运行，不上传、不保存。","searchPlaceholder":"搜索工具 —— 例如：压缩、json、密码…","noResults":"没找到匹配的工具，换个词试试？","mode":"模式","pretty":"格式化（美化）","minify":"压缩成一行","inputPh":"把 JSON 粘到这里…","outputPh":"格式化结果会显示在这里","valid":"JSON 合法 ✓","invalid":"JSON 有错：","modeHint":"「格式化」加缩进方便阅读；「压缩成一行」去掉所有空白，方便传输。"};</script>
 <script src="/assets/tools/_shared.js" defer></script>
-<script src="/assets/tools/json-format.js" defer></script>
+<!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
+<script src="/assets/tools/json-format.js?v=2" defer></script>
 </body>
 </html>

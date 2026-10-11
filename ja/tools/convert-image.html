@@ -14,7 +14,7 @@
 <link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/convert-image.html">
 <link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/convert-image.html">
 <link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/convert-image.html">
-<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/assets/style.css?v=2">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"アップロードせずに画像形式を変換","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"PNG を JPG に、JPG を WebP に。変換はすべてブラウザ内で行います。アップロードも登録も透かしもなく、枚数の制限もありません。"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"どの形式に変換すればいい？","acceptedAnswer":{"@type":"Answer","text":"写真は JPG か WebP（かなり軽くなります）。図版・スクリーンショット・透過が必要なものは PNG。対応環境なら WebP が最もバランスが良いです。"}},{"@type":"Question","name":"透過部分はどうなりますか？","acceptedAnswer":{"@type":"Answer","text":"PNG と WebP は透過を保持します。JPG は保持できず、その部分は白で塗られます。ロゴを JPG にすると汚く見えるのはこのためです。"}},{"@type":"Question","name":"まとめて変換できますか？","acceptedAnswer":{"@type":"Answer","text":"はい、枚数の制限もありません。変換はお使いの端末で行われます。"}}]}</script>
 </head>
@@ -73,6 +73,7 @@
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>window.T = {"langName":"日本語","footer":"ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"コピーできませんでした。手動で選択してください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理されます。送信も保存もしていません。","searchPlaceholder":"ツールを検索 — 例：圧縮、json、パスワード…","noResults":"該当するツールがありません。別の言葉でお試しを。","drop":"クリックして画像を選ぶ／ここにドラッグ＆ドロップ","dropNote":"PNG・JPG・WebP／複数可","format":"変換先","quality":"画質","fmtJpeg":"JPG — 写真向き、カメラ画像が最も軽くなる","fmtWebp":"WebP — 容量と画質のバランスが最良","fmtPng":"PNG — 透過を保持","run":"変換してまとめてダウンロード","selected":"{n} 件のファイルを読み込み済み。","working":"変換中…","failed":"このファイルはブラウザで読み込めませんでした。","formatHint":"必要な形式を選びます。透過は PNG と WebP のみ保持され、JPG では白く塗られます。","qualityHint":"JPG と WebP にのみ適用されます。90% 以上なら見た目はほぼ無劣化です。"};</script>
 <script src="/assets/tools/_shared.js" defer></script>
-<script src="/assets/tools/convert-image.js" defer></script>
+<!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
+<script src="/assets/tools/convert-image.js?v=2" defer></script>
 </body>
 </html>

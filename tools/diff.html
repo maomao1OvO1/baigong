@@ -14,7 +14,7 @@
 <link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/diff.html">
 <link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/diff.html">
 <link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/diff.html">
-<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/assets/style.css?v=2">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Text diff (line by line)","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Compare two blocks of text and see which lines were added, removed or unchanged. Line-based diff computed locally in your browser."}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I put two texts in one box?","acceptedAnswer":{"@type":"Answer","text":"Separate them with a line containing only <code>===</code>. Create a few that way and you can diff several pairs in a row."}},{"@type":"Question","name":"Why is a line marked as changed when it looks identical?","acceptedAnswer":{"@type":"Answer","text":"Invisible characters: a trailing space, a non-breaking space, or Windows line endings. That is exactly the kind of thing a diff is good at catching."}},{"@type":"Question","name":"Is there a size limit?","acceptedAnswer":{"@type":"Answer","text":"Yes — around 4000 lines per side. Beyond that the comparison needs too much memory and is refused instead of freezing your tab."}}]}</script>
 </head>
@@ -69,6 +69,7 @@
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>window.T = {"langName":"English","footer":"ToolPocket · Everything runs on your device — nothing is uploaded.","nav":"All tools","backToTools":"← All tools","copy":"Copy result","swap":"Swap","clear":"Clear","download":"Download","copied":"Copied to clipboard","copyFail":"Copy failed — select the text manually","inputLabel":"Input","outputLabel":"Result","privacyNote":"Runs entirely in your browser. Nothing is uploaded or stored.","searchPlaceholder":"Search tools — e.g. compress, json, 密码…","noResults":"No tool matches that. Try another word?","needSep":"Add a line with === between the two texts","tooMany":"Too many lines to compare","bothEmpty":"(both sides empty)","sameLabel":"unchanged"};</script>
 <script src="/assets/tools/_shared.js" defer></script>
-<script src="/assets/tools/diff.js" defer></script>
+<!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
+<script src="/assets/tools/diff.js?v=2" defer></script>
 </body>
 </html>

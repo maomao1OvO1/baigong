@@ -14,7 +14,7 @@
 <link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/radix.html">
 <link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/radix.html">
 <link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/radix.html">
-<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/assets/style.css?v=2">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Base converter (2 / 8 / 10 / 16 / 36)","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Convert a number between binary, octal, decimal, hexadecimal and base 36, with a grouped bit view. Uses BigInt so long IDs stay exact."}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why does this differ from my calculator?","acceptedAnswer":{"@type":"Answer","text":"Most calculators and JavaScript itself store integers as double-precision floats, which are only exact up to 2^53. Here everything goes through BigInt, so 20-digit IDs and permission masks stay accurate."}},{"@type":"Question","name":"What does “auto” detect?","acceptedAnswer":{"@type":"Answer","text":"A <code>0x</code>/<code>0b</code>/<code>0o</code> prefix selects hex/binary/octal; otherwise a number containing a-f is read as hex, and anything else as decimal."}},{"@type":"Question","name":"What is the grouped bit view for?","acceptedAnswer":{"@type":"Answer","text":"Reading flags and masks. Grouping into nibbles (4 bits) lets you map each group to one hex digit; bytes (8 bits) match how the value is laid out in memory."}}]}</script>
 </head>
@@ -72,6 +72,7 @@
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>window.T = {"langName":"English","footer":"ToolPocket · Everything runs on your device — nothing is uploaded.","nav":"All tools","backToTools":"← All tools","copy":"Copy result","swap":"Swap","clear":"Clear","download":"Download","copied":"Copied to clipboard","copyFail":"Copy failed — select the text manually","inputLabel":"Input","outputLabel":"Result","privacyNote":"Runs entirely in your browser. Nothing is uploaded or stored.","searchPlaceholder":"Search tools — e.g. compress, json, 密码…","noResults":"No tool matches that. Try another word?","base":"Input base","baseHint":"“Auto” guesses from the prefix or from the letters used.","group":"Group bits by","groupHint":"Grouping makes flag and mask values readable at a glance.","badNumber":"Not a valid number in this base","bitsLabel":"bits","bytesLabel":"bytes","groupLabel":"grouped","digitsLabel":"digits"};</script>
 <script src="/assets/tools/_shared.js" defer></script>
-<script src="/assets/tools/radix.js" defer></script>
+<!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
+<script src="/assets/tools/radix.js?v=2" defer></script>
 </body>
 </html>

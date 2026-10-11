@@ -14,7 +14,7 @@
 <link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/regex.html">
 <link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/regex.html">
 <link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/regex.html">
-<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/assets/style.css?v=2">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Regular expression tester","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Test a regular expression against your own text: see every match with line numbers and capture groups, plus a replace preview. Runs locally, nothing is sent."}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why does my pattern show an error?","acceptedAnswer":{"@type":"Answer","text":"The message comes straight from the JavaScript engine, and it is usually accurate: an unclosed group, an unmatched bracket, or a quantifier with nothing before it. Check the text after the message — it names the position."}},{"@type":"Question","name":"Why does a match with no <code>g</code> flag stop after the first hit?","acceptedAnswer":{"@type":"Answer","text":"That is how regular expressions work: without <code>g</code> the engine returns the first match only. Turn on the global flag to list every match."}},{"@type":"Question","name":"What are $1, $2 in the output?","acceptedAnswer":{"@type":"Answer","text":"Capture groups: the parts of the pattern written in parentheses. Use them in the replacement field as <code>$1</code>, <code>$2</code> — or <code>$&amp;</code> for the whole match."}}]}</script>
 </head>
@@ -77,6 +77,7 @@
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>window.T = {"langName":"English","footer":"ToolPocket · Everything runs on your device — nothing is uploaded.","nav":"All tools","backToTools":"← All tools","copy":"Copy result","swap":"Swap","clear":"Clear","download":"Download","copied":"Copied to clipboard","copyFail":"Copy failed — select the text manually","inputLabel":"Input","outputLabel":"Result","privacyNote":"Runs entirely in your browser. Nothing is uploaded or stored.","searchPlaceholder":"Search tools — e.g. compress, json, 密码…","noResults":"No tool matches that. Try another word?","pattern":"Pattern","patternHint":"Written without the slashes — type \\d+, not /\\d+/.","replace":"Replace with","replaceHint":"Optional. $1 / $2 refer to capture groups. Leave empty to skip the replacement preview.","flagsHint":"Flags: g = all matches · i = ignore case · m = ^$ match each line · s = . matches newlines · u = unicode","cbG":"g (global)","cbI":"i (ignore case)","cbM":"m (multiline)","cbS":"s (dotall)","cbU":"u (unicode)","summary":"matches","noMatch":"(no match)","replaced":"── replacement preview ──","truncated":"stopped at the limit of","badRegex":"Invalid regular expression","tooLong":"Text is too long to test safely"};</script>
 <script src="/assets/tools/_shared.js" defer></script>
-<script src="/assets/tools/regex.js" defer></script>
+<!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
+<script src="/assets/tools/regex.js?v=2" defer></script>
 </body>
 </html>

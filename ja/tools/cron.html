@@ -14,7 +14,7 @@
 <link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/cron.html">
 <link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/cron.html">
 <link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/cron.html">
-<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/assets/style.css?v=2">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Cron 式エクスプレイナー","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"5 フィールドの cron 式を貼り付けると、各フィールドの意味と、ローカル時間での次回 5 回の実行時刻を表示します。"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"「日」と「曜日」は OR ですか？","acceptedAnswer":{"@type":"Answer","text":"標準の Vixie cron では **OR** です。<code>0 0 1 * 1</code> は「毎月 1 日**または**毎週月曜」であり、「1 日かつ月曜」ではありません。ここは多くの人が誤解します。"}},{"@type":"Question","name":"0 と 7 はどちらも日曜ですか？","acceptedAnswer":{"@type":"Answer","text":"曜日フィールドでは両方とも有効です。本ツールは 7 を 0 に正規化して説明がぶれないようにしています。"}},{"@type":"Question","name":"どのタイムゾーンを使いますか？","acceptedAnswer":{"@type":"Answer","text":"端末のローカルタイムゾーンです。手元のジョブを調べる場合はこれが正解です。サーバーは通常 UTC なので、時刻を比べるときはサーバー時計も確認してください。"}}]}</script>
 </head>
@@ -69,6 +69,7 @@
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>window.T = {"langName":"日本語","footer":"ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"コピーできませんでした。手動で選択してください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理されます。送信も保存もしていません。","searchPlaceholder":"ツールを検索 — 例：圧縮、json、パスワード…","noResults":"該当するツールがありません。別の言葉でお試しを。","badCron":"cron 式は 5 フィールド必要です（分 時 日 月 曜日）","badField":"不正なフィールド","weekNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"cFields":"式","cExplain":"意味","cMin":"分","cHour":"時","cDom":"日","cMonth":"月","cDow":"曜日","cCombo":"注意","cComboAny":"日と曜日はともに未指定（毎日）","cComboBoth":"日と曜日を両方指定 ⇒ OR（Vixie cron の仕様）","cNext":"次回 5 回","cNone":"139 日以内に実行時刻が見つかりません —— 日・月フィールドを確認してください"};</script>
 <script src="/assets/tools/_shared.js" defer></script>
-<script src="/assets/tools/cron.js" defer></script>
+<!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
+<script src="/assets/tools/cron.js?v=2" defer></script>
 </body>
 </html>

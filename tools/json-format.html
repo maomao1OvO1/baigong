@@ -14,7 +14,7 @@
 <link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/json-format.html">
 <link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/json-format.html">
 <link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/json-format.html">
-<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/assets/style.css?v=2">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Format and validate JSON","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Pretty-print, minify and validate JSON in your browser. Clear error messages with the line and column of the problem."}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What does it do with invalid JSON?","acceptedAnswer":{"@type":"Answer","text":"It tells you the error and tries to point at the line and column, so you can fix it instead of guessing."}},{"@type":"Question","name":"Is there a size limit?","acceptedAnswer":{"@type":"Answer","text":"No hard limit — it runs on your machine, so it handles large pastes as fast as your device does."}},{"@type":"Question","name":"Does it send my data anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. Useful if the JSON contains API keys or customer data."}}]}</script>
 </head>
@@ -70,6 +70,7 @@
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>window.T = {"langName":"English","footer":"ToolPocket · Everything runs on your device — nothing is uploaded.","nav":"All tools","backToTools":"← All tools","copy":"Copy result","swap":"Swap","clear":"Clear","download":"Download","copied":"Copied to clipboard","copyFail":"Copy failed — select the text manually","inputLabel":"Input","outputLabel":"Result","privacyNote":"Runs entirely in your browser. Nothing is uploaded or stored.","searchPlaceholder":"Search tools — e.g. compress, json, 密码…","noResults":"No tool matches that. Try another word?","mode":"Mode","pretty":"Pretty print","minify":"Minify","inputPh":"Paste JSON here…","outputPh":"Formatted result appears here","valid":"Valid JSON ✓","invalid":"Invalid JSON: ","modeHint":"Pretty print adds indentation for reading; Minify removes all whitespace for shipping."};</script>
 <script src="/assets/tools/_shared.js" defer></script>
-<script src="/assets/tools/json-format.js" defer></script>
+<!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
+<script src="/assets/tools/json-format.js?v=2" defer></script>
 </body>
 </html>

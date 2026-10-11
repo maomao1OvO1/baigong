@@ -14,7 +14,7 @@
 <link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/jwt.html">
 <link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/jwt.html">
 <link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/jwt.html">
-<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/assets/style.css?v=2">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"JWT デコーダー","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"JSON Web Token をデコードしてヘッダー・ペイロード・有効期限を確認します。処理はブラウザ内で完結します。デコードは検証ではない点にご注意ください。"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"デコードできれば有効なトークンですか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。ペイロードは誰でも自由に作れます。発行者を証明できるのは署名だけです。本ページは形式のデコードとクレームの表示のみを行います。署名検証はサーバー側で行ってください。"}},{"@type":"Question","name":"形式エラーになるのはなぜ？","acceptedAnswer":{"@type":"Answer","text":"JWT はドットで区切られた 3 つの部分から成ります。貼り付け時に最後の部分が欠ける、引用符付きの JSON 文字列のまま貼る、URL エンコードされたまま貼る、といった原因が一般的です。"}},{"@type":"Question","name":"本番のトークンを貼っても安全ですか？","acceptedAnswer":{"@type":"Answer","text":"送信は一切行いませんが、トークンはパスワード同等の機密です。テスト用トークンを推奨します。本番のものを使った場合は、後で失効・ローテーションしてください。"}}]}</script>
 </head>
@@ -69,6 +69,7 @@
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>window.T = {"langName":"日本語","footer":"ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"コピーできませんでした。手動で選択してください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理されます。送信も保存もしていません。","searchPlaceholder":"ツールを検索 — 例：圧縮、json、パスワード…","noResults":"該当するツールがありません。別の言葉でお試しを。","badShape":"JWT はドットで区切られた 3 つの部分が必要です","badDecode":"デコードできませんでした","expired":"期限切れ","validFor":"残り有効期間","ago":"前に失効","noExp":"exp クレームがありません —— このトークンは失効しません","notYet":"まだ有効ではありません","notVerified":"署名は未検証 —— デコードできても真正性の証明にはなりません","decoded":"デコード成功"};</script>
 <script src="/assets/tools/_shared.js" defer></script>
-<script src="/assets/tools/jwt.js" defer></script>
+<!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
+<script src="/assets/tools/jwt.js?v=2" defer></script>
 </body>
 </html>

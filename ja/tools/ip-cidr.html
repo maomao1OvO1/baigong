@@ -14,7 +14,7 @@
 <link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/ip-cidr.html">
 <link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/ip-cidr.html">
 <link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/ip-cidr.html">
-<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/assets/style.css?v=2">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"IPv4 / CIDR サブネット計算","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"CIDR 付きの IPv4 アドレスから、ネットワークアドレス・ブロードキャスト・利用可能ホスト範囲・マスク・バイナリ表示を計算します。"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"利用可能数が総数より 2 少ないのはなぜ？","acceptedAnswer":{"@type":"Answer","text":"通常のサブネットでは先頭がネットワークアドレス、末尾がブロードキャストで、どちらもホストに割り当てられません。/31 と /32（RFC 3021）は例外で、本ツールは負の数ではなく実際の利用可能数を表示します。"}},{"@type":"Question","name":"255.255.255.255 のバイナリが変に見えるのは？","acceptedAnswer":{"@type":"Answer","text":"JavaScript のビット演算は **32 ビット符号付き**整数で行われるため、この値は −1 になります。本ツールは表示前に符号なしへ変換するので、マスクが負の数になることはありません。"}}]}</script>
 </head>
@@ -68,6 +68,7 @@
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>window.T = {"langName":"日本語","footer":"ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"コピーできませんでした。手動で選択してください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理されます。送信も保存もしていません。","searchPlaceholder":"ツールを検索 — 例：圧縮、json、パスワード…","noResults":"該当するツールがありません。別の言葉でお試しを。","badIp":"有効な IPv4 アドレスではありません（例：192.168.1.10/24）","badPrefix":"プレフィックス長は 0〜32 の範囲で指定してください","rAddress":"アドレス","rNetwork":"ネットワーク","rBroadcast":"ブロードキャスト","rRange":"ホスト範囲","rMask":"ネットマスク","rWildcard":"ワイルドカード","rCount":"アドレス数","rUsable":"利用可能","rType":"種別","rBinary":"バイナリ","rBinMask":"        マスク","kinds":{"private":"プライベート（RFC 1918）","public":"グローバル","loopback":"ループバック","link-local":"リンクローカル（APIPA）","cgnat":"キャリア NAT","multicast":"マルチキャスト","reserved":"予約済み"}};</script>
 <script src="/assets/tools/_shared.js" defer></script>
-<script src="/assets/tools/ip-cidr.js" defer></script>
+<!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
+<script src="/assets/tools/ip-cidr.js?v=2" defer></script>
 </body>
 </html>

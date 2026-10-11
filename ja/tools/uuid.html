@@ -14,7 +14,7 @@
 <link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/uuid.html">
 <link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/uuid.html">
 <link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/uuid.html">
-<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/assets/style.css?v=2">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"UUID / ULID / NanoID 生成","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"最大 100 個の一意な ID をまとめて生成：UUID v4、時刻順に並ぶ UUID v7、ULID、NanoID。ワンクリックでコピーできます。"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"UUID v4 と v7、どちらを使うべき？","acceptedAnswer":{"@type":"Answer","text":"新規プロジェクトなら v7 をおすすめします。先頭がミリ秒タイムスタンプなので生成順に並び、データベースのインデックスが断片化しません。v4 は完全ランダムで識別子としては十分ですが、大量のランダム挿入は B-tree インデックスを劣化させます。"}},{"@type":"Question","name":"ULID と UUID v7 は似ていますが？","acceptedAnswer":{"@type":"Answer","text":"どちらも時刻順に並びます。ULID は Crockford Base32 の 26 文字（ハイフンなし・短く URL 向き）、UUID v7 は標準の 36 文字形式で、多くのデータベースがネイティブ型を持っています。"}},{"@type":"Question","name":"これらの ID を秘密情報に使えますか？","acceptedAnswer":{"@type":"Answer","text":"乱数強度は十分ですが、ID はパスワードではありません。保存やログ出力が前提の値です。トークンには専用の生成器をお使いください。"}}]}</script>
 </head>
@@ -73,6 +73,7 @@
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>window.T = {"langName":"日本語","footer":"ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"コピーできませんでした。手動で選択してください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理されます。送信も保存もしていません。","searchPlaceholder":"ツールを検索 — 例：圧縮、json、パスワード…","noResults":"該当するツールがありません。別の言葉でお試しを。","type":"種類","typeHint":"UUID v7 と ULID は時刻順に並びます。UUID v4 は完全ランダム、NanoID は最短です。","count":"生成する個数","countHint":"1 回につき 1〜100 個。","upper":"大文字にする","nodash":"ハイフンを削除（UUID のみ）","gen":"生成","insecure":"crypto.getRandomValues が使えず、乱数が弱い状態です"};</script>
 <script src="/assets/tools/_shared.js" defer></script>
-<script src="/assets/tools/uuid.js" defer></script>
+<!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
+<script src="/assets/tools/uuid.js?v=2" defer></script>
 </body>
 </html>

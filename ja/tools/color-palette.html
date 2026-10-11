@@ -14,7 +14,7 @@
 <link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/color-palette.html">
 <link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/color-palette.html">
 <link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/color-palette.html">
-<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/assets/style.css?v=2">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"カラーパレット生成","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"色を 1 つ入力すると、補色・類似色・トライアドと 7 段階の明度ラダーをコピー可能な hex 値で出力します。"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"なぜ HSL を経由するのですか？","acceptedAnswer":{"@type":"Answer","text":"色相環は HSL でのみ意味を持ちます。RGB で「180 度回す」のは無意味で、3 チャンネルがそれぞれ線形に変化し、濁った色になるだけです。"}},{"@type":"Question","name":"明度ラダーはどう使いますか？","acceptedAnswer":{"@type":"Answer","text":"中間をベースに、明るい側を hover や背景、暗い側を押下状態や枠線に使います。色相と彩度を固定することが、まとまりのある配色に見せるコツです。"}}]}</script>
 </head>
@@ -68,6 +68,7 @@
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>window.T = {"langName":"日本語","footer":"ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"コピーできませんでした。手動で選択してください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理されます。送信も保存もしていません。","searchPlaceholder":"ツールを検索 — 例：圧縮、json、パスワード…","noResults":"該当するツールがありません。別の言葉でお試しを。","color":"色を選ぶ","badColor":"有効な hex カラーではありません（#2f6df6 や #36f など）","cBase":"ベース","cComplement":"補色","cAnalog1":"類似色 -30","cAnalog2":"類似色 +30","cTriad1":"トライアド +120","cTriad2":"トライアド +240","cShades":"明度ラダー（7 段階）","cOk":"パレットを生成しました"};</script>
 <script src="/assets/tools/_shared.js" defer></script>
-<script src="/assets/tools/color-palette.js" defer></script>
+<!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
+<script src="/assets/tools/color-palette.js?v=2" defer></script>
 </body>
 </html>

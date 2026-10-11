@@ -14,7 +14,7 @@
 <link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/ip-cidr.html">
 <link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/ip-cidr.html">
 <link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/ip-cidr.html">
-<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/assets/style.css?v=2">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"IPv4 / CIDR subnet calculator","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Enter an IPv4 address with a CIDR prefix and get the network address, broadcast, usable host range, netmask, wildcard mask and binary view."}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why is the usable count 2 less than the total?","acceptedAnswer":{"@type":"Answer","text":"In a normal subnet the first address is the network ID and the last is the broadcast, so neither can be assigned to a host. The exception is /31 and /32 (RFC 3021), where this tool reports the real usable count instead of a negative number."}},{"@type":"Question","name":"Why do the binary values look odd for 255.255.255.255?","acceptedAnswer":{"@type":"Answer","text":"JavaScript bitwise operators work on 32-bit **signed** integers, so that value becomes −1. This tool converts to unsigned before printing — otherwise masks come out as negative numbers."}}]}</script>
 </head>
@@ -68,6 +68,7 @@
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>window.T = {"langName":"English","footer":"ToolPocket · Everything runs on your device — nothing is uploaded.","nav":"All tools","backToTools":"← All tools","copy":"Copy result","swap":"Swap","clear":"Clear","download":"Download","copied":"Copied to clipboard","copyFail":"Copy failed — select the text manually","inputLabel":"Input","outputLabel":"Result","privacyNote":"Runs entirely in your browser. Nothing is uploaded or stored.","searchPlaceholder":"Search tools — e.g. compress, json, 密码…","noResults":"No tool matches that. Try another word?","badIp":"Not a valid IPv4 address (e.g. 192.168.1.10/24)","badPrefix":"Prefix length must be between 0 and 32","rAddress":"Address","rNetwork":"Network","rBroadcast":"Broadcast","rRange":"Host range","rMask":"Netmask","rWildcard":"Wildcard","rCount":"Addresses","rUsable":"usable","rType":"Type","rBinary":"Binary","rBinMask":"        mask","kinds":{"private":"private (RFC 1918)","public":"public","loopback":"loopback","link-local":"link-local (APIPA)","cgnat":"CGNAT (carrier NAT)","multicast":"multicast","reserved":"reserved"}};</script>
 <script src="/assets/tools/_shared.js" defer></script>
-<script src="/assets/tools/ip-cidr.js" defer></script>
+<!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
+<script src="/assets/tools/ip-cidr.js?v=2" defer></script>
 </body>
 </html>

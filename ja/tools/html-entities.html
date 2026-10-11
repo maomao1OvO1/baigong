@@ -14,7 +14,7 @@
 <link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/html-entities.html">
 <link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/html-entities.html">
 <link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/html-entities.html">
-<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/assets/style.css?v=2">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"HTML エンティティのエンコード / デコード","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"HTML の特殊文字をエンティティ（&amp; &lt; &gt; &quot;）に変換したり、数値・16 進表記のエンティティを元の文字に戻します。"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"引用符もエスケープが必要ですか？","acceptedAnswer":{"@type":"Answer","text":"テキストノードでは <code>&amp;</code> と <code>&lt;</code> だけで十分ですが、二重引用符で囲んだ属性値では <code>&quot;</code> も必要です。本ツールは 5 文字をまとめて変換するため、どの場面でも安全です。"}},{"@type":"Question","name":"日本語をエンティティに変換すべきですか？","acceptedAnswer":{"@type":"Answer","text":"下流が純粋な ASCII を要求する場合のみです。それ以外ではサイズが数倍になり、ソースも読めなくなります。そのため既定ではオフの独立スイッチにしています。"}}]}</script>
 </head>
@@ -72,6 +72,7 @@
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>window.T = {"langName":"日本語","footer":"ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"コピーできませんでした。手動で選択してください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理されます。送信も保存もしていません。","searchPlaceholder":"ツールを検索 — 例：圧縮、json、パスワード…","noResults":"該当するツールがありません。別の言葉でお試しを。","mode":"変換方向","modeHint":"エンコードは特殊文字を実体参照に、デコードは実体参照を元の文字に戻します。","encode":"テキスト → エンティティ","decode":"エンティティ → テキスト","all":"非 ASCII も変換（日本語・絵文字など）","allHint":"既定はオフです。すべての漢字を &#xNNNN; にすると出力が数倍長くなります。","entitiesOut":"生成したエンティティ数","entitiesIn":"復元したエンティティ数"};</script>
 <script src="/assets/tools/_shared.js" defer></script>
-<script src="/assets/tools/html-entities.js" defer></script>
+<!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
+<script src="/assets/tools/html-entities.js?v=2" defer></script>
 </body>
 </html>

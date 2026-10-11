@@ -14,7 +14,7 @@
 <link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/radix.html">
 <link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/radix.html">
 <link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/radix.html">
-<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/assets/style.css?v=2">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"进制转换（2 / 8 / 10 / 16 / 36）","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"在二、八、十、十六进制与 36 进制之间转换数字，并给出分组位视图。内部使用 BigInt，长数字不会丢精度。"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"为什么和我用计算器算的不一样？","acceptedAnswer":{"@type":"Answer","text":"多数计算器（以及 JavaScript 本身）把整数存成双精度浮点，只能精确到 2 的 53 次方。这一页全程用 BigInt，所以 20 位的 ID、权限掩码都能保持准确。"}},{"@type":"Question","name":"「自动」是按什么判断的？","acceptedAnswer":{"@type":"Answer","text":"有 <code>0x</code> / <code>0b</code> / <code>0o</code> 前缀就按十六 / 二 / 八进制；没有前缀时，含 a-f 字母的当十六进制，其余当十进制。"}},{"@type":"Question","name":"那个分组的位视图有什么用？","acceptedAnswer":{"@type":"Answer","text":"看标志位和掩码用。每 4 位一组正好对应一个十六进制字符；每 8 位一组则对应内存里的一个字节。"}}]}</script>
 </head>
@@ -72,6 +72,7 @@
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>window.T = {"langName":"中文","footer":"ToolPocket · 全部在你的设备上完成，不上传任何文件。","nav":"全部工具","backToTools":"← 全部工具","copy":"复制结果","swap":"互换","clear":"清空","download":"下载","copied":"已复制到剪贴板","copyFail":"复制失败 —— 请手动选中复制","inputLabel":"输入","outputLabel":"结果","privacyNote":"完全在你的浏览器里运行，不上传、不保存。","searchPlaceholder":"搜索工具 —— 例如：压缩、json、密码…","noResults":"没找到匹配的工具，换个词试试？","base":"输入进制","baseHint":"选「自动」时，按前缀或出现的字母来判断进制。","group":"位分组","groupHint":"分组之后，标志位与掩码一眼就能读出来。","badNumber":"这个进制下不是合法数字","bitsLabel":"位","bytesLabel":"字节","groupLabel":"分组","digitsLabel":"位十进制数字"};</script>
 <script src="/assets/tools/_shared.js" defer></script>
-<script src="/assets/tools/radix.js" defer></script>
+<!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
+<script src="/assets/tools/radix.js?v=2" defer></script>
 </body>
 </html>

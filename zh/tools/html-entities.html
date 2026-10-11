@@ -14,7 +14,7 @@
 <link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/html-entities.html">
 <link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/html-entities.html">
 <link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/html-entities.html">
-<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/assets/style.css?v=2">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"HTML 实体编码 / 解码","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"把 HTML 特殊字符转义成实体（&amp; &lt; &gt; &quot;），或把实体还原成原字符，支持十进制与十六进制写法。"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"引号需要转义吗？","acceptedAnswer":{"@type":"Answer","text":"在 HTML 文本节点里，严格来说只有 <code>&amp;</code> 和 <code>&lt;</code> 是必须转义的；但写在双引号属性里时，<code>&quot;</code> 也必须转义。本工具把 5 个常用字符一起转，任何场合都安全。"}},{"@type":"Question","name":"中文要不要转成实体？","acceptedAnswer":{"@type":"Answer","text":"只有下游强制要求纯 ASCII 时才需要。否则体积会涨两三倍，源码也变得没法读 —— 所以这里单独做成开关，默认关闭。"}}]}</script>
 </head>
@@ -72,6 +72,7 @@
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>window.T = {"langName":"中文","footer":"ToolPocket · 全部在你的设备上完成，不上传任何文件。","nav":"全部工具","backToTools":"← 全部工具","copy":"复制结果","swap":"互换","clear":"清空","download":"下载","copied":"已复制到剪贴板","copyFail":"复制失败 —— 请手动选中复制","inputLabel":"输入","outputLabel":"结果","privacyNote":"完全在你的浏览器里运行，不上传、不保存。","searchPlaceholder":"搜索工具 —— 例如：压缩、json、密码…","noResults":"没找到匹配的工具，换个词试试？","mode":"转换方向","modeHint":"编码把特殊字符转义；解码把实体还原成真正的字符。","encode":"文本 → 实体","decode":"实体 → 文本","all":"同时转义非 ASCII（中文、emoji…）","allHint":"默认关闭：把每个汉字都转成 &#xNNNN; 会让输出长好几倍。","entitiesOut":"生成了多少个实体","entitiesIn":"还原了多少个实体"};</script>
 <script src="/assets/tools/_shared.js" defer></script>
-<script src="/assets/tools/html-entities.js" defer></script>
+<!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
+<script src="/assets/tools/html-entities.js?v=2" defer></script>
 </body>
 </html>

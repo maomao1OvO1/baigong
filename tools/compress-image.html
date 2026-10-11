@@ -14,7 +14,7 @@
 <link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/compress-image.html">
 <link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/compress-image.html">
 <link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/compress-image.html">
-<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/assets/style.css?v=2">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Compress images without uploading them","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Shrink JPG, PNG and WebP images right in your browser. Batch compress hundreds of photos with no upload and no account."}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How much smaller will they get?","acceptedAnswer":{"@type":"Answer","text":"Typically 50–85% off a JPEG photo at 72% quality. It depends on the original — screenshots and PNGs sometimes shrink much more."}},{"@type":"Question","name":"Why does the quality slider do nothing with PNG?","acceptedAnswer":{"@type":"Answer","text":"PNG is lossless, so there is no quality to trade away. For photos, pick JPEG or WebP."}},{"@type":"Question","name":"Is there a batch limit?","acceptedAnswer":{"@type":"Answer","text":"No. It's your processor doing the work, so expect about a second per image."}}]}</script>
 </head>
@@ -74,6 +74,7 @@
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>window.T = {"langName":"English","footer":"ToolPocket · Everything runs on your device — nothing is uploaded.","nav":"All tools","backToTools":"← All tools","copy":"Copy result","swap":"Swap","clear":"Clear","download":"Download","copied":"Copied to clipboard","copyFail":"Copy failed — select the text manually","inputLabel":"Input","outputLabel":"Result","privacyNote":"Runs entirely in your browser. Nothing is uploaded or stored.","searchPlaceholder":"Search tools — e.g. compress, json, 密码…","noResults":"No tool matches that. Try another word?","drop":"Click to pick images — or drop them here","dropNote":"JPG · PNG · WebP · as many as you like","quality":"Quality","maxw":"Max width (px)","maxwNote":"0 keeps the original size","format":"Save as","fmtJpeg":"JPEG — best for photos","fmtWebp":"WebP — smallest files","fmtPng":"PNG — lossless","run":"Compress and download all","selected":"{n} file(s) ready.","working":"Working…","saved":"{p}% smaller","bigger":"{p}% bigger","failed":"Couldn't read this file in the browser.","qualityHint":"Lower = smaller file, rougher image. 70–80% is usually indistinguishable for photos.","formatHint":"JPEG is the most compatible, WebP is the smallest, PNG keeps transparency."};</script>
 <script src="/assets/tools/_shared.js" defer></script>
-<script src="/assets/tools/compress-image.js" defer></script>
+<!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
+<script src="/assets/tools/compress-image.js?v=2" defer></script>
 </body>
 </html>

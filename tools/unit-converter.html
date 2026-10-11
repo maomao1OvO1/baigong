@@ -14,7 +14,7 @@
 <link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/unit-converter.html">
 <link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/unit-converter.html">
 <link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/unit-converter.html">
-<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/assets/style.css?v=2">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Unit converter","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Convert mm/cm/m/km, inches/feet/miles, grams/ounces/pounds, KB/MB/GB, and Celsius/Fahrenheit/Kelvin — all at once, no upload."}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What's the difference between MB and MiB?","acceptedAnswer":{"@type":"Answer","text":"This converter uses decimal units (1 KB = 1000 bytes), which is what disk makers and most cloud services mean. Operating systems often show binary (1024) — so a “500 GB” drive shows as ~465 GB in Windows."}},{"@type":"Question","name":"Does it do temperature?","acceptedAnswer":{"@type":"Answer","text":"Yes — pick the temperature category and it shows Celsius, Fahrenheit and Kelvin together."}},{"@type":"Question","name":"Why show all units instead of just two?","acceptedAnswer":{"@type":"Answer","text":"Because you usually want to compare three or four at once, and picking two dropdowns is pure friction."}}]}</script>
 </head>
@@ -71,6 +71,7 @@
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>window.T = {"langName":"English","footer":"ToolPocket · Everything runs on your device — nothing is uploaded.","nav":"All tools","backToTools":"← All tools","copy":"Copy result","swap":"Swap","clear":"Clear","download":"Download","copied":"Copied to clipboard","copyFail":"Copy failed — select the text manually","inputLabel":"Input","outputLabel":"Result","privacyNote":"Runs entirely in your browser. Nothing is uploaded or stored.","searchPlaceholder":"Search tools — e.g. compress, json, 密码…","noResults":"No tool matches that. Try another word?","category":"Category","catLength":"Length","catWeight":"Weight","catData":"Data size","catTemp":"Temperature","value":"Value","valuePh":"Enter a number","outputPh":"All units appear here","fromCelsius":"Input is treated as °C","unitLabel":"Unit","categoryHint":"Length, weight, data size or temperature. All units in the category are shown at once.","valueHint":"Type a number — the unit it is in is shown next to the box (m, kg, MB or °C)."};</script>
 <script src="/assets/tools/_shared.js" defer></script>
-<script src="/assets/tools/unit-converter.js" defer></script>
+<!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
+<script src="/assets/tools/unit-converter.js?v=2" defer></script>
 </body>
 </html>

@@ -14,7 +14,7 @@
 <link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/url-codec.html">
 <link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/url-codec.html">
 <link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/url-codec.html">
-<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/assets/style.css?v=2">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"URL 编码 / 解码","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"在浏览器里对网址与查询参数做百分号编码/解码，并讲清 encodeURI 与 encodeURIComponent 的区别。"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"两种范围有什么区别？","acceptedAnswer":{"@type":"Answer","text":"单个值（Component）会连 / : ? & = # 一起转义，适合放进查询参数里；整条 URL 会保留这些结构字符，适合完整链接。"}},{"@type":"Question","name":"为什么我编码完的链接打不开了？","acceptedAnswer":{"@type":"Answer","text":"几乎都是这个原因：把整条链接当成「单个值」编码了，于是 / 和 ? 变成 %2F 和 %3F，服务器看到的是一长串文件名。"}},{"@type":"Question","name":"会发到服务器吗？","acceptedAnswer":{"@type":"Answer","text":"不会，纯字符串处理，在你自己浏览器里完成。"}}]}</script>
 </head>
@@ -73,6 +73,7 @@
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>window.T = {"langName":"中文","footer":"ToolPocket · 全部在你的设备上完成，不上传任何文件。","nav":"全部工具","backToTools":"← 全部工具","copy":"复制结果","swap":"互换","clear":"清空","download":"下载","copied":"已复制到剪贴板","copyFail":"复制失败 —— 请手动选中复制","inputLabel":"输入","outputLabel":"结果","privacyNote":"完全在你的浏览器里运行，不上传、不保存。","searchPlaceholder":"搜索工具 —— 例如：压缩、json、密码…","noResults":"没找到匹配的工具，换个词试试？","mode":"方向","encode":"编码","decode":"解码","scope":"你要编码的是？","component":"单个值（可安全放进参数）—— 连 / : ? & = 也编码","whole":"整条网址（保留 / : ? & = 结构）","badUri":"这不是合法的百分号编码","inputPh":"粘贴网址或一个值…","outputPh":"结果显示在这里","modeHint":"编码把文字变成 %XX 形式，解码变回来。","scopeHint":"这里最常出错：把整条网址当成「单个参数值」来编码，链接就会失效。"};</script>
 <script src="/assets/tools/_shared.js" defer></script>
-<script src="/assets/tools/url-codec.js" defer></script>
+<!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
+<script src="/assets/tools/url-codec.js?v=2" defer></script>
 </body>
 </html>

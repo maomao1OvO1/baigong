@@ -14,7 +14,7 @@
 <link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/text-tools.html">
 <link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/text-tools.html">
 <link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/text-tools.html">
-<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/assets/style.css?v=2">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"日常文本处理，一个页面搞定","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"转大写、转小写、首字母大写、反序、去空白、删除重复行、按行排序、统计字数 —— 全部在浏览器里离线完成。"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"为什么合成一页，不分成七个页面？","acceptedAnswer":{"@type":"Answer","text":"因为每一个都小到记不住网址。合成一页、收藏一次，所有选项都在一次点击之内。"}},{"@type":"Question","name":"中文日文能用吗？","acceptedAnswer":{"@type":"Answer","text":"能。大小写对中日文没有意义（本来就没有大小写），但统计、去空格、去重、排序都能正常用，排序按语言习惯来。"}},{"@type":"Question","name":"文本会上传吗？","acceptedAnswer":{"@type":"Answer","text":"不会，不出这个页面。"}}]}</script>
 </head>
@@ -70,6 +70,7 @@
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>window.T = {"langName":"中文","footer":"ToolPocket · 全部在你的设备上完成，不上传任何文件。","nav":"全部工具","backToTools":"← 全部工具","copy":"复制结果","swap":"互换","clear":"清空","download":"下载","copied":"已复制到剪贴板","copyFail":"复制失败 —— 请手动选中复制","inputLabel":"输入","outputLabel":"结果","privacyNote":"完全在你的浏览器里运行，不上传、不保存。","searchPlaceholder":"搜索工具 —— 例如：压缩、json、密码…","noResults":"没找到匹配的工具，换个词试试？","action":"要做什么","upper":"全部转大写","lower":"全部转小写","reverse":"文字反序","trim":"去掉每行首尾空格","dedup":"删除重复行","sort":"按行排序 A→Z","count":"统计字数 / 词数 / 行数","inputPh":"把文本粘到这里…","outputPh":"结果显示在这里","emptyHint":"先在上面粘一段文本","countChars":"字符数","countNoSpace":"字符数（不含空格）","countWords":"词数","countLines":"行数","actionHint":"选一个操作，边输入边出结果。「统计」会给出字符数、词数、行数。"};</script>
 <script src="/assets/tools/_shared.js" defer></script>
-<script src="/assets/tools/text-tools.js" defer></script>
+<!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
+<script src="/assets/tools/text-tools.js?v=2" defer></script>
 </body>
 </html>

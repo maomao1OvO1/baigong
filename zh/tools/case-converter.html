@@ -14,7 +14,7 @@
 <link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/case-converter.html">
 <link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/case-converter.html">
 <link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/case-converter.html">
-<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/assets/style.css?v=2">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"命名风格转换","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"在 camelCase、PascalCase、snake_case、kebab-case、CONSTANT_CASE、Title Case 之间互转，并正确处理 HTTPServer 这类含缩写的名字。"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"代码里该用哪种风格？","acceptedAnswer":{"@type":"Answer","text":"跟着语言约定走：JavaScript / Java 的变量用 camelCase，Python / Rust 用 snake_case，类型与类名用 PascalCase，模块级常量用 CONSTANT_CASE。同一个文件里保持一致，比选哪一种更重要。"}},{"@type":"Question","name":"中文、日文会怎么样？","acceptedAnswer":{"@type":"Answer","text":"中日文没有大小写，会原样保留 —— 这是正常的：驼峰是拉丁字母命名的约定，对中日文不产生变化。"}},{"@type":"Question","name":"支持多行吗？","acceptedAnswer":{"@type":"Answer","text":"支持。每个非空行单独转换，所以把一列字段名贴进来统一改风格很方便。"}}]}</script>
 </head>
@@ -70,6 +70,7 @@
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>window.T = {"langName":"中文","footer":"ToolPocket · 全部在你的设备上完成，不上传任何文件。","nav":"全部工具","backToTools":"← 全部工具","copy":"复制结果","swap":"互换","clear":"清空","download":"下载","copied":"已复制到剪贴板","copyFail":"复制失败 —— 请手动选中复制","inputLabel":"输入","outputLabel":"结果","privacyNote":"完全在你的浏览器里运行，不上传、不保存。","searchPlaceholder":"搜索工具 —— 例如：压缩、json、密码…","noResults":"没找到匹配的工具，换个词试试？","style":"输出风格","styleHint":"选「全部风格」时，每一行都会列出所有命名写法。","all":"★ 全部风格","linesUnit":"行已转换"};</script>
 <script src="/assets/tools/_shared.js" defer></script>
-<script src="/assets/tools/case-converter.js" defer></script>
+<!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
+<script src="/assets/tools/case-converter.js?v=2" defer></script>
 </body>
 </html>

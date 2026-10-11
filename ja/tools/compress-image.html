@@ -14,7 +14,7 @@
 <link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/compress-image.html">
 <link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/compress-image.html">
 <link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/compress-image.html">
-<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/assets/style.css?v=2">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"画像を、どこにも送らずに軽くする","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"JPG・PNG・WebP の画像をブラウザ上でそのまま圧縮。複数枚まとめて処理でき、アップロードも登録も不要です。"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"どのくらい軽くなりますか？","acceptedAnswer":{"@type":"Answer","text":"JPEG 写真を画質 72% で処理した場合、おおむね 50〜85% の削減です。スクリーンショットや PNG のほうが大きく減ることもあります。"}},{"@type":"Question","name":"PNG だと画質スライダーが効かないのはなぜ？","acceptedAnswer":{"@type":"Answer","text":"PNG は可逆圧縮で、犠牲にできる「画質」が存在しないためです。写真は JPEG か WebP を選んでください。"}},{"@type":"Question","name":"まとめて何枚まで処理できますか？","acceptedAnswer":{"@type":"Answer","text":"上限はありません。処理はお使いの端末が行うので、1 枚あたり 1〜2 秒が目安です。"}}]}</script>
 </head>
@@ -74,6 +74,7 @@
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>window.T = {"langName":"日本語","footer":"ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"コピーできませんでした。手動で選択してください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理されます。送信も保存もしていません。","searchPlaceholder":"ツールを検索 — 例：圧縮、json、パスワード…","noResults":"該当するツールがありません。別の言葉でお試しを。","drop":"クリックして画像を選ぶ／ここにドラッグ＆ドロップ","dropNote":"JPG・PNG・WebP／何枚でも","quality":"画質","maxw":"最大幅（px）","maxwNote":"0 で元のサイズのまま","format":"保存形式","fmtJpeg":"JPEG — 写真向き","fmtWebp":"WebP — 最も軽い","fmtPng":"PNG — 可逆圧縮","run":"圧縮してまとめてダウンロード","selected":"{n} 件のファイルを読み込み済み。","working":"処理中…","saved":"{p}% 軽くなりました","bigger":"{p}% 大きくなりました","failed":"このファイルはブラウザで読み込めませんでした。","qualityHint":"低いほど軽く、画質は粗くなります。写真なら 70〜80% で違いはほとんど分かりません。","formatHint":"JPEG は互換性が最も高く、WebP は最も軽く、PNG は透過を保持します。"};</script>
 <script src="/assets/tools/_shared.js" defer></script>
-<script src="/assets/tools/compress-image.js" defer></script>
+<!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
+<script src="/assets/tools/compress-image.js?v=2" defer></script>
 </body>
 </html>

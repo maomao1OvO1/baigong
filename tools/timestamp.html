@@ -14,7 +14,7 @@
 <link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/timestamp.html">
 <link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/timestamp.html">
 <link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/timestamp.html">
-<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/assets/style.css?v=2">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Unix timestamp converter","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Convert Unix timestamps to readable dates (and back), showing local time, UTC, ISO 8601 and weekday. Handles both 10-digit and 13-digit timestamps."}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Seconds or milliseconds?","acceptedAnswer":{"@type":"Answer","text":"Both. 10 digits is treated as seconds, 13 as milliseconds — that's the convention in virtually every API."}},{"@type":"Question","name":"Why do I see two times?","acceptedAnswer":{"@type":"Answer","text":"Because servers store UTC while you think in local time. Showing both is how you spot an off-by-hours bug in one glance."}},{"@type":"Question","name":"What date formats can I type?","acceptedAnswer":{"@type":"Answer","text":"2026-10-11 12:30:45, 2026/10/11, 2026-10-11T12:30 and similar — slashes are accepted and converted."}}]}</script>
 </head>
@@ -71,6 +71,7 @@
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>window.T = {"langName":"English","footer":"ToolPocket · Everything runs on your device — nothing is uploaded.","nav":"All tools","backToTools":"← All tools","copy":"Copy result","swap":"Swap","clear":"Clear","download":"Download","copied":"Copied to clipboard","copyFail":"Copy failed — select the text manually","inputLabel":"Input","outputLabel":"Result","privacyNote":"Runs entirely in your browser. Nothing is uploaded or stored.","searchPlaceholder":"Search tools — e.g. compress, json, 密码…","noResults":"No tool matches that. Try another word?","mode":"Direction","toDate":"Timestamp → Date","toSec":"Date → Timestamp","inputPh":"e.g. 1791734016  or  2026-10-11 12:30:45","outputPh":"Result appears here","localTime":"Local","now":"Use current time","modeHint":"Either direction. Seconds (10 digits) and milliseconds (13 digits) are auto-detected."};</script>
 <script src="/assets/tools/_shared.js" defer></script>
-<script src="/assets/tools/timestamp.js" defer></script>
+<!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
+<script src="/assets/tools/timestamp.js?v=2" defer></script>
 </body>
 </html>

@@ -14,7 +14,7 @@
 <link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/html-entities.html">
 <link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/html-entities.html">
 <link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/html-entities.html">
-<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/assets/style.css?v=2">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"HTML entity encode / decode","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Escape HTML special characters into entities (&amp; &lt; &gt; &quot;) or decode entities back to text, including numeric and hex forms."}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Do I need to escape quotes too?","acceptedAnswer":{"@type":"Answer","text":"Inside an HTML text node, only <code>&amp;</code> and <code>&lt;</code> are strictly required. Inside an attribute value (in double quotes), escape <code>&quot;</code> as well. This tool escapes the five common characters, which is always safe."}},{"@type":"Question","name":"Should I convert Chinese into entities?","acceptedAnswer":{"@type":"Answer","text":"Only if something downstream demands pure ASCII. Otherwise it triples the file size and makes the source unreadable. That is why it is a separate switch, off by default."}}]}</script>
 </head>
@@ -72,6 +72,7 @@
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>window.T = {"langName":"English","footer":"ToolPocket · Everything runs on your device — nothing is uploaded.","nav":"All tools","backToTools":"← All tools","copy":"Copy result","swap":"Swap","clear":"Clear","download":"Download","copied":"Copied to clipboard","copyFail":"Copy failed — select the text manually","inputLabel":"Input","outputLabel":"Result","privacyNote":"Runs entirely in your browser. Nothing is uploaded or stored.","searchPlaceholder":"Search tools — e.g. compress, json, 密码…","noResults":"No tool matches that. Try another word?","mode":"Direction","modeHint":"Encoding escapes special characters; decoding turns entities back into real characters.","encode":"Text → entities","decode":"Entities → text","all":"Also escape non-ASCII (Chinese, emoji…)","allHint":"Off by default: converting every CJK character into &#xNNNN; makes the output much longer.","entitiesOut":"entities produced","entitiesIn":"entities decoded"};</script>
 <script src="/assets/tools/_shared.js" defer></script>
-<script src="/assets/tools/html-entities.js" defer></script>
+<!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
+<script src="/assets/tools/html-entities.js?v=2" defer></script>
 </body>
 </html>

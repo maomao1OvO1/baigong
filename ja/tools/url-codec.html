@@ -14,7 +14,7 @@
 <link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/url-codec.html">
 <link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/url-codec.html">
 <link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/url-codec.html">
-<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/assets/style.css?v=2">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"URL のエンコードとデコード","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"URL とクエリパラメータのエンコード／デコードをブラウザ内で。encodeURI と encodeURIComponent の違いも明示します。"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"2 つのスコープの違いは？","acceptedAnswer":{"@type":"Answer","text":"単一の値（コンポーネント）は / : ? & = # もエスケープします。クエリ文字列の中に入れる値はこちら。URL 全体はこれらの構造文字を保ちます。"}},{"@type":"Question","name":"エンコードしたリンクが動かなくなりました","acceptedAnswer":{"@type":"Answer","text":"ほぼこれが原因です：URL 全体を「単一の値」としてエンコードすると、/ と ? が %2F と %3F になり、サーバーには 1 つの長いファイル名として見えます。"}},{"@type":"Question","name":"サーバーに送信されますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。ブラウザ内の文字列処理だけです。"}}]}</script>
 </head>
@@ -73,6 +73,7 @@
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>window.T = {"langName":"日本語","footer":"ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"コピーできませんでした。手動で選択してください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理されます。送信も保存もしていません。","searchPlaceholder":"ツールを検索 — 例：圧縮、json、パスワード…","noResults":"該当するツールがありません。別の言葉でお試しを。","mode":"方向","encode":"エンコード","decode":"デコード","scope":"何をエンコードしますか？","component":"単一の値（クエリ文字列で安全）— / : ? & = も変換","whole":"URL 全体（/ : ? & = を保持）","badUri":"有効なパーセントエンコーディングではありません","inputPh":"URL または値を貼り付けてください…","outputPh":"結果がここに表示されます","modeHint":"エンコードは %XX 形式に変換し、デコードは元に戻します。","scopeHint":"ここが最も間違えやすい点です。URL 全体を単一の値としてエンコードするとリンクが壊れます。"};</script>
 <script src="/assets/tools/_shared.js" defer></script>
-<script src="/assets/tools/url-codec.js" defer></script>
+<!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
+<script src="/assets/tools/url-codec.js?v=2" defer></script>
 </body>
 </html>

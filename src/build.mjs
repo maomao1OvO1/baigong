@@ -59,7 +59,7 @@ function head(lang, { out, title, desc, jsonld }) {
 <meta property="og:url" content="${urlOf(lang, out)}">
 ${alts}
 <link rel="alternate" hreflang="x-default" href="${urlOf(LANGS[0], out)}">
-<link rel="stylesheet" href="${asset("style.css")}">
+<link rel="stylesheet" href="${asset("style.css")}?v=2">
 <script type="application/ld+json">${JSON.stringify(jsonld)}</script>`;
 }
 
@@ -358,7 +358,8 @@ ${footer(lang)}
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>window.T = ${JSON.stringify(scriptStrings)};</script>
 <script src="${asset("tools/_shared.js")}" defer></script>
-<script src="${asset("tools/" + tool.script)}" defer></script>
+<!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
+<script src="${asset("tools/" + tool.script)}?v=2" defer></script>
 </body>
 </html>
 `;
@@ -435,7 +436,7 @@ ${adSlot(lang, "home-bottom")}
 
 <!-- 搜索索引的绝对路径：/zh/ 与 /ja/ 页面用相对路径会 404（2026-10-12 修） -->
 <script>window.TP_INDEX_URL = ${JSON.stringify(asset("search.json"))};</script>
-<script src="${asset("search.js")}" defer></script>
+<script src="${asset("search.js")}?v=2" defer></script>
 ${CONTACT_SCRIPT}
 
 ${footer(lang)}

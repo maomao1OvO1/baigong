@@ -14,7 +14,7 @@
 <link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/case-converter.html">
 <link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/case-converter.html">
 <link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/case-converter.html">
-<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/assets/style.css?v=2">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"命名規則の変換","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"camelCase、PascalCase、snake_case、kebab-case、CONSTANT_CASE、Title Case を相互変換します。HTTPServer のような略語も正しく分割します。"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"コードではどの規則を使うべき？","acceptedAnswer":{"@type":"Answer","text":"言語の慣習に従ってください。JavaScript / Java の変数は camelCase、Python / Rust は snake_case、型やクラスは PascalCase、モジュール定数は CONSTANT_CASE が一般的です。同じファイル内で統一することが最も重要です。"}},{"@type":"Question","name":"日本語や中国語はどうなりますか？","acceptedAnswer":{"@type":"Answer","text":"CJK には大文字小文字がないため、そのまま保持されます。camelCase はラテン文字向けの規則なので、これは正常な動作です。"}},{"@type":"Question","name":"複数行に対応していますか？","acceptedAnswer":{"@type":"Answer","text":"はい。空行以外の各行を個別に変換します。列名の一覧を貼り付けて一括変換するのに便利です。"}}]}</script>
 </head>
@@ -70,6 +70,7 @@
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>window.T = {"langName":"日本語","footer":"ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"コピーできませんでした。手動で選択してください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理されます。送信も保存もしていません。","searchPlaceholder":"ツールを検索 — 例：圧縮、json、パスワード…","noResults":"該当するツールがありません。別の言葉でお試しを。","style":"出力スタイル","styleHint":"「すべてのスタイル」を選ぶと、各行について全パターンを表示します。","all":"★ すべてのスタイル","linesUnit":"行を変換しました"};</script>
 <script src="/assets/tools/_shared.js" defer></script>
-<script src="/assets/tools/case-converter.js" defer></script>
+<!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
+<script src="/assets/tools/case-converter.js?v=2" defer></script>
 </body>
 </html>

@@ -14,7 +14,7 @@
 <link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/date-calc.html">
 <link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/date-calc.html">
 <link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/date-calc.html">
-<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/assets/style.css?v=2">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"日付計算","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"指定した日付が今日から何日後（前）か、N 日後の日付はいつか、曜日・年内通算日・ISO 週番号までまとめて表示します。"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"カレンダーアプリと 1 日ずれるのはなぜ？","acceptedAnswer":{"@type":"Answer","text":"多くはタイムゾーンと夏時間が原因です。本ツールは両方の日付を UTC の暦日として差を取るため、夏時間の切り替えで半日になることはありません。"}},{"@type":"Question","name":"ISO 週番号とは？","acceptedAnswer":{"@type":"Answer","text":"ISO-8601 の週番号です。週は月曜始まりで、その年の最初の木曜を含む週が第 1 週になります。そのため 1 月 1 日が前年の第 52 週・第 53 週に属することがあります。"}}]}</script>
 </head>
@@ -68,6 +68,7 @@
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>window.T = {"langName":"日本語","footer":"ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"コピーできませんでした。手動で選択してください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理されます。送信も保存もしていません。","searchPlaceholder":"ツールを検索 — 例：圧縮、json、パスワード…","noResults":"該当するツールがありません。別の言葉でお試しを。","days":"日数の加減","daysNote":"負の値で過去にさかのぼります","badDate":"日付の形式が正しくありません（YYYY-MM-DD）","weekNames":["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],"baseLabel":"基準日","vsToday":"今日との差","daysUnit":"日","dayOfYear":"年内通算","isoWeek":"ISO 週","leap":"うるう年","offsetLabel":"オフセット","usingToday":"今日として計算"};</script>
 <script src="/assets/tools/_shared.js" defer></script>
-<script src="/assets/tools/date-calc.js" defer></script>
+<!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
+<script src="/assets/tools/date-calc.js?v=2" defer></script>
 </body>
 </html>

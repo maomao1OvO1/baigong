@@ -14,7 +14,7 @@
 <link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/url-parser.html">
 <link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/url-parser.html">
 <link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/url-parser.html">
-<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/assets/style.css?v=2">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"URL 拆解 / 查询参数查看","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"把一条 URL 拆成协议、主机、端口、路径、锚点与逐条列出的查询参数，可选择性百分号解码。"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"为什么显示的主机名和我输入的不一样？","acceptedAnswer":{"@type":"Answer","text":"浏览器和 <code>new URL()</code> 都按 WHATWG 标准解析：中文域名会转成 punycode，非法字符会被百分号编码。这正是实际发出去的请求内容，所以在这里看到它反而是好事。"}},{"@type":"Question","name":"「解码」开关有什么用？","acceptedAnswer":{"@type":"Answer","text":"打开后会把 <code>%E4%B8%AD</code> 显示成「中」，并把 <code>+</code> 当成空格 —— 和服务端读取表单值的方式一致。关掉则看原始字符串。"}}]}</script>
 </head>
@@ -69,6 +69,7 @@
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>window.T = {"langName":"中文","footer":"ToolPocket · 全部在你的设备上完成，不上传任何文件。","nav":"全部工具","backToTools":"← 全部工具","copy":"复制结果","swap":"互换","clear":"清空","download":"下载","copied":"已复制到剪贴板","copyFail":"复制失败 —— 请手动选中复制","inputLabel":"输入","outputLabel":"结果","privacyNote":"完全在你的浏览器里运行，不上传、不保存。","searchPlaceholder":"搜索工具 —— 例如：压缩、json、密码…","noResults":"没找到匹配的工具，换个词试试？","decode":"百分号解码","decodeHint":"把 %E4%B8%AD 显示成「中」、把 + 当成空格 —— 与服务端读表单值的方式一致。","badUrl":"不是合法的完整 URL（需要以 http:// 或 https:// 开头）","pProtocol":"协议","pHost":"主机","pPort":"端口","pPath":"路径","pUser":"用户名","pPass":"密码","pHash":"锚点","pQuery":"查询参数","pNoQuery":"没有","pCount":"个参数"};</script>
 <script src="/assets/tools/_shared.js" defer></script>
-<script src="/assets/tools/url-parser.js" defer></script>
+<!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
+<script src="/assets/tools/url-parser.js?v=2" defer></script>
 </body>
 </html>

@@ -167,5 +167,29 @@ console.log("\n⑤ 搜索契约（search.js 的 DOM 依赖 ↔ 三个语言的�
   }
 }
 
+/* ── ⑥ 移动端自检：viewport + 小屏断点 ─────────────────────────────────────
+   毛毛 2026-10-12：「手机端没有适配，只有网页端适配了 UI」。这条检查只保证"该有的都在"，
+   真正的观感仍要靠人眼，但少一项就会整站变成"桌面缩小版"。 */
+console.log("\n⑥ 移动端自检");
+{
+  const css = fs.readFileSync(path.join(ROOT, "assets", "style.css"), "utf8");
+  if (/@media \(max-width: 560px\)/.test(css)) ok("样式里有手机断点（560px）");
+  else bad("样式里没有手机断点", "小屏会变成桌面缩小版");
+  if (/min-height: 44px|padding: 6px 8px|padding: 10px 14px/.test(css)) ok("触控目标做了放大（≥44px 量级）");
+  else bad("没有触控目标放大规则", "手指点不准");
+  if (/h1 \{ font-size: clamp\(/.test(css)) ok("标题字号自适应（clamp）");
+  else bad("标题是固定字号", "小屏上会过大");
+
+  let noViewport = 0;
+  const walk = (dir) => fs.readdirSync(dir, { withFileTypes: true }).flatMap((e) =>
+    e.isDirectory() ? (e.name === "src" ? [] : walk(path.join(dir, e.name))) : [path.join(dir, e.name)]);
+  const pages = walk(ROOT).filter((f) => f.endsWith(".html"));
+  for (const f of pages) {
+    if (!/name="viewport"/.test(fs.readFileSync(f, "utf8"))) noViewport++;
+  }
+  if (!noViewport) ok(`${pages.length} 个页面都有 viewport meta`);
+  else bad(`${noViewport} 个页面缺 viewport meta`, "手机上会按桌面宽度渲染");
+}
+
 console.log(`\n结果：${pass} 项通过，${fail} 项失败`);
 process.exit(fail ? 1 : 0);

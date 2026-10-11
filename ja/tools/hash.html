@@ -14,7 +14,7 @@
 <link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/hash.html">
 <link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/hash.html">
 <link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/hash.html">
-<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/assets/style.css?v=2">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"ハッシュ生成（MD5 / SHA-1 / SHA-256 / SHA-512）","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"テキストの MD5・SHA-1・SHA-256・SHA-512 をブラウザ内で計算し、hex と Base64 の両方を表示します。送信は行いません。"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"MD5 はまだ使えますか？","acceptedAnswer":{"@type":"Answer","text":"用途次第です。署名やパスワード保存には使えません（MD5 と SHA-1 の衝突は現実に構成されています）。単純なチェックサムとしては今も十分使えます。"}},{"@type":"Question","name":"計算結果が他サイトと違うのはなぜ？","acceptedAnswer":{"@type":"Answer","text":"多くは末尾の空白や改行が原因です。ハッシュはバイト単位で厳密なので、改行が 1 つ増えるだけで値が変わります。"}},{"@type":"Question","name":"ファイルのハッシュは計算できますか？","acceptedAnswer":{"@type":"Answer","text":"このページはテキスト用です。ファイルは <code>md5sum</code> / <code>certutil -hashfile</code> などのコマンドをご利用ください。"}}]}</script>
 </head>
@@ -71,6 +71,7 @@
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>window.T = {"langName":"日本語","footer":"ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"コピーできませんでした。手動で選択してください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理されます。送信も保存もしていません。","searchPlaceholder":"ツールを検索 — 例：圧縮、json、パスワード…","noResults":"該当するツールがありません。別の言葉でお試しを。","algo":"アルゴリズム","algoHint":"MD5 と SHA-1 はチェックサム専用です。パスワードや署名には使わないでください。","upper":"16 進数を大文字にする","bytesUnit":"バイト","done":"計算に使用したアルゴリズム","noSubtle":"WebCrypto が利用できません（HTTPS で開いてください）。","fail":"計算に失敗しました。"};</script>
 <script src="/assets/tools/_shared.js" defer></script>
-<script src="/assets/tools/hash.js" defer></script>
+<!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
+<script src="/assets/tools/hash.js?v=2" defer></script>
 </body>
 </html>
