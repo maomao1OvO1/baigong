@@ -64,11 +64,17 @@
   <section class="why">
     <h2>お問い合わせ</h2>
     <p>宣伝したい内容と、掲載したい言語のページをお知らせください。相性を確認して、条件をご案内します。</p>
-    <p class="contact"><b>連絡先</b>：<code>（未記入：ここにメールアドレスを書く）</code></p>
+    <p class="contact"><b>連絡先</b>：<code class="email" data-u="ad" data-d="maomaowang.top"><noscript>ad [at] maomaowang [dot] top</noscript></code></p>
     <p class="note">個人開発者であり広告ネットワークではありません。返信は人が書き、最低出稿額のような手続きもありません。</p>
   </section>
 </main>
 
 <footer><p>ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。</p></footer>
+<script>
+/* 把 data-u / data-d 拼成邮箱 —— 放在页面里而不是服务端，是为了防爬虫 */
+[].forEach.call(document.querySelectorAll(".email"), function (el) {
+  el.textContent = el.dataset.u + "@" + el.dataset.d;
+});
+</script>
 </body>
 </html>

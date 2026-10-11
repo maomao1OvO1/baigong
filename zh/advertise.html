@@ -64,11 +64,17 @@
   <section class="why">
     <h2>联系我</h2>
     <p>写清楚你想推广什么、想投哪个语言的页面，我看看合不合适，合适就给你报价。</p>
-    <p class="contact"><b>联系方式</b>：<code>（待填：这里写你的邮箱）</code></p>
+    <p class="contact"><b>联系方式</b>：<code class="email" data-u="ad" data-d="maomaowang.top"><noscript>ad [at] maomaowang [dot] top</noscript></code></p>
     <p class="note">我是个人开发者，不是广告联盟 —— 所以回复是人写的，也没有「最低消费」要走流程。</p>
   </section>
 </main>
 
 <footer><p>ToolPocket · 全部在你的设备上完成，不上传任何文件。</p></footer>
+<script>
+/* 把 data-u / data-d 拼成邮箱 —— 放在页面里而不是服务端，是为了防爬虫 */
+[].forEach.call(document.querySelectorAll(".email"), function (el) {
+  el.textContent = el.dataset.u + "@" + el.dataset.d;
+});
+</script>
 </body>
 </html>

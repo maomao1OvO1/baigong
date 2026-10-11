@@ -119,9 +119,26 @@ function adSlot(lang, slotId) {
     <b>${rich(a.title)}</b>
     <p>${rich(a.body)}</p>
     <a class="ad-cta" href="${esc(内链)}">${rich(a.cta)} →</a>
+    ${a.contactUser ? `<span class="ad-mail">${contactHtml(a)}</span>` : ""}
   </div>
 </aside>`;
 }
+
+
+/** 联系方式：页面里不出现完整邮箱明文。
+    做法 = 把 user 与 domain 拆到 data-* 属性里，由一小段脚本现场拼装；
+    无脚本时退回 <noscript> 里的「ad [at] maomaowang [dot] top」写法。
+    为什么值得折腾：招租页是给陌生人看的，明文邮箱会被垃圾邮件爬虫秒收。 */
+function contactHtml(t) {
+  if (!t.contactUser) return "";
+  return `<code class="email" data-u="${esc(t.contactUser)}" data-d="${esc(t.contactDomain)}"><noscript>${rich(t.contactNoJs || (t.contactUser + " [at] " + t.contactDomain))}</noscript></code>`;
+}
+const CONTACT_SCRIPT = `<script>
+/* 把 data-u / data-d 拼成邮箱 —— 放在页面里而不是服务端，是为了防爬虫 */
+[].forEach.call(document.querySelectorAll(".email"), function (el) {
+  el.textContent = el.dataset.u + "@" + el.dataset.d;
+});
+</script>`;
 
 /* ── 工具页 ─────────────────────────────────────────────────────────────── */
 
@@ -246,6 +263,7 @@ ${footer(lang)}
 <script>window.T = ${JSON.stringify(scriptStrings)};</script>
 <script src="${asset("tools/_shared.js")}" defer></script>
 <script src="${asset("tools/" + tool.script)}" defer></script>
+${tool.extras && 0}
 </body>
 </html>
 `;
@@ -293,6 +311,8 @@ ${cards}
 
 ${adSlot(lang, "home-bottom")}
 </main>
+
+${CONTACT_SCRIPT}
 
 ${footer(lang)}
 </body>
@@ -352,12 +372,13 @@ ${rows(t.specs)}
   <section class="why">
     <h2>${rich(t.contactHeading)}</h2>
     <p>${rich(t.contact)}</p>
-    <p class="contact"><b>${rich(t.contactLabel)}</b>：<code>${rich(t.contactValue)}</code></p>
+    <p class="contact"><b>${rich(t.contactLabel)}</b>：${contactHtml(t)}</p>
     <p class="note">${rich(t.note)}</p>
   </section>
 </main>
 
 ${footer(lang)}
+${CONTACT_SCRIPT}
 </body>
 </html>
 `;

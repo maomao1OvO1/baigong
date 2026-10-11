@@ -99,9 +99,17 @@
     <b>Want this slot?</b>
     <p>This site gets developers and designers from English, Chinese and Japanese search. Your product can sit right here — plain HTML, no tracking scripts, no popups.</p>
     <a class="ad-cta" href="/advertise.html">See the media kit →</a>
+    <span class="ad-mail"><code class="email" data-u="ad" data-d="maomaowang.top"><noscript>ad [at] maomaowang.top</noscript></code></span>
   </div>
 </aside>
 </main>
+
+<script>
+/* 把 data-u / data-d 拼成邮箱 —— 放在页面里而不是服务端，是为了防爬虫 */
+[].forEach.call(document.querySelectorAll(".email"), function (el) {
+  el.textContent = el.dataset.u + "@" + el.dataset.d;
+});
+</script>
 
 <footer><p>ToolPocket · Everything runs on your device — nothing is uploaded.</p></footer>
 </body>

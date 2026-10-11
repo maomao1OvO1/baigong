@@ -64,11 +64,17 @@
   <section class="why">
     <h2>Get in touch</h2>
     <p>Email me with what you'd like to promote and which language page(s) you want. If it fits the audience, I'll send an offer.</p>
-    <p class="contact"><b>Contact</b>：<code>（待填：这里写你的邮箱）</code></p>
+    <p class="contact"><b>Contact</b>：<code class="email" data-u="ad" data-d="maomaowang.top"><noscript>ad [at] maomaowang [dot] top</noscript></code></p>
     <p class="note">I'm an independent developer, not an ad network — so replies are personal and there's no minimum spend to negotiate.</p>
   </section>
 </main>
 
 <footer><p>ToolPocket · Everything runs on your device — nothing is uploaded.</p></footer>
+<script>
+/* 把 data-u / data-d 拼成邮箱 —— 放在页面里而不是服务端，是为了防爬虫 */
+[].forEach.call(document.querySelectorAll(".email"), function (el) {
+  el.textContent = el.dataset.u + "@" + el.dataset.d;
+});
+</script>
 </body>
 </html>

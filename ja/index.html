@@ -99,9 +99,17 @@
     <b>この枠、募集中です</b>
     <p>英語・中国語・日本語の 3 言語で検索から訪問者が来る技術系ツールサイトです。ここに商品を掲載できます。静的 HTML のみで、追跡スクリプトやポップアップは使いません。</p>
     <a class="ad-cta" href="/ja/advertise.html">掲載について見る →</a>
+    <span class="ad-mail"><code class="email" data-u="ad" data-d="maomaowang.top"><noscript>ad [at] maomaowang.top</noscript></code></span>
   </div>
 </aside>
 </main>
+
+<script>
+/* 把 data-u / data-d 拼成邮箱 —— 放在页面里而不是服务端，是为了防爬虫 */
+[].forEach.call(document.querySelectorAll(".email"), function (el) {
+  el.textContent = el.dataset.u + "@" + el.dataset.d;
+});
+</script>
 
 <footer><p>ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。</p></footer>
 </body>

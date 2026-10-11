@@ -99,9 +99,17 @@
     <b>这个位置可以租</b>
     <p>这个站有来自中英日三种语言的搜索流量，受众是开发者和设计从业者。你的产品可以放在这里 —— 纯静态展示，不挂跟踪脚本，不弹窗。</p>
     <a class="ad-cta" href="/zh/advertise.html">查看投放说明 →</a>
+    <span class="ad-mail"><code class="email" data-u="ad" data-d="maomaowang.top"><noscript>ad [at] maomaowang.top</noscript></code></span>
   </div>
 </aside>
 </main>
+
+<script>
+/* 把 data-u / data-d 拼成邮箱 —— 放在页面里而不是服务端，是为了防爬虫 */
+[].forEach.call(document.querySelectorAll(".email"), function (el) {
+  el.textContent = el.dataset.u + "@" + el.dataset.d;
+});
+</script>
 
 <footer><p>ToolPocket · 全部在你的设备上完成，不上传任何文件。</p></footer>
 </body>
