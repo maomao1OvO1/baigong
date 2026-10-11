@@ -1,0 +1,105 @@
+{
+  "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
+  "en": {
+    "title": "Bank card & ID number validator — ToolPocket",
+    "desc": "Check whether a card number or ID number is structurally valid. Computed on your device.",
+    "h1": "Bank card / ID validator",
+    "lead": "A single mistyped digit is the most common input error, and check digits exist to catch exactly that. Bank cards use Luhn, Chinese ID numbers use the GB 11643 check digit — both verified here, <b>on your device</b>. A pass means the format is valid; it does not prove the card or number exists.",
+    "faq": [
+      [
+        "Is my number uploaded?",
+        "No. These numbers are personal data, and this site is built so that nothing you type ever leaves the page — that is a design decision, not a setting."
+      ],
+      [
+        "Can it tell me which bank or region?",
+        "Deliberately not. Region lookup needs an external database, which would mean sending your number somewhere. It only does the check-digit arithmetic."
+      ]
+    ],
+    "ui": {
+      "badChars": "only digits (and a trailing X for ID cards)",
+      "typeId": "ID card (18 digits)",
+      "typeCard": "Bank card",
+      "valid": "valid",
+      "invalid": "invalid",
+      "birthday": "birth date",
+      "badDate": "impossible date",
+      "sex": "sex",
+      "male": "male",
+      "female": "female",
+      "length": "length",
+      "likely": "likely brand",
+      "unknown": "unknown",
+      "checkLen": "check the expected length for this brand",
+      "badLength": "unrecognized length (bank card 12–19, ID card 18)",
+      "localOnly": "computed on your device; nothing is uploaded"
+    }
+  },
+  "zh": {
+    "title": "银行卡 / 身份证校验 — ToolPocket",
+    "desc": "判断银行卡号、身份证号格式是否合法。全程在你设备上算，号码不上传。",
+    "h1": "银行卡 / 身份证校验",
+    "lead": "录错一位数字是最常见的失误，而校验位就是专门用来抓它的：银行卡走 Luhn 算法，身份证走 GB 11643 的校验码。<b>全程在你设备上算</b>，号码不上传、不保存。校验通过只说明格式合法，不代表这张卡、这个号码真实存在。",
+    "faq": [
+      [
+        "号码会被上传吗？",
+        "不会。这类号码属于个人敏感信息，本站从设计上就不碰网络 —— 这是结构决定，不是某个开关。"
+      ],
+      [
+        "能查出是哪个银行、哪个地区吗？",
+        "刻意不做。归属地要靠外部数据库，那就意味着要把号码发出去。这里只做校验位的数学。"
+      ]
+    ],
+    "ui": {
+      "badChars": "只能填数字（身份证末位可以是 X）",
+      "typeId": "身份证（18 位）",
+      "typeCard": "银行卡",
+      "valid": "格式合法",
+      "invalid": "格式不合法",
+      "birthday": "出生日期",
+      "badDate": "日期不可能",
+      "sex": "性别",
+      "male": "男",
+      "female": "女",
+      "length": "长度",
+      "likely": "可能的卡组织",
+      "unknown": "未知",
+      "checkLen": "确认一下这个品牌的卡号长度",
+      "badLength": "长度不对（银行卡 12–19 位，身份证 18 位）",
+      "localOnly": "在你设备上算完；号码不会上传"
+    }
+  },
+  "ja": {
+    "title": "銀行カード・身分証番号の検証 — ToolPocket",
+    "desc": "カード番号や身分証番号の形式が正しいかを端末内で検証します。",
+    "h1": "カード / 身分証番号の検証",
+    "lead": "1 桁の打ち間違いは最も多い入力ミスで、チェックディジットはまさにそれを見つけるための仕組みです。銀行カードは Luhn 法、中国の身分証は GB 11643 のチェックコードを使います。<b>計算はすべて端末内</b>で、番号は送信も保存もされません。通過は形式が正しいことのみを示します。",
+    "faq": [
+      [
+        "番号は送信されますか？",
+        "いいえ。こうした番号は個人情報であり、当サイトは通信しない設計になっています。設定ではなく構造の問題です。"
+      ],
+      [
+        "銀行や地域は分かりますか？",
+        "あえて対応していません。地域の判定には外部データベースが必要で、それは番号を送信することを意味します。ここではチェックディジットの計算のみを行います。"
+      ]
+    ],
+    "ui": {
+      "badChars": "数字のみ（身分証の末尾は X 可）",
+      "typeId": "身分証（18 桁）",
+      "typeCard": "銀行カード",
+      "valid": "形式は有効",
+      "invalid": "形式は無効",
+      "birthday": "生年月日",
+      "badDate": "存在しない日付",
+      "sex": "性別",
+      "male": "男性",
+      "female": "女性",
+      "length": "桁数",
+      "likely": "推定ブランド",
+      "unknown": "不明",
+      "checkLen": "このブランドの桁数を確認してください",
+      "badLength": "桁数が想定外です（カード 12〜19、身分証 18）",
+      "localOnly": "端末内で計算。送信はしていません"
+    }
+  }
+}

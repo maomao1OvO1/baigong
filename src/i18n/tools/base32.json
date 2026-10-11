@@ -1,0 +1,69 @@
+{
+  "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
+  "en": {
+    "title": "Base32 & Base58 encoder / decoder — ToolPocket",
+    "desc": "Base32 and Base58 — the two encodings that exist because some characters are easy to misread.",
+    "h1": "Base32 & Base58 encode / decode",
+    "lead": "Base32 uses only A–Z and 2–7, so nothing looks like something else when you copy it by hand or read it aloud — which is why 2FA secrets use it. Base58 drops the four characters people confuse (0 O I l) and is what Bitcoin addresses use. Both are <b>encodings, not encryption</b>.",
+    "faq": [
+      [
+        "Why not just use Base64?",
+        "Base64 mixes upper and lower case and includes + and /. Written down by hand, or read over the phone, that invites mistakes. Base32 trades 25% more length for characters you cannot misread."
+      ],
+      [
+        "Can I use this to hide data?",
+        "No. There is no key; anyone can decode it. Use real encryption for anything that needs protecting."
+      ]
+    ],
+    "ui": {
+      "decoded": "decoded",
+      "encoded": "encoded",
+      "fail": "failed",
+      "mode": "Format & direction"
+    }
+  },
+  "zh": {
+    "title": "Base32 / Base58 编解码 — ToolPocket",
+    "desc": "Base32 用不易看错的字符（2FA 密钥常见），Base58 去掉了 0OIl（比特币地址用它）。",
+    "h1": "Base32 / Base58 编解码",
+    "lead": "Base32 只用 A–Z 和 2–7，人工抄写、电话口播都不会看错 —— 两步验证密钥用它就是这个原因。Base58 去掉了最容易混的四个字符（0 O I l），比特币地址用的是它。两者都是<b>编码，不是加密</b>。",
+    "faq": [
+      [
+        "为什么不用 Base64？",
+        "Base64 大小写混排，还带 + 和 /，手抄或口播时特别容易错。Base32 多占 25% 长度，换来的是「不会看错」。"
+      ],
+      [
+        "能用它藏数据吗？",
+        "不能。没有密钥，谁都能解开。真要保护内容得用加密。"
+      ]
+    ],
+    "ui": {
+      "decoded": "已解码",
+      "encoded": "已编码",
+      "fail": "失败",
+      "mode": "格式与方向"
+    }
+  },
+  "ja": {
+    "title": "Base32 / Base58 エンコード・デコード — ToolPocket",
+    "desc": "読み間違えやすい文字を避けるために存在する 2 つのエンコード方式です。",
+    "h1": "Base32 / Base58 の変換",
+    "lead": "Base32 は A–Z と 2–7 のみを使うため、手書きや口頭で伝えても取り違えが起きません（2 段階認証のシークレットがこれを使う理由です）。Base58 は紛らわしい 4 文字（0 O I l）を除いたもので、ビットコインのアドレスに使われています。いずれも<b>エンコードであり暗号化ではありません</b>。",
+    "faq": [
+      [
+        "Base64 ではだめなのですか？",
+        "Base64 は大文字小文字が混在し、+ と / も含むため、手書きや電話での伝達で誤りが起きやすくなります。Base32 は長さが 25% 増える代わりに取り違えが起きません。"
+      ],
+      [
+        "データを隠す用途に使えますか？",
+        "いいえ。鍵が無いため誰でも復号できます。保護が必要な場合は暗号化を使用してください。"
+      ]
+    ],
+    "ui": {
+      "decoded": "デコードしました",
+      "encoded": "エンコードしました",
+      "fail": "失敗しました",
+      "mode": "形式と方向"
+    }
+  }
+}

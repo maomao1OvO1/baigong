@@ -1,0 +1,63 @@
+{
+  "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
+  "en": {
+    "title": "Markdown to HTML — ToolPocket",
+    "desc": "Paste Markdown, get HTML you can drop into a post, an email or a forum reply.",
+    "h1": "Markdown to HTML",
+    "lead": "Paste Markdown and get HTML you can drop straight into a post, an email or a forum reply — headings, bold, links, lists, quotes and code blocks all handled. No editor to install, no account. It covers the <b>common subset</b>, not the full spec, and never silently eats content it doesn't understand.",
+    "faq": [
+      [
+        "Why not just use an editor?",
+        "For a one-off conversion, opening a page and pasting is the fastest path. Editors want an install, an account, or both."
+      ],
+      [
+        "Will my HTML tags be executed?",
+        "No. Text is escaped before parsing, so a tag you type shows up as text — it never becomes a live element."
+      ]
+    ],
+    "ui": {
+      "linesIn": "lines in",
+      "linesOut": "lines out"
+    }
+  },
+  "zh": {
+    "title": "Markdown 转 HTML — ToolPocket",
+    "desc": "粘一段 Markdown，得到能直接用的 HTML 源码。标题、粗斜体、链接、列表、代码块都支持。",
+    "h1": "Markdown 转 HTML",
+    "lead": "把 Markdown 粘进来，直接得到能用的 HTML 源码 —— 标题、粗体斜体、链接、列表、引用、代码块都支持。写博客、发邮件、往论坛贴格式时用得着，不用装编辑器也不用注册。<b>支持的是常用语法子集</b>，不是完整规范；看不懂的地方原样保留，不会悄悄吃掉你的内容。",
+    "faq": [
+      [
+        "为什么不用现成的编辑器？",
+        "编辑器要装、要联网、有些还要登录。这里只是把一段 Markdown 变成 HTML —— 一次性的小活，打开网页粘一下最快。"
+      ],
+      [
+        "我写的 HTML 标签会被执行吗？",
+        "不会。文本先做 HTML 转义再解析语法，所以你写的 <code>&lt;script&gt;</code> 只会显示成文字，不会变成真标签。"
+      ]
+    ],
+    "ui": {
+      "linesIn": "行输入",
+      "linesOut": "行输出"
+    }
+  },
+  "ja": {
+    "title": "Markdown を HTML に変換 — ToolPocket",
+    "desc": "Markdown を貼り付けると、そのまま使える HTML が得られます。",
+    "h1": "Markdown を HTML に変換",
+    "lead": "Markdown を貼り付けると、そのまま使える HTML が得られます。見出し・強調・リンク・リスト・引用・コードブロックに対応。エディタのインストールも登録も不要です。<b>対応するのは一般的な記法の範囲</b>で、解釈できない部分はそのまま残します。",
+    "faq": [
+      [
+        "エディタを使えばいいのでは？",
+        "一度きりの変換なら、ページを開いて貼るのが最短です。エディタはインストールやアカウントを求めがちです。"
+      ],
+      [
+        "入力した HTML タグは実行されますか？",
+        "いいえ。先にエスケープしてから解析するため、入力したタグは文字として表示されます。"
+      ]
+    ],
+    "ui": {
+      "linesIn": "行を入力",
+      "linesOut": "行を出力"
+    }
+  }
+}

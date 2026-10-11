@@ -1,0 +1,72 @@
+{
+  "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
+  "en": {
+    "title": "HTTP status codes explained — ToolPocket",
+    "desc": "Type a status code and find out what it means and whose problem it is.",
+    "h1": "HTTP status codes explained",
+    "lead": "A 4xx or 5xx shows up in your logs and the first question is whose problem it is. Type the code and get the meaning plus whose side it's on — client or server — with non-official-but-ubiquitous codes flagged as such.<br>Leave it empty for the full list, grouped by class.",
+    "faq": [
+      [
+        "What actually separates 4xx from 5xx?",
+        "4xx means the request was wrong (bad params, not signed in, too many calls); 5xx means the machinery on my side failed. That line tells you whether to fix code or add capacity."
+      ],
+      [
+        "Why are 418, 499 and 599 marked non-official?",
+        "They aren't in any RFC: 418 is an April Fools' joke, 499 was invented by Nginx, 599 shows up in proxies. Flagged so you don't think you misremembered."
+      ]
+    ],
+    "ui": {
+      "codes": "codes",
+      "badCode": "enter a numeric status code",
+      "unknownCode": "No standard meaning for this code",
+      "nonStandard": "(not in the RFC)",
+      "responsible": "Whose problem"
+    }
+  },
+  "zh": {
+    "title": "HTTP 状态码速查 — ToolPocket",
+    "desc": "输入一个状态码，看清含义与责任方；留空则列出全部。",
+    "h1": "HTTP 状态码速查",
+    "lead": "日志里蹦出一个 4xx 或 5xx，第一反应是「这该谁改」？输入码就告诉你含义、责任归谁（客户端还是服务端），还标出哪些是非官方但我们天天见到的码。<br>留空则按类别列出全部，当速查表用。",
+    "faq": [
+      [
+        "4xx 和 5xx 到底怎么分？",
+        "4xx 是「你发的东西有问题」（参数错了、没登录、太频繁），5xx 是「我这边的机器有问题」（崩了、过载、上游超时）。改代码还是扩容，就靠这条线分。"
+      ],
+      [
+        "为什么 418、499、599 标了非官方？",
+        "它们不在 RFC 里：418 是愚人节玩笑、499 是 Nginx 自造的、599 常见于代理。标出来免得你以为自己记错了。"
+      ]
+    ],
+    "ui": {
+      "codes": "个状态码",
+      "badCode": "请输入数字状态码",
+      "unknownCode": "这个码没有标准含义",
+      "nonStandard": "（非官方码）",
+      "responsible": "责任方"
+    }
+  },
+  "ja": {
+    "title": "HTTP ステータスコード早見表 — ToolPocket",
+    "desc": "コードを入力すると意味と責任の所在が分かります。空欄なら全件表示。",
+    "h1": "HTTP ステータスコード早見表",
+    "lead": "ログに 4xx や 5xx が出たとき、最初に知りたいのは「どちら側の問題か」。コードを入力すると意味と責任の所在（クライアント側かサーバー側か）を表示します。RFC に無いがよく見るコードにはその旨を付けています。<br>空欄なら分類ごとに全件を一覧表示します。",
+    "faq": [
+      [
+        "4xx と 5xx の違いは？",
+        "4xx はリクエスト側の問題（パラメータ誤り、未ログイン、回数超過）、5xx はサーバー側の問題（クラッシュ、過負荷、上流のタイムアウト）です。コードを直すべきか容量を増やすべきかの判断基準になります。"
+      ],
+      [
+        "418・499・599 が非公式とあるのは？",
+        "RFC に定義がありません。418 はエイプリルフールの遊び、499 は Nginx 独自、599 はプロキシで見られます。"
+      ]
+    ],
+    "ui": {
+      "codes": "件のコード",
+      "badCode": "数値のステータスコードを入力してください",
+      "unknownCode": "このコードに標準的な意味はありません",
+      "nonStandard": "（RFC 外）",
+      "responsible": "どちら側の問題か"
+    }
+  }
+}

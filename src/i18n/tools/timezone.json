@@ -1,0 +1,69 @@
+{
+  "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
+  "en": {
+    "title": "Time zone converter — ToolPocket",
+    "desc": "See one time across nine time zones, with daylight saving handled correctly.",
+    "h1": "Time zone converter",
+    "lead": "One side is now, the other is what time is it over there. Type a time (or leave it empty for right now) and see it across Beijing, Tokyo, New York, London and five more — with the offset between them. <b>Daylight saving is handled by the browser's own time zone database</b>, the part hand-arithmetic gets wrong twice a year.",
+    "faq": [
+      [
+        "Why does New York show -4 sometimes and -5 other times?",
+        "Daylight saving. US Eastern is UTC-4 from March to November and UTC-5 otherwise. This tool picks the right one for the moment you entered."
+      ],
+      [
+        "Which time zone is my input in?",
+        "Your device's by default — or pick a source zone below, handy when a log line is timestamped in Tokyo time."
+      ]
+    ],
+    "ui": {
+      "badTime": "not a valid time",
+      "shown": "time zones shown",
+      "zone": "Input is in",
+      "zoneLocal": "my device's zone"
+    }
+  },
+  "zh": {
+    "title": "时区换算 — ToolPocket",
+    "desc": "一个时间，同时看九个时区的对应时刻，夏令时自动算对。",
+    "h1": "时区换算",
+    "lead": "一个是「现在」，一个是「那边几点」。填个时间（留空就是此刻），一次看到北京、东京、纽约、伦敦等九个时区的对应时刻，还标出彼此相差几小时。<b>夏令时按浏览器自带的时区库自动算</b> —— 欧美一年切换两次，手算偏移表迟早出错。",
+    "faq": [
+      [
+        "为什么纽约的偏移有时是 -4，有时是 -5？",
+        "夏令时。3 月到 11 月美东是 UTC-4，其余时间是 UTC-5。工具按你填的那个时刻自动判断。"
+      ],
+      [
+        "我填的时间按哪个时区算？",
+        "默认按你设备的本地时区；也可以在下面选一个源时区，例如拿到一条标注为东京时间的日志时。"
+      ]
+    ],
+    "ui": {
+      "badTime": "时间格式不对",
+      "shown": "个时区已换算",
+      "zone": "输入时间所属时区",
+      "zoneLocal": "我设备的时区"
+    }
+  },
+  "ja": {
+    "title": "タイムゾーン変換 — ToolPocket",
+    "desc": "1 つの時刻を 9 つのタイムゾーンで表示。夏時間も正しく扱います。",
+    "h1": "タイムゾーン変換",
+    "lead": "片方は「今」、もう片方は「向こうは何時か」。時刻を入力する（空欄なら現在時刻）と、北京・東京・ニューヨーク・ロンドンなど 9 つのタイムゾーンでの時刻と時差が一度に表示されます。<b>夏時間はブラウザ内蔵のタイムゾーンデータベースで自動計算</b>します。",
+    "faq": [
+      [
+        "ニューヨークのオフセットが -4 と -5 で変わるのは？",
+        "夏時間のためです。米国東部は 3 月〜11 月が UTC-4、それ以外は UTC-5 になります。入力した時刻に応じて自動で判定します。"
+      ],
+      [
+        "入力した時刻はどのタイムゾーンとして扱われますか？",
+        "既定ではお使いの端末のタイムゾーンです。下で元のタイムゾーンを指定することもできます。"
+      ]
+    ],
+    "ui": {
+      "badTime": "時刻の形式が正しくありません",
+      "shown": "件のタイムゾーンを表示",
+      "zone": "入力のタイムゾーン",
+      "zoneLocal": "端末のタイムゾーン"
+    }
+  }
+}

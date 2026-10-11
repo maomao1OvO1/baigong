@@ -1,0 +1,84 @@
+{
+  "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
+  "en": {
+    "title": "JSON path extractor — ToolPocket",
+    "desc": "Pull one field out of a big JSON response, without pasting it into someone's server.",
+    "h1": "JSON path extractor",
+    "lead": "Your API response is 300 lines and you need one field. Paste the JSON, type a path like <code>data.items[0].title</code>, and get just that value. Supports <code>a.b</code>, <code>a[0]</code>, <code>a[-1]</code> and <code>a[*].b</code>. Nothing leaves the browser — responses usually contain tokens and user data.",
+    "faq": [
+      [
+        "What if a key contains a dot?",
+        "Quote it: <code>a[\"weird.key\"]</code>. That is the rule people forget."
+      ],
+      [
+        "Is this full JSONPath?",
+        "No, and it doesn't try to be. Everyday use is grabbing a field or the third item — fewer rules means fewer mistakes."
+      ]
+    ],
+    "ui": {
+      "badJson": "invalid JSON",
+      "wholeDoc": "no path — showing the whole document",
+      "notFound": "path not found",
+      "items": "items",
+      "object": "object",
+      "found": "found",
+      "path": "Path",
+      "pathPh": "e.g. data.items[0].title",
+      "pretty": "Pretty-print the result"
+    }
+  },
+  "zh": {
+    "title": "JSON 路径取值 — ToolPocket",
+    "desc": "从一大段 JSON 里只取出你要的那个字段，数据不出浏览器。",
+    "h1": "JSON 路径取值",
+    "lead": "接口返回几百行，你只想看其中一个字段？把 JSON 粘进来、写个路径（如 <code>data.items[0].title</code>）就把它单独抠出来。支持 <code>a.b</code>、<code>a[0]</code>、<code>a[-1]</code> 和 <code>a[*].b</code>。数据不出浏览器 —— 接口响应里常带着 token 和用户信息，本来就不该发给陌生网站。",
+    "faq": [
+      [
+        "路径里有带点号的字段名怎么办？",
+        "用引号包起来：<code>a[\"weird.key\"]</code>。这是最常忘的一条。"
+      ],
+      [
+        "支持完整的 JSONPath 语法吗？",
+        "不支持，也不需要。日常就是「取某个字段」和「取数组第几个」，那几种写法够用 —— 语法越少越不容易记错。"
+      ]
+    ],
+    "ui": {
+      "badJson": "JSON 格式有误",
+      "wholeDoc": "没写路径 —— 显示整份文档",
+      "notFound": "找不到这个路径",
+      "items": "项",
+      "object": "对象",
+      "found": "已找到",
+      "path": "路径",
+      "pathPh": "例如 data.items[0].title",
+      "pretty": "结果美化输出"
+    }
+  },
+  "ja": {
+    "title": "JSON パスで値を取り出す — ToolPocket",
+    "desc": "大きな JSON から必要なフィールドだけを取り出します。データは外部に送信しません。",
+    "h1": "JSON パスで値を取り出す",
+    "lead": "API のレスポンスが何百行もあって、見たいのは 1 つのフィールドだけ。JSON を貼り、<code>data.items[0].title</code> のようなパスを書けばその値だけを取り出せます。<code>a.b</code>・<code>a[0]</code>・<code>a[-1]</code>・<code>a[*].b</code> に対応。データはブラウザから出ません。",
+    "faq": [
+      [
+        "キー名にドットが含まれる場合は？",
+        "引用符で囲みます：<code>a[\"weird.key\"]</code>。忘れやすいポイントです。"
+      ],
+      [
+        "完全な JSONPath ですか？",
+        "いいえ。日常的に使うのは「このフィールドを取りたい」「配列の 3 番目が欲しい」程度なので、記法は絞ってあります。"
+      ]
+    ],
+    "ui": {
+      "badJson": "JSON の形式が不正です",
+      "wholeDoc": "パス未指定のため全体を表示",
+      "notFound": "パスが見つかりません",
+      "items": "件",
+      "object": "オブジェクト",
+      "found": "取得しました",
+      "path": "パス",
+      "pathPh": "例：data.items[0].title",
+      "pretty": "結果を整形して表示"
+    }
+  }
+}

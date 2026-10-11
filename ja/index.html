@@ -92,8 +92,23 @@
   </section>
 
   <section class="group">
-    <h2><span class="g-ico">✍️</span>テキストとデータ<span class="g-count">8</span></h2>
+    <h2><span class="g-ico">✍️</span>テキストとデータ<span class="g-count">11</span></h2>
     <ul class="grid">
+      <li><a href="/ja/tools/markdown.html">
+        <span class="ico">📝</span>
+        <b>Markdown を HTML に変換</b>
+        <span class="sub">Markdown を貼り付けると、そのまま使える HTML が得られます。見出し・強調・リンク・リスト・引用・コードブロックに対応。エディタのインストールも登録も不要です。対応するのは…</span>
+      </a></li>
+      <li><a href="/ja/tools/number-words.html">
+        <span class="ico">💰</span>
+        <b>数字 → 読み / 中文大字</b>
+        <span class="sub">数値を英語の読み、中国語の通常の読み、または請求書や契約書で使う中国語の財務用大字（壹佰贰拾叁万）に変換します。手書きで間違えやすいのは 2 点：ゼロの位置と、万・億の区切りです。</span>
+      </a></li>
+      <li><a href="/ja/tools/string-escape.html">
+        <span class="ico">🧼</span>
+        <b>文字列のエスケープ / 解除</b>
+        <span class="sub">同じ文字列でも、置く場所によって正しい書き方は異なります。JSON では生の改行や未エスケープの引用符が使えず、SQL では単引用符を 2 つ重ねる（バックスラッシュではない）必要があ…</span>
+      </a></li>
       <li><a href="/ja/tools/html-entities.html">
         <span class="ico">🧷</span>
         <b>HTML エンティティのエンコード / デコード</b>
@@ -138,10 +153,35 @@
   </section>
 
   <section class="group">
-    <h2><span class="g-ico">⌨️</span>開発者向け<span class="g-count">8</span></h2>
+    <h2><span class="g-ico">⌨️</span>開発者向け<span class="g-count">13</span></h2>
     <ul class="grid">
+      <li><a href="/ja/tools/json-path.html">
+        <span class="ico">🎯</span>
+        <b>JSON パスで値を取り出す</b>
+        <span class="sub">API のレスポンスが何百行もあって、見たいのは 1 つのフィールドだけ。JSON を貼り、data.items[0].title のようなパスを書けばその値だけを取り出せます。a.b…</span>
+      </a></li>
+      <li><a href="/ja/tools/yaml-json.html">
+        <span class="ico">📄</span>
+        <b>YAML ⇄ JSON 変換</b>
+        <span class="sub">K8s のマニフェストや CI の yaml を扱うときに。一般的な記法に対応：キーと値、ネストしたインデント、リスト、インラインの [a, b] / {a: 1}、コメント、ブロック…</span>
+      </a></li>
+      <li><a href="/ja/tools/http-status.html">
+        <span class="ico">🚦</span>
+        <b>HTTP ステータスコード早見表</b>
+        <span class="sub">ログに 4xx や 5xx が出たとき、最初に知りたいのは「どちら側の問題か」。コードを入力すると意味と責任の所在（クライアント側かサーバー側か）を表示します。RFC に無いがよく見る…</span>
+      </a></li>
+      <li><a href="/ja/tools/base32.html">
+        <span class="ico">🔣</span>
+        <b>Base32 / Base58 の変換</b>
+        <span class="sub">Base32 は A–Z と 2–7 のみを使うため、手書きや口頭で伝えても取り違えが起きません（2 段階認証のシークレットがこれを使う理由です）。Base58 は紛らわしい 4 文字…</span>
+      </a></li>
+      <li><a href="/ja/tools/ipv6.html">
+        <span class="ico">🛰️</span>
+        <b>IPv6 展開 / 短縮</b>
+        <span class="sub">IPv6 の完全表記と短縮表記を相互変換し、ループバック・リンクローカル・ユニークローカル・グローバルのいずれかを判定します。短縮規則と分類は目視で間違えやすい部分です。:: は 1 …</span>
+      </a></li>
       <li><a href="/ja/tools/url-parser.html">
-        <span class="ico">🔗</span>
+        <span class="ico">🧭</span>
         <b>URL パーサー / クエリパラメータ表示</b>
         <span class="sub">長い URL を構成要素に分解し、クエリパラメータを 1 行ずつ表示します。「このリンクが動かない」原因の多くはクエリ文字列にあります。& の欠落、二重エンコード、# によるクエリ全体…</span>
       </a></li>
@@ -192,7 +232,7 @@
         <span class="sub">1 色から配色一式を得られます。補色・類似色・トライアドと、同じ色相の明度 7 段階。hover・押下・無効状態の色が濁らずに揃います。</span>
       </a></li>
       <li><a href="/ja/tools/color-converter.html">
-        <span class="ico">🎨</span>
+        <span class="ico">🌈</span>
         <b>カラー変換 — HEX / RGB / HSL</b>
         <span class="sub">色を HEX・RGB・HSL の間で変換し、3 つの表記を同時に表示します。デザインの HSL 値を CSS に落とし込むときに便利です。</span>
       </a></li>
@@ -200,8 +240,13 @@
   </section>
 
   <section class="group">
-    <h2><span class="g-ico">🕒</span>時間と単位<span class="g-count">3</span></h2>
+    <h2><span class="g-ico">🕒</span>時間と単位<span class="g-count">4</span></h2>
     <ul class="grid">
+      <li><a href="/ja/tools/timezone.html">
+        <span class="ico">🌏</span>
+        <b>タイムゾーン変換</b>
+        <span class="sub">片方は「今」、もう片方は「向こうは何時か」。時刻を入力する（空欄なら現在時刻）と、北京・東京・ニューヨーク・ロンドンなど 9 つのタイムゾーンでの時刻と時差が一度に表示されます。夏時間…</span>
+      </a></li>
       <li><a href="/ja/tools/date-calc.html">
         <span class="ico">📅</span>
         <b>日付計算</b>
@@ -221,8 +266,13 @@
   </section>
 
   <section class="group">
-    <h2><span class="g-ico">🔒</span>セキュリティ<span class="g-count">2</span></h2>
+    <h2><span class="g-ico">🔒</span>セキュリティ<span class="g-count">3</span></h2>
     <ul class="grid">
+      <li><a href="/ja/tools/number-check.html">
+        <span class="ico">💳</span>
+        <b>カード / 身分証番号の検証</b>
+        <span class="sub">1 桁の打ち間違いは最も多い入力ミスで、チェックディジットはまさにそれを見つけるための仕組みです。銀行カードは Luhn 法、中国の身分証は GB 11643 のチェックコードを使いま…</span>
+      </a></li>
       <li><a href="/ja/tools/password-gen.html">
         <span class="ico">🔑</span>
         <b>パスワード生成</b>

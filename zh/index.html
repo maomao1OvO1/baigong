@@ -92,8 +92,23 @@
   </section>
 
   <section class="group">
-    <h2><span class="g-ico">✍️</span>文本与数据<span class="g-count">8</span></h2>
+    <h2><span class="g-ico">✍️</span>文本与数据<span class="g-count">11</span></h2>
     <ul class="grid">
+      <li><a href="/zh/tools/markdown.html">
+        <span class="ico">📝</span>
+        <b>Markdown 转 HTML</b>
+        <span class="sub">把 Markdown 粘进来，直接得到能用的 HTML 源码 —— 标题、粗体斜体、链接、列表、引用、代码块都支持。写博客、发邮件、往论坛贴格式时用得着，不用装编辑器也不用注册。支持的…</span>
+      </a></li>
+      <li><a href="/zh/tools/number-words.html">
+        <span class="ico">💰</span>
+        <b>数字转中文大写</b>
+        <span class="sub">报销单、合同上的金额要写大写，手写最容易错两处：零的位置和万 / 亿的分节。粘个数字，中文大写、中文读法、英文读法、千分位写法一次给全。</span>
+      </a></li>
+      <li><a href="/zh/tools/string-escape.html">
+        <span class="ico">🧼</span>
+        <b>字符串转义 / 反转义</b>
+        <span class="sub">同一个字符串，放进不同的地方有不同的正确写法：JSON 里不能有裸换行、也不能有没转义的双引号；SQL 里单引号要写成两个而不是加反斜杠；正则里一堆符号都得加反斜杠。这里一次转对，也能…</span>
+      </a></li>
       <li><a href="/zh/tools/html-entities.html">
         <span class="ico">🧷</span>
         <b>HTML 实体编码 / 解码</b>
@@ -138,10 +153,35 @@
   </section>
 
   <section class="group">
-    <h2><span class="g-ico">⌨️</span>开发者<span class="g-count">8</span></h2>
+    <h2><span class="g-ico">⌨️</span>开发者<span class="g-count">13</span></h2>
     <ul class="grid">
+      <li><a href="/zh/tools/json-path.html">
+        <span class="ico">🎯</span>
+        <b>JSON 路径取值</b>
+        <span class="sub">接口返回几百行，你只想看其中一个字段？把 JSON 粘进来、写个路径（如 data.items[0].title）就把它单独抠出来。支持 a.b、a[0]、a[-1] 和 a[*].b…</span>
+      </a></li>
+      <li><a href="/zh/tools/yaml-json.html">
+        <span class="ico">📄</span>
+        <b>YAML ⇄ JSON 互转</b>
+        <span class="sub">改 K8s 配置、看 CI 的 yaml 时最需要它。支持常用子集：键值、嵌套缩进、数组、行内写法 [a, b] / {a: 1}、注释、多行文本块。遇到锚点、多文档这些不支持的语法会…</span>
+      </a></li>
+      <li><a href="/zh/tools/http-status.html">
+        <span class="ico">🚦</span>
+        <b>HTTP 状态码速查</b>
+        <span class="sub">日志里蹦出一个 4xx 或 5xx，第一反应是「这该谁改」？输入码就告诉你含义、责任归谁（客户端还是服务端），还标出哪些是非官方但我们天天见到的码。留空则按类别列出全部，当速查表用。</span>
+      </a></li>
+      <li><a href="/zh/tools/base32.html">
+        <span class="ico">🔣</span>
+        <b>Base32 / Base58 编解码</b>
+        <span class="sub">Base32 只用 A–Z 和 2–7，人工抄写、电话口播都不会看错 —— 两步验证密钥用它就是这个原因。Base58 去掉了最容易混的四个字符（0 O I l），比特币地址用的是它。…</span>
+      </a></li>
+      <li><a href="/zh/tools/ipv6.html">
+        <span class="ico">🛰️</span>
+        <b>IPv6 展开 / 压缩</b>
+        <span class="sub">IPv6 的完整写法与压缩写法互转，并说明它是回环、链路本地、唯一本地还是全局地址。压缩规则和分类恰好是肉眼最容易判错的地方 —— :: 只能出现一次、必须是八组、fe80:: 看着像…</span>
+      </a></li>
       <li><a href="/zh/tools/url-parser.html">
-        <span class="ico">🔗</span>
+        <span class="ico">🧭</span>
         <b>URL 拆解 / 查询参数查看</b>
         <span class="sub">把长链接拆开，查询参数一条一行。所谓「这链接怎么不对」，九成坏在查询串：少一个 &、值被编码了两遍，或者 # 把整个查询串吃掉了。</span>
       </a></li>
@@ -192,7 +232,7 @@
         <span class="sub">从一个颜色出发，拿到整套搭配：互补色、类似色、三角色，外加同色相的 7 档明度。hover、按下、禁用这几种状态照它来定，就不会越调越脏。</span>
       </a></li>
       <li><a href="/zh/tools/color-converter.html">
-        <span class="ico">🎨</span>
+        <span class="ico">🌈</span>
         <b>颜色转换 —— HEX / RGB / HSL</b>
         <span class="sub">颜色在 HEX、RGB、HSL 之间互转，一次把三种写法都摆出来 —— 把设计稿里的 HSL 值落到 CSS 时，这样最省事。</span>
       </a></li>
@@ -200,8 +240,13 @@
   </section>
 
   <section class="group">
-    <h2><span class="g-ico">🕒</span>时间与单位<span class="g-count">3</span></h2>
+    <h2><span class="g-ico">🕒</span>时间与单位<span class="g-count">4</span></h2>
     <ul class="grid">
+      <li><a href="/zh/tools/timezone.html">
+        <span class="ico">🌏</span>
+        <b>时区换算</b>
+        <span class="sub">一个是「现在」，一个是「那边几点」。填个时间（留空就是此刻），一次看到北京、东京、纽约、伦敦等九个时区的对应时刻，还标出彼此相差几小时。夏令时按浏览器自带的时区库自动算 —— 欧美一年…</span>
+      </a></li>
       <li><a href="/zh/tools/date-calc.html">
         <span class="ico">📅</span>
         <b>日期计算器</b>
@@ -221,8 +266,13 @@
   </section>
 
   <section class="group">
-    <h2><span class="g-ico">🔒</span>安全<span class="g-count">2</span></h2>
+    <h2><span class="g-ico">🔒</span>安全<span class="g-count">3</span></h2>
     <ul class="grid">
+      <li><a href="/zh/tools/number-check.html">
+        <span class="ico">💳</span>
+        <b>银行卡 / 身份证校验</b>
+        <span class="sub">录错一位数字是最常见的失误，而校验位就是专门用来抓它的：银行卡走 Luhn 算法，身份证走 GB 11643 的校验码。全程在你设备上算，号码不上传、不保存。校验通过只说明格式合法，不…</span>
+      </a></li>
       <li><a href="/zh/tools/password-gen.html">
         <span class="ico">🔑</span>
         <b>密码生成器</b>

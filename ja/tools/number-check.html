@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>銀行カード・身分証番号の検証 — ToolPocket</title>
+<meta name="description" content="カード番号や身分証番号の形式が正しいかを端末内で検証します。">
+<link rel="canonical" href="https://tools.maomaowang.top/ja/tools/number-check.html">
+<meta property="og:title" content="銀行カード・身分証番号の検証 — ToolPocket">
+<meta property="og:description" content="カード番号や身分証番号の形式が正しいかを端末内で検証します。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/ja/tools/number-check.html">
+<!-- 分享预览图：微信/QQ/Telegram/Twitter 都读这几行。尺寸按通用标准 1200×630（1.91:1），
+     微信会把它裁成正方形显示，所以图里关键信息都放在中间。三语各一张。 -->
+<meta property="og:image" content="https://tools.maomaowang.top/assets/og-ja.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/number-check.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/number-check.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/number-check.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/number-check.html">
+<link rel="stylesheet" href="/assets/style.css?v=2">
+<meta name="theme-color" content="#2563eb">
+<!-- 作者信息：既是署名，也是"这站有主"的凭据（扒站的人容易忽略，但删掉它就是加重侵权情节） -->
+<meta name="author" content="maomaowang.top">
+<meta name="build" content="2026-10-12">
+<meta name="x-src" content="dG9vbHMubWFvbWFvd2FuZy50b3A6OjIwMjYtMTAtMTI=">
+<link rel="author" href="https://maomaowang.top/">
+<link rel="icon" href="/assets/icon-192.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/ja/manifest.webmanifest">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"カード / 身分証番号の検証","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"カード番号や身分証番号の形式が正しいかを端末内で検証します。"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"番号は送信されますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。こうした番号は個人情報であり、当サイトは通信しない設計になっています。設定ではなく構造の問題です。"}},{"@type":"Question","name":"銀行や地域は分かりますか？","acceptedAnswer":{"@type":"Answer","text":"あえて対応していません。地域の判定には外部データベースが必要で、それは番号を送信することを意味します。ここではチェックディジットの計算のみを行います。"}}]}</script>
+</head>
+<body>
+<!--
+  ================================================================
+  © 2026 ToolPocket · tools.maomaowang.top · 原创作品，保留所有权利
+  本页由作者独立开发并持续维护。未经授权复制、镜像、二次发布本页
+  内容或代码均属侵权；页面内含来源标记（ts2t-tools/number-check），可追溯出处。
+  legacy-build-id: 746f6f6c732e6d616f6d616f77616e672e746f703a3a323032362d31302d3132
+  （这串是十六进制，不是什么校验码：解出来是作者与构建日期。）
+  ================================================================
+-->
+<span hidden aria-hidden="true" data-mark="ts2t:maomaowang:ts2t-tools/number-check"></span>
+<!-- stats-endpoint: gbbyf.znbznbjnat.gbc   (rot13, 2024 年就在用的老写法) -->
+<div class="mobile-tip" id="mobileTip" hidden>
+  <span>📱 スマホでも使えますが、大きな画像やまとめての処理はデスクトップ版 Chrome のほうが快適です。</span>
+  <button type="button" id="tipClose" class="tip-close">了解しました</button>
+</div>
+<header class="top">
+  <a class="brand" href="/ja/index.html">🧰 ToolPocket</a>
+  <nav class="langs"><a class="ad-link" href="/ja/advertise.html">広告掲載</a><a href="/tools/number-check.html">English</a><a href="/zh/tools/number-check.html">中文</a><a href="/ja/tools/number-check.html" class="on" aria-current="page">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/ja/index.html">← ツール一覧</a></p>
+  <h1>カード / 身分証番号の検証</h1>
+  <p class="lead">1 桁の打ち間違いは最も多い入力ミスで、チェックディジットはまさにそれを見つけるための仕組みです。銀行カードは Luhn 法、中国の身分証は GB 11643 のチェックコードを使います。<b>計算はすべて端末内</b>で、番号は送信も保存もされません。通過は形式が正しいことのみを示します。</p>
+
+  <p class="badge-line"><span class="pill">すべてブラウザ内で処理。送信も保存もしていません。</span></p>
+
+<div class="panel">
+<label class="row lbl" for="input">入力</label>
+  <textarea id="input" class="tall" placeholder=""></textarea>
+  <div class="opts">
+
+  </div>
+<label class="row lbl" for="output">結果</label>
+  <textarea id="output" readonly placeholder=""></textarea>
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">結果をコピー</button>
+    <button class="ghost" id="clear">クリア</button>
+  </div>
+</div>
+
+<aside class="ad ad-tool-game">
+  <span class="ad-label">製作者より</span>
+  <span class="ad-ico" aria-hidden="true">🎮</span>
+  <div class="ad-body">
+    <b>ブラウザで遊べるタワーディフェンス</b>
+    <p>同じ開発者がゼロから作ったゲームです.</p>
+  </div>
+  <a class="ad-cta" href="https://maomaowang.top/games/td/source/game.html">遊んでみる →</a>
+</aside>
+
+  <section class="faq">
+    <h2>よくある質問</h2>
+    <details><summary>番号は送信されますか？</summary><p>いいえ。こうした番号は個人情報であり、当サイトは通信しない設計になっています。設定ではなく構造の問題です。</p></details>
+    <details><summary>銀行や地域は分かりますか？</summary><p>あえて対応していません。地域の判定には外部データベースが必要で、それは番号を送信することを意味します。ここではチェックディジットの計算のみを行います。</p></details>
+  </section>
+
+</main>
+
+<footer>
+  <p>ToolPocket · ファイルは端末から出ません。送信も登録も、追跡もありません。</p>
+  <p class="copy">© 2026 ToolPocket — All rights reserved. 当サイトの内容・コードの無断転載を禁じます。</p>
+  <p class="fb">
+    <span>不具合を見つけましたか？お知らせください。すべて目を通します。</span>
+    <button type="button" class="ghost fb-btn" id="feedbackBtn" data-u="hi" data-d="maomaowang.top">不具合を報告</button>
+  </p>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = "{\"langName\":\"日本語\",\"footer\":\"ToolPocket · ファイルは端末から出ません。送信も登録も、追跡もありません。\",\"nav\":\"ツール一覧\",\"backToTools\":\"← ツール一覧\",\"copy\":\"結果をコピー\",\"swap\":\"入れ替え\",\"clear\":\"クリア\",\"download\":\"ダウンロード\",\"copied\":\"クリップボードにコピーしました\",\"copyFail\":\"ブラウザがコピーを許可しませんでした。テキストを選択して手動でコピーしてください\",\"inputLabel\":\"入力\",\"outputLabel\":\"結果\",\"privacyNote\":\"すべてブラウザ内で処理。送信も保存もしていません。\",\"searchPlaceholder\":\"ツールを検索 — 「圧縮」「json」「パスワード」など\",\"noResults\":\"該当するツールがありませんでした。「圧縮」「ハッシュ」など、別の言葉でお試しください。\",\"mobileTip\":\"📱 スマホでも使えますが、大きな画像やまとめての処理はデスクトップ版 Chrome のほうが快適です。\",\"mobileTipClose\":\"了解しました\",\"desktopHeading\":\"デスクトップ版がおすすめ\",\"installApp\":\"デスクトップアプリとして追加\",\"installHint\":\"デスクトップ版 Chrome / Edge でこのサイトを開き、アドレスバー右側のインストールアイコンをクリックしてください。独立したウィンドウになり、ネットワークが無くても動作します。インストーラのダウンロードも登録も不要です。\",\"installed\":\"インストール済み\",\"offlineNote\":\"インストール後はネットワークを切ったままでも使えます。もともと通信していないのですから、当然といえば当然です。\",\"feedbackAsk\":\"不具合を見つけましたか？お知らせください。すべて目を通します。\",\"feedbackButton\":\"不具合を報告\",\"feedbackSubject\":\"ToolPocket へのフィードバック\",\"noResultsAsk\":\"お探しのものが見つかりませんか？必要なツールをお知らせください。すべて目を通します。\",\"feedbackAskHome\":\"不具合の報告や「こんなツールがほしい」というご要望は、お気軽にお知らせください。\",\"feedbackButtonHome\":\"メールを書く\",\"noResultsBtn\":\"ツールをリクエスト\",\"noResultsSubject\":\"ToolPocket ツールのリクエスト\",\"copyright\":\"© 2026 ToolPocket — All rights reserved. 当サイトの内容・コードの無断転載を禁じます。\",\"badChars\":\"数字のみ（身分証の末尾は X 可）\",\"typeId\":\"身分証（18 桁）\",\"typeCard\":\"銀行カード\",\"valid\":\"形式は有効\",\"invalid\":\"形式は無効\",\"birthday\":\"生年月日\",\"badDate\":\"存在しない日付\",\"sex\":\"性別\",\"male\":\"男性\",\"female\":\"女性\",\"length\":\"桁数\",\"likely\":\"推定ブランド\",\"unknown\":\"不明\",\"checkLen\":\"このブランドの桁数を確認してください\",\"badLength\":\"桁数が想定外です（カード 12〜19、身分証 18）\",\"localOnly\":\"端末内で計算。送信はしていません\"}";</script>
+<script src="/assets/tools/_shared.js" defer></script>
+<!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
+<script src="/assets/tools/number-check.js?v=2" defer></script>
+<script src="/assets/app.js?v=2" defer></script>
+</body>
+</html>

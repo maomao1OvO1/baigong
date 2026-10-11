@@ -1,0 +1,81 @@
+{
+  "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
+  "en": {
+    "title": "Numbers to words and Chinese financial capitals — ToolPocket",
+    "desc": "Turn a number into English words, Chinese reading, or the Chinese financial uppercase used on invoices.",
+    "h1": "Numbers to words / 中文大写",
+    "lead": "Turn a number into English words, plain Chinese reading, or the <b>Chinese financial uppercase</b> required on invoices and contracts (壹佰贰拾叁万). Hand-writing that form is error-prone in exactly two places: where the zeros go, and where the 万 / 亿 sections break.",
+    "faq": [
+      [
+        "Why is the financial form needed at all?",
+        "In Chinese accounting, amounts on receipts and contracts are written in the uppercase form because 一 can be altered into 二 or 十 with a pen, while 壹 cannot. It is a tamper-resistance measure, not decoration."
+      ],
+      [
+        "How large a number can it handle?",
+        "Up to 15 digits. Beyond that floating-point precision ends, and the tool says so instead of returning a wrong answer."
+      ]
+    ],
+    "ui": {
+      "badNumber": "not a number",
+      "tooBig": "number too large (over 15 digits)",
+      "grouped": "grouped",
+      "ok": "converted",
+      "mode": "Format",
+      "cn": "Chinese reading",
+      "fin": "Chinese financial capitals",
+      "en": "English words"
+    }
+  },
+  "zh": {
+    "title": "数字转中文大写 — ToolPocket",
+    "desc": "金额转中文财务大写（壹佰贰拾叁）、中文读法与英文读法，报销单和合同上直接用。",
+    "h1": "数字转中文大写",
+    "lead": "报销单、合同上的金额要写大写，手写最容易错两处：<b>零的位置</b>和<b>万 / 亿的分节</b>。粘个数字，中文大写、中文读法、英文读法、千分位写法一次给全。",
+    "faq": [
+      [
+        "为什么一定要写大写？",
+        "因为小写的「一」加一笔就能变成「二」或「十」，而「壹」改不动。财务大写是防篡改，不是为了好看。"
+      ],
+      [
+        "能处理多大的数？",
+        "15 位以内。再大就超出双精度浮点的精确范围了 —— 那时它会提示，而不是给你一个错的答案。"
+      ]
+    ],
+    "ui": {
+      "badNumber": "不是数字",
+      "tooBig": "数字太大（超过 15 位）",
+      "grouped": "千分位写法",
+      "ok": "已转换",
+      "mode": "输出格式",
+      "cn": "中文读法",
+      "fin": "中文财务大写",
+      "en": "英文读法"
+    }
+  },
+  "ja": {
+    "title": "数字を英語・中国語の読みに変換 — ToolPocket",
+    "desc": "数値を英語の読み、中国語の読み、または中国語の財務用大字に変換します。",
+    "h1": "数字 → 読み / 中文大字",
+    "lead": "数値を英語の読み、中国語の通常の読み、または請求書や契約書で使う<b>中国語の財務用大字</b>（壹佰贰拾叁万）に変換します。手書きで間違えやすいのは 2 点：ゼロの位置と、万・億の区切りです。",
+    "faq": [
+      [
+        "なぜ大字が必要なのですか？",
+        "中国の会計実務では、一は二や十に書き換えられてしまいますが、壹は改変できません。改ざん防止のための表記であり、装飾ではありません。"
+      ],
+      [
+        "どのくらいの桁まで扱えますか？",
+        "15 桁までです。それを超えると浮動小数点の精度限界になるため、誤った答えを返さずにその旨を表示します。"
+      ]
+    ],
+    "ui": {
+      "badNumber": "数値ではありません",
+      "tooBig": "桁が多すぎます（15 桁超）",
+      "grouped": "3 桁区切り",
+      "ok": "変換しました",
+      "mode": "出力形式",
+      "cn": "中国語の読み",
+      "fin": "中国語の大字（財務用）",
+      "en": "英語の読み"
+    }
+  }
+}

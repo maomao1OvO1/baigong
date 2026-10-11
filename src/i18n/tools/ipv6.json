@@ -1,0 +1,78 @@
+{
+  "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
+  "en": {
+    "title": "IPv6 address expander & compressor — ToolPocket",
+    "desc": "Expand or compress an IPv6 address and see what kind of address it actually is.",
+    "h1": "IPv6 expander / compressor",
+    "lead": "Convert between the full and compressed forms of an IPv6 address, and find out whether it's loopback, link-local, unique-local or global. The compression rules and the classifications are exactly where eyeballing fails — :: may only appear once, there must be eight groups, and fe80:: only looks like an ordinary address.",
+    "faq": [
+      [
+        "What's the point of expanding an address?",
+        "Comparisons and grep. Two addresses that look different (2001:db8::1 and 2001:0db8:0000::0001) are the same address, and the full form makes that obvious."
+      ],
+      [
+        "How do I tell link-local from global?",
+        "fe80::/10 is link-local — only valid on one link and never routable. Global addresses start with 2000::/3. The tool labels it for you rather than making you remember the prefixes."
+      ]
+    ],
+    "ui": {
+      "badIpv6": "not a valid IPv6 address",
+      "full": "Full",
+      "short": "Short",
+      "type": "Type",
+      "groups": "Groups",
+      "binary": "Binary",
+      "embedded": "Embedded IPv4"
+    }
+  },
+  "zh": {
+    "title": "IPv6 地址展开 / 压缩 — ToolPocket",
+    "desc": "IPv6 的完整写法与压缩写法互转，并告诉你它属于回环、链路本地还是全局地址。",
+    "h1": "IPv6 展开 / 压缩",
+    "lead": "IPv6 的完整写法与压缩写法互转，并说明它是回环、链路本地、唯一本地还是全局地址。压缩规则和分类恰好是肉眼最容易判错的地方 —— <code>::</code> 只能出现一次、必须是八组、<code>fe80::</code> 看着像普通地址其实只在本地链路有效。",
+    "faq": [
+      [
+        "把地址展开有什么用？",
+        "比对和搜索。看着不一样的两个地址（2001:db8::1 和 2001:0db8:0000::0001）其实是同一个，展开成完整写法一眼就能看出来。"
+      ],
+      [
+        "怎么区分链路本地和全局地址？",
+        "fe80::/10 是链路本地 —— 只在本地链路有效、不可路由；全局地址以 2000::/3 开头。工具直接标出来，不用你背前缀。"
+      ]
+    ],
+    "ui": {
+      "badIpv6": "不是合法的 IPv6 地址",
+      "full": "完整写法",
+      "short": "压缩写法",
+      "type": "类型",
+      "groups": "分组",
+      "binary": "二进制",
+      "embedded": "内嵌 IPv4"
+    }
+  },
+  "ja": {
+    "title": "IPv6 アドレスの展開・短縮 — ToolPocket",
+    "desc": "IPv6 の完全表記と短縮表記を相互変換し、アドレスの種別も判定します。",
+    "h1": "IPv6 展開 / 短縮",
+    "lead": "IPv6 の完全表記と短縮表記を相互変換し、ループバック・リンクローカル・ユニークローカル・グローバルのいずれかを判定します。短縮規則と分類は目視で間違えやすい部分です。<code>::</code> は 1 回のみ、グループは 8 つ必要、<code>fe80::</code> は見た目が普通でもリンク内専用です。",
+    "faq": [
+      [
+        "展開すると何が嬉しいのですか？",
+        "比較と検索です。2001:db8::1 と 2001:0db8:0000::0001 は同じアドレスですが、完全表記にすると一目で分かります。"
+      ],
+      [
+        "リンクローカルとグローバルの見分け方は？",
+        "fe80::/10 はリンクローカル（リンク内のみ有効、ルーティング不可）、グローバルは 2000::/3 で始まります。本ツールでは自動で表示します。"
+      ]
+    ],
+    "ui": {
+      "badIpv6": "有効な IPv6 アドレスではありません",
+      "full": "完全表記",
+      "short": "短縮表記",
+      "type": "種別",
+      "groups": "グループ",
+      "binary": "バイナリ",
+      "embedded": "埋め込み IPv4"
+    }
+  }
+}

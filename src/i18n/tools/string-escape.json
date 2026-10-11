@@ -1,0 +1,75 @@
+{
+  "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
+  "en": {
+    "title": "String escape / unescape — JSON, JS, SQL, HTML, URL, regex — ToolPocket",
+    "desc": "Escape a string for JSON, JavaScript, SQL, HTML, URLs or regex — and turn it back.",
+    "h1": "String escape / unescape",
+    "lead": "The same string has six different correct spellings depending on where it goes. JSON cannot contain a raw newline or an unescaped quote; SQL needs single quotes doubled, not backslashed; a regex needs a pile of characters backslashed. This does it in one shot — and can turn any of them back into readable text.",
+    "faq": [
+      [
+        "Does escaping make my SQL safe?",
+        "No. This is for writing string literals correctly; it is not injection protection. Use parameterised queries for that — the tool's own hint says the same thing."
+      ],
+      [
+        "Which direction do I need?",
+        "Pick the target format and whether you are escaping or unescaping. The swap button flips both the text and the direction, so you can round-trip to check."
+      ]
+    ],
+    "ui": {
+      "badMode": "pick a format",
+      "decoded": "decoded",
+      "escaped": "escaped",
+      "noChange": "nothing to escape",
+      "fail": "failed",
+      "mode": "Format"
+    }
+  },
+  "zh": {
+    "title": "字符串转义 / 反转义 — JSON、JS、SQL、HTML、URL、正则 — ToolPocket",
+    "desc": "同一个字符串在六种地方有六种写法，一次转对，也能反着解回来。",
+    "h1": "字符串转义 / 反转义",
+    "lead": "同一个字符串，放进不同的地方有不同的正确写法：JSON 里不能有裸换行、也不能有没转义的双引号；SQL 里单引号要写成两个而不是加反斜杠；正则里一堆符号都得加反斜杠。这里一次转对，也能把任何一种解回原文。",
+    "faq": [
+      [
+        "转义之后我的 SQL 就安全了吗？",
+        "不是。这只解决「字面量怎么写才对」，不等于防注入 —— 防注入要用参数化查询。页面提示里也写了同一句话。"
+      ],
+      [
+        "该选哪个方向？",
+        "选目标格式，再选是转义还是反转义。「互换」按钮会把文字和方向一起翻过来，方便做一次往返校验。"
+      ]
+    ],
+    "ui": {
+      "badMode": "请选择一种格式",
+      "decoded": "已解码",
+      "escaped": "已转义",
+      "noChange": "没有需要转义的字符",
+      "fail": "失败",
+      "mode": "目标格式"
+    }
+  },
+  "ja": {
+    "title": "文字列のエスケープ / 解除 — JSON・JS・SQL・HTML・URL・正規表現 — ToolPocket",
+    "desc": "同じ文字列でも場所によって正しい書き方は 6 通り。まとめて変換し、元に戻せます。",
+    "h1": "文字列のエスケープ / 解除",
+    "lead": "同じ文字列でも、置く場所によって正しい書き方は異なります。JSON では生の改行や未エスケープの引用符が使えず、SQL では単引用符を 2 つ重ねる（バックスラッシュではない）必要があり、正規表現では多くの記号をエスケープします。ここでは一度に正しく変換でき、逆方向にも戻せます。",
+    "faq": [
+      [
+        "エスケープすれば SQL は安全ですか？",
+        "いいえ。これは文字列リテラルの書き方の話で、インジェクション対策ではありません。対策にはプレースホルダ（パラメータ化クエリ）を使ってください。"
+      ],
+      [
+        "どちら向きに使えばいいですか？",
+        "対象の形式と、エスケープか解除かを選びます。「入れ替え」ボタンで文字列と方向が同時に反転し、往復確認ができます。"
+      ]
+    ],
+    "ui": {
+      "badMode": "形式を選択してください",
+      "decoded": "デコードしました",
+      "escaped": "エスケープしました",
+      "noChange": "エスケープが必要な文字はありません",
+      "fail": "失敗しました",
+      "mode": "対象の形式"
+    }
+  }
+}

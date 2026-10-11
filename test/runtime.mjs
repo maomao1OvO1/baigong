@@ -869,5 +869,96 @@ console.log("\n㉕ 站内搜索（索引路径 / 打分 / 结果渲染）");
   else bad("清空后没收起", String(els.searchResults.hidden));
 }
 
+console.log("\n㉖ 本轮新增工具的关键算法");
+{
+  const ui = (name) => { const j = JSON.parse(fs.readFileSync(path.join(ROOT, "src/i18n/tools", name + ".json"), "utf8")); return j.en.ui; };
+  const U = (n, extra) => Object.assign(readUi("en"), ui(n), extra || {});
+
+  // ① Base32 / Base58：往返必须一致，且 Base32 输出只含 A-Z2-7
+  {
+    const { els } = loadTool("base32.js", ["input", "output", "mode", "status", "copy", "swap", "clear", "toast"], U("base32"), { mode: "b32-enc" });
+    els.input.value = "hello 世界";
+    els.input.fire("input");
+    const enc = els.output.value;
+    if (/^[A-Z2-7=]+$/.test(enc)) ok("Base32 输出只含 A-Z 与 2-7（字符集正确）");
+    else bad("Base32 字符集不对", enc);
+    els.mode.value = "b32-dec"; els.input.value = enc; els.input.fire("input");
+    if (els.output.value === "hello 世界") ok("Base32 往返一致（含中文）");
+    else bad("Base32 往返失败", els.output.value);
+    els.mode.value = "b58-enc"; els.input.value = "hello"; els.input.fire("input");
+    const b58 = els.output.value;
+    if (!/[0OIl]/.test(b58)) ok("Base58 输出不含易混字符 0 O I l");
+    else bad("Base58 里出现了易混字符", b58);
+    els.mode.value = "b58-dec"; els.input.value = b58; els.input.fire("input");
+    if (els.output.value === "hello") ok("Base58 往返一致");
+    else bad("Base58 往返失败", els.output.value);
+  }
+
+  // ② IPv6：展开 / 压缩 / 分类
+  {
+    const { els } = loadTool("ipv6.js", ["input", "output", "status", "copy", "clear", "toast"], U("ipv6"), {});
+    els.input.value = "2001:db8::1"; els.input.fire("input");
+    if (els.output.value.includes("2001:0db8:0000:0000:0000:0000:0000:0001")) ok("IPv6 展开正确（:: 补齐到八组）");
+    else bad("IPv6 展开不对", els.output.value.split("\n")[0]);
+    els.input.value = "fe80::1"; els.input.fire("input");
+    if (els.output.value.includes("link-local")) ok("IPv6 识别链路本地（fe80::）");
+    else bad("IPv6 分类不对", els.status.textContent);
+    els.input.value = "2001:db8::1::2"; els.input.fire("input");
+    if (els.status.className.includes("err")) ok("两个 :: 被拒绝（这是最常见的笔误）");
+    else bad("两个 :: 没被拦住", els.status.textContent);
+    els.input.value = "::1"; els.input.fire("input");
+    if (els.output.value.includes("loopback")) ok("::1 识别为回环");
+    else bad("回环识别失败", els.output.value);
+  }
+
+  // ③ 银行卡 / 身份证校验位
+  {
+    const { els } = loadTool("number-check.js", ["input", "output", "status", "copy", "clear", "toast"], U("number-check"), {});
+    els.input.value = "4111111111111111"; els.input.fire("input");     // 测试卡号，Luhn 合法
+    if (els.output.value.includes("✅") && els.output.value.includes("Visa")) ok("银行卡 Luhn 通过 + 识别 Visa");
+    else bad("Luhn 校验不对", els.output.value.split("\n")[0]);
+    els.input.value = "4111111111111112"; els.input.fire("input");     // 改一位
+    if (els.output.value.includes("❌")) ok("改一位数字就被抓出来（校验位的意义）");
+    else bad("错误卡号没报错", els.output.value.split("\n")[0]);
+    els.input.value = "11010519491231002X"; els.input.fire("input");   // 公开示例号码
+    if (els.output.value.includes("1949-12-31") && els.output.value.includes("✅")) ok("身份证校验位通过 + 解析出生日期");
+    else bad("身份证校验不对", els.output.value.split("\n")[0]);
+  }
+
+  // ④ 字符串转义：六个方向都要能往返
+  {
+    const { els } = loadTool("string-escape.js", ["input", "output", "mode", "status", "copy", "swap", "clear", "toast"], U("string-escape"), { mode: "json-enc" });
+    const raw = 'he said "hi"\nnext line';
+    els.input.value = raw; els.mode.value = "json-enc"; els.input.fire("input");
+    if (els.output.value.includes('\\"hi\\"') && els.output.value.includes("\\n")) ok("JSON 转义：引号与换行都处理了");
+    else bad("JSON 转义不对", els.output.value);
+    els.mode.value = "json-dec"; els.input.value = els.output.value; els.input.fire("input");
+    if (els.output.value === raw) ok("JSON 转义往返一致");
+    else bad("JSON 往返失败", els.output.value);
+    els.mode.value = "sql-enc"; els.input.value = "it's"; els.input.fire("input");
+    if (els.output.value === "it''s") ok("SQL 转义用两个单引号（不是反斜杠）");
+    else bad("SQL 转义不对", els.output.value);
+    els.mode.value = "regex-enc"; els.input.value = "a.b*c"; els.input.fire("input");
+    if (els.output.value === "a\\.b\\*c") ok("正则转义：点和星号都加了反斜杠");
+    else bad("正则转义不对", els.output.value);
+  }
+
+  // ⑤ JSON 路径取值
+  {
+    const { els } = loadTool("json-path.js", ["input", "output", "path", "pretty", "status", "copy", "clear", "toast"], U("json-path"), { pretty: false });
+    els.pretty.checked = false;
+    els.input.value = '{"data":{"items":[{"title":"first"},{"title":"second"}]}}';
+    els.path.value = "data.items[1].title"; els.input.fire("input");
+    if (els.output.value === '"second"') ok("按路径取到数组第 2 项（a[1].title）");
+    else bad("路径取值不对", els.output.value);
+    els.path.value = "data.items[*].title"; els.input.fire("input");
+    if (els.output.value === '["first","second"]') ok("通配符 a[*].b 汇总成数组");
+    else bad("通配符取值不对", els.output.value);
+    els.path.value = "data.nope"; els.input.fire("input");
+    if (els.status.className.includes("err")) ok("路径不存在时明确报错（不返回 undefined 糊弄）");
+    else bad("错误路径没有报错", els.status.textContent);
+  }
+}
+
 console.log(`\n结果：${pass} 项通过，${fail} 项失败`);
 process.exit(fail ? 1 : 0);

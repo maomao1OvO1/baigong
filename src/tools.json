@@ -19,6 +19,119 @@
   },
   "tools": [
     {
+      "id": "markdown",
+      "icon": "📝",
+      "cat": "text",
+      "kind": "text",
+      "script": "markdown.js",
+      "i18n": "markdown",
+      "buttons": ["copy", "clear"],
+      "options": []
+    },
+    {
+      "id": "json-path",
+      "icon": "🎯",
+      "cat": "dev",
+      "kind": "text",
+      "script": "json-path.js",
+      "i18n": "json-path",
+      "buttons": ["copy", "clear"],
+      "options": [
+        { "type": "text", "id": "path", "label": "path", "placeholder": "pathPh" },
+        { "type": "checkbox", "id": "pretty", "label": "pretty", "checked": true }
+      ]
+    },
+    {
+      "id": "timezone",
+      "icon": "🌏",
+      "cat": "time",
+      "kind": "text",
+      "script": "timezone.js",
+      "i18n": "timezone",
+      "buttons": ["copy", "clear"],
+      "options": [
+        { "type": "select", "id": "zone", "label": "zone", "choices": [["local", "zoneLocal"], ["UTC", "UTC (UTC+0)"], ["Asia/Shanghai", "北京 / 上海 (UTC+8)"], ["Asia/Tokyo", "东京 (UTC+9)"], ["America/New_York", "纽约 (UTC-5/-4)"], ["Europe/London", "伦敦 (UTC+0/+1)"]] }
+      ]
+    },
+    {
+      "id": "yaml-json",
+      "icon": "📄",
+      "cat": "dev",
+      "kind": "text",
+      "script": "yaml-json.js",
+      "i18n": "yaml-json",
+      "buttons": ["copy", "swap", "clear"],
+      "options": [
+        { "type": "select", "id": "mode", "label": "mode", "choices": [["y2j", "y2j"], ["j2y", "j2y"]] }
+      ]
+    },
+    {
+      "id": "http-status",
+      "icon": "🚦",
+      "cat": "dev",
+      "kind": "text",
+      "script": "http-status.js",
+      "i18n": "http-status",
+      "buttons": ["copy", "clear"],
+      "options": []
+    },
+    {
+      "id": "number-words",
+      "icon": "💰",
+      "cat": "text",
+      "kind": "text",
+      "script": "number-words.js",
+      "i18n": "number-words",
+      "buttons": ["copy", "clear"],
+      "options": [
+        { "type": "select", "id": "mode", "label": "mode", "choices": [["cn", "cn"], ["fin", "fin"], ["en", "en"]] }
+      ]
+    },
+    {
+      "id": "number-check",
+      "icon": "💳",
+      "cat": "security",
+      "kind": "text",
+      "script": "number-check.js",
+      "i18n": "number-check",
+      "buttons": ["copy", "clear"],
+      "options": []
+    },
+    {
+      "id": "string-escape",
+      "icon": "🧼",
+      "cat": "text",
+      "kind": "text",
+      "script": "string-escape.js",
+      "i18n": "string-escape",
+      "buttons": ["copy", "swap", "clear"],
+      "options": [
+        { "type": "select", "id": "mode", "label": "mode", "choices": [["json-enc", "JSON → escaped"], ["json-dec", "JSON → plain"], ["js-enc", "JS → escaped"], ["js-dec", "JS → plain"], ["sql-enc", "SQL → escaped"], ["sql-dec", "SQL → plain"], ["html-enc", "HTML → entities"], ["html-dec", "HTML → plain"], ["url-enc", "URL → percent"], ["url-dec", "URL → plain"], ["regex-enc", "regex → escaped"], ["regex-dec", "regex → plain"]] }
+      ]
+    },
+    {
+      "id": "base32",
+      "icon": "🔣",
+      "cat": "dev",
+      "kind": "text",
+      "script": "base32.js",
+      "i18n": "base32",
+      "buttons": ["copy", "swap", "clear"],
+      "options": [
+        { "type": "select", "id": "mode", "label": "mode", "choices": [["b32-enc", "Base32 → encode"], ["b32-dec", "Base32 → decode"], ["b58-enc", "Base58 → encode"], ["b58-dec", "Base58 → decode"]] }
+      ]
+    },
+    {
+      "id": "ipv6",
+      "icon": "🛰️",
+      "cat": "dev",
+      "kind": "text",
+      "script": "ipv6.js",
+      "i18n": "ipv6",
+      "buttons": ["copy", "clear"],
+      "options": []
+    },
+    {
       "id": "html-entities",
       "cat": "text",
       "icon": "🧷",
@@ -46,7 +159,7 @@
     {
       "id": "url-parser",
       "cat": "dev",
-      "icon": "🔗",
+      "icon": "🧭",
       "kind": "text",
       "script": "url-parser.js",
       "i18n": "url-parser",
@@ -348,7 +461,7 @@
     {
       "id": "color-converter",
       "cat": "color",
-      "icon": "🎨",
+      "icon": "🌈",
       "kind": "text",
       "script": "color-converter.js",
       "i18n": "color-converter",

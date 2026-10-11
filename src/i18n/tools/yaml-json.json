@@ -1,0 +1,78 @@
+{
+  "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
+  "en": {
+    "title": "YAML to JSON converter (and back) — ToolPocket",
+    "desc": "Convert YAML to JSON or JSON to YAML. Unsupported syntax fails loudly instead of guessing.",
+    "h1": "YAML ⇄ JSON converter",
+    "lead": "The one you reach for when editing a Kubernetes manifest or reading a CI yaml. Covers the common subset: key/value, nested indentation, lists, inline <code>[a, b]</code> / <code>{a: 1}</code>, comments and block scalars.<br>Unsupported syntax — anchors, multiple documents — <b>fails loudly with a line number</b>, because a config that looks right but isn't is far worse than an error.",
+    "faq": [
+      [
+        "Why no anchors or multi-document support?",
+        "They're rare in configs but multiply parser complexity. A clear error beats a half-working conversion that silently produces something wrong."
+      ],
+      [
+        "Are comments preserved?",
+        "No — JSON has no comments, so they're dropped. If you need them, merge the yaml by hand afterwards."
+      ]
+    ],
+    "ui": {
+      "yamlOk": "converted from YAML",
+      "jsonOk": "converted from JSON",
+      "badYaml": "YAML error",
+      "badJson": "JSON error",
+      "mode": "Direction",
+      "y2j": "YAML → JSON",
+      "j2y": "JSON → YAML"
+    }
+  },
+  "zh": {
+    "title": "YAML 转 JSON（也能转回来）— ToolPocket",
+    "desc": "YAML 与 JSON 互转，遇到不支持的语法会明确报错，而不是猜。",
+    "h1": "YAML ⇄ JSON 互转",
+    "lead": "改 K8s 配置、看 CI 的 yaml 时最需要它。支持常用子集：键值、嵌套缩进、数组、行内写法 <code>[a, b]</code> / <code>{a: 1}</code>、注释、多行文本块。<br>遇到锚点、多文档这些不支持的语法会<b>直接报错并指出行号</b> —— 一份「看起来对、其实错了」的配置，比一个报错危险得多。",
+    "faq": [
+      [
+        "为什么不支持锚点和多文档？",
+        "那两类语法在配置里占比很小，却会让解析器复杂好几倍。与其半吊子支持、结果错得看不出来，不如明确报错。"
+      ],
+      [
+        "注释会保留吗？",
+        "不会 —— JSON 本身没有注释，转换过程里注释会丢掉。想保留的话，改完 yaml 再手工合回来。"
+      ]
+    ],
+    "ui": {
+      "yamlOk": "已从 YAML 转换",
+      "jsonOk": "已从 JSON 转换",
+      "badYaml": "YAML 有误",
+      "badJson": "JSON 有误",
+      "mode": "转换方向",
+      "y2j": "YAML → JSON",
+      "j2y": "JSON → YAML"
+    }
+  },
+  "ja": {
+    "title": "YAML を JSON に変換（逆も可）— ToolPocket",
+    "desc": "YAML と JSON の相互変換。未対応の記法は推測せずエラーで知らせます。",
+    "h1": "YAML ⇄ JSON 変換",
+    "lead": "K8s のマニフェストや CI の yaml を扱うときに。一般的な記法に対応：キーと値、ネストしたインデント、リスト、インラインの <code>[a, b]</code> / <code>{a: 1}</code>、コメント、ブロックスカラー。<br>アンカーや複数ドキュメントなど未対応の記法は<b>行番号付きでエラー</b>にします。一見正しい設定ファイルが実は間違っている、という状態が最も危険だからです。",
+    "faq": [
+      [
+        "アンカーや複数ドキュメントに対応しない理由は？",
+        "設定ファイルでは稀でありながら、パーサーが数倍複雑になります。中途半端な対応で誤った結果を返すより、明確にエラーを出す方が安全です。"
+      ],
+      [
+        "コメントは保持されますか？",
+        "いいえ。JSON にコメントは無いため失われます。必要な場合は変換後に手作業で戻してください。"
+      ]
+    ],
+    "ui": {
+      "yamlOk": "YAML から変換しました",
+      "jsonOk": "JSON から変換しました",
+      "badYaml": "YAML のエラー",
+      "badJson": "JSON のエラー",
+      "mode": "変換方向",
+      "y2j": "YAML → JSON",
+      "j2y": "JSON → YAML"
+    }
+  }
+}
