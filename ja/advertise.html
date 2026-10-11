@@ -20,13 +20,19 @@
 <body>
 <header class="top">
   <a class="brand" href="/ja/index.html">🧰 ToolPocket</a>
-  <nav class="langs"><a href="/advertise.html">English</a><a href="/zh/advertise.html">中文</a><a href="/ja/advertise.html" class="on" aria-current="page">日本語</a></nav>
+  <nav class="langs"><a href="/ja/index.html#search" title="search" aria-label="search">🔍</a><a href="/advertise.html">English</a><a href="/zh/advertise.html">中文</a><a href="/ja/advertise.html" class="on" aria-current="page">日本語</a></nav>
 </header>
 
 <main>
   <p class="crumb"><a href="/ja/index.html">← ツール一覧</a></p>
   <h1>ToolPocket への広告掲載</h1>
   <p class="lead">ToolPocket は<b>3 言語</b>（日本語・英語・中国語）の無料ブラウザツールサイトです。訪問者は検索から、明確な目的を持って来ます — 画像を圧縮する、パスワードを確認する、タイムスタンプを変換する。</p>
+
+  <div class="searchbox">
+    <span class="s-ico" aria-hidden="true">🔍</span>
+    <input id="searchInput" type="search" autocomplete="off" placeholder="ツールを検索 — 例：圧縮、json、パスワード…" aria-label="ツールを検索 — 例：圧縮、json、パスワード…">
+  </div>
+  <ul class="searchresults" id="searchResults" hidden></ul>
 
   <section>
     <h2>誰が見ているか</h2>
@@ -82,6 +88,7 @@
 </main>
 
 <footer><p>ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。</p></footer>
+<script src="/assets/search.js" defer></script>
 <script>
 /* 把 data-u / data-d 拼成邮箱 —— 放在页面里而不是服务端，是为了防爬虫 */
 [].forEach.call(document.querySelectorAll(".email"), function (el) {

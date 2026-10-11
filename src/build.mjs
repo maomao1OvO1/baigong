@@ -68,7 +68,7 @@ function topbar(lang, out) {
     `<a href="${pathOf(l, out)}"${l.code === lang.code ? ' class="on" aria-current="page"' : ""}>${UI.langName[l.code]}</a>`).join("");
   return `<header class="top">
   <a class="brand" href="${pathOf(lang, "index.html")}">🧰 ${UI.brand}</a>
-  <nav class="langs">${links}</nav>
+  <nav class="langs"><a href="${pathOf(lang, "index.html")}#search" title="search" aria-label="search">🔍</a>${links}</nav>
 </header>`;
 }
 
@@ -139,6 +139,44 @@ const CONTACT_SCRIPT = `<script>
   el.textContent = el.dataset.u + "@" + el.dataset.d;
 });
 </script>`;
+
+
+/* ── 站内搜索 ──────────────────────────────────────────────────────────── */
+/** 生成内嵌首页的搜索索引：每个工具一条，含三语名称/描述与手工关键词。
+    关键词表让"图"、"图片"这类日常说法也能搜到对应工具（名称里未必有这些词）。 */
+const SEARCH_KEYS = {
+  "compress-image": ["compress", "shrink", "size", "reduce", "jpg", "png", "webp", "photo", "image",
+                     "压缩", "缩小", "体积", "图片", "照片", "大小"],
+  "convert-image": ["convert", "format", "png", "jpg", "webp", "heic", "transfer", "image",
+                    "转换", "格式", "图片", "照片", "换格式"],
+  "base64": ["base64", "encode", "decode", "utf-8", "text", "编码", "解码", "文本", "乱码"],
+  "json-format": ["json", "format", "pretty", "minify", "validate", "beautify",
+                  "格式化", "美化", "压缩", "校验", "校验json"],
+  "color-converter": ["color", "colour", "hex", "rgb", "hsl", "picker", "palette",
+                      "颜色", "色值", "取色", "配色", "调色"],
+  "text-tools": ["text", "case", "uppercase", "lowercase", "duplicate", "sort", "count", "word",
+                 "文本", "大小写", "去重", "排序", "字数", "统计", "行数"],
+  "unit-converter": ["unit", "convert", "length", "weight", "temperature", "celsius", "fahrenheit", "data size",
+                     "单位", "换算", "长度", "重量", "温度", "摄氏度", "华氏度", "数据大小", "MB", "GB"],
+  "url-codec": ["url", "encode", "decode", "percent", "query", "uri", "链接", "网址", "编码", "解码", "参数"],
+  "timestamp": ["timestamp", "unix", "date", "time", "epoch", "utc", "时间戳", "日期", "时间", "转换"],
+  "password-gen": ["password", "generate", "random", "strong", "secure", "crypto", "密码", "生成", "随机", "强度", "安全"],
+  "password-strength": ["password", "strength", "breach", "leak", "pwned", "hacked", "check",
+                        "密码", "强度", "检测", "泄露", "泄露查询", "被拖库", "安全"]
+};
+
+function searchIndex() {
+  return TOOLS.map(function (tool) {
+    const it = TOOL_I18N[tool.id];
+    const out = { id: tool.id, icon: tool.icon, url: "tools/" + tool.id + ".html",
+                  name: {}, desc: {}, keys: SEARCH_KEYS[tool.id] || [] };
+    LANGS.forEach(function (l) {
+      out.name[l.code] = it[l.code].h1;
+      out.desc[l.code] = it[l.code].lead.replace(/<[^>]+>/g, "");
+    });
+    return out;
+  });
+}
 
 /* ── 工具页 ─────────────────────────────────────────────────────────────── */
 
@@ -246,6 +284,12 @@ ${topbar(lang, out)}
   <p class="crumb"><a href="${pathOf(lang, "index.html")}">${rich(UI.backToTools[lang.code])}</a></p>
   <h1>${rich(t.h1)}</h1>
   <p class="lead">${rich(t.lead)}</p>
+
+  <div class="searchbox">
+    <span class="s-ico" aria-hidden="true">🔍</span>
+    <input id="searchInput" type="search" autocomplete="off" placeholder="${esc(UI.searchPlaceholder[lang.code])}" aria-label="${esc(UI.searchPlaceholder[lang.code])}">
+  </div>
+  <ul class="searchresults" id="searchResults" hidden></ul>
   <p class="badge-line"><span class="pill">${rich(UI.privacyNote[lang.code])}</span></p>
 
 ${body}
@@ -298,6 +342,12 @@ ${topbar(lang, out)}
   <h1>${rich(t.h1)}</h1>
   <p class="lead">${rich(t.lead)}</p>
 
+  <div class="searchbox">
+    <span class="s-ico" aria-hidden="true">🔍</span>
+    <input id="searchInput" type="search" autocomplete="off" placeholder="${esc(UI.searchPlaceholder[lang.code])}" aria-label="${esc(UI.searchPlaceholder[lang.code])}">
+  </div>
+  <ul class="searchresults" id="searchResults" hidden></ul>
+
   <h2>${rich(t.toolsHeading)}</h2>
   <ul class="grid">
 ${cards}
@@ -315,6 +365,7 @@ ${adSlot(lang, "home-self")}
 ${adSlot(lang, "home-bottom")}
 </main>
 
+<script src="${asset("search.js")}" defer></script>
 ${CONTACT_SCRIPT}
 
 ${footer(lang)}
@@ -343,6 +394,12 @@ ${topbar(lang, out)}
   <p class="crumb"><a href="${pathOf(lang, "index.html")}">${rich(UI.backToTools[lang.code])}</a></p>
   <h1>${rich(t.h1)}</h1>
   <p class="lead">${rich(t.lead)}</p>
+
+  <div class="searchbox">
+    <span class="s-ico" aria-hidden="true">🔍</span>
+    <input id="searchInput" type="search" autocomplete="off" placeholder="${esc(UI.searchPlaceholder[lang.code])}" aria-label="${esc(UI.searchPlaceholder[lang.code])}">
+  </div>
+  <ul class="searchresults" id="searchResults" hidden></ul>
 
   <section>
     <h2>${rich(t.whoHeading)}</h2>
@@ -391,6 +448,7 @@ ${rows(t.payMethods)}
 </main>
 
 ${footer(lang)}
+<script src="${asset("search.js")}" defer></script>
 ${CONTACT_SCRIPT}
 </body>
 </html>
@@ -434,5 +492,9 @@ ${entries.join("\n")}
 </urlset>
 `;
 write("sitemap.xml", sitemap);
+
+/* 搜索索引单独成文件：首页不加载它，用户真的开始搜了才 fetch ⇒ 首页保持最小 */
+const idxJson = JSON.stringify(searchIndex());
+write("assets/search.json", idxJson);
 
 console.log(`生成完成：${count} 个文件 · ${LANGS.length} 种语言 · ${TOOLS.length} 个工具`);

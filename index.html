@@ -20,12 +20,18 @@
 <body>
 <header class="top">
   <a class="brand" href="/index.html">🧰 ToolPocket</a>
-  <nav class="langs"><a href="/index.html" class="on" aria-current="page">English</a><a href="/zh/index.html">中文</a><a href="/ja/index.html">日本語</a></nav>
+  <nav class="langs"><a href="/index.html#search" title="search" aria-label="search">🔍</a><a href="/index.html" class="on" aria-current="page">English</a><a href="/zh/index.html">中文</a><a href="/ja/index.html">日本語</a></nav>
 </header>
 
 <main>
   <h1>Tools that don't want your email address</h1>
   <p class="lead">Most free tools ask for an account first and your files second. These don't. Everything here runs <b>inside your browser</b>, so your files never touch a server — no signup, no “3 files per hour”, no queue.</p>
+
+  <div class="searchbox">
+    <span class="s-ico" aria-hidden="true">🔍</span>
+    <input id="searchInput" type="search" autocomplete="off" placeholder="Search tools — e.g. compress, json, 密码…" aria-label="Search tools — e.g. compress, json, 密码…">
+  </div>
+  <ul class="searchresults" id="searchResults" hidden></ul>
 
   <h2>What's here</h2>
   <ul class="grid">
@@ -114,6 +120,7 @@
 </aside>
 </main>
 
+<script src="/assets/search.js" defer></script>
 <script>
 /* 把 data-u / data-d 拼成邮箱 —— 放在页面里而不是服务端，是为了防爬虫 */
 [].forEach.call(document.querySelectorAll(".email"), function (el) {

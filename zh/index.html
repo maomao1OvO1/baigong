@@ -20,12 +20,18 @@
 <body>
 <header class="top">
   <a class="brand" href="/zh/index.html">🧰 ToolPocket</a>
-  <nav class="langs"><a href="/index.html">English</a><a href="/zh/index.html" class="on" aria-current="page">中文</a><a href="/ja/index.html">日本語</a></nav>
+  <nav class="langs"><a href="/zh/index.html#search" title="search" aria-label="search">🔍</a><a href="/index.html">English</a><a href="/zh/index.html" class="on" aria-current="page">中文</a><a href="/ja/index.html">日本語</a></nav>
 </header>
 
 <main>
   <h1>不跟你要邮箱的工具</h1>
   <p class="lead">大多数「免费工具」先跟你要账号，再跟你要文件。这里不要。每个工具都<b>跑在你自己浏览器里</b>，文件根本不经过服务器 —— 不用注册、没有「每小时 3 张」、也不用排队。</p>
+
+  <div class="searchbox">
+    <span class="s-ico" aria-hidden="true">🔍</span>
+    <input id="searchInput" type="search" autocomplete="off" placeholder="搜索工具 —— 例如：压缩、json、密码…" aria-label="搜索工具 —— 例如：压缩、json、密码…">
+  </div>
+  <ul class="searchresults" id="searchResults" hidden></ul>
 
   <h2>这里有什么</h2>
   <ul class="grid">
@@ -114,6 +120,7 @@
 </aside>
 </main>
 
+<script src="/assets/search.js" defer></script>
 <script>
 /* 把 data-u / data-d 拼成邮箱 —— 放在页面里而不是服务端，是为了防爬虫 */
 [].forEach.call(document.querySelectorAll(".email"), function (el) {

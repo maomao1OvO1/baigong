@@ -21,13 +21,19 @@
 <body>
 <header class="top">
   <a class="brand" href="/ja/index.html">🧰 ToolPocket</a>
-  <nav class="langs"><a href="/tools/json-format.html">English</a><a href="/zh/tools/json-format.html">中文</a><a href="/ja/tools/json-format.html" class="on" aria-current="page">日本語</a></nav>
+  <nav class="langs"><a href="/ja/index.html#search" title="search" aria-label="search">🔍</a><a href="/tools/json-format.html">English</a><a href="/zh/tools/json-format.html">中文</a><a href="/ja/tools/json-format.html" class="on" aria-current="page">日本語</a></nav>
 </header>
 
 <main>
   <p class="crumb"><a href="/ja/index.html">← ツール一覧</a></p>
   <h1>JSON の整形と検証</h1>
   <p class="lead">ぐちゃぐちゃの JSON を貼れば、読める形になります。壊れている場合は<b>どこが壊れているか</b>を示します。「unexpected token」だけでは分かりませんから。</p>
+
+  <div class="searchbox">
+    <span class="s-ico" aria-hidden="true">🔍</span>
+    <input id="searchInput" type="search" autocomplete="off" placeholder="ツールを検索 — 例：圧縮、json、パスワード…" aria-label="ツールを検索 — 例：圧縮、json、パスワード…">
+  </div>
+  <ul class="searchresults" id="searchResults" hidden></ul>
   <p class="badge-line"><span class="pill">すべてブラウザ内で処理されます。送信も保存もしていません。</span></p>
 
 <div class="panel">
@@ -67,7 +73,7 @@
 
 <footer><p>ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。</p></footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script>window.T = {"langName":"日本語","footer":"ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"コピーできませんでした。手動で選択してください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理されます。送信も保存もしていません。","mode":"モード","pretty":"整形（インデント）","minify":"1 行に圧縮","inputPh":"ここに JSON を貼り付けてください…","outputPh":"整形結果がここに表示されます","valid":"有効な JSON です ✓","invalid":"JSON に誤りがあります：","modeHint":"整形は読みやすくインデントを付け、圧縮は空白をすべて除去して転送向けにします。"};</script>
+<script>window.T = {"langName":"日本語","footer":"ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"コピーできませんでした。手動で選択してください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理されます。送信も保存もしていません。","searchPlaceholder":"ツールを検索 — 例：圧縮、json、パスワード…","noResults":"該当するツールがありません。別の言葉でお試しを。","mode":"モード","pretty":"整形（インデント）","minify":"1 行に圧縮","inputPh":"ここに JSON を貼り付けてください…","outputPh":"整形結果がここに表示されます","valid":"有効な JSON です ✓","invalid":"JSON に誤りがあります：","modeHint":"整形は読みやすくインデントを付け、圧縮は空白をすべて除去して転送向けにします。"};</script>
 <script src="/assets/tools/_shared.js" defer></script>
 <script src="/assets/tools/json-format.js" defer></script>
 undefined

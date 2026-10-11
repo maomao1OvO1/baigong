@@ -21,13 +21,19 @@
 <body>
 <header class="top">
   <a class="brand" href="/index.html">🧰 ToolPocket</a>
-  <nav class="langs"><a href="/tools/unit-converter.html" class="on" aria-current="page">English</a><a href="/zh/tools/unit-converter.html">中文</a><a href="/ja/tools/unit-converter.html">日本語</a></nav>
+  <nav class="langs"><a href="/index.html#search" title="search" aria-label="search">🔍</a><a href="/tools/unit-converter.html" class="on" aria-current="page">English</a><a href="/zh/tools/unit-converter.html">中文</a><a href="/ja/tools/unit-converter.html">日本語</a></nav>
 </header>
 
 <main>
   <p class="crumb"><a href="/index.html">← All tools</a></p>
   <h1>Unit converter</h1>
   <p class="lead">Type one value and see <b>every</b> unit in that category at once — no “pick from and to” dropdown dance. Handles length, weight, data size and temperature.</p>
+
+  <div class="searchbox">
+    <span class="s-ico" aria-hidden="true">🔍</span>
+    <input id="searchInput" type="search" autocomplete="off" placeholder="Search tools — e.g. compress, json, 密码…" aria-label="Search tools — e.g. compress, json, 密码…">
+  </div>
+  <ul class="searchresults" id="searchResults" hidden></ul>
   <p class="badge-line"><span class="pill">Runs entirely in your browser. Nothing is uploaded or stored.</span></p>
 
 <div class="panel">
@@ -68,7 +74,7 @@
 
 <footer><p>ToolPocket · Everything runs on your device — nothing is uploaded.</p></footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script>window.T = {"langName":"English","footer":"ToolPocket · Everything runs on your device — nothing is uploaded.","nav":"All tools","backToTools":"← All tools","copy":"Copy result","swap":"Swap","clear":"Clear","download":"Download","copied":"Copied to clipboard","copyFail":"Copy failed — select the text manually","inputLabel":"Input","outputLabel":"Result","privacyNote":"Runs entirely in your browser. Nothing is uploaded or stored.","category":"Category","catLength":"Length","catWeight":"Weight","catData":"Data size","catTemp":"Temperature","value":"Value","valuePh":"Enter a number","outputPh":"All units appear here","fromCelsius":"Input is treated as °C","unitLabel":"Unit","categoryHint":"Length, weight, data size or temperature. All units in the category are shown at once.","valueHint":"Type a number — the unit it is in is shown next to the box (m, kg, MB or °C)."};</script>
+<script>window.T = {"langName":"English","footer":"ToolPocket · Everything runs on your device — nothing is uploaded.","nav":"All tools","backToTools":"← All tools","copy":"Copy result","swap":"Swap","clear":"Clear","download":"Download","copied":"Copied to clipboard","copyFail":"Copy failed — select the text manually","inputLabel":"Input","outputLabel":"Result","privacyNote":"Runs entirely in your browser. Nothing is uploaded or stored.","searchPlaceholder":"Search tools — e.g. compress, json, 密码…","noResults":"No tool matches that. Try another word?","category":"Category","catLength":"Length","catWeight":"Weight","catData":"Data size","catTemp":"Temperature","value":"Value","valuePh":"Enter a number","outputPh":"All units appear here","fromCelsius":"Input is treated as °C","unitLabel":"Unit","categoryHint":"Length, weight, data size or temperature. All units in the category are shown at once.","valueHint":"Type a number — the unit it is in is shown next to the box (m, kg, MB or °C)."};</script>
 <script src="/assets/tools/_shared.js" defer></script>
 <script src="/assets/tools/unit-converter.js" defer></script>
 undefined

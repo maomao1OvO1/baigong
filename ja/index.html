@@ -20,12 +20,18 @@
 <body>
 <header class="top">
   <a class="brand" href="/ja/index.html">🧰 ToolPocket</a>
-  <nav class="langs"><a href="/index.html">English</a><a href="/zh/index.html">中文</a><a href="/ja/index.html" class="on" aria-current="page">日本語</a></nav>
+  <nav class="langs"><a href="/ja/index.html#search" title="search" aria-label="search">🔍</a><a href="/index.html">English</a><a href="/zh/index.html">中文</a><a href="/ja/index.html" class="on" aria-current="page">日本語</a></nav>
 </header>
 
 <main>
   <h1>メールアドレスを聞いてこないツール</h1>
   <p class="lead">世の中の「無料ツール」は、まずアカウントを求めてきます。ここでは求めません。すべて<b>お使いのブラウザの中で</b>動くので、ファイルがサーバーを経由することはありません。登録も、たったの 3 枚までといった制限も、順番待ちもありません。</p>
+
+  <div class="searchbox">
+    <span class="s-ico" aria-hidden="true">🔍</span>
+    <input id="searchInput" type="search" autocomplete="off" placeholder="ツールを検索 — 例：圧縮、json、パスワード…" aria-label="ツールを検索 — 例：圧縮、json、パスワード…">
+  </div>
+  <ul class="searchresults" id="searchResults" hidden></ul>
 
   <h2>使えるツール</h2>
   <ul class="grid">
@@ -114,6 +120,7 @@
 </aside>
 </main>
 
+<script src="/assets/search.js" defer></script>
 <script>
 /* 把 data-u / data-d 拼成邮箱 —— 放在页面里而不是服务端，是为了防爬虫 */
 [].forEach.call(document.querySelectorAll(".email"), function (el) {

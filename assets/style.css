@@ -209,7 +209,33 @@ details p { margin: 9px 0 0; color: var(--muted); font-size: 14px; }
   .ad-cta { width: 100%; text-align: center; }
 }
 
-/* ── 招租页的规格表 ── */
+/* ── 站内搜索（纯前端过滤，零请求）── */
+.searchbox {
+  display: flex; align-items: center; gap: 10px; margin: 18px 0 0;
+  padding: 11px 14px; border: 1px solid var(--line); border-radius: var(--radius);
+  background: var(--card); box-shadow: var(--shadow);
+}
+.searchbox .s-ico { font-size: 16px; opacity: .8; }
+.searchbox input {
+  flex: 1; border: 0; background: transparent; color: var(--fg);
+  font-size: 15px; outline: none; min-width: 0; padding: 2px 0;
+}
+.searchbox input::placeholder { color: var(--muted); }
+.searchbox:focus-within { border-color: var(--brand); }
+.searchresults { list-style: none; padding: 0; margin: 8px 0 0; }
+.searchresults li { border: 1px solid var(--line); border-radius: 11px; margin-top: 8px; background: var(--card); }
+.searchresults a {
+  display: flex; align-items: center; gap: 11px; padding: 11px 13px;
+  text-decoration: none; color: inherit;
+}
+.searchresults a:hover { border-radius: 11px; background: var(--brand-soft); }
+.searchresults .s-ico { font-size: 19px; }
+.searchresults .s-meta { min-width: 0; }
+.searchresults .s-meta b { display: block; font-size: 14.5px; }
+.searchresults .s-meta span { color: var(--muted); font-size: 12.5px; }
+.searchresults .empty { padding: 12px 14px; color: var(--muted); font-size: 13.5px; }
+
+/* ── 规格表 ── */
 table.spec { width: 100%; border-collapse: collapse; font-size: 14px; margin: 6px 0 0; }
 table.spec td { padding: 11px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
 table.spec td:first-child { width: 30%; }

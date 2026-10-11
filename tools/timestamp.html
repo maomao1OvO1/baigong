@@ -21,13 +21,19 @@
 <body>
 <header class="top">
   <a class="brand" href="/index.html">🧰 ToolPocket</a>
-  <nav class="langs"><a href="/tools/timestamp.html" class="on" aria-current="page">English</a><a href="/zh/tools/timestamp.html">中文</a><a href="/ja/tools/timestamp.html">日本語</a></nav>
+  <nav class="langs"><a href="/index.html#search" title="search" aria-label="search">🔍</a><a href="/tools/timestamp.html" class="on" aria-current="page">English</a><a href="/zh/tools/timestamp.html">中文</a><a href="/ja/tools/timestamp.html">日本語</a></nav>
 </header>
 
 <main>
   <p class="crumb"><a href="/index.html">← All tools</a></p>
   <h1>Unix timestamp converter</h1>
   <p class="lead">Paste a timestamp or a date and see both <b>local time and UTC</b> side by side — plus ISO 8601. Auto-detects seconds vs milliseconds, which is the part people usually get wrong.</p>
+
+  <div class="searchbox">
+    <span class="s-ico" aria-hidden="true">🔍</span>
+    <input id="searchInput" type="search" autocomplete="off" placeholder="Search tools — e.g. compress, json, 密码…" aria-label="Search tools — e.g. compress, json, 密码…">
+  </div>
+  <ul class="searchresults" id="searchResults" hidden></ul>
   <p class="badge-line"><span class="pill">Runs entirely in your browser. Nothing is uploaded or stored.</span></p>
 
 <div class="panel">
@@ -68,7 +74,7 @@
 
 <footer><p>ToolPocket · Everything runs on your device — nothing is uploaded.</p></footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script>window.T = {"langName":"English","footer":"ToolPocket · Everything runs on your device — nothing is uploaded.","nav":"All tools","backToTools":"← All tools","copy":"Copy result","swap":"Swap","clear":"Clear","download":"Download","copied":"Copied to clipboard","copyFail":"Copy failed — select the text manually","inputLabel":"Input","outputLabel":"Result","privacyNote":"Runs entirely in your browser. Nothing is uploaded or stored.","mode":"Direction","toDate":"Timestamp → Date","toSec":"Date → Timestamp","inputPh":"e.g. 1791734016  or  2026-10-11 12:30:45","outputPh":"Result appears here","localTime":"Local","now":"Use current time","modeHint":"Either direction. Seconds (10 digits) and milliseconds (13 digits) are auto-detected."};</script>
+<script>window.T = {"langName":"English","footer":"ToolPocket · Everything runs on your device — nothing is uploaded.","nav":"All tools","backToTools":"← All tools","copy":"Copy result","swap":"Swap","clear":"Clear","download":"Download","copied":"Copied to clipboard","copyFail":"Copy failed — select the text manually","inputLabel":"Input","outputLabel":"Result","privacyNote":"Runs entirely in your browser. Nothing is uploaded or stored.","searchPlaceholder":"Search tools — e.g. compress, json, 密码…","noResults":"No tool matches that. Try another word?","mode":"Direction","toDate":"Timestamp → Date","toSec":"Date → Timestamp","inputPh":"e.g. 1791734016  or  2026-10-11 12:30:45","outputPh":"Result appears here","localTime":"Local","now":"Use current time","modeHint":"Either direction. Seconds (10 digits) and milliseconds (13 digits) are auto-detected."};</script>
 <script src="/assets/tools/_shared.js" defer></script>
 <script src="/assets/tools/timestamp.js" defer></script>
 undefined

@@ -139,7 +139,10 @@ let broken = 0;
 for (const f of htmls) {
   const text = fs.readFileSync(f, "utf8");
   for (const m of text.matchAll(/(?:href|src)="(\/[^"]+)"/g)) {
-    if (!fs.existsSync(path.join(ROOT, m[1].slice(1)))) { broken++; bad(`${path.relative(ROOT, f)} → ${m[1]}`); }
+    // 去掉查询串与锚点再判断 —— 否则 /index.html#search 这种会被当成不存在的文件（测过一次假红）
+    const 路径 = m[1].split("#")[0].split("?")[0];
+    if (!路径 || 路径 === "/") continue;
+    if (!fs.existsSync(path.join(ROOT, 路径.slice(1)))) { broken++; bad(`${path.relative(ROOT, f)} → ${m[1]}`); }
   }
 }
 if (!broken) ok(`${htmls.length} 个 HTML 的本地资源引用全部有效`);

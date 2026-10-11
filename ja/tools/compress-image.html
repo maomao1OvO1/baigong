@@ -21,13 +21,19 @@
 <body>
 <header class="top">
   <a class="brand" href="/ja/index.html">🧰 ToolPocket</a>
-  <nav class="langs"><a href="/tools/compress-image.html">English</a><a href="/zh/tools/compress-image.html">中文</a><a href="/ja/tools/compress-image.html" class="on" aria-current="page">日本語</a></nav>
+  <nav class="langs"><a href="/ja/index.html#search" title="search" aria-label="search">🔍</a><a href="/tools/compress-image.html">English</a><a href="/zh/tools/compress-image.html">中文</a><a href="/ja/tools/compress-image.html" class="on" aria-current="page">日本語</a></nav>
 </header>
 
 <main>
   <p class="crumb"><a href="/ja/index.html">← ツール一覧</a></p>
   <h1>画像を、どこにも送らずに軽くする</h1>
   <p class="lead">写真をドロップすると、<b>その場で</b>軽くなります。アカウントも、アップロードも、「透かしを消すにはアップグレード」も、1 日の枚数制限もありません。</p>
+
+  <div class="searchbox">
+    <span class="s-ico" aria-hidden="true">🔍</span>
+    <input id="searchInput" type="search" autocomplete="off" placeholder="ツールを検索 — 例：圧縮、json、パスワード…" aria-label="ツールを検索 — 例：圧縮、json、パスワード…">
+  </div>
+  <ul class="searchresults" id="searchResults" hidden></ul>
   <p class="badge-line"><span class="pill">すべてブラウザ内で処理されます。送信も保存もしていません。</span></p>
 
 <div class="panel">
@@ -71,7 +77,7 @@
 
 <footer><p>ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。</p></footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script>window.T = {"langName":"日本語","footer":"ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"コピーできませんでした。手動で選択してください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理されます。送信も保存もしていません。","drop":"クリックして画像を選ぶ／ここにドラッグ＆ドロップ","dropNote":"JPG・PNG・WebP／何枚でも","quality":"画質","maxw":"最大幅（px）","maxwNote":"0 で元のサイズのまま","format":"保存形式","fmtJpeg":"JPEG — 写真向き","fmtWebp":"WebP — 最も軽い","fmtPng":"PNG — 可逆圧縮","run":"圧縮してまとめてダウンロード","selected":"{n} 件のファイルを読み込み済み。","working":"処理中…","saved":"{p}% 軽くなりました","bigger":"{p}% 大きくなりました","failed":"このファイルはブラウザで読み込めませんでした。","qualityHint":"低いほど軽く、画質は粗くなります。写真なら 70〜80% で違いはほとんど分かりません。","formatHint":"JPEG は互換性が最も高く、WebP は最も軽く、PNG は透過を保持します。"};</script>
+<script>window.T = {"langName":"日本語","footer":"ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"コピーできませんでした。手動で選択してください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理されます。送信も保存もしていません。","searchPlaceholder":"ツールを検索 — 例：圧縮、json、パスワード…","noResults":"該当するツールがありません。別の言葉でお試しを。","drop":"クリックして画像を選ぶ／ここにドラッグ＆ドロップ","dropNote":"JPG・PNG・WebP／何枚でも","quality":"画質","maxw":"最大幅（px）","maxwNote":"0 で元のサイズのまま","format":"保存形式","fmtJpeg":"JPEG — 写真向き","fmtWebp":"WebP — 最も軽い","fmtPng":"PNG — 可逆圧縮","run":"圧縮してまとめてダウンロード","selected":"{n} 件のファイルを読み込み済み。","working":"処理中…","saved":"{p}% 軽くなりました","bigger":"{p}% 大きくなりました","failed":"このファイルはブラウザで読み込めませんでした。","qualityHint":"低いほど軽く、画質は粗くなります。写真なら 70〜80% で違いはほとんど分かりません。","formatHint":"JPEG は互換性が最も高く、WebP は最も軽く、PNG は透過を保持します。"};</script>
 <script src="/assets/tools/_shared.js" defer></script>
 <script src="/assets/tools/compress-image.js" defer></script>
 undefined

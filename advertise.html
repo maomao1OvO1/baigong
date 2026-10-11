@@ -20,13 +20,19 @@
 <body>
 <header class="top">
   <a class="brand" href="/index.html">🧰 ToolPocket</a>
-  <nav class="langs"><a href="/advertise.html" class="on" aria-current="page">English</a><a href="/zh/advertise.html">中文</a><a href="/ja/advertise.html">日本語</a></nav>
+  <nav class="langs"><a href="/index.html#search" title="search" aria-label="search">🔍</a><a href="/advertise.html" class="on" aria-current="page">English</a><a href="/zh/advertise.html">中文</a><a href="/ja/advertise.html">日本語</a></nav>
 </header>
 
 <main>
   <p class="crumb"><a href="/index.html">← All tools</a></p>
   <h1>Advertise on ToolPocket</h1>
   <p class="lead">ToolPocket is a free browser-tools site in <b>three languages</b> (English, Chinese, Japanese). The audience arrives from search with a specific task in mind — compressing an image, checking a password, converting a timestamp.</p>
+
+  <div class="searchbox">
+    <span class="s-ico" aria-hidden="true">🔍</span>
+    <input id="searchInput" type="search" autocomplete="off" placeholder="Search tools — e.g. compress, json, 密码…" aria-label="Search tools — e.g. compress, json, 密码…">
+  </div>
+  <ul class="searchresults" id="searchResults" hidden></ul>
 
   <section>
     <h2>Who visits</h2>
@@ -82,6 +88,7 @@
 </main>
 
 <footer><p>ToolPocket · Everything runs on your device — nothing is uploaded.</p></footer>
+<script src="/assets/search.js" defer></script>
 <script>
 /* 把 data-u / data-d 拼成邮箱 —— 放在页面里而不是服务端，是为了防爬虫 */
 [].forEach.call(document.querySelectorAll(".email"), function (el) {

@@ -1,25 +1,79 @@
 {
   "_说明": "全站共享的界面文案（三语）。工具自己的文案在 src/i18n/tools/*.json。",
-  "langName": { "en": "English", "zh": "中文", "ja": "日本語" },
+  "langName": {
+    "en": "English",
+    "zh": "中文",
+    "ja": "日本語"
+  },
   "brand": "ToolPocket",
   "footer": {
     "en": "ToolPocket · Everything runs on your device — nothing is uploaded.",
     "zh": "ToolPocket · 全部在你的设备上完成，不上传任何文件。",
     "ja": "ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。"
   },
-  "nav": { "en": "All tools", "zh": "全部工具", "ja": "ツール一覧" },
-  "backToTools": { "en": "← All tools", "zh": "← 全部工具", "ja": "← ツール一覧" },
-  "copy": { "en": "Copy result", "zh": "复制结果", "ja": "結果をコピー" },
-  "swap": { "en": "Swap", "zh": "互换", "ja": "入れ替え" },
-  "clear": { "en": "Clear", "zh": "清空", "ja": "クリア" },
-  "download": { "en": "Download", "zh": "下载", "ja": "ダウンロード" },
-  "copied": { "en": "Copied to clipboard", "zh": "已复制到剪贴板", "ja": "クリップボードにコピーしました" },
-  "copyFail": { "en": "Copy failed — select the text manually", "zh": "复制失败 —— 请手动选中复制", "ja": "コピーできませんでした。手動で選択してください" },
-  "inputLabel": { "en": "Input", "zh": "输入", "ja": "入力" },
-  "outputLabel": { "en": "Result", "zh": "结果", "ja": "結果" },
+  "nav": {
+    "en": "All tools",
+    "zh": "全部工具",
+    "ja": "ツール一覧"
+  },
+  "backToTools": {
+    "en": "← All tools",
+    "zh": "← 全部工具",
+    "ja": "← ツール一覧"
+  },
+  "copy": {
+    "en": "Copy result",
+    "zh": "复制结果",
+    "ja": "結果をコピー"
+  },
+  "swap": {
+    "en": "Swap",
+    "zh": "互换",
+    "ja": "入れ替え"
+  },
+  "clear": {
+    "en": "Clear",
+    "zh": "清空",
+    "ja": "クリア"
+  },
+  "download": {
+    "en": "Download",
+    "zh": "下载",
+    "ja": "ダウンロード"
+  },
+  "copied": {
+    "en": "Copied to clipboard",
+    "zh": "已复制到剪贴板",
+    "ja": "クリップボードにコピーしました"
+  },
+  "copyFail": {
+    "en": "Copy failed — select the text manually",
+    "zh": "复制失败 —— 请手动选中复制",
+    "ja": "コピーできませんでした。手動で選択してください"
+  },
+  "inputLabel": {
+    "en": "Input",
+    "zh": "输入",
+    "ja": "入力"
+  },
+  "outputLabel": {
+    "en": "Result",
+    "zh": "结果",
+    "ja": "結果"
+  },
   "privacyNote": {
     "en": "Runs entirely in your browser. Nothing is uploaded or stored.",
     "zh": "完全在你的浏览器里运行，不上传、不保存。",
     "ja": "すべてブラウザ内で処理されます。送信も保存もしていません。"
+  },
+  "searchPlaceholder": {
+    "en": "Search tools — e.g. compress, json, 密码…",
+    "zh": "搜索工具 —— 例如：压缩、json、密码…",
+    "ja": "ツールを検索 — 例：圧縮、json、パスワード…"
+  },
+  "noResults": {
+    "en": "No tool matches that. Try another word?",
+    "zh": "没找到匹配的工具，换个词试试？",
+    "ja": "該当するツールがありません。別の言葉でお試しを。"
   }
 }

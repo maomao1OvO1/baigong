@@ -21,13 +21,19 @@
 <body>
 <header class="top">
   <a class="brand" href="/ja/index.html">🧰 ToolPocket</a>
-  <nav class="langs"><a href="/tools/base64.html">English</a><a href="/zh/tools/base64.html">中文</a><a href="/ja/tools/base64.html" class="on" aria-current="page">日本語</a></nav>
+  <nav class="langs"><a href="/ja/index.html#search" title="search" aria-label="search">🔍</a><a href="/tools/base64.html">English</a><a href="/zh/tools/base64.html">中文</a><a href="/ja/tools/base64.html" class="on" aria-current="page">日本語</a></nav>
 </header>
 
 <main>
   <p class="crumb"><a href="/ja/index.html">← ツール一覧</a></p>
   <h1>Base64 のエンコードとデコード</h1>
   <p class="lead">日本語や絵文字も文字化けしません。多くのオンラインツールは非英語圏の文字で崩れますが、それはブラウザの <code>btoa</code> をそのまま使っているためです。ここでは先に UTF-8 のバイト列に変換してから Base64 にします。</p>
+
+  <div class="searchbox">
+    <span class="s-ico" aria-hidden="true">🔍</span>
+    <input id="searchInput" type="search" autocomplete="off" placeholder="ツールを検索 — 例：圧縮、json、パスワード…" aria-label="ツールを検索 — 例：圧縮、json、パスワード…">
+  </div>
+  <ul class="searchresults" id="searchResults" hidden></ul>
   <p class="badge-line"><span class="pill">すべてブラウザ内で処理されます。送信も保存もしていません。</span></p>
 
 <div class="panel">
@@ -68,7 +74,7 @@
 
 <footer><p>ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。</p></footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script>window.T = {"langName":"日本語","footer":"ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"コピーできませんでした。手動で選択してください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理されます。送信も保存もしていません。","mode":"方向","encode":"テキスト → Base64","decode":"Base64 → テキスト","inputPh":"テキストまたは Base64 文字列を貼り付けてください…","outputPh":"入力と同時に結果が表示されます","badBase64":"有効な Base64 ではないようです","modeHint":"方向を選びます。貼り付けて「入れ替え」を押せば逆方向にも変換できます。"};</script>
+<script>window.T = {"langName":"日本語","footer":"ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"コピーできませんでした。手動で選択してください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理されます。送信も保存もしていません。","searchPlaceholder":"ツールを検索 — 例：圧縮、json、パスワード…","noResults":"該当するツールがありません。別の言葉でお試しを。","mode":"方向","encode":"テキスト → Base64","decode":"Base64 → テキスト","inputPh":"テキストまたは Base64 文字列を貼り付けてください…","outputPh":"入力と同時に結果が表示されます","badBase64":"有効な Base64 ではないようです","modeHint":"方向を選びます。貼り付けて「入れ替え」を押せば逆方向にも変換できます。"};</script>
 <script src="/assets/tools/_shared.js" defer></script>
 <script src="/assets/tools/base64.js" defer></script>
 undefined
