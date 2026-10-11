@@ -318,5 +318,63 @@ console.log("\n⑩ 内联脚本语法检查");
   else bad("404 页出现 undefined 字面量", nf.slice(Math.max(0, nf.indexOf("undefined") - 60), nf.indexOf("undefined") + 20).replace(/\s+/g, " "));
 }
 
+/* ── ⑪ 页脚语言一致性 ─────────────────────────────────────────────────
+   2026-10-12 毛毛截图报「没翻译完全」：404 页的页脚写死了英文（footer(LANGS[0])），
+   中文读者会看到一整段英文页脚。这类"漏翻一处"逐页肉眼很难发现，
+   所以按语言特征抽查：中文页脚必须有汉字、日文页脚必须有假名、英文页脚不该混进这两种。 */
+console.log("\n⑪ 页脚语言一致性");
+{
+  const cases = [["index.html", "en"], ["zh/index.html", "zh"], ["ja/index.html", "ja"],
+                 ["zh/advertise.html", "zh"], ["zh/tools/base64.html", "zh"], ["ja/tools/hash.html", "ja"]];
+  let bads = 0;
+  for (const [f, lang] of cases) {
+    const html = fs.readFileSync(path.join(ROOT, f), "utf8");
+    const m = /<footer>([\s\S]*?)<\/footer>/.exec(html);
+    const text = m ? m[1] : "";
+    const looksRight = lang === "en"
+      ? !/[\u4e00-\u9fa5\u3040-\u30ff]/.test(text)
+      : lang === "zh"
+        ? /[\u4e00-\u9fa5]/.test(text)
+        : /[\u3040-\u30ff]/.test(text);
+    if (looksRight) ok(`${f}：页脚语言与页面一致（${lang}）`);
+    else { bads++; bad(`${f}：页脚语言不对（页面是 ${lang}）`, text.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").slice(0, 70)); }
+  }
+  const nf = fs.readFileSync(path.join(ROOT, "404.html"), "utf8");
+  if (nf.includes("var FOOT = ") && nf.includes('id="nfFootText"')) ok("404 页：页脚由脚本按语言填（三语数据齐全）");
+  else bad("404 页页脚写死了单一语言", "中文读者会看到英文页脚");
+}
+
+/* ── ⑫ 反馈口吻：首页可以说"缺工具"，工具页不许 ────────────────────────
+   毛毛原话（2026-10-12）：「主页写缺工具那个可以，但是你进入工具了，你还嫌缺工具就不行了」。
+   逻辑上也对：用户都已经在用某个工具了，页脚还问他"想不想要别的工具"，等于在拆自己台。 */
+console.log("\n⑫ 反馈口吻（首页 vs 工具页）");
+{
+  const cases = [
+    ["index.html", true, "want a tool"],
+    ["zh/index.html", true, "还没有的工具"],
+    ["ja/index.html", true, "ご要望"],
+    ["zh/tools/base64.html", false, "还没有的工具"],
+    ["ja/tools/hash.html", false, "ご要望"],
+    ["zh/advertise.html", false, "还没有的工具"],
+  ];
+  for (const [f, shouldHave, marker] of cases) {
+    const html = fs.readFileSync(path.join(ROOT, f), "utf8");
+    const m = /<p class="fb">([\s\S]*?)<\/p>/.exec(html);
+    const text = m ? m[1] : "";
+    if (text.includes(marker) === shouldHave) {
+      ok(`${f}：反馈口吻正确（${shouldHave ? "允许提" : "不提"}「${marker}」）`);
+    } else {
+      bad(`${f}：反馈口吻不对`, shouldHave ? `首页应提到「${marker}」` : `工具页/招租页不该提「${marker}」—— 用户都已经在用了`);
+    }
+  }
+  const t = fs.readFileSync(path.join(ROOT, "zh/tools/base64.html"), "utf8");
+  if (/发现 bug/.test(t)) ok("工具页的反馈文案聚焦在 bug 上");
+  else bad("工具页反馈文案没提 bug");
+
+  const nf = fs.readFileSync(path.join(ROOT, "404.html"), "utf8");
+  if (nf.includes("ask") && nf.includes("还没有的工具")) ok("404 页与首页同口吻（还没进工具，可以说缺）");
+  else bad("404 页反馈口吻不对");
+}
+
 console.log(`\n结果：${pass} 项通过，${fail} 项失败`);
 process.exit(fail ? 1 : 0);

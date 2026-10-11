@@ -114,6 +114,14 @@ window.TP_INDEX_URL = "/assets/search.json";
   back.setAttribute("href", "/" + (lang === "en" ? "" : lang + "/"));
   document.getElementById("searchInput").placeholder = PH[lang] || PH.en;
 
+  /* 页脚也必须跟着语言走 —— 之前这里写死了英文（footer(LANGS[0])），
+     中文读者会在 404 页看到一整段英文页脚（毛毛 2026-10-12 截图报「没翻译完全」）。 */
+  var FOOT = {"en":{"footer":"ToolPocket — your files never leave your device. No upload, no account, no tracking.","ask":"Found a bug, or want a tool that isn't here yet? Tell me — I read every message.","btn":"Send an email","subject":"ToolPocket feedback"},"zh":{"footer":"ToolPocket · 文件不出你的设备 —— 不上传、不注册、不追踪。","ask":"发现 bug 了？或者想要某个还没有的工具？直接说 —— 每封都看。","btn":"写封邮件","subject":"ToolPocket 反馈"},"ja":{"footer":"ToolPocket · ファイルは端末から出ません。送信も登録も、追跡もありません。","ask":"不具合の報告や「こんなツールがほしい」というご要望は、お気軽にお知らせください。","btn":"メールを書く","subject":"ToolPocket へのフィードバック"}};
+  var f = FOOT[lang] || FOOT.en;
+  document.getElementById("nfFootText").textContent = f.footer;
+  document.getElementById("nfFbAsk").textContent = f.ask;
+  document.getElementById("nfFbBtn").textContent = f.btn;
+
   // 语言切换：就地换显示，不跳转（404 页没有对应的语言版本可跳）
   var nav = document.getElementById("nfLangs");
   [["en", "English"], ["zh", "中文"], ["ja", "日本語"]].forEach(function (pair) {
@@ -133,10 +141,10 @@ window.TP_INDEX_URL = "/assets/search.json";
 <script src="/assets/search.js?v=2" defer></script>
 <script src="/assets/app.js?v=2" defer></script>
 <footer>
-  <p>ToolPocket — your files never leave your device. No upload, no account, no tracking.</p>
+  <p id="nfFootText"></p>
   <p class="fb">
-    <span>Found a bug, or want a tool that isn't here yet? Tell me — I read every message.</span>
-    <button type="button" class="ghost fb-btn" id="feedbackBtn" data-u="ad" data-d="maomaowang.top">Send an email</button>
+    <span id="nfFbAsk"></span>
+    <button type="button" class="ghost fb-btn" id="feedbackBtn" data-u="ad" data-d="maomaowang.top"><span id="nfFbBtn"></span></button>
   </p>
 </footer>
 </body>

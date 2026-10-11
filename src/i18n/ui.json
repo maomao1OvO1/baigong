@@ -112,14 +112,14 @@
     "ja": "インストール後はネットワークを切ったままでも使えます。もともと通信していないのですから、当然といえば当然です。"
   },
   "feedbackAsk": {
-    "en": "Found a bug, or want a tool that isn't here yet? Tell me — I read every message.",
-    "zh": "发现 bug 了？或者想要某个还没有的工具？直接说 —— 每封都看。",
-    "ja": "不具合の報告や「こんなツールがほしい」というご要望は、お気軽にお知らせください。すべて目を通します。"
+    "en": "Found a bug? Tell me — I read every message.",
+    "zh": "发现 bug 了？告诉我 —— 每封都看。",
+    "ja": "不具合を見つけましたか？お知らせください。すべて目を通します。"
   },
   "feedbackButton": {
-    "en": "Send an email",
-    "zh": "写封邮件",
-    "ja": "メールを書く"
+    "en": "Report a bug",
+    "zh": "反馈 bug",
+    "ja": "不具合を報告"
   },
   "feedbackSubject": {
     "en": "ToolPocket feedback",
@@ -132,5 +132,15 @@
     "en": "Can't find it? Tell me what you were looking for — I read every message.",
     "zh": "没找到你想要的？告诉我你需要什么工具 —— 每条都会看。",
     "ja": "お探しのものが見つかりませんか？必要なツールをお知らせください。すべて目を通します。"
+  },
+  "feedbackAskHome": {
+    "en": "Found a bug, or want a tool that isn't here yet? Tell me — I read every message.",
+    "zh": "发现 bug 了？或者想要某个还没有的工具？直接说 —— 每封都看。",
+    "ja": "不具合の報告や「こんなツールがほしい」というご要望は、お気軽にお知らせください。"
+  },
+  "feedbackButtonHome": {
+    "en": "Send an email",
+    "zh": "写封邮件",
+    "ja": "メールを書く"
   }
 }

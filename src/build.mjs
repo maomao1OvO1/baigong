@@ -106,13 +106,22 @@ function topbar(lang, out) {
 /* 页脚（2026-10-12 加反馈入口）：毛毛要求「加一个用户反馈按钮，像什么有 bug 呀、想加什么功能啊、可以联系我之类的」。
    做成 mailto 而不是表单：静态站没有后端，表单要么收不到、要么得引第三方（那就违背"零外部请求"了）。
    邮箱同样拆成 data-u / data-d，点了才拼 —— 明文写进 href 会被爬虫秒收。 */
-const footer = (lang) => `<footer>
+/* 两套口吻（毛毛 2026-10-12）：
+   「主页写缺工具那个可以，但是你进入工具了，你还嫌缺工具就不行了」
+   ⇒ 首页与 404 页传 { home: true }（可以说"想要某个还没有的工具"）；
+     工具页与招租页用默认口吻（只讲反馈问题，不暗示这里缺东西）。 */
+const footer = (lang, opts) => {
+  const home = !!(opts && opts.home);
+  const ask = home ? UI.feedbackAskHome[lang.code] : UI.feedbackAsk[lang.code];
+  const btn = home ? UI.feedbackButtonHome[lang.code] : UI.feedbackButton[lang.code];
+  return `<footer>
   <p>${rich(UI.footer[lang.code])}</p>
   <p class="fb">
-    <span>${rich(UI.feedbackAsk[lang.code])}</span>
-    <button type="button" class="ghost fb-btn" id="feedbackBtn" data-u="${esc(UI.feedbackUser)}" data-d="${esc(UI.feedbackDomain)}">${rich(UI.feedbackButton[lang.code])}</button>
+    <span>${rich(ask)}</span>
+    <button type="button" class="ghost fb-btn" id="feedbackBtn" data-u="${esc(UI.feedbackUser)}" data-d="${esc(UI.feedbackDomain)}">${rich(btn)}</button>
   </p>
 </footer>`;
+};
 
 /** 把 tools.json 里的声明式控件渲染成 HTML（label/选项文案从该工具的三语 ui 里取）
     每个控件下面可以带一行 hint 说明 —— 用户要求「每个按钮干嘛的标清楚点」，
@@ -484,7 +493,7 @@ ${adSlot(lang, "home-bottom")}
 <script src="${asset("search.js")}?v=2" defer></script>
 ${CONTACT_SCRIPT}
 
-${footer(lang)}
+${footer(lang, { home: true })}
 <script src="${asset("app.js")}?v=2" defer></script>
 </body>
 </html>
@@ -511,6 +520,14 @@ const NF_PH = {
 };
 /** 404 页推荐的常用工具（挑各语言都有人用、且一看就懂的几个） */
 const NF_POPULAR = ["compress-image", "convert-image", "json-format", "hash", "password-strength", "timestamp"];
+
+/** 404 页页脚的三语文案（页脚只有两行字，用 JS 按语言填比内联三个块更省事） */
+const FOOT_STRINGS = Object.fromEntries(LANGS.map((l) => [l.code, {
+  footer: UI.footer[l.code],
+  ask: UI.feedbackAskHome[l.code],      // 404 页与首页同属"还没进工具"的场景，可以说缺工具
+  btn: UI.feedbackButtonHome[l.code],
+  subject: UI.feedbackSubject[l.code],
+}]));
 
 function notFoundPage() {
   const blocks = LANGS.map((l) => `  <div data-lang="${l.code}" hidden>
@@ -615,6 +632,14 @@ window.TP_INDEX_URL = ${JSON.stringify(asset("search.json"))};
   back.setAttribute("href", "/" + (lang === "en" ? "" : lang + "/"));
   document.getElementById("searchInput").placeholder = PH[lang] || PH.en;
 
+  /* 页脚也必须跟着语言走 —— 之前这里写死了英文（footer(LANGS[0])），
+     中文读者会在 404 页看到一整段英文页脚（毛毛 2026-10-12 截图报「没翻译完全」）。 */
+  var FOOT = ${JSON.stringify(FOOT_STRINGS)};
+  var f = FOOT[lang] || FOOT.en;
+  document.getElementById("nfFootText").textContent = f.footer;
+  document.getElementById("nfFbAsk").textContent = f.ask;
+  document.getElementById("nfFbBtn").textContent = f.btn;
+
   // 语言切换：就地换显示，不跳转（404 页没有对应的语言版本可跳）
   var nav = document.getElementById("nfLangs");
   [["en", "English"], ["zh", "中文"], ["ja", "日本語"]].forEach(function (pair) {
@@ -633,7 +658,13 @@ window.TP_INDEX_URL = ${JSON.stringify(asset("search.json"))};
 </script>
 <script src="${asset("search.js")}?v=2" defer></script>
 <script src="${asset("app.js")}?v=2" defer></script>
-${footer(LANGS[0])}
+<footer>
+  <p id="nfFootText"></p>
+  <p class="fb">
+    <span id="nfFbAsk"></span>
+    <button type="button" class="ghost fb-btn" id="feedbackBtn" data-u="${esc(UI.feedbackUser)}" data-d="${esc(UI.feedbackDomain)}"><span id="nfFbBtn"></span></button>
+  </p>
+</footer>
 </body>
 </html>
 `;
