@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ToolPocket — ファイルをアップロードしない無料ツール</title>
-<meta name="description" content="画像圧縮・形式変換・テキストのエンコードを、ブラウザの中だけで。登録不要、アップロード不要、制限なし。タブを閉じれば端末には何も残りません。">
+<meta name="description" content="画像の圧縮と形式変換、テキストのエンコード、JSON の整形。すべてブラウザ内で完結します。登録不要、アップロード不要、制限なし。">
 <link rel="canonical" href="https://tools.maomaowang.top/ja/index.html">
 <meta property="og:title" content="ToolPocket — ファイルをアップロードしない無料ツール">
-<meta property="og:description" content="画像圧縮・形式変換・テキストのエンコードを、ブラウザの中だけで。登録不要、アップロード不要、制限なし。タブを閉じれば端末には何も残りません。">
+<meta property="og:description" content="画像の圧縮と形式変換、テキストのエンコード、JSON の整形。すべてブラウザ内で完結します。登録不要、アップロード不要、制限なし。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://tools.maomaowang.top/ja/index.html">
 <link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/index.html">
@@ -25,24 +25,55 @@
 
 <main>
   <h1>メールアドレスを聞いてこないツール</h1>
-  <p class="lead">世の中の「無料ツール」は、まずアカウントを求めてきます。ここでは求めません。このページのツールは、すべて<b>お使いのブラウザの中で</b>動きます。ファイルがサーバーを経由することはありません。登録も、たったの 3 枚までといった制限も、順番待ちもありません。</p>
+  <p class="lead">世の中の「無料ツール」は、まずアカウントを求めてきます。ここでは求めません。すべて<b>お使いのブラウザの中で</b>動くので、ファイルがサーバーを経由することはありません。登録も、たったの 3 枚までといった制限も、順番待ちもありません。</p>
 
   <h2>使えるツール</h2>
   <ul class="grid">
     <li><a href="/ja/tools/compress-image.html">
+      <span class="ico">🗜️</span>
       <b>画像を、どこにも送らずに軽くする</b>
-      <span>写真をドロップすると、その場で軽くなります。アカウントも、アップロードも、「透かしを消すにはアップグレード」も、1 日の枚数制限もありません。「ファイルサイズが大きすぎます」と言われたときにどうぞ。…</span>
+      <span class="sub">写真をドロップすると、その場で軽くなります。アカウントも、アップロードも、「透かしを消すにはアップグレード」も、1 日の枚数制限もありません。</span>
+    </a></li>
+    <li><a href="/ja/tools/convert-image.html">
+      <span class="ico">🔄</span>
+      <b>アップロードせずに画像形式を変換</b>
+      <span class="sub">HEIC のような特殊な例を除けば、形式の悩みはほぼ PNG ↔ JPG ↔ WebP です。ドロップして出力形式を選ぶだけ —— ファイルは端末の外に出ません。</span>
+    </a></li>
+    <li><a href="/ja/tools/base64.html">
+      <span class="ico">🔠</span>
+      <b>Base64 のエンコードとデコード</b>
+      <span class="sub">日本語や絵文字も文字化けしません。多くのオンラインツールは非英語圏の文字で崩れますが、それはブラウザの btoa をそのまま使っているためです。ここでは先に UTF-8 のバイト列に変換してか…</span>
+    </a></li>
+    <li><a href="/ja/tools/json-format.html">
+      <span class="ico">🧩</span>
+      <b>JSON の整形と検証</b>
+      <span class="sub">ぐちゃぐちゃの JSON を貼れば、読める形になります。壊れている場合はどこが壊れているかを示します。「unexpected token」だけでは分かりませんから。</span>
+    </a></li>
+    <li><a href="/ja/tools/color-converter.html">
+      <span class="ico">🎨</span>
+      <b>カラー変換 — HEX / RGB / HSL</b>
+      <span class="sub">手元にある形式をそのまま貼ってください。形式は自動判別し、残り 2 つを表示します。「入力形式を選択」といった手順は不要です。</span>
+    </a></li>
+    <li><a href="/ja/tools/text-tools.html">
+      <span class="ico">✍️</span>
+      <b>日常のテキスト処理を 1 ページに</b>
+      <span class="sub">以前は 7 つのサイトが必要だった小さな作業をまとめました。大文字小文字の変換、逆順、各行の空白除去、重複行の削除、行の並べ替え、文字・単語・行のカウント。</span>
+    </a></li>
+    <li><a href="/ja/tools/unit-converter.html">
+      <span class="ico">📏</span>
+      <b>単位変換</b>
+      <span class="sub">数値を 1 つ入力すると、同じカテゴリのすべての単位が一度に表示されます。「変換元と変換先を選ぶ」手間はありません。長さ・重さ・データ容量・温度に対応。</span>
     </a></li>
   </ul>
 
   <section class="why">
     <h2>なぜ無料でいられるのか</h2>
-    <p>維持費がほとんどかからないからです。ファイルをアップロードさせるタイプのツールは、処理用のサーバー代を払っています。だから回数制限をつけたり、透かしを入れたり、課金するまで待たせたりする。でも、画像の圧縮も形式の変換も文字のエンコードも、ブラウザはもともとできます。やらせているだけです。<b>サーバーがなければ、制限も生まれません。</b></p>
+    <p>維持費がほとんどかからないからです。ファイルをアップロードさせるタイプのツールは、処理用のサーバー代を払っています。だから回数制限をつけたり、透かしを入れたり、課金するまで待たせたりする。でも画像の圧縮も形式の変換も文字のエンコードも、ブラウザはもともとできます。<b>サーバーがなければ、制限も生まれません。</b></p>
     <h2>ファイルを預けて大丈夫？</h2>
-    <p>私たちの言葉を信じる必要はありません。<b>ページを開いたあと、Wi-Fi を切ってそのまま使ってみてください。</b>送信も保存も記録もしていません。プライベートな写真、身分証のスキャン、NDA のかかったお仕事——そういうものを扱う方にこそ使っていただきたいツールです。</p>
+    <p>私たちの言葉を信じる必要はありません。<b>ページを開いたあと Wi-Fi を切って、そのまま使ってみてください。</b>送信も保存も記録もしていません。</p>
   </section>
 </main>
 
-<footer><p>ToolPocket · 処理はすべて端末側で行われます</p></footer>
+<footer><p>ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。</p></footer>
 </body>
 </html>

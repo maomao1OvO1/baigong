@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>画像形式変換 オンライン — PNG・JPG・WebP、アップロード不要 | ToolPocket</title>
+<meta name="description" content="PNG を JPG に、JPG を WebP に。変換はすべてブラウザ内で行います。アップロードも登録も透かしもなく、枚数の制限もありません。">
+<link rel="canonical" href="https://tools.maomaowang.top/ja/tools/convert-image.html">
+<meta property="og:title" content="画像形式変換 オンライン — PNG・JPG・WebP、アップロード不要 | ToolPocket">
+<meta property="og:description" content="PNG を JPG に、JPG を WebP に。変換はすべてブラウザ内で行います。アップロードも登録も透かしもなく、枚数の制限もありません。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/ja/tools/convert-image.html">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/convert-image.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/convert-image.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/convert-image.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/convert-image.html">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"アップロードせずに画像形式を変換","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"PNG を JPG に、JPG を WebP に。変換はすべてブラウザ内で行います。アップロードも登録も透かしもなく、枚数の制限もありません。"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"どの形式に変換すればいい？","acceptedAnswer":{"@type":"Answer","text":"写真は JPG か WebP（かなり軽くなります）。図版・スクリーンショット・透過が必要なものは PNG。対応環境なら WebP が最もバランスが良いです。"}},{"@type":"Question","name":"透過部分はどうなりますか？","acceptedAnswer":{"@type":"Answer","text":"PNG と WebP は透過を保持します。JPG は保持できず、その部分は白で塗られます。ロゴを JPG にすると汚く見えるのはこのためです。"}},{"@type":"Question","name":"まとめて変換できますか？","acceptedAnswer":{"@type":"Answer","text":"はい、枚数の制限もありません。変換はお使いの端末で行われます。"}}]}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/ja/index.html">🧰 ToolPocket</a>
+  <nav class="langs"><a href="/tools/convert-image.html">English</a><a href="/zh/tools/convert-image.html">中文</a><a href="/ja/tools/convert-image.html" class="on" aria-current="page">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/ja/index.html">← ツール一覧</a></p>
+  <h1>アップロードせずに画像形式を変換</h1>
+  <p class="lead">HEIC のような特殊な例を除けば、形式の悩みはほぼ PNG ↔ JPG ↔ WebP です。ドロップして出力形式を選ぶだけ —— <b>ファイルは端末の外に出ません</b>。</p>
+  <p class="badge-line"><span class="pill">すべてブラウザ内で処理されます。送信も保存もしていません。</span></p>
+
+<div class="panel">
+  <div class="drop" id="drop">
+    <b>クリックして画像を選ぶ／ここにドラッグ＆ドロップ</b><br><span class="note">PNG・JPG・WebP／複数可</span>
+    <input type="file" id="picker" accept="image/*" multiple>
+  </div>
+  <div class="opts">
+<label class="row"><span class="lbl">変換先</span><select id="format"><option value="image/jpeg">JPG — 写真向き、カメラ画像が最も軽くなる</option><option value="image/webp">WebP — 容量と画質のバランスが最良</option><option value="image/png">PNG — 透過を保持</option></select></label>
+<label class="row"><span class="lbl">画質</span><input type="range" id="quality" min="60" max="100" value="92"><span class="badge" id="qualityVal"></span></label>
+  </div>
+  <div class="btnrow">
+    <button id="run" disabled>変換してまとめてダウンロード</button>
+    <button class="ghost" id="clear" disabled>クリア</button>
+  </div>
+  <p class="note" id="hint"></p>
+</div>
+<ul class="results" id="results"></ul>
+
+  <section class="faq">
+    <h2>よくある質問</h2>
+    <details><summary>どの形式に変換すればいい？</summary><p>写真は JPG か WebP（かなり軽くなります）。図版・スクリーンショット・透過が必要なものは PNG。対応環境なら WebP が最もバランスが良いです。</p></details>
+    <details><summary>透過部分はどうなりますか？</summary><p>PNG と WebP は透過を保持します。JPG は保持できず、その部分は白で塗られます。ロゴを JPG にすると汚く見えるのはこのためです。</p></details>
+    <details><summary>まとめて変換できますか？</summary><p>はい、枚数の制限もありません。変換はお使いの端末で行われます。</p></details>
+  </section>
+</main>
+
+<footer><p>ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。</p></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = {"drop":"クリックして画像を選ぶ／ここにドラッグ＆ドロップ","dropNote":"PNG・JPG・WebP／複数可","format":"変換先","quality":"画質","fmtJpeg":"JPG — 写真向き、カメラ画像が最も軽くなる","fmtWebp":"WebP — 容量と画質のバランスが最良","fmtPng":"PNG — 透過を保持","run":"変換してまとめてダウンロード","clear":"クリア","selected":"{n} 件のファイルを読み込み済み。","working":"変換中…","download":"ダウンロード","failed":"このファイルはブラウザで読み込めませんでした。"};</script>
+<script src="/assets/tools/_shared.js" defer></script>
+<script src="/assets/tools/convert-image.js" defer></script>
+</body>
+</html>

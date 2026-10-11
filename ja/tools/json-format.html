@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JSON 整形・検証 オンライン — アップロード不要 | ToolPocket</title>
+<meta name="description" content="ブラウザ内で JSON を整形・圧縮・検証します。エラー時は行と列を指摘するので、どこを直せばいいか分かります。">
+<link rel="canonical" href="https://tools.maomaowang.top/ja/tools/json-format.html">
+<meta property="og:title" content="JSON 整形・検証 オンライン — アップロード不要 | ToolPocket">
+<meta property="og:description" content="ブラウザ内で JSON を整形・圧縮・検証します。エラー時は行と列を指摘するので、どこを直せばいいか分かります。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/ja/tools/json-format.html">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/json-format.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/json-format.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/json-format.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/json-format.html">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"JSON の整形と検証","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"ブラウザ内で JSON を整形・圧縮・検証します。エラー時は行と列を指摘するので、どこを直せばいいか分かります。"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"不正な JSON だとどうなりますか？","acceptedAnswer":{"@type":"Answer","text":"エラー内容と、可能であれば該当の行・列を表示します。推測せずに修正できます。"}},{"@type":"Question","name":"サイズの上限はありますか？","acceptedAnswer":{"@type":"Answer","text":"実質的な上限はありません。お使いの端末で処理するため、端末の性能次第です。"}},{"@type":"Question","name":"入力したデータは送信されますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。API キーや顧客データを含む JSON を扱うときにも安心です。"}}]}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/ja/index.html">🧰 ToolPocket</a>
+  <nav class="langs"><a href="/tools/json-format.html">English</a><a href="/zh/tools/json-format.html">中文</a><a href="/ja/tools/json-format.html" class="on" aria-current="page">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/ja/index.html">← ツール一覧</a></p>
+  <h1>JSON の整形と検証</h1>
+  <p class="lead">ぐちゃぐちゃの JSON を貼れば、読める形になります。壊れている場合は<b>どこが壊れているか</b>を示します。「unexpected token」だけでは分かりませんから。</p>
+  <p class="badge-line"><span class="pill">すべてブラウザ内で処理されます。送信も保存もしていません。</span></p>
+
+<div class="panel">
+<label class="row lbl" for="input">入力</label>
+  <textarea id="input" class="tall" placeholder="ここに JSON を貼り付けてください…"></textarea>
+  <div class="opts">
+<label class="row"><span class="lbl">モード</span><select id="mode"><option value="pretty">整形（インデント）</option><option value="minify">1 行に圧縮</option></select></label>
+  </div>
+<label class="row lbl" for="output">結果</label>
+  <textarea id="output" readonly placeholder="整形結果がここに表示されます"></textarea>
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">結果をコピー</button>
+    <button class="ghost" id="clear">クリア</button>
+  </div>
+</div>
+
+  <section class="faq">
+    <h2>よくある質問</h2>
+    <details><summary>不正な JSON だとどうなりますか？</summary><p>エラー内容と、可能であれば該当の行・列を表示します。推測せずに修正できます。</p></details>
+    <details><summary>サイズの上限はありますか？</summary><p>実質的な上限はありません。お使いの端末で処理するため、端末の性能次第です。</p></details>
+    <details><summary>入力したデータは送信されますか？</summary><p>いいえ。API キーや顧客データを含む JSON を扱うときにも安心です。</p></details>
+  </section>
+</main>
+
+<footer><p>ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。</p></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = {"mode":"モード","pretty":"整形（インデント）","minify":"1 行に圧縮","inputPh":"ここに JSON を貼り付けてください…","outputPh":"整形結果がここに表示されます","valid":"有効な JSON です ✓","invalid":"JSON に誤りがあります："};</script>
+<script src="/assets/tools/_shared.js" defer></script>
+<script src="/assets/tools/json-format.js" defer></script>
+</body>
+</html>

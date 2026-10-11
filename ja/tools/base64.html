@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Base64 エンコード・デコード オンライン — UTF-8 対応 | ToolPocket</title>
+<meta name="description" content="テキストを Base64 に変換、または元に戻します。UTF-8 に完全対応（日本語・中国語・絵文字）。ブラウザ内で完結、登録不要。">
+<link rel="canonical" href="https://tools.maomaowang.top/ja/tools/base64.html">
+<meta property="og:title" content="Base64 エンコード・デコード オンライン — UTF-8 対応 | ToolPocket">
+<meta property="og:description" content="テキストを Base64 に変換、または元に戻します。UTF-8 に完全対応（日本語・中国語・絵文字）。ブラウザ内で完結、登録不要。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/ja/tools/base64.html">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/base64.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/base64.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/base64.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/base64.html">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Base64 のエンコードとデコード","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"テキストを Base64 に変換、または元に戻します。UTF-8 に完全対応（日本語・中国語・絵文字）。ブラウザ内で完結、登録不要。"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"他のツールだと日本語が文字化けするのはなぜ？","acceptedAnswer":{"@type":"Answer","text":"btoa を直接呼んでいるからです。btoa は Latin-1 しか扱えません。このページは先に UTF-8 のバイト列へ変換してから Base64 化します。"}},{"@type":"Question","name":"メールや API で受け取った Base64 もデコードできますか？","acceptedAnswer":{"@type":"Answer","text":"できます。不正な Base64 の場合は、意味不明な結果ではなくエラーを表示します。"}},{"@type":"Question","name":"入力したテキストは送信されますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。このページから出ることはありません。"}}]}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/ja/index.html">🧰 ToolPocket</a>
+  <nav class="langs"><a href="/tools/base64.html">English</a><a href="/zh/tools/base64.html">中文</a><a href="/ja/tools/base64.html" class="on" aria-current="page">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/ja/index.html">← ツール一覧</a></p>
+  <h1>Base64 のエンコードとデコード</h1>
+  <p class="lead">日本語や絵文字も文字化けしません。多くのオンラインツールは非英語圏の文字で崩れますが、それはブラウザの <code>btoa</code> をそのまま使っているためです。ここでは先に UTF-8 のバイト列に変換してから Base64 にします。</p>
+  <p class="badge-line"><span class="pill">すべてブラウザ内で処理されます。送信も保存もしていません。</span></p>
+
+<div class="panel">
+<label class="row lbl" for="input">入力</label>
+  <textarea id="input" class="tall" placeholder="テキストまたは Base64 文字列を貼り付けてください…"></textarea>
+  <div class="opts">
+<label class="row"><span class="lbl">方向</span><select id="mode"><option value="encode">テキスト → Base64</option><option value="decode">Base64 → テキスト</option></select></label>
+  </div>
+<label class="row lbl" for="output">結果</label>
+  <textarea id="output" readonly placeholder="入力と同時に結果が表示されます"></textarea>
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">結果をコピー</button>
+    <button class="ghost" id="swap">入れ替え</button>
+    <button class="ghost" id="clear">クリア</button>
+  </div>
+</div>
+
+  <section class="faq">
+    <h2>よくある質問</h2>
+    <details><summary>他のツールだと日本語が文字化けするのはなぜ？</summary><p>btoa を直接呼んでいるからです。btoa は Latin-1 しか扱えません。このページは先に UTF-8 のバイト列へ変換してから Base64 化します。</p></details>
+    <details><summary>メールや API で受け取った Base64 もデコードできますか？</summary><p>できます。不正な Base64 の場合は、意味不明な結果ではなくエラーを表示します。</p></details>
+    <details><summary>入力したテキストは送信されますか？</summary><p>いいえ。このページから出ることはありません。</p></details>
+  </section>
+</main>
+
+<footer><p>ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。</p></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = {"mode":"方向","encode":"テキスト → Base64","decode":"Base64 → テキスト","inputPh":"テキストまたは Base64 文字列を貼り付けてください…","outputPh":"入力と同時に結果が表示されます","badBase64":"有効な Base64 ではないようです"};</script>
+<script src="/assets/tools/_shared.js" defer></script>
+<script src="/assets/tools/base64.js" defer></script>
+</body>
+</html>

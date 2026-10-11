@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>カラー変換 HEX / RGB / HSL — 無料・即時 | ToolPocket</title>
+<meta name="description" content="#hex・rgb()・hsl() のどれを貼っても、3 形式すべてを一度に表示。プレビュー付き。ブラウザ内で計算します。">
+<link rel="canonical" href="https://tools.maomaowang.top/ja/tools/color-converter.html">
+<meta property="og:title" content="カラー変換 HEX / RGB / HSL — 無料・即時 | ToolPocket">
+<meta property="og:description" content="#hex・rgb()・hsl() のどれを貼っても、3 形式すべてを一度に表示。プレビュー付き。ブラウザ内で計算します。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/ja/tools/color-converter.html">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/color-converter.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/color-converter.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/color-converter.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/color-converter.html">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"カラー変換 — HEX / RGB / HSL","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"#hex・rgb()・hsl() のどれを貼っても、3 形式すべてを一度に表示。プレビュー付き。ブラウザ内で計算します。"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"どの形式に対応していますか？","acceptedAnswer":{"@type":"Answer","text":"#abc、#aabbcc、rgb(r,g,b)、rgba(...)、hsl(h,s%,l%)。スペースの有無は問いません。"}},{"@type":"Question","name":"値は正確ですか？","acceptedAnswer":{"@type":"Answer","text":"RGB ↔ HEX は正確です。HSL は読みやすさのため丸めていますが、計算は標準的な CSS の式に従っています。"}},{"@type":"Question","name":"カラーピッカーはありますか？","acceptedAnswer":{"@type":"Answer","text":"入力欄の下にあります。ただし多くの方は既にコピーした色値を持っているため、貼り付けが最短です。"}}]}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/ja/index.html">🧰 ToolPocket</a>
+  <nav class="langs"><a href="/tools/color-converter.html">English</a><a href="/zh/tools/color-converter.html">中文</a><a href="/ja/tools/color-converter.html" class="on" aria-current="page">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/ja/index.html">← ツール一覧</a></p>
+  <h1>カラー変換 — HEX / RGB / HSL</h1>
+  <p class="lead">手元にある形式をそのまま貼ってください。形式は自動判別し、残り 2 つを表示します。「入力形式を選択」といった手順は不要です。</p>
+  <p class="badge-line"><span class="pill">すべてブラウザ内で処理されます。送信も保存もしていません。</span></p>
+
+<div class="panel">
+<label class="row lbl" for="input">入力</label>
+  <textarea id="input" class="tall" placeholder="色を貼り付け： #2f6df6、rgb(47,109,246)、hsl(220, 91%, 57%)…"></textarea>
+  <div class="opts">
+<label class="row"><input type="color" id="picker" value="#2f6df6"></label>
+  </div>
+  <div class="swatch" id="swatch" aria-hidden="true"></div>
+<label class="row lbl" for="output">結果</label>
+  <textarea id="output" readonly placeholder="HEX / RGB / HSL がここに表示されます"></textarea>
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">結果をコピー</button>
+    <button class="ghost" id="clear">クリア</button>
+  </div>
+</div>
+
+  <section class="faq">
+    <h2>よくある質問</h2>
+    <details><summary>どの形式に対応していますか？</summary><p>#abc、#aabbcc、rgb(r,g,b)、rgba(...)、hsl(h,s%,l%)。スペースの有無は問いません。</p></details>
+    <details><summary>値は正確ですか？</summary><p>RGB ↔ HEX は正確です。HSL は読みやすさのため丸めていますが、計算は標準的な CSS の式に従っています。</p></details>
+    <details><summary>カラーピッカーはありますか？</summary><p>入力欄の下にあります。ただし多くの方は既にコピーした色値を持っているため、貼り付けが最短です。</p></details>
+  </section>
+</main>
+
+<footer><p>ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。</p></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = {"inputPh":"色を貼り付け： #2f6df6、rgb(47,109,246)、hsl(220, 91%, 57%)…","outputPh":"HEX / RGB / HSL がここに表示されます"};</script>
+<script src="/assets/tools/_shared.js" defer></script>
+<script src="/assets/tools/color-converter.js" defer></script>
+</body>
+</html>

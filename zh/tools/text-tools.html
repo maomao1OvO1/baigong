@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>文本工具 — 大小写转换 / 去重 / 排序 / 字数统计 | ToolPocket</title>
+<meta name="description" content="转大写、转小写、首字母大写、反序、去空白、删除重复行、按行排序、统计字数 —— 全部在浏览器里离线完成。">
+<link rel="canonical" href="https://tools.maomaowang.top/zh/tools/text-tools.html">
+<meta property="og:title" content="文本工具 — 大小写转换 / 去重 / 排序 / 字数统计 | ToolPocket">
+<meta property="og:description" content="转大写、转小写、首字母大写、反序、去空白、删除重复行、按行排序、统计字数 —— 全部在浏览器里离线完成。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/zh/tools/text-tools.html">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/text-tools.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/text-tools.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/text-tools.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/text-tools.html">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"日常文本处理，一个页面搞定","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"转大写、转小写、首字母大写、反序、去空白、删除重复行、按行排序、统计字数 —— 全部在浏览器里离线完成。"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"为什么合成一页，不分成七个页面？","acceptedAnswer":{"@type":"Answer","text":"因为每一个都小到记不住网址。合成一页、收藏一次，所有选项都在一次点击之内。"}},{"@type":"Question","name":"中文日文能用吗？","acceptedAnswer":{"@type":"Answer","text":"能。大小写对中日文没有意义（本来就没有大小写），但统计、去空格、去重、排序都能正常用，排序按语言习惯来。"}},{"@type":"Question","name":"文本会上传吗？","acceptedAnswer":{"@type":"Answer","text":"不会，不出这个页面。"}}]}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/zh/index.html">🧰 ToolPocket</a>
+  <nav class="langs"><a href="/tools/text-tools.html">English</a><a href="/zh/tools/text-tools.html" class="on" aria-current="page">中文</a><a href="/ja/tools/text-tools.html">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/zh/index.html">← 全部工具</a></p>
+  <h1>日常文本处理，一个页面搞定</h1>
+  <p class="lead">以前要开七个网站的小事：大小写转换、文本反序、逐行去空格、删重复行、按行排序、统计字数/词数/行数。现在都在这儿。</p>
+  <p class="badge-line"><span class="pill">完全在你的浏览器里运行，不上传、不保存。</span></p>
+
+<div class="panel">
+<label class="row lbl" for="input">输入</label>
+  <textarea id="input" class="tall" placeholder="把文本粘到这里…"></textarea>
+  <div class="opts">
+<label class="row"><span class="lbl">要做什么</span><select id="action"><option value="upper">全部转大写</option><option value="lower">全部转小写</option><option value="title">每词首字母大写</option><option value="reverse">文字反序</option><option value="trim">去掉每行首尾空格</option><option value="dedup">删除重复行</option><option value="sort">按行排序 A→Z</option><option value="count">统计字数 / 词数 / 行数</option></select></label>
+  </div>
+<label class="row lbl" for="output">结果</label>
+  <textarea id="output" readonly placeholder="结果显示在这里"></textarea>
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">复制结果</button>
+    <button class="ghost" id="clear">清空</button>
+  </div>
+</div>
+
+  <section class="faq">
+    <h2>常见问题</h2>
+    <details><summary>为什么合成一页，不分成七个页面？</summary><p>因为每一个都小到记不住网址。合成一页、收藏一次，所有选项都在一次点击之内。</p></details>
+    <details><summary>中文日文能用吗？</summary><p>能。大小写对中日文没有意义（本来就没有大小写），但统计、去空格、去重、排序都能正常用，排序按语言习惯来。</p></details>
+    <details><summary>文本会上传吗？</summary><p>不会，不出这个页面。</p></details>
+  </section>
+</main>
+
+<footer><p>ToolPocket · 全部在你的设备上完成，不上传任何文件。</p></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = {"action":"要做什么","upper":"全部转大写","lower":"全部转小写","reverse":"文字反序","trim":"去掉每行首尾空格","dedup":"删除重复行","sort":"按行排序 A→Z","count":"统计字数 / 词数 / 行数","inputPh":"把文本粘到这里…","outputPh":"结果显示在这里","emptyHint":"先在上面粘一段文本","countChars":"字符数","countNoSpace":"字符数（不含空格）","countWords":"词数","countLines":"行数"};</script>
+<script src="/assets/tools/_shared.js" defer></script>
+<script src="/assets/tools/text-tools.js" defer></script>
+</body>
+</html>

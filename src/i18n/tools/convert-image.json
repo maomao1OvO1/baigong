@@ -1,0 +1,69 @@
+{
+  "_说明": "图片格式转换 —— 三语文案。",
+  "en": {
+    "title": "Convert Image Format Online — PNG, JPG, WebP, No Upload | ToolPocket",
+    "desc": "Convert PNG to JPG, JPG to WebP and more, right in your browser. No upload, no account, no watermark, no file limit.",
+    "h1": "Convert image formats without uploading",
+    "lead": "HEIC aside, most format headaches are PNG ↔ JPG ↔ WebP. Drop your files, pick the output, done — <b>nothing leaves your device</b>.",
+    "faq": [
+      ["Which way should I convert?", "For photos: JPG or WebP (much smaller). For graphics, screenshots and anything with transparency: PNG. WebP is the best all-rounder if your target supports it."],
+      ["What happens to transparency?", "PNG and WebP keep it. JPG cannot — those areas are filled with white, which is why converting a logo to JPG usually looks wrong."],
+      ["Can I convert many files at once?", "Yes, and it's unlimited — the conversion runs on your own device."]
+    ],
+    "ui": {
+      "drop": "Click to pick images — or drop them here",
+      "dropNote": "PNG · JPG · WebP · multiple files",
+      "format": "Convert to", "quality": "Quality",
+      "fmtJpeg": "JPG — photos, smallest for camera images",
+      "fmtWebp": "WebP — best size/quality balance",
+      "fmtPng": "PNG — keeps transparency",
+      "run": "Convert and download all", "clear": "Clear",
+      "selected": "{n} file(s) ready.", "working": "Converting…", "download": "Download",
+      "failed": "Couldn't read this file in the browser."
+    }
+  },
+  "zh": {
+    "title": "在线图片格式转换 — PNG / JPG / WebP，不上传 | ToolPocket",
+    "desc": "PNG 转 JPG、JPG 转 WebP 等等，全部在浏览器里完成。不上传、不注册、无水印、不限量。",
+    "h1": "换图片格式，不用先上传",
+    "lead": "除了 HEIC 那种特殊情况，日常的格式麻烦基本就是 PNG ↔ JPG ↔ WebP。拖进来、选输出格式、完事 —— <b>文件不会离开你的设备</b>。",
+    "faq": [
+      ["该转成哪种格式？", "照片用 JPG 或 WebP（体积小很多）；图形、截图、带透明通道的用 PNG。目标平台支持的话，WebP 是综合最优。"],
+      ["透明背景会怎样？", "PNG 和 WebP 保留透明；JPG 不支持，透明区会被填成白色 —— 所以把 logo 转成 JPG 经常会变难看。"],
+      ["能一次转很多张吗？", "能，而且不限量 —— 转换是在你自己的设备上跑的。"]
+    ],
+    "ui": {
+      "drop": "点这里选图片，或者直接拖进来",
+      "dropNote": "PNG · JPG · WebP · 可多选",
+      "format": "转换为", "quality": "质量",
+      "fmtJpeg": "JPG —— 照片首选，相机图最小",
+      "fmtWebp": "WebP —— 体积与画质最平衡",
+      "fmtPng": "PNG —— 保留透明背景",
+      "run": "转换并全部下载", "clear": "清空",
+      "selected": "已就绪 {n} 个文件。", "working": "转换中…", "download": "下载",
+      "failed": "这个文件浏览器读不了。"
+    }
+  },
+  "ja": {
+    "title": "画像形式変換 オンライン — PNG・JPG・WebP、アップロード不要 | ToolPocket",
+    "desc": "PNG を JPG に、JPG を WebP に。変換はすべてブラウザ内で行います。アップロードも登録も透かしもなく、枚数の制限もありません。",
+    "h1": "アップロードせずに画像形式を変換",
+    "lead": "HEIC のような特殊な例を除けば、形式の悩みはほぼ PNG ↔ JPG ↔ WebP です。ドロップして出力形式を選ぶだけ —— <b>ファイルは端末の外に出ません</b>。",
+    "faq": [
+      ["どの形式に変換すればいい？", "写真は JPG か WebP（かなり軽くなります）。図版・スクリーンショット・透過が必要なものは PNG。対応環境なら WebP が最もバランスが良いです。"],
+      ["透過部分はどうなりますか？", "PNG と WebP は透過を保持します。JPG は保持できず、その部分は白で塗られます。ロゴを JPG にすると汚く見えるのはこのためです。"],
+      ["まとめて変換できますか？", "はい、枚数の制限もありません。変換はお使いの端末で行われます。"]
+    ],
+    "ui": {
+      "drop": "クリックして画像を選ぶ／ここにドラッグ＆ドロップ",
+      "dropNote": "PNG・JPG・WebP／複数可",
+      "format": "変換先", "quality": "画質",
+      "fmtJpeg": "JPG — 写真向き、カメラ画像が最も軽くなる",
+      "fmtWebp": "WebP — 容量と画質のバランスが最良",
+      "fmtPng": "PNG — 透過を保持",
+      "run": "変換してまとめてダウンロード", "clear": "クリア",
+      "selected": "{n} 件のファイルを読み込み済み。", "working": "変換中…", "download": "ダウンロード",
+      "failed": "このファイルはブラウザで読み込めませんでした。"
+    }
+  }
+}

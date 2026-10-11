@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>単位変換 — 長さ・重さ・データ容量・温度 | ToolPocket</title>
+<meta name="description" content="mm・cm・m・km・インチ・フィート・マイル、グラム・オンス・ポンド、KB・MB・GB、摂氏・華氏・ケルビンを一括変換。アップロード不要。">
+<link rel="canonical" href="https://tools.maomaowang.top/ja/tools/unit-converter.html">
+<meta property="og:title" content="単位変換 — 長さ・重さ・データ容量・温度 | ToolPocket">
+<meta property="og:description" content="mm・cm・m・km・インチ・フィート・マイル、グラム・オンス・ポンド、KB・MB・GB、摂氏・華氏・ケルビンを一括変換。アップロード不要。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/ja/tools/unit-converter.html">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/unit-converter.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/unit-converter.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/unit-converter.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/unit-converter.html">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"単位変換","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"mm・cm・m・km・インチ・フィート・マイル、グラム・オンス・ポンド、KB・MB・GB、摂氏・華氏・ケルビンを一括変換。アップロード不要。"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"MB と MiB は何が違いますか？","acceptedAnswer":{"@type":"Answer","text":"ここでは 10 進数（1 KB = 1000 バイト）を使っています。ストレージメーカーや多くのクラウドサービスの表記と同じです。OS は 2 進数（1024）で表示することが多く、500 GB のドライブが Windows では約 465 GB と表示されるのはそのためです。"}},{"@type":"Question","name":"温度も変換できますか？","acceptedAnswer":{"@type":"Answer","text":"はい。「温度」カテゴリを選ぶと、摂氏・華氏・ケルビンが同時に表示されます。"}},{"@type":"Question","name":"なぜ 2 つだけでなく全部表示するのですか？","acceptedAnswer":{"@type":"Answer","text":"3〜4 個を同時に比較したいことが多く、ドロップダウンを 2 つ選ぶ操作は単なる手間だからです。"}}]}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/ja/index.html">🧰 ToolPocket</a>
+  <nav class="langs"><a href="/tools/unit-converter.html">English</a><a href="/zh/tools/unit-converter.html">中文</a><a href="/ja/tools/unit-converter.html" class="on" aria-current="page">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/ja/index.html">← ツール一覧</a></p>
+  <h1>単位変換</h1>
+  <p class="lead">数値を 1 つ入力すると、同じカテゴリの<b>すべての単位</b>が一度に表示されます。「変換元と変換先を選ぶ」手間はありません。長さ・重さ・データ容量・温度に対応。</p>
+  <p class="badge-line"><span class="pill">すべてブラウザ内で処理されます。送信も保存もしていません。</span></p>
+
+<div class="panel">
+
+  <div class="opts">
+<label class="row"><span class="lbl">カテゴリ</span><select id="category"><option value="length">長さ</option><option value="weight">重さ</option><option value="data">データ容量</option><option value="temp">温度</option></select></label>
+<label class="row"><span class="lbl">値</span><input type="number" id="value"  placeholder="数値を入力"> <span class="badge" id="unitLabel"></span></label>
+  </div>
+
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">結果をコピー</button>
+    <button class="ghost" id="clear">クリア</button>
+  </div>
+</div>
+
+  <section class="faq">
+    <h2>よくある質問</h2>
+    <details><summary>MB と MiB は何が違いますか？</summary><p>ここでは 10 進数（1 KB = 1000 バイト）を使っています。ストレージメーカーや多くのクラウドサービスの表記と同じです。OS は 2 進数（1024）で表示することが多く、500 GB のドライブが Windows では約 465 GB と表示されるのはそのためです。</p></details>
+    <details><summary>温度も変換できますか？</summary><p>はい。「温度」カテゴリを選ぶと、摂氏・華氏・ケルビンが同時に表示されます。</p></details>
+    <details><summary>なぜ 2 つだけでなく全部表示するのですか？</summary><p>3〜4 個を同時に比較したいことが多く、ドロップダウンを 2 つ選ぶ操作は単なる手間だからです。</p></details>
+  </section>
+</main>
+
+<footer><p>ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。</p></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = {"category":"カテゴリ","catLength":"長さ","catWeight":"重さ","catData":"データ容量","catTemp":"温度","value":"値","valuePh":"数値を入力","outputPh":"すべての単位の結果がここに表示されます","fromCelsius":"入力値は摂氏として扱います","unitLabel":"単位"};</script>
+<script src="/assets/tools/_shared.js" defer></script>
+<script src="/assets/tools/unit-converter.js" defer></script>
+</body>
+</html>

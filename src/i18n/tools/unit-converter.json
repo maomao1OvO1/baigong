@@ -1,0 +1,57 @@
+{
+  "_说明": "单位换算 —— 三语文案。",
+  "en": {
+    "title": "Unit Converter — Length, Weight, Data Size, Temperature | ToolPocket",
+    "desc": "Convert mm/cm/m/km, inches/feet/miles, grams/ounces/pounds, KB/MB/GB, and Celsius/Fahrenheit/Kelvin — all at once, no upload.",
+    "h1": "Unit converter",
+    "lead": "Type one value and see <b>every</b> unit in that category at once — no “pick from and to” dropdown dance. Handles length, weight, data size and temperature.",
+    "faq": [
+      ["What's the difference between MB and MiB?", "This converter uses decimal units (1 KB = 1000 bytes), which is what disk makers and most cloud services mean. Operating systems often show binary (1024) — so a “500 GB” drive shows as ~465 GB in Windows."],
+      ["Does it do temperature?", "Yes — pick the temperature category and it shows Celsius, Fahrenheit and Kelvin together."],
+      ["Why show all units instead of just two?", "Because you usually want to compare three or four at once, and picking two dropdowns is pure friction."]
+    ],
+    "ui": {
+      "category": "Category", "catLength": "Length", "catWeight": "Weight", "catData": "Data size", "catTemp": "Temperature",
+      "value": "Value", "valuePh": "Enter a number",
+      "outputPh": "All units appear here",
+      "fromCelsius": "Input is treated as °C",
+      "unitLabel": "Unit"
+    }
+  },
+  "zh": {
+    "title": "单位换算 — 长度 / 重量 / 数据大小 / 温度 | ToolPocket",
+    "desc": "毫米、厘米、米、公里、英寸、英尺、英里、克、盎司、磅、KB、MB、GB、摄氏度、华氏度、开尔文 —— 一次全出，不上传。",
+    "h1": "单位换算",
+    "lead": "输一个数，同类别里<b>所有单位</b>一起出来 —— 不用先选“从哪个换到哪个”。支持长度、重量、数据大小、温度。",
+    "faq": [
+      ["MB 和 MiB 有什么区别？", "这里用的是十进制（1 KB = 1000 字节），也就是硬盘厂商和多数云服务用的口径。操作系统常用二进制（1024），所以标称 500 GB 的硬盘在 Windows 里显示约 465 GB。"],
+      ["温度也能换吗？", "能 —— 选「温度」类别，摄氏度、华氏度、开尔文一起给你。"],
+      ["为什么一次显示所有单位？", "因为你通常要同时比较三四个值，而选两个下拉框纯粹是添堵。"]
+    ],
+    "ui": {
+      "category": "类别", "catLength": "长度", "catWeight": "重量", "catData": "数据大小", "catTemp": "温度",
+      "value": "数值", "valuePh": "输入一个数字",
+      "outputPh": "所有单位的结果显示在这里",
+      "fromCelsius": "输入值按摄氏度计算",
+      "unitLabel": "单位"
+    }
+  },
+  "ja": {
+    "title": "単位変換 — 長さ・重さ・データ容量・温度 | ToolPocket",
+    "desc": "mm・cm・m・km・インチ・フィート・マイル、グラム・オンス・ポンド、KB・MB・GB、摂氏・華氏・ケルビンを一括変換。アップロード不要。",
+    "h1": "単位変換",
+    "lead": "数値を 1 つ入力すると、同じカテゴリの<b>すべての単位</b>が一度に表示されます。「変換元と変換先を選ぶ」手間はありません。長さ・重さ・データ容量・温度に対応。",
+    "faq": [
+      ["MB と MiB は何が違いますか？", "ここでは 10 進数（1 KB = 1000 バイト）を使っています。ストレージメーカーや多くのクラウドサービスの表記と同じです。OS は 2 進数（1024）で表示することが多く、500 GB のドライブが Windows では約 465 GB と表示されるのはそのためです。"],
+      ["温度も変換できますか？", "はい。「温度」カテゴリを選ぶと、摂氏・華氏・ケルビンが同時に表示されます。"],
+      ["なぜ 2 つだけでなく全部表示するのですか？", "3〜4 個を同時に比較したいことが多く、ドロップダウンを 2 つ選ぶ操作は単なる手間だからです。"]
+    ],
+    "ui": {
+      "category": "カテゴリ", "catLength": "長さ", "catWeight": "重さ", "catData": "データ容量", "catTemp": "温度",
+      "value": "値", "valuePh": "数値を入力",
+      "outputPh": "すべての単位の結果がここに表示されます",
+      "fromCelsius": "入力値は摂氏として扱います",
+      "unitLabel": "単位"
+    }
+  }
+}

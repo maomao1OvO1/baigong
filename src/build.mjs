@@ -1,121 +1,240 @@
 /* ============================================================================
-   文件：build.mjs —— ToolPocket 静态站生成器（小鲸写 · 2026-10-11）
-   干什么：读 src/strings.json（三语文案）→ 生成三种语言各自的静态页面。
-   为什么这么做（而不是用 JS 在浏览器里换文案）：
-     · 搜索引擎是按「网址」收录内容的。如果三语共用同一个网址、靠 JS 切换，
-       那么中日英三种搜索里都只有一种语言的页面能被收录 —— 等于白做两份。
-     · 所以每种语言给独立网址（/ 、/zh/ 、/ja/），再用 <link rel="alternate" hreflang>
-       互相声明「我们是同一页的不同语言版本」，搜索引擎就不会判重复内容。
-     · 语言切换器就是三个普通链接 —— 不依赖 JS，点一下就到，手机上也快。
-   怎么用：改文案/加工具后，在 toolbox/ 目录跑：node src/build.mjs
-   注意：改域名只改下面的 SITE 一处。
+   文件：build.mjs —— ToolPocket 静态站生成器（小鲸 · 2026-10-11 重构为数据驱动）
+   干什么：读 tools.json（工具清单）+ i18n/（三语文案）→ 生成三语全部页面 + sitemap。
+   为什么要生成而不是手写：
+     · 7 个工具 × 3 种语言 = 21 个工具页。手写就要维护 21 份几乎一样的 HTML —— 那就是屎山。
+     · 现在加一个工具 = 加一条数据 + 一个文案文件 + 一个脚本，跑一次命令出三页。
+   多语言为什么用独立网址（而不是 JS 换文案）：
+     · 搜索引擎按网址收录。三语共用一个网址、靠 JS 切换 ⇒ 只有一种语言能被收录，另两份白做。
+     · 所以 / 、/zh/ 、/ja/ 各一套，再用 hreflang 互相声明，避免被判重复内容。
+   性能原则（用户要求"浏览要快"）：
+     · 零外部依赖（无框架、无 CDN、无字体请求）；
+     · 每个工具页只加载「共享函数 + 自己的脚本」两个 JS，且都 defer；首页一个脚本都不加载；
+     · CSS 一份共用，浏览器缓存后其它页面零成本。
+   用法：在 toolbox/ 目录跑 `node src/build.mjs`
+        换域名/子路径：SITE_URL=... BASE_PATH=... node src/build.mjs
    ============================================================================ */
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
-
-/* 站点地址与「基路径」：
-   · 部署在根域名（如 Cloudflare Pages 的 xxx.pages.dev）⇒ BASE_PATH 留空；
-   · 部署在子路径（如 GitHub Pages 的 user.github.io/toolpocket）⇒ BASE_PATH=/toolpocket，
-     否则页面里那些 /assets/... 的绝对路径会 404。
-   用法：SITE_URL=... BASE_PATH=/toolpocket node src/build.mjs */
-const SITE = (process.env.SITE_URL || "https://pockettools-f1y.pages.dev").replace(/\/+$/, "");
+const SITE = (process.env.SITE_URL || "https://tools.maomaowang.top").replace(/\/+$/, "");
 const BASE = (process.env.BASE_PATH || "").replace(/\/+$/, "");
 
-const S = JSON.parse(fs.readFileSync(path.join(ROOT, "src", "strings.json"), "utf8"));
+const readJson = (p) => JSON.parse(fs.readFileSync(path.join(ROOT, p), "utf8"));
+const TOOLS = readJson("src/tools.json").tools;
+const UI = readJson("src/i18n/ui.json");
+const HOME = readJson("src/i18n/home.json");
+const TOOL_I18N = Object.fromEntries(TOOLS.map((t) => [t.id, readJson(`src/i18n/tools/${t.i18n}.json`)]));
 
-/** 语言表：code = 文案键；hreflang = 给搜索引擎的标准写法；dir = 网址目录（空 = 根目录，作为默认语言） */
 const LANGS = [
-  { code: "en", hreflang: "en",      dir: "" },
+  { code: "en", hreflang: "en", dir: "" },
   { code: "zh", hreflang: "zh-Hans", dir: "zh" },
-  { code: "ja", hreflang: "ja",      dir: "ja" },
+  { code: "ja", hreflang: "ja", dir: "ja" },
 ];
 
-/** 页面表：out = 相对路径（不含语言目录）；key = 文案里的键；isHome = 是否首页 */
-const PAGES = [
-  { out: "index.html",                key: "home",          isHome: true },
-  { out: "tools/compress-image.html", key: "tool_compress", isHome: false },
-];
+const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+/** 文案里允许写 <b>/<code> 这类行内标签，所以正文只转义引号 */
+const rich = (s) => String(s).replace(/"/g, "&quot;");
 
-const 转义 = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
-/** 文案里允许写 <b> 这类行内标签，所以正文用「只转义引号」的版本 */
-const 宽松 = (s) => String(s).replace(/"/g, "&quot;");
+const urlOf = (lang, out) => SITE + "/" + (lang.dir ? lang.dir + "/" : "") + out;
+const pathOf = (lang, out) => BASE + "/" + (lang.dir ? lang.dir + "/" : "") + out;
+const asset = (file) => BASE + "/assets/" + file;
 
-const 网址 = (lang, out) => SITE + "/" + (lang.dir ? lang.dir + "/" : "") + out;
-const 路径 = (lang, out) => BASE + "/" + (lang.dir ? lang.dir + "/" : "") + out;
-/** 静态资源（样式/脚本）的引用路径，要跟着基路径走 */
-const 资源 = (file) => BASE + "/assets/" + file;
+/* ── 页面骨架 ───────────────────────────────────────────────────────────── */
 
-/** <head> 里的 SEO 与多语言声明 */
-function head(lang, page, t) {
-  const alts = LANGS.map((l) =>
-    `<link rel="alternate" hreflang="${l.hreflang}" href="${网址(l, page.out)}">`).join("\n");
-  const xDefault = `<link rel="alternate" hreflang="x-default" href="${网址(LANGS[0], page.out)}">`;
-  const jsonld = page.isHome
-    ? `<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"${S.brand}","url":"${SITE}/"}</script>`
-    : `<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Image Compressor — ${S.brand}","applicationCategory":"MultimediaApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"${转义(t.desc)}"}</script>`;
+function head(lang, { out, title, desc, jsonld }) {
+  const alts = LANGS.map((l) => `<link rel="alternate" hreflang="${l.hreflang}" href="${urlOf(l, out)}">`).join("\n");
   return `<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${转义(t.title)}</title>
-<meta name="description" content="${转义(t.desc)}">
-<link rel="canonical" href="${网址(lang, page.out)}">
-<meta property="og:title" content="${转义(t.title)}">
-<meta property="og:description" content="${转义(t.desc)}">
+<title>${esc(title)}</title>
+<meta name="description" content="${esc(desc)}">
+<link rel="canonical" href="${urlOf(lang, out)}">
+<meta property="og:title" content="${esc(title)}">
+<meta property="og:description" content="${esc(desc)}">
 <meta property="og:type" content="website">
-<meta property="og:url" content="${网址(lang, page.out)}">
+<meta property="og:url" content="${urlOf(lang, out)}">
 ${alts}
-${xDefault}
-<link rel="stylesheet" href="${资源("style.css")}">
-${jsonld}`;
+<link rel="alternate" hreflang="x-default" href="${urlOf(LANGS[0], out)}">
+<link rel="stylesheet" href="${asset("style.css")}">
+<script type="application/ld+json">${JSON.stringify(jsonld)}</script>`;
 }
 
-/** 顶栏：品牌 + 语言切换（三个普通链接，当前语言加粗）+ 关于 */
-function topbar(lang, page) {
-  const links = LANGS.map((l) => {
-    const on = l.code === lang.code;
-    const 名 = S.langName[l.code];
-    return `<a href="${路径(l, page.out)}"${on ? ' class="on" aria-current="page"' : ""}>${名}</a>`;
-  }).join("");
+function topbar(lang, out) {
+  const links = LANGS.map((l) =>
+    `<a href="${pathOf(l, out)}"${l.code === lang.code ? ' class="on" aria-current="page"' : ""}>${UI.langName[l.code]}</a>`).join("");
   return `<header class="top">
-  <a class="brand" href="${路径(lang, "index.html")}">🧰 ${S.brand}</a>
+  <a class="brand" href="${pathOf(lang, "index.html")}">🧰 ${UI.brand}</a>
   <nav class="langs">${links}</nav>
 </header>`;
 }
 
-function footer(lang) {
-  return `<footer><p>${S.brand} · ${lang.code === "ja" ? "処理はすべて端末側で行われます" : lang.code === "zh" ? "全部处理都在你的设备上完成" : "Everything runs on your device"}</p></footer>`;
+const footer = (lang) => `<footer><p>${rich(UI.footer[lang.code])}</p></footer>`;
+
+/** 把 tools.json 里的声明式控件渲染成 HTML（label/选项文案从该工具的三语 ui 里取） */
+function renderOptions(lang, tool, t) {
+  const ui = t.ui;
+  const parts = (tool.options || []).map((o) => {
+    const label = o.label ? `<span class="lbl">${rich(ui[o.label] || o.label)}</span>` : "";
+    if (o.type === "range") {
+      const show = o.showValue ? `<span class="badge" id="${o.showValue}"></span>` : "";
+      return `<label class="row">${label}<input type="range" id="${o.id}" min="${o.min}" max="${o.max}" value="${o.value}">${show}</label>`;
+    }
+    if (o.type === "number") {
+      const ph = o.placeholder ? ` placeholder="${esc(ui[o.placeholder] || "")}"` : "";
+      const attrs = [o.value !== undefined ? `value="${o.value}"` : "", o.min !== undefined ? `min="${o.min}"` : "", o.step ? `step="${o.step}"` : ""].filter(Boolean).join(" ");
+      const note = o.note ? ` <span class="note">${rich(ui[o.note])}</span>` : "";
+      const unit = o.unitLabel ? ` <span class="badge" id="${o.unitLabel}"></span>` : "";
+      return `<label class="row">${label}<input type="number" id="${o.id}" ${attrs}${ph}>${unit}${note}</label>`;
+    }
+    if (o.type === "select") {
+      const opts = o.choices.map(([v, k]) => `<option value="${esc(v)}">${rich(ui[k] || k)}</option>`).join("");
+      return `<label class="row">${label}<select id="${o.id}">${opts}</select></label>`;
+    }
+    if (o.type === "color") return `<label class="row"><input type="color" id="${o.id}" value="#2f6df6"></label>`;
+    return "";
+  });
+  return parts.join("\n");
 }
 
-/** 首页 */
-function 首页HTML(lang) {
-  const t = S.home[lang.code];
+/* ── 工具页 ─────────────────────────────────────────────────────────────── */
+
+function toolPage(lang, tool) {
+  const t = TOOL_I18N[tool.id][lang.code];
+  const ui = t.ui;
+  const out = `tools/${tool.id}.html`;
+  const jsonld = {
+    "@context": "https://schema.org", "@type": "SoftwareApplication",
+    name: t.h1, applicationCategory: "UtilitiesApplication", operatingSystem: "Any web browser",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" }, description: t.desc,
+  };
+  const faqLd = {
+    "@context": "https://schema.org", "@type": "FAQPage",
+    mainEntity: t.faq.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })),
+  };
+  const head_html = head(lang, { out, title: t.title, desc: t.desc, jsonld })
+    + `\n<script type="application/ld+json">${JSON.stringify(faqLd)}</script>`;
+
+  // 传给人看的那部分界面文案（脚本用到的键，去掉 title/desc 等）
+  const scriptStrings = Object.assign({}, ui);
+  delete scriptStrings.title; delete scriptStrings.desc; delete scriptStrings.h1; delete scriptStrings.lead;
+
+  let body;
+  if (tool.kind === "image") {
+    body = `<div class="panel">
+  <div class="drop" id="drop">
+    <b>${rich(ui.drop)}</b><br><span class="note">${rich(ui.dropNote)}</span>
+    <input type="file" id="picker" accept="image/*" multiple>
+  </div>
+  <div class="opts">
+${renderOptions(lang, tool, t)}
+  </div>
+  <div class="btnrow">
+    <button id="run" disabled>${rich(ui.run)}</button>
+    <button class="ghost" id="clear" disabled>${rich(ui.clear || UI.clear[lang.code])}</button>
+  </div>
+  <p class="note" id="hint"></p>
+</div>
+<ul class="results" id="results"></ul>`;
+  } else {
+    const buttons = tool.buttons || ["copy", "clear"];
+    const btnHtml = buttons.map((b, i) =>
+      b === "copy" ? `<button id="copy">${rich(UI.copy[lang.code])}</button>`
+        : `<button class="ghost" id="${b}">${rich(UI[b][lang.code])}</button>`).join("\n    ");
+    const swatch = (tool.extras || []).indexOf("swatch") >= 0 ? `\n  <div class="swatch" id="swatch" aria-hidden="true"></div>` : "";
+    const inputArea = tool.noInput
+      ? ""
+      : `<label class="row lbl" for="input">${rich(UI.inputLabel[lang.code])}</label>
+  <textarea id="input" class="tall" placeholder="${esc(ui.inputPh || "")}"></textarea>`;
+    const outputArea = tool.noInput
+      ? ""
+      : `<label class="row lbl" for="output">${rich(UI.outputLabel[lang.code])}</label>
+  <textarea id="output" readonly placeholder="${esc(ui.outputPh || "")}"></textarea>`;
+    body = `<div class="panel">
+${inputArea}
+  <div class="opts">
+${renderOptions(lang, tool, t)}
+  </div>${swatch}
+${outputArea}
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    ${btnHtml}
+  </div>
+</div>`;
+  }
+
+  const faq = t.faq.map(([q, a]) => `    <details><summary>${rich(q)}</summary><p>${rich(a)}</p></details>`).join("\n");
   return `<!DOCTYPE html>
 <html lang="${lang.code}">
 <head>
-${head(lang, PAGES[0], t)}
+${head_html}
 </head>
 <body>
-${topbar(lang, PAGES[0])}
+${topbar(lang, out)}
 
 <main>
-  <h1>${宽松(t.h1)}</h1>
-  <p class="lead">${宽松(t.lead)}</p>
+  <p class="crumb"><a href="${pathOf(lang, "index.html")}">${rich(UI.backToTools[lang.code])}</a></p>
+  <h1>${rich(t.h1)}</h1>
+  <p class="lead">${rich(t.lead)}</p>
+  <p class="badge-line"><span class="pill">${rich(UI.privacyNote[lang.code])}</span></p>
 
-  <h2>${宽松(t.toolsHeading)}</h2>
+${body}
+
+  <section class="faq">
+    <h2>${lang.code === "ja" ? "よくある質問" : lang.code === "zh" ? "常见问题" : "FAQ"}</h2>
+${faq}
+  </section>
+</main>
+
+${footer(lang)}
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = ${JSON.stringify(scriptStrings)};</script>
+<script src="${asset("tools/_shared.js")}" defer></script>
+<script src="${asset("tools/" + tool.script)}" defer></script>
+</body>
+</html>
+`;
+}
+
+/* ── 首页 ───────────────────────────────────────────────────────────────── */
+
+function homePage(lang) {
+  const t = HOME[lang.code];
+  const out = "index.html";
+  const jsonld = { "@context": "https://schema.org", "@type": "WebSite", name: UI.brand, url: SITE + "/" };
+  const cards = TOOLS.map((tool) => {
+    const tt = TOOL_I18N[tool.id][lang.code];
+    const short = tt.lead.replace(/<[^>]+>/g, "");
+    return `    <li><a href="${pathOf(lang, "tools/" + tool.id + ".html")}">
+      <span class="ico">${tool.icon}</span>
+      <b>${rich(tt.h1)}</b>
+      <span class="sub">${rich(short.length > 96 ? short.slice(0, 96) + "…" : short)}</span>
+    </a></li>`;
+  }).join("\n");
+
+  return `<!DOCTYPE html>
+<html lang="${lang.code}">
+<head>
+${head(lang, { out, title: t.title, desc: t.desc, jsonld })}
+</head>
+<body>
+${topbar(lang, out)}
+
+<main>
+  <h1>${rich(t.h1)}</h1>
+  <p class="lead">${rich(t.lead)}</p>
+
+  <h2>${rich(t.toolsHeading)}</h2>
   <ul class="grid">
-    <li><a href="${路径(lang, "tools/compress-image.html")}">
-      <b>${宽松(S.tool_compress[lang.code].h1)}</b>
-      <span>${宽松(S.tool_compress[lang.code].lead.replace(/<[^>]+>/g, "").slice(0, 110))}…</span>
-    </a></li>
+${cards}
   </ul>
 
   <section class="why">
-    <h2>${宽松(t.whyHeading)}</h2>
-    <p>${宽松(t.why)}</p>
-    <h2>${宽松(t.safeHeading)}</h2>
-    <p>${宽松(t.safe)}</p>
+    <h2>${rich(t.whyHeading)}</h2>
+    <p>${rich(t.why)}</p>
+    <h2>${rich(t.safeHeading)}</h2>
+    <p>${rich(t.safe)}</p>
   </section>
 </main>
 
@@ -125,115 +244,34 @@ ${footer(lang)}
 `;
 }
 
-/** 图片压缩工具页 */
-function 工具页HTML(lang) {
-  const t = S.tool_compress[lang.code];
-  const faqHtml = t.faq.map(([q, a]) => `    <details><summary>${宽松(q)}</summary><p>${宽松(a)}</p></details>`).join("\n");
-  // 把文案注入给共享脚本用（脚本本身不含任何语言的文字）
-  const T = {
-    selected: t.selected, working: t.working, download: t.download,
-    saved: t.saved, bigger: t.bigger, failed: t.failed, run: t.run,
-  };
-  const faqLd = JSON.stringify({
-    "@context": "https://schema.org", "@type": "FAQPage",
-    mainEntity: t.faq.map(([q, a]) => ({
-      "@type": "Question", name: q,
-      acceptedAnswer: { "@type": "Answer", text: a },
-    })),
-  });
-  return `<!DOCTYPE html>
-<html lang="${lang.code}">
-<head>
-${head(lang, PAGES[1], t)}
-<script type="application/ld+json">${faqLd}</script>
-</head>
-<body>
-${topbar(lang, PAGES[1])}
+/* ── 主流程 ─────────────────────────────────────────────────────────────── */
 
-<main>
-  <h1>${宽松(t.h1)}</h1>
-  <p class="lead">${宽松(t.lead)}</p>
+let count = 0;
+const write = (rel, html) => {
+  const target = path.join(ROOT, rel);
+  fs.mkdirSync(path.dirname(target), { recursive: true });
+  fs.writeFileSync(target, html, "utf8");
+  count++;
+  console.log("  ✓ " + rel + "  (" + Buffer.byteLength(html) + " 字节)");
+};
 
-  <div class="panel">
-    <div class="drop" id="drop">
-      <b>${宽松(t.drop)}</b><br>
-      <span class="note">${宽松(t.dropNote)}</span>
-      <input type="file" id="picker" accept="image/*" multiple>
-    </div>
-
-    <label class="row">${宽松(t.quality)}
-      <input type="range" id="quality" min="30" max="95" value="72">
-      <span id="qualityVal" class="badge">72%</span>
-    </label>
-
-    <label class="row">${宽松(t.maxw)}
-      <input type="number" id="maxw" value="1920" min="0" step="10" style="width:110px">
-      <span class="note">${宽松(t.maxwNote)}</span>
-    </label>
-
-    <label class="row">${宽松(t.format)}
-      <select id="format" style="padding:9px 11px;border-radius:9px;border:1px solid var(--line);background:var(--bg);color:var(--fg)">
-        <option value="image/jpeg">${宽松(t.fmtJpeg)}</option>
-        <option value="image/webp">${宽松(t.fmtWebp)}</option>
-        <option value="image/png">${宽松(t.fmtPng)}</option>
-      </select>
-    </label>
-
-    <div class="btnrow">
-      <button id="run" disabled>${宽松(t.run)}</button>
-      <button class="ghost" id="clear" disabled>${宽松(t.clear)}</button>
-    </div>
-    <p class="note" id="hint"></p>
-  </div>
-
-  <ul class="results" id="results"></ul>
-
-  <section class="why">
-    <h2>${宽松(t.faqHeading)}</h2>
-${faqHtml}
-  </section>
-</main>
-
-${footer(lang)}
-<script>window.T = ${JSON.stringify(T)};</script>
-<script src="${资源("compress.js")}"></script>
-</body>
-</html>
-`;
-}
-
-/* ── 主流程 ── */
-let 生成数 = 0;
 for (const lang of LANGS) {
-  for (const page of PAGES) {
-    const html = page.isHome ? 首页HTML(lang) : 工具页HTML(lang);
-    const 目标 = path.join(ROOT, lang.dir, page.out);
-    fs.mkdirSync(path.dirname(目标), { recursive: true });
-    fs.writeFileSync(目标, html, "utf8");
-    生成数++;
-    console.log("  ✓ " + path.relative(ROOT, 目标) + "  (" + Buffer.byteLength(html) + " 字节)");
-  }
+  write(path.join(lang.dir, "index.html"), homePage(lang));
+  for (const tool of TOOLS) write(path.join(lang.dir, "tools", tool.id + ".html"), toolPage(lang, tool));
 }
 
-/* ── 顺便生成 sitemap.xml（搜索引擎的"站点地图"）──
-   为什么每个 URL 里都带三行 xhtml:link：这是 sitemap 规范里声明「多语言版本」的写法，
-   和页面 <head> 里的 hreflang 是同一件事的两种表述，两边都写搜索引擎才最不容易搞混。
-   注意：这里用 xhtml 命名空间，格式写错会被 Search Console 判为无效。 */
-const 条目 = [];
-for (const page of PAGES) {
-  条目.push(`  <url>
-    <loc>${网址(LANGS[0], page.out)}</loc>
-${LANGS.map((l) => `    <xhtml:link rel="alternate" hreflang="${l.hreflang}" href="${网址(l, page.out)}"/>`).join("\n")}
-    <xhtml:link rel="alternate" hreflang="x-default" href="${网址(LANGS[0], page.out)}"/>
-  </url>`);
-}
+/* sitemap：多语言站要用 xhtml:link 标注各语言版本（与页面里的 hreflang 是同一件事） */
+const PAGES = ["index.html", ...TOOLS.map((t) => "tools/" + t.id + ".html")];
+const urls = PAGES.map((out) => `  <url>
+    <loc>${urlOf(LANGS[0], out)}</loc>
+${LANGS.map((l) => `    <xhtml:link rel="alternate" hreflang="${l.hreflang}" href="${urlOf(l, out)}"/>`).join("\n")}
+    <xhtml:link rel="alternate" hreflang="x-default" href="${urlOf(LANGS[0], out)}"/>
+  </url>`).join("\n");
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
-${条目.join("\n")}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+${urls}
 </urlset>
 `;
-fs.writeFileSync(path.join(ROOT, "sitemap.xml"), sitemap, "utf8");
-console.log("  ✓ sitemap.xml  (" + Buffer.byteLength(sitemap) + " 字节)");
+write("sitemap.xml", sitemap);
 
-console.log(`生成完成：${生成数} 个页面 · ${LANGS.length} 种语言 · ${PAGES.length} 个页面模板`);
+console.log(`生成完成：${count} 个文件 · ${LANGS.length} 种语言 · ${TOOLS.length} 个工具`);

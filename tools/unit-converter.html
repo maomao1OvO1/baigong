@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit Converter — Length, Weight, Data Size, Temperature | ToolPocket</title>
+<meta name="description" content="Convert mm/cm/m/km, inches/feet/miles, grams/ounces/pounds, KB/MB/GB, and Celsius/Fahrenheit/Kelvin — all at once, no upload.">
+<link rel="canonical" href="https://tools.maomaowang.top/tools/unit-converter.html">
+<meta property="og:title" content="Unit Converter — Length, Weight, Data Size, Temperature | ToolPocket">
+<meta property="og:description" content="Convert mm/cm/m/km, inches/feet/miles, grams/ounces/pounds, KB/MB/GB, and Celsius/Fahrenheit/Kelvin — all at once, no upload.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/tools/unit-converter.html">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/unit-converter.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/unit-converter.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/unit-converter.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/unit-converter.html">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Unit converter","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Convert mm/cm/m/km, inches/feet/miles, grams/ounces/pounds, KB/MB/GB, and Celsius/Fahrenheit/Kelvin — all at once, no upload."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What's the difference between MB and MiB?","acceptedAnswer":{"@type":"Answer","text":"This converter uses decimal units (1 KB = 1000 bytes), which is what disk makers and most cloud services mean. Operating systems often show binary (1024) — so a “500 GB” drive shows as ~465 GB in Windows."}},{"@type":"Question","name":"Does it do temperature?","acceptedAnswer":{"@type":"Answer","text":"Yes — pick the temperature category and it shows Celsius, Fahrenheit and Kelvin together."}},{"@type":"Question","name":"Why show all units instead of just two?","acceptedAnswer":{"@type":"Answer","text":"Because you usually want to compare three or four at once, and picking two dropdowns is pure friction."}}]}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/index.html">🧰 ToolPocket</a>
+  <nav class="langs"><a href="/tools/unit-converter.html" class="on" aria-current="page">English</a><a href="/zh/tools/unit-converter.html">中文</a><a href="/ja/tools/unit-converter.html">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/index.html">← All tools</a></p>
+  <h1>Unit converter</h1>
+  <p class="lead">Type one value and see <b>every</b> unit in that category at once — no “pick from and to” dropdown dance. Handles length, weight, data size and temperature.</p>
+  <p class="badge-line"><span class="pill">Runs entirely in your browser. Nothing is uploaded or stored.</span></p>
+
+<div class="panel">
+
+  <div class="opts">
+<label class="row"><span class="lbl">Category</span><select id="category"><option value="length">Length</option><option value="weight">Weight</option><option value="data">Data size</option><option value="temp">Temperature</option></select></label>
+<label class="row"><span class="lbl">Value</span><input type="number" id="value"  placeholder="Enter a number"> <span class="badge" id="unitLabel"></span></label>
+  </div>
+
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">Copy result</button>
+    <button class="ghost" id="clear">Clear</button>
+  </div>
+</div>
+
+  <section class="faq">
+    <h2>FAQ</h2>
+    <details><summary>What's the difference between MB and MiB?</summary><p>This converter uses decimal units (1 KB = 1000 bytes), which is what disk makers and most cloud services mean. Operating systems often show binary (1024) — so a “500 GB” drive shows as ~465 GB in Windows.</p></details>
+    <details><summary>Does it do temperature?</summary><p>Yes — pick the temperature category and it shows Celsius, Fahrenheit and Kelvin together.</p></details>
+    <details><summary>Why show all units instead of just two?</summary><p>Because you usually want to compare three or four at once, and picking two dropdowns is pure friction.</p></details>
+  </section>
+</main>
+
+<footer><p>ToolPocket · Everything runs on your device — nothing is uploaded.</p></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = {"category":"Category","catLength":"Length","catWeight":"Weight","catData":"Data size","catTemp":"Temperature","value":"Value","valuePh":"Enter a number","outputPh":"All units appear here","fromCelsius":"Input is treated as °C","unitLabel":"Unit"};</script>
+<script src="/assets/tools/_shared.js" defer></script>
+<script src="/assets/tools/unit-converter.js" defer></script>
+</body>
+</html>

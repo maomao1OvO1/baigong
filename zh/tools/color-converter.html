@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>颜色转换 HEX / RGB / HSL — 免费即时 | ToolPocket</title>
+<meta name="description" content="粘任意一种颜色写法（#hex、rgb()、hsl()），一次给出三种格式，还带实时预览。全部在浏览器里算。">
+<link rel="canonical" href="https://tools.maomaowang.top/zh/tools/color-converter.html">
+<meta property="og:title" content="颜色转换 HEX / RGB / HSL — 免费即时 | ToolPocket">
+<meta property="og:description" content="粘任意一种颜色写法（#hex、rgb()、hsl()），一次给出三种格式，还带实时预览。全部在浏览器里算。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/zh/tools/color-converter.html">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/color-converter.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/color-converter.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/color-converter.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/color-converter.html">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"颜色转换 —— HEX / RGB / HSL","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"粘任意一种颜色写法（#hex、rgb()、hsl()），一次给出三种格式，还带实时预览。全部在浏览器里算。"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"支持哪些写法？","acceptedAnswer":{"@type":"Answer","text":"#abc、#aabbcc、rgb(r,g,b)、rgba(...)、hsl(h,s%,l%)，带不带空格都行。"}},{"@type":"Question","name":"结果准吗？","acceptedAnswer":{"@type":"Answer","text":"RGB ↔ HEX 是精确的；HSL 为方便阅读做了取整，换算用的是标准 CSS 算法。"}},{"@type":"Question","name":"为什么不做个取色器？","acceptedAnswer":{"@type":"Answer","text":"下面就有取色器。但多数人是带着一个已复制的色值来的，直接粘最快。"}}]}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/zh/index.html">🧰 ToolPocket</a>
+  <nav class="langs"><a href="/tools/color-converter.html">English</a><a href="/zh/tools/color-converter.html" class="on" aria-current="page">中文</a><a href="/ja/tools/color-converter.html">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/zh/index.html">← 全部工具</a></p>
+  <h1>颜色转换 —— HEX / RGB / HSL</h1>
+  <p class="lead">手里有什么就粘什么，自动识别格式，另外两种直接给你 —— 不用先选“输入类型”，少一步就是少一次放弃。</p>
+  <p class="badge-line"><span class="pill">完全在你的浏览器里运行，不上传、不保存。</span></p>
+
+<div class="panel">
+<label class="row lbl" for="input">输入</label>
+  <textarea id="input" class="tall" placeholder="粘一个颜色： #2f6df6、rgb(47,109,246)、hsl(220, 91%, 57%)…"></textarea>
+  <div class="opts">
+<label class="row"><input type="color" id="picker" value="#2f6df6"></label>
+  </div>
+  <div class="swatch" id="swatch" aria-hidden="true"></div>
+<label class="row lbl" for="output">结果</label>
+  <textarea id="output" readonly placeholder="HEX / RGB / HSL 会显示在这里"></textarea>
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">复制结果</button>
+    <button class="ghost" id="clear">清空</button>
+  </div>
+</div>
+
+  <section class="faq">
+    <h2>常见问题</h2>
+    <details><summary>支持哪些写法？</summary><p>#abc、#aabbcc、rgb(r,g,b)、rgba(...)、hsl(h,s%,l%)，带不带空格都行。</p></details>
+    <details><summary>结果准吗？</summary><p>RGB ↔ HEX 是精确的；HSL 为方便阅读做了取整，换算用的是标准 CSS 算法。</p></details>
+    <details><summary>为什么不做个取色器？</summary><p>下面就有取色器。但多数人是带着一个已复制的色值来的，直接粘最快。</p></details>
+  </section>
+</main>
+
+<footer><p>ToolPocket · 全部在你的设备上完成，不上传任何文件。</p></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = {"inputPh":"粘一个颜色： #2f6df6、rgb(47,109,246)、hsl(220, 91%, 57%)…","outputPh":"HEX / RGB / HSL 会显示在这里"};</script>
+<script src="/assets/tools/_shared.js" defer></script>
+<script src="/assets/tools/color-converter.js" defer></script>
+</body>
+</html>

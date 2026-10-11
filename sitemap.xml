@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://tools.maomaowang.top/index.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/index.html"/>
@@ -14,5 +13,47 @@
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/compress-image.html"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/compress-image.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/compress-image.html"/>
+  </url>
+  <url>
+    <loc>https://tools.maomaowang.top/tools/convert-image.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/convert-image.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/convert-image.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/convert-image.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/convert-image.html"/>
+  </url>
+  <url>
+    <loc>https://tools.maomaowang.top/tools/base64.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/base64.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/base64.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/base64.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/base64.html"/>
+  </url>
+  <url>
+    <loc>https://tools.maomaowang.top/tools/json-format.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/json-format.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/json-format.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/json-format.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/json-format.html"/>
+  </url>
+  <url>
+    <loc>https://tools.maomaowang.top/tools/color-converter.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/color-converter.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/color-converter.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/color-converter.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/color-converter.html"/>
+  </url>
+  <url>
+    <loc>https://tools.maomaowang.top/tools/text-tools.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/text-tools.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/text-tools.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/text-tools.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/text-tools.html"/>
+  </url>
+  <url>
+    <loc>https://tools.maomaowang.top/tools/unit-converter.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/unit-converter.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/unit-converter.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/unit-converter.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/unit-converter.html"/>
   </url>
 </urlset>

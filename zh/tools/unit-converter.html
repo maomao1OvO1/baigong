@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>单位换算 — 长度 / 重量 / 数据大小 / 温度 | ToolPocket</title>
+<meta name="description" content="毫米、厘米、米、公里、英寸、英尺、英里、克、盎司、磅、KB、MB、GB、摄氏度、华氏度、开尔文 —— 一次全出，不上传。">
+<link rel="canonical" href="https://tools.maomaowang.top/zh/tools/unit-converter.html">
+<meta property="og:title" content="单位换算 — 长度 / 重量 / 数据大小 / 温度 | ToolPocket">
+<meta property="og:description" content="毫米、厘米、米、公里、英寸、英尺、英里、克、盎司、磅、KB、MB、GB、摄氏度、华氏度、开尔文 —— 一次全出，不上传。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/zh/tools/unit-converter.html">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/unit-converter.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/unit-converter.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/unit-converter.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/unit-converter.html">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"单位换算","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"毫米、厘米、米、公里、英寸、英尺、英里、克、盎司、磅、KB、MB、GB、摄氏度、华氏度、开尔文 —— 一次全出，不上传。"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"MB 和 MiB 有什么区别？","acceptedAnswer":{"@type":"Answer","text":"这里用的是十进制（1 KB = 1000 字节），也就是硬盘厂商和多数云服务用的口径。操作系统常用二进制（1024），所以标称 500 GB 的硬盘在 Windows 里显示约 465 GB。"}},{"@type":"Question","name":"温度也能换吗？","acceptedAnswer":{"@type":"Answer","text":"能 —— 选「温度」类别，摄氏度、华氏度、开尔文一起给你。"}},{"@type":"Question","name":"为什么一次显示所有单位？","acceptedAnswer":{"@type":"Answer","text":"因为你通常要同时比较三四个值，而选两个下拉框纯粹是添堵。"}}]}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/zh/index.html">🧰 ToolPocket</a>
+  <nav class="langs"><a href="/tools/unit-converter.html">English</a><a href="/zh/tools/unit-converter.html" class="on" aria-current="page">中文</a><a href="/ja/tools/unit-converter.html">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/zh/index.html">← 全部工具</a></p>
+  <h1>单位换算</h1>
+  <p class="lead">输一个数，同类别里<b>所有单位</b>一起出来 —— 不用先选“从哪个换到哪个”。支持长度、重量、数据大小、温度。</p>
+  <p class="badge-line"><span class="pill">完全在你的浏览器里运行，不上传、不保存。</span></p>
+
+<div class="panel">
+
+  <div class="opts">
+<label class="row"><span class="lbl">类别</span><select id="category"><option value="length">长度</option><option value="weight">重量</option><option value="data">数据大小</option><option value="temp">温度</option></select></label>
+<label class="row"><span class="lbl">数值</span><input type="number" id="value"  placeholder="输入一个数字"> <span class="badge" id="unitLabel"></span></label>
+  </div>
+
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">复制结果</button>
+    <button class="ghost" id="clear">清空</button>
+  </div>
+</div>
+
+  <section class="faq">
+    <h2>常见问题</h2>
+    <details><summary>MB 和 MiB 有什么区别？</summary><p>这里用的是十进制（1 KB = 1000 字节），也就是硬盘厂商和多数云服务用的口径。操作系统常用二进制（1024），所以标称 500 GB 的硬盘在 Windows 里显示约 465 GB。</p></details>
+    <details><summary>温度也能换吗？</summary><p>能 —— 选「温度」类别，摄氏度、华氏度、开尔文一起给你。</p></details>
+    <details><summary>为什么一次显示所有单位？</summary><p>因为你通常要同时比较三四个值，而选两个下拉框纯粹是添堵。</p></details>
+  </section>
+</main>
+
+<footer><p>ToolPocket · 全部在你的设备上完成，不上传任何文件。</p></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = {"category":"类别","catLength":"长度","catWeight":"重量","catData":"数据大小","catTemp":"温度","value":"数值","valuePh":"输入一个数字","outputPh":"所有单位的结果显示在这里","fromCelsius":"输入值按摄氏度计算","unitLabel":"单位"};</script>
+<script src="/assets/tools/_shared.js" defer></script>
+<script src="/assets/tools/unit-converter.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HEX to RGB, RGB to HSL Color Converter — Free, Instant | ToolPocket</title>
+<meta name="description" content="Paste any color (#hex, rgb() or hsl()) and get all three formats at once, plus a live preview. Runs in your browser.">
+<link rel="canonical" href="https://tools.maomaowang.top/tools/color-converter.html">
+<meta property="og:title" content="HEX to RGB, RGB to HSL Color Converter — Free, Instant | ToolPocket">
+<meta property="og:description" content="Paste any color (#hex, rgb() or hsl()) and get all three formats at once, plus a live preview. Runs in your browser.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/tools/color-converter.html">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/color-converter.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/color-converter.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/color-converter.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/color-converter.html">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Color converter — HEX, RGB, HSL","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Paste any color (#hex, rgb() or hsl()) and get all three formats at once, plus a live preview. Runs in your browser."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Which formats does it accept?","acceptedAnswer":{"@type":"Answer","text":"#abc, #aabbcc, rgb(r,g,b), rgba(...) and hsl(h,s%,l%) — with or without spaces."}},{"@type":"Question","name":"Is it exact?","acceptedAnswer":{"@type":"Answer","text":"RGB ↔ HEX is exact. HSL is rounded for readability but the underlying conversion is standard CSS math."}},{"@type":"Question","name":"Why not a color picker?","acceptedAnswer":{"@type":"Answer","text":"There is one below the input — but most people arrive with a color already copied, so pasting is the fast path."}}]}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/index.html">🧰 ToolPocket</a>
+  <nav class="langs"><a href="/tools/color-converter.html" class="on" aria-current="page">English</a><a href="/zh/tools/color-converter.html">中文</a><a href="/ja/tools/color-converter.html">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/index.html">← All tools</a></p>
+  <h1>Color converter — HEX, RGB, HSL</h1>
+  <p class="lead">Paste whatever you have. It figures out the format and shows the other two — no dropdowns, no “select your input type” dance.</p>
+  <p class="badge-line"><span class="pill">Runs entirely in your browser. Nothing is uploaded or stored.</span></p>
+
+<div class="panel">
+<label class="row lbl" for="input">Input</label>
+  <textarea id="input" class="tall" placeholder="Paste a color: #2f6df6, rgb(47,109,246), hsl(220, 91%, 57%)…"></textarea>
+  <div class="opts">
+<label class="row"><input type="color" id="picker" value="#2f6df6"></label>
+  </div>
+  <div class="swatch" id="swatch" aria-hidden="true"></div>
+<label class="row lbl" for="output">Result</label>
+  <textarea id="output" readonly placeholder="HEX / RGB / HSL appear here"></textarea>
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">Copy result</button>
+    <button class="ghost" id="clear">Clear</button>
+  </div>
+</div>
+
+  <section class="faq">
+    <h2>FAQ</h2>
+    <details><summary>Which formats does it accept?</summary><p>#abc, #aabbcc, rgb(r,g,b), rgba(...) and hsl(h,s%,l%) — with or without spaces.</p></details>
+    <details><summary>Is it exact?</summary><p>RGB ↔ HEX is exact. HSL is rounded for readability but the underlying conversion is standard CSS math.</p></details>
+    <details><summary>Why not a color picker?</summary><p>There is one below the input — but most people arrive with a color already copied, so pasting is the fast path.</p></details>
+  </section>
+</main>
+
+<footer><p>ToolPocket · Everything runs on your device — nothing is uploaded.</p></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = {"inputPh":"Paste a color: #2f6df6, rgb(47,109,246), hsl(220, 91%, 57%)…","outputPh":"HEX / RGB / HSL appear here"};</script>
+<script src="/assets/tools/_shared.js" defer></script>
+<script src="/assets/tools/color-converter.js" defer></script>
+</body>
+</html>

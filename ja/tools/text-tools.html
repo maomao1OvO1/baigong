@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>テキストツール — 大文字小文字変換・重複削除・並べ替え・文字数カウント | ToolPocket</title>
+<meta name="description" content="大文字化、小文字化、先頭を大文字、逆順、空白除去、重複行の削除、行の並べ替え、文字数カウント。すべてブラウザ内で完結します。">
+<link rel="canonical" href="https://tools.maomaowang.top/ja/tools/text-tools.html">
+<meta property="og:title" content="テキストツール — 大文字小文字変換・重複削除・並べ替え・文字数カウント | ToolPocket">
+<meta property="og:description" content="大文字化、小文字化、先頭を大文字、逆順、空白除去、重複行の削除、行の並べ替え、文字数カウント。すべてブラウザ内で完結します。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/ja/tools/text-tools.html">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/text-tools.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/text-tools.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/text-tools.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/text-tools.html">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"日常のテキスト処理を 1 ページに","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"大文字化、小文字化、先頭を大文字、逆順、空白除去、重複行の削除、行の並べ替え、文字数カウント。すべてブラウザ内で完結します。"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"なぜ 7 ページに分けないのですか？","acceptedAnswer":{"@type":"Answer","text":"どれも単体では URL を覚えられないほど小さいからです。1 ページをブックマークすれば、すべての機能が 1 クリック先にあります。"}},{"@type":"Question","name":"日本語でも使えますか？","acceptedAnswer":{"@type":"Answer","text":"はい。大小変換は日本語では意味を持ちませんが、カウント・空白除去・重複削除・並べ替えは問題なく動作します（並べ替えは locale 準拠）。"}},{"@type":"Question","name":"入力したテキストは送信されますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。このページから出ることはありません。"}}]}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/ja/index.html">🧰 ToolPocket</a>
+  <nav class="langs"><a href="/tools/text-tools.html">English</a><a href="/zh/tools/text-tools.html">中文</a><a href="/ja/tools/text-tools.html" class="on" aria-current="page">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/ja/index.html">← ツール一覧</a></p>
+  <h1>日常のテキスト処理を 1 ページに</h1>
+  <p class="lead">以前は 7 つのサイトが必要だった小さな作業をまとめました。大文字小文字の変換、逆順、各行の空白除去、重複行の削除、行の並べ替え、文字・単語・行のカウント。</p>
+  <p class="badge-line"><span class="pill">すべてブラウザ内で処理されます。送信も保存もしていません。</span></p>
+
+<div class="panel">
+<label class="row lbl" for="input">入力</label>
+  <textarea id="input" class="tall" placeholder="ここにテキストを貼り付けてください…"></textarea>
+  <div class="opts">
+<label class="row"><span class="lbl">処理内容</span><select id="action"><option value="upper">すべて大文字</option><option value="lower">すべて小文字</option><option value="title">各単語の先頭を大文字</option><option value="reverse">文字を逆順</option><option value="trim">各行の前後の空白を削除</option><option value="dedup">重複行を削除</option><option value="sort">行を並べ替え A→Z</option><option value="count">文字数・単語数・行数を数える</option></select></label>
+  </div>
+<label class="row lbl" for="output">結果</label>
+  <textarea id="output" readonly placeholder="結果がここに表示されます"></textarea>
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">結果をコピー</button>
+    <button class="ghost" id="clear">クリア</button>
+  </div>
+</div>
+
+  <section class="faq">
+    <h2>よくある質問</h2>
+    <details><summary>なぜ 7 ページに分けないのですか？</summary><p>どれも単体では URL を覚えられないほど小さいからです。1 ページをブックマークすれば、すべての機能が 1 クリック先にあります。</p></details>
+    <details><summary>日本語でも使えますか？</summary><p>はい。大小変換は日本語では意味を持ちませんが、カウント・空白除去・重複削除・並べ替えは問題なく動作します（並べ替えは locale 準拠）。</p></details>
+    <details><summary>入力したテキストは送信されますか？</summary><p>いいえ。このページから出ることはありません。</p></details>
+  </section>
+</main>
+
+<footer><p>ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。</p></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = {"action":"処理内容","upper":"すべて大文字","lower":"すべて小文字","reverse":"文字を逆順","trim":"各行の前後の空白を削除","dedup":"重複行を削除","sort":"行を並べ替え A→Z","count":"文字数・単語数・行数を数える","inputPh":"ここにテキストを貼り付けてください…","outputPh":"結果がここに表示されます","emptyHint":"上にテキストを貼り付けてください","countChars":"文字数","countNoSpace":"文字数（空白を除く）","countWords":"単語数","countLines":"行数"};</script>
+<script src="/assets/tools/_shared.js" defer></script>
+<script src="/assets/tools/text-tools.js" defer></script>
+</body>
+</html>

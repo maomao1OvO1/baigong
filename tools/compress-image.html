@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Compress Images Free — No Upload, No Signup, No Limit | ToolPocket</title>
-<meta name="description" content="Shrink JPG, PNG and WebP files right in your browser. Batch compress hundreds of photos with no upload and no account. Your images never leave your device.">
+<meta name="description" content="Shrink JPG, PNG and WebP images right in your browser. Batch compress hundreds of photos with no upload and no account.">
 <link rel="canonical" href="https://tools.maomaowang.top/tools/compress-image.html">
 <meta property="og:title" content="Compress Images Free — No Upload, No Signup, No Limit | ToolPocket">
-<meta property="og:description" content="Shrink JPG, PNG and WebP files right in your browser. Batch compress hundreds of photos with no upload and no account. Your images never leave your device.">
+<meta property="og:description" content="Shrink JPG, PNG and WebP images right in your browser. Batch compress hundreds of photos with no upload and no account.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://tools.maomaowang.top/tools/compress-image.html">
 <link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/compress-image.html">
@@ -15,8 +15,8 @@
 <link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/compress-image.html">
 <link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/compress-image.html">
 <link rel="stylesheet" href="/assets/style.css">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Image Compressor — ToolPocket","applicationCategory":"MultimediaApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Shrink JPG, PNG and WebP files right in your browser. Batch compress hundreds of photos with no upload and no account. Your images never leave your device."}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How much smaller will they get?","acceptedAnswer":{"@type":"Answer","text":"Typically 50–85% off a JPEG photo at 72% quality. It depends on the original — screenshots and PNGs sometimes shrink a lot more."}},{"@type":"Question","name":"Does it work on a phone?","acceptedAnswer":{"@type":"Answer","text":"Yes, and phone photos are the case it helps most: 12-megapixel shots often drop from 4 MB to a few hundred KB."}},{"@type":"Question","name":"Why does the quality slider do nothing with PNG?","acceptedAnswer":{"@type":"Answer","text":"PNG is lossless, so there's no quality to trade away. For photos, pick JPEG or WebP."}},{"@type":"Question","name":"Is there a batch limit?","acceptedAnswer":{"@type":"Answer","text":"No. Pick 300 files if you want. It's your processor doing the work, so it's about a second or two per image."}},{"@type":"Question","name":"Do I need to keep the tab open?","acceptedAnswer":{"@type":"Answer","text":"Yes — the compression happens on your device, so the page has to be running. Nothing is uploaded, so there's no server job to come back to."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Compress images without uploading them","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Shrink JPG, PNG and WebP images right in your browser. Batch compress hundreds of photos with no upload and no account."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How much smaller will they get?","acceptedAnswer":{"@type":"Answer","text":"Typically 50–85% off a JPEG photo at 72% quality. It depends on the original — screenshots and PNGs sometimes shrink much more."}},{"@type":"Question","name":"Why does the quality slider do nothing with PNG?","acceptedAnswer":{"@type":"Answer","text":"PNG is lossless, so there is no quality to trade away. For photos, pick JPEG or WebP."}},{"@type":"Question","name":"Is there a batch limit?","acceptedAnswer":{"@type":"Answer","text":"No. It's your processor doing the work, so expect about a second per image."}}]}</script>
 </head>
 <body>
 <header class="top">
@@ -25,55 +25,41 @@
 </header>
 
 <main>
+  <p class="crumb"><a href="/index.html">← All tools</a></p>
   <h1>Compress images without uploading them</h1>
   <p class="lead">Drop your photos in and they get smaller <b>right here</b>. No account, no upload, no “upgrade to remove the watermark”, no daily cap. Handy when a form says your file is too big.</p>
+  <p class="badge-line"><span class="pill">Runs entirely in your browser. Nothing is uploaded or stored.</span></p>
 
-  <div class="panel">
-    <div class="drop" id="drop">
-      <b>Click to pick images — or drop them here</b><br>
-      <span class="note">JPG · PNG · WebP · as many as you like</span>
-      <input type="file" id="picker" accept="image/*" multiple>
-    </div>
-
-    <label class="row">Quality
-      <input type="range" id="quality" min="30" max="95" value="72">
-      <span id="qualityVal" class="badge">72%</span>
-    </label>
-
-    <label class="row">Max width (px)
-      <input type="number" id="maxw" value="1920" min="0" step="10" style="width:110px">
-      <span class="note">0 keeps the original size</span>
-    </label>
-
-    <label class="row">Save as
-      <select id="format" style="padding:9px 11px;border-radius:9px;border:1px solid var(--line);background:var(--bg);color:var(--fg)">
-        <option value="image/jpeg">JPEG — best for photos</option>
-        <option value="image/webp">WebP — smallest files</option>
-        <option value="image/png">PNG — lossless (ignores the quality slider)</option>
-      </select>
-    </label>
-
-    <div class="btnrow">
-      <button id="run" disabled>Compress and download all</button>
-      <button class="ghost" id="clear" disabled>Clear</button>
-    </div>
-    <p class="note" id="hint"></p>
+<div class="panel">
+  <div class="drop" id="drop">
+    <b>Click to pick images — or drop them here</b><br><span class="note">JPG · PNG · WebP · as many as you like</span>
+    <input type="file" id="picker" accept="image/*" multiple>
   </div>
+  <div class="opts">
+<label class="row"><span class="lbl">Quality</span><input type="range" id="quality" min="30" max="95" value="72"><span class="badge" id="qualityVal"></span></label>
+<label class="row"><span class="lbl">Max width (px)</span><input type="number" id="maxw" value="1920" min="0" step="10"> <span class="note">0 keeps the original size</span></label>
+<label class="row"><span class="lbl">Save as</span><select id="format"><option value="image/jpeg">JPEG — best for photos</option><option value="image/webp">WebP — smallest files</option><option value="image/png">PNG — lossless</option></select></label>
+  </div>
+  <div class="btnrow">
+    <button id="run" disabled>Compress and download all</button>
+    <button class="ghost" id="clear" disabled>Clear</button>
+  </div>
+  <p class="note" id="hint"></p>
+</div>
+<ul class="results" id="results"></ul>
 
-  <ul class="results" id="results"></ul>
-
-  <section class="why">
-    <h2>Questions people actually ask</h2>
-    <details><summary>How much smaller will they get?</summary><p>Typically 50–85% off a JPEG photo at 72% quality. It depends on the original — screenshots and PNGs sometimes shrink a lot more.</p></details>
-    <details><summary>Does it work on a phone?</summary><p>Yes, and phone photos are the case it helps most: 12-megapixel shots often drop from 4 MB to a few hundred KB.</p></details>
-    <details><summary>Why does the quality slider do nothing with PNG?</summary><p>PNG is lossless, so there's no quality to trade away. For photos, pick JPEG or WebP.</p></details>
-    <details><summary>Is there a batch limit?</summary><p>No. Pick 300 files if you want. It's your processor doing the work, so it's about a second or two per image.</p></details>
-    <details><summary>Do I need to keep the tab open?</summary><p>Yes — the compression happens on your device, so the page has to be running. Nothing is uploaded, so there's no server job to come back to.</p></details>
+  <section class="faq">
+    <h2>FAQ</h2>
+    <details><summary>How much smaller will they get?</summary><p>Typically 50–85% off a JPEG photo at 72% quality. It depends on the original — screenshots and PNGs sometimes shrink much more.</p></details>
+    <details><summary>Why does the quality slider do nothing with PNG?</summary><p>PNG is lossless, so there is no quality to trade away. For photos, pick JPEG or WebP.</p></details>
+    <details><summary>Is there a batch limit?</summary><p>No. It's your processor doing the work, so expect about a second per image.</p></details>
   </section>
 </main>
 
-<footer><p>ToolPocket · Everything runs on your device</p></footer>
-<script>window.T = {"selected":"{n} file(s) ready.","working":"Working…","download":"Download","saved":"{p}% smaller","bigger":"{p}% bigger","failed":"Couldn't read this file in the browser.","run":"Compress and download all"};</script>
-<script src="/assets/compress.js"></script>
+<footer><p>ToolPocket · Everything runs on your device — nothing is uploaded.</p></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = {"drop":"Click to pick images — or drop them here","dropNote":"JPG · PNG · WebP · as many as you like","quality":"Quality","maxw":"Max width (px)","maxwNote":"0 keeps the original size","format":"Save as","fmtJpeg":"JPEG — best for photos","fmtWebp":"WebP — smallest files","fmtPng":"PNG — lossless","run":"Compress and download all","clear":"Clear","selected":"{n} file(s) ready.","working":"Working…","download":"Download","saved":"{p}% smaller","bigger":"{p}% bigger","failed":"Couldn't read this file in the browser."};</script>
+<script src="/assets/tools/_shared.js" defer></script>
+<script src="/assets/tools/compress-image.js" defer></script>
 </body>
 </html>

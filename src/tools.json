@@ -1,0 +1,85 @@
+{
+  "_说明": "工具清单 —— 全站唯一的注册表。生成器（build.mjs）只读这里，不写死任何工具。",
+  "_加新工具": [
+    "1. tools[] 里加一条：id / icon / kind / script / i18n / options",
+    "2. src/i18n/tools/<i18n>.json 加三语文案",
+    "3. assets/tools/<script> 写逻辑（用 TP 共享函数，控件 id 与 options 里一致）",
+    "4. node src/build.mjs —— 首页列表、工具页、sitemap 一起生成"
+  ],
+  "_kind": {
+    "image": "拖拽区 + 控件 + 主按钮 + 结果列表（图片类）",
+    "text": "输入框 + 控件 + 结果框 + 复制/清空按钮（文本类）"
+  },
+  "_options 类型": {
+    "range": "滑块：id, label, min, max, value, suffix, showValue(显示数值的元素 id)",
+    "number": "数字框：id, label, value, min, step, placeholder, note(说明文案键)",
+    "select": "下拉：id, label, choices[[值, 文案键], ...]",
+    "color": "系统取色器：id（color 类工具用）"
+  },
+  "tools": [
+    {
+      "id": "compress-image", "icon": "🗜️", "kind": "image",
+      "script": "compress-image.js", "i18n": "compress-image",
+      "options": [
+        { "type": "range", "id": "quality", "label": "quality", "min": 30, "max": 95, "value": 72, "suffix": "%", "showValue": "qualityVal" },
+        { "type": "number", "id": "maxw", "label": "maxw", "value": 1920, "min": 0, "step": 10, "note": "maxwNote" },
+        { "type": "select", "id": "format", "label": "format", "choices": [["image/jpeg", "fmtJpeg"], ["image/webp", "fmtWebp"], ["image/png", "fmtPng"]] }
+      ]
+    },
+    {
+      "id": "convert-image", "icon": "🔄", "kind": "image",
+      "script": "convert-image.js", "i18n": "convert-image",
+      "options": [
+        { "type": "select", "id": "format", "label": "format", "choices": [["image/jpeg", "fmtJpeg"], ["image/webp", "fmtWebp"], ["image/png", "fmtPng"]] },
+        { "type": "range", "id": "quality", "label": "quality", "min": 60, "max": 100, "value": 92, "suffix": "%", "showValue": "qualityVal" }
+      ]
+    },
+    {
+      "id": "base64", "icon": "🔠", "kind": "text",
+      "script": "base64.js", "i18n": "base64",
+      "buttons": ["copy", "swap", "clear"],
+      "options": [
+        { "type": "select", "id": "mode", "label": "mode", "choices": [["encode", "encode"], ["decode", "decode"]] }
+      ]
+    },
+    {
+      "id": "json-format", "icon": "🧩", "kind": "text",
+      "script": "json-format.js", "i18n": "json-format",
+      "buttons": ["copy", "clear"],
+      "options": [
+        { "type": "select", "id": "mode", "label": "mode", "choices": [["pretty", "pretty"], ["minify", "minify"]] }
+      ]
+    },
+    {
+      "id": "color-converter", "icon": "🎨", "kind": "text",
+      "script": "color-converter.js", "i18n": "color-converter",
+      "buttons": ["copy", "clear"],
+      "extras": ["swatch"],
+      "options": [
+        { "type": "color", "id": "picker" }
+      ]
+    },
+    {
+      "id": "text-tools", "icon": "✍️", "kind": "text",
+      "script": "text-tools.js", "i18n": "text-tools",
+      "buttons": ["copy", "clear"],
+      "options": [
+        { "type": "select", "id": "action", "label": "action", "choices": [
+          ["upper", "upper"], ["lower", "lower"], ["title", "title"], ["reverse", "reverse"],
+          ["trim", "trim"], ["dedup", "dedup"], ["sort", "sort"], ["count", "count"]
+        ] }
+      ]
+    },
+    {
+      "id": "unit-converter", "icon": "📏", "kind": "text", "noInput": true,
+      "script": "unit-converter.js", "i18n": "unit-converter",
+      "buttons": ["copy", "clear"],
+      "options": [
+        { "type": "select", "id": "category", "label": "category", "choices": [
+          ["length", "catLength"], ["weight", "catWeight"], ["data", "catData"], ["temp", "catTemp"]
+        ] },
+        { "type": "number", "id": "value", "label": "value", "placeholder": "valuePh", "unitLabel": "unitLabel" }
+      ]
+    }
+  ]
+}

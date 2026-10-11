@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>在线 Base64 编码解码 — 中文不乱码、不上传 | ToolPocket</title>
+<meta name="description" content="文本转 Base64、Base64 转回文本，完整支持 UTF-8（中文、日文、emoji）。在浏览器里完成，不用注册。">
+<link rel="canonical" href="https://tools.maomaowang.top/zh/tools/base64.html">
+<meta property="og:title" content="在线 Base64 编码解码 — 中文不乱码、不上传 | ToolPocket">
+<meta property="og:description" content="文本转 Base64、Base64 转回文本，完整支持 UTF-8（中文、日文、emoji）。在浏览器里完成，不用注册。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/zh/tools/base64.html">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/base64.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/base64.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/base64.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/base64.html">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Base64 编码 / 解码","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"文本转 Base64、Base64 转回文本，完整支持 UTF-8（中文、日文、emoji）。在浏览器里完成，不用注册。"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"为什么我的中文在别的工具里会变成乱码？","acceptedAnswer":{"@type":"Answer","text":"因为它们直接调用 btoa，而 btoa 只认 Latin-1。这里先把文本按 UTF-8 转成字节，再做 Base64 —— 这才是对的顺序。"}},{"@type":"Question","name":"能解码邮件或接口里拿到的 Base64 吗？","acceptedAnswer":{"@type":"Answer","text":"能。而且如果内容不是合法 Base64，会明确报错，不会给你一堆看不懂的结果。"}},{"@type":"Question","name":"文本会被传到哪去吗？","acceptedAnswer":{"@type":"Answer","text":"不会，全程不出这个页面。"}}]}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/zh/index.html">🧰 ToolPocket</a>
+  <nav class="langs"><a href="/tools/base64.html">English</a><a href="/zh/tools/base64.html" class="on" aria-current="page">中文</a><a href="/ja/tools/base64.html">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/zh/index.html">← 全部工具</a></p>
+  <h1>Base64 编码 / 解码</h1>
+  <p class="lead">中文、日文、emoji 都不会乱码 —— 很多在线工具遇到非英文就出错，因为它们直接用了浏览器的 <code>btoa</code>。这里是先转 UTF-8 再编码，才是正确做法。</p>
+  <p class="badge-line"><span class="pill">完全在你的浏览器里运行，不上传、不保存。</span></p>
+
+<div class="panel">
+<label class="row lbl" for="input">输入</label>
+  <textarea id="input" class="tall" placeholder="把文本或 Base64 字符串粘到这里…"></textarea>
+  <div class="opts">
+<label class="row"><span class="lbl">方向</span><select id="mode"><option value="encode">文本 → Base64</option><option value="decode">Base64 → 文本</option></select></label>
+  </div>
+<label class="row lbl" for="output">结果</label>
+  <textarea id="output" readonly placeholder="边输入边出结果"></textarea>
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">复制结果</button>
+    <button class="ghost" id="swap">互换</button>
+    <button class="ghost" id="clear">清空</button>
+  </div>
+</div>
+
+  <section class="faq">
+    <h2>常见问题</h2>
+    <details><summary>为什么我的中文在别的工具里会变成乱码？</summary><p>因为它们直接调用 btoa，而 btoa 只认 Latin-1。这里先把文本按 UTF-8 转成字节，再做 Base64 —— 这才是对的顺序。</p></details>
+    <details><summary>能解码邮件或接口里拿到的 Base64 吗？</summary><p>能。而且如果内容不是合法 Base64，会明确报错，不会给你一堆看不懂的结果。</p></details>
+    <details><summary>文本会被传到哪去吗？</summary><p>不会，全程不出这个页面。</p></details>
+  </section>
+</main>
+
+<footer><p>ToolPocket · 全部在你的设备上完成，不上传任何文件。</p></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = {"mode":"方向","encode":"文本 → Base64","decode":"Base64 → 文本","inputPh":"把文本或 Base64 字符串粘到这里…","outputPh":"边输入边出结果","badBase64":"这看起来不是合法的 Base64"};</script>
+<script src="/assets/tools/_shared.js" defer></script>
+<script src="/assets/tools/base64.js" defer></script>
+</body>
+</html>

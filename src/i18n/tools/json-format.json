@@ -1,0 +1,57 @@
+{
+  "_说明": "JSON 格式化 —— 三语文案。",
+  "en": {
+    "title": "JSON Formatter & Validator Online — No Upload, No Signup | ToolPocket",
+    "desc": "Pretty-print, minify and validate JSON in your browser. Clear error messages with the line and column of the problem.",
+    "h1": "Format and validate JSON",
+    "lead": "Paste messy JSON, get it readable. If it's broken, you get <b>where</b> it's broken — not just “unexpected token”.",
+    "faq": [
+      ["What does it do with invalid JSON?", "It tells you the error and tries to point at the line and column, so you can fix it instead of guessing."],
+      ["Is there a size limit?", "No hard limit — it runs on your machine, so it handles large pastes as fast as your device does."],
+      ["Does it send my data anywhere?", "No. Useful if the JSON contains API keys or customer data."]
+    ],
+    "ui": {
+      "mode": "Mode", "pretty": "Pretty print", "minify": "Minify",
+      "inputPh": "Paste JSON here…",
+      "outputPh": "Formatted result appears here",
+      "valid": "Valid JSON ✓",
+      "invalid": "Invalid JSON: "
+    }
+  },
+  "zh": {
+    "title": "在线 JSON 格式化 / 校验 — 不上传、免注册 | ToolPocket",
+    "desc": "在浏览器里美化、压缩、校验 JSON。出错时告诉你**第几行第几列**，而不是一句看不懂的报错。",
+    "h1": "JSON 格式化与校验",
+    "lead": "粘进来一团乱码级的 JSON，还你一份能读的。要是坏的，它会告诉你<b>坏在哪</b>，而不是甩一句“unexpected token”。",
+    "faq": [
+      ["遇到非法 JSON 会怎样？", "显示错误信息，并尽量指出出错的行列号，让你能直接改，而不是猜。"],
+      ["有大小限制吗？", "没有硬限制 —— 跑在你自己的设备上，你的机器多快就有多快。"],
+      ["数据会被传走吗？", "不会。如果 JSON 里含 API key 或客户数据，这点尤其重要。"]
+    ],
+    "ui": {
+      "mode": "模式", "pretty": "格式化（美化）", "minify": "压缩成一行",
+      "inputPh": "把 JSON 粘到这里…",
+      "outputPh": "格式化结果会显示在这里",
+      "valid": "JSON 合法 ✓",
+      "invalid": "JSON 有错："
+    }
+  },
+  "ja": {
+    "title": "JSON 整形・検証 オンライン — アップロード不要 | ToolPocket",
+    "desc": "ブラウザ内で JSON を整形・圧縮・検証します。エラー時は行と列を指摘するので、どこを直せばいいか分かります。",
+    "h1": "JSON の整形と検証",
+    "lead": "ぐちゃぐちゃの JSON を貼れば、読める形になります。壊れている場合は<b>どこが壊れているか</b>を示します。「unexpected token」だけでは分かりませんから。",
+    "faq": [
+      ["不正な JSON だとどうなりますか？", "エラー内容と、可能であれば該当の行・列を表示します。推測せずに修正できます。"],
+      ["サイズの上限はありますか？", "実質的な上限はありません。お使いの端末で処理するため、端末の性能次第です。"],
+      ["入力したデータは送信されますか？", "いいえ。API キーや顧客データを含む JSON を扱うときにも安心です。"]
+    ],
+    "ui": {
+      "mode": "モード", "pretty": "整形（インデント）", "minify": "1 行に圧縮",
+      "inputPh": "ここに JSON を貼り付けてください…",
+      "outputPh": "整形結果がここに表示されます",
+      "valid": "有効な JSON です ✓",
+      "invalid": "JSON に誤りがあります："
+    }
+  }
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>在线 JSON 格式化 / 校验 — 不上传、免注册 | ToolPocket</title>
+<meta name="description" content="在浏览器里美化、压缩、校验 JSON。出错时告诉你**第几行第几列**，而不是一句看不懂的报错。">
+<link rel="canonical" href="https://tools.maomaowang.top/zh/tools/json-format.html">
+<meta property="og:title" content="在线 JSON 格式化 / 校验 — 不上传、免注册 | ToolPocket">
+<meta property="og:description" content="在浏览器里美化、压缩、校验 JSON。出错时告诉你**第几行第几列**，而不是一句看不懂的报错。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/zh/tools/json-format.html">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/json-format.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/json-format.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/json-format.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/json-format.html">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"JSON 格式化与校验","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"在浏览器里美化、压缩、校验 JSON。出错时告诉你**第几行第几列**，而不是一句看不懂的报错。"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"遇到非法 JSON 会怎样？","acceptedAnswer":{"@type":"Answer","text":"显示错误信息，并尽量指出出错的行列号，让你能直接改，而不是猜。"}},{"@type":"Question","name":"有大小限制吗？","acceptedAnswer":{"@type":"Answer","text":"没有硬限制 —— 跑在你自己的设备上，你的机器多快就有多快。"}},{"@type":"Question","name":"数据会被传走吗？","acceptedAnswer":{"@type":"Answer","text":"不会。如果 JSON 里含 API key 或客户数据，这点尤其重要。"}}]}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/zh/index.html">🧰 ToolPocket</a>
+  <nav class="langs"><a href="/tools/json-format.html">English</a><a href="/zh/tools/json-format.html" class="on" aria-current="page">中文</a><a href="/ja/tools/json-format.html">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/zh/index.html">← 全部工具</a></p>
+  <h1>JSON 格式化与校验</h1>
+  <p class="lead">粘进来一团乱码级的 JSON，还你一份能读的。要是坏的，它会告诉你<b>坏在哪</b>，而不是甩一句“unexpected token”。</p>
+  <p class="badge-line"><span class="pill">完全在你的浏览器里运行，不上传、不保存。</span></p>
+
+<div class="panel">
+<label class="row lbl" for="input">输入</label>
+  <textarea id="input" class="tall" placeholder="把 JSON 粘到这里…"></textarea>
+  <div class="opts">
+<label class="row"><span class="lbl">模式</span><select id="mode"><option value="pretty">格式化（美化）</option><option value="minify">压缩成一行</option></select></label>
+  </div>
+<label class="row lbl" for="output">结果</label>
+  <textarea id="output" readonly placeholder="格式化结果会显示在这里"></textarea>
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">复制结果</button>
+    <button class="ghost" id="clear">清空</button>
+  </div>
+</div>
+
+  <section class="faq">
+    <h2>常见问题</h2>
+    <details><summary>遇到非法 JSON 会怎样？</summary><p>显示错误信息，并尽量指出出错的行列号，让你能直接改，而不是猜。</p></details>
+    <details><summary>有大小限制吗？</summary><p>没有硬限制 —— 跑在你自己的设备上，你的机器多快就有多快。</p></details>
+    <details><summary>数据会被传走吗？</summary><p>不会。如果 JSON 里含 API key 或客户数据，这点尤其重要。</p></details>
+  </section>
+</main>
+
+<footer><p>ToolPocket · 全部在你的设备上完成，不上传任何文件。</p></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = {"mode":"模式","pretty":"格式化（美化）","minify":"压缩成一行","inputPh":"把 JSON 粘到这里…","outputPh":"格式化结果会显示在这里","valid":"JSON 合法 ✓","invalid":"JSON 有错："};</script>
+<script src="/assets/tools/_shared.js" defer></script>
+<script src="/assets/tools/json-format.js" defer></script>
+</body>
+</html>
