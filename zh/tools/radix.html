@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>进制转换 —— 二进制 / 八进制 / 十进制 / 十六进制（BigInt）| ToolPocket</title>
+<meta name="description" content="在二、八、十、十六进制与 36 进制之间转换数字，并给出分组位视图。内部使用 BigInt，长数字不会丢精度。">
+<link rel="canonical" href="https://tools.maomaowang.top/zh/tools/radix.html">
+<meta property="og:title" content="进制转换 —— 二进制 / 八进制 / 十进制 / 十六进制（BigInt）| ToolPocket">
+<meta property="og:description" content="在二、八、十、十六进制与 36 进制之间转换数字，并给出分组位视图。内部使用 BigInt，长数字不会丢精度。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/zh/tools/radix.html">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/radix.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/radix.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/radix.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/radix.html">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"进制转换（2 / 8 / 10 / 16 / 36）","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"在二、八、十、十六进制与 36 进制之间转换数字，并给出分组位视图。内部使用 BigInt，长数字不会丢精度。"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"为什么和我用计算器算的不一样？","acceptedAnswer":{"@type":"Answer","text":"多数计算器（以及 JavaScript 本身）把整数存成双精度浮点，只能精确到 2 的 53 次方。这一页全程用 BigInt，所以 20 位的 ID、权限掩码都能保持准确。"}},{"@type":"Question","name":"「自动」是按什么判断的？","acceptedAnswer":{"@type":"Answer","text":"有 <code>0x</code> / <code>0b</code> / <code>0o</code> 前缀就按十六 / 二 / 八进制；没有前缀时，含 a-f 字母的当十六进制，其余当十进制。"}},{"@type":"Question","name":"那个分组的位视图有什么用？","acceptedAnswer":{"@type":"Answer","text":"看标志位和掩码用。每 4 位一组正好对应一个十六进制字符；每 8 位一组则对应内存里的一个字节。"}}]}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/zh/index.html">🧰 ToolPocket</a>
+  <nav class="langs"><a href="/zh/index.html#search" title="search" aria-label="search">🔍</a><a href="/tools/radix.html">English</a><a href="/zh/tools/radix.html" class="on" aria-current="page">中文</a><a href="/ja/tools/radix.html">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/zh/index.html">← 全部工具</a></p>
+  <h1>进制转换（2 / 8 / 10 / 16 / 36）</h1>
+  <p class="lead">输入一个数，同时得到各常见进制的写法，以及它占多少位、多少字节。长数字走的是 <code>BigInt</code>，18 位的雪花 ID 不会被悄悄四舍五入。</p>
+
+  <div class="searchbox">
+    <span class="s-ico" aria-hidden="true">🔍</span>
+    <input id="searchInput" type="search" autocomplete="off" placeholder="搜索工具 —— 例如：压缩、json、密码…" aria-label="搜索工具 —— 例如：压缩、json、密码…">
+  </div>
+  <ul class="searchresults" id="searchResults" hidden></ul>
+  <p class="badge-line"><span class="pill">完全在你的浏览器里运行，不上传、不保存。</span></p>
+
+<div class="panel">
+<label class="row lbl" for="input">输入</label>
+  <textarea id="input" class="tall" placeholder=""></textarea>
+  <div class="opts">
+<label class="row"><span class="lbl">输入进制</span><select id="base"><option value="auto">Auto</option><option value="2">2</option><option value="8">8</option><option value="10">10</option><option value="16">16</option><option value="36">36</option></select></label>
+    <span class="hint">选「自动」时，按前缀或出现的字母来判断进制。</span>
+<label class="row"><span class="lbl">位分组</span><select id="group"><option value="4">4 bit</option><option value="8">8 bit</option></select></label>
+    <span class="hint">分组之后，标志位与掩码一眼就能读出来。</span>
+  </div>
+<label class="row lbl" for="output">结果</label>
+  <textarea id="output" readonly placeholder=""></textarea>
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">复制结果</button>
+    <button class="ghost" id="clear">清空</button>
+  </div>
+</div>
+
+<aside class="ad">
+  <span class="ad-label">自己人做的</span>
+  <span class="ad-ico" aria-hidden="true">🎮</span>
+  <div class="ad-body">
+    <b>🎮 自己写的小游戏合集</b>
+    <p>塔防、2048、五子棋、打字测试、猜数字…都是一个人从零写的，没有用现成引擎。</p>
+  </div>
+  <a class="ad-cta" href="https://maomaowang.top/games.html">去玩两把 →</a>
+</aside>
+
+  <section class="faq">
+    <h2>常见问题</h2>
+    <details><summary>为什么和我用计算器算的不一样？</summary><p>多数计算器（以及 JavaScript 本身）把整数存成双精度浮点，只能精确到 2 的 53 次方。这一页全程用 BigInt，所以 20 位的 ID、权限掩码都能保持准确。</p></details>
+    <details><summary>「自动」是按什么判断的？</summary><p>有 <code>0x</code> / <code>0b</code> / <code>0o</code> 前缀就按十六 / 二 / 八进制；没有前缀时，含 a-f 字母的当十六进制，其余当十进制。</p></details>
+    <details><summary>那个分组的位视图有什么用？</summary><p>看标志位和掩码用。每 4 位一组正好对应一个十六进制字符；每 8 位一组则对应内存里的一个字节。</p></details>
+  </section>
+
+</main>
+
+<footer><p>ToolPocket · 全部在你的设备上完成，不上传任何文件。</p></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = {"langName":"中文","footer":"ToolPocket · 全部在你的设备上完成，不上传任何文件。","nav":"全部工具","backToTools":"← 全部工具","copy":"复制结果","swap":"互换","clear":"清空","download":"下载","copied":"已复制到剪贴板","copyFail":"复制失败 —— 请手动选中复制","inputLabel":"输入","outputLabel":"结果","privacyNote":"完全在你的浏览器里运行，不上传、不保存。","searchPlaceholder":"搜索工具 —— 例如：压缩、json、密码…","noResults":"没找到匹配的工具，换个词试试？","base":"输入进制","baseHint":"选「自动」时，按前缀或出现的字母来判断进制。","group":"位分组","groupHint":"分组之后，标志位与掩码一眼就能读出来。","badNumber":"这个进制下不是合法数字","bitsLabel":"位","bytesLabel":"字节","groupLabel":"分组","digitsLabel":"位十进制数字"};</script>
+<script src="/assets/tools/_shared.js" defer></script>
+<script src="/assets/tools/radix.js" defer></script>
+</body>
+</html>

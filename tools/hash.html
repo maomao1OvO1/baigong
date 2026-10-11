@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MD5, SHA-1, SHA-256, SHA-512 Hash Generator Online | ToolPocket</title>
+<meta name="description" content="Compute MD5, SHA-1, SHA-256 or SHA-512 of any text, in hex and Base64. Runs entirely in your browser — nothing is uploaded.">
+<link rel="canonical" href="https://tools.maomaowang.top/tools/hash.html">
+<meta property="og:title" content="MD5, SHA-1, SHA-256, SHA-512 Hash Generator Online | ToolPocket">
+<meta property="og:description" content="Compute MD5, SHA-1, SHA-256 or SHA-512 of any text, in hex and Base64. Runs entirely in your browser — nothing is uploaded.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/tools/hash.html">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/hash.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/hash.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/hash.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/hash.html">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Hash generator (MD5 / SHA-1 / SHA-256 / SHA-512)","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Compute MD5, SHA-1, SHA-256 or SHA-512 of any text, in hex and Base64. Runs entirely in your browser — nothing is uploaded."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is MD5 still safe to use?","acceptedAnswer":{"@type":"Answer","text":"Not for security. MD5 and SHA-1 collisions are practical, so never use them for signatures or password storage. They remain fine as plain checksums (comparing two files, cache keys, legacy APIs that demand MD5)."}},{"@type":"Question","name":"Why do I get a different hash than a website told me?","acceptedAnswer":{"@type":"Answer","text":"Nine times out of ten it is trailing whitespace or line endings. Copy the exact bytes: a trailing newline changes the digest completely."}},{"@type":"Question","name":"Can I hash a file here?","acceptedAnswer":{"@type":"Answer","text":"This page hashes text. For files, open the file and paste its contents, or use your system's <code>md5sum</code> / <code>certutil</code> command."}}]}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/index.html">🧰 ToolPocket</a>
+  <nav class="langs"><a href="/index.html#search" title="search" aria-label="search">🔍</a><a href="/tools/hash.html" class="on" aria-current="page">English</a><a href="/zh/tools/hash.html">中文</a><a href="/ja/tools/hash.html">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/index.html">← All tools</a></p>
+  <h1>Hash generator (MD5 / SHA-1 / SHA-256 / SHA-512)</h1>
+  <p class="lead">Paste text, pick an algorithm, get both <code>hex</code> and <code>base64</code>. Everything is computed on your device — checksums often come from private files, so sending them to a server would be careless.</p>
+
+  <div class="searchbox">
+    <span class="s-ico" aria-hidden="true">🔍</span>
+    <input id="searchInput" type="search" autocomplete="off" placeholder="Search tools — e.g. compress, json, 密码…" aria-label="Search tools — e.g. compress, json, 密码…">
+  </div>
+  <ul class="searchresults" id="searchResults" hidden></ul>
+  <p class="badge-line"><span class="pill">Runs entirely in your browser. Nothing is uploaded or stored.</span></p>
+
+<div class="panel">
+<label class="row lbl" for="input">Input</label>
+  <textarea id="input" class="tall" placeholder=""></textarea>
+  <div class="opts">
+<label class="row"><span class="lbl">Algorithm</span><select id="algo"><option value="md5">MD5</option><option value="sha-1">SHA-1</option><option value="sha-256">SHA-256</option><option value="sha-512">SHA-512</option></select></label>
+    <span class="hint">MD5 and SHA-1 are checksums only — do not use them for passwords or signatures.</span>
+<label class="row check"><input type="checkbox" id="upper"><span>Uppercase hex</span></label>
+  </div>
+<label class="row lbl" for="output">Result</label>
+  <textarea id="output" readonly placeholder=""></textarea>
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">Copy result</button>
+    <button class="ghost" id="clear">Clear</button>
+  </div>
+</div>
+
+<aside class="ad">
+  <span class="ad-label">From the maker</span>
+  <span class="ad-ico" aria-hidden="true">🎮</span>
+  <div class="ad-body">
+    <b>A tower-defence game, in your browser</b>
+    <p>Built from scratch by the same developer — no engine, no assets from a store.</p>
+  </div>
+  <a class="ad-cta" href="https://maomaowang.top/games/td/source/game.html">Play it →</a>
+</aside>
+
+  <section class="faq">
+    <h2>FAQ</h2>
+    <details><summary>Is MD5 still safe to use?</summary><p>Not for security. MD5 and SHA-1 collisions are practical, so never use them for signatures or password storage. They remain fine as plain checksums (comparing two files, cache keys, legacy APIs that demand MD5).</p></details>
+    <details><summary>Why do I get a different hash than a website told me?</summary><p>Nine times out of ten it is trailing whitespace or line endings. Copy the exact bytes: a trailing newline changes the digest completely.</p></details>
+    <details><summary>Can I hash a file here?</summary><p>This page hashes text. For files, open the file and paste its contents, or use your system's <code>md5sum</code> / <code>certutil</code> command.</p></details>
+  </section>
+
+</main>
+
+<footer><p>ToolPocket · Everything runs on your device — nothing is uploaded.</p></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = {"langName":"English","footer":"ToolPocket · Everything runs on your device — nothing is uploaded.","nav":"All tools","backToTools":"← All tools","copy":"Copy result","swap":"Swap","clear":"Clear","download":"Download","copied":"Copied to clipboard","copyFail":"Copy failed — select the text manually","inputLabel":"Input","outputLabel":"Result","privacyNote":"Runs entirely in your browser. Nothing is uploaded or stored.","searchPlaceholder":"Search tools — e.g. compress, json, 密码…","noResults":"No tool matches that. Try another word?","algo":"Algorithm","algoHint":"MD5 and SHA-1 are checksums only — do not use them for passwords or signatures.","upper":"Uppercase hex","bytesUnit":"bytes","done":"computed with","noSubtle":"WebCrypto is unavailable here — open this page over HTTPS.","fail":"Could not compute the hash."};</script>
+<script src="/assets/tools/_shared.js" defer></script>
+<script src="/assets/tools/hash.js" defer></script>
+</body>
+</html>

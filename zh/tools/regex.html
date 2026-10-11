@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>在线正则测试器 —— 实时匹配与替换预览 | ToolPocket</title>
+<meta name="description" content="用你自己的文本测试正则：列出每一处匹配的行号、位置与捕获组，并预览替换结果。全程本地运行，文本不外传。">
+<link rel="canonical" href="https://tools.maomaowang.top/zh/tools/regex.html">
+<meta property="og:title" content="在线正则测试器 —— 实时匹配与替换预览 | ToolPocket">
+<meta property="og:description" content="用你自己的文本测试正则：列出每一处匹配的行号、位置与捕获组，并预览替换结果。全程本地运行，文本不外传。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/zh/tools/regex.html">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/regex.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/regex.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/regex.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/regex.html">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"正则表达式测试器","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"用你自己的文本测试正则：列出每一处匹配的行号、位置与捕获组，并预览替换结果。全程本地运行，文本不外传。"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"报错了，怎么看我这条正则哪里写错了？","acceptedAnswer":{"@type":"Answer","text":"错误信息来自 JavaScript 引擎本身，通常挺准：括号没闭合、方括号没配对、量词前面没东西。看消息后半段，它会指出出错的位置。"}},{"@type":"Question","name":"为什么没勾 g 的时候只匹配到第一处？","acceptedAnswer":{"@type":"Answer","text":"这是正则的规范行为：不带 <code>g</code> 时引擎只返回第一个匹配。要列出全部匹配，把 global 标志勾上。"}},{"@type":"Question","name":"输出里的 $1、$2 是什么？","acceptedAnswer":{"@type":"Answer","text":"捕获组 —— 正则里用括号括起来的那几段。替换时用 <code>$1</code>、<code>$2</code> 引用它们，<code>$&amp;</code> 表示整个匹配。"}}]}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/zh/index.html">🧰 ToolPocket</a>
+  <nav class="langs"><a href="/zh/index.html#search" title="search" aria-label="search">🔍</a><a href="/tools/regex.html">English</a><a href="/zh/tools/regex.html" class="on" aria-current="page">中文</a><a href="/ja/tools/regex.html">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/zh/index.html">← 全部工具</a></p>
+  <h1>正则表达式测试器</h1>
+  <p class="lead">写一条正则，把要匹配的文本贴进来，右边会逐条列出命中的位置、内容与捕获组；填上替换内容还能预览替换结果。日志里常有客户数据 —— 这一页把它们留在你设备上。</p>
+
+  <div class="searchbox">
+    <span class="s-ico" aria-hidden="true">🔍</span>
+    <input id="searchInput" type="search" autocomplete="off" placeholder="搜索工具 —— 例如：压缩、json、密码…" aria-label="搜索工具 —— 例如：压缩、json、密码…">
+  </div>
+  <ul class="searchresults" id="searchResults" hidden></ul>
+  <p class="badge-line"><span class="pill">完全在你的浏览器里运行，不上传、不保存。</span></p>
+
+<div class="panel">
+<label class="row lbl" for="input">输入</label>
+  <textarea id="input" class="tall" placeholder=""></textarea>
+  <div class="opts">
+<label class="row"><span class="lbl">正则表达式</span><input type="text" id="pattern" spellcheck="false" autocapitalize="off" autocorrect="off"></label>
+    <span class="hint">不用写两边的斜杠 —— 直接写 \d+，不要写 /\d+/。</span>
+<label class="row"><span class="lbl">替换为</span><input type="text" id="replace" spellcheck="false" autocapitalize="off" autocorrect="off"></label>
+    <span class="hint">可选。$1 / $2 引用捕获组；留空则不显示替换预览。</span>
+<label class="row check"><input type="checkbox" id="cbG" checked><span>g（全局）</span></label>
+<label class="row check"><input type="checkbox" id="cbI"><span>i（忽略大小写）</span></label>
+<label class="row check"><input type="checkbox" id="cbM"><span>m（多行）</span></label>
+<label class="row check"><input type="checkbox" id="cbS"><span>s（点匹配换行）</span></label>
+<label class="row check"><input type="checkbox" id="cbU"><span>u（Unicode）</span></label>
+  </div>
+<label class="row lbl" for="output">结果</label>
+  <textarea id="output" readonly placeholder=""></textarea>
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">复制结果</button>
+    <button class="ghost" id="clear">清空</button>
+  </div>
+</div>
+
+<aside class="ad">
+  <span class="ad-label">自己人做的</span>
+  <span class="ad-ico" aria-hidden="true">🎮</span>
+  <div class="ad-body">
+    <b>🎮 自己写的小游戏合集</b>
+    <p>塔防、2048、五子棋、打字测试、猜数字…都是一个人从零写的，没有用现成引擎。</p>
+  </div>
+  <a class="ad-cta" href="https://maomaowang.top/games.html">去玩两把 →</a>
+</aside>
+
+  <section class="faq">
+    <h2>常见问题</h2>
+    <details><summary>报错了，怎么看我这条正则哪里写错了？</summary><p>错误信息来自 JavaScript 引擎本身，通常挺准：括号没闭合、方括号没配对、量词前面没东西。看消息后半段，它会指出出错的位置。</p></details>
+    <details><summary>为什么没勾 g 的时候只匹配到第一处？</summary><p>这是正则的规范行为：不带 <code>g</code> 时引擎只返回第一个匹配。要列出全部匹配，把 global 标志勾上。</p></details>
+    <details><summary>输出里的 $1、$2 是什么？</summary><p>捕获组 —— 正则里用括号括起来的那几段。替换时用 <code>$1</code>、<code>$2</code> 引用它们，<code>$&amp;</code> 表示整个匹配。</p></details>
+  </section>
+
+</main>
+
+<footer><p>ToolPocket · 全部在你的设备上完成，不上传任何文件。</p></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = {"langName":"中文","footer":"ToolPocket · 全部在你的设备上完成，不上传任何文件。","nav":"全部工具","backToTools":"← 全部工具","copy":"复制结果","swap":"互换","clear":"清空","download":"下载","copied":"已复制到剪贴板","copyFail":"复制失败 —— 请手动选中复制","inputLabel":"输入","outputLabel":"结果","privacyNote":"完全在你的浏览器里运行，不上传、不保存。","searchPlaceholder":"搜索工具 —— 例如：压缩、json、密码…","noResults":"没找到匹配的工具，换个词试试？","pattern":"正则表达式","patternHint":"不用写两边的斜杠 —— 直接写 \\d+，不要写 /\\d+/。","replace":"替换为","replaceHint":"可选。$1 / $2 引用捕获组；留空则不显示替换预览。","flagsHint":"标志含义：g = 全部匹配 · i = 忽略大小写 · m = ^$ 匹配每一行 · s = . 匹配换行 · u = Unicode","cbG":"g（全局）","cbI":"i（忽略大小写）","cbM":"m（多行）","cbS":"s（点匹配换行）","cbU":"u（Unicode）","summary":"匹配到","noMatch":"（没有匹配）","replaced":"── 替换预览 ──","truncated":"已达上限，提前停止：","badRegex":"正则表达式有误","tooLong":"文本过长，无法安全测试"};</script>
+<script src="/assets/tools/_shared.js" defer></script>
+<script src="/assets/tools/regex.js" defer></script>
+</body>
+</html>

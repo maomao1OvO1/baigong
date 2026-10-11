@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>命名規則コンバーター — camelCase / snake_case / kebab-case | ToolPocket</title>
+<meta name="description" content="camelCase、PascalCase、snake_case、kebab-case、CONSTANT_CASE、Title Case を相互変換します。HTTPServer のような略語も正しく分割します。">
+<link rel="canonical" href="https://tools.maomaowang.top/ja/tools/case-converter.html">
+<meta property="og:title" content="命名規則コンバーター — camelCase / snake_case / kebab-case | ToolPocket">
+<meta property="og:description" content="camelCase、PascalCase、snake_case、kebab-case、CONSTANT_CASE、Title Case を相互変換します。HTTPServer のような略語も正しく分割します。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/ja/tools/case-converter.html">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/case-converter.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/case-converter.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/case-converter.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/case-converter.html">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"命名規則の変換","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"camelCase、PascalCase、snake_case、kebab-case、CONSTANT_CASE、Title Case を相互変換します。HTTPServer のような略語も正しく分割します。"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"コードではどの規則を使うべき？","acceptedAnswer":{"@type":"Answer","text":"言語の慣習に従ってください。JavaScript / Java の変数は camelCase、Python / Rust は snake_case、型やクラスは PascalCase、モジュール定数は CONSTANT_CASE が一般的です。同じファイル内で統一することが最も重要です。"}},{"@type":"Question","name":"日本語や中国語はどうなりますか？","acceptedAnswer":{"@type":"Answer","text":"CJK には大文字小文字がないため、そのまま保持されます。camelCase はラテン文字向けの規則なので、これは正常な動作です。"}},{"@type":"Question","name":"複数行に対応していますか？","acceptedAnswer":{"@type":"Answer","text":"はい。空行以外の各行を個別に変換します。列名の一覧を貼り付けて一括変換するのに便利です。"}}]}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/ja/index.html">🧰 ToolPocket</a>
+  <nav class="langs"><a href="/ja/index.html#search" title="search" aria-label="search">🔍</a><a href="/tools/case-converter.html">English</a><a href="/zh/tools/case-converter.html">中文</a><a href="/ja/tools/case-converter.html" class="on" aria-current="page">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/ja/index.html">← ツール一覧</a></p>
+  <h1>命名規則の変換</h1>
+  <p class="lead">名前を 1 つ、または一覧をそのまま貼り付けると、一般的な命名規則をまとめて出力します。略語は人の感覚で分割し、<code>HTTPServer</code> は <code>http_server</code> になります（<code>h_t_t_p_server</code> にはなりません）。</p>
+
+  <div class="searchbox">
+    <span class="s-ico" aria-hidden="true">🔍</span>
+    <input id="searchInput" type="search" autocomplete="off" placeholder="ツールを検索 — 例：圧縮、json、パスワード…" aria-label="ツールを検索 — 例：圧縮、json、パスワード…">
+  </div>
+  <ul class="searchresults" id="searchResults" hidden></ul>
+  <p class="badge-line"><span class="pill">すべてブラウザ内で処理されます。送信も保存もしていません。</span></p>
+
+<div class="panel">
+<label class="row lbl" for="input">入力</label>
+  <textarea id="input" class="tall" placeholder=""></textarea>
+  <div class="opts">
+<label class="row"><span class="lbl">出力スタイル</span><select id="style"><option value="all">★ すべてのスタイル</option><option value="camel">camelCase</option><option value="pascal">PascalCase</option><option value="snake">snake_case</option><option value="kebab">kebab-case</option><option value="constant">CONSTANT_CASE</option><option value="dot">dot.case</option><option value="title">Title Case</option><option value="screaming">SCREAMING-KEBAB</option></select></label>
+    <span class="hint">「すべてのスタイル」を選ぶと、各行について全パターンを表示します。</span>
+  </div>
+<label class="row lbl" for="output">結果</label>
+  <textarea id="output" readonly placeholder=""></textarea>
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">結果をコピー</button>
+    <button class="ghost" id="clear">クリア</button>
+  </div>
+</div>
+
+<aside class="ad">
+  <span class="ad-label">製作者より</span>
+  <span class="ad-ico" aria-hidden="true">🎮</span>
+  <div class="ad-body">
+    <b>ブラウザで遊べるタワーディフェンス</b>
+    <p>同じ開発者がゼロから作ったゲームです.</p>
+  </div>
+  <a class="ad-cta" href="https://maomaowang.top/games/td/source/game.html">遊んでみる →</a>
+</aside>
+
+  <section class="faq">
+    <h2>よくある質問</h2>
+    <details><summary>コードではどの規則を使うべき？</summary><p>言語の慣習に従ってください。JavaScript / Java の変数は camelCase、Python / Rust は snake_case、型やクラスは PascalCase、モジュール定数は CONSTANT_CASE が一般的です。同じファイル内で統一することが最も重要です。</p></details>
+    <details><summary>日本語や中国語はどうなりますか？</summary><p>CJK には大文字小文字がないため、そのまま保持されます。camelCase はラテン文字向けの規則なので、これは正常な動作です。</p></details>
+    <details><summary>複数行に対応していますか？</summary><p>はい。空行以外の各行を個別に変換します。列名の一覧を貼り付けて一括変換するのに便利です。</p></details>
+  </section>
+
+</main>
+
+<footer><p>ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。</p></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = {"langName":"日本語","footer":"ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"コピーできませんでした。手動で選択してください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理されます。送信も保存もしていません。","searchPlaceholder":"ツールを検索 — 例：圧縮、json、パスワード…","noResults":"該当するツールがありません。別の言葉でお試しを。","style":"出力スタイル","styleHint":"「すべてのスタイル」を選ぶと、各行について全パターンを表示します。","all":"★ すべてのスタイル","linesUnit":"行を変換しました"};</script>
+<script src="/assets/tools/_shared.js" defer></script>
+<script src="/assets/tools/case-converter.js" defer></script>
+</body>
+</html>

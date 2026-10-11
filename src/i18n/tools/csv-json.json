@@ -1,0 +1,75 @@
+{
+  "_说明": "CSV ⇄ JSON 互转 —— 三语文案。",
+  "en": {
+    "title": "CSV to JSON Converter (and back) — Quotes & Newlines Handled | ToolPocket",
+    "desc": "Convert CSV to JSON or JSON to CSV, with comma/tab/semicolon separators and correct handling of quoted fields, embedded commas and multiline cells.",
+    "h1": "CSV ⇄ JSON converter",
+    "lead": "Paste either format and switch direction. Fields wrapped in quotes, commas inside a field and line breaks inside a cell are all handled — the three cases that break naive <code>split(\",\")</code> converters.",
+    "faq": [
+      ["Why not just split on commas?", "Because real CSV contains commas inside quoted fields, line breaks inside cells (Excel notes columns) and doubled quotes for escaping. A character-by-character parser is the only correct way."],
+      ["Numbers and true/false — are they converted?", "Yes, values that look like numbers or booleans become JSON numbers/booleans, so downstream code does not have to parse strings again. Text like 007 stays a string."],
+      ["My JSON is nested — what happens?", "Each top-level array item becomes a row. Keys are the union of all objects, and nested objects are stored as JSON text inside the cell."]
+    ],
+    "ui": {
+      "mode": "Direction",
+      "modeHint": "The swap button flips the direction and moves the result into the input box, so you can round-trip it.",
+      "delim": "Separator",
+      "delimHint": "Pick what your file actually uses. Tab is what you get when copying cells out of Excel or a spreadsheet.",
+      "csv2json": "CSV → JSON",
+      "json2csv": "JSON → CSV",
+      "header": "First row is a header",
+      "headerHint": "When on, the first row supplies the object keys. When off, keys are named col1, col2, …",
+      "emptyInput": "Nothing to convert",
+      "badJson": "Invalid JSON",
+      "needArray": "Expected an array of objects"
+    }
+  },
+  "zh": {
+    "title": "CSV 转 JSON（也能转回来）—— 正确处理引号与换行 | ToolPocket",
+    "desc": "CSV 与 JSON 互相转换，支持逗号 / 制表符 / 分号分隔，并正确处理引号包裹、字段内逗号与单元格内换行。",
+    "h1": "CSV ⇄ JSON 互转",
+    "lead": "两种格式都能贴，方向随时切换。引号包裹的字段、字段里的逗号、单元格里的换行都能正确处理 —— 这三种情况正是把 <code>split(\",\")</code> 写法搞崩的地方。",
+    "faq": [
+      ["为什么不能直接用逗号切分？", "因为真实的 CSV 里有三种情况会出错：引号包着的字段本身带逗号、单元格里有换行（Excel 导出的备注列常见）、引号用两个双引号转义。只有逐字符扫描才能处理对。"],
+      ["数字和 true/false 会被转换吗？", "会。看起来像数字或布尔值的字段会变成 JSON 里的数字 / 布尔，省得下游再解析一遍字符串；但像 <code>007</code> 这种会被当作文本保留。"],
+      ["JSON 是嵌套结构怎么办？", "顶层数组的每一项对应一行；键取所有对象的并集；嵌套的对象会以 JSON 文本的形式放进单元格。"]
+    ],
+    "ui": {
+      "mode": "转换方向",
+      "modeHint": "「互换」按钮会把方向翻过来，并把结果放回输入框，方便做一次往返校验。",
+      "delim": "分隔符",
+      "delimHint": "按文件实际用的选。从 Excel / 表格里复制出来的通常是制表符。",
+      "csv2json": "CSV → JSON",
+      "json2csv": "JSON → CSV",
+      "header": "第一行是标题行",
+      "headerHint": "勾上时第一行作为字段名；不勾则字段名依次叫 col1、col2……",
+      "emptyInput": "没有可转换的内容",
+      "badJson": "JSON 格式有误",
+      "needArray": "需要一个对象数组"
+    }
+  },
+  "ja": {
+    "title": "CSV ⇄ JSON 変換 — 引用符と改行にも対応 | ToolPocket",
+    "desc": "CSV と JSON を相互変換します。カンマ・タブ・セミコロンに対応し、引用符付きフィールド、フィールド内のカンマ、セル内の改行も正しく処理します。",
+    "h1": "CSV ⇄ JSON 変換",
+    "lead": "どちらの形式でも貼り付けて、方向を切り替えるだけです。引用符で囲まれたフィールド、フィールド内のカンマ、セル内の改行——単純な <code>split(\",\")</code> が壊れる 3 つのケースに対応しています。",
+    "faq": [
+      ["カンマで分割するだけではだめな理由は？", "実際の CSV には、引用符内のカンマ、セル内の改行（Excel のメモ列など）、二重引用符によるエスケープが含まれます。文字単位で解析するのが唯一正しい方法です。"],
+      ["数値や true/false は変換されますか？", "はい。数値やブール値に見える値は JSON の数値・ブール値になります。<code>007</code> のような値は文字列として保持されます。"],
+      ["JSON がネストしている場合は？", "トップレベルの配列要素が 1 行になります。キーは全オブジェクトの和集合で、ネストしたオブジェクトは JSON 文字列としてセルに入ります。"]
+    ],
+    "ui": {
+      "mode": "変換方向",
+      "modeHint": "「入れ替え」ボタンで方向を反転し、結果を入力欄に戻せます。往復チェックにも便利です。",
+      "delim": "区切り文字",
+      "delimHint": "ファイルで実際に使われているものを選んでください。表計算ソフトからコピーした場合はタブが多いです。",
+      "csv2json": "CSV → JSON",
+      "json2csv": "JSON → CSV",
+      "header": "1 行目はヘッダー",
+      "headerHint": "有効にすると 1 行目をキーにします。無効の場合は col1、col2… になります。",
+      "emptyInput": "変換する内容がありません",
+      "badJson": "JSON の形式が不正です",
+      "needArray": "オブジェクトの配列が必要です"
+    }
+  }
+}

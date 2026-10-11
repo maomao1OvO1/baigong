@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>命名风格转换 —— 驼峰 / 下划线 / 连字符 一键互换 | ToolPocket</title>
+<meta name="description" content="在 camelCase、PascalCase、snake_case、kebab-case、CONSTANT_CASE、Title Case 之间互转，并正确处理 HTTPServer 这类含缩写的名字。">
+<link rel="canonical" href="https://tools.maomaowang.top/zh/tools/case-converter.html">
+<meta property="og:title" content="命名风格转换 —— 驼峰 / 下划线 / 连字符 一键互换 | ToolPocket">
+<meta property="og:description" content="在 camelCase、PascalCase、snake_case、kebab-case、CONSTANT_CASE、Title Case 之间互转，并正确处理 HTTPServer 这类含缩写的名字。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/zh/tools/case-converter.html">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/case-converter.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/case-converter.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/case-converter.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/case-converter.html">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"命名风格转换","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"在 camelCase、PascalCase、snake_case、kebab-case、CONSTANT_CASE、Title Case 之间互转，并正确处理 HTTPServer 这类含缩写的名字。"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"代码里该用哪种风格？","acceptedAnswer":{"@type":"Answer","text":"跟着语言约定走：JavaScript / Java 的变量用 camelCase，Python / Rust 用 snake_case，类型与类名用 PascalCase，模块级常量用 CONSTANT_CASE。同一个文件里保持一致，比选哪一种更重要。"}},{"@type":"Question","name":"中文、日文会怎么样？","acceptedAnswer":{"@type":"Answer","text":"中日文没有大小写，会原样保留 —— 这是正常的：驼峰是拉丁字母命名的约定，对中日文不产生变化。"}},{"@type":"Question","name":"支持多行吗？","acceptedAnswer":{"@type":"Answer","text":"支持。每个非空行单独转换，所以把一列字段名贴进来统一改风格很方便。"}}]}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/zh/index.html">🧰 ToolPocket</a>
+  <nav class="langs"><a href="/zh/index.html#search" title="search" aria-label="search">🔍</a><a href="/tools/case-converter.html">English</a><a href="/zh/tools/case-converter.html" class="on" aria-current="page">中文</a><a href="/ja/tools/case-converter.html">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/zh/index.html">← 全部工具</a></p>
+  <h1>命名风格转换</h1>
+  <p class="lead">贴一个名字或一整列名字（每行一个），一次得到所有常见风格。缩写会按人的习惯拆开：<code>HTTPServer</code> 转成 <code>http_server</code>，而不是 <code>h_t_t_p_server</code>。</p>
+
+  <div class="searchbox">
+    <span class="s-ico" aria-hidden="true">🔍</span>
+    <input id="searchInput" type="search" autocomplete="off" placeholder="搜索工具 —— 例如：压缩、json、密码…" aria-label="搜索工具 —— 例如：压缩、json、密码…">
+  </div>
+  <ul class="searchresults" id="searchResults" hidden></ul>
+  <p class="badge-line"><span class="pill">完全在你的浏览器里运行，不上传、不保存。</span></p>
+
+<div class="panel">
+<label class="row lbl" for="input">输入</label>
+  <textarea id="input" class="tall" placeholder=""></textarea>
+  <div class="opts">
+<label class="row"><span class="lbl">输出风格</span><select id="style"><option value="all">★ 全部风格</option><option value="camel">camelCase</option><option value="pascal">PascalCase</option><option value="snake">snake_case</option><option value="kebab">kebab-case</option><option value="constant">CONSTANT_CASE</option><option value="dot">dot.case</option><option value="title">Title Case</option><option value="screaming">SCREAMING-KEBAB</option></select></label>
+    <span class="hint">选「全部风格」时，每一行都会列出所有命名写法。</span>
+  </div>
+<label class="row lbl" for="output">结果</label>
+  <textarea id="output" readonly placeholder=""></textarea>
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">复制结果</button>
+    <button class="ghost" id="clear">清空</button>
+  </div>
+</div>
+
+<aside class="ad">
+  <span class="ad-label">自己人做的</span>
+  <span class="ad-ico" aria-hidden="true">🎮</span>
+  <div class="ad-body">
+    <b>🎮 自己写的小游戏合集</b>
+    <p>塔防、2048、五子棋、打字测试、猜数字…都是一个人从零写的，没有用现成引擎。</p>
+  </div>
+  <a class="ad-cta" href="https://maomaowang.top/games.html">去玩两把 →</a>
+</aside>
+
+  <section class="faq">
+    <h2>常见问题</h2>
+    <details><summary>代码里该用哪种风格？</summary><p>跟着语言约定走：JavaScript / Java 的变量用 camelCase，Python / Rust 用 snake_case，类型与类名用 PascalCase，模块级常量用 CONSTANT_CASE。同一个文件里保持一致，比选哪一种更重要。</p></details>
+    <details><summary>中文、日文会怎么样？</summary><p>中日文没有大小写，会原样保留 —— 这是正常的：驼峰是拉丁字母命名的约定，对中日文不产生变化。</p></details>
+    <details><summary>支持多行吗？</summary><p>支持。每个非空行单独转换，所以把一列字段名贴进来统一改风格很方便。</p></details>
+  </section>
+
+</main>
+
+<footer><p>ToolPocket · 全部在你的设备上完成，不上传任何文件。</p></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = {"langName":"中文","footer":"ToolPocket · 全部在你的设备上完成，不上传任何文件。","nav":"全部工具","backToTools":"← 全部工具","copy":"复制结果","swap":"互换","clear":"清空","download":"下载","copied":"已复制到剪贴板","copyFail":"复制失败 —— 请手动选中复制","inputLabel":"输入","outputLabel":"结果","privacyNote":"完全在你的浏览器里运行，不上传、不保存。","searchPlaceholder":"搜索工具 —— 例如：压缩、json、密码…","noResults":"没找到匹配的工具，换个词试试？","style":"输出风格","styleHint":"选「全部风格」时，每一行都会列出所有命名写法。","all":"★ 全部风格","linesUnit":"行已转换"};</script>
+<script src="/assets/tools/_shared.js" defer></script>
+<script src="/assets/tools/case-converter.js" defer></script>
+</body>
+</html>

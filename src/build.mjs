@@ -97,6 +97,12 @@ function renderOptions(lang, tool, t) {
       const opts = o.choices.map(([v, k]) => `<option value="${esc(v)}">${rich(ui[k] || k)}</option>`).join("");
       return `<label class="row">${label}<select id="${o.id}">${opts}</select></label>${hintOf(o)}`;
     }
+    if (o.type === "text") {
+      // 单行文本框：给「正则模式」「替换为」这类需要自由输入、又不想占掉主输入框的参数用
+      const ph = o.placeholder ? ` placeholder="${esc(ui[o.placeholder] || "")}"` : "";
+      const val = o.value !== undefined ? ` value="${esc(o.value)}"` : "";
+      return `<label class="row">${label}<input type="text" id="${o.id}"${val}${ph} spellcheck="false" autocapitalize="off" autocorrect="off"></label>${hintOf(o)}`;
+    }
     if (o.type === "checkbox") {
       // onchange 用 addEventListener，这里不写内联事件（方便以后加 CSP）
       return `<label class="row check"><input type="checkbox" id="${o.id}"${o.checked ? " checked" : ""}><span>${rich(ui[o.label] || o.label)}</span></label>`;
@@ -162,7 +168,23 @@ const SEARCH_KEYS = {
   "timestamp": ["timestamp", "unix", "date", "time", "epoch", "utc", "时间戳", "日期", "时间", "转换"],
   "password-gen": ["password", "generate", "random", "strong", "secure", "crypto", "密码", "生成", "随机", "强度", "安全"],
   "password-strength": ["password", "strength", "breach", "leak", "pwned", "hacked", "check",
-                        "密码", "强度", "检测", "泄露", "泄露查询", "被拖库", "安全"]
+                        "密码", "强度", "检测", "泄露", "泄露查询", "被拖库", "安全"],
+  "hash": ["hash", "md5", "sha1", "sha256", "sha512", "checksum", "digest", "fingerprint",
+           "哈希", "摘要", "校验", "校验码", "指纹", "签名"],
+  "regex": ["regex", "regexp", "regular expression", "match", "pattern", "replace", "capture group",
+            "正则", "匹配", "替换", "捕获组", "表达式", "批量替换"],
+  "uuid": ["uuid", "guid", "ulid", "nanoid", "id", "random", "unique", "generate",
+           "唯一", "标识", "随机", "主键", "生成"],
+  "diff": ["diff", "compare", "difference", "text compare", "merge", "patch",
+           "对比", "比较", "差异", "不同", "找不同", "版本对比"],
+  "case-converter": ["case", "camel", "pascal", "snake", "kebab", "constant", "naming", "converter", "variable name",
+                     "命名", "驼峰", "下划线", "连字符", "变量名", "大小写转换", "风格"],
+  "radix": ["radix", "base", "binary", "hex", "octal", "decimal", "bit", "converter",
+            "进制", "二进制", "十六进制", "八进制", "位运算", "掩码", "转换"],
+  "jwt": ["jwt", "token", "json web token", "decode", "claims", "bearer", "auth", "oauth",
+          "令牌", "解码", "解析", "过期", "登录", "鉴权"],
+  "csv-json": ["csv", "json", "convert", "excel", "table", "spreadsheet", "tsv", "parse",
+               "表格", "转换", "逗号分隔", "导入导出", "数据转换"]
 };
 
 function searchIndex() {
@@ -308,7 +330,6 @@ ${footer(lang)}
 <script>window.T = ${JSON.stringify(scriptStrings)};</script>
 <script src="${asset("tools/_shared.js")}" defer></script>
 <script src="${asset("tools/" + tool.script)}" defer></script>
-${tool.extras && 0}
 </body>
 </html>
 `;

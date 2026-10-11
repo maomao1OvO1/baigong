@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CSV 转 JSON（也能转回来）—— 正确处理引号与换行 | ToolPocket</title>
+<meta name="description" content="CSV 与 JSON 互相转换，支持逗号 / 制表符 / 分号分隔，并正确处理引号包裹、字段内逗号与单元格内换行。">
+<link rel="canonical" href="https://tools.maomaowang.top/zh/tools/csv-json.html">
+<meta property="og:title" content="CSV 转 JSON（也能转回来）—— 正确处理引号与换行 | ToolPocket">
+<meta property="og:description" content="CSV 与 JSON 互相转换，支持逗号 / 制表符 / 分号分隔，并正确处理引号包裹、字段内逗号与单元格内换行。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/zh/tools/csv-json.html">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/csv-json.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/csv-json.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/csv-json.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/csv-json.html">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"CSV ⇄ JSON 互转","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"CSV 与 JSON 互相转换，支持逗号 / 制表符 / 分号分隔，并正确处理引号包裹、字段内逗号与单元格内换行。"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"为什么不能直接用逗号切分？","acceptedAnswer":{"@type":"Answer","text":"因为真实的 CSV 里有三种情况会出错：引号包着的字段本身带逗号、单元格里有换行（Excel 导出的备注列常见）、引号用两个双引号转义。只有逐字符扫描才能处理对。"}},{"@type":"Question","name":"数字和 true/false 会被转换吗？","acceptedAnswer":{"@type":"Answer","text":"会。看起来像数字或布尔值的字段会变成 JSON 里的数字 / 布尔，省得下游再解析一遍字符串；但像 <code>007</code> 这种会被当作文本保留。"}},{"@type":"Question","name":"JSON 是嵌套结构怎么办？","acceptedAnswer":{"@type":"Answer","text":"顶层数组的每一项对应一行；键取所有对象的并集；嵌套的对象会以 JSON 文本的形式放进单元格。"}}]}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/zh/index.html">🧰 ToolPocket</a>
+  <nav class="langs"><a href="/zh/index.html#search" title="search" aria-label="search">🔍</a><a href="/tools/csv-json.html">English</a><a href="/zh/tools/csv-json.html" class="on" aria-current="page">中文</a><a href="/ja/tools/csv-json.html">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/zh/index.html">← 全部工具</a></p>
+  <h1>CSV ⇄ JSON 互转</h1>
+  <p class="lead">两种格式都能贴，方向随时切换。引号包裹的字段、字段里的逗号、单元格里的换行都能正确处理 —— 这三种情况正是把 <code>split(&quot;,&quot;)</code> 写法搞崩的地方。</p>
+
+  <div class="searchbox">
+    <span class="s-ico" aria-hidden="true">🔍</span>
+    <input id="searchInput" type="search" autocomplete="off" placeholder="搜索工具 —— 例如：压缩、json、密码…" aria-label="搜索工具 —— 例如：压缩、json、密码…">
+  </div>
+  <ul class="searchresults" id="searchResults" hidden></ul>
+  <p class="badge-line"><span class="pill">完全在你的浏览器里运行，不上传、不保存。</span></p>
+
+<div class="panel">
+<label class="row lbl" for="input">输入</label>
+  <textarea id="input" class="tall" placeholder=""></textarea>
+  <div class="opts">
+<label class="row"><span class="lbl">转换方向</span><select id="mode"><option value="csv2json">CSV → JSON</option><option value="json2csv">JSON → CSV</option></select></label>
+    <span class="hint">「互换」按钮会把方向翻过来，并把结果放回输入框，方便做一次往返校验。</span>
+<label class="row"><span class="lbl">分隔符</span><select id="delim"><option value="comma">,</option><option value="tab">Tab</option><option value="semicolon">;</option></select></label>
+    <span class="hint">按文件实际用的选。从 Excel / 表格里复制出来的通常是制表符。</span>
+<label class="row check"><input type="checkbox" id="header" checked><span>第一行是标题行</span></label>
+  </div>
+<label class="row lbl" for="output">结果</label>
+  <textarea id="output" readonly placeholder=""></textarea>
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">复制结果</button>
+    <button class="ghost" id="swap">互换</button>
+    <button class="ghost" id="clear">清空</button>
+  </div>
+</div>
+
+<aside class="ad">
+  <span class="ad-label">自己人做的</span>
+  <span class="ad-ico" aria-hidden="true">🎮</span>
+  <div class="ad-body">
+    <b>🎮 自己写的小游戏合集</b>
+    <p>塔防、2048、五子棋、打字测试、猜数字…都是一个人从零写的，没有用现成引擎。</p>
+  </div>
+  <a class="ad-cta" href="https://maomaowang.top/games.html">去玩两把 →</a>
+</aside>
+
+  <section class="faq">
+    <h2>常见问题</h2>
+    <details><summary>为什么不能直接用逗号切分？</summary><p>因为真实的 CSV 里有三种情况会出错：引号包着的字段本身带逗号、单元格里有换行（Excel 导出的备注列常见）、引号用两个双引号转义。只有逐字符扫描才能处理对。</p></details>
+    <details><summary>数字和 true/false 会被转换吗？</summary><p>会。看起来像数字或布尔值的字段会变成 JSON 里的数字 / 布尔，省得下游再解析一遍字符串；但像 <code>007</code> 这种会被当作文本保留。</p></details>
+    <details><summary>JSON 是嵌套结构怎么办？</summary><p>顶层数组的每一项对应一行；键取所有对象的并集；嵌套的对象会以 JSON 文本的形式放进单元格。</p></details>
+  </section>
+
+</main>
+
+<footer><p>ToolPocket · 全部在你的设备上完成，不上传任何文件。</p></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = {"langName":"中文","footer":"ToolPocket · 全部在你的设备上完成，不上传任何文件。","nav":"全部工具","backToTools":"← 全部工具","copy":"复制结果","swap":"互换","clear":"清空","download":"下载","copied":"已复制到剪贴板","copyFail":"复制失败 —— 请手动选中复制","inputLabel":"输入","outputLabel":"结果","privacyNote":"完全在你的浏览器里运行，不上传、不保存。","searchPlaceholder":"搜索工具 —— 例如：压缩、json、密码…","noResults":"没找到匹配的工具，换个词试试？","mode":"转换方向","modeHint":"「互换」按钮会把方向翻过来，并把结果放回输入框，方便做一次往返校验。","delim":"分隔符","delimHint":"按文件实际用的选。从 Excel / 表格里复制出来的通常是制表符。","csv2json":"CSV → JSON","json2csv":"JSON → CSV","header":"第一行是标题行","headerHint":"勾上时第一行作为字段名；不勾则字段名依次叫 col1、col2……","emptyInput":"没有可转换的内容","badJson":"JSON 格式有误","needArray":"需要一个对象数组"};</script>
+<script src="/assets/tools/_shared.js" defer></script>
+<script src="/assets/tools/csv-json.js" defer></script>
+</body>
+</html>

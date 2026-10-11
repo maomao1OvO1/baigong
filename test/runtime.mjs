@@ -60,7 +60,8 @@ function loadTool(scriptFile, ids, strings, defaults = {}, extra = {}) {
     console,
     setTimeout: (fn) => { fn(); return 0; },
     clearTimeout: () => {},
-    Promise, TextEncoder, TextDecoder, Uint8Array, Math, JSON, String, Number, parseFloat, parseInt, isFinite, Object, Array, Date, RegExp, Error, Set, Map,
+    Promise, TextEncoder, TextDecoder, Uint8Array, Uint32Array, Int32Array, ArrayBuffer, DataView, BigInt,
+    Math, JSON, String, Number, parseFloat, parseInt, isFinite, Object, Array, Date, RegExp, Error, Set, Map,
     btoa: (s) => Buffer.from(s, "binary").toString("base64"),
     atob: (s) => Buffer.from(s, "base64").toString("binary"),
     ...extra,
@@ -370,6 +371,252 @@ console.log("\n⑩ 弱密码识别（这些必须被当场抓出来）");
   const secOf = (txt) => (txt.split("\n").find((l) => l.includes("Single GPU")) || "");
   if (secOf(t2) !== secOf(t1) && secOf(t1) && secOf(t2)) ok("更长 ⇒ 破解时间显著变长（" + secOf(t1).split(": ")[1] + " → " + secOf(t2).split(": ")[1] + "）");
   else bad("长度没有影响破解时间估算", secOf(t1) + " / " + secOf(t2));
+}
+
+console.log("\n⑪ 哈希（手写 MD5 + WebCrypto 的 SHA 系列）");
+{
+  const ui = Object.assign(readUi("en"), readI18n("hash", "en"));
+  const { els } = loadTool("hash.js",
+    ["input", "output", "algo", "upper", "status", "copy", "clear", "toast"], ui, { algo: "md5" });
+  // 算完是异步的（SHA 走 Promise），所以等输出非空再断言
+  const run = async (text, algorithm, upper) => {
+    els.input.value = text; els.algo.value = algorithm; els.upper.checked = !!upper;
+    els.output.value = "";
+    els.input.fire("input");
+    for (let i = 0; i < 200 && !els.output.value; i++) await new Promise((r) => setImmediate(r));
+    return els.output.value;
+  };
+  const md5abc = await run("abc", "md5");
+  if (md5abc.startsWith("900150983cd24fb0d6963f7d28e17f72")) ok("MD5(\"abc\") = 900150983cd24fb0d6963f7d28e17f72");
+  else bad("MD5(\"abc\") 算错", md5abc.split("\n")[0]);
+  if (md5abc.includes("kAFQmDzST7DWlj99KOF/cg==")) ok("MD5(\"abc\") 的 base64 也对");
+  else bad("MD5 base64 不对", md5abc);
+
+  const sha1 = await run("abc", "sha-1");
+  if (sha1.startsWith("a9993e364706816aba3e25717850c26c9cd0d89d")) ok("SHA-1(\"abc\") 正确");
+  else bad("SHA-1(\"abc\") 算错", sha1.split("\n")[0]);
+
+  const sha256 = await run("abc", "sha-256");
+  if (sha256.startsWith("ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad")) ok("SHA-256(\"abc\") 正确");
+  else bad("SHA-256(\"abc\") 算错", sha256.split("\n")[0]);
+
+  const sha512 = await run("abc", "sha-512");
+  if (sha512.startsWith("ddaf35a193617abacc417349ae204131")) ok("SHA-512(\"abc\") 正确（前 32 位）");
+  else bad("SHA-512(\"abc\") 算错", sha512.split("\n")[0]);
+
+  // 中文 + emoji：验证走的是 UTF-8 字节而不是 UTF-16 码元
+  const cn = await run("中文🐋", "sha-256");
+  if (/^[0-9a-f]{64}$/.test(cn.split("\n")[0])) ok("中文 + emoji 也能算出 32 字节摘要");
+  else bad("中文输入摘要异常", cn.split("\n")[0]);
+
+  const up = await run("abc", "md5", true);
+  if (up.startsWith("900150983CD24FB0D6963F7D28E17F72")) ok("「十六进制大写」开关生效");
+  else bad("大写开关没生效", up.split("\n")[0]);
+
+  const empty = await run("", "md5");
+  if (empty === "") ok("空输入清空输出（不留上次的残值）");
+  else bad("空输入没有清空输出", empty);
+}
+
+console.log("\n⑫ 正则测试器（匹配 / 捕获组 / 替换 / 坏正则不能崩）");
+{
+  const ui = Object.assign(readUi("en"), readI18n("regex", "en"));
+  const { els } = loadTool("regex.js",
+    ["pattern", "replace", "cbG", "cbI", "cbM", "cbS", "cbU", "input", "output", "status", "copy", "clear", "toast"], ui, {});
+  els.cbG.checked = true;
+  els.pattern.value = "a(\\d+)b";
+  els.input.value = "a1b xx a22b";
+  els.input.fire("input");
+  if (els.output.value.includes("#2") && els.output.value.includes('"22"')) ok("全局匹配列出两处，并给出捕获组");
+  else bad("匹配列表不对", els.output.value.slice(0, 120));
+  if (els.output.value.includes('$1 = "1"') && els.output.value.includes('$1 = "22"')) ok("捕获组 $1 的值正确");
+  else bad("捕获组值不对", els.output.value.slice(0, 160));
+
+  els.cbG.checked = false;
+  els.input.fire("input");
+  if (els.output.value.includes(": 1") && !els.output.value.includes("#2")) ok("关掉 g 后只返回第一处匹配");
+  else bad("非全局模式行为不对", els.output.value.slice(0, 80));
+
+  els.cbG.checked = true;
+  els.replace.value = "X$1";
+  els.input.fire("input");
+  if (els.output.value.includes("X1 xx X22")) ok("替换预览支持 $1 引用捕获组");
+  else bad("替换预览不对", els.output.value.slice(-120));
+
+  els.pattern.value = "(";
+  els.input.fire("input");
+  if (els.status.className.includes("err") && els.output.value === "") ok("坏正则给出错误提示且不输出垃圾");
+  else bad("坏正则处理不对", els.status.textContent);
+
+  els.pattern.value = "x";
+  els.replace.value = "";
+  els.input.value = "no hits here";
+  els.input.fire("input");
+  if (els.status.textContent === ui.noMatch && !els.output.value.includes("#1")) ok("无匹配时明确说明（不假装匹配到东西）");
+  else bad("无匹配提示不对", els.status.textContent);
+}
+
+console.log("\n⑬ UUID / ULID / NanoID（格式、唯一性、开关）");
+{
+  const ui = Object.assign(readUi("en"), readI18n("uuid", "en"));
+  const { els } = loadTool("uuid.js",
+    ["type", "count", "upper", "nodash", "gen", "output", "status", "copy", "clear", "toast"], ui,
+    { type: "uuid4", count: "5" });
+  els.gen.click();
+  const v4 = els.output.value.split("\n");
+  const V4RE = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
+  if (v4.length === 5 && v4.every((v) => V4RE.test(v))) ok("UUID v4 × 5 个，格式与版本位都正确");
+  else bad("UUID v4 格式不对", v4.join(" | "));
+  if (new Set(v4).size === 5) ok("5 个 UUID 互不重复");
+  else bad("出现重复 UUID");
+
+  els.type.value = "uuid7"; els.gen.click();
+  const v7 = els.output.value.split("\n")[0];
+  if (/^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/.test(v7)) ok("UUID v7 版本位正确（时间有序）");
+  else bad("UUID v7 格式不对", v7);
+
+  els.type.value = "ulid"; els.gen.click();
+  const ulid = els.output.value.split("\n")[0];
+  if (/^[0-9A-HJKMNP-TV-Z]{26}$/.test(ulid)) ok("ULID 26 位 Crockford Base32 正确");
+  else bad("ULID 格式不对", ulid);
+
+  els.type.value = "nanoid"; els.gen.click();
+  if (els.output.value.split("\n")[0].length === 21) ok("NanoID 默认 21 位");
+  else bad("NanoID 长度不对", els.output.value.split("\n")[0]);
+
+  els.type.value = "uuid4"; els.nodash.checked = true; els.upper.checked = true; els.gen.click();
+  const raw = els.output.value.split("\n")[0];
+  if (/^[0-9A-F]{32}$/.test(raw)) ok("「去连字符 + 大写」两个开关同时生效");
+  else bad("去连字符 / 大写开关失效", raw);
+}
+
+console.log("\n⑭ 文本对比（=== 分隔、增删标记、缺分隔符要提示）");
+{
+  const ui = Object.assign(readUi("en"), readI18n("diff", "en"));
+  const { els } = loadTool("diff.js", ["input", "output", "status", "copy", "clear", "toast"], ui, {});
+  els.input.value = "a\nb\nc\n===\na\nx\nc";
+  els.input.fire("input");
+  const out = els.output.value;
+  if (out.includes("- b") && out.includes("+ x") && out.includes("  a")) ok("删行 / 增行 / 未变行标记都正确");
+  else bad("差异输出不对", out.replace(/\n/g, " | "));
+  if (els.status.textContent.includes("+1") && els.status.textContent.includes("-1")) ok("统计行给出 +1 / -1");
+  else bad("统计不对", els.status.textContent);
+
+  els.input.value = "a\nb";
+  els.input.fire("input");
+  if (els.output.value === "" && els.status.className.includes("err")) ok("缺 === 分隔符时明确提示（不给出误导结果）");
+  else bad("缺分隔符处理不对", els.status.textContent + " / " + els.output.value);
+
+  els.input.value = "same\n===\nsame";
+  els.input.fire("input");
+  if (els.status.textContent.includes("+0") && els.status.textContent.includes("-0")) ok("完全相同的两段 ⇒ 0 增 0 删");
+  else bad("相同文本的统计不对", els.status.textContent);
+}
+
+console.log("\n⑮ 命名风格转换（缩略词不能拆碎）");
+{
+  const ui = Object.assign(readUi("en"), readI18n("case-converter", "en"));
+  const { els } = loadTool("case-converter.js", ["input", "output", "style", "status", "copy", "clear", "toast"], ui, { style: "all" });
+  els.input.value = "helloWorld";
+  els.input.fire("input");
+  const out = els.output.value;
+  const need = ["helloWorld", "HelloWorld", "hello_world", "hello-world", "HELLO_WORLD", "hello.world", "Hello World"];
+  const miss = need.filter((n) => !out.includes(n));
+  if (!miss.length) ok("helloWorld 的 7 种风格全部正确");
+  else bad("缺少风格：" + miss.join(", "), out);
+  els.input.value = "HTTPServer";
+  els.input.fire("input");
+  if (els.output.value.includes("http_server") && !els.output.value.includes("h_t_t_p")) ok("HTTPServer → http_server（缩略词没被拆碎）");
+  else bad("缩略词拆分不对", els.output.value);
+  els.style.value = "snake";
+  els.input.value = "helloWorld";
+  els.input.fire("input");
+  if (els.output.value === "hello_world") ok("单选某种风格时只输出该结果");
+  else bad("单风格输出不对", els.output.value);
+}
+
+console.log("\n⑯ 进制转换（BigInt 大数不能丢精度）");
+{
+  const ui = Object.assign(readUi("en"), readI18n("radix", "en"));
+  const { els } = loadTool("radix.js", ["input", "output", "base", "group", "status", "copy", "clear", "toast"], ui, { base: "auto", group: "4" });
+  els.input.value = "255";
+  els.input.fire("input");
+  const o = els.output.value;
+  if (o.includes("0xff") && o.includes("0b11111111") && o.includes("255") && o.includes("1111 1111")) ok("255 → 0xff / 0b11111111 / 分组视图");
+  else bad("255 的转换不对", o.replace(/\n/g, " | "));
+  els.input.value = "0x1f";
+  els.input.fire("input");
+  if (els.output.value.includes("DEC   31")) ok("自动识别 0x 前缀（0x1f → 31）");
+  else bad("0x 前缀识别不对", els.output.value);
+  const big = "123456789012345678901234567890";
+  els.input.value = big;
+  els.input.fire("input");
+  if (els.output.value.includes(big)) ok("30 位大数经 BigInt 保持原值（用 Number 会丢精度）");
+  else bad("大数丢失精度", els.output.value.split("\n")[0]);
+  els.base.value = "16";
+  els.input.value = "ff";
+  els.input.fire("input");
+  if (els.output.value.includes("DEC   255")) ok("按 16 进制解析 ff = 255");
+  else bad("指定进制解析失败", els.output.value);
+  els.base.value = "10";
+  els.input.value = "12z";
+  els.input.fire("input");
+  if (els.status.className.includes("err") && els.output.value === "") ok("非法字符被拒绝（不静默给出错值）");
+  else bad("非法输入处理不对", els.status.textContent);
+}
+
+console.log("\n⑰ JWT 解析（三段式、过期判断、坏输入）");
+{
+  const ui = Object.assign(readUi("en"), readI18n("jwt", "en"));
+  const { els } = loadTool("jwt.js", ["input", "output", "status", "copy", "clear", "toast"], ui, {});
+  const b64u = (o) => Buffer.from(JSON.stringify(o)).toString("base64").replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+  const future = Math.floor(Date.now() / 1000) + 3600;
+  const past = Math.floor(Date.now() / 1000) - 3600;
+  els.input.value = b64u({ alg: "HS256", typ: "JWT" }) + "." + b64u({ sub: "user-42", exp: future }) + ".AAAA";
+  els.input.fire("input");
+  if (els.output.value.includes("HS256") && els.output.value.includes("user-42")) ok("header 与 payload 都能解出来");
+  else bad("JWT 解码失败", els.output.value.slice(0, 120));
+  if (!els.status.className.includes("err")) ok("未过期的 token 判定为有效");
+  else bad("有效期判断错了", els.status.textContent);
+  els.input.value = b64u({ alg: "HS256" }) + "." + b64u({ sub: "user-42", exp: past }) + ".AAAA";
+  els.input.fire("input");
+  if (els.status.className.includes("err")) ok("已过期的 token 明确标出");
+  else bad("过期判断失败", els.status.textContent);
+  els.input.value = "not-a-token";
+  els.input.fire("input");
+  if (els.status.className.includes("err") && els.output.value === "") ok("段数不对时给出提示");
+  else bad("坏 token 处理不对", els.status.textContent);
+}
+
+console.log("\n⑱ CSV ⇄ JSON（引号、字段内逗号、字段内换行）");
+{
+  const ui = Object.assign(readUi("en"), readI18n("csv-json", "en"));
+  const { els } = loadTool("csv-json.js",
+    ["mode", "delim", "header", "input", "output", "status", "copy", "swap", "clear", "toast"], ui,
+    { mode: "csv2json", delim: "comma" });
+  els.header.checked = true;
+  els.input.value = 'name,note\nzhang,"beijing, chaoyang"\nli,"line1\nline2"';
+  els.input.fire("input");
+  let parsed = null;
+  try { parsed = JSON.parse(els.output.value); } catch (e) { /* 下面统一报错 */ }
+  if (parsed && parsed[0].note === "beijing, chaoyang") ok("字段内的逗号被正确包在引号里");
+  else bad("字段内逗号解析失败", els.output.value.slice(0, 120));
+  if (parsed && parsed[1].note === "line1\nline2") ok("单元格内的换行被正确处理");
+  else bad("字段内换行解析失败", els.output.value.slice(0, 160));
+  if (parsed && parsed[0].name === "zhang") ok("表头作为字段名");
+  else bad("表头处理不对", els.output.value.slice(0, 80));
+
+  els.swap.click();     // 互换：把 JSON 放回输入框并翻成 JSON → CSV
+  if (els.mode.value === "json2csv") ok("「互换」把方向翻成 JSON → CSV");
+  else bad("互换没翻方向", els.mode.value);
+  const csv = els.output.value;
+  if (csv.startsWith("name,note") && csv.includes('"beijing, chaoyang"')) ok("JSON → CSV 会按需加引号");
+  else bad("JSON → CSV 输出不对", csv.slice(0, 120));
+
+  els.input.value = "{ not json }";
+  els.input.fire("input");
+  if (els.status.className.includes("err")) ok("坏 JSON 给出错误提示");
+  else bad("坏 JSON 没报错", els.status.textContent);
 }
 
 console.log(`\n结果：${pass} 项通过，${fail} 项失败`);

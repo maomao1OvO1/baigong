@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UUID v4 / v7、ULID、NanoID 在线生成器 | ToolPocket</title>
+<meta name="description" content="一次生成最多 100 个唯一 ID：UUID v4、可按时间排序的 UUID v7、ULID 或 NanoID，一键全选复制。全部在浏览器里生成。">
+<link rel="canonical" href="https://tools.maomaowang.top/zh/tools/uuid.html">
+<meta property="og:title" content="UUID v4 / v7、ULID、NanoID 在线生成器 | ToolPocket">
+<meta property="og:description" content="一次生成最多 100 个唯一 ID：UUID v4、可按时间排序的 UUID v7、ULID 或 NanoID，一键全选复制。全部在浏览器里生成。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/zh/tools/uuid.html">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/uuid.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/uuid.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/uuid.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/uuid.html">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"UUID / ULID / NanoID 生成器","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"一次生成最多 100 个唯一 ID：UUID v4、可按时间排序的 UUID v7、ULID 或 NanoID，一键全选复制。全部在浏览器里生成。"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"UUID v4 和 v7 选哪个？","acceptedAnswer":{"@type":"Answer","text":"新项目建议 v7。它开头就是毫秒时间戳，ID 按创建时间递增，数据库索引不会因为随机插入而碎掉。v4 是纯随机：当标识符没问题，但量大以后随机写会拖慢 B 树索引。"}},{"@type":"Question","name":"ULID 和 UUID v7 看着差不多？","acceptedAnswer":{"@type":"Answer","text":"两者都可按时间排序，区别在写法：ULID 是 26 位 Crockford Base32（无连字符、更短、适合放 URL），UUID v7 是标准的 36 位带连字符写法，多数数据库对它有原生类型。"}},{"@type":"Question","name":"这些 ID 能当密钥用吗？","acceptedAnswer":{"@type":"Answer","text":"随机性够强，但标识符不等于密码 —— 它通常会被存进库、写进日志。要令牌请用专门的密钥生成器。"}}]}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/zh/index.html">🧰 ToolPocket</a>
+  <nav class="langs"><a href="/zh/index.html#search" title="search" aria-label="search">🔍</a><a href="/tools/uuid.html">English</a><a href="/zh/tools/uuid.html" class="on" aria-current="page">中文</a><a href="/ja/tools/uuid.html">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/zh/index.html">← 全部工具</a></p>
+  <h1>UUID / ULID / NanoID 生成器</h1>
+  <p class="lead">挑项目需要的那种，选好数量，整批复制走。随机源用的是 <code>crypto.getRandomValues</code>，不是 <code>Math.random</code>。</p>
+
+  <div class="searchbox">
+    <span class="s-ico" aria-hidden="true">🔍</span>
+    <input id="searchInput" type="search" autocomplete="off" placeholder="搜索工具 —— 例如：压缩、json、密码…" aria-label="搜索工具 —— 例如：压缩、json、密码…">
+  </div>
+  <ul class="searchresults" id="searchResults" hidden></ul>
+  <p class="badge-line"><span class="pill">完全在你的浏览器里运行，不上传、不保存。</span></p>
+
+<div class="panel">
+
+  <div class="opts">
+<label class="row"><span class="lbl">类型</span><select id="type"><option value="uuid4">UUID v4</option><option value="uuid7">UUID v7</option><option value="ulid">ULID</option><option value="nanoid">NanoID</option></select></label>
+    <span class="hint">UUID v7 与 ULID 可按时间排序；UUID v4 纯随机；NanoID 最短。</span>
+<label class="row"><span class="lbl">生成数量</span><input type="number" id="count" value="5" min="1" step="1"> <span class="note">每次 1 到 100 个。</span></label>
+<label class="row check"><input type="checkbox" id="upper"><span>转成大写</span></label>
+<label class="row check"><input type="checkbox" id="nodash"><span>去掉连字符（仅 UUID）</span></label>
+  </div>
+<label class="row lbl" for="output">结果</label>
+  <textarea id="output" readonly placeholder=""></textarea>
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button class="ghost" id="gen">生成</button>
+    <button id="copy">复制结果</button>
+    <button class="ghost" id="clear">清空</button>
+  </div>
+</div>
+
+<aside class="ad">
+  <span class="ad-label">自己人做的</span>
+  <span class="ad-ico" aria-hidden="true">🎮</span>
+  <div class="ad-body">
+    <b>🎮 自己写的小游戏合集</b>
+    <p>塔防、2048、五子棋、打字测试、猜数字…都是一个人从零写的，没有用现成引擎。</p>
+  </div>
+  <a class="ad-cta" href="https://maomaowang.top/games.html">去玩两把 →</a>
+</aside>
+
+  <section class="faq">
+    <h2>常见问题</h2>
+    <details><summary>UUID v4 和 v7 选哪个？</summary><p>新项目建议 v7。它开头就是毫秒时间戳，ID 按创建时间递增，数据库索引不会因为随机插入而碎掉。v4 是纯随机：当标识符没问题，但量大以后随机写会拖慢 B 树索引。</p></details>
+    <details><summary>ULID 和 UUID v7 看着差不多？</summary><p>两者都可按时间排序，区别在写法：ULID 是 26 位 Crockford Base32（无连字符、更短、适合放 URL），UUID v7 是标准的 36 位带连字符写法，多数数据库对它有原生类型。</p></details>
+    <details><summary>这些 ID 能当密钥用吗？</summary><p>随机性够强，但标识符不等于密码 —— 它通常会被存进库、写进日志。要令牌请用专门的密钥生成器。</p></details>
+  </section>
+
+</main>
+
+<footer><p>ToolPocket · 全部在你的设备上完成，不上传任何文件。</p></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = {"langName":"中文","footer":"ToolPocket · 全部在你的设备上完成，不上传任何文件。","nav":"全部工具","backToTools":"← 全部工具","copy":"复制结果","swap":"互换","clear":"清空","download":"下载","copied":"已复制到剪贴板","copyFail":"复制失败 —— 请手动选中复制","inputLabel":"输入","outputLabel":"结果","privacyNote":"完全在你的浏览器里运行，不上传、不保存。","searchPlaceholder":"搜索工具 —— 例如：压缩、json、密码…","noResults":"没找到匹配的工具，换个词试试？","type":"类型","typeHint":"UUID v7 与 ULID 可按时间排序；UUID v4 纯随机；NanoID 最短。","count":"生成数量","countHint":"每次 1 到 100 个。","upper":"转成大写","nodash":"去掉连字符（仅 UUID）","gen":"生成","insecure":"拿不到 crypto.getRandomValues —— 随机性不足"};</script>
+<script src="/assets/tools/_shared.js" defer></script>
+<script src="/assets/tools/uuid.js" defer></script>
+</body>
+</html>

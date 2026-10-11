@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>テキスト差分ツール — 2 つのテキストを行単位で比較 | ToolPocket</title>
+<meta name="description" content="2 つのテキストを比較し、追加・削除・変更なしの行を表示します。差分はブラウザ内で計算され、送信されません。">
+<link rel="canonical" href="https://tools.maomaowang.top/ja/tools/diff.html">
+<meta property="og:title" content="テキスト差分ツール — 2 つのテキストを行単位で比較 | ToolPocket">
+<meta property="og:description" content="2 つのテキストを比較し、追加・削除・変更なしの行を表示します。差分はブラウザ内で計算され、送信されません。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/ja/tools/diff.html">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/diff.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/diff.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/diff.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/diff.html">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"テキスト差分（行単位）","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"2 つのテキストを比較し、追加・削除・変更なしの行を表示します。差分はブラウザ内で計算され、送信されません。"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"2 つのテキストを 1 つの欄に入れるには？","acceptedAnswer":{"@type":"Answer","text":"間に <code>===</code> だけの行を入れて区切ります。この区切りを使えば複数組をまとめて比較できます。"}},{"@type":"Question","name":"見た目が同じ行が変更扱いになるのは？","acceptedAnswer":{"@type":"Answer","text":"不可視文字が原因のことが多いです。行末の空白、改行しない空白、Windows の改行コードなど。それを見つけるのが差分ツールの役目です。"}},{"@type":"Question","name":"サイズ制限はありますか？","acceptedAnswer":{"@type":"Answer","text":"片側およそ 4000 行までです。それを超えると比較に必要なメモリが過大になるため、タブを固まらせずに警告して中止します。"}}]}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/ja/index.html">🧰 ToolPocket</a>
+  <nav class="langs"><a href="/ja/index.html#search" title="search" aria-label="search">🔍</a><a href="/tools/diff.html">English</a><a href="/zh/tools/diff.html">中文</a><a href="/ja/tools/diff.html" class="on" aria-current="page">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/ja/index.html">← ツール一覧</a></p>
+  <h1>テキスト差分（行単位）</h1>
+  <p class="lead">旧バージョンを貼り、<code>===</code> だけの行を挟んで、新バージョンを貼ってください。各行の先頭に <code>-</code>（削除）、<code>+</code>（追加）、空白（変更なし）が付きます。</p>
+
+  <div class="searchbox">
+    <span class="s-ico" aria-hidden="true">🔍</span>
+    <input id="searchInput" type="search" autocomplete="off" placeholder="ツールを検索 — 例：圧縮、json、パスワード…" aria-label="ツールを検索 — 例：圧縮、json、パスワード…">
+  </div>
+  <ul class="searchresults" id="searchResults" hidden></ul>
+  <p class="badge-line"><span class="pill">すべてブラウザ内で処理されます。送信も保存もしていません。</span></p>
+
+<div class="panel">
+<label class="row lbl" for="input">入力</label>
+  <textarea id="input" class="tall" placeholder=""></textarea>
+  <div class="opts">
+
+  </div>
+<label class="row lbl" for="output">結果</label>
+  <textarea id="output" readonly placeholder=""></textarea>
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">結果をコピー</button>
+    <button class="ghost" id="clear">クリア</button>
+  </div>
+</div>
+
+<aside class="ad">
+  <span class="ad-label">製作者より</span>
+  <span class="ad-ico" aria-hidden="true">🎮</span>
+  <div class="ad-body">
+    <b>ブラウザで遊べるタワーディフェンス</b>
+    <p>同じ開発者がゼロから作ったゲームです.</p>
+  </div>
+  <a class="ad-cta" href="https://maomaowang.top/games/td/source/game.html">遊んでみる →</a>
+</aside>
+
+  <section class="faq">
+    <h2>よくある質問</h2>
+    <details><summary>2 つのテキストを 1 つの欄に入れるには？</summary><p>間に <code>===</code> だけの行を入れて区切ります。この区切りを使えば複数組をまとめて比較できます。</p></details>
+    <details><summary>見た目が同じ行が変更扱いになるのは？</summary><p>不可視文字が原因のことが多いです。行末の空白、改行しない空白、Windows の改行コードなど。それを見つけるのが差分ツールの役目です。</p></details>
+    <details><summary>サイズ制限はありますか？</summary><p>片側およそ 4000 行までです。それを超えると比較に必要なメモリが過大になるため、タブを固まらせずに警告して中止します。</p></details>
+  </section>
+
+</main>
+
+<footer><p>ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。</p></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = {"langName":"日本語","footer":"ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"コピーできませんでした。手動で選択してください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理されます。送信も保存もしていません。","searchPlaceholder":"ツールを検索 — 例：圧縮、json、パスワード…","noResults":"該当するツールがありません。別の言葉でお試しを。","needSep":"2 つのテキストの間に === だけの行を入れてください","tooMany":"行数が多すぎて比較できません","bothEmpty":"（両方とも空です）","sameLabel":"変更なし"};</script>
+<script src="/assets/tools/_shared.js" defer></script>
+<script src="/assets/tools/diff.js" defer></script>
+</body>
+</html>

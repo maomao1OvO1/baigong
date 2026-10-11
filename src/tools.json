@@ -19,6 +19,104 @@
   },
   "tools": [
     {
+      "id": "hash",
+      "icon": "🔐",
+      "kind": "text",
+      "script": "hash.js",
+      "i18n": "hash",
+      "buttons": ["copy", "clear"],
+      "options": [
+        { "type": "select", "id": "algo", "label": "algo", "choices": [["md5", "MD5"], ["sha-1", "SHA-1"], ["sha-256", "SHA-256"], ["sha-512", "SHA-512"]], "hint": "algoHint" },
+        { "type": "checkbox", "id": "upper", "label": "upper" }
+      ]
+    },
+    {
+      "id": "regex",
+      "icon": "🧪",
+      "kind": "text",
+      "script": "regex.js",
+      "i18n": "regex",
+      "buttons": ["copy", "clear"],
+      "options": [
+        { "type": "text", "id": "pattern", "label": "pattern", "hint": "patternHint" },
+        { "type": "text", "id": "replace", "label": "replace", "hint": "replaceHint" },
+        { "type": "checkbox", "id": "cbG", "label": "cbG", "checked": true },
+        { "type": "checkbox", "id": "cbI", "label": "cbI" },
+        { "type": "checkbox", "id": "cbM", "label": "cbM" },
+        { "type": "checkbox", "id": "cbS", "label": "cbS" },
+        { "type": "checkbox", "id": "cbU", "label": "cbU" }
+      ]
+    },
+    {
+      "id": "uuid",
+      "icon": "🆔",
+      "kind": "text",
+      "script": "uuid.js",
+      "i18n": "uuid",
+      "buttons": ["gen", "copy", "clear"],
+      "hideInput": true,
+      "options": [
+        { "type": "select", "id": "type", "label": "type", "choices": [["uuid4", "UUID v4"], ["uuid7", "UUID v7"], ["ulid", "ULID"], ["nanoid", "NanoID"]], "hint": "typeHint" },
+        { "type": "number", "id": "count", "label": "count", "value": 5, "min": 1, "step": 1, "note": "countHint" },
+        { "type": "checkbox", "id": "upper", "label": "upper" },
+        { "type": "checkbox", "id": "nodash", "label": "nodash" }
+      ]
+    },
+    {
+      "id": "diff",
+      "icon": "🆚",
+      "kind": "text",
+      "script": "diff.js",
+      "i18n": "diff",
+      "buttons": ["copy", "clear"],
+      "options": []
+    },
+    {
+      "id": "case-converter",
+      "icon": "🔤",
+      "kind": "text",
+      "script": "case-converter.js",
+      "i18n": "case-converter",
+      "buttons": ["copy", "clear"],
+      "options": [
+        { "type": "select", "id": "style", "label": "style", "choices": [["all", "all"], ["camel", "camelCase"], ["pascal", "PascalCase"], ["snake", "snake_case"], ["kebab", "kebab-case"], ["constant", "CONSTANT_CASE"], ["dot", "dot.case"], ["title", "Title Case"], ["screaming", "SCREAMING-KEBAB"]], "hint": "styleHint" }
+      ]
+    },
+    {
+      "id": "radix",
+      "icon": "🔢",
+      "kind": "text",
+      "script": "radix.js",
+      "i18n": "radix",
+      "buttons": ["copy", "clear"],
+      "options": [
+        { "type": "select", "id": "base", "label": "base", "choices": [["auto", "Auto"], ["2", "2"], ["8", "8"], ["10", "10"], ["16", "16"], ["36", "36"]], "hint": "baseHint" },
+        { "type": "select", "id": "group", "label": "group", "choices": [["4", "4 bit"], ["8", "8 bit"]], "hint": "groupHint" }
+      ]
+    },
+    {
+      "id": "jwt",
+      "icon": "🎫",
+      "kind": "text",
+      "script": "jwt.js",
+      "i18n": "jwt",
+      "buttons": ["copy", "clear"],
+      "options": []
+    },
+    {
+      "id": "csv-json",
+      "icon": "📊",
+      "kind": "text",
+      "script": "csv-json.js",
+      "i18n": "csv-json",
+      "buttons": ["copy", "swap", "clear"],
+      "options": [
+        { "type": "select", "id": "mode", "label": "mode", "choices": [["csv2json", "csv2json"], ["json2csv", "json2csv"]], "hint": "modeHint" },
+        { "type": "select", "id": "delim", "label": "delim", "choices": [["comma", ","], ["tab", "Tab"], ["semicolon", ";"]], "hint": "delimHint" },
+        { "type": "checkbox", "id": "header", "label": "header", "checked": true }
+      ]
+    },
+    {
       "id": "compress-image",
       "icon": "🗜️",
       "kind": "image",

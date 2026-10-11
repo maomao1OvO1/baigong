@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MD5 / SHA-1 / SHA-256 / SHA-512 在线哈希计算 | ToolPocket</title>
+<meta name="description" content="在浏览器本地计算文本的 MD5、SHA-1、SHA-256、SHA-512，同时给出 hex 与 Base64 两种写法，内容不上传。">
+<link rel="canonical" href="https://tools.maomaowang.top/zh/tools/hash.html">
+<meta property="og:title" content="MD5 / SHA-1 / SHA-256 / SHA-512 在线哈希计算 | ToolPocket">
+<meta property="og:description" content="在浏览器本地计算文本的 MD5、SHA-1、SHA-256、SHA-512，同时给出 hex 与 Base64 两种写法，内容不上传。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/zh/tools/hash.html">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/hash.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/hash.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/hash.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/hash.html">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"哈希计算（MD5 / SHA-1 / SHA-256 / SHA-512）","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"在浏览器本地计算文本的 MD5、SHA-1、SHA-256、SHA-512，同时给出 hex 与 Base64 两种写法，内容不上传。"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"MD5 还能用吗？","acceptedAnswer":{"@type":"Answer","text":"看用途。做加密、签名、存密码不行（MD5 与 SHA-1 的碰撞已被实际构造出来）；当普通校验值完全可以（比对两个文件、做缓存键、对接只认 MD5 的老接口）。"}},{"@type":"Question","name":"为什么我算出来的和别人给的不一样？","acceptedAnswer":{"@type":"Answer","text":"九成是末尾的空白或换行。哈希对字节完全敏感，末尾多一个换行，结果就完全不同 —— 复制时把首尾空白一起去掉再试。"}},{"@type":"Question","name":"这里能算文件的哈希吗？","acceptedAnswer":{"@type":"Answer","text":"这一页处理文本。要算文件，可以用系统命令（Linux/macOS 的 <code>md5sum</code> / <code>sha256sum</code>，Windows 的 <code>certutil -hashfile</code>）。"}}]}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/zh/index.html">🧰 ToolPocket</a>
+  <nav class="langs"><a href="/zh/index.html#search" title="search" aria-label="search">🔍</a><a href="/tools/hash.html">English</a><a href="/zh/tools/hash.html" class="on" aria-current="page">中文</a><a href="/ja/tools/hash.html">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/zh/index.html">← 全部工具</a></p>
+  <h1>哈希计算（MD5 / SHA-1 / SHA-256 / SHA-512）</h1>
+  <p class="lead">粘一段文字，选一个算法，直接拿到 <code>hex</code> 与 <code>base64</code> 两种结果。整个过程在你设备上完成 —— 校验值往往来自不方便外发的文件，传给服务器是不必要的风险。</p>
+
+  <div class="searchbox">
+    <span class="s-ico" aria-hidden="true">🔍</span>
+    <input id="searchInput" type="search" autocomplete="off" placeholder="搜索工具 —— 例如：压缩、json、密码…" aria-label="搜索工具 —— 例如：压缩、json、密码…">
+  </div>
+  <ul class="searchresults" id="searchResults" hidden></ul>
+  <p class="badge-line"><span class="pill">完全在你的浏览器里运行，不上传、不保存。</span></p>
+
+<div class="panel">
+<label class="row lbl" for="input">输入</label>
+  <textarea id="input" class="tall" placeholder=""></textarea>
+  <div class="opts">
+<label class="row"><span class="lbl">算法</span><select id="algo"><option value="md5">MD5</option><option value="sha-1">SHA-1</option><option value="sha-256">SHA-256</option><option value="sha-512">SHA-512</option></select></label>
+    <span class="hint">MD5 与 SHA-1 只能当校验值，不要用于密码或签名。</span>
+<label class="row check"><input type="checkbox" id="upper"><span>十六进制大写</span></label>
+  </div>
+<label class="row lbl" for="output">结果</label>
+  <textarea id="output" readonly placeholder=""></textarea>
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">复制结果</button>
+    <button class="ghost" id="clear">清空</button>
+  </div>
+</div>
+
+<aside class="ad">
+  <span class="ad-label">自己人做的</span>
+  <span class="ad-ico" aria-hidden="true">🎮</span>
+  <div class="ad-body">
+    <b>🎮 自己写的小游戏合集</b>
+    <p>塔防、2048、五子棋、打字测试、猜数字…都是一个人从零写的，没有用现成引擎。</p>
+  </div>
+  <a class="ad-cta" href="https://maomaowang.top/games.html">去玩两把 →</a>
+</aside>
+
+  <section class="faq">
+    <h2>常见问题</h2>
+    <details><summary>MD5 还能用吗？</summary><p>看用途。做加密、签名、存密码不行（MD5 与 SHA-1 的碰撞已被实际构造出来）；当普通校验值完全可以（比对两个文件、做缓存键、对接只认 MD5 的老接口）。</p></details>
+    <details><summary>为什么我算出来的和别人给的不一样？</summary><p>九成是末尾的空白或换行。哈希对字节完全敏感，末尾多一个换行，结果就完全不同 —— 复制时把首尾空白一起去掉再试。</p></details>
+    <details><summary>这里能算文件的哈希吗？</summary><p>这一页处理文本。要算文件，可以用系统命令（Linux/macOS 的 <code>md5sum</code> / <code>sha256sum</code>，Windows 的 <code>certutil -hashfile</code>）。</p></details>
+  </section>
+
+</main>
+
+<footer><p>ToolPocket · 全部在你的设备上完成，不上传任何文件。</p></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = {"langName":"中文","footer":"ToolPocket · 全部在你的设备上完成，不上传任何文件。","nav":"全部工具","backToTools":"← 全部工具","copy":"复制结果","swap":"互换","clear":"清空","download":"下载","copied":"已复制到剪贴板","copyFail":"复制失败 —— 请手动选中复制","inputLabel":"输入","outputLabel":"结果","privacyNote":"完全在你的浏览器里运行，不上传、不保存。","searchPlaceholder":"搜索工具 —— 例如：压缩、json、密码…","noResults":"没找到匹配的工具，换个词试试？","algo":"算法","algoHint":"MD5 与 SHA-1 只能当校验值，不要用于密码或签名。","upper":"十六进制大写","bytesUnit":"字节","done":"已用算法","noSubtle":"当前环境拿不到 WebCrypto（请用 HTTPS 打开本页）。","fail":"计算失败。"};</script>
+<script src="/assets/tools/_shared.js" defer></script>
+<script src="/assets/tools/hash.js" defer></script>
+</body>
+</html>

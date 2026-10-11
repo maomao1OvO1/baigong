@@ -1,0 +1,90 @@
+{
+  "_说明": "正则测试器 —— 三语文案。",
+  "en": {
+    "title": "Regex Tester Online — Live Match & Replace Preview | ToolPocket",
+    "desc": "Test a regular expression against your own text: see every match with line numbers and capture groups, plus a replace preview. Runs locally, nothing is sent.",
+    "h1": "Regular expression tester",
+    "lead": "Write a pattern, paste the text it should match, and watch every hit get listed with its line, position and capture groups. Add a replacement to preview the result. Logs often contain customer data — this page keeps them on your device.",
+    "faq": [
+      ["Why does my pattern show an error?", "The message comes straight from the JavaScript engine, and it is usually accurate: an unclosed group, an unmatched bracket, or a quantifier with nothing before it. Check the text after the message — it names the position."],
+      ["Why does a match with no <code>g</code> flag stop after the first hit?", "That is how regular expressions work: without <code>g</code> the engine returns the first match only. Turn on the global flag to list every match."],
+      ["What are $1, $2 in the output?", "Capture groups: the parts of the pattern written in parentheses. Use them in the replacement field as <code>$1</code>, <code>$2</code> — or <code>$&amp;</code> for the whole match."]
+    ],
+    "ui": {
+      "pattern": "Pattern",
+      "patternHint": "Written without the slashes — type \\d+, not /\\d+/.",
+      "replace": "Replace with",
+      "replaceHint": "Optional. $1 / $2 refer to capture groups. Leave empty to skip the replacement preview.",
+      "flagsHint": "Flags: g = all matches · i = ignore case · m = ^$ match each line · s = . matches newlines · u = unicode",
+      "cbG": "g (global)",
+      "cbI": "i (ignore case)",
+      "cbM": "m (multiline)",
+      "cbS": "s (dotall)",
+      "cbU": "u (unicode)",
+      "summary": "matches",
+      "noMatch": "(no match)",
+      "replaced": "── replacement preview ──",
+      "truncated": "stopped at the limit of",
+      "badRegex": "Invalid regular expression",
+      "tooLong": "Text is too long to test safely"
+    }
+  },
+  "zh": {
+    "title": "在线正则测试器 —— 实时匹配与替换预览 | ToolPocket",
+    "desc": "用你自己的文本测试正则：列出每一处匹配的行号、位置与捕获组，并预览替换结果。全程本地运行，文本不外传。",
+    "h1": "正则表达式测试器",
+    "lead": "写一条正则，把要匹配的文本贴进来，右边会逐条列出命中的位置、内容与捕获组；填上替换内容还能预览替换结果。日志里常有客户数据 —— 这一页把它们留在你设备上。",
+    "faq": [
+      ["报错了，怎么看我这条正则哪里写错了？", "错误信息来自 JavaScript 引擎本身，通常挺准：括号没闭合、方括号没配对、量词前面没东西。看消息后半段，它会指出出错的位置。"],
+      ["为什么没勾 g 的时候只匹配到第一处？", "这是正则的规范行为：不带 <code>g</code> 时引擎只返回第一个匹配。要列出全部匹配，把 global 标志勾上。"],
+      ["输出里的 $1、$2 是什么？", "捕获组 —— 正则里用括号括起来的那几段。替换时用 <code>$1</code>、<code>$2</code> 引用它们，<code>$&amp;</code> 表示整个匹配。"]
+    ],
+    "ui": {
+      "pattern": "正则表达式",
+      "patternHint": "不用写两边的斜杠 —— 直接写 \\d+，不要写 /\\d+/。",
+      "replace": "替换为",
+      "replaceHint": "可选。$1 / $2 引用捕获组；留空则不显示替换预览。",
+      "flagsHint": "标志含义：g = 全部匹配 · i = 忽略大小写 · m = ^$ 匹配每一行 · s = . 匹配换行 · u = Unicode",
+      "cbG": "g（全局）",
+      "cbI": "i（忽略大小写）",
+      "cbM": "m（多行）",
+      "cbS": "s（点匹配换行）",
+      "cbU": "u（Unicode）",
+      "summary": "匹配到",
+      "noMatch": "（没有匹配）",
+      "replaced": "── 替换预览 ──",
+      "truncated": "已达上限，提前停止：",
+      "badRegex": "正则表达式有误",
+      "tooLong": "文本过长，无法安全测试"
+    }
+  },
+  "ja": {
+    "title": "正規表現テスター — リアルタイム一致と置換プレビュー | ToolPocket",
+    "desc": "手持ちのテキストで正規表現を試せます。一致箇所・行番号・キャプチャグループを一覧表示し、置換結果もプレビューできます。処理は端末内で完結します。",
+    "h1": "正規表現テスター",
+    "lead": "パターンを書き、対象テキストを貼り付けると、一致した箇所が行番号・位置・キャプチャグループ付きで一覧表示されます。置換文字列を入れると結果もプレビューできます。",
+    "faq": [
+      ["エラーが出ました。どこが間違っていますか？", "メッセージは JavaScript エンジンからのもので、たいてい正確です。括弧の閉じ忘れ、角括弧の不一致、量指定子の前に対象がない、などが典型です。メッセージ後半に位置のヒントがあります。"],
+      ["g を付けないと 1 件しか出ないのはなぜ？", "正規表現の仕様です。<code>g</code> がない場合、エンジンは最初の一致のみ返します。すべて表示するには global フラグを有効にしてください。"],
+      ["出力の $1、$2 とは？", "キャプチャグループです。丸括弧で囲んだ部分を、置換時に <code>$1</code> や <code>$2</code> で参照できます。<code>$&amp;</code> は一致全体を表します。"]
+    ],
+    "ui": {
+      "pattern": "パターン",
+      "patternHint": "スラッシュは不要です。/<code>\\d+</code>/ ではなく <code>\\d+</code> と入力します。",
+      "replace": "置換後の文字列",
+      "replaceHint": "任意。$1 / $2 でキャプチャグループを参照できます。空欄なら置換プレビューは表示しません。",
+      "flagsHint": "フラグ：g = すべて一致 · i = 大文字小文字を無視 · m = ^$ を行頭行末に · s = . を改行にも · u = Unicode",
+      "cbG": "g（全体）",
+      "cbI": "i（大文字小文字を無視）",
+      "cbM": "m（複数行）",
+      "cbS": "s（dotall）",
+      "cbU": "u（Unicode）",
+      "summary": "一致件数",
+      "noMatch": "（一致なし）",
+      "replaced": "── 置換プレビュー ──",
+      "truncated": "上限に達したため停止しました：",
+      "badRegex": "正規表現が不正です",
+      "tooLong": "テキストが長すぎて安全にテストできません"
+    }
+  }
+}

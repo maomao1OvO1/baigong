@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JWT 解析器 —— 在线读取 Header 与 Payload | ToolPocket</title>
+<meta name="description" content="解码 JSON Web Token：查看头部、载荷声明，并判断是否已过期。解码在浏览器本地完成；注意：能解开不等于有效。">
+<link rel="canonical" href="https://tools.maomaowang.top/zh/tools/jwt.html">
+<meta property="og:title" content="JWT 解析器 —— 在线读取 Header 与 Payload | ToolPocket">
+<meta property="og:description" content="解码 JSON Web Token：查看头部、载荷声明，并判断是否已过期。解码在浏览器本地完成；注意：能解开不等于有效。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/zh/tools/jwt.html">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/jwt.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/jwt.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/jwt.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/jwt.html">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"JWT 解析器","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"解码 JSON Web Token：查看头部、载荷声明，并判断是否已过期。解码在浏览器本地完成；注意：能解开不等于有效。"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"能解开是不是就说明 token 合法？","acceptedAnswer":{"@type":"Answer","text":"不是。任何人都能造出一个载荷任意的 token，只有签名才能证明签发者。本页只做格式解码与声明解读；签名校验请放在你的服务端，绝不要交给浏览器里的工具。"}},{"@type":"Question","name":"为什么提示我的 token 格式不对？","acceptedAnswer":{"@type":"Answer","text":"JWT 必须是点号分隔的三段。复制粘贴时最常见的是漏掉最后一段，或者粘进来的是带引号和转义的 JSON 字符串；另外确认它没有被 URL 编码过。"}},{"@type":"Question","name":"生产环境的 token 贴这里安全吗？","acceptedAnswer":{"@type":"Answer","text":"本页不上传任何内容，但 token 等于密码。建议用测试 token；如果非要用真的，用完记得吊销或轮换。"}}]}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/zh/index.html">🧰 ToolPocket</a>
+  <nav class="langs"><a href="/zh/index.html#search" title="search" aria-label="search">🔍</a><a href="/tools/jwt.html">English</a><a href="/zh/tools/jwt.html" class="on" aria-current="page">中文</a><a href="/ja/tools/jwt.html">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/zh/index.html">← 全部工具</a></p>
+  <h1>JWT 解析器</h1>
+  <p class="lead">贴一个 token，用清晰的 JSON 看清它的头部与载荷，<code>exp</code>、<code>iat</code>、<code>nbf</code> 会翻译成真实时间。<b>解码不是验签</b> —— 本页从不校验签名。</p>
+
+  <div class="searchbox">
+    <span class="s-ico" aria-hidden="true">🔍</span>
+    <input id="searchInput" type="search" autocomplete="off" placeholder="搜索工具 —— 例如：压缩、json、密码…" aria-label="搜索工具 —— 例如：压缩、json、密码…">
+  </div>
+  <ul class="searchresults" id="searchResults" hidden></ul>
+  <p class="badge-line"><span class="pill">完全在你的浏览器里运行，不上传、不保存。</span></p>
+
+<div class="panel">
+<label class="row lbl" for="input">输入</label>
+  <textarea id="input" class="tall" placeholder=""></textarea>
+  <div class="opts">
+
+  </div>
+<label class="row lbl" for="output">结果</label>
+  <textarea id="output" readonly placeholder=""></textarea>
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">复制结果</button>
+    <button class="ghost" id="clear">清空</button>
+  </div>
+</div>
+
+<aside class="ad">
+  <span class="ad-label">自己人做的</span>
+  <span class="ad-ico" aria-hidden="true">🎮</span>
+  <div class="ad-body">
+    <b>🎮 自己写的小游戏合集</b>
+    <p>塔防、2048、五子棋、打字测试、猜数字…都是一个人从零写的，没有用现成引擎。</p>
+  </div>
+  <a class="ad-cta" href="https://maomaowang.top/games.html">去玩两把 →</a>
+</aside>
+
+  <section class="faq">
+    <h2>常见问题</h2>
+    <details><summary>能解开是不是就说明 token 合法？</summary><p>不是。任何人都能造出一个载荷任意的 token，只有签名才能证明签发者。本页只做格式解码与声明解读；签名校验请放在你的服务端，绝不要交给浏览器里的工具。</p></details>
+    <details><summary>为什么提示我的 token 格式不对？</summary><p>JWT 必须是点号分隔的三段。复制粘贴时最常见的是漏掉最后一段，或者粘进来的是带引号和转义的 JSON 字符串；另外确认它没有被 URL 编码过。</p></details>
+    <details><summary>生产环境的 token 贴这里安全吗？</summary><p>本页不上传任何内容，但 token 等于密码。建议用测试 token；如果非要用真的，用完记得吊销或轮换。</p></details>
+  </section>
+
+</main>
+
+<footer><p>ToolPocket · 全部在你的设备上完成，不上传任何文件。</p></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = {"langName":"中文","footer":"ToolPocket · 全部在你的设备上完成，不上传任何文件。","nav":"全部工具","backToTools":"← 全部工具","copy":"复制结果","swap":"互换","clear":"清空","download":"下载","copied":"已复制到剪贴板","copyFail":"复制失败 —— 请手动选中复制","inputLabel":"输入","outputLabel":"结果","privacyNote":"完全在你的浏览器里运行，不上传、不保存。","searchPlaceholder":"搜索工具 —— 例如：压缩、json、密码…","noResults":"没找到匹配的工具，换个词试试？","badShape":"JWT 必须是点号分隔的三段","badDecode":"解码失败","expired":"已过期","validFor":"还有效","ago":"前过期","noExp":"没有 exp 声明 —— 这个 token 不会过期","notYet":"尚未生效","notVerified":"未验证签名 —— 能解码不代表可信","decoded":"解码成功"};</script>
+<script src="/assets/tools/_shared.js" defer></script>
+<script src="/assets/tools/jwt.js" defer></script>
+</body>
+</html>

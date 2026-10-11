@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CSV ⇄ JSON 変換 — 引用符と改行にも対応 | ToolPocket</title>
+<meta name="description" content="CSV と JSON を相互変換します。カンマ・タブ・セミコロンに対応し、引用符付きフィールド、フィールド内のカンマ、セル内の改行も正しく処理します。">
+<link rel="canonical" href="https://tools.maomaowang.top/ja/tools/csv-json.html">
+<meta property="og:title" content="CSV ⇄ JSON 変換 — 引用符と改行にも対応 | ToolPocket">
+<meta property="og:description" content="CSV と JSON を相互変換します。カンマ・タブ・セミコロンに対応し、引用符付きフィールド、フィールド内のカンマ、セル内の改行も正しく処理します。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/ja/tools/csv-json.html">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/csv-json.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/csv-json.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/csv-json.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/csv-json.html">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"CSV ⇄ JSON 変換","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"CSV と JSON を相互変換します。カンマ・タブ・セミコロンに対応し、引用符付きフィールド、フィールド内のカンマ、セル内の改行も正しく処理します。"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"カンマで分割するだけではだめな理由は？","acceptedAnswer":{"@type":"Answer","text":"実際の CSV には、引用符内のカンマ、セル内の改行（Excel のメモ列など）、二重引用符によるエスケープが含まれます。文字単位で解析するのが唯一正しい方法です。"}},{"@type":"Question","name":"数値や true/false は変換されますか？","acceptedAnswer":{"@type":"Answer","text":"はい。数値やブール値に見える値は JSON の数値・ブール値になります。<code>007</code> のような値は文字列として保持されます。"}},{"@type":"Question","name":"JSON がネストしている場合は？","acceptedAnswer":{"@type":"Answer","text":"トップレベルの配列要素が 1 行になります。キーは全オブジェクトの和集合で、ネストしたオブジェクトは JSON 文字列としてセルに入ります。"}}]}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/ja/index.html">🧰 ToolPocket</a>
+  <nav class="langs"><a href="/ja/index.html#search" title="search" aria-label="search">🔍</a><a href="/tools/csv-json.html">English</a><a href="/zh/tools/csv-json.html">中文</a><a href="/ja/tools/csv-json.html" class="on" aria-current="page">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/ja/index.html">← ツール一覧</a></p>
+  <h1>CSV ⇄ JSON 変換</h1>
+  <p class="lead">どちらの形式でも貼り付けて、方向を切り替えるだけです。引用符で囲まれたフィールド、フィールド内のカンマ、セル内の改行——単純な <code>split(&quot;,&quot;)</code> が壊れる 3 つのケースに対応しています。</p>
+
+  <div class="searchbox">
+    <span class="s-ico" aria-hidden="true">🔍</span>
+    <input id="searchInput" type="search" autocomplete="off" placeholder="ツールを検索 — 例：圧縮、json、パスワード…" aria-label="ツールを検索 — 例：圧縮、json、パスワード…">
+  </div>
+  <ul class="searchresults" id="searchResults" hidden></ul>
+  <p class="badge-line"><span class="pill">すべてブラウザ内で処理されます。送信も保存もしていません。</span></p>
+
+<div class="panel">
+<label class="row lbl" for="input">入力</label>
+  <textarea id="input" class="tall" placeholder=""></textarea>
+  <div class="opts">
+<label class="row"><span class="lbl">変換方向</span><select id="mode"><option value="csv2json">CSV → JSON</option><option value="json2csv">JSON → CSV</option></select></label>
+    <span class="hint">「入れ替え」ボタンで方向を反転し、結果を入力欄に戻せます。往復チェックにも便利です。</span>
+<label class="row"><span class="lbl">区切り文字</span><select id="delim"><option value="comma">,</option><option value="tab">Tab</option><option value="semicolon">;</option></select></label>
+    <span class="hint">ファイルで実際に使われているものを選んでください。表計算ソフトからコピーした場合はタブが多いです。</span>
+<label class="row check"><input type="checkbox" id="header" checked><span>1 行目はヘッダー</span></label>
+  </div>
+<label class="row lbl" for="output">結果</label>
+  <textarea id="output" readonly placeholder=""></textarea>
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">結果をコピー</button>
+    <button class="ghost" id="swap">入れ替え</button>
+    <button class="ghost" id="clear">クリア</button>
+  </div>
+</div>
+
+<aside class="ad">
+  <span class="ad-label">製作者より</span>
+  <span class="ad-ico" aria-hidden="true">🎮</span>
+  <div class="ad-body">
+    <b>ブラウザで遊べるタワーディフェンス</b>
+    <p>同じ開発者がゼロから作ったゲームです.</p>
+  </div>
+  <a class="ad-cta" href="https://maomaowang.top/games/td/source/game.html">遊んでみる →</a>
+</aside>
+
+  <section class="faq">
+    <h2>よくある質問</h2>
+    <details><summary>カンマで分割するだけではだめな理由は？</summary><p>実際の CSV には、引用符内のカンマ、セル内の改行（Excel のメモ列など）、二重引用符によるエスケープが含まれます。文字単位で解析するのが唯一正しい方法です。</p></details>
+    <details><summary>数値や true/false は変換されますか？</summary><p>はい。数値やブール値に見える値は JSON の数値・ブール値になります。<code>007</code> のような値は文字列として保持されます。</p></details>
+    <details><summary>JSON がネストしている場合は？</summary><p>トップレベルの配列要素が 1 行になります。キーは全オブジェクトの和集合で、ネストしたオブジェクトは JSON 文字列としてセルに入ります。</p></details>
+  </section>
+
+</main>
+
+<footer><p>ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。</p></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = {"langName":"日本語","footer":"ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"コピーできませんでした。手動で選択してください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理されます。送信も保存もしていません。","searchPlaceholder":"ツールを検索 — 例：圧縮、json、パスワード…","noResults":"該当するツールがありません。別の言葉でお試しを。","mode":"変換方向","modeHint":"「入れ替え」ボタンで方向を反転し、結果を入力欄に戻せます。往復チェックにも便利です。","delim":"区切り文字","delimHint":"ファイルで実際に使われているものを選んでください。表計算ソフトからコピーした場合はタブが多いです。","csv2json":"CSV → JSON","json2csv":"JSON → CSV","header":"1 行目はヘッダー","headerHint":"有効にすると 1 行目をキーにします。無効の場合は col1、col2… になります。","emptyInput":"変換する内容がありません","badJson":"JSON の形式が不正です","needArray":"オブジェクトの配列が必要です"};</script>
+<script src="/assets/tools/_shared.js" defer></script>
+<script src="/assets/tools/csv-json.js" defer></script>
+</body>
+</html>

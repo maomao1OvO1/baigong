@@ -35,6 +35,46 @@
 
   <h2>这里有什么</h2>
   <ul class="grid">
+    <li><a href="/zh/tools/hash.html">
+      <span class="ico">🔐</span>
+      <b>哈希计算（MD5 / SHA-1 / SHA-256 / SHA-512）</b>
+      <span class="sub">粘一段文字，选一个算法，直接拿到 hex 与 base64 两种结果。整个过程在你设备上完成 —— 校验值往往来自不方便外发的文件，传给服务器是不必要的风险。</span>
+    </a></li>
+    <li><a href="/zh/tools/regex.html">
+      <span class="ico">🧪</span>
+      <b>正则表达式测试器</b>
+      <span class="sub">写一条正则，把要匹配的文本贴进来，右边会逐条列出命中的位置、内容与捕获组；填上替换内容还能预览替换结果。日志里常有客户数据 —— 这一页把它们留在你设备上。</span>
+    </a></li>
+    <li><a href="/zh/tools/uuid.html">
+      <span class="ico">🆔</span>
+      <b>UUID / ULID / NanoID 生成器</b>
+      <span class="sub">挑项目需要的那种，选好数量，整批复制走。随机源用的是 crypto.getRandomValues，不是 Math.random。</span>
+    </a></li>
+    <li><a href="/zh/tools/diff.html">
+      <span class="ico">🆚</span>
+      <b>文本对比（逐行）</b>
+      <span class="sub">先贴旧版本，写一行 ===，再贴新版本。结果里每行前面会有标记：- 是删掉的、+ 是新增的、空格是没变的。</span>
+    </a></li>
+    <li><a href="/zh/tools/case-converter.html">
+      <span class="ico">🔤</span>
+      <b>命名风格转换</b>
+      <span class="sub">贴一个名字或一整列名字（每行一个），一次得到所有常见风格。缩写会按人的习惯拆开：HTTPServer 转成 http_server，而不是 h_t_t_p_server。</span>
+    </a></li>
+    <li><a href="/zh/tools/radix.html">
+      <span class="ico">🔢</span>
+      <b>进制转换（2 / 8 / 10 / 16 / 36）</b>
+      <span class="sub">输入一个数，同时得到各常见进制的写法，以及它占多少位、多少字节。长数字走的是 BigInt，18 位的雪花 ID 不会被悄悄四舍五入。</span>
+    </a></li>
+    <li><a href="/zh/tools/jwt.html">
+      <span class="ico">🎫</span>
+      <b>JWT 解析器</b>
+      <span class="sub">贴一个 token，用清晰的 JSON 看清它的头部与载荷，exp、iat、nbf 会翻译成真实时间。解码不是验签 —— 本页从不校验签名。</span>
+    </a></li>
+    <li><a href="/zh/tools/csv-json.html">
+      <span class="ico">📊</span>
+      <b>CSV ⇄ JSON 互转</b>
+      <span class="sub">两种格式都能贴，方向随时切换。引号包裹的字段、字段里的逗号、单元格里的换行都能正确处理 —— 这三种情况正是把 split(&quot;,&quot;) 写法搞崩的地方。</span>
+    </a></li>
     <li><a href="/zh/tools/compress-image.html">
       <span class="ico">🗜️</span>
       <b>压缩图片，不用把它传给别人</b>

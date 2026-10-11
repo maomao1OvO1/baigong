@@ -35,6 +35,46 @@
 
   <h2>使えるツール</h2>
   <ul class="grid">
+    <li><a href="/ja/tools/hash.html">
+      <span class="ico">🔐</span>
+      <b>ハッシュ生成（MD5 / SHA-1 / SHA-256 / SHA-512）</b>
+      <span class="sub">テキストを貼り付けてアルゴリズムを選ぶと、hex と base64 の両方が得られます。計算はすべて端末内で完結します。</span>
+    </a></li>
+    <li><a href="/ja/tools/regex.html">
+      <span class="ico">🧪</span>
+      <b>正規表現テスター</b>
+      <span class="sub">パターンを書き、対象テキストを貼り付けると、一致した箇所が行番号・位置・キャプチャグループ付きで一覧表示されます。置換文字列を入れると結果もプレビューできます。</span>
+    </a></li>
+    <li><a href="/ja/tools/uuid.html">
+      <span class="ico">🆔</span>
+      <b>UUID / ULID / NanoID 生成</b>
+      <span class="sub">用途に合う種類と個数を選んで、まとめてコピーするだけです。乱数は Math.random ではなく crypto.getRandomValues から取得します。</span>
+    </a></li>
+    <li><a href="/ja/tools/diff.html">
+      <span class="ico">🆚</span>
+      <b>テキスト差分（行単位）</b>
+      <span class="sub">旧バージョンを貼り、=== だけの行を挟んで、新バージョンを貼ってください。各行の先頭に -（削除）、+（追加）、空白（変更なし）が付きます。</span>
+    </a></li>
+    <li><a href="/ja/tools/case-converter.html">
+      <span class="ico">🔤</span>
+      <b>命名規則の変換</b>
+      <span class="sub">名前を 1 つ、または一覧をそのまま貼り付けると、一般的な命名規則をまとめて出力します。略語は人の感覚で分割し、HTTPServer は http_server になります（h_t_t_p_s…</span>
+    </a></li>
+    <li><a href="/ja/tools/radix.html">
+      <span class="ico">🔢</span>
+      <b>基数変換（2 / 8 / 10 / 16 / 36）</b>
+      <span class="sub">数値を入力すると、各基数での表記と、必要なビット数・バイト数が一度に表示されます。長い値は BigInt で扱うため、18 桁の ID が丸められることはありません。</span>
+    </a></li>
+    <li><a href="/ja/tools/jwt.html">
+      <span class="ico">🎫</span>
+      <b>JWT デコーダー</b>
+      <span class="sub">トークンを貼り付けると、ヘッダーとペイロードが読みやすい JSON で表示され、exp・iat・nbf は実際の日時に変換されます。デコードは検証ではありません —— 署名の確認は行いません。</span>
+    </a></li>
+    <li><a href="/ja/tools/csv-json.html">
+      <span class="ico">📊</span>
+      <b>CSV ⇄ JSON 変換</b>
+      <span class="sub">どちらの形式でも貼り付けて、方向を切り替えるだけです。引用符で囲まれたフィールド、フィールド内のカンマ、セル内の改行——単純な split(&quot;,&quot;) が壊れる 3 つのケースに対応しています。</span>
+    </a></li>
     <li><a href="/ja/tools/compress-image.html">
       <span class="ico">🗜️</span>
       <b>画像を、どこにも送らずに軽くする</b>

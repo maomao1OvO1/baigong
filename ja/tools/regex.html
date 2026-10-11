@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>正規表現テスター — リアルタイム一致と置換プレビュー | ToolPocket</title>
+<meta name="description" content="手持ちのテキストで正規表現を試せます。一致箇所・行番号・キャプチャグループを一覧表示し、置換結果もプレビューできます。処理は端末内で完結します。">
+<link rel="canonical" href="https://tools.maomaowang.top/ja/tools/regex.html">
+<meta property="og:title" content="正規表現テスター — リアルタイム一致と置換プレビュー | ToolPocket">
+<meta property="og:description" content="手持ちのテキストで正規表現を試せます。一致箇所・行番号・キャプチャグループを一覧表示し、置換結果もプレビューできます。処理は端末内で完結します。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/ja/tools/regex.html">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/regex.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/regex.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/regex.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/regex.html">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"正規表現テスター","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"手持ちのテキストで正規表現を試せます。一致箇所・行番号・キャプチャグループを一覧表示し、置換結果もプレビューできます。処理は端末内で完結します。"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"エラーが出ました。どこが間違っていますか？","acceptedAnswer":{"@type":"Answer","text":"メッセージは JavaScript エンジンからのもので、たいてい正確です。括弧の閉じ忘れ、角括弧の不一致、量指定子の前に対象がない、などが典型です。メッセージ後半に位置のヒントがあります。"}},{"@type":"Question","name":"g を付けないと 1 件しか出ないのはなぜ？","acceptedAnswer":{"@type":"Answer","text":"正規表現の仕様です。<code>g</code> がない場合、エンジンは最初の一致のみ返します。すべて表示するには global フラグを有効にしてください。"}},{"@type":"Question","name":"出力の $1、$2 とは？","acceptedAnswer":{"@type":"Answer","text":"キャプチャグループです。丸括弧で囲んだ部分を、置換時に <code>$1</code> や <code>$2</code> で参照できます。<code>$&amp;</code> は一致全体を表します。"}}]}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/ja/index.html">🧰 ToolPocket</a>
+  <nav class="langs"><a href="/ja/index.html#search" title="search" aria-label="search">🔍</a><a href="/tools/regex.html">English</a><a href="/zh/tools/regex.html">中文</a><a href="/ja/tools/regex.html" class="on" aria-current="page">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/ja/index.html">← ツール一覧</a></p>
+  <h1>正規表現テスター</h1>
+  <p class="lead">パターンを書き、対象テキストを貼り付けると、一致した箇所が行番号・位置・キャプチャグループ付きで一覧表示されます。置換文字列を入れると結果もプレビューできます。</p>
+
+  <div class="searchbox">
+    <span class="s-ico" aria-hidden="true">🔍</span>
+    <input id="searchInput" type="search" autocomplete="off" placeholder="ツールを検索 — 例：圧縮、json、パスワード…" aria-label="ツールを検索 — 例：圧縮、json、パスワード…">
+  </div>
+  <ul class="searchresults" id="searchResults" hidden></ul>
+  <p class="badge-line"><span class="pill">すべてブラウザ内で処理されます。送信も保存もしていません。</span></p>
+
+<div class="panel">
+<label class="row lbl" for="input">入力</label>
+  <textarea id="input" class="tall" placeholder=""></textarea>
+  <div class="opts">
+<label class="row"><span class="lbl">パターン</span><input type="text" id="pattern" spellcheck="false" autocapitalize="off" autocorrect="off"></label>
+    <span class="hint">スラッシュは不要です。/<code>\d+</code>/ ではなく <code>\d+</code> と入力します。</span>
+<label class="row"><span class="lbl">置換後の文字列</span><input type="text" id="replace" spellcheck="false" autocapitalize="off" autocorrect="off"></label>
+    <span class="hint">任意。$1 / $2 でキャプチャグループを参照できます。空欄なら置換プレビューは表示しません。</span>
+<label class="row check"><input type="checkbox" id="cbG" checked><span>g（全体）</span></label>
+<label class="row check"><input type="checkbox" id="cbI"><span>i（大文字小文字を無視）</span></label>
+<label class="row check"><input type="checkbox" id="cbM"><span>m（複数行）</span></label>
+<label class="row check"><input type="checkbox" id="cbS"><span>s（dotall）</span></label>
+<label class="row check"><input type="checkbox" id="cbU"><span>u（Unicode）</span></label>
+  </div>
+<label class="row lbl" for="output">結果</label>
+  <textarea id="output" readonly placeholder=""></textarea>
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">結果をコピー</button>
+    <button class="ghost" id="clear">クリア</button>
+  </div>
+</div>
+
+<aside class="ad">
+  <span class="ad-label">製作者より</span>
+  <span class="ad-ico" aria-hidden="true">🎮</span>
+  <div class="ad-body">
+    <b>ブラウザで遊べるタワーディフェンス</b>
+    <p>同じ開発者がゼロから作ったゲームです.</p>
+  </div>
+  <a class="ad-cta" href="https://maomaowang.top/games/td/source/game.html">遊んでみる →</a>
+</aside>
+
+  <section class="faq">
+    <h2>よくある質問</h2>
+    <details><summary>エラーが出ました。どこが間違っていますか？</summary><p>メッセージは JavaScript エンジンからのもので、たいてい正確です。括弧の閉じ忘れ、角括弧の不一致、量指定子の前に対象がない、などが典型です。メッセージ後半に位置のヒントがあります。</p></details>
+    <details><summary>g を付けないと 1 件しか出ないのはなぜ？</summary><p>正規表現の仕様です。<code>g</code> がない場合、エンジンは最初の一致のみ返します。すべて表示するには global フラグを有効にしてください。</p></details>
+    <details><summary>出力の $1、$2 とは？</summary><p>キャプチャグループです。丸括弧で囲んだ部分を、置換時に <code>$1</code> や <code>$2</code> で参照できます。<code>$&amp;</code> は一致全体を表します。</p></details>
+  </section>
+
+</main>
+
+<footer><p>ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。</p></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = {"langName":"日本語","footer":"ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"コピーできませんでした。手動で選択してください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理されます。送信も保存もしていません。","searchPlaceholder":"ツールを検索 — 例：圧縮、json、パスワード…","noResults":"該当するツールがありません。別の言葉でお試しを。","pattern":"パターン","patternHint":"スラッシュは不要です。/<code>\\d+</code>/ ではなく <code>\\d+</code> と入力します。","replace":"置換後の文字列","replaceHint":"任意。$1 / $2 でキャプチャグループを参照できます。空欄なら置換プレビューは表示しません。","flagsHint":"フラグ：g = すべて一致 · i = 大文字小文字を無視 · m = ^$ を行頭行末に · s = . を改行にも · u = Unicode","cbG":"g（全体）","cbI":"i（大文字小文字を無視）","cbM":"m（複数行）","cbS":"s（dotall）","cbU":"u（Unicode）","summary":"一致件数","noMatch":"（一致なし）","replaced":"── 置換プレビュー ──","truncated":"上限に達したため停止しました：","badRegex":"正規表現が不正です","tooLong":"テキストが長すぎて安全にテストできません"};</script>
+<script src="/assets/tools/_shared.js" defer></script>
+<script src="/assets/tools/regex.js" defer></script>
+</body>
+</html>

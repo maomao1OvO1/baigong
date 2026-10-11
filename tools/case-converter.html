@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Case Converter — camelCase, snake_case, kebab-case &amp; More | ToolPocket</title>
+<meta name="description" content="Convert text or variable names between camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE and Title Case. Handles acronyms like HTTPServer correctly.">
+<link rel="canonical" href="https://tools.maomaowang.top/tools/case-converter.html">
+<meta property="og:title" content="Case Converter — camelCase, snake_case, kebab-case &amp; More | ToolPocket">
+<meta property="og:description" content="Convert text or variable names between camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE and Title Case. Handles acronyms like HTTPServer correctly.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/tools/case-converter.html">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/case-converter.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/case-converter.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/case-converter.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/case-converter.html">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Naming case converter","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Convert text or variable names between camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE and Title Case. Handles acronyms like HTTPServer correctly."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Which style should I use in code?","acceptedAnswer":{"@type":"Answer","text":"Follow the language's convention: camelCase for JavaScript/Java variables, snake_case for Python/Rust, PascalCase for types and classes, CONSTANT_CASE for module-level constants. Consistency inside one file matters more than which one you pick."}},{"@type":"Question","name":"What about Chinese or Japanese text?","acceptedAnswer":{"@type":"Answer","text":"CJK characters have no case, so they pass through unchanged. That is expected: camelCase is a convention for Latin-script identifiers and gives no benefit to CJK."}},{"@type":"Question","name":"Does it handle multiple lines?","acceptedAnswer":{"@type":"Answer","text":"Yes. Each non-empty line is converted independently, which makes it handy for turning a pasted list of column names into one style."}}]}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/index.html">🧰 ToolPocket</a>
+  <nav class="langs"><a href="/index.html#search" title="search" aria-label="search">🔍</a><a href="/tools/case-converter.html" class="on" aria-current="page">English</a><a href="/zh/tools/case-converter.html">中文</a><a href="/ja/tools/case-converter.html">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/index.html">← All tools</a></p>
+  <h1>Naming case converter</h1>
+  <p class="lead">Paste a name or a whole list (one per line) and get every common naming style at once. Acronyms are split the way a human would: <code>HTTPServer</code> becomes <code>http_server</code>, not <code>h_t_t_p_server</code>.</p>
+
+  <div class="searchbox">
+    <span class="s-ico" aria-hidden="true">🔍</span>
+    <input id="searchInput" type="search" autocomplete="off" placeholder="Search tools — e.g. compress, json, 密码…" aria-label="Search tools — e.g. compress, json, 密码…">
+  </div>
+  <ul class="searchresults" id="searchResults" hidden></ul>
+  <p class="badge-line"><span class="pill">Runs entirely in your browser. Nothing is uploaded or stored.</span></p>
+
+<div class="panel">
+<label class="row lbl" for="input">Input</label>
+  <textarea id="input" class="tall" placeholder=""></textarea>
+  <div class="opts">
+<label class="row"><span class="lbl">Output style</span><select id="style"><option value="all">★ All styles</option><option value="camel">camelCase</option><option value="pascal">PascalCase</option><option value="snake">snake_case</option><option value="kebab">kebab-case</option><option value="constant">CONSTANT_CASE</option><option value="dot">dot.case</option><option value="title">Title Case</option><option value="screaming">SCREAMING-KEBAB</option></select></label>
+    <span class="hint">“All styles” prints every naming convention for each line.</span>
+  </div>
+<label class="row lbl" for="output">Result</label>
+  <textarea id="output" readonly placeholder=""></textarea>
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">Copy result</button>
+    <button class="ghost" id="clear">Clear</button>
+  </div>
+</div>
+
+<aside class="ad">
+  <span class="ad-label">From the maker</span>
+  <span class="ad-ico" aria-hidden="true">🎮</span>
+  <div class="ad-body">
+    <b>A tower-defence game, in your browser</b>
+    <p>Built from scratch by the same developer — no engine, no assets from a store.</p>
+  </div>
+  <a class="ad-cta" href="https://maomaowang.top/games/td/source/game.html">Play it →</a>
+</aside>
+
+  <section class="faq">
+    <h2>FAQ</h2>
+    <details><summary>Which style should I use in code?</summary><p>Follow the language's convention: camelCase for JavaScript/Java variables, snake_case for Python/Rust, PascalCase for types and classes, CONSTANT_CASE for module-level constants. Consistency inside one file matters more than which one you pick.</p></details>
+    <details><summary>What about Chinese or Japanese text?</summary><p>CJK characters have no case, so they pass through unchanged. That is expected: camelCase is a convention for Latin-script identifiers and gives no benefit to CJK.</p></details>
+    <details><summary>Does it handle multiple lines?</summary><p>Yes. Each non-empty line is converted independently, which makes it handy for turning a pasted list of column names into one style.</p></details>
+  </section>
+
+</main>
+
+<footer><p>ToolPocket · Everything runs on your device — nothing is uploaded.</p></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = {"langName":"English","footer":"ToolPocket · Everything runs on your device — nothing is uploaded.","nav":"All tools","backToTools":"← All tools","copy":"Copy result","swap":"Swap","clear":"Clear","download":"Download","copied":"Copied to clipboard","copyFail":"Copy failed — select the text manually","inputLabel":"Input","outputLabel":"Result","privacyNote":"Runs entirely in your browser. Nothing is uploaded or stored.","searchPlaceholder":"Search tools — e.g. compress, json, 密码…","noResults":"No tool matches that. Try another word?","style":"Output style","styleHint":"“All styles” prints every naming convention for each line.","all":"★ All styles","linesUnit":"lines converted"};</script>
+<script src="/assets/tools/_shared.js" defer></script>
+<script src="/assets/tools/case-converter.js" defer></script>
+</body>
+</html>
