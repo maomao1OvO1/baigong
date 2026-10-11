@@ -79,6 +79,29 @@
         "cta": "個人サイトを見る",
         "href": "https://maomaowang.top/"
       }
+    },
+    "tool-game": {
+      "en": {
+        "label": "From the maker",
+        "title": "A tower-defence game, in your browser",
+        "body": "Built from scratch by the same developer — no engine, no assets from a store. Free to play, works on a phone.",
+        "cta": "Play it",
+        "href": "https://maomaowang.top/games/td/source/game.html"
+      },
+      "zh": {
+        "label": "自己人做的",
+        "title": "🎮 自己写的小游戏合集",
+        "body": "塔防、2048、五子棋、打字测试、猜数字…都是一个人从零写的，没有用现成引擎。点开就能玩，手机上也能玩。",
+        "cta": "去玩两把",
+        "href": "https://maomaowang.top/games.html"
+      },
+      "ja": {
+        "label": "製作者より",
+        "title": "ブラウザで遊べるタワーディフェンス",
+        "body": "同じ開発者がゼロから作ったゲームです。既製のエンジンは使っていません。無料で、スマートフォンでも遊べます。",
+        "cta": "遊んでみる",
+        "href": "https://maomaowang.top/games/td/source/game.html"
+      }
     }
   }
 }

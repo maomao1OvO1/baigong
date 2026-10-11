@@ -255,6 +255,7 @@ ${body}
 ${faq}
   </section>
 
+${adSlot(lang, "tool-game")}
 ${adSlot(lang, "tool-bottom")}
 </main>
 
