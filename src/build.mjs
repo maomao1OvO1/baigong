@@ -582,7 +582,9 @@ window.TP_INDEX_URL = ${JSON.stringify(asset("search.json"))};
   var PH = ${JSON.stringify(NF_PH)};
   var TITLES = ${titles};
   var path = location.pathname.toLowerCase();
-  var lang = /^\/zh(\/|$)/.test(path) ? "zh" : /^\/ja(\/|$)/.test(path) ? "ja" : null;
+  // ⚠️ 这里必须写双反斜杠：这段在模板字符串里，\/ 会被解析成 / ，生成出 /^/zh(/|$)/ 这种
+  //    语法错误的正则，整段内联脚本当场报废（页面上文字全空 —— 2026-10-12 真踩过）。
+  var lang = /^\\/zh(\\/|$)/.test(path) ? "zh" : /^\\/ja(\\/|$)/.test(path) ? "ja" : null;
   if (!lang) {
     var n = (navigator.language || "en").toLowerCase();
     lang = n.indexOf("zh") === 0 ? "zh" : n.indexOf("ja") === 0 ? "ja" : "en";
@@ -631,7 +633,7 @@ window.TP_INDEX_URL = ${JSON.stringify(asset("search.json"))};
 </script>
 <script src="${asset("search.js")}?v=2" defer></script>
 <script src="${asset("app.js")}?v=2" defer></script>
-${footer("en")}
+${footer(LANGS[0])}
 </body>
 </html>
 `;

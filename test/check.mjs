@@ -291,5 +291,32 @@ console.log("\n⑨ 404 页检查");
   else bad("404 页缺搜索框或反馈入口");
 }
 
+/* ── ⑩ 内联脚本语法检查 ───────────────────────────────────────────────
+   2026-10-12 的教训（毛毛截图报「这啥」）：404 页内联脚本里，模板字符串中的 \/ 被解析成 /，
+   于是生成出 `/^/zh(/|$)/` 这种语法错误的正则 —— 浏览器里**整段脚本不执行**：
+   语言块全部保持隐藏、文案节点全空、页脚全是 undefined。
+   更坑的是：前面那些"结构性检查"（有没有三语块、有没有相对路径、有没有 noindex）**全都通过**。
+   所以必须真的把脚本解析一遍。 */
+console.log("\n⑩ 内联脚本语法检查");
+{
+  const files = ["404.html", "index.html", "zh/index.html", "ja/index.html",
+                 "advertise.html", "zh/advertise.html", "tools/base64.html"];
+  let n = 0, bads = 0;
+  for (const f of files) {
+    const html = fs.readFileSync(path.join(ROOT, f), "utf8");
+    const blocks = [...html.matchAll(/<script>([\s\S]*?)<\/script>/g)].map((m) => m[1]).filter((c) => c.trim());
+    for (const code of blocks) {
+      n++;
+      try { new Function(code); }
+      catch (e) { bads++; bad(`${f} 的内联脚本语法错误：${e.message.slice(0, 70)}`, "浏览器里整段不执行 —— 页面文字会消失/文案变 undefined"); }
+    }
+  }
+  if (!bads) ok(`${files.length} 个页面的 ${n} 段内联脚本语法都正确`);
+
+  const nf = fs.readFileSync(path.join(ROOT, "404.html"), "utf8");
+  if (!nf.includes("undefined")) ok("404 页没有 undefined 字面量");
+  else bad("404 页出现 undefined 字面量", nf.slice(Math.max(0, nf.indexOf("undefined") - 60), nf.indexOf("undefined") + 20).replace(/\s+/g, " "));
+}
+
 console.log(`\n结果：${pass} 项通过，${fail} 项失败`);
 process.exit(fail ? 1 : 0);

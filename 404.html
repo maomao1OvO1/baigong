@@ -81,7 +81,9 @@ window.TP_INDEX_URL = "/assets/search.json";
   var PH = {"en":"Search tools — try “compress”, “json”, “password”…","zh":"搜索工具 —— 试试「压缩」「json」「密码」…","ja":"ツールを検索 — 「圧縮」「json」「パスワード」など"};
   var TITLES = {"en":"Page not found — ToolPocket","zh":"页面不存在 —— ToolPocket","ja":"ページが見つかりません — ToolPocket"};
   var path = location.pathname.toLowerCase();
-  var lang = /^/zh(/|$)/.test(path) ? "zh" : /^/ja(/|$)/.test(path) ? "ja" : null;
+  // ⚠️ 这里必须写双反斜杠：这段在模板字符串里，/ 会被解析成 / ，生成出 /^/zh(/|$)/ 这种
+  //    语法错误的正则，整段内联脚本当场报废（页面上文字全空 —— 2026-10-12 真踩过）。
+  var lang = /^\/zh(\/|$)/.test(path) ? "zh" : /^\/ja(\/|$)/.test(path) ? "ja" : null;
   if (!lang) {
     var n = (navigator.language || "en").toLowerCase();
     lang = n.indexOf("zh") === 0 ? "zh" : n.indexOf("ja") === 0 ? "ja" : "en";
@@ -131,10 +133,10 @@ window.TP_INDEX_URL = "/assets/search.json";
 <script src="/assets/search.js?v=2" defer></script>
 <script src="/assets/app.js?v=2" defer></script>
 <footer>
-  <p>undefined</p>
+  <p>ToolPocket — your files never leave your device. No upload, no account, no tracking.</p>
   <p class="fb">
-    <span>undefined</span>
-    <button type="button" class="ghost fb-btn" id="feedbackBtn" data-u="ad" data-d="maomaowang.top">undefined</button>
+    <span>Found a bug, or want a tool that isn't here yet? Tell me — I read every message.</span>
+    <button type="button" class="ghost fb-btn" id="feedbackBtn" data-u="ad" data-d="maomaowang.top">Send an email</button>
   </p>
 </footer>
 </body>
