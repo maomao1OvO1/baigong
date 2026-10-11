@@ -376,5 +376,29 @@ console.log("\n⑫ 反馈口吻（首页 vs 工具页）");
   else bad("404 页反馈口吻不对");
 }
 
+/* ── ⑬ 搜索空结果的口吻：提需求，不是报 bug ─────────────────────────────
+   毛毛原话（2026-10-12）：「这里就是反馈 bug，应该是增加功能才对吧」。
+   搜不到 = 站里还没有这东西 ⇒ 该让用户提需求；"反馈 bug" 是工具用出问题时说的。
+   三种场景三套话：首页/404（邀请，可为 bug 或新工具）· 工具页（服务中，只谈 bug）· 空结果（缺东西，谈需求）。 */
+console.log("\n⑬ 搜索空结果的口吻");
+{
+  const ui = JSON.parse(fs.readFileSync(path.join(ROOT, "src/i18n/ui.json"), "utf8"));
+  const want = { en: /request/i, zh: /需求/, ja: /リクエスト/ };
+  for (const l of ["en", "zh", "ja"]) {
+    const btn = (ui.noResultsBtn || {})[l] || "";
+    if (want[l].test(btn) && !/bug|不具合|问题反馈/i.test(btn)) ok(`空结果按钮（${l}）：「${btn}」`);
+    else bad(`空结果按钮口吻不对（${l}）`, `实际「${btn}」—— 应该表达"要一个还没有的工具"`);
+    const subj = (ui.noResultsSubject || {})[l] || "";
+    if (subj && !/bug report|不具合の報告/i.test(subj)) ok(`空结果邮件主题（${l}）：「${subj}」`);
+    else bad(`空结果邮件主题不对（${l}）`, subj);
+  }
+  const js = fs.readFileSync(path.join(ROOT, "assets", "search.js"), "utf8");
+  if (js.includes("noResultsBtn") && !/feedbackButton \|\|/.test(js)) ok("搜索空结果用的是「提需求」按钮，没有回退到「反馈 bug」");
+  else bad("搜索空结果仍在用 feedbackButton");
+  const app = fs.readFileSync(path.join(ROOT, "assets", "app.js"), "utf8");
+  if (app.includes("data-subject")) ok("反馈按钮支持自带邮件主题（需求与 bug 分开）");
+  else bad("app.js 没读 data-subject");
+}
+
 console.log(`\n结果：${pass} 项通过，${fail} 项失败`);
 process.exit(fail ? 1 : 0);

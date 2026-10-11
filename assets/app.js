@@ -81,7 +81,8 @@
     var u = el.getAttribute("data-u"), dom = el.getAttribute("data-d");
     if (!u || !dom) return;
     e.preventDefault();
-    var subject = encodeURIComponent((window.T && window.T.feedbackSubject) || "ToolPocket");
+    // 按钮可以自带 data-subject（例如搜索空结果那条是"工具需求"，别顶着"问题反馈"发出去）
+    var subject = encodeURIComponent(el.getAttribute("data-subject") || (window.T && window.T.feedbackSubject) || "ToolPocket");
     location.href = "mailto:" + u + "@" + dom + "?subject=" + subject;
   });
 })();

@@ -57,9 +57,13 @@
     var text = escapeHtml(T.noResults || "Nothing matched.");
     var ask = T.noResultsAsk ? "<small>" + escapeHtml(T.noResultsAsk) + "</small>" : "";
     if (!u || !dom) return '<li class="empty"><span>' + text + ask + "</span></li>";
+    // 这里刻意**不用** feedbackButton（「反馈 bug」）—— 搜不到东西是"站里还没有"，
+    // 该让用户提需求；报 bug 是工具用出问题时说的话（毛毛 2026-10-12 指出）
+    var btnLabel = T.noResultsBtn || "Request a tool";
+    var subject = T.noResultsSubject ? ' data-subject="' + escapeHtml(T.noResultsSubject) + '"' : "";
     return '<li class="empty"><span>' + text + ask + "</span>" +
-      '<button type="button" class="ghost fb-btn" data-u="' + escapeHtml(u) + '" data-d="' + escapeHtml(dom) + '">' +
-      escapeHtml(T.feedbackButton || "Email me") + "</button></li>";
+      '<button type="button" class="ghost fb-btn" data-u="' + escapeHtml(u) + '" data-d="' + escapeHtml(dom) + '"' + subject + ">" +
+      escapeHtml(btnLabel) + "</button></li>";
   }
 
   function render(items, query) {

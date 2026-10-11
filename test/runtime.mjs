@@ -817,7 +817,11 @@ console.log("\n㉕ 站内搜索（索引路径 / 打分 / 结果渲染）");
   // 用**真实的中文文案**注入 —— 毛毛截图报的场景就是「中文页面蹦出英文」，
   // 所以这里必须验证「注入的文案真的被用上了」，而不是随便塞一个字符串自证。
   const uiJson = JSON.parse(fs.readFileSync(path.join(ROOT, "src/i18n/ui.json"), "utf8"));
-  sb.window.T = { noResults: uiJson.noResults.zh };
+  sb.window.T = {
+    noResults: uiJson.noResults.zh,
+    noResultsBtn: uiJson.noResultsBtn.zh,
+    noResultsSubject: uiJson.noResultsSubject.zh,
+  };
   sb.window.TP_INDEX_URL = "/assets/search.json";          // 首页注入的绝对路径
   const ctx = vm.createContext(sb);
   vm.runInContext(fs.readFileSync(path.join(ROOT, "assets/search.js"), "utf8"), ctx, { filename: "search.js" });
@@ -846,6 +850,12 @@ console.log("\n㉕ 站内搜索（索引路径 / 打分 / 结果渲染）");
   if (els.searchResults.innerHTML.indexOf("fb-btn") >= 0 &&
       els.searchResults.innerHTML.indexOf('data-u="ad"') >= 0) ok("空结果里有反馈按钮（邮箱从页脚按钮读，页面里不留第二份明文）");
   else bad("空结果里没有反馈按钮", els.searchResults.innerHTML.slice(0, 160));
+  // 搜不到东西是"站里还没有"，按钮该说"提个需求"，不是"反馈 bug"（毛毛 2026-10-12 指出）
+  if (els.searchResults.innerHTML.indexOf(uiJson.noResultsBtn.zh) >= 0 &&
+      els.searchResults.innerHTML.indexOf("反馈 bug") < 0) ok("空结果按钮是「" + uiJson.noResultsBtn.zh + "」而不是「反馈 bug」");
+  else bad("空结果按钮口吻不对", els.searchResults.innerHTML.slice(0, 160));
+  if (els.searchResults.innerHTML.indexOf('data-subject="' + uiJson.noResultsSubject.zh + '"') >= 0) ok("按钮自带邮件主题（需求邮件不会顶着「问题反馈」发出去）");
+  else bad("按钮没带 data-subject", els.searchResults.innerHTML.slice(0, 160));
 
   els.searchInput.value = "";
   els.searchInput.fire("input");

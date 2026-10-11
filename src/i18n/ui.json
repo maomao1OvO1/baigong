@@ -142,5 +142,15 @@
     "en": "Send an email",
     "zh": "写封邮件",
     "ja": "メールを書く"
+  },
+  "noResultsBtn": {
+    "en": "Request a tool",
+    "zh": "提个需求",
+    "ja": "ツールをリクエスト"
+  },
+  "noResultsSubject": {
+    "en": "ToolPocket tool request",
+    "zh": "ToolPocket 工具需求",
+    "ja": "ToolPocket ツールのリクエスト"
   }
 }
