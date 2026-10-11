@@ -15,10 +15,18 @@
 <link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/timestamp.html">
 <link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/timestamp.html">
 <link rel="stylesheet" href="/assets/style.css?v=2">
+<meta name="theme-color" content="#2563eb">
+<link rel="icon" href="/assets/icon-192.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Unix timestamp converter","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Convert Unix timestamps to readable dates (and back), showing local time, UTC, ISO 8601 and weekday. Handles both 10-digit and 13-digit timestamps."}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Seconds or milliseconds?","acceptedAnswer":{"@type":"Answer","text":"Both. 10 digits is treated as seconds, 13 as milliseconds — that's the convention in virtually every API."}},{"@type":"Question","name":"Why do I see two times?","acceptedAnswer":{"@type":"Answer","text":"Because servers store UTC while you think in local time. Showing both is how you spot an off-by-hours bug in one glance."}},{"@type":"Question","name":"What date formats can I type?","acceptedAnswer":{"@type":"Answer","text":"2026-10-11 12:30:45, 2026/10/11, 2026-10-11T12:30 and similar — slashes are accepted and converted."}}]}</script>
 </head>
 <body>
+<div class="mobile-tip" id="mobileTip" hidden>
+  <span>📱 You are on a phone — it works here, but desktop Chrome is much smoother for big images and batch jobs.</span>
+  <button type="button" id="tipClose" class="tip-close">Got it</button>
+</div>
 <header class="top">
   <a class="brand" href="/index.html">🧰 ToolPocket</a>
   <nav class="langs"><a class="ad-link" href="/advertise.html">Advertise</a><a href="/tools/timestamp.html" class="on" aria-current="page">English</a><a href="/zh/tools/timestamp.html">中文</a><a href="/ja/tools/timestamp.html">日本語</a></nav>
@@ -69,9 +77,10 @@
 
 <footer><p>ToolPocket · Everything runs on your device — nothing is uploaded.</p></footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script>window.T = {"langName":"English","footer":"ToolPocket · Everything runs on your device — nothing is uploaded.","nav":"All tools","backToTools":"← All tools","copy":"Copy result","swap":"Swap","clear":"Clear","download":"Download","copied":"Copied to clipboard","copyFail":"Copy failed — select the text manually","inputLabel":"Input","outputLabel":"Result","privacyNote":"Runs entirely in your browser. Nothing is uploaded or stored.","searchPlaceholder":"Search tools — e.g. compress, json, 密码…","noResults":"No tool matches that. Try another word?","mode":"Direction","toDate":"Timestamp → Date","toSec":"Date → Timestamp","inputPh":"e.g. 1791734016  or  2026-10-11 12:30:45","outputPh":"Result appears here","localTime":"Local","now":"Use current time","modeHint":"Either direction. Seconds (10 digits) and milliseconds (13 digits) are auto-detected."};</script>
+<script>window.T = {"langName":"English","footer":"ToolPocket · Everything runs on your device — nothing is uploaded.","nav":"All tools","backToTools":"← All tools","copy":"Copy result","swap":"Swap","clear":"Clear","download":"Download","copied":"Copied to clipboard","copyFail":"Copy failed — select the text manually","inputLabel":"Input","outputLabel":"Result","privacyNote":"Runs entirely in your browser. Nothing is uploaded or stored.","searchPlaceholder":"Search tools — e.g. compress, json, 密码…","noResults":"No tool matches that. Try another word?","mobileTip":"📱 You are on a phone — it works here, but desktop Chrome is much smoother for big images and batch jobs.","mobileTipClose":"Got it","desktopHeading":"Better on desktop","installApp":"Install as desktop app","installHint":"Open this site in desktop Chrome or Edge and click the install icon at the right of the address bar. It becomes its own window and keeps working offline — no download, no account.","installed":"Already installed","offlineNote":"Once installed, the tools work with no network at all — everything runs on your machine anyway.","mode":"Direction","toDate":"Timestamp → Date","toSec":"Date → Timestamp","inputPh":"e.g. 1791734016  or  2026-10-11 12:30:45","outputPh":"Result appears here","localTime":"Local","now":"Use current time","modeHint":"Either direction. Seconds (10 digits) and milliseconds (13 digits) are auto-detected."};</script>
 <script src="/assets/tools/_shared.js" defer></script>
 <!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
 <script src="/assets/tools/timestamp.js?v=2" defer></script>
+<script src="/assets/app.js?v=2" defer></script>
 </body>
 </html>

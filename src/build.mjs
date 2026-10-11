@@ -60,8 +60,19 @@ function head(lang, { out, title, desc, jsonld }) {
 ${alts}
 <link rel="alternate" hreflang="x-default" href="${urlOf(LANGS[0], out)}">
 <link rel="stylesheet" href="${asset("style.css")}?v=2">
+<meta name="theme-color" content="#2563eb">
+<link rel="icon" href="${asset("icon-192.png")}">
+<link rel="apple-touch-icon" href="${asset("apple-touch-icon.png")}">
+<link rel="manifest" href="${pathOf(lang, "manifest.webmanifest")}">
 <script type="application/ld+json">${JSON.stringify(jsonld)}</script>`;
 }
+
+/** 手机端提示条（2026-10-12）：手机上能用，但大图压缩这类活桌面 Chrome 明显更顺。
+    只提示、不拦人；点「知道了」后 app.js 会用 localStorage 记住，不再出现。 */
+const mobileTip = (lang) => `<div class="mobile-tip" id="mobileTip" hidden>
+  <span>${rich(UI.mobileTip[lang.code])}</span>
+  <button type="button" id="tipClose" class="tip-close">${rich(UI.mobileTipClose[lang.code])}</button>
+</div>`;
 
 function topbar(lang, out) {
   const links = LANGS.map((l) =>
@@ -334,6 +345,7 @@ ${outputArea}
 ${head_html}
 </head>
 <body>
+${mobileTip(lang)}
 ${topbar(lang, out)}
 
 <main>
@@ -360,6 +372,7 @@ ${footer(lang)}
 <script src="${asset("tools/_shared.js")}" defer></script>
 <!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
 <script src="${asset("tools/" + tool.script)}?v=2" defer></script>
+<script src="${asset("app.js")}?v=2" defer></script>
 </body>
 </html>
 `;
@@ -404,6 +417,7 @@ ${g.list.map(card).join("\n")}
 ${head(lang, { out, title: t.title, desc: t.desc, jsonld })}
 </head>
 <body>
+${mobileTip(lang)}
 ${topbar(lang, out)}
 
 <main>
@@ -432,6 +446,16 @@ ${groupsHtml}
 ${adSlot(lang, "home-self")}
 
 ${adSlot(lang, "home-bottom")}
+
+  <!-- 桌面端引导（2026-10-12 毛毛要求）：说明怎么装成桌面应用 + 断网也能用。
+       按钮默认隐藏，只有浏览器真的可以安装（beforeinstallprompt）时才由 app.js 显示出来 ——
+       不给"点了没反应"的假按钮。 -->
+  <section class="install">
+    <h2>${rich(UI.desktopHeading[lang.code])}</h2>
+    <p id="installNote">${rich(UI.installHint[lang.code])}</p>
+    <p class="note">${rich(UI.offlineNote[lang.code])}</p>
+    <div class="btnrow"><button id="installApp" hidden>${rich(UI.installApp[lang.code])}</button></div>
+  </section>
 </main>
 
 <!-- 搜索索引的绝对路径：/zh/ 与 /ja/ 页面用相对路径会 404（2026-10-12 修） -->
@@ -440,6 +464,7 @@ ${adSlot(lang, "home-bottom")}
 ${CONTACT_SCRIPT}
 
 ${footer(lang)}
+<script src="${asset("app.js")}?v=2" defer></script>
 </body>
 </html>
 `;
@@ -459,6 +484,7 @@ function advertisePage(lang) {
 ${head(lang, { out, title: t.title, desc: t.desc, jsonld })}
 </head>
 <body>
+${mobileTip(lang)}
 ${topbar(lang, out)}
 
 <main>
@@ -523,6 +549,7 @@ ${rows(t.payMethods)}
 
 ${footer(lang)}
 ${CONTACT_SCRIPT}
+<script src="${asset("app.js")}?v=2" defer></script>
 </body>
 </html>
 `;
@@ -569,5 +596,86 @@ write("sitemap.xml", sitemap);
 /* 搜索索引单独成文件：首页不加载它，用户真的开始搜了才 fetch ⇒ 首页保持最小 */
 const idxJson = JSON.stringify(searchIndex());
 write("assets/search.json", idxJson);
+
+/* ── PWA：每语言一份 manifest + 一个 service worker ────────────────────────
+   为什么每语言一份：start_url 要指向对应语言的首页 —— 否则中文用户装完打开的是英文站。
+   为什么 sw 由一个文件覆盖全站：安装后要能**离线使用**（这站本来就是纯前端的，离线才合逻辑）。
+   ⚠️ 缓存策略：HTML 走 network-first（保证看到新版，别被缓存坑住），静态资源走 stale-while-revalidate。 */
+for (const lang of LANGS) {
+  const dir = lang.dir ? lang.dir + "/" : "";
+  write(dir + "manifest.webmanifest", JSON.stringify({
+    name: HOME[lang.code].title,
+    short_name: "ToolPocket",
+    description: HOME[lang.code].desc,
+    start_url: "/" + dir,
+    scope: "/",
+    display: "standalone",
+    background_color: "#ffffff",
+    theme_color: "#2563eb",
+    lang: lang.code,
+    icons: [
+      { src: "/assets/icon-192.png", sizes: "192x192", type: "image/png", purpose: "any" },
+      { src: "/assets/icon-512.png", sizes: "512x512", type: "image/png", purpose: "any maskable" },
+    ],
+  }, null, 2) + "\n");
+}
+
+const SW_CACHE = "toolpocket-v1";   // 改这里的版本号 = 让所有访客重新拉一次（升级页面/样式时顺手 +1）
+const SW_CORE = [
+  "/", "/zh/", "/ja/", "/advertise.html", "/zh/advertise.html", "/ja/advertise.html",
+  "/assets/style.css?v=2", "/assets/app.js?v=2", "/assets/search.js?v=2",
+  "/assets/tools/_shared.js?v=2", "/assets/search.json",
+  "/assets/icon-192.png", "/assets/icon-512.png", "/assets/apple-touch-icon.png",
+];
+const sw = `/* 由 src/build.mjs 生成，请勿直接编辑（改模板去 build.mjs）*/
+const CACHE = "${SW_CACHE}";
+const CORE = ${JSON.stringify(SW_CORE, null, 2)};
+
+self.addEventListener("install", (e) => {
+  e.waitUntil(caches.open(CACHE).then((c) => c.addAll(CORE)).then(() => self.skipWaiting()));
+});
+
+self.addEventListener("activate", (e) => {
+  e.waitUntil(
+    caches.keys()
+      .then((keys) => Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k))))
+      .then(() => self.clients.claim())
+  );
+});
+
+self.addEventListener("fetch", (e) => {
+  const req = e.request;
+  if (req.method !== "GET" || new URL(req.url).origin !== location.origin) return;
+
+  // HTML：先要网络（保证用户看到最新版），断网时回退缓存
+  if (req.mode === "navigate" || (req.headers.get("accept") || "").includes("text/html")) {
+    e.respondWith(
+      fetch(req)
+        .then((res) => {
+          const copy = res.clone();
+          caches.open(CACHE).then((c) => c.put(req, copy));
+          return res;
+        })
+        .catch(() => caches.match(req).then((r) => r || caches.match("/")))
+    );
+    return;
+  }
+
+  // 静态资源：先用缓存（快），同时在后台更新
+  e.respondWith(
+    caches.match(req).then((hit) => {
+      const fresh = fetch(req).then((res) => {
+        if (res && res.status === 200) {
+          const copy = res.clone();
+          caches.open(CACHE).then((c) => c.put(req, copy));
+        }
+        return res;
+      }).catch(() => hit);
+      return hit || fresh;
+    })
+  );
+});
+`;
+write("sw.js", sw);
 
 console.log(`生成完成：${count} 个文件 · ${LANGS.length} 种语言 · ${TOOLS.length} 个工具`);

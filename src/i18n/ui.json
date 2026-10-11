@@ -75,5 +75,40 @@
     "en": "No tool matches that. Try another word?",
     "zh": "没找到匹配的工具，换个词试试？",
     "ja": "該当するツールがありません。別の言葉でお試しを。"
+  },
+  "mobileTip": {
+    "en": "📱 You are on a phone — it works here, but desktop Chrome is much smoother for big images and batch jobs.",
+    "zh": "📱 手机能用，但<b>桌面版 Chrome 更顺</b> —— 大图压缩、批量处理会快很多。",
+    "ja": "📱 スマホでも動きますが、大きな画像やまとめての処理はデスクトップ版 Chrome が快適です。"
+  },
+  "mobileTipClose": {
+    "en": "Got it",
+    "zh": "知道了",
+    "ja": "閉じる"
+  },
+  "desktopHeading": {
+    "en": "Better on desktop",
+    "zh": "桌面端更好用",
+    "ja": "デスクトップ版がおすすめ"
+  },
+  "installApp": {
+    "en": "Install as desktop app",
+    "zh": "装成桌面应用",
+    "ja": "デスクトップアプリとして追加"
+  },
+  "installHint": {
+    "en": "Open this site in desktop Chrome or Edge and click the install icon at the right of the address bar. It becomes its own window and keeps working offline — no download, no account.",
+    "zh": "用桌面版 Chrome / Edge 打开本页，点地址栏右侧的「安装」图标 —— 它会变成一个独立窗口的桌面应用，断网也能用。不用下载安装包、不用账号。",
+    "ja": "デスクトップ版 Chrome / Edge で開き、アドレスバー右側のインストールアイコンをクリックしてください。独立したウィンドウのアプリになり、オフラインでも動作します。"
+  },
+  "installed": {
+    "en": "Already installed",
+    "zh": "已安装",
+    "ja": "インストール済み"
+  },
+  "offlineNote": {
+    "en": "Once installed, the tools work with no network at all — everything runs on your machine anyway.",
+    "zh": "装好之后断网也能用 —— 这些工具本来就是在你机器上跑的，不需要服务器。",
+    "ja": "インストール後はネットワークなしでも動作します。もともと処理は端末内で完結しているためです。"
   }
 }

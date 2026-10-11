@@ -1,0 +1,25 @@
+{
+  "name": "ToolPocket — ファイルをアップロードしない無料ツール",
+  "short_name": "ToolPocket",
+  "description": "画像の圧縮と形式変換、テキストのエンコード、JSON の整形。すべてブラウザ内で完結します。登録不要、アップロード不要、制限なし。",
+  "start_url": "/ja/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "lang": "ja",
+  "icons": [
+    {
+      "src": "/assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

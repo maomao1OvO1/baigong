@@ -15,9 +15,17 @@
 <link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/index.html">
 <link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/index.html">
 <link rel="stylesheet" href="/assets/style.css?v=2">
+<meta name="theme-color" content="#2563eb">
+<link rel="icon" href="/assets/icon-192.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/zh/manifest.webmanifest">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"ToolPocket","url":"https://tools.maomaowang.top/"}</script>
 </head>
 <body>
+<div class="mobile-tip" id="mobileTip" hidden>
+  <span>📱 手机能用，但<b>桌面版 Chrome 更顺</b> —— 大图压缩、批量处理会快很多。</span>
+  <button type="button" id="tipClose" class="tip-close">知道了</button>
+</div>
 <header class="top">
   <a class="brand" href="/zh/index.html">🧰 ToolPocket</a>
   <nav class="langs"><a class="ad-link" href="/zh/advertise.html">广告位招租</a><a href="/index.html">English</a><a href="/zh/index.html" class="on" aria-current="page">中文</a><a href="/ja/index.html">日本語</a></nav>
@@ -232,6 +240,16 @@
   </div>
   <a class="ad-cta" href="/zh/advertise.html">查看投放说明 →</a>
 </aside>
+
+  <!-- 桌面端引导（2026-10-12 毛毛要求）：说明怎么装成桌面应用 + 断网也能用。
+       按钮默认隐藏，只有浏览器真的可以安装（beforeinstallprompt）时才由 app.js 显示出来 ——
+       不给"点了没反应"的假按钮。 -->
+  <section class="install">
+    <h2>桌面端更好用</h2>
+    <p id="installNote">用桌面版 Chrome / Edge 打开本页，点地址栏右侧的「安装」图标 —— 它会变成一个独立窗口的桌面应用，断网也能用。不用下载安装包、不用账号。</p>
+    <p class="note">装好之后断网也能用 —— 这些工具本来就是在你机器上跑的，不需要服务器。</p>
+    <div class="btnrow"><button id="installApp" hidden>装成桌面应用</button></div>
+  </section>
 </main>
 
 <!-- 搜索索引的绝对路径：/zh/ 与 /ja/ 页面用相对路径会 404（2026-10-12 修） -->
@@ -245,5 +263,6 @@
 </script>
 
 <footer><p>ToolPocket · 全部在你的设备上完成，不上传任何文件。</p></footer>
+<script src="/assets/app.js?v=2" defer></script>
 </body>
 </html>

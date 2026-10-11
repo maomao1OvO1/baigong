@@ -15,10 +15,18 @@
 <link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/uuid.html">
 <link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/uuid.html">
 <link rel="stylesheet" href="/assets/style.css?v=2">
+<meta name="theme-color" content="#2563eb">
+<link rel="icon" href="/assets/icon-192.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/zh/manifest.webmanifest">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"UUID / ULID / NanoID 生成器","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"一次生成最多 100 个唯一 ID：UUID v4、可按时间排序的 UUID v7、ULID 或 NanoID，一键全选复制。全部在浏览器里生成。"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"UUID v4 和 v7 选哪个？","acceptedAnswer":{"@type":"Answer","text":"新项目建议 v7。它开头就是毫秒时间戳，ID 按创建时间递增，数据库索引不会因为随机插入而碎掉。v4 是纯随机：当标识符没问题，但量大以后随机写会拖慢 B 树索引。"}},{"@type":"Question","name":"ULID 和 UUID v7 看着差不多？","acceptedAnswer":{"@type":"Answer","text":"两者都可按时间排序，区别在写法：ULID 是 26 位 Crockford Base32（无连字符、更短、适合放 URL），UUID v7 是标准的 36 位带连字符写法，多数数据库对它有原生类型。"}},{"@type":"Question","name":"这些 ID 能当密钥用吗？","acceptedAnswer":{"@type":"Answer","text":"随机性够强，但标识符不等于密码 —— 它通常会被存进库、写进日志。要令牌请用专门的密钥生成器。"}}]}</script>
 </head>
 <body>
+<div class="mobile-tip" id="mobileTip" hidden>
+  <span>📱 手机能用，但<b>桌面版 Chrome 更顺</b> —— 大图压缩、批量处理会快很多。</span>
+  <button type="button" id="tipClose" class="tip-close">知道了</button>
+</div>
 <header class="top">
   <a class="brand" href="/zh/index.html">🧰 ToolPocket</a>
   <nav class="langs"><a class="ad-link" href="/zh/advertise.html">广告位招租</a><a href="/tools/uuid.html">English</a><a href="/zh/tools/uuid.html" class="on" aria-current="page">中文</a><a href="/ja/tools/uuid.html">日本語</a></nav>
@@ -71,9 +79,10 @@
 
 <footer><p>ToolPocket · 全部在你的设备上完成，不上传任何文件。</p></footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script>window.T = {"langName":"中文","footer":"ToolPocket · 全部在你的设备上完成，不上传任何文件。","nav":"全部工具","backToTools":"← 全部工具","copy":"复制结果","swap":"互换","clear":"清空","download":"下载","copied":"已复制到剪贴板","copyFail":"复制失败 —— 请手动选中复制","inputLabel":"输入","outputLabel":"结果","privacyNote":"完全在你的浏览器里运行，不上传、不保存。","searchPlaceholder":"搜索工具 —— 例如：压缩、json、密码…","noResults":"没找到匹配的工具，换个词试试？","type":"类型","typeHint":"UUID v7 与 ULID 可按时间排序；UUID v4 纯随机；NanoID 最短。","count":"生成数量","countHint":"每次 1 到 100 个。","upper":"转成大写","nodash":"去掉连字符（仅 UUID）","gen":"生成","insecure":"拿不到 crypto.getRandomValues —— 随机性不足"};</script>
+<script>window.T = {"langName":"中文","footer":"ToolPocket · 全部在你的设备上完成，不上传任何文件。","nav":"全部工具","backToTools":"← 全部工具","copy":"复制结果","swap":"互换","clear":"清空","download":"下载","copied":"已复制到剪贴板","copyFail":"复制失败 —— 请手动选中复制","inputLabel":"输入","outputLabel":"结果","privacyNote":"完全在你的浏览器里运行，不上传、不保存。","searchPlaceholder":"搜索工具 —— 例如：压缩、json、密码…","noResults":"没找到匹配的工具，换个词试试？","mobileTip":"📱 手机能用，但<b>桌面版 Chrome 更顺</b> —— 大图压缩、批量处理会快很多。","mobileTipClose":"知道了","desktopHeading":"桌面端更好用","installApp":"装成桌面应用","installHint":"用桌面版 Chrome / Edge 打开本页，点地址栏右侧的「安装」图标 —— 它会变成一个独立窗口的桌面应用，断网也能用。不用下载安装包、不用账号。","installed":"已安装","offlineNote":"装好之后断网也能用 —— 这些工具本来就是在你机器上跑的，不需要服务器。","type":"类型","typeHint":"UUID v7 与 ULID 可按时间排序；UUID v4 纯随机；NanoID 最短。","count":"生成数量","countHint":"每次 1 到 100 个。","upper":"转成大写","nodash":"去掉连字符（仅 UUID）","gen":"生成","insecure":"拿不到 crypto.getRandomValues —— 随机性不足"};</script>
 <script src="/assets/tools/_shared.js" defer></script>
 <!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
 <script src="/assets/tools/uuid.js?v=2" defer></script>
+<script src="/assets/app.js?v=2" defer></script>
 </body>
 </html>

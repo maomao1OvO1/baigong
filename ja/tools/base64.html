@@ -15,10 +15,18 @@
 <link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/base64.html">
 <link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/base64.html">
 <link rel="stylesheet" href="/assets/style.css?v=2">
+<meta name="theme-color" content="#2563eb">
+<link rel="icon" href="/assets/icon-192.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/ja/manifest.webmanifest">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Base64 のエンコードとデコード","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"テキストを Base64 に変換、または元に戻します。UTF-8 に完全対応（日本語・中国語・絵文字）。ブラウザ内で完結、登録不要。"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"他のツールだと日本語が文字化けするのはなぜ？","acceptedAnswer":{"@type":"Answer","text":"btoa を直接呼んでいるからです。btoa は Latin-1 しか扱えません。このページは先に UTF-8 のバイト列へ変換してから Base64 化します。"}},{"@type":"Question","name":"メールや API で受け取った Base64 もデコードできますか？","acceptedAnswer":{"@type":"Answer","text":"できます。不正な Base64 の場合は、意味不明な結果ではなくエラーを表示します。"}},{"@type":"Question","name":"入力したテキストは送信されますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。このページから出ることはありません。"}}]}</script>
 </head>
 <body>
+<div class="mobile-tip" id="mobileTip" hidden>
+  <span>📱 スマホでも動きますが、大きな画像やまとめての処理はデスクトップ版 Chrome が快適です。</span>
+  <button type="button" id="tipClose" class="tip-close">閉じる</button>
+</div>
 <header class="top">
   <a class="brand" href="/ja/index.html">🧰 ToolPocket</a>
   <nav class="langs"><a class="ad-link" href="/ja/advertise.html">広告掲載</a><a href="/tools/base64.html">English</a><a href="/zh/tools/base64.html">中文</a><a href="/ja/tools/base64.html" class="on" aria-current="page">日本語</a></nav>
@@ -69,9 +77,10 @@
 
 <footer><p>ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。</p></footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script>window.T = {"langName":"日本語","footer":"ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"コピーできませんでした。手動で選択してください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理されます。送信も保存もしていません。","searchPlaceholder":"ツールを検索 — 例：圧縮、json、パスワード…","noResults":"該当するツールがありません。別の言葉でお試しを。","mode":"方向","encode":"テキスト → Base64","decode":"Base64 → テキスト","inputPh":"テキストまたは Base64 文字列を貼り付けてください…","outputPh":"入力と同時に結果が表示されます","badBase64":"有効な Base64 ではないようです","modeHint":"方向を選びます。貼り付けて「入れ替え」を押せば逆方向にも変換できます。"};</script>
+<script>window.T = {"langName":"日本語","footer":"ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"コピーできませんでした。手動で選択してください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理されます。送信も保存もしていません。","searchPlaceholder":"ツールを検索 — 例：圧縮、json、パスワード…","noResults":"該当するツールがありません。別の言葉でお試しを。","mobileTip":"📱 スマホでも動きますが、大きな画像やまとめての処理はデスクトップ版 Chrome が快適です。","mobileTipClose":"閉じる","desktopHeading":"デスクトップ版がおすすめ","installApp":"デスクトップアプリとして追加","installHint":"デスクトップ版 Chrome / Edge で開き、アドレスバー右側のインストールアイコンをクリックしてください。独立したウィンドウのアプリになり、オフラインでも動作します。","installed":"インストール済み","offlineNote":"インストール後はネットワークなしでも動作します。もともと処理は端末内で完結しているためです。","mode":"方向","encode":"テキスト → Base64","decode":"Base64 → テキスト","inputPh":"テキストまたは Base64 文字列を貼り付けてください…","outputPh":"入力と同時に結果が表示されます","badBase64":"有効な Base64 ではないようです","modeHint":"方向を選びます。貼り付けて「入れ替え」を押せば逆方向にも変換できます。"};</script>
 <script src="/assets/tools/_shared.js" defer></script>
 <!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
 <script src="/assets/tools/base64.js?v=2" defer></script>
+<script src="/assets/app.js?v=2" defer></script>
 </body>
 </html>

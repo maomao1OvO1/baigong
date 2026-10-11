@@ -15,10 +15,18 @@
 <link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/json-format.html">
 <link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/json-format.html">
 <link rel="stylesheet" href="/assets/style.css?v=2">
+<meta name="theme-color" content="#2563eb">
+<link rel="icon" href="/assets/icon-192.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/ja/manifest.webmanifest">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"JSON の整形と検証","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"ブラウザ内で JSON を整形・圧縮・検証します。エラー時は行と列を指摘するので、どこを直せばいいか分かります。"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"不正な JSON だとどうなりますか？","acceptedAnswer":{"@type":"Answer","text":"エラー内容と、可能であれば該当の行・列を表示します。推測せずに修正できます。"}},{"@type":"Question","name":"サイズの上限はありますか？","acceptedAnswer":{"@type":"Answer","text":"実質的な上限はありません。お使いの端末で処理するため、端末の性能次第です。"}},{"@type":"Question","name":"入力したデータは送信されますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。API キーや顧客データを含む JSON を扱うときにも安心です。"}}]}</script>
 </head>
 <body>
+<div class="mobile-tip" id="mobileTip" hidden>
+  <span>📱 スマホでも動きますが、大きな画像やまとめての処理はデスクトップ版 Chrome が快適です。</span>
+  <button type="button" id="tipClose" class="tip-close">閉じる</button>
+</div>
 <header class="top">
   <a class="brand" href="/ja/index.html">🧰 ToolPocket</a>
   <nav class="langs"><a class="ad-link" href="/ja/advertise.html">広告掲載</a><a href="/tools/json-format.html">English</a><a href="/zh/tools/json-format.html">中文</a><a href="/ja/tools/json-format.html" class="on" aria-current="page">日本語</a></nav>
@@ -68,9 +76,10 @@
 
 <footer><p>ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。</p></footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script>window.T = {"langName":"日本語","footer":"ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"コピーできませんでした。手動で選択してください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理されます。送信も保存もしていません。","searchPlaceholder":"ツールを検索 — 例：圧縮、json、パスワード…","noResults":"該当するツールがありません。別の言葉でお試しを。","mode":"モード","pretty":"整形（インデント）","minify":"1 行に圧縮","inputPh":"ここに JSON を貼り付けてください…","outputPh":"整形結果がここに表示されます","valid":"有効な JSON です ✓","invalid":"JSON に誤りがあります：","modeHint":"整形は読みやすくインデントを付け、圧縮は空白をすべて除去して転送向けにします。"};</script>
+<script>window.T = {"langName":"日本語","footer":"ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"コピーできませんでした。手動で選択してください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理されます。送信も保存もしていません。","searchPlaceholder":"ツールを検索 — 例：圧縮、json、パスワード…","noResults":"該当するツールがありません。別の言葉でお試しを。","mobileTip":"📱 スマホでも動きますが、大きな画像やまとめての処理はデスクトップ版 Chrome が快適です。","mobileTipClose":"閉じる","desktopHeading":"デスクトップ版がおすすめ","installApp":"デスクトップアプリとして追加","installHint":"デスクトップ版 Chrome / Edge で開き、アドレスバー右側のインストールアイコンをクリックしてください。独立したウィンドウのアプリになり、オフラインでも動作します。","installed":"インストール済み","offlineNote":"インストール後はネットワークなしでも動作します。もともと処理は端末内で完結しているためです。","mode":"モード","pretty":"整形（インデント）","minify":"1 行に圧縮","inputPh":"ここに JSON を貼り付けてください…","outputPh":"整形結果がここに表示されます","valid":"有効な JSON です ✓","invalid":"JSON に誤りがあります：","modeHint":"整形は読みやすくインデントを付け、圧縮は空白をすべて除去して転送向けにします。"};</script>
 <script src="/assets/tools/_shared.js" defer></script>
 <!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
 <script src="/assets/tools/json-format.js?v=2" defer></script>
+<script src="/assets/app.js?v=2" defer></script>
 </body>
 </html>

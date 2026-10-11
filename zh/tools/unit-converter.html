@@ -15,10 +15,18 @@
 <link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/unit-converter.html">
 <link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/unit-converter.html">
 <link rel="stylesheet" href="/assets/style.css?v=2">
+<meta name="theme-color" content="#2563eb">
+<link rel="icon" href="/assets/icon-192.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/zh/manifest.webmanifest">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"单位换算","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"毫米、厘米、米、公里、英寸、英尺、英里、克、盎司、磅、KB、MB、GB、摄氏度、华氏度、开尔文 —— 一次全出，不上传。"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"MB 和 MiB 有什么区别？","acceptedAnswer":{"@type":"Answer","text":"这里用的是十进制（1 KB = 1000 字节），也就是硬盘厂商和多数云服务用的口径。操作系统常用二进制（1024），所以标称 500 GB 的硬盘在 Windows 里显示约 465 GB。"}},{"@type":"Question","name":"温度也能换吗？","acceptedAnswer":{"@type":"Answer","text":"能 —— 选「温度」类别，摄氏度、华氏度、开尔文一起给你。"}},{"@type":"Question","name":"为什么一次显示所有单位？","acceptedAnswer":{"@type":"Answer","text":"因为你通常要同时比较三四个值，而选两个下拉框纯粹是添堵。"}}]}</script>
 </head>
 <body>
+<div class="mobile-tip" id="mobileTip" hidden>
+  <span>📱 手机能用，但<b>桌面版 Chrome 更顺</b> —— 大图压缩、批量处理会快很多。</span>
+  <button type="button" id="tipClose" class="tip-close">知道了</button>
+</div>
 <header class="top">
   <a class="brand" href="/zh/index.html">🧰 ToolPocket</a>
   <nav class="langs"><a class="ad-link" href="/zh/advertise.html">广告位招租</a><a href="/tools/unit-converter.html">English</a><a href="/zh/tools/unit-converter.html" class="on" aria-current="page">中文</a><a href="/ja/tools/unit-converter.html">日本語</a></nav>
@@ -69,9 +77,10 @@
 
 <footer><p>ToolPocket · 全部在你的设备上完成，不上传任何文件。</p></footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script>window.T = {"langName":"中文","footer":"ToolPocket · 全部在你的设备上完成，不上传任何文件。","nav":"全部工具","backToTools":"← 全部工具","copy":"复制结果","swap":"互换","clear":"清空","download":"下载","copied":"已复制到剪贴板","copyFail":"复制失败 —— 请手动选中复制","inputLabel":"输入","outputLabel":"结果","privacyNote":"完全在你的浏览器里运行，不上传、不保存。","searchPlaceholder":"搜索工具 —— 例如：压缩、json、密码…","noResults":"没找到匹配的工具，换个词试试？","category":"类别","catLength":"长度","catWeight":"重量","catData":"数据大小","catTemp":"温度","value":"数值","valuePh":"输入一个数字","outputPh":"所有单位的结果显示在这里","fromCelsius":"输入值按摄氏度计算","unitLabel":"单位","categoryHint":"长度、重量、数据大小或温度。选好后会一次列出该类别下所有单位。","valueHint":"输入数字 —— 输入框旁边会显示它按哪个单位算（m / kg / MB / °C）。"};</script>
+<script>window.T = {"langName":"中文","footer":"ToolPocket · 全部在你的设备上完成，不上传任何文件。","nav":"全部工具","backToTools":"← 全部工具","copy":"复制结果","swap":"互换","clear":"清空","download":"下载","copied":"已复制到剪贴板","copyFail":"复制失败 —— 请手动选中复制","inputLabel":"输入","outputLabel":"结果","privacyNote":"完全在你的浏览器里运行，不上传、不保存。","searchPlaceholder":"搜索工具 —— 例如：压缩、json、密码…","noResults":"没找到匹配的工具，换个词试试？","mobileTip":"📱 手机能用，但<b>桌面版 Chrome 更顺</b> —— 大图压缩、批量处理会快很多。","mobileTipClose":"知道了","desktopHeading":"桌面端更好用","installApp":"装成桌面应用","installHint":"用桌面版 Chrome / Edge 打开本页，点地址栏右侧的「安装」图标 —— 它会变成一个独立窗口的桌面应用，断网也能用。不用下载安装包、不用账号。","installed":"已安装","offlineNote":"装好之后断网也能用 —— 这些工具本来就是在你机器上跑的，不需要服务器。","category":"类别","catLength":"长度","catWeight":"重量","catData":"数据大小","catTemp":"温度","value":"数值","valuePh":"输入一个数字","outputPh":"所有单位的结果显示在这里","fromCelsius":"输入值按摄氏度计算","unitLabel":"单位","categoryHint":"长度、重量、数据大小或温度。选好后会一次列出该类别下所有单位。","valueHint":"输入数字 —— 输入框旁边会显示它按哪个单位算（m / kg / MB / °C）。"};</script>
 <script src="/assets/tools/_shared.js" defer></script>
 <!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
 <script src="/assets/tools/unit-converter.js?v=2" defer></script>
+<script src="/assets/app.js?v=2" defer></script>
 </body>
 </html>

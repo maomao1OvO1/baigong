@@ -15,10 +15,18 @@
 <link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/diff.html">
 <link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/diff.html">
 <link rel="stylesheet" href="/assets/style.css?v=2">
+<meta name="theme-color" content="#2563eb">
+<link rel="icon" href="/assets/icon-192.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/ja/manifest.webmanifest">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"テキスト差分（行単位）","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"2 つのテキストを比較し、追加・削除・変更なしの行を表示します。差分はブラウザ内で計算され、送信されません。"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"2 つのテキストを 1 つの欄に入れるには？","acceptedAnswer":{"@type":"Answer","text":"間に <code>===</code> だけの行を入れて区切ります。この区切りを使えば複数組をまとめて比較できます。"}},{"@type":"Question","name":"見た目が同じ行が変更扱いになるのは？","acceptedAnswer":{"@type":"Answer","text":"不可視文字が原因のことが多いです。行末の空白、改行しない空白、Windows の改行コードなど。それを見つけるのが差分ツールの役目です。"}},{"@type":"Question","name":"サイズ制限はありますか？","acceptedAnswer":{"@type":"Answer","text":"片側およそ 4000 行までです。それを超えると比較に必要なメモリが過大になるため、タブを固まらせずに警告して中止します。"}}]}</script>
 </head>
 <body>
+<div class="mobile-tip" id="mobileTip" hidden>
+  <span>📱 スマホでも動きますが、大きな画像やまとめての処理はデスクトップ版 Chrome が快適です。</span>
+  <button type="button" id="tipClose" class="tip-close">閉じる</button>
+</div>
 <header class="top">
   <a class="brand" href="/ja/index.html">🧰 ToolPocket</a>
   <nav class="langs"><a class="ad-link" href="/ja/advertise.html">広告掲載</a><a href="/tools/diff.html">English</a><a href="/zh/tools/diff.html">中文</a><a href="/ja/tools/diff.html" class="on" aria-current="page">日本語</a></nav>
@@ -67,9 +75,10 @@
 
 <footer><p>ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。</p></footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script>window.T = {"langName":"日本語","footer":"ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"コピーできませんでした。手動で選択してください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理されます。送信も保存もしていません。","searchPlaceholder":"ツールを検索 — 例：圧縮、json、パスワード…","noResults":"該当するツールがありません。別の言葉でお試しを。","needSep":"2 つのテキストの間に === だけの行を入れてください","tooMany":"行数が多すぎて比較できません","bothEmpty":"（両方とも空です）","sameLabel":"変更なし"};</script>
+<script>window.T = {"langName":"日本語","footer":"ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"コピーできませんでした。手動で選択してください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理されます。送信も保存もしていません。","searchPlaceholder":"ツールを検索 — 例：圧縮、json、パスワード…","noResults":"該当するツールがありません。別の言葉でお試しを。","mobileTip":"📱 スマホでも動きますが、大きな画像やまとめての処理はデスクトップ版 Chrome が快適です。","mobileTipClose":"閉じる","desktopHeading":"デスクトップ版がおすすめ","installApp":"デスクトップアプリとして追加","installHint":"デスクトップ版 Chrome / Edge で開き、アドレスバー右側のインストールアイコンをクリックしてください。独立したウィンドウのアプリになり、オフラインでも動作します。","installed":"インストール済み","offlineNote":"インストール後はネットワークなしでも動作します。もともと処理は端末内で完結しているためです。","needSep":"2 つのテキストの間に === だけの行を入れてください","tooMany":"行数が多すぎて比較できません","bothEmpty":"（両方とも空です）","sameLabel":"変更なし"};</script>
 <script src="/assets/tools/_shared.js" defer></script>
 <!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
 <script src="/assets/tools/diff.js?v=2" defer></script>
+<script src="/assets/app.js?v=2" defer></script>
 </body>
 </html>

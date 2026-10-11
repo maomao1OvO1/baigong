@@ -15,9 +15,17 @@
 <link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/advertise.html">
 <link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/advertise.html">
 <link rel="stylesheet" href="/assets/style.css?v=2">
+<meta name="theme-color" content="#2563eb">
+<link rel="icon" href="/assets/icon-192.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/ja/manifest.webmanifest">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"ToolPocket への広告掲載","description":"英語・中国語・日本語で検索する開発者・デザイナーに商品を届けます。静的な掲載のみ：追跡スクリプト、ポップアップ、レイアウトシフトはありません。"}</script>
 </head>
 <body>
+<div class="mobile-tip" id="mobileTip" hidden>
+  <span>📱 スマホでも動きますが、大きな画像やまとめての処理はデスクトップ版 Chrome が快適です。</span>
+  <button type="button" id="tipClose" class="tip-close">閉じる</button>
+</div>
 <header class="top">
   <a class="brand" href="/ja/index.html">🧰 ToolPocket</a>
   <nav class="langs"><a href="/advertise.html">English</a><a href="/zh/advertise.html">中文</a><a href="/ja/advertise.html" class="on" aria-current="page">日本語</a></nav>
@@ -99,5 +107,6 @@
   el.textContent = el.dataset.u + "@" + el.dataset.d;
 });
 </script>
+<script src="/assets/app.js?v=2" defer></script>
 </body>
 </html>

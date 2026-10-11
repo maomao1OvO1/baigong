@@ -15,10 +15,18 @@
 <link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/csv-json.html">
 <link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/csv-json.html">
 <link rel="stylesheet" href="/assets/style.css?v=2">
+<meta name="theme-color" content="#2563eb">
+<link rel="icon" href="/assets/icon-192.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/ja/manifest.webmanifest">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"CSV ⇄ JSON 変換","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"CSV と JSON を相互変換します。カンマ・タブ・セミコロンに対応し、引用符付きフィールド、フィールド内のカンマ、セル内の改行も正しく処理します。"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"カンマで分割するだけではだめな理由は？","acceptedAnswer":{"@type":"Answer","text":"実際の CSV には、引用符内のカンマ、セル内の改行（Excel のメモ列など）、二重引用符によるエスケープが含まれます。文字単位で解析するのが唯一正しい方法です。"}},{"@type":"Question","name":"数値や true/false は変換されますか？","acceptedAnswer":{"@type":"Answer","text":"はい。数値やブール値に見える値は JSON の数値・ブール値になります。<code>007</code> のような値は文字列として保持されます。"}},{"@type":"Question","name":"JSON がネストしている場合は？","acceptedAnswer":{"@type":"Answer","text":"トップレベルの配列要素が 1 行になります。キーは全オブジェクトの和集合で、ネストしたオブジェクトは JSON 文字列としてセルに入ります。"}}]}</script>
 </head>
 <body>
+<div class="mobile-tip" id="mobileTip" hidden>
+  <span>📱 スマホでも動きますが、大きな画像やまとめての処理はデスクトップ版 Chrome が快適です。</span>
+  <button type="button" id="tipClose" class="tip-close">閉じる</button>
+</div>
 <header class="top">
   <a class="brand" href="/ja/index.html">🧰 ToolPocket</a>
   <nav class="langs"><a class="ad-link" href="/ja/advertise.html">広告掲載</a><a href="/tools/csv-json.html">English</a><a href="/zh/tools/csv-json.html">中文</a><a href="/ja/tools/csv-json.html" class="on" aria-current="page">日本語</a></nav>
@@ -72,9 +80,10 @@
 
 <footer><p>ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。</p></footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script>window.T = {"langName":"日本語","footer":"ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"コピーできませんでした。手動で選択してください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理されます。送信も保存もしていません。","searchPlaceholder":"ツールを検索 — 例：圧縮、json、パスワード…","noResults":"該当するツールがありません。別の言葉でお試しを。","mode":"変換方向","modeHint":"「入れ替え」ボタンで方向を反転し、結果を入力欄に戻せます。往復チェックにも便利です。","delim":"区切り文字","delimHint":"ファイルで実際に使われているものを選んでください。表計算ソフトからコピーした場合はタブが多いです。","csv2json":"CSV → JSON","json2csv":"JSON → CSV","header":"1 行目はヘッダー","headerHint":"有効にすると 1 行目をキーにします。無効の場合は col1、col2… になります。","emptyInput":"変換する内容がありません","badJson":"JSON の形式が不正です","needArray":"オブジェクトの配列が必要です"};</script>
+<script>window.T = {"langName":"日本語","footer":"ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"コピーできませんでした。手動で選択してください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理されます。送信も保存もしていません。","searchPlaceholder":"ツールを検索 — 例：圧縮、json、パスワード…","noResults":"該当するツールがありません。別の言葉でお試しを。","mobileTip":"📱 スマホでも動きますが、大きな画像やまとめての処理はデスクトップ版 Chrome が快適です。","mobileTipClose":"閉じる","desktopHeading":"デスクトップ版がおすすめ","installApp":"デスクトップアプリとして追加","installHint":"デスクトップ版 Chrome / Edge で開き、アドレスバー右側のインストールアイコンをクリックしてください。独立したウィンドウのアプリになり、オフラインでも動作します。","installed":"インストール済み","offlineNote":"インストール後はネットワークなしでも動作します。もともと処理は端末内で完結しているためです。","mode":"変換方向","modeHint":"「入れ替え」ボタンで方向を反転し、結果を入力欄に戻せます。往復チェックにも便利です。","delim":"区切り文字","delimHint":"ファイルで実際に使われているものを選んでください。表計算ソフトからコピーした場合はタブが多いです。","csv2json":"CSV → JSON","json2csv":"JSON → CSV","header":"1 行目はヘッダー","headerHint":"有効にすると 1 行目をキーにします。無効の場合は col1、col2… になります。","emptyInput":"変換する内容がありません","badJson":"JSON の形式が不正です","needArray":"オブジェクトの配列が必要です"};</script>
 <script src="/assets/tools/_shared.js" defer></script>
 <!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
 <script src="/assets/tools/csv-json.js?v=2" defer></script>
+<script src="/assets/app.js?v=2" defer></script>
 </body>
 </html>

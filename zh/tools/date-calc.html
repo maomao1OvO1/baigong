@@ -15,10 +15,18 @@
 <link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/date-calc.html">
 <link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/date-calc.html">
 <link rel="stylesheet" href="/assets/style.css?v=2">
+<meta name="theme-color" content="#2563eb">
+<link rel="icon" href="/assets/icon-192.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/zh/manifest.webmanifest">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"日期计算器","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"算一个日期离今天多少天、加减 N 天是哪天，并给出星期、年内第几天与 ISO 周号。"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"为什么和我日历 App 算的差一天？","acceptedAnswer":{"@type":"Answer","text":"多半是时区与夏令时。这里把两个日期都当作 UTC 的「日历天」相减，所以夏令时切换不会让结果变成半天。"}},{"@type":"Question","name":"ISO 周号是什么？","acceptedAnswer":{"@type":"Answer","text":"ISO-8601 的周编号：一周从周一开始，且「包含当年第一个周四的那一周」算第 1 周。所以 1 月 1 日有可能属于上一年的第 52 或 53 周。"}}]}</script>
 </head>
 <body>
+<div class="mobile-tip" id="mobileTip" hidden>
+  <span>📱 手机能用，但<b>桌面版 Chrome 更顺</b> —— 大图压缩、批量处理会快很多。</span>
+  <button type="button" id="tipClose" class="tip-close">知道了</button>
+</div>
 <header class="top">
   <a class="brand" href="/zh/index.html">🧰 ToolPocket</a>
   <nav class="langs"><a class="ad-link" href="/zh/advertise.html">广告位招租</a><a href="/tools/date-calc.html">English</a><a href="/zh/tools/date-calc.html" class="on" aria-current="page">中文</a><a href="/ja/tools/date-calc.html">日本語</a></nav>
@@ -66,9 +74,10 @@
 
 <footer><p>ToolPocket · 全部在你的设备上完成，不上传任何文件。</p></footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script>window.T = {"langName":"中文","footer":"ToolPocket · 全部在你的设备上完成，不上传任何文件。","nav":"全部工具","backToTools":"← 全部工具","copy":"复制结果","swap":"互换","clear":"清空","download":"下载","copied":"已复制到剪贴板","copyFail":"复制失败 —— 请手动选中复制","inputLabel":"输入","outputLabel":"结果","privacyNote":"完全在你的浏览器里运行，不上传、不保存。","searchPlaceholder":"搜索工具 —— 例如：压缩、json、密码…","noResults":"没找到匹配的工具，换个词试试？","days":"加 / 减天数","daysNote":"填负数就是往前推","badDate":"日期格式不对（用 YYYY-MM-DD）","weekNames":["周日","周一","周二","周三","周四","周五","周六"],"baseLabel":"基准日期","vsToday":"距今天","daysUnit":"天","dayOfYear":"年内第","isoWeek":"ISO 周","leap":"闰年","offsetLabel":"偏移","usingToday":"按今天计算"};</script>
+<script>window.T = {"langName":"中文","footer":"ToolPocket · 全部在你的设备上完成，不上传任何文件。","nav":"全部工具","backToTools":"← 全部工具","copy":"复制结果","swap":"互换","clear":"清空","download":"下载","copied":"已复制到剪贴板","copyFail":"复制失败 —— 请手动选中复制","inputLabel":"输入","outputLabel":"结果","privacyNote":"完全在你的浏览器里运行，不上传、不保存。","searchPlaceholder":"搜索工具 —— 例如：压缩、json、密码…","noResults":"没找到匹配的工具，换个词试试？","mobileTip":"📱 手机能用，但<b>桌面版 Chrome 更顺</b> —— 大图压缩、批量处理会快很多。","mobileTipClose":"知道了","desktopHeading":"桌面端更好用","installApp":"装成桌面应用","installHint":"用桌面版 Chrome / Edge 打开本页，点地址栏右侧的「安装」图标 —— 它会变成一个独立窗口的桌面应用，断网也能用。不用下载安装包、不用账号。","installed":"已安装","offlineNote":"装好之后断网也能用 —— 这些工具本来就是在你机器上跑的，不需要服务器。","days":"加 / 减天数","daysNote":"填负数就是往前推","badDate":"日期格式不对（用 YYYY-MM-DD）","weekNames":["周日","周一","周二","周三","周四","周五","周六"],"baseLabel":"基准日期","vsToday":"距今天","daysUnit":"天","dayOfYear":"年内第","isoWeek":"ISO 周","leap":"闰年","offsetLabel":"偏移","usingToday":"按今天计算"};</script>
 <script src="/assets/tools/_shared.js" defer></script>
 <!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
 <script src="/assets/tools/date-calc.js?v=2" defer></script>
+<script src="/assets/app.js?v=2" defer></script>
 </body>
 </html>

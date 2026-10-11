@@ -15,10 +15,18 @@
 <link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/jwt.html">
 <link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/jwt.html">
 <link rel="stylesheet" href="/assets/style.css?v=2">
+<meta name="theme-color" content="#2563eb">
+<link rel="icon" href="/assets/icon-192.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/zh/manifest.webmanifest">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"JWT 解析器","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"解码 JSON Web Token：查看头部、载荷声明，并判断是否已过期。解码在浏览器本地完成；注意：能解开不等于有效。"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"能解开是不是就说明 token 合法？","acceptedAnswer":{"@type":"Answer","text":"不是。任何人都能造出一个载荷任意的 token，只有签名才能证明签发者。本页只做格式解码与声明解读；签名校验请放在你的服务端，绝不要交给浏览器里的工具。"}},{"@type":"Question","name":"为什么提示我的 token 格式不对？","acceptedAnswer":{"@type":"Answer","text":"JWT 必须是点号分隔的三段。复制粘贴时最常见的是漏掉最后一段，或者粘进来的是带引号和转义的 JSON 字符串；另外确认它没有被 URL 编码过。"}},{"@type":"Question","name":"生产环境的 token 贴这里安全吗？","acceptedAnswer":{"@type":"Answer","text":"本页不上传任何内容，但 token 等于密码。建议用测试 token；如果非要用真的，用完记得吊销或轮换。"}}]}</script>
 </head>
 <body>
+<div class="mobile-tip" id="mobileTip" hidden>
+  <span>📱 手机能用，但<b>桌面版 Chrome 更顺</b> —— 大图压缩、批量处理会快很多。</span>
+  <button type="button" id="tipClose" class="tip-close">知道了</button>
+</div>
 <header class="top">
   <a class="brand" href="/zh/index.html">🧰 ToolPocket</a>
   <nav class="langs"><a class="ad-link" href="/zh/advertise.html">广告位招租</a><a href="/tools/jwt.html">English</a><a href="/zh/tools/jwt.html" class="on" aria-current="page">中文</a><a href="/ja/tools/jwt.html">日本語</a></nav>
@@ -67,9 +75,10 @@
 
 <footer><p>ToolPocket · 全部在你的设备上完成，不上传任何文件。</p></footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script>window.T = {"langName":"中文","footer":"ToolPocket · 全部在你的设备上完成，不上传任何文件。","nav":"全部工具","backToTools":"← 全部工具","copy":"复制结果","swap":"互换","clear":"清空","download":"下载","copied":"已复制到剪贴板","copyFail":"复制失败 —— 请手动选中复制","inputLabel":"输入","outputLabel":"结果","privacyNote":"完全在你的浏览器里运行，不上传、不保存。","searchPlaceholder":"搜索工具 —— 例如：压缩、json、密码…","noResults":"没找到匹配的工具，换个词试试？","badShape":"JWT 必须是点号分隔的三段","badDecode":"解码失败","expired":"已过期","validFor":"还有效","ago":"前过期","noExp":"没有 exp 声明 —— 这个 token 不会过期","notYet":"尚未生效","notVerified":"未验证签名 —— 能解码不代表可信","decoded":"解码成功"};</script>
+<script>window.T = {"langName":"中文","footer":"ToolPocket · 全部在你的设备上完成，不上传任何文件。","nav":"全部工具","backToTools":"← 全部工具","copy":"复制结果","swap":"互换","clear":"清空","download":"下载","copied":"已复制到剪贴板","copyFail":"复制失败 —— 请手动选中复制","inputLabel":"输入","outputLabel":"结果","privacyNote":"完全在你的浏览器里运行，不上传、不保存。","searchPlaceholder":"搜索工具 —— 例如：压缩、json、密码…","noResults":"没找到匹配的工具，换个词试试？","mobileTip":"📱 手机能用，但<b>桌面版 Chrome 更顺</b> —— 大图压缩、批量处理会快很多。","mobileTipClose":"知道了","desktopHeading":"桌面端更好用","installApp":"装成桌面应用","installHint":"用桌面版 Chrome / Edge 打开本页，点地址栏右侧的「安装」图标 —— 它会变成一个独立窗口的桌面应用，断网也能用。不用下载安装包、不用账号。","installed":"已安装","offlineNote":"装好之后断网也能用 —— 这些工具本来就是在你机器上跑的，不需要服务器。","badShape":"JWT 必须是点号分隔的三段","badDecode":"解码失败","expired":"已过期","validFor":"还有效","ago":"前过期","noExp":"没有 exp 声明 —— 这个 token 不会过期","notYet":"尚未生效","notVerified":"未验证签名 —— 能解码不代表可信","decoded":"解码成功"};</script>
 <script src="/assets/tools/_shared.js" defer></script>
 <!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
 <script src="/assets/tools/jwt.js?v=2" defer></script>
+<script src="/assets/app.js?v=2" defer></script>
 </body>
 </html>

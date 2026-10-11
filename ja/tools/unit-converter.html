@@ -15,10 +15,18 @@
 <link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/unit-converter.html">
 <link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/unit-converter.html">
 <link rel="stylesheet" href="/assets/style.css?v=2">
+<meta name="theme-color" content="#2563eb">
+<link rel="icon" href="/assets/icon-192.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/ja/manifest.webmanifest">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"単位変換","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"mm・cm・m・km・インチ・フィート・マイル、グラム・オンス・ポンド、KB・MB・GB、摂氏・華氏・ケルビンを一括変換。アップロード不要。"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"MB と MiB は何が違いますか？","acceptedAnswer":{"@type":"Answer","text":"ここでは 10 進数（1 KB = 1000 バイト）を使っています。ストレージメーカーや多くのクラウドサービスの表記と同じです。OS は 2 進数（1024）で表示することが多く、500 GB のドライブが Windows では約 465 GB と表示されるのはそのためです。"}},{"@type":"Question","name":"温度も変換できますか？","acceptedAnswer":{"@type":"Answer","text":"はい。「温度」カテゴリを選ぶと、摂氏・華氏・ケルビンが同時に表示されます。"}},{"@type":"Question","name":"なぜ 2 つだけでなく全部表示するのですか？","acceptedAnswer":{"@type":"Answer","text":"3〜4 個を同時に比較したいことが多く、ドロップダウンを 2 つ選ぶ操作は単なる手間だからです。"}}]}</script>
 </head>
 <body>
+<div class="mobile-tip" id="mobileTip" hidden>
+  <span>📱 スマホでも動きますが、大きな画像やまとめての処理はデスクトップ版 Chrome が快適です。</span>
+  <button type="button" id="tipClose" class="tip-close">閉じる</button>
+</div>
 <header class="top">
   <a class="brand" href="/ja/index.html">🧰 ToolPocket</a>
   <nav class="langs"><a class="ad-link" href="/ja/advertise.html">広告掲載</a><a href="/tools/unit-converter.html">English</a><a href="/zh/tools/unit-converter.html">中文</a><a href="/ja/tools/unit-converter.html" class="on" aria-current="page">日本語</a></nav>
@@ -69,9 +77,10 @@
 
 <footer><p>ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。</p></footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script>window.T = {"langName":"日本語","footer":"ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"コピーできませんでした。手動で選択してください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理されます。送信も保存もしていません。","searchPlaceholder":"ツールを検索 — 例：圧縮、json、パスワード…","noResults":"該当するツールがありません。別の言葉でお試しを。","category":"カテゴリ","catLength":"長さ","catWeight":"重さ","catData":"データ容量","catTemp":"温度","value":"値","valuePh":"数値を入力","outputPh":"すべての単位の結果がここに表示されます","fromCelsius":"入力値は摂氏として扱います","unitLabel":"単位","categoryHint":"長さ・重さ・データ容量・温度。選ぶと同カテゴリの全単位を一度に表示します。","valueHint":"数値を入力します。入力欄の隣に、どの単位として扱うか（m / kg / MB / °C）が表示されます。"};</script>
+<script>window.T = {"langName":"日本語","footer":"ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"コピーできませんでした。手動で選択してください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理されます。送信も保存もしていません。","searchPlaceholder":"ツールを検索 — 例：圧縮、json、パスワード…","noResults":"該当するツールがありません。別の言葉でお試しを。","mobileTip":"📱 スマホでも動きますが、大きな画像やまとめての処理はデスクトップ版 Chrome が快適です。","mobileTipClose":"閉じる","desktopHeading":"デスクトップ版がおすすめ","installApp":"デスクトップアプリとして追加","installHint":"デスクトップ版 Chrome / Edge で開き、アドレスバー右側のインストールアイコンをクリックしてください。独立したウィンドウのアプリになり、オフラインでも動作します。","installed":"インストール済み","offlineNote":"インストール後はネットワークなしでも動作します。もともと処理は端末内で完結しているためです。","category":"カテゴリ","catLength":"長さ","catWeight":"重さ","catData":"データ容量","catTemp":"温度","value":"値","valuePh":"数値を入力","outputPh":"すべての単位の結果がここに表示されます","fromCelsius":"入力値は摂氏として扱います","unitLabel":"単位","categoryHint":"長さ・重さ・データ容量・温度。選ぶと同カテゴリの全単位を一度に表示します。","valueHint":"数値を入力します。入力欄の隣に、どの単位として扱うか（m / kg / MB / °C）が表示されます。"};</script>
 <script src="/assets/tools/_shared.js" defer></script>
 <!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
 <script src="/assets/tools/unit-converter.js?v=2" defer></script>
+<script src="/assets/app.js?v=2" defer></script>
 </body>
 </html>

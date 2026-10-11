@@ -15,10 +15,18 @@
 <link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/jwt.html">
 <link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/jwt.html">
 <link rel="stylesheet" href="/assets/style.css?v=2">
+<meta name="theme-color" content="#2563eb">
+<link rel="icon" href="/assets/icon-192.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"JWT decoder","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Decode a JSON Web Token: see the header, the payload claims and whether it has expired. Decoding happens in your browser, and note: decoding is not verification."}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does a successfully decoded token mean it is valid?","acceptedAnswer":{"@type":"Answer","text":"No. Anyone can craft a token with any payload; only the signature proves the issuer. This page decodes the format and reads the claims — validate signatures on your server, never in a browser tool."}},{"@type":"Question","name":"Why is my token rejected as malformed?","acceptedAnswer":{"@type":"Answer","text":"A JWT has exactly three dot-separated parts. Copy-paste often drops the last segment, or a JSON string arrives with quotes and escapes still on it. Also make sure it is not URL-encoded."}},{"@type":"Question","name":"Is it safe to paste a production token here?","acceptedAnswer":{"@type":"Answer","text":"Nothing is uploaded — but treat tokens like passwords. Prefer a test token; if you must use a real one, revoke or rotate it afterwards."}}]}</script>
 </head>
 <body>
+<div class="mobile-tip" id="mobileTip" hidden>
+  <span>📱 You are on a phone — it works here, but desktop Chrome is much smoother for big images and batch jobs.</span>
+  <button type="button" id="tipClose" class="tip-close">Got it</button>
+</div>
 <header class="top">
   <a class="brand" href="/index.html">🧰 ToolPocket</a>
   <nav class="langs"><a class="ad-link" href="/advertise.html">Advertise</a><a href="/tools/jwt.html" class="on" aria-current="page">English</a><a href="/zh/tools/jwt.html">中文</a><a href="/ja/tools/jwt.html">日本語</a></nav>
@@ -67,9 +75,10 @@
 
 <footer><p>ToolPocket · Everything runs on your device — nothing is uploaded.</p></footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script>window.T = {"langName":"English","footer":"ToolPocket · Everything runs on your device — nothing is uploaded.","nav":"All tools","backToTools":"← All tools","copy":"Copy result","swap":"Swap","clear":"Clear","download":"Download","copied":"Copied to clipboard","copyFail":"Copy failed — select the text manually","inputLabel":"Input","outputLabel":"Result","privacyNote":"Runs entirely in your browser. Nothing is uploaded or stored.","searchPlaceholder":"Search tools — e.g. compress, json, 密码…","noResults":"No tool matches that. Try another word?","badShape":"A JWT must have three parts separated by dots","badDecode":"Could not decode","expired":"expired","validFor":"valid for another","ago":"ago","noExp":"no exp claim — this token never expires","notYet":"not valid yet","notVerified":"signature NOT verified — decoding does not prove authenticity","decoded":"decoded"};</script>
+<script>window.T = {"langName":"English","footer":"ToolPocket · Everything runs on your device — nothing is uploaded.","nav":"All tools","backToTools":"← All tools","copy":"Copy result","swap":"Swap","clear":"Clear","download":"Download","copied":"Copied to clipboard","copyFail":"Copy failed — select the text manually","inputLabel":"Input","outputLabel":"Result","privacyNote":"Runs entirely in your browser. Nothing is uploaded or stored.","searchPlaceholder":"Search tools — e.g. compress, json, 密码…","noResults":"No tool matches that. Try another word?","mobileTip":"📱 You are on a phone — it works here, but desktop Chrome is much smoother for big images and batch jobs.","mobileTipClose":"Got it","desktopHeading":"Better on desktop","installApp":"Install as desktop app","installHint":"Open this site in desktop Chrome or Edge and click the install icon at the right of the address bar. It becomes its own window and keeps working offline — no download, no account.","installed":"Already installed","offlineNote":"Once installed, the tools work with no network at all — everything runs on your machine anyway.","badShape":"A JWT must have three parts separated by dots","badDecode":"Could not decode","expired":"expired","validFor":"valid for another","ago":"ago","noExp":"no exp claim — this token never expires","notYet":"not valid yet","notVerified":"signature NOT verified — decoding does not prove authenticity","decoded":"decoded"};</script>
 <script src="/assets/tools/_shared.js" defer></script>
 <!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
 <script src="/assets/tools/jwt.js?v=2" defer></script>
+<script src="/assets/app.js?v=2" defer></script>
 </body>
 </html>

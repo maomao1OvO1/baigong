@@ -15,10 +15,18 @@
 <link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/color-converter.html">
 <link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/color-converter.html">
 <link rel="stylesheet" href="/assets/style.css?v=2">
+<meta name="theme-color" content="#2563eb">
+<link rel="icon" href="/assets/icon-192.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Color converter — HEX, RGB, HSL","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Paste any color (#hex, rgb() or hsl()) and get all three formats at once, plus a live preview. Runs in your browser."}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Which formats does it accept?","acceptedAnswer":{"@type":"Answer","text":"#abc, #aabbcc, rgb(r,g,b), rgba(...) and hsl(h,s%,l%) — with or without spaces."}},{"@type":"Question","name":"Is it exact?","acceptedAnswer":{"@type":"Answer","text":"RGB ↔ HEX is exact. HSL is rounded for readability but the underlying conversion is standard CSS math."}},{"@type":"Question","name":"Why not a color picker?","acceptedAnswer":{"@type":"Answer","text":"There is one below the input — but most people arrive with a color already copied, so pasting is the fast path."}}]}</script>
 </head>
 <body>
+<div class="mobile-tip" id="mobileTip" hidden>
+  <span>📱 You are on a phone — it works here, but desktop Chrome is much smoother for big images and batch jobs.</span>
+  <button type="button" id="tipClose" class="tip-close">Got it</button>
+</div>
 <header class="top">
   <a class="brand" href="/index.html">🧰 ToolPocket</a>
   <nav class="langs"><a class="ad-link" href="/advertise.html">Advertise</a><a href="/tools/color-converter.html" class="on" aria-current="page">English</a><a href="/zh/tools/color-converter.html">中文</a><a href="/ja/tools/color-converter.html">日本語</a></nav>
@@ -69,9 +77,10 @@
 
 <footer><p>ToolPocket · Everything runs on your device — nothing is uploaded.</p></footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script>window.T = {"langName":"English","footer":"ToolPocket · Everything runs on your device — nothing is uploaded.","nav":"All tools","backToTools":"← All tools","copy":"Copy result","swap":"Swap","clear":"Clear","download":"Download","copied":"Copied to clipboard","copyFail":"Copy failed — select the text manually","inputLabel":"Input","outputLabel":"Result","privacyNote":"Runs entirely in your browser. Nothing is uploaded or stored.","searchPlaceholder":"Search tools — e.g. compress, json, 密码…","noResults":"No tool matches that. Try another word?","inputPh":"Paste a color: #2f6df6, rgb(47,109,246), hsl(220, 91%, 57%)…","outputPh":"HEX / RGB / HSL appear here","pickerHint":"Pick a colour here and it fills the input above automatically."};</script>
+<script>window.T = {"langName":"English","footer":"ToolPocket · Everything runs on your device — nothing is uploaded.","nav":"All tools","backToTools":"← All tools","copy":"Copy result","swap":"Swap","clear":"Clear","download":"Download","copied":"Copied to clipboard","copyFail":"Copy failed — select the text manually","inputLabel":"Input","outputLabel":"Result","privacyNote":"Runs entirely in your browser. Nothing is uploaded or stored.","searchPlaceholder":"Search tools — e.g. compress, json, 密码…","noResults":"No tool matches that. Try another word?","mobileTip":"📱 You are on a phone — it works here, but desktop Chrome is much smoother for big images and batch jobs.","mobileTipClose":"Got it","desktopHeading":"Better on desktop","installApp":"Install as desktop app","installHint":"Open this site in desktop Chrome or Edge and click the install icon at the right of the address bar. It becomes its own window and keeps working offline — no download, no account.","installed":"Already installed","offlineNote":"Once installed, the tools work with no network at all — everything runs on your machine anyway.","inputPh":"Paste a color: #2f6df6, rgb(47,109,246), hsl(220, 91%, 57%)…","outputPh":"HEX / RGB / HSL appear here","pickerHint":"Pick a colour here and it fills the input above automatically."};</script>
 <script src="/assets/tools/_shared.js" defer></script>
 <!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
 <script src="/assets/tools/color-converter.js?v=2" defer></script>
+<script src="/assets/app.js?v=2" defer></script>
 </body>
 </html>

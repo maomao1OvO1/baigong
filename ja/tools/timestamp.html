@@ -15,10 +15,18 @@
 <link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/timestamp.html">
 <link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/timestamp.html">
 <link rel="stylesheet" href="/assets/style.css?v=2">
+<meta name="theme-color" content="#2563eb">
+<link rel="icon" href="/assets/icon-192.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/ja/manifest.webmanifest">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Unix タイムスタンプ変換","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Unix タイムスタンプと日時を相互変換し、ローカル時刻・UTC・ISO 8601・曜日をまとめて表示。10 桁（秒）と 13 桁（ミリ秒）を自動判別します。"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"秒ですか、ミリ秒ですか？","acceptedAnswer":{"@type":"Answer","text":"どちらも対応します。10 桁は秒、13 桁はミリ秒として扱います。ほぼすべての API がこの慣習です。"}},{"@type":"Question","name":"なぜ時刻が 2 つ表示されるのですか？","acceptedAnswer":{"@type":"Answer","text":"サーバーは UTC で保存し、人はローカル時刻で考えるからです。並べて表示すれば、数時間ずれるバグが一目で分かります。"}},{"@type":"Question","name":"日付はどんな形式で入力できますか？","acceptedAnswer":{"@type":"Answer","text":"2026-10-11 12:30:45、2026/10/11、2026-10-11T12:30 など。スラッシュも自動変換します。"}}]}</script>
 </head>
 <body>
+<div class="mobile-tip" id="mobileTip" hidden>
+  <span>📱 スマホでも動きますが、大きな画像やまとめての処理はデスクトップ版 Chrome が快適です。</span>
+  <button type="button" id="tipClose" class="tip-close">閉じる</button>
+</div>
 <header class="top">
   <a class="brand" href="/ja/index.html">🧰 ToolPocket</a>
   <nav class="langs"><a class="ad-link" href="/ja/advertise.html">広告掲載</a><a href="/tools/timestamp.html">English</a><a href="/zh/tools/timestamp.html">中文</a><a href="/ja/tools/timestamp.html" class="on" aria-current="page">日本語</a></nav>
@@ -69,9 +77,10 @@
 
 <footer><p>ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。</p></footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script>window.T = {"langName":"日本語","footer":"ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"コピーできませんでした。手動で選択してください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理されます。送信も保存もしていません。","searchPlaceholder":"ツールを検索 — 例：圧縮、json、パスワード…","noResults":"該当するツールがありません。別の言葉でお試しを。","mode":"方向","toDate":"タイムスタンプ → 日時","toSec":"日時 → タイムスタンプ","inputPh":"例：1791734016　または　2026-10-11 12:30:45","outputPh":"結果がここに表示されます","localTime":"ローカル","now":"現在時刻を使う","modeHint":"どちらの方向にも対応。10 桁は秒、13 桁はミリ秒として自動判別します。"};</script>
+<script>window.T = {"langName":"日本語","footer":"ToolPocket · 処理はすべて端末側で行われます。ファイルは送信されません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"コピーできませんでした。手動で選択してください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理されます。送信も保存もしていません。","searchPlaceholder":"ツールを検索 — 例：圧縮、json、パスワード…","noResults":"該当するツールがありません。別の言葉でお試しを。","mobileTip":"📱 スマホでも動きますが、大きな画像やまとめての処理はデスクトップ版 Chrome が快適です。","mobileTipClose":"閉じる","desktopHeading":"デスクトップ版がおすすめ","installApp":"デスクトップアプリとして追加","installHint":"デスクトップ版 Chrome / Edge で開き、アドレスバー右側のインストールアイコンをクリックしてください。独立したウィンドウのアプリになり、オフラインでも動作します。","installed":"インストール済み","offlineNote":"インストール後はネットワークなしでも動作します。もともと処理は端末内で完結しているためです。","mode":"方向","toDate":"タイムスタンプ → 日時","toSec":"日時 → タイムスタンプ","inputPh":"例：1791734016　または　2026-10-11 12:30:45","outputPh":"結果がここに表示されます","localTime":"ローカル","now":"現在時刻を使う","modeHint":"どちらの方向にも対応。10 桁は秒、13 桁はミリ秒として自動判別します。"};</script>
 <script src="/assets/tools/_shared.js" defer></script>
 <!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
 <script src="/assets/tools/timestamp.js?v=2" defer></script>
+<script src="/assets/app.js?v=2" defer></script>
 </body>
 </html>

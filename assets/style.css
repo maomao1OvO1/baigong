@@ -284,6 +284,32 @@ footer { max-width: var(--maxw); margin: 60px auto 0; padding-top: 20px; border-
   .grid { grid-template-columns: 1fr 1fr; }
 }
 
+/* ── 手机端提示条（2026-10-12 毛毛要求：推荐用桌面 Chrome 访问）──
+   只在 ≤720px 的屏幕上由 app.js 显示；点「知道了」写进 localStorage，之后不再出现。
+   样式上刻意做得像"一行说明"而不是弹窗 —— 它是建议，不是拦截。 */
+.mobile-tip {
+  display: flex; align-items: center; gap: 12px;
+  max-width: var(--maxw); margin: 16px auto 0; padding: 12px 14px;
+  border: 1px solid var(--line); border-radius: var(--radius); background: var(--soft);
+  font-size: 13px; line-height: 1.6;
+}
+.mobile-tip[hidden] { display: none; }
+.mobile-tip span { flex: 1; min-width: 0; }
+.tip-close {
+  flex: 0 0 auto; font: inherit; font-size: 12.5px; font-weight: 600;
+  padding: 8px 13px; border: 1px solid var(--line); border-radius: 8px;
+  background: var(--bg); color: var(--fg); cursor: pointer; transition: border-color .15s;
+}
+.tip-close:hover { border-color: var(--fg); }
+
+/* ── 「桌面端更好用 / 装成桌面应用」（只在首页）──
+   和 .why 一样用一条细线分隔：说明归说明，不和工具列表抢注意力。 */
+.install { border-top: 1px solid var(--line); margin-top: 46px; padding-top: 6px; }
+.install h2 { margin-top: 20px; }
+.install p { color: var(--muted); font-size: 14px; }
+.install #installNote { color: var(--fg); }
+.install .btnrow { margin-top: 16px; }
+
 /* ══════════════════════════════════════════════════════════════════════════
    移动端适配（2026-10-12 补 · 毛毛：「手机端没有适配，只有网页端适配了 UI」）
    四条原则：
@@ -315,4 +341,7 @@ footer { max-width: var(--maxw); margin: 60px auto 0; padding-top: 20px; border-
   table.spec td:first-child { width: auto; }
   /* 长串（URL、哈希、代码）不许把页面撑宽 */
   code, .grid .sub, .searchresults .s-meta span { overflow-wrap: anywhere; }
+  .mobile-tip { margin-top: 12px; font-size: 12.5px; padding: 11px 12px; }
+  .tip-close { min-height: 44px; padding: 11px 14px; }   /* 触控目标 */
+  .install { margin-top: 34px; }
 }
