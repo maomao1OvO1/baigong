@@ -36,24 +36,47 @@
     },
     "tool-bottom": {
       "en": {
-        "label": "From us",
-        "title": "Made by the same person",
-        "body": "This tool set is built by one developer. The same person also made a tower-defence game and a few other things.",
+        "label": "From the maker",
+        "title": "More from the same developer",
+        "body": "Photography, music, small games and a few 3D experiments — all built solo, all free to look at.",
         "cta": "Have a look",
         "href": "https://maomaowang.top/"
       },
       "zh": {
         "label": "自己人做的",
-        "title": "同一双手做的别的东西",
-        "body": "这套工具是一个人做的。同一个人还写了一个塔防游戏，以及一些别的小玩意。",
+        "title": "同一个人做的别的东西",
+        "body": "摄影、音乐、小游戏，还有几个 3D 小实验 —— 都是一个人做的，都能随便看。",
         "cta": "去看看",
         "href": "https://maomaowang.top/"
       },
       "ja": {
         "label": "製作者より",
-        "title": "同じ人が作ったもの",
-        "body": "このツール群は一人の開発者が作っています。同じ人がタワーディフェンスのゲームなども作っています。",
+        "title": "同じ開発者のほかの制作物",
+        "body": "写真、音楽、小さなゲーム、いくつかの 3D 実験 —— すべて個人で作ったもので、自由に見られます。",
         "cta": "見てみる",
+        "href": "https://maomaowang.top/"
+      }
+    },
+    "home-self": {
+      "en": {
+        "label": "From the maker",
+        "title": "The same person also makes other things",
+        "body": "This tool set is built by one developer. They also do photography, music, small games and 3D experiments — all on one personal site.",
+        "cta": "Visit the personal site",
+        "href": "https://maomaowang.top/"
+      },
+      "zh": {
+        "label": "自己人做的",
+        "title": "同一个人还做了这些",
+        "body": "这套工具是一个人独立做的。同一个人还拍照片、做音乐、写小游戏、折腾 3D 太阳系模型和一些硬件测试的小工具。",
+        "cta": "去他的个人站看看",
+        "href": "https://maomaowang.top/"
+      },
+      "ja": {
+        "label": "製作者より",
+        "title": "同じ人が作っているもの",
+        "body": "このツール群は一人の開発者が作っています。写真、音楽、小さなゲーム、3D の実験なども個人サイトで公開しています。",
+        "cta": "個人サイトを見る",
         "href": "https://maomaowang.top/"
       }
     }

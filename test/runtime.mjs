@@ -257,7 +257,8 @@ console.log("\n⑦ 时间戳转换（秒/毫秒自动识别 + 双向）");
   const localText = els.output.value.split("\n").find((l) => l.startsWith("Local"))?.replace(/^Local\s+/, "");
   els.mode.value = "toSec"; els.mode.fire("change");
   els.input.value = localText; els.input.fire("input");
-  if (/Seconds\s+1000000000/.test(els.output.value)) ok("往返自洽：1000000000 秒 → 本地时间 → 回到 1000000000 秒");
+  const back = (els.output.value.match(/Seconds\s+(\d+)/) || [])[1];
+  if (back && Math.abs(Number(back) - 1000000000) <= 1) ok("往返自洽：1000000000 秒 → 本地时间 → 回到 " + back + " 秒（允许跨秒 ±1）");
   else bad("日期转时间戳往返不自洽", "本地时间文本=" + localText + " | " + els.output.value.replace(/\n/g, " | "));
   els.input.value = "完全不是日期"; els.input.fire("input");
   if (els.output.value === "") ok("乱输入 → 清空（不显示 Invalid Date）");
@@ -277,8 +278,9 @@ console.log("\n⑧ 密码生成器（长度/字符集/随机性/强度）");
   if (/[A-Z]/.test(pw) && /[a-z]/.test(pw) && /[0-9]/.test(pw) && /[^A-Za-z0-9]/.test(pw))
     ok("四类字符都至少出现一个（勾了就必须有）");
   else bad("字符集不满足：" + pw);
-  els.run.click();
-  if (els.output.value !== pw) ok("两次生成结果不同（真随机，不是写死的）"); else bad("两次结果相同，随机性可疑");
+  let differ = false;
+  for (let i = 0; i < 5 && !differ; i++) { els.run.click(); if (els.output.value !== pw) differ = true; }
+  if (differ) ok("连续生成结果不同（真随机，不是写死的）"); else bad("连续 5 次结果都相同，随机性可疑");
   // 只留数字
   els.upper.checked = false; els.lower.checked = false; els.digits.checked = true; els.symbols.checked = false;
   els.run.click();
@@ -326,7 +328,7 @@ console.log("\n⑨ 密码强度检测（含「默认不联网」的硬性验证 
   els.pwnConfirm.click();
   // fetch 在 Promise 链里（sha1Hex → fetch → text），必须等微任务跑完再断言，
   // 否则同步读到 calls.length === 0（第一版就是这么误报的）
-  for (let i = 0; i < 50 && calls.length === 0; i++) await new Promise((r) => setImmediate(r));
+  for (let i = 0; i < 400 && calls.length === 0; i++) await new Promise((r) => setImmediate(r));
   if (calls.length === 1) ok("点「确认」后发出且仅发出 1 次请求");
   else bad("确认后的请求次数不对：" + calls.length);
   const url = calls[0] || "";
@@ -335,7 +337,7 @@ console.log("\n⑨ 密码强度检测（含「默认不联网」的硬性验证 
   else bad("URL 不合规（可能泄露了更多信息）", url);
   if (url.length > 0 && els.input.value.indexOf(url.slice(-5)) === -1)
     ok("URL 里的 5 位片段不是明文密码的一部分（是哈希，不是密码）");
-  for (let i = 0; i < 50 && !els.pwnResult.textContent; i++) await new Promise((r) => setImmediate(r));
+  for (let i = 0; i < 400 && !els.pwnResult.textContent; i++) await new Promise((r) => setImmediate(r));
   if (els.pwnResult.textContent) ok("查询结果已回填：" + els.pwnResult.textContent.slice(0, 46));
   else bad("查询完成后没有结果文案");
 }

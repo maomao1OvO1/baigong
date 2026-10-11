@@ -309,6 +309,7 @@ ${cards}
     <p>${rich(t.safe)}</p>
   </section>
 
+${adSlot(lang, "home-self")}
 ${adSlot(lang, "home-bottom")}
 </main>
 
