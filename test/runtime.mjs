@@ -25,7 +25,7 @@ function makeEl(id) {
   const listeners = {};
   const el = {
     id, value: "", textContent: "", innerHTML: "", className: "", disabled: false,
-    style: {}, dataset: {}, checked: false,
+    style: {}, dataset: {}, checked: false, hidden: false,
     classList: {
       add(c) { el.className = (el.className ? el.className + " " : "") + c; },
       remove(c) { el.className = el.className.split(" ").filter((x) => x && x !== c).join(" "); },
@@ -43,7 +43,7 @@ function makeEl(id) {
 
 /** 用一组 id 造一个假页面 + 假 window，然后加载 _shared.js 与指定工具脚本
     defaults：模拟浏览器给 <select> 自动选中的第一项（真浏览器就是这样，不设会拿到空串）。 */
-function loadTool(scriptFile, ids, strings, defaults = {}) {
+function loadTool(scriptFile, ids, strings, defaults = {}, extra = {}) {
   const els = {};
   for (const id of ids) els[id] = makeEl(id);
   for (const [id, v] of Object.entries(defaults)) if (els[id]) els[id].value = v;
@@ -63,6 +63,7 @@ function loadTool(scriptFile, ids, strings, defaults = {}) {
     Promise, TextEncoder, TextDecoder, Uint8Array, Math, JSON, String, Number, parseFloat, parseInt, isFinite, Object, Array, Date, RegExp, Error, Set, Map,
     btoa: (s) => Buffer.from(s, "binary").toString("base64"),
     atob: (s) => Buffer.from(s, "base64").toString("binary"),
+    ...extra,
     document: doc,
     navigator: { clipboard: { writeText: () => Promise.resolve() } },
     isSecureContext: true,
@@ -288,6 +289,85 @@ console.log("\n⑧ 密码生成器（长度/字符集/随机性/强度）");
   else bad("长度滑块失效", els.output.value.length + " / badge=" + els.lengthVal.textContent);
   if (els.meter.textContent && els.meter.textContent.length > 0) ok("强度提示已显示：" + els.meter.textContent.slice(0, 40));
   else bad("强度提示为空");
+}
+
+
+console.log("\n⑨ 密码强度检测（含「默认不联网」的硬性验证 —— 毛毛的明确要求）");
+{
+  const ui = Object.assign(readUi("en"), readI18n("password-strength", "en"));
+  // mock fetch：记录每一次调用，并返回一段可控的 HIBP 响应
+  const calls = [];
+  const fakeFetch = (url) => {
+    calls.push(url);
+    return Promise.resolve({ text: () => Promise.resolve("0000000000000000000000000000000000:3\nDEADBEEF000000000000000000000000000:42") });
+  };
+  const { els } = loadTool("password-strength.js",
+    ["input", "output", "meter", "status", "pwn", "pwnBox", "pwnConfirm", "pwnCancel", "pwnResult", "copy", "clear", "toast"],
+    ui, {}, { fetch: fakeFetch, TP_TEST: true });
+
+  // ⭐ 断言 1：页面加载后，一个网络请求都不能发
+  if (calls.length === 0) ok("加载后零网络请求（默认完全离线）");
+  else bad("加载后竟然发了请求：" + calls.join(", "));
+
+  // ⭐ 断言 2：输入密码做强度分析，依然零请求
+  els.input.value = "correct horse battery staple x9!";
+  els.input.fire("input");
+  if (calls.length === 0) ok("输入并分析密码后仍是零请求");
+  else bad("分析密码时发了请求：" + calls.join(", "));
+  if (els.output.value.includes("bits")) ok("强度报告已生成（含 bits）");
+  else bad("强度报告为空", els.output.value.slice(0, 80));
+
+  // ⭐ 断言 3：点「查询泄露库」只展开说明，还是不发请求
+  els.pwn.click();
+  if (calls.length === 0 && els.pwnBox.hidden === false) ok("点「查询」只展开同意说明，仍零请求");
+  else bad("点查询就发了请求，或说明没展开", "calls=" + calls.length + " hidden=" + els.pwnBox.hidden);
+
+  // ⭐ 断言 4：只有点了「确认」才真的联网，且 URL 里只有 SHA-1 前 5 位
+  els.pwnConfirm.click();
+  // fetch 在 Promise 链里（sha1Hex → fetch → text），必须等微任务跑完再断言，
+  // 否则同步读到 calls.length === 0（第一版就是这么误报的）
+  for (let i = 0; i < 50 && calls.length === 0; i++) await new Promise((r) => setImmediate(r));
+  if (calls.length === 1) ok("点「确认」后发出且仅发出 1 次请求");
+  else bad("确认后的请求次数不对：" + calls.length);
+  const url = calls[0] || "";
+  if (/^https:\/\/api\.pwnedpasswords\.com\/range\/[0-9A-F]{5}$/.test(url))
+    ok("请求 URL 合规（只含 SHA-1 前 5 位）：" + url);
+  else bad("URL 不合规（可能泄露了更多信息）", url);
+  if (url.length > 0 && els.input.value.indexOf(url.slice(-5)) === -1)
+    ok("URL 里的 5 位片段不是明文密码的一部分（是哈希，不是密码）");
+  for (let i = 0; i < 50 && !els.pwnResult.textContent; i++) await new Promise((r) => setImmediate(r));
+  if (els.pwnResult.textContent) ok("查询结果已回填：" + els.pwnResult.textContent.slice(0, 46));
+  else bad("查询完成后没有结果文案");
+}
+
+console.log("\n⑩ 弱密码识别（这些必须被当场抓出来）");
+{
+  const ui = Object.assign(readUi("en"), readI18n("password-strength", "en"));
+  const { els } = loadTool("password-strength.js",
+    ["input", "output", "meter", "status", "pwn", "pwnBox", "pwnConfirm", "pwnCancel", "pwnResult", "copy", "clear", "toast"],
+    ui, {}, { fetch: () => Promise.reject(new Error("should not be called")), TP_TEST: true });
+  const check = (pw) => { els.input.value = pw; els.input.fire("input"); return els.output.value; };
+
+  const weak = [
+    ["123456", "issueCommon"], ["password", "issueCommon"], ["qwerty123", "issueKeyboard"],
+    ["aaaaaaaa", "issueRepeat"], ["abcd1234", "issueSequence"], ["19900101", "issueDate"],
+    ["13800138000", "issueDigits"], ["abcdefgh", "issueLowerOnly"],
+  ];
+  for (const [pw, key] of weak) {
+    const out = check(pw);
+    if (out.includes(ui[key])) ok(`「${pw}」被识别为「${ui[key]}」`);
+    else bad(`「${pw}」没有被识别出 ${key}`, out.split("\n").slice(0, 3).join(" | "));
+  }
+  // 强密码不该被误报
+  const strong = check("Tr0ub4dor&3-kX9!mQ");
+  if (/Very strong|Strong/.test(strong)) ok("强密码评为强（没误报）");
+  else bad("强密码被误判", strong.split("\n")[0]);
+
+  // 长短对比：同一模式，更长的时间必须更久
+  const t1 = check("aB3!aB3!"), t2 = check("aB3!aB3!aB3!aB3!aB3!aB3!");
+  const secOf = (txt) => (txt.split("\n").find((l) => l.includes("Single GPU")) || "");
+  if (secOf(t2) !== secOf(t1) && secOf(t1) && secOf(t2)) ok("更长 ⇒ 破解时间显著变长（" + secOf(t1).split(": ")[1] + " → " + secOf(t2).split(": ")[1] + "）");
+  else bad("长度没有影响破解时间估算", secOf(t1) + " / " + secOf(t2));
 }
 
 console.log(`\n结果：${pass} 项通过，${fail} 项失败`);

@@ -162,6 +162,22 @@ ${renderOptions(lang, tool, t)}
         : `<button class="ghost" id="${b}">${rich(labelOf(b))}</button>`).join("\n    ");
     const swatch = (tool.extras || []).indexOf("swatch") >= 0 ? `\n  <div class="swatch" id="swatch" aria-hidden="true"></div>` : "";
     const meter = (tool.extras || []).indexOf("meter") >= 0 ? `\n  <p class="status" id="meter"></p>` : "";
+    /* 泄露检测区块（extras 里的 "pwn"）：
+       结构上故意做成「按钮 → 展开说明 → 再点确认」两步 —— 用户要求"不要自己默认联网，
+       要点确定之类的"。所以这里只渲染 DOM，真正的 fetch 只可能由 pwnConfirm 的点击触发。 */
+    const pwn = (tool.extras || []).indexOf("pwn") >= 0 ? `
+  <div class="pwn">
+    <p class="note">${rich(ui.pwnIntro || "")}</p>
+    <div class="btnrow"><button class="ghost" id="pwn">${rich(ui.pwnButton || "")}</button></div>
+    <div class="confirm" id="pwnBox" hidden>
+      <p class="note">${rich(ui.pwnConsent || "")}</p>
+      <div class="btnrow">
+        <button id="pwnConfirm">${rich(ui.pwnConfirm || "")}</button>
+        <button class="ghost" id="pwnCancel">${rich(ui.pwnCancel || "")}</button>
+      </div>
+    </div>
+    <p class="status" id="pwnResult"></p>
+  </div>` : "";
     // hideInput：极少数工具不需要大输入框（如单位换算只填一个数字），但**输出框永远要有**
     const inputArea = tool.hideInput
       ? ""
@@ -175,7 +191,7 @@ ${inputArea}
 ${renderOptions(lang, tool, t)}
   </div>${swatch}
 ${outputArea}
-  <p class="status" id="status"></p>${meter}
+  <p class="status" id="status"></p>${meter}${pwn}
   <div class="btnrow">
     ${btnHtml}
   </div>

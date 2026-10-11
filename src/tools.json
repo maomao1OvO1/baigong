@@ -413,6 +413,22 @@
         }
       ],
       "hideInput": true
+    },
+    {
+      "id": "password-strength",
+      "icon": "🛡️",
+      "kind": "text",
+      "script": "password-strength.js",
+      "i18n": "password-strength",
+      "buttons": [
+        "copy",
+        "clear"
+      ],
+      "extras": [
+        "meter",
+        "pwn"
+      ],
+      "options": []
     }
   ]
 }

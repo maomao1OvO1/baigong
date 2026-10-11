@@ -167,6 +167,19 @@ summary::before { content: "＋ "; color: var(--brand); font-weight: 700; }
 details[open] summary::before { content: "－ "; }
 details p { margin: 9px 0 0; color: var(--muted); font-size: 14px; }
 
+/* ── 泄露检测区块（默认收起，用户点开才出现 —— 联网功能必须显式同意）── */
+.pwn {
+  margin: 18px 0 0; padding: 15px 16px; border: 1px solid var(--line);
+  border-radius: var(--radius); background: var(--bg);
+}
+.pwn .btnrow { margin-top: 10px; }
+.pwn .confirm {
+  margin-top: 12px; padding: 13px 14px; border-radius: 11px;
+  background: var(--brand-soft); border: 1px solid var(--brand);
+}
+.pwn .confirm .note { color: var(--fg); }
+.pwn .confirm button:not(.ghost) { background: var(--brand); }
+
 /* ── 提示条 ── */
 .toast {
   position: fixed; left: 50%; bottom: 26px; transform: translate(-50%, 14px);
