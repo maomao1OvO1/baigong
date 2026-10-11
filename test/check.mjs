@@ -400,5 +400,34 @@ console.log("\n⑬ 搜索空结果的口吻");
   else bad("app.js 没读 data-subject");
 }
 
+/* ── ⑭ 邮箱分流：反馈 → hi@，招租 → ad@ ────────────────────────────────
+   毛毛 2026-10-12：「不是一个 hi 一个 ad 吗？搞吧」。
+   为什么要分：用户看到 ad（advertisement＝广告）会以为"这不是收反馈的"；
+   而广告主的询价涉及钱、要尽快回，跟用户反馈混在一个箱子里容易互相淹没。
+   这条检查盯两件事：反馈入口全站都指向 hi@；招租那条线不许被误改。 */
+console.log("\n⑭ 邮箱分流（反馈 hi@ · 招租 ad@）");
+{
+  const ui = JSON.parse(fs.readFileSync(path.join(ROOT, "src/i18n/ui.json"), "utf8"));
+  if (ui.feedbackUser === "hi" && ui.feedbackDomain === "maomaowang.top") ok(`反馈邮箱：${ui.feedbackUser}@${ui.feedbackDomain}`);
+  else bad("反馈邮箱不对", `实际 ${ui.feedbackUser}@${ui.feedbackDomain}，应为 hi@maomaowang.top`);
+
+  const adv = JSON.parse(fs.readFileSync(path.join(ROOT, "src/i18n/advertise.json"), "utf8"));
+  const wrongAdv = ["en", "zh", "ja"].filter((l) => adv[l].contactUser !== "ad");
+  if (!wrongAdv.length) ok("招租页三语仍是 ad@（广告主专用，不跟着改）");
+  else bad("招租页邮箱被误改：" + wrongAdv.join(", "), "广告主会发错邮箱");
+
+  for (const f of ["index.html", "zh/index.html", "ja/index.html", "zh/tools/base64.html", "ja/tools/hash.html", "404.html"]) {
+    const html = fs.readFileSync(path.join(ROOT, f), "utf8");
+    if (html.includes('data-u="hi"')) ok(`${f}：反馈入口指向 hi@`);
+    else bad(`${f}：反馈入口不是 hi@`, "用户来信会发错地方");
+  }
+  /* 招租页上**两种邮箱都对**才算过：正文里的投放联系方式＝ad@（广告主），
+     页脚那个反馈入口＝hi@（用户来信）。第一版断言写窄了，以为招租页只能有 ad —— 
+     其实它两处都有，这才是分流生效的样子。 */
+  const advHtml = fs.readFileSync(path.join(ROOT, "zh/advertise.html"), "utf8");
+  if (advHtml.includes('data-u="ad"') && advHtml.includes('data-u="hi"')) ok("招租页两种邮箱各就各位（投放联系 ad@ / 页脚反馈 hi@）");
+  else bad("招租页邮箱不对", "投放联系应是 ad@，页脚反馈应是 hi@ —— 两处都该在");
+}
+
 console.log(`\n结果：${pass} 项通过，${fail} 项失败`);
 process.exit(fail ? 1 : 0);

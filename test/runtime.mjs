@@ -806,7 +806,7 @@ console.log("\n㉕ 站内搜索（索引路径 / 打分 / 结果渲染）");
       body: { appendChild() {}, removeChild() {} },
       // 页脚那个反馈按钮：空结果里的按钮会从它身上读邮箱（页面里只存一份 data-u / data-d）
       querySelector: (sel) => (sel === ".fb-btn"
-        ? { getAttribute: (k) => (k === "data-u" ? "ad" : k === "data-d" ? "maomaowang.top" : null) }
+        ? { getAttribute: (k) => (k === "data-u" ? "hi" : k === "data-d" ? "maomaowang.top" : null) }
         : null),
     },
     location: { hash: "", href: "" },
@@ -848,7 +848,7 @@ console.log("\n㉕ 站内搜索（索引路径 / 打分 / 结果渲染）");
   else bad("空状态文案没走注入的文案", els.searchResults.innerHTML.slice(0, 120));
   // 毛毛的要求：搜不出来的时候，这里要能直接联系作者
   if (els.searchResults.innerHTML.indexOf("fb-btn") >= 0 &&
-      els.searchResults.innerHTML.indexOf('data-u="ad"') >= 0) ok("空结果里有反馈按钮（邮箱从页脚按钮读，页面里不留第二份明文）");
+      els.searchResults.innerHTML.indexOf('data-u="hi"') >= 0) ok("空结果里有反馈按钮（邮箱从页脚按钮读，页面里不留第二份明文）");
   else bad("空结果里没有反馈按钮", els.searchResults.innerHTML.slice(0, 160));
   // 搜不到东西是"站里还没有"，按钮该说"提个需求"，不是"反馈 bug"（毛毛 2026-10-12 指出）
   if (els.searchResults.innerHTML.indexOf(uiJson.noResultsBtn.zh) >= 0 &&

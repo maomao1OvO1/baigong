@@ -126,7 +126,7 @@
     "zh": "ToolPocket 反馈",
     "ja": "ToolPocket へのフィードバック"
   },
-  "feedbackUser": "ad",
+  "feedbackUser": "hi",
   "feedbackDomain": "maomaowang.top",
   "noResultsAsk": {
     "en": "Can't find it? Tell me what you were looking for — I read every message.",
@@ -152,5 +152,6 @@
     "en": "ToolPocket tool request",
     "zh": "ToolPocket 工具需求",
     "ja": "ToolPocket ツールのリクエスト"
-  }
+  },
+  "_说明_user": "feedbackUser / feedbackDomain 只服务「反馈」入口（页脚、搜索空结果、404 页）＝ hi@；招租那条线仍用 ad@（在 advertise.json 的 contactUser 里），两条线不要互相串。"
 }
