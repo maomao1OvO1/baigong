@@ -1,0 +1,111 @@
+{
+  "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
+  "en": {
+    "title": "curl to code converter (fetch · axios · Python) — ToolPocket",
+    "desc": "Turn a curl command into JavaScript fetch, axios or Python requests code. Headers, body, auth and cookies are carried over. Nothing is uploaded.",
+    "h1": "curl → code",
+    "lead": "You copied a request as curl; now you need it as code. Paste it and get JavaScript fetch, axios or Python requests — with every header carried over.<br>Missed headers are the classic bug: drop Content-Type and the server parses your JSON as a form, then reports an error that looks like your own mistake. Nothing leaves your browser.",
+    "faq": [
+      [
+        "It says the body lives in a file — why can't you convert that?",
+        "Because the command is `-d @data.json`: the body is read from a file at run time, and that file is not part of the command. Rather than invent an empty body and let you debug a request that never had a chance, the tool stops and tells you to inline the data."
+      ],
+      [
+        "Where did -L, -k and --compressed go?",
+        "They are curl behaviours with no useful equivalent, so they are dropped on purpose: fetch and axios follow redirects already, both decompress automatically, and `-k` (skip certificate checks) is something you should never carry into production code."
+      ],
+      [
+        "Can it go the other way, from code to curl?",
+        "No. One code snippet maps to many curl commands, so the reverse has no single correct answer. Going curl → code is unambiguous, which is why this tool does only that."
+      ]
+    ],
+    "ui": {
+      "inputPh": "curl 'https://api.example.com/v1/items' \\\n  -H 'Content-Type: application/json' \\\n  -H 'Authorization: Bearer TOKEN' \\\n  -d '{\"name\": \"Ada\"}'",
+      "outputPh": "The generated code appears here",
+      "target": "Convert to",
+      "targetFetch": "JavaScript · fetch",
+      "targetAxios": "JavaScript · axios",
+      "targetPython": "Python · requests",
+      "statOk": "{method} · {n} headers",
+      "statForm": "{n} form fields",
+      "statBody": "body {n} chars",
+      "statIgnored": "{n} options ignored",
+      "statEmpty": "Paste a curl command to get started",
+      "errNoUrl": "No URL found in that command — is it really a curl command?",
+      "errFileBody": "This command uses -d @file: the body lives in a file that this tool cannot read. Inline the data and try again — a converted request with an empty body would only waste your debugging time.",
+      "nothingToCopy": "Nothing to copy yet"
+    }
+  },
+  "zh": {
+    "title": "curl 转代码（fetch · axios · Python）— ToolPocket",
+    "desc": "把 curl 命令转成 JavaScript fetch、axios 或 Python requests 代码。请求头、body、认证、Cookie 一并带过去。不上传任何内容。",
+    "h1": "curl → 代码",
+    "lead": "刚从浏览器「Copy as cURL」抄下来一条请求，现在要把它变成代码。贴进来，直接给你 JavaScript 的 fetch、axios 或 Python 的 requests 写法，每一个请求头都不会漏。<br>漏头是最经典的坑：Content-Type 一丢，服务端会把 JSON 当表单解析，然后报一个看起来像你自己写错的错。内容不出你的浏览器。",
+    "faq": [
+      [
+        "它说 body 在文件里，为什么转不了？",
+        "因为那条命令写的是 `-d @data.json`：body 是运行时从文件读的，而文件不在命令里。与其编一个空 body 让你去调一个根本没机会成功的请求，不如直接告诉你把数据内联进来。"
+      ],
+      [
+        "-L、-k、--compressed 这些去哪了？",
+        "它们属于 curl 自身的行为，没有对应的代码写法，是故意去掉的：fetch 和 axios 本来就会跟随重定向、本来就会自动解压；而 `-k`（跳过证书校验）这种东西，绝不该被带进正式代码里。"
+      ],
+      [
+        "能不能反过来，把代码转成 curl？",
+        "不能。一段代码能对应很多条 curl 命令，反过来没有唯一正确答案；而 curl → 代码是确定的，所以这个工具只做这一个方向。"
+      ]
+    ],
+    "ui": {
+      "inputPh": "curl 'https://api.example.com/v1/items' \\\n  -H 'Content-Type: application/json' \\\n  -H 'Authorization: Bearer TOKEN' \\\n  -d '{\"name\": \"Ada\"}'",
+      "outputPh": "生成的代码显示在这里",
+      "target": "转成哪种",
+      "targetFetch": "JavaScript · fetch",
+      "targetAxios": "JavaScript · axios",
+      "targetPython": "Python · requests",
+      "statOk": "{method} · {n} 个请求头",
+      "statForm": "{n} 个表单字段",
+      "statBody": "body {n} 字符",
+      "statIgnored": "忽略了 {n} 个选项",
+      "statEmpty": "先把 curl 命令贴进来",
+      "errNoUrl": "这条命令里找不到 URL —— 它确实是 curl 命令吗？",
+      "errFileBody": "这条命令用的是 -d @文件：body 存在文件里，本工具读不到。把数据内联进来再试 —— 转一个空 body 的请求只会浪费你的排查时间。",
+      "nothingToCopy": "还没有可复制的内容"
+    }
+  },
+  "ja": {
+    "title": "curl からコードへ変換（fetch · axios · Python）— ToolPocket",
+    "desc": "curl コマンドを JavaScript の fetch、axios、Python の requests のコードに変換します。ヘッダー・body・認証・Cookie もそのまま引き継ぎます。アップロードは行いません。",
+    "h1": "curl → コード",
+    "lead": "ブラウザの「Copy as cURL」でコピーしたリクエストを、コードにしたい。貼り付ければ JavaScript の fetch、axios、Python の requests の形で出ます。ヘッダーは 1 つも落としません。<br>ヘッダーの取りこぼしは定番のバグです。Content-Type が消えると、サーバーは JSON をフォームとして解釈し、自分のミスに見えるエラーを返してきます。内容はブラウザの外に出ません。",
+    "faq": [
+      [
+        "body がファイルにあるので変換できない、と言われたのはなぜ？",
+        "そのコマンドが `-d @data.json` だからです。body は実行時にファイルから読まれるもので、ファイル自体はコマンドに含まれていません。空の body で変換して、成功するはずのないリクエストを調査させるより、データを直接書くよう伝えるほうが親切だと判断しました。"
+      ],
+      [
+        "-L、-k、--compressed はどこへ？",
+        "curl 自身の動作にあたるもので、対応するコードがないため意図的に落としています。fetch と axios は元からリダイレクトを追い、自動で展開します。また `-k`（証明書検証のスキップ）は本番コードに持ち込むべきものではありません。"
+      ],
+      [
+        "逆に、コードから curl へ変換できますか？",
+        "できません。1 つのコードは複数の curl コマンドに対応し、逆向きには唯一の正解がありません。curl からコードへは一意に決まるので、本ツールはその方向だけを扱います。"
+      ]
+    ],
+    "ui": {
+      "inputPh": "curl 'https://api.example.com/v1/items' \\\n  -H 'Content-Type: application/json' \\\n  -H 'Authorization: Bearer TOKEN' \\\n  -d '{\"name\": \"Ada\"}'",
+      "outputPh": "生成したコードがここに出ます",
+      "target": "変換先",
+      "targetFetch": "JavaScript · fetch",
+      "targetAxios": "JavaScript · axios",
+      "targetPython": "Python · requests",
+      "statOk": "{method} · ヘッダー {n} 個",
+      "statForm": "フォーム項目 {n} 個",
+      "statBody": "body {n} 文字",
+      "statIgnored": "オプション {n} 個を無視",
+      "statEmpty": "まず curl コマンドを貼り付けてください",
+      "errNoUrl": "このコマンドに URL が見つかりません。本当に curl コマンドですか？",
+      "errFileBody": "このコマンドは -d @ファイル を使っています。body はファイル内にあり、本ツールでは読めません。データを直接書いてから再試行してください。空の body で変換しても、デバッグの時間が増えるだけです。",
+      "nothingToCopy": "コピーできる内容がまだありません"
+    }
+  }
+}

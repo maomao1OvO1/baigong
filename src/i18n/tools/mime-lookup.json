@@ -1,0 +1,150 @@
+{
+  "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
+  "en": {
+    "title": "MIME type lookup — extension ⇄ Content-Type — ToolPocket",
+    "desc": "Look up the MIME type for an extension, or the extensions for a MIME type, with ready-to-paste Content-Type and accept values. Runs in your browser.",
+    "h1": "MIME type lookup",
+    "lead": "One box, both directions: type an extension to get its MIME type, or a MIME type to get its extensions.<br>The answers are often counter-intuitive — .js is officially text/javascript, .ico has two accepted spellings, and .yaml still has no single registered type.",
+    "faq": [
+      [
+        "My CSS loads but is not applied — could MIME be the reason?",
+        "Very likely. A stylesheet served as text/plain is refused outright by the browser: it will not apply the rules and the console says MIME type mismatch. The same applies to JavaScript served as text/plain. It is the most common cause of \"the file is there but nothing happens\" on a static site."
+      ],
+      [
+        "One MIME type has several extensions — does it matter which I use?",
+        "Not to the server, which only sees the type. It matters for humans and tooling: .jpeg and .jpg are the same image, .mjs exists mainly to tell Node that a file is an ES module."
+      ],
+      [
+        "Is it safe to validate an upload by extension or MIME type?",
+        "No. Both are supplied by the client and can be changed with a text editor. Send a PHP file named photo.png with image/png and an extension-only check waves it through. The server has to sniff the actual bytes and, ideally, re-encode the file before storing it."
+      ]
+    ],
+    "ui": {
+      "inputPh": "png\n(or image/png — anything with a slash is looked up as a MIME type)",
+      "outputPh": "The match appears here",
+      "rowExt": "Extension: {s}",
+      "rowMime": "MIME type: {s}",
+      "rowKind": "Category: {s}",
+      "rowTextual": "Can be handled as text: {s}",
+      "rowHeader": "Header to send: {s}",
+      "rowAccept": "accept value: {s}",
+      "rowSiblings": "Other extensions for the same type: {s}",
+      "kind_image": "image",
+      "kind_audio": "audio",
+      "kind_video": "video",
+      "kind_text": "text / web",
+      "kind_font": "font",
+      "kind_doc": "document",
+      "kind_archive": "archive",
+      "kind_app": "application / binary",
+      "yes": "yes",
+      "no": "no",
+      "notFoundExt": "No such extension in the table: {s} — less common types are not listed, and guessing one would be worse than saying so.",
+      "notFoundMime": "No such MIME type in the table: {s}",
+      "aliasHint": "Did you mean {s}?",
+      "safety": "Note: never validate an upload by extension or MIME type — both come from the client. The server must sniff the real bytes (magic bytes), or re-encode the file before storing it.",
+      "statOkExt": "found · {s}",
+      "statOkMime": "{n} extension(s) share this type",
+      "statEmpty": "Type an extension or a MIME type",
+      "nothingToCopy": "Nothing to copy yet"
+    }
+  },
+  "zh": {
+    "title": "MIME 类型速查 —— 扩展名 ⇄ Content-Type — ToolPocket",
+    "desc": "输入扩展名查 MIME 类型，或输入 MIME 类型查扩展名，附带可直接粘的 Content-Type 与 accept 写法。全程在浏览器里完成。",
+    "h1": "MIME 类型速查",
+    "lead": "一个输入框，双向查：填扩展名给你 MIME 类型，填 MIME 类型给你扩展名。<br>答案经常跟直觉相反 —— .js 的正式类型是 text/javascript，.ico 有两种被接受的写法，.yaml 至今没有唯一的注册类型。",
+    "faq": [
+      [
+        "我的 CSS 加载了却不生效，会是 MIME 的问题吗？",
+        "很可能就是。样式表被以 text/plain 返回时，浏览器会**直接拒绝**应用它，控制台只说一句 MIME type mismatch。JavaScript 同理。这是静态站「文件明明在、就是没反应」最常见的原因。"
+      ],
+      [
+        "一个 MIME 对应好几个扩展名，用哪个有区别吗？",
+        "对服务端没区别（它只看类型），对人和其他工具才有：.jpeg 与 .jpg 是同一张图，而 .mjs 存在的意义主要是告诉 Node「这是 ES 模块」。"
+      ],
+      [
+        "用扩展名或 MIME 做上传校验安全吗？",
+        "不安全。两者都是客户端给的，改个名字就能绕过：把一个脚本文件命名成 photo.png、类型写 image/png，只查扩展名的校验就放行了。服务端必须嗅探真实字节（magic bytes），最好再把文件重新编码一次存下来。"
+      ]
+    ],
+    "ui": {
+      "inputPh": "png\n（或 image/png —— 带斜杠就按 MIME 类型查）",
+      "outputPh": "查到的结果显示在这里",
+      "rowExt": "扩展名: {s}",
+      "rowMime": "MIME 类型: {s}",
+      "rowKind": "类别: {s}",
+      "rowTextual": "可以当文本处理: {s}",
+      "rowHeader": "响应头写法: {s}",
+      "rowAccept": "accept 写法: {s}",
+      "rowSiblings": "同一类型的其他扩展名: {s}",
+      "kind_image": "图片",
+      "kind_audio": "音频",
+      "kind_video": "视频",
+      "kind_text": "文本 / 网页",
+      "kind_font": "字体",
+      "kind_doc": "文档",
+      "kind_archive": "压缩包",
+      "kind_app": "应用 / 二进制",
+      "yes": "是",
+      "no": "否",
+      "notFoundExt": "表里没有这个扩展名：{s} —— 冷门类型没有收录，瞎猜一个比说实话更糟。",
+      "notFoundMime": "表里没有这个 MIME 类型：{s}",
+      "aliasHint": "是不是想查 {s}？",
+      "safety": "注意：别用扩展名或 MIME 做上传校验 —— 两者都是客户端说了算。服务端必须嗅探真实字节（magic bytes），或者把文件重新编码后再存。",
+      "statOkExt": "已查到 · {s}",
+      "statOkMime": "有 {n} 个扩展名共用这个类型",
+      "statEmpty": "输入一个扩展名或 MIME 类型",
+      "nothingToCopy": "还没有可复制的内容"
+    }
+  },
+  "ja": {
+    "title": "MIME タイプ早見 — 拡張子 ⇄ Content-Type — ToolPocket",
+    "desc": "拡張子から MIME タイプを、または MIME タイプから拡張子を調べます。そのまま貼れる Content-Type と accept の書き方付き。ブラウザ内だけで動作します。",
+    "h1": "MIME タイプ早見",
+    "lead": "入力欄は 1 つ、双方向に調べられます。拡張子を入れれば MIME タイプ、MIME タイプを入れれば拡張子が出ます。<br>答えは直感に反することがよくあります。.js の正式な型は text/javascript、.ico には 2 通りの書き方があり、.yaml には今も単一の登録型がありません。",
+    "faq": [
+      [
+        "CSS は読み込まれているのに反映されません。MIME が原因ですか？",
+        "その可能性が高いです。スタイルシートが text/plain で返されると、ブラウザは適用を**拒否**します。コンソールには MIME type mismatch としか出ません。JavaScript も同じです。静的サイトで「ファイルはあるのに反応しない」最常见の原因です。"
+      ],
+      [
+        "1 つの MIME に複数の拡張子がある場合、どれを使うべき？",
+        "サーバーにとっては同じです（見るのは型だけ）。違いが出るのは人とツールに対してです。.jpeg と .jpg は同じ画像、.mjs は Node に「ES モジュール」と伝えるために存在します。"
+      ],
+      [
+        "拡張子や MIME でのアップロード検証は安全ですか？",
+        "安全ではありません。どちらもクライアントが送る値で、名前を変えれば回避できます。スクリプトを photo.png、型を image/png と偽れば、拡張子だけの検証は素通りします。サーバーは実際のバイト列（magic bytes）を確認し、できれば保存前に再エンコードすべきです。"
+      ]
+    ],
+    "ui": {
+      "inputPh": "png\n（または image/png — スラッシュがあると MIME タイプとして調べます）",
+      "outputPh": "一致した結果がここに出ます",
+      "rowExt": "拡張子: {s}",
+      "rowMime": "MIME タイプ: {s}",
+      "rowKind": "分類: {s}",
+      "rowTextual": "テキストとして扱える: {s}",
+      "rowHeader": "レスポンスヘッダーの書き方: {s}",
+      "rowAccept": "accept の書き方: {s}",
+      "rowSiblings": "同じ型の他の拡張子: {s}",
+      "kind_image": "画像",
+      "kind_audio": "音声",
+      "kind_video": "動画",
+      "kind_text": "テキスト / ウェブ",
+      "kind_font": "フォント",
+      "kind_doc": "文書",
+      "kind_archive": "圧縮ファイル",
+      "kind_app": "アプリ / バイナリ",
+      "yes": "はい",
+      "no": "いいえ",
+      "notFoundExt": "表にこの拡張子はありません: {s} — 珍しい型は載せていません。当てずっぽうを返すより正直に伝えます。",
+      "notFoundMime": "表にこの MIME タイプはありません: {s}",
+      "aliasHint": "もしかして {s} ですか？",
+      "safety": "注意: 拡張子や MIME でのアップロード検証は避けてください。どちらもクライアントが決める値です。サーバー側で実際のバイト列（magic bytes）を確認するか、保存前に再エンコードすべきです。",
+      "statOkExt": "見つかりました · {s}",
+      "statOkMime": "{n} 個の拡張子がこの型を共有しています",
+      "statEmpty": "拡張子か MIME タイプを入力してください",
+      "nothingToCopy": "コピーできる内容がまだありません"
+    }
+  }
+}

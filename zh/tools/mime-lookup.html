@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MIME 类型速查 —— 扩展名 ⇄ Content-Type — ToolPocket</title>
+<meta name="description" content="输入扩展名查 MIME 类型，或输入 MIME 类型查扩展名，附带可直接粘的 Content-Type 与 accept 写法。全程在浏览器里完成。">
+<link rel="canonical" href="https://tools.maomaowang.top/zh/tools/mime-lookup.html">
+<meta property="og:title" content="MIME 类型速查 —— 扩展名 ⇄ Content-Type — ToolPocket">
+<meta property="og:description" content="输入扩展名查 MIME 类型，或输入 MIME 类型查扩展名，附带可直接粘的 Content-Type 与 accept 写法。全程在浏览器里完成。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/zh/tools/mime-lookup.html">
+<!-- 分享预览图：微信/QQ/Telegram/Twitter 都读这几行。尺寸按通用标准 1200×630（1.91:1），
+     微信会把它裁成正方形显示，所以图里关键信息都放在中间。三语各一张。 -->
+<meta property="og:image" content="https://tools.maomaowang.top/assets/og-zh.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/mime-lookup.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/mime-lookup.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/mime-lookup.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/mime-lookup.html">
+<link rel="stylesheet" href="/assets/style.css?v=558fbd6b">
+<meta name="theme-color" content="#2563eb">
+<!-- 作者信息：既是署名，也是"这站有主"的凭据（扒站的人容易忽略，但删掉它就是加重侵权情节） -->
+<meta name="author" content="maomaowang.top">
+<meta name="build" content="2026-10-14">
+<meta name="x-src" content="dG9vbHMubWFvbWFvd2FuZy50b3A6OjIwMjYtMTAtMTQ=">
+<link rel="author" href="https://maomaowang.top/">
+<link rel="icon" href="/assets/icon-192.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/zh/manifest.webmanifest">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"MIME 类型速查","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"输入扩展名查 MIME 类型，或输入 MIME 类型查扩展名，附带可直接粘的 Content-Type 与 accept 写法。全程在浏览器里完成。"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"我的 CSS 加载了却不生效，会是 MIME 的问题吗？","acceptedAnswer":{"@type":"Answer","text":"很可能就是。样式表被以 text/plain 返回时，浏览器会**直接拒绝**应用它，控制台只说一句 MIME type mismatch。JavaScript 同理。这是静态站「文件明明在、就是没反应」最常见的原因。"}},{"@type":"Question","name":"一个 MIME 对应好几个扩展名，用哪个有区别吗？","acceptedAnswer":{"@type":"Answer","text":"对服务端没区别（它只看类型），对人和其他工具才有：.jpeg 与 .jpg 是同一张图，而 .mjs 存在的意义主要是告诉 Node「这是 ES 模块」。"}},{"@type":"Question","name":"用扩展名或 MIME 做上传校验安全吗？","acceptedAnswer":{"@type":"Answer","text":"不安全。两者都是客户端给的，改个名字就能绕过：把一个脚本文件命名成 photo.png、类型写 image/png，只查扩展名的校验就放行了。服务端必须嗅探真实字节（magic bytes），最好再把文件重新编码一次存下来。"}}]}</script>
+</head>
+<body>
+<!--
+  ================================================================
+  © 2026 ToolPocket · tools.maomaowang.top · 原创作品，保留所有权利
+  本页由作者独立开发并持续维护。未经授权复制、镜像、二次发布本页
+  内容或代码均属侵权；页面内含来源标记（ts2t-tools/mime-lookup），可追溯出处。
+  legacy-build-id: 746f6f6c732e6d616f6d616f77616e672e746f703a3a323032362d31302d3132
+  （这串是十六进制，不是什么校验码：解出来是作者与构建日期。）
+  ================================================================
+-->
+<span hidden aria-hidden="true" data-mark="ts2t:maomaowang:ts2t-tools/mime-lookup"></span>
+<!-- stats-endpoint: gbbyf.znbznbjnat.gbc   (rot13, 2024 年就在用的老写法) -->
+<div class="mobile-tip" id="mobileTip" hidden>
+  <span>📱 手机上能用，但<b>桌面版 Chrome 更顺</b> —— 大图压缩、批量处理快很多。</span>
+  <button type="button" id="tipClose" class="tip-close">知道了</button>
+</div>
+<header class="top">
+  <a class="brand" href="/zh/index.html">🧰 ToolPocket</a>
+  <nav class="langs"><a class="ad-link" href="/zh/advertise.html">广告位招租</a><a href="/tools/mime-lookup.html">English</a><a href="/zh/tools/mime-lookup.html" class="on" aria-current="page">中文</a><a href="/ja/tools/mime-lookup.html">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/zh/index.html">← 全部工具</a></p>
+  <h1>MIME 类型速查</h1>
+  <p class="lead">一个输入框，双向查：填扩展名给你 MIME 类型，填 MIME 类型给你扩展名。<br>答案经常跟直觉相反 —— .js 的正式类型是 text/javascript，.ico 有两种被接受的写法，.yaml 至今没有唯一的注册类型。</p>
+
+  <p class="badge-line"><span class="pill">全程在你浏览器里跑完 —— 不上传、不保存、不留底。</span></p>
+
+<div class="panel">
+<label class="row lbl" for="input">输入</label>
+  <textarea id="input" class="tall" placeholder="png
+（或 image/png —— 带斜杠就按 MIME 类型查）"></textarea>
+  <div class="opts">
+
+  </div>
+<label class="row lbl" for="output">结果</label>
+  <textarea id="output" readonly placeholder="查到的结果显示在这里"></textarea>
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">复制结果</button>
+    <button class="ghost" id="clear">清空</button>
+  </div>
+</div>
+
+<aside class="ad ad-tool-game">
+  <span class="ad-label">自己人做的</span>
+  <span class="ad-ico" aria-hidden="true">🎮</span>
+  <div class="ad-body">
+    <b>🎮 自己写的小游戏合集</b>
+    <p>塔防、2048、五子棋、打字测试、猜数字…都是一个人从零写的，没有用现成引擎。</p>
+  </div>
+  <a class="ad-cta" href="https://maomaowang.top/games.html">去玩两把 →</a>
+</aside>
+
+  <section class="faq">
+    <h2>常见问题</h2>
+    <details><summary>我的 CSS 加载了却不生效，会是 MIME 的问题吗？</summary><p>很可能就是。样式表被以 text/plain 返回时，浏览器会**直接拒绝**应用它，控制台只说一句 MIME type mismatch。JavaScript 同理。这是静态站「文件明明在、就是没反应」最常见的原因。</p></details>
+    <details><summary>一个 MIME 对应好几个扩展名，用哪个有区别吗？</summary><p>对服务端没区别（它只看类型），对人和其他工具才有：.jpeg 与 .jpg 是同一张图，而 .mjs 存在的意义主要是告诉 Node「这是 ES 模块」。</p></details>
+    <details><summary>用扩展名或 MIME 做上传校验安全吗？</summary><p>不安全。两者都是客户端给的，改个名字就能绕过：把一个脚本文件命名成 photo.png、类型写 image/png，只查扩展名的校验就放行了。服务端必须嗅探真实字节（magic bytes），最好再把文件重新编码一次存下来。</p></details>
+  </section>
+
+</main>
+
+<footer>
+  <p>ToolPocket · 文件不出你的设备 —— 不上传、不注册、不追踪。</p>
+  <p class="copy">© 2026 ToolPocket —— 保留所有权利。未经许可，请勿转载或复制本站内容与代码。</p>
+  <p class="fb">
+    <span>发现 bug 了？告诉我 —— 每封都看。</span>
+    <button type="button" class="ghost fb-btn" id="feedbackBtn" data-u="hi" data-d="maomaowang.top">反馈 bug</button>
+  </p>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = "{\"langName\":\"中文\",\"footer\":\"ToolPocket · 文件不出你的设备 —— 不上传、不注册、不追踪。\",\"nav\":\"全部工具\",\"backToTools\":\"← 全部工具\",\"copy\":\"复制结果\",\"swap\":\"互换\",\"clear\":\"清空\",\"download\":\"下载\",\"copied\":\"已复制到剪贴板\",\"copyFail\":\"浏览器拦住了自动复制 —— 手动选中再复制即可\",\"inputLabel\":\"输入\",\"outputLabel\":\"结果\",\"privacyNote\":\"全程在你浏览器里跑完 —— 不上传、不保存、不留底。\",\"searchPlaceholder\":\"搜索工具 —— 试试「压缩」「json」「密码」…\",\"noResults\":\"没找到匹配的工具。换个说法试试，比如「压缩」「哈希」「json」。\",\"mobileTip\":\"📱 手机上能用，但<b>桌面版 Chrome 更顺</b> —— 大图压缩、批量处理快很多。\",\"mobileTipClose\":\"知道了\",\"desktopHeading\":\"桌面端更好用\",\"installApp\":\"装成桌面应用\",\"installHint\":\"用桌面版 Chrome / Edge 打开本页，点地址栏右侧的「安装」图标 —— 它会变成一个独立窗口，断网也能继续用。不用下载安装包，也不用登录。\",\"installed\":\"已安装\",\"offlineNote\":\"装好之后，断网也能照常用 —— 本来这些活就是在你机器上干的，跟网络没关系。\",\"feedbackAsk\":\"发现 bug 了？告诉我 —— 每封都看。\",\"feedbackButton\":\"反馈 bug\",\"feedbackSubject\":\"ToolPocket 反馈\",\"noResultsAsk\":\"没找到你想要的？告诉我你需要什么工具 —— 每条都会看。\",\"feedbackAskHome\":\"发现 bug 了？或者想要某个还没有的工具？直接说 —— 每封都看。\",\"feedbackButtonHome\":\"写封邮件\",\"noResultsBtn\":\"提个需求\",\"noResultsSubject\":\"ToolPocket 工具需求\",\"copyright\":\"© 2026 ToolPocket —— 保留所有权利。未经许可，请勿转载或复制本站内容与代码。\",\"cancel\":\"取消\",\"confirmOk\":\"确定\",\"clearAsk\":\"清空刚输入的内容？这一步没法撤销。\",\"clearOk\":\"清空\",\"inputPh\":\"png\\n（或 image/png —— 带斜杠就按 MIME 类型查）\",\"outputPh\":\"查到的结果显示在这里\",\"rowExt\":\"扩展名: {s}\",\"rowMime\":\"MIME 类型: {s}\",\"rowKind\":\"类别: {s}\",\"rowTextual\":\"可以当文本处理: {s}\",\"rowHeader\":\"响应头写法: {s}\",\"rowAccept\":\"accept 写法: {s}\",\"rowSiblings\":\"同一类型的其他扩展名: {s}\",\"kind_image\":\"图片\",\"kind_audio\":\"音频\",\"kind_video\":\"视频\",\"kind_text\":\"文本 / 网页\",\"kind_font\":\"字体\",\"kind_doc\":\"文档\",\"kind_archive\":\"压缩包\",\"kind_app\":\"应用 / 二进制\",\"yes\":\"是\",\"no\":\"否\",\"notFoundExt\":\"表里没有这个扩展名：{s} —— 冷门类型没有收录，瞎猜一个比说实话更糟。\",\"notFoundMime\":\"表里没有这个 MIME 类型：{s}\",\"aliasHint\":\"是不是想查 {s}？\",\"safety\":\"注意：别用扩展名或 MIME 做上传校验 —— 两者都是客户端说了算。服务端必须嗅探真实字节（magic bytes），或者把文件重新编码后再存。\",\"statOkExt\":\"已查到 · {s}\",\"statOkMime\":\"有 {n} 个扩展名共用这个类型\",\"statEmpty\":\"输入一个扩展名或 MIME 类型\",\"nothingToCopy\":\"还没有可复制的内容\"}";</script>
+<script src="/assets/tools/_shared.js?v=62a587aa" defer></script>
+<!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
+<script src="/assets/tools/mime-lookup.js?v=e7eea3f6" defer></script>
+<script src="/assets/app.js?v=dd536e7e" defer></script>
+</body>
+</html>

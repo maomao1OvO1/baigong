@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MIME タイプ早見 — 拡張子 ⇄ Content-Type — ToolPocket</title>
+<meta name="description" content="拡張子から MIME タイプを、または MIME タイプから拡張子を調べます。そのまま貼れる Content-Type と accept の書き方付き。ブラウザ内だけで動作します。">
+<link rel="canonical" href="https://tools.maomaowang.top/ja/tools/mime-lookup.html">
+<meta property="og:title" content="MIME タイプ早見 — 拡張子 ⇄ Content-Type — ToolPocket">
+<meta property="og:description" content="拡張子から MIME タイプを、または MIME タイプから拡張子を調べます。そのまま貼れる Content-Type と accept の書き方付き。ブラウザ内だけで動作します。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/ja/tools/mime-lookup.html">
+<!-- 分享预览图：微信/QQ/Telegram/Twitter 都读这几行。尺寸按通用标准 1200×630（1.91:1），
+     微信会把它裁成正方形显示，所以图里关键信息都放在中间。三语各一张。 -->
+<meta property="og:image" content="https://tools.maomaowang.top/assets/og-ja.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/mime-lookup.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/mime-lookup.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/mime-lookup.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/mime-lookup.html">
+<link rel="stylesheet" href="/assets/style.css?v=558fbd6b">
+<meta name="theme-color" content="#2563eb">
+<!-- 作者信息：既是署名，也是"这站有主"的凭据（扒站的人容易忽略，但删掉它就是加重侵权情节） -->
+<meta name="author" content="maomaowang.top">
+<meta name="build" content="2026-10-14">
+<meta name="x-src" content="dG9vbHMubWFvbWFvd2FuZy50b3A6OjIwMjYtMTAtMTQ=">
+<link rel="author" href="https://maomaowang.top/">
+<link rel="icon" href="/assets/icon-192.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/ja/manifest.webmanifest">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"MIME タイプ早見","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"拡張子から MIME タイプを、または MIME タイプから拡張子を調べます。そのまま貼れる Content-Type と accept の書き方付き。ブラウザ内だけで動作します。"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"CSS は読み込まれているのに反映されません。MIME が原因ですか？","acceptedAnswer":{"@type":"Answer","text":"その可能性が高いです。スタイルシートが text/plain で返されると、ブラウザは適用を**拒否**します。コンソールには MIME type mismatch としか出ません。JavaScript も同じです。静的サイトで「ファイルはあるのに反応しない」最常见の原因です。"}},{"@type":"Question","name":"1 つの MIME に複数の拡張子がある場合、どれを使うべき？","acceptedAnswer":{"@type":"Answer","text":"サーバーにとっては同じです（見るのは型だけ）。違いが出るのは人とツールに対してです。.jpeg と .jpg は同じ画像、.mjs は Node に「ES モジュール」と伝えるために存在します。"}},{"@type":"Question","name":"拡張子や MIME でのアップロード検証は安全ですか？","acceptedAnswer":{"@type":"Answer","text":"安全ではありません。どちらもクライアントが送る値で、名前を変えれば回避できます。スクリプトを photo.png、型を image/png と偽れば、拡張子だけの検証は素通りします。サーバーは実際のバイト列（magic bytes）を確認し、できれば保存前に再エンコードすべきです。"}}]}</script>
+</head>
+<body>
+<!--
+  ================================================================
+  © 2026 ToolPocket · tools.maomaowang.top · 原创作品，保留所有权利
+  本页由作者独立开发并持续维护。未经授权复制、镜像、二次发布本页
+  内容或代码均属侵权；页面内含来源标记（ts2t-tools/mime-lookup），可追溯出处。
+  legacy-build-id: 746f6f6c732e6d616f6d616f77616e672e746f703a3a323032362d31302d3132
+  （这串是十六进制，不是什么校验码：解出来是作者与构建日期。）
+  ================================================================
+-->
+<span hidden aria-hidden="true" data-mark="ts2t:maomaowang:ts2t-tools/mime-lookup"></span>
+<!-- stats-endpoint: gbbyf.znbznbjnat.gbc   (rot13, 2024 年就在用的老写法) -->
+<div class="mobile-tip" id="mobileTip" hidden>
+  <span>📱 スマホでも使えますが、大きな画像やまとめての処理はデスクトップ版 Chrome のほうが快適です。</span>
+  <button type="button" id="tipClose" class="tip-close">了解しました</button>
+</div>
+<header class="top">
+  <a class="brand" href="/ja/index.html">🧰 ToolPocket</a>
+  <nav class="langs"><a class="ad-link" href="/ja/advertise.html">広告掲載</a><a href="/tools/mime-lookup.html">English</a><a href="/zh/tools/mime-lookup.html">中文</a><a href="/ja/tools/mime-lookup.html" class="on" aria-current="page">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/ja/index.html">← ツール一覧</a></p>
+  <h1>MIME タイプ早見</h1>
+  <p class="lead">入力欄は 1 つ、双方向に調べられます。拡張子を入れれば MIME タイプ、MIME タイプを入れれば拡張子が出ます。<br>答えは直感に反することがよくあります。.js の正式な型は text/javascript、.ico には 2 通りの書き方があり、.yaml には今も単一の登録型がありません。</p>
+
+  <p class="badge-line"><span class="pill">すべてブラウザ内で処理。送信も保存もしていません。</span></p>
+
+<div class="panel">
+<label class="row lbl" for="input">入力</label>
+  <textarea id="input" class="tall" placeholder="png
+（または image/png — スラッシュがあると MIME タイプとして調べます）"></textarea>
+  <div class="opts">
+
+  </div>
+<label class="row lbl" for="output">結果</label>
+  <textarea id="output" readonly placeholder="一致した結果がここに出ます"></textarea>
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">結果をコピー</button>
+    <button class="ghost" id="clear">クリア</button>
+  </div>
+</div>
+
+<aside class="ad ad-tool-game">
+  <span class="ad-label">製作者より</span>
+  <span class="ad-ico" aria-hidden="true">🎮</span>
+  <div class="ad-body">
+    <b>ブラウザで遊べるタワーディフェンス</b>
+    <p>同じ開発者がゼロから作ったゲームです.</p>
+  </div>
+  <a class="ad-cta" href="https://maomaowang.top/games/td/source/game.html">遊んでみる →</a>
+</aside>
+
+  <section class="faq">
+    <h2>よくある質問</h2>
+    <details><summary>CSS は読み込まれているのに反映されません。MIME が原因ですか？</summary><p>その可能性が高いです。スタイルシートが text/plain で返されると、ブラウザは適用を**拒否**します。コンソールには MIME type mismatch としか出ません。JavaScript も同じです。静的サイトで「ファイルはあるのに反応しない」最常见の原因です。</p></details>
+    <details><summary>1 つの MIME に複数の拡張子がある場合、どれを使うべき？</summary><p>サーバーにとっては同じです（見るのは型だけ）。違いが出るのは人とツールに対してです。.jpeg と .jpg は同じ画像、.mjs は Node に「ES モジュール」と伝えるために存在します。</p></details>
+    <details><summary>拡張子や MIME でのアップロード検証は安全ですか？</summary><p>安全ではありません。どちらもクライアントが送る値で、名前を変えれば回避できます。スクリプトを photo.png、型を image/png と偽れば、拡張子だけの検証は素通りします。サーバーは実際のバイト列（magic bytes）を確認し、できれば保存前に再エンコードすべきです。</p></details>
+  </section>
+
+</main>
+
+<footer>
+  <p>ToolPocket · ファイルは端末から出ません。送信も登録も、追跡もありません。</p>
+  <p class="copy">© 2026 ToolPocket — All rights reserved. 当サイトの内容・コードの無断転載を禁じます。</p>
+  <p class="fb">
+    <span>不具合を見つけましたか？お知らせください。すべて目を通します。</span>
+    <button type="button" class="ghost fb-btn" id="feedbackBtn" data-u="hi" data-d="maomaowang.top">不具合を報告</button>
+  </p>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = "{\"langName\":\"日本語\",\"footer\":\"ToolPocket · ファイルは端末から出ません。送信も登録も、追跡もありません。\",\"nav\":\"ツール一覧\",\"backToTools\":\"← ツール一覧\",\"copy\":\"結果をコピー\",\"swap\":\"入れ替え\",\"clear\":\"クリア\",\"download\":\"ダウンロード\",\"copied\":\"クリップボードにコピーしました\",\"copyFail\":\"ブラウザがコピーを許可しませんでした。テキストを選択して手動でコピーしてください\",\"inputLabel\":\"入力\",\"outputLabel\":\"結果\",\"privacyNote\":\"すべてブラウザ内で処理。送信も保存もしていません。\",\"searchPlaceholder\":\"ツールを検索 — 「圧縮」「json」「パスワード」など\",\"noResults\":\"該当するツールがありませんでした。「圧縮」「ハッシュ」など、別の言葉でお試しください。\",\"mobileTip\":\"📱 スマホでも使えますが、大きな画像やまとめての処理はデスクトップ版 Chrome のほうが快適です。\",\"mobileTipClose\":\"了解しました\",\"desktopHeading\":\"デスクトップ版がおすすめ\",\"installApp\":\"デスクトップアプリとして追加\",\"installHint\":\"デスクトップ版 Chrome / Edge でこのサイトを開き、アドレスバー右側のインストールアイコンをクリックしてください。独立したウィンドウになり、ネットワークが無くても動作します。インストーラのダウンロードも登録も不要です。\",\"installed\":\"インストール済み\",\"offlineNote\":\"インストール後はネットワークを切ったままでも使えます。もともと通信していないのですから、当然といえば当然です。\",\"feedbackAsk\":\"不具合を見つけましたか？お知らせください。すべて目を通します。\",\"feedbackButton\":\"不具合を報告\",\"feedbackSubject\":\"ToolPocket へのフィードバック\",\"noResultsAsk\":\"お探しのものが見つかりませんか？必要なツールをお知らせください。すべて目を通します。\",\"feedbackAskHome\":\"不具合の報告や「こんなツールがほしい」というご要望は、お気軽にお知らせください。\",\"feedbackButtonHome\":\"メールを書く\",\"noResultsBtn\":\"ツールをリクエスト\",\"noResultsSubject\":\"ToolPocket ツールのリクエスト\",\"copyright\":\"© 2026 ToolPocket — All rights reserved. 当サイトの内容・コードの無断転載を禁じます。\",\"cancel\":\"キャンセル\",\"confirmOk\":\"OK\",\"clearAsk\":\"入力した内容を消しますか？元には戻せません。\",\"clearOk\":\"消去\",\"inputPh\":\"png\\n（または image/png — スラッシュがあると MIME タイプとして調べます）\",\"outputPh\":\"一致した結果がここに出ます\",\"rowExt\":\"拡張子: {s}\",\"rowMime\":\"MIME タイプ: {s}\",\"rowKind\":\"分類: {s}\",\"rowTextual\":\"テキストとして扱える: {s}\",\"rowHeader\":\"レスポンスヘッダーの書き方: {s}\",\"rowAccept\":\"accept の書き方: {s}\",\"rowSiblings\":\"同じ型の他の拡張子: {s}\",\"kind_image\":\"画像\",\"kind_audio\":\"音声\",\"kind_video\":\"動画\",\"kind_text\":\"テキスト / ウェブ\",\"kind_font\":\"フォント\",\"kind_doc\":\"文書\",\"kind_archive\":\"圧縮ファイル\",\"kind_app\":\"アプリ / バイナリ\",\"yes\":\"はい\",\"no\":\"いいえ\",\"notFoundExt\":\"表にこの拡張子はありません: {s} — 珍しい型は載せていません。当てずっぽうを返すより正直に伝えます。\",\"notFoundMime\":\"表にこの MIME タイプはありません: {s}\",\"aliasHint\":\"もしかして {s} ですか？\",\"safety\":\"注意: 拡張子や MIME でのアップロード検証は避けてください。どちらもクライアントが決める値です。サーバー側で実際のバイト列（magic bytes）を確認するか、保存前に再エンコードすべきです。\",\"statOkExt\":\"見つかりました · {s}\",\"statOkMime\":\"{n} 個の拡張子がこの型を共有しています\",\"statEmpty\":\"拡張子か MIME タイプを入力してください\",\"nothingToCopy\":\"コピーできる内容がまだありません\"}";</script>
+<script src="/assets/tools/_shared.js?v=62a587aa" defer></script>
+<!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
+<script src="/assets/tools/mime-lookup.js?v=e7eea3f6" defer></script>
+<script src="/assets/app.js?v=dd536e7e" defer></script>
+</body>
+</html>

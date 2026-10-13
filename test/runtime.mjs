@@ -1193,5 +1193,137 @@ console.log("\n㉗ 第三批新工具的关键算法（WCAG 对比度 · JSON→
   }
 }
 
+console.log("\n㉘ 第四批新工具的关键算法（cURL 转代码 · MIME 速查 · UA 解析）");
+{
+  const ui = (name) => { const j = JSON.parse(fs.readFileSync(path.join(ROOT, "src/i18n/tools", name + ".json"), "utf8")); return j.en.ui; };
+  const U = (n, extra) => Object.assign(readUi("en"), ui(n), extra || {});
+
+  // ① curl → 代码（分词 · 续行 · 多 -d · 三种目标 · 拒绝转不了的写法）
+  {
+    const { els } = loadTool("curl-to-code.js",
+      ["input", "output", "status", "copy", "clear", "target"], U("curl-to-code"), {});
+
+    els.input.value = "curl 'https://api.example.com/v1/items' -H 'Content-Type: application/json' -d '{\"name\":\"Ada\"}'";
+    els.input.fire("input");
+    const out = els.output.value;
+    if (out.includes('method: "POST"') && out.includes("api.example.com/v1/items") &&
+        out.includes("JSON.stringify") && out.includes('"Content-Type": "application/json"'))
+      ok("curl→code：方法（有 body 自动 POST）· URL · 请求头 · JSON body 全部带过去");
+    else bad("curl→code：fetch 输出不对", out.slice(0, 300));
+
+    // Copy as cURL 出来的就是多行带反斜杠的，不合并整条都解析不了
+    els.input.value = "curl 'https://a.com/api' \\\n  -H 'X-Token: abc' \\\n  -d 'a=1'";
+    els.input.fire("input");
+    if (els.output.value.includes('"X-Token": "abc"') && els.output.value.includes('"a=1"'))
+      ok("curl→code：行尾反斜杠续行能合并（Copy as cURL 的真实写法）");
+    else bad("curl→code：续行没处理", els.output.value.slice(0, 240));
+
+    els.input.value = "curl https://a.com -d 'a=1' -d 'b=2'"; els.input.fire("input");
+    if (els.output.value.includes("a=1&b=2"))
+      ok("curl→code：多个 -d 用 & 拼接（curl 的真实行为，不是后者覆盖前者）");
+    else bad("curl→code：多个 -d 处理不对", els.output.value.slice(0, 200));
+
+    els.input.value = "curl https://a.com -d @data.json"; els.input.fire("input");
+    if (els.output.value === "" && els.status.className.includes("err"))
+      ok("curl→code：-d @文件 直接报错（body 在文件里，转出来的必然是错的）");
+    else bad("curl→code：-d @file 没拦住", els.status.textContent);
+
+    els.input.value = "curl -X POST -H 'A: b'"; els.input.fire("input");
+    if (els.output.value === "" && els.status.className.includes("err"))
+      ok("curl→code：找不到 URL 时明确报错");
+    else bad("curl→code：缺 URL 没报错", els.status.textContent);
+
+    els.input.value = "curl -u user:pass https://a.com/api";
+    els.target.value = "python"; els.target.fire("change");
+    const py = els.output.value;
+    if (py.includes("import requests") && py.includes("requests.get") && py.includes('auth=("user", "pass")'))
+      ok("curl→code：Python 目标生成 requests 代码，-u 转成 auth 元组");
+    else bad("curl→code：Python 输出不对", py.slice(0, 300));
+
+    els.target.value = "fetch"; els.target.fire("change");
+    if (els.output.value.includes('method: "GET"'))
+      ok("curl→code：没有 body 时默认 GET（不是一律 POST）");
+    else bad("curl→code：默认方法不对", els.output.value.slice(0, 200));
+  }
+
+  // ② MIME 速查（双向 · 粘贴写法容错 · 查不到就说查不到）
+  {
+    const { els } = loadTool("mime-lookup.js",
+      ["input", "output", "status", "copy", "clear"], U("mime-lookup"), {});
+
+    els.input.value = "png"; els.input.fire("input");
+    if (els.output.value.includes("image/png")) ok("MIME：png → image/png");
+    else bad("MIME：png 查询失败", els.output.value.slice(0, 200));
+
+    els.input.value = "*.png"; els.input.fire("input");
+    if (els.output.value.includes("image/png"))
+      ok("MIME：`*.png` / `.png` 这类粘贴写法也能认（去掉星号和点）");
+    else bad("MIME：带星号或点没清理", els.output.value.slice(0, 200));
+
+    els.input.value = "image/jpeg"; els.input.fire("input");
+    const j = els.output.value;
+    if (j.includes(".jpg") && j.includes(".jpeg"))
+      ok("MIME：一个类型反查出多个扩展名（反向查最容易漏的一步）");
+    else bad("MIME：反查扩展名不全", j.slice(0, 240));
+
+    els.input.value = "js"; els.input.fire("input");
+    if (els.output.value.includes("text/javascript"))
+      ok("MIME：js → text/javascript（正式类型不是 application/javascript）");
+    else bad("MIME：js 类型不对", els.output.value.slice(0, 200));
+
+    els.input.value = "nope-xyz"; els.input.fire("input");
+    if (els.output.value === "" && els.status.className.includes("err"))
+      ok("MIME：表里没有的类型明确说查不到（不瞎猜一个糊弄）");
+    else bad("MIME：未知扩展名没报错", els.status.textContent);
+  }
+
+  // ③ UA 解析（匹配顺序 · 平板判定 · Safari 版本来源 · 爬虫）
+  {
+    const { els } = loadTool("ua-parse.js",
+      ["input", "output", "status", "copy", "clear"], U("ua-parse"), {});
+
+    // ⚠️ Edge 的 UA 里带着 Chrome/ —— 先测 Chrome 就会判错。这是本工具最该防的回归
+    els.input.value = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.2210.91";
+    els.input.fire("input");
+    const edge = els.output.value;
+    if (edge.includes("Edge 120.0.2210.91") && edge.includes("Windows"))
+      ok("UA：Edge（串里同时带 Chrome/ 和 Safari/）被判成 Edge —— 匹配顺序的回归测试");
+    else bad("UA：Edge 被误判", edge.slice(0, 240));
+
+    els.input.value = "Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36";
+    els.input.fire("input");
+    if (els.output.value.includes("Android 14") && els.output.value.includes("phone"))
+      ok("UA：Android 手机（带 Mobile）判成手机，系统版本也取到了");
+    else bad("UA：Android 手机判定不对", els.output.value.slice(0, 240));
+
+    // Android 平板**不带** Mobile —— 判定写反会把所有平板认成手机
+    els.input.value = "Mozilla/5.0 (Linux; Android 13; SM-X700) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36";
+    els.input.fire("input");
+    if (els.output.value.includes("tablet"))
+      ok("UA：Android 平板（不带 Mobile）判成平板，不是手机");
+    else bad("UA：Android 平板误判", els.output.value.slice(0, 240));
+
+    // Safari 的版本号只在 Version/ 里，Chrome 系的版本在 Chrome/ 里 —— 别取错字段
+    els.input.value = "Mozilla/5.0 (iPhone; CPU iPhone OS 17_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.2 Mobile/15E148 Safari/604.1";
+    els.input.fire("input");
+    const ios = els.output.value;
+    if (ios.includes("Safari 17.2") && ios.includes("iOS 17.2"))
+      ok("UA：iPhone Safari 的浏览器版本与系统版本都对（版本取自 Version/，系统取自 OS）");
+    else bad("UA：iPhone 解析不对", ios.slice(0, 240));
+
+    els.input.value = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 OPR/106.0.0.0";
+    els.input.fire("input");
+    if (els.output.value.includes("Opera"))
+      ok("UA：Opera（同样带 Chrome/）判成 Opera");
+    else bad("UA：Opera 被误判", els.output.value.slice(0, 240));
+
+    els.input.value = "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)";
+    els.input.fire("input");
+    if (els.output.value.includes("yes") && els.status.textContent.includes("Googlebot"))
+      ok("UA：Googlebot 被标成自动化客户端（并给出名字）");
+    else bad("UA：爬虫没识别", els.output.value.slice(0, 200) + " || " + els.status.textContent);
+  }
+}
+
 console.log(`\n结果：${pass} 项通过，${fail} 项失败`);
 process.exit(fail ? 1 : 0);

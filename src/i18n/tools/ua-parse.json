@@ -1,0 +1,123 @@
+{
+  "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
+  "en": {
+    "title": "User-Agent parser — browser, engine, OS, device — ToolPocket",
+    "desc": "Read a User-Agent string: browser and version, rendering engine, operating system, device type and whether it looks like a bot. Parsed in your browser.",
+    "h1": "User-Agent parser",
+    "lead": "Server logs and bug reports are full of 120-character User-Agent strings. Paste one and get the browser, engine, operating system and device type in plain words.<br>Your own User-Agent is filled in already — and nothing is sent anywhere.",
+    "faq": [
+      [
+        "Why did it say Chrome when the string clearly contains Safari?",
+        "Because every Chrome-based string contains both AppleWebKit and Safari/537.36 — Safari being earlier in the string does not make it the browser. Matching has to test Edge, Opera and Samsung Internet first, since their strings also carry Chrome/. This tool applies that order, which is where hand-written parsers usually go wrong."
+      ],
+      [
+        "Can I rely on the User-Agent to gate features?",
+        "Less and less. Chrome froze its minor version, Safari reports 16.0 for a whole range of releases, and Chromium browsers are moving to UA-CH (a set of Sec-CH-UA headers). Treat the string as a hint for analytics and debugging, never as a security check — a client can write anything it likes there."
+      ],
+      [
+        "It says Windows 10 / 11 — which one is it?",
+        "Impossible to tell from the User-Agent: both report Windows NT 10.0, and Microsoft has said it will stay that way. Anything claiming to distinguish them from this string alone is guessing."
+      ]
+    ],
+    "ui": {
+      "inputPh": "Paste a User-Agent string (yours is filled in already)",
+      "outputPh": "The parsed fields appear here",
+      "rowBrowser": "Browser: {s}",
+      "rowEngine": "Engine: {s}",
+      "rowOs": "Operating system: {s}",
+      "rowDevice": "Device: {s}",
+      "rowBot": "Looks like a bot: {s}",
+      "rowMobile": "Mobile: {s}",
+      "dev_desktop": "desktop",
+      "dev_mobile": "phone",
+      "dev_tablet": "tablet",
+      "yes": "yes",
+      "no": "no",
+      "unknown": "unrecognised",
+      "statOk": "{s} · {d}",
+      "statBot": "automated client detected ({s}) — logs like this usually mean a crawler or a script, not a person",
+      "statEmpty": "Paste a User-Agent string",
+      "nothingToCopy": "Nothing to copy yet"
+    }
+  },
+  "zh": {
+    "title": "User-Agent 解析 —— 浏览器 / 引擎 / 系统 / 设备 — ToolPocket",
+    "desc": "把 User-Agent 拆成人看得懂的信息：浏览器与版本、渲染引擎、操作系统、设备类型，以及它看起来是不是爬虫。全程在浏览器里解析。",
+    "h1": "User-Agent 解析",
+    "lead": "服务器日志和 bug 反馈里全是 120 个字符的 User-Agent。贴一条进来，直接告诉你浏览器、引擎、系统和设备类型。<br>你自己的 User-Agent 已经填好了 —— 而且什么都没发出去。",
+    "faq": [
+      [
+        "字符串里明明写着 Safari，为什么它说是 Chrome？",
+        "因为所有 Chrome 系浏览器的字符串里都同时含 AppleWebKit 和 Safari/537.36 —— 谁在前面不代表谁是浏览器。匹配时必须先测 Edge、Opera、Samsung Internet，它们的串里也带着 Chrome/。本工具就是按这个顺序判的，而这一步正是手写解析器最常错的地方。"
+      ],
+      [
+        "能靠 User-Agent 做功能开关吗？",
+        "越来越不能了。Chrome 冻结了次要版本号，Safari 把一整批版本都报成 16.0，Chromium 系正在转向 UA-CH（一组 Sec-CH-UA 请求头）。把这个字符串当作统计和排查的线索可以，当作安全判断不行 —— 客户端想写什么就写什么。"
+      ],
+      [
+        "它说是 Windows 10 / 11，到底是哪个？",
+        "光凭 User-Agent 分不出来：两者都报 Windows NT 10.0，微软也说过会一直这样。凡是声称能从这个字符串单独区分出来的，都是在猜。"
+      ]
+    ],
+    "ui": {
+      "inputPh": "把 User-Agent 贴进来（你自己的已经填好了）",
+      "outputPh": "解析结果显示在这里",
+      "rowBrowser": "浏览器: {s}",
+      "rowEngine": "引擎: {s}",
+      "rowOs": "操作系统: {s}",
+      "rowDevice": "设备: {s}",
+      "rowBot": "像爬虫: {s}",
+      "rowMobile": "移动端: {s}",
+      "dev_desktop": "桌面",
+      "dev_mobile": "手机",
+      "dev_tablet": "平板",
+      "yes": "是",
+      "no": "否",
+      "unknown": "没认出来",
+      "statOk": "{s} · {d}",
+      "statBot": "识别到自动化客户端（{s}）—— 日志里出现这种，多半是爬虫或脚本，不是真人",
+      "statEmpty": "把 User-Agent 贴进来",
+      "nothingToCopy": "还没有可复制的内容"
+    }
+  },
+  "ja": {
+    "title": "User-Agent 解析 — ブラウザ・エンジン・OS・端末 — ToolPocket",
+    "desc": "User-Agent 文字列を読める情報に分解します。ブラウザとバージョン、レンダリングエンジン、OS、端末種別、そしてボットらしさ。解析はブラウザ内で行います。",
+    "h1": "User-Agent 解析",
+    "lead": "サーバーログやバグ報告は 120 文字の User-Agent であふれています。貼り付ければ、ブラウザ・エンジン・OS・端末種別が言葉で出ます。<br>あなた自身の User-Agent は既に入っています。そしてどこにも送信しません。",
+    "faq": [
+      [
+        "Safari と書いてあるのに Chrome と判定されるのはなぜ？",
+        "Chrome 系の文字列はすべて AppleWebKit と Safari/537.36 を含むからです。文字列の前半に Safari があるからといって、それがブラウザとは限りません。Edge・Opera・Samsung Internet の文字列にも Chrome/ が入るため、これらを先に判定する必要があります。本ツールはその順序で処理しており、手書きの解析器が最も間違えやすい箇所です。"
+      ],
+      [
+        "User-Agent で機能の出し分けをしてもよい？",
+        "年々難しくなっています。Chrome はマイナーバージョンを固定し、Safari は幅広いリリースを 16.0 と報告し、Chromium 系は UA-CH（Sec-CH-UA ヘッダー群）へ移行中です。統計や調査の手がかりとして使うのは構いませんが、セキュリティ判断には使えません。クライアントは自由に書けます。"
+      ],
+      [
+        "Windows 10 / 11 と出ました。どちらですか？",
+        "User-Agent からは判別できません。どちらも Windows NT 10.0 を報告し、マイクロソフトもそのままにすると表明しています。この文字列だけで区別できると主張するものは推測です。"
+      ]
+    ],
+    "ui": {
+      "inputPh": "User-Agent を貼り付けてください（ご自身のものは入力済みです）",
+      "outputPh": "解析結果がここに出ます",
+      "rowBrowser": "ブラウザ: {s}",
+      "rowEngine": "エンジン: {s}",
+      "rowOs": "OS: {s}",
+      "rowDevice": "端末: {s}",
+      "rowBot": "ボットらしさ: {s}",
+      "rowMobile": "モバイル: {s}",
+      "dev_desktop": "デスクトップ",
+      "dev_mobile": "スマートフォン",
+      "dev_tablet": "タブレット",
+      "yes": "はい",
+      "no": "いいえ",
+      "unknown": "判別できません",
+      "statOk": "{s} · {d}",
+      "statBot": "自動クライアントを検出（{s}）— ログにこれが出る場合、多くはクローラーやスクリプトで、人ではありません",
+      "statEmpty": "User-Agent を貼り付けてください",
+      "nothingToCopy": "コピーできる内容がまだありません"
+    }
+  }
+}

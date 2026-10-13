@@ -1371,6 +1371,65 @@
           "hint": "maxdepthHint"
         }
       ]
+    },
+    {
+      "id": "curl-to-code",
+      "icon": "🔁",
+      "cat": "dev",
+      "kind": "text",
+      "script": "curl-to-code.js",
+      "i18n": "curl-to-code",
+      "buttons": [
+        "copy",
+        "clear"
+      ],
+      "options": [
+        {
+          "type": "select",
+          "id": "target",
+          "label": "target",
+          "choices": [
+            [
+              "fetch",
+              "targetFetch"
+            ],
+            [
+              "axios",
+              "targetAxios"
+            ],
+            [
+              "python",
+              "targetPython"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mime-lookup",
+      "icon": "📎",
+      "cat": "dev",
+      "kind": "text",
+      "script": "mime-lookup.js",
+      "i18n": "mime-lookup",
+      "buttons": [
+        "copy",
+        "clear"
+      ],
+      "options": []
+    },
+    {
+      "id": "ua-parse",
+      "icon": "🕵️",
+      "cat": "dev",
+      "kind": "text",
+      "script": "ua-parse.js",
+      "i18n": "ua-parse",
+      "buttons": [
+        "copy",
+        "clear"
+      ],
+      "options": []
     }
   ]
 }
