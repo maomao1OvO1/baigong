@@ -1,0 +1,102 @@
+{
+  "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
+  "en": {
+    "title": "robots.txt generator (with AI crawler blocking) — ToolPocket",
+    "desc": "Build a valid robots.txt: block paths, optionally block AI crawlers, add your sitemap. Runs entirely in your browser.",
+    "h1": "robots.txt generator",
+    "lead": "robots.txt looks trivial until the syntax is slightly wrong: groups need a blank line between them, the Sitemap line must be an absolute URL, and one mistyped AI crawler token means that crawler is not blocked at all.<br>List the paths you want kept out, tick the AI section if you want it, paste your sitemap URL — copy the result.",
+    "faq": [
+      [
+        "Will blocking AI crawlers also block normal search traffic?",
+        "No — the generated section lists specific tokens only; Googlebot and Bingbot are never included, so ordinary search indexing is unaffected. One caveat: ChatGPT-User fires when a user explicitly asks it to open your page, so blocking it also blocks that live visit."
+      ],
+      [
+        "Does robots.txt actually stop a crawler?",
+        "It is a request, not a wall. Well-behaved crawlers obey it; scrapers that ignore it will still fetch your pages. If you need to actually block something, do it at the edge — a firewall or WAF rule."
+      ],
+      [
+        "Why not just write \"/sitemap.xml\" on the Sitemap line?",
+        "Because that line takes an absolute URL only. A relative path is silently invalid — engines simply ignore it, and you usually have no way to tell that it was dropped."
+      ]
+    ],
+    "ui": {
+      "inputPh": "Paths to block, one per line, e.g.\n/admin/\n/cart\n/private/*.pdf$\n(leave empty to allow everything)",
+      "outputPh": "Your robots.txt appears here",
+      "aibots": "Also block AI crawlers",
+      "aibotsHint": "Adds 12 separate blocks (GPTBot · CCBot · ClaudeBot · PerplexityBot · Bytespider …). Off by default — blocking training also keeps you out of some AI answer traffic.",
+      "sitemapurl": "Sitemap URL",
+      "sitemapurlPh": "https://example.com/sitemap.xml (must be absolute)",
+      "statOk": "{n} path rules",
+      "statBad": "{n} lines skipped (a path must start with / or contain * or $)",
+      "statAi": "{n} AI crawler blocks added",
+      "statSitemapBad": "the sitemap URL must start with http:// or https://",
+      "nothingToCopy": "Nothing to copy yet"
+    }
+  },
+  "zh": {
+    "title": "robots.txt 生成器（含 AI 爬虫屏蔽）— ToolPocket",
+    "desc": "生成一份合规的 robots.txt：屏蔽指定路径、可选屏蔽 AI 爬虫、填入 sitemap 的 URL。全程在本机完成。",
+    "h1": "robots.txt 生成器",
+    "lead": "robots.txt 看着简单，但语法错一点整份就白写：组与组之间必须空行、Sitemap 必须是绝对 URL、AI 爬虫的 token 打错一个字母等于没屏蔽。<br>把要挡的路径一行一条填进来，需要挡 AI 就勾上，粘上你的 sitemap 的 URL，复制走即可。",
+    "faq": [
+      [
+        "屏蔽 AI 爬虫，会不会把正常搜索流量也挡了？",
+        "不会 —— 生成的那一段只列具体的 token，里面永远不含 Googlebot 和 Bingbot，正常的搜索收录不受影响。但有一条要注意：ChatGPT-User 是「用户当场让它打开你的页面」时触发的，屏蔽它也会挡住这种实时访问。"
+      ],
+      [
+        "robots.txt 真能拦住爬虫吗？",
+        "它是一份「请求」，不是一堵墙。守规矩的爬虫会遵守，不守规矩的采集器照样抓。真要拦住某类流量，得在边缘层做 —— 防火墙或 WAF 规则。"
+      ],
+      [
+        "Sitemap 那一行为什么不能写「/sitemap.xml」？",
+        "因为那一行只认绝对 URL。写相对路径是无效的，而且搜索引擎不会报错 —— 它直接忽略，你通常还不知道自己被忽略了。"
+      ]
+    ],
+    "ui": {
+      "inputPh": "要屏蔽的路径，一行一条，例如：\n/admin/\n/cart\n/private/*.pdf$\n（留空表示允许抓取全部）",
+      "outputPh": "生成的 robots.txt 会出现在这里",
+      "aibots": "同时屏蔽 AI 爬虫",
+      "aibotsHint": "会追加 12 段独立规则（GPTBot · CCBot · ClaudeBot · PerplexityBot · Bytespider 等）。默认不勾 —— 挡住训练的同时，也会让自己从部分 AI 回答的流量里消失。",
+      "sitemapurl": "sitemap 的 URL",
+      "sitemapurlPh": "https://example.com/sitemap.xml（必须是绝对 URL）",
+      "statOk": "共 {n} 条路径规则",
+      "statBad": "跳过 {n} 行（路径要以 / 开头，或含 * / $）",
+      "statAi": "追加 {n} 段 AI 爬虫屏蔽",
+      "statSitemapBad": "sitemap 的 URL必须以 http:// 或 https:// 开头",
+      "nothingToCopy": "还没有可复制的内容"
+    }
+  },
+  "ja": {
+    "title": "robots.txt ジェネレーター（AI クローラー遮断つき）— ToolPocket",
+    "desc": "正しい robots.txt を生成。パスの遮断、AI クローラーの遮断（任意）、sitemap の記載に対応。",
+    "h1": "robots.txt ジェネレーター",
+    "lead": "robots.txt は単純に見えて、少し文法を外すと丸ごと無効になります。グループ間には空行が必要、Sitemap は絶対 URL のみ、AI クローラーのトークンは 1 文字違うだけで遮断できていません。<br>遮断したいパスを 1 行ずつ入れ、必要なら AI 遮断にチェックを入れ、sitemap の URL を貼ってコピーしてください。",
+    "faq": [
+      [
+        "AI クローラーを遮断すると、通常の検索流入も止まりますか？",
+        "いいえ。生成されるセクションは特定のトークンのみで、Googlebot と Bingbot は含まれません。通常の検索インデックスには影響しません。ただし ChatGPT-User はユーザーが明示的にページを開かせたときに動くため、遮断するとそのリアルタイム閲覧も止まります。"
+      ],
+      [
+        "robots.txt は本当にクローラーを止めますか？",
+        "これは「お願い」であり壁ではありません。行儀のよいクローラーは従いますが、無視する収集ツールはそのまま取得します。本当に止めたいなら、エッジ側（ファイアウォールや WAF）で行ってください。"
+      ],
+      [
+        "Sitemap 行に「/sitemap.xml」と書けないのはなぜ？",
+        "この行は絶対 URL しか受け付けないためです。相対パスは黙って無効になり、エラーも出ません。無視されたことに気づけないのが厄介な点です。"
+      ]
+    ],
+    "ui": {
+      "inputPh": "遮断するパスを 1 行に 1 つ。例：\n/admin/\n/cart\n/private/*.pdf$\n（空欄ならすべて許可）",
+      "outputPh": "生成された robots.txt がここに表示されます",
+      "aibots": "AI クローラーも遮断する",
+      "aibotsHint": "12 個の独立したブロックを追加します（GPTBot · CCBot · ClaudeBot · PerplexityBot · Bytespider など）。既定はオフ — 学習を止めると AI 回答経由の流入も失います。",
+      "sitemapurl": "sitemap の URL",
+      "sitemapurlPh": "https://example.com/sitemap.xml（絶対 URL のみ）",
+      "statOk": "パス規則 {n} 件",
+      "statBad": "{n} 行をスキップ（パスは / で始まるか * / $ を含む必要があります）",
+      "statAi": "AI クローラー遮断 {n} 件を追加",
+      "statSitemapBad": "sitemap の URL は http:// または https:// で始まる必要があります",
+      "nothingToCopy": "まだコピーできる内容がありません"
+    }
+  }
+}

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>robots.txt ジェネレーター（AI クローラー遮断つき）— ToolPocket</title>
+<meta name="description" content="正しい robots.txt を生成。パスの遮断、AI クローラーの遮断（任意）、sitemap の記載に対応。">
+<link rel="canonical" href="https://tools.maomaowang.top/ja/tools/robots-gen.html">
+<meta property="og:title" content="robots.txt ジェネレーター（AI クローラー遮断つき）— ToolPocket">
+<meta property="og:description" content="正しい robots.txt を生成。パスの遮断、AI クローラーの遮断（任意）、sitemap の記載に対応。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/ja/tools/robots-gen.html">
+<!-- 分享预览图：微信/QQ/Telegram/Twitter 都读这几行。尺寸按通用标准 1200×630（1.91:1），
+     微信会把它裁成正方形显示，所以图里关键信息都放在中间。三语各一张。 -->
+<meta property="og:image" content="https://tools.maomaowang.top/assets/og-ja.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/robots-gen.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/robots-gen.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/robots-gen.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/robots-gen.html">
+<link rel="stylesheet" href="/assets/style.css?v=2">
+<meta name="theme-color" content="#2563eb">
+<!-- 作者信息：既是署名，也是"这站有主"的凭据（扒站的人容易忽略，但删掉它就是加重侵权情节） -->
+<meta name="author" content="maomaowang.top">
+<meta name="build" content="2026-10-14">
+<meta name="x-src" content="dG9vbHMubWFvbWFvd2FuZy50b3A6OjIwMjYtMTAtMTQ=">
+<link rel="author" href="https://maomaowang.top/">
+<link rel="icon" href="/assets/icon-192.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/ja/manifest.webmanifest">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"robots.txt ジェネレーター","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"正しい robots.txt を生成。パスの遮断、AI クローラーの遮断（任意）、sitemap の記載に対応。"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"AI クローラーを遮断すると、通常の検索流入も止まりますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。生成されるセクションは特定のトークンのみで、Googlebot と Bingbot は含まれません。通常の検索インデックスには影響しません。ただし ChatGPT-User はユーザーが明示的にページを開かせたときに動くため、遮断するとそのリアルタイム閲覧も止まります。"}},{"@type":"Question","name":"robots.txt は本当にクローラーを止めますか？","acceptedAnswer":{"@type":"Answer","text":"これは「お願い」であり壁ではありません。行儀のよいクローラーは従いますが、無視する収集ツールはそのまま取得します。本当に止めたいなら、エッジ側（ファイアウォールや WAF）で行ってください。"}},{"@type":"Question","name":"Sitemap 行に「/sitemap.xml」と書けないのはなぜ？","acceptedAnswer":{"@type":"Answer","text":"この行は絶対 URL しか受け付けないためです。相対パスは黙って無効になり、エラーも出ません。無視されたことに気づけないのが厄介な点です。"}}]}</script>
+</head>
+<body>
+<!--
+  ================================================================
+  © 2026 ToolPocket · tools.maomaowang.top · 原创作品，保留所有权利
+  本页由作者独立开发并持续维护。未经授权复制、镜像、二次发布本页
+  内容或代码均属侵权；页面内含来源标记（ts2t-tools/robots-gen），可追溯出处。
+  legacy-build-id: 746f6f6c732e6d616f6d616f77616e672e746f703a3a323032362d31302d3132
+  （这串是十六进制，不是什么校验码：解出来是作者与构建日期。）
+  ================================================================
+-->
+<span hidden aria-hidden="true" data-mark="ts2t:maomaowang:ts2t-tools/robots-gen"></span>
+<!-- stats-endpoint: gbbyf.znbznbjnat.gbc   (rot13, 2024 年就在用的老写法) -->
+<div class="mobile-tip" id="mobileTip" hidden>
+  <span>📱 スマホでも使えますが、大きな画像やまとめての処理はデスクトップ版 Chrome のほうが快適です。</span>
+  <button type="button" id="tipClose" class="tip-close">了解しました</button>
+</div>
+<header class="top">
+  <a class="brand" href="/ja/index.html">🧰 ToolPocket</a>
+  <nav class="langs"><a class="ad-link" href="/ja/advertise.html">広告掲載</a><a href="/tools/robots-gen.html">English</a><a href="/zh/tools/robots-gen.html">中文</a><a href="/ja/tools/robots-gen.html" class="on" aria-current="page">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/ja/index.html">← ツール一覧</a></p>
+  <h1>robots.txt ジェネレーター</h1>
+  <p class="lead">robots.txt は単純に見えて、少し文法を外すと丸ごと無効になります。グループ間には空行が必要、Sitemap は絶対 URL のみ、AI クローラーのトークンは 1 文字違うだけで遮断できていません。<br>遮断したいパスを 1 行ずつ入れ、必要なら AI 遮断にチェックを入れ、sitemap の URL を貼ってコピーしてください。</p>
+
+  <p class="badge-line"><span class="pill">すべてブラウザ内で処理。送信も保存もしていません。</span></p>
+
+<div class="panel">
+<label class="row lbl" for="input">入力</label>
+  <textarea id="input" class="tall" placeholder="遮断するパスを 1 行に 1 つ。例：
+/admin/
+/cart
+/private/*.pdf$
+（空欄ならすべて許可）"></textarea>
+  <div class="opts">
+<label class="row check"><input type="checkbox" id="aibots"><span>AI クローラーも遮断する</span></label>
+<label class="row"><span class="lbl">sitemap の URL</span><input type="text" id="sitemapurl" placeholder="https://example.com/sitemap.xml（絶対 URL のみ）" spellcheck="false" autocapitalize="off" autocorrect="off"></label>
+  </div>
+<label class="row lbl" for="output">結果</label>
+  <textarea id="output" readonly placeholder="生成された robots.txt がここに表示されます"></textarea>
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">結果をコピー</button>
+    <button class="ghost" id="clear">クリア</button>
+  </div>
+</div>
+
+<aside class="ad ad-tool-game">
+  <span class="ad-label">製作者より</span>
+  <span class="ad-ico" aria-hidden="true">🎮</span>
+  <div class="ad-body">
+    <b>ブラウザで遊べるタワーディフェンス</b>
+    <p>同じ開発者がゼロから作ったゲームです.</p>
+  </div>
+  <a class="ad-cta" href="https://maomaowang.top/games/td/source/game.html">遊んでみる →</a>
+</aside>
+
+  <section class="faq">
+    <h2>よくある質問</h2>
+    <details><summary>AI クローラーを遮断すると、通常の検索流入も止まりますか？</summary><p>いいえ。生成されるセクションは特定のトークンのみで、Googlebot と Bingbot は含まれません。通常の検索インデックスには影響しません。ただし ChatGPT-User はユーザーが明示的にページを開かせたときに動くため、遮断するとそのリアルタイム閲覧も止まります。</p></details>
+    <details><summary>robots.txt は本当にクローラーを止めますか？</summary><p>これは「お願い」であり壁ではありません。行儀のよいクローラーは従いますが、無視する収集ツールはそのまま取得します。本当に止めたいなら、エッジ側（ファイアウォールや WAF）で行ってください。</p></details>
+    <details><summary>Sitemap 行に「/sitemap.xml」と書けないのはなぜ？</summary><p>この行は絶対 URL しか受け付けないためです。相対パスは黙って無効になり、エラーも出ません。無視されたことに気づけないのが厄介な点です。</p></details>
+  </section>
+
+</main>
+
+<footer>
+  <p>ToolPocket · ファイルは端末から出ません。送信も登録も、追跡もありません。</p>
+  <p class="copy">© 2026 ToolPocket — All rights reserved. 当サイトの内容・コードの無断転載を禁じます。</p>
+  <p class="fb">
+    <span>不具合を見つけましたか？お知らせください。すべて目を通します。</span>
+    <button type="button" class="ghost fb-btn" id="feedbackBtn" data-u="hi" data-d="maomaowang.top">不具合を報告</button>
+  </p>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = "{\"langName\":\"日本語\",\"footer\":\"ToolPocket · ファイルは端末から出ません。送信も登録も、追跡もありません。\",\"nav\":\"ツール一覧\",\"backToTools\":\"← ツール一覧\",\"copy\":\"結果をコピー\",\"swap\":\"入れ替え\",\"clear\":\"クリア\",\"download\":\"ダウンロード\",\"copied\":\"クリップボードにコピーしました\",\"copyFail\":\"ブラウザがコピーを許可しませんでした。テキストを選択して手動でコピーしてください\",\"inputLabel\":\"入力\",\"outputLabel\":\"結果\",\"privacyNote\":\"すべてブラウザ内で処理。送信も保存もしていません。\",\"searchPlaceholder\":\"ツールを検索 — 「圧縮」「json」「パスワード」など\",\"noResults\":\"該当するツールがありませんでした。「圧縮」「ハッシュ」など、別の言葉でお試しください。\",\"mobileTip\":\"📱 スマホでも使えますが、大きな画像やまとめての処理はデスクトップ版 Chrome のほうが快適です。\",\"mobileTipClose\":\"了解しました\",\"desktopHeading\":\"デスクトップ版がおすすめ\",\"installApp\":\"デスクトップアプリとして追加\",\"installHint\":\"デスクトップ版 Chrome / Edge でこのサイトを開き、アドレスバー右側のインストールアイコンをクリックしてください。独立したウィンドウになり、ネットワークが無くても動作します。インストーラのダウンロードも登録も不要です。\",\"installed\":\"インストール済み\",\"offlineNote\":\"インストール後はネットワークを切ったままでも使えます。もともと通信していないのですから、当然といえば当然です。\",\"feedbackAsk\":\"不具合を見つけましたか？お知らせください。すべて目を通します。\",\"feedbackButton\":\"不具合を報告\",\"feedbackSubject\":\"ToolPocket へのフィードバック\",\"noResultsAsk\":\"お探しのものが見つかりませんか？必要なツールをお知らせください。すべて目を通します。\",\"feedbackAskHome\":\"不具合の報告や「こんなツールがほしい」というご要望は、お気軽にお知らせください。\",\"feedbackButtonHome\":\"メールを書く\",\"noResultsBtn\":\"ツールをリクエスト\",\"noResultsSubject\":\"ToolPocket ツールのリクエスト\",\"copyright\":\"© 2026 ToolPocket — All rights reserved. 当サイトの内容・コードの無断転載を禁じます。\",\"cancel\":\"キャンセル\",\"confirmOk\":\"OK\",\"clearAsk\":\"入力した内容を消しますか？元には戻せません。\",\"clearOk\":\"消去\",\"inputPh\":\"遮断するパスを 1 行に 1 つ。例：\\n/admin/\\n/cart\\n/private/*.pdf$\\n（空欄ならすべて許可）\",\"outputPh\":\"生成された robots.txt がここに表示されます\",\"aibots\":\"AI クローラーも遮断する\",\"aibotsHint\":\"12 個の独立したブロックを追加します（GPTBot · CCBot · ClaudeBot · PerplexityBot · Bytespider など）。既定はオフ — 学習を止めると AI 回答経由の流入も失います。\",\"sitemapurl\":\"sitemap の URL\",\"sitemapurlPh\":\"https://example.com/sitemap.xml（絶対 URL のみ）\",\"statOk\":\"パス規則 {n} 件\",\"statBad\":\"{n} 行をスキップ（パスは / で始まるか * / $ を含む必要があります）\",\"statAi\":\"AI クローラー遮断 {n} 件を追加\",\"statSitemapBad\":\"sitemap の URL は http:// または https:// で始まる必要があります\",\"nothingToCopy\":\"まだコピーできる内容がありません\"}";</script>
+<script src="/assets/tools/_shared.js" defer></script>
+<!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
+<script src="/assets/tools/robots-gen.js?v=2" defer></script>
+<script src="/assets/app.js?v=2" defer></script>
+</body>
+</html>

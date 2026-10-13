@@ -25,7 +25,10 @@
       "kind": "text",
       "script": "markdown.js",
       "i18n": "markdown",
-      "buttons": ["copy", "clear"],
+      "buttons": [
+        "copy",
+        "clear"
+      ],
       "options": []
     },
     {
@@ -35,10 +38,23 @@
       "kind": "text",
       "script": "json-path.js",
       "i18n": "json-path",
-      "buttons": ["copy", "clear"],
+      "buttons": [
+        "copy",
+        "clear"
+      ],
       "options": [
-        { "type": "text", "id": "path", "label": "path", "placeholder": "pathPh" },
-        { "type": "checkbox", "id": "pretty", "label": "pretty", "checked": true }
+        {
+          "type": "text",
+          "id": "path",
+          "label": "path",
+          "placeholder": "pathPh"
+        },
+        {
+          "type": "checkbox",
+          "id": "pretty",
+          "label": "pretty",
+          "checked": true
+        }
       ]
     },
     {
@@ -48,9 +64,42 @@
       "kind": "text",
       "script": "timezone.js",
       "i18n": "timezone",
-      "buttons": ["copy", "clear"],
+      "buttons": [
+        "copy",
+        "clear"
+      ],
       "options": [
-        { "type": "select", "id": "zone", "label": "zone", "choices": [["local", "zoneLocal"], ["UTC", "zoneUtc"], ["Asia/Shanghai", "zoneCn"], ["Asia/Tokyo", "zoneJp"], ["America/New_York", "zoneUs"], ["Europe/London", "zoneUk"]] }
+        {
+          "type": "select",
+          "id": "zone",
+          "label": "zone",
+          "choices": [
+            [
+              "local",
+              "zoneLocal"
+            ],
+            [
+              "UTC",
+              "zoneUtc"
+            ],
+            [
+              "Asia/Shanghai",
+              "zoneCn"
+            ],
+            [
+              "Asia/Tokyo",
+              "zoneJp"
+            ],
+            [
+              "America/New_York",
+              "zoneUs"
+            ],
+            [
+              "Europe/London",
+              "zoneUk"
+            ]
+          ]
+        }
       ]
     },
     {
@@ -60,9 +109,27 @@
       "kind": "text",
       "script": "yaml-json.js",
       "i18n": "yaml-json",
-      "buttons": ["copy", "swap", "clear"],
+      "buttons": [
+        "copy",
+        "swap",
+        "clear"
+      ],
       "options": [
-        { "type": "select", "id": "mode", "label": "mode", "choices": [["y2j", "y2j"], ["j2y", "j2y"]] }
+        {
+          "type": "select",
+          "id": "mode",
+          "label": "mode",
+          "choices": [
+            [
+              "y2j",
+              "y2j"
+            ],
+            [
+              "j2y",
+              "j2y"
+            ]
+          ]
+        }
       ]
     },
     {
@@ -72,7 +139,10 @@
       "kind": "text",
       "script": "http-status.js",
       "i18n": "http-status",
-      "buttons": ["copy", "clear"],
+      "buttons": [
+        "copy",
+        "clear"
+      ],
       "options": []
     },
     {
@@ -82,9 +152,30 @@
       "kind": "text",
       "script": "number-words.js",
       "i18n": "number-words",
-      "buttons": ["copy", "clear"],
+      "buttons": [
+        "copy",
+        "clear"
+      ],
       "options": [
-        { "type": "select", "id": "mode", "label": "mode", "choices": [["cn", "cn"], ["fin", "fin"], ["en", "en"]] }
+        {
+          "type": "select",
+          "id": "mode",
+          "label": "mode",
+          "choices": [
+            [
+              "cn",
+              "cn"
+            ],
+            [
+              "fin",
+              "fin"
+            ],
+            [
+              "en",
+              "en"
+            ]
+          ]
+        }
       ]
     },
     {
@@ -94,7 +185,10 @@
       "kind": "text",
       "script": "number-check.js",
       "i18n": "number-check",
-      "buttons": ["copy", "clear"],
+      "buttons": [
+        "copy",
+        "clear"
+      ],
       "options": []
     },
     {
@@ -104,9 +198,67 @@
       "kind": "text",
       "script": "string-escape.js",
       "i18n": "string-escape",
-      "buttons": ["copy", "swap", "clear"],
+      "buttons": [
+        "copy",
+        "swap",
+        "clear"
+      ],
       "options": [
-        { "type": "select", "id": "mode", "label": "mode", "choices": [["json-enc", "escJsonEnc"], ["json-dec", "escJsonDec"], ["js-enc", "escJsEnc"], ["js-dec", "escJsDec"], ["sql-enc", "escSqlEnc"], ["sql-dec", "escSqlDec"], ["html-enc", "escHtmlEnc"], ["html-dec", "escHtmlDec"], ["url-enc", "escUrlEnc"], ["url-dec", "escUrlDec"], ["regex-enc", "escRegexEnc"], ["regex-dec", "escRegexDec"]] }
+        {
+          "type": "select",
+          "id": "mode",
+          "label": "mode",
+          "choices": [
+            [
+              "json-enc",
+              "escJsonEnc"
+            ],
+            [
+              "json-dec",
+              "escJsonDec"
+            ],
+            [
+              "js-enc",
+              "escJsEnc"
+            ],
+            [
+              "js-dec",
+              "escJsDec"
+            ],
+            [
+              "sql-enc",
+              "escSqlEnc"
+            ],
+            [
+              "sql-dec",
+              "escSqlDec"
+            ],
+            [
+              "html-enc",
+              "escHtmlEnc"
+            ],
+            [
+              "html-dec",
+              "escHtmlDec"
+            ],
+            [
+              "url-enc",
+              "escUrlEnc"
+            ],
+            [
+              "url-dec",
+              "escUrlDec"
+            ],
+            [
+              "regex-enc",
+              "escRegexEnc"
+            ],
+            [
+              "regex-dec",
+              "escRegexDec"
+            ]
+          ]
+        }
       ]
     },
     {
@@ -116,9 +268,35 @@
       "kind": "text",
       "script": "base32.js",
       "i18n": "base32",
-      "buttons": ["copy", "swap", "clear"],
+      "buttons": [
+        "copy",
+        "swap",
+        "clear"
+      ],
       "options": [
-        { "type": "select", "id": "mode", "label": "mode", "choices": [["b32-enc", "b32Enc"], ["b32-dec", "b32Dec"], ["b58-enc", "b58Enc"], ["b58-dec", "b58Dec"]] }
+        {
+          "type": "select",
+          "id": "mode",
+          "label": "mode",
+          "choices": [
+            [
+              "b32-enc",
+              "b32Enc"
+            ],
+            [
+              "b32-dec",
+              "b32Dec"
+            ],
+            [
+              "b58-enc",
+              "b58Enc"
+            ],
+            [
+              "b58-dec",
+              "b58Dec"
+            ]
+          ]
+        }
       ]
     },
     {
@@ -128,7 +306,10 @@
       "kind": "text",
       "script": "ipv6.js",
       "i18n": "ipv6",
-      "buttons": ["copy", "clear"],
+      "buttons": [
+        "copy",
+        "clear"
+      ],
       "options": []
     },
     {
@@ -138,10 +319,34 @@
       "kind": "text",
       "script": "html-entities.js",
       "i18n": "html-entities",
-      "buttons": ["copy", "swap", "clear"],
+      "buttons": [
+        "copy",
+        "swap",
+        "clear"
+      ],
       "options": [
-        { "type": "select", "id": "mode", "label": "mode", "choices": [["encode", "encode"], ["decode", "decode"]], "hint": "modeHint" },
-        { "type": "checkbox", "id": "all", "label": "all", "hint": "allHint" }
+        {
+          "type": "select",
+          "id": "mode",
+          "label": "mode",
+          "choices": [
+            [
+              "encode",
+              "encode"
+            ],
+            [
+              "decode",
+              "decode"
+            ]
+          ],
+          "hint": "modeHint"
+        },
+        {
+          "type": "checkbox",
+          "id": "all",
+          "label": "all",
+          "hint": "allHint"
+        }
       ]
     },
     {
@@ -151,9 +356,19 @@
       "kind": "text",
       "script": "date-calc.js",
       "i18n": "date-calc",
-      "buttons": ["copy", "clear"],
+      "buttons": [
+        "copy",
+        "clear"
+      ],
       "options": [
-        { "type": "number", "id": "days", "label": "days", "value": 30, "step": 1, "note": "daysNote" }
+        {
+          "type": "number",
+          "id": "days",
+          "label": "days",
+          "value": 30,
+          "step": 1,
+          "note": "daysNote"
+        }
       ]
     },
     {
@@ -163,9 +378,18 @@
       "kind": "text",
       "script": "url-parser.js",
       "i18n": "url-parser",
-      "buttons": ["copy", "clear"],
+      "buttons": [
+        "copy",
+        "clear"
+      ],
       "options": [
-        { "type": "checkbox", "id": "decode", "label": "decode", "checked": true, "hint": "decodeHint" }
+        {
+          "type": "checkbox",
+          "id": "decode",
+          "label": "decode",
+          "checked": true,
+          "hint": "decodeHint"
+        }
       ]
     },
     {
@@ -175,9 +399,16 @@
       "kind": "text",
       "script": "color-palette.js",
       "i18n": "color-palette",
-      "buttons": ["copy", "clear"],
+      "buttons": [
+        "copy",
+        "clear"
+      ],
       "options": [
-        { "type": "color", "id": "color", "label": "color" }
+        {
+          "type": "color",
+          "id": "color",
+          "label": "color"
+        }
       ]
     },
     {
@@ -187,7 +418,10 @@
       "kind": "text",
       "script": "ip-cidr.js",
       "i18n": "ip-cidr",
-      "buttons": ["copy", "clear"],
+      "buttons": [
+        "copy",
+        "clear"
+      ],
       "options": []
     },
     {
@@ -197,7 +431,10 @@
       "kind": "text",
       "script": "cron.js",
       "i18n": "cron",
-      "buttons": ["copy", "clear"],
+      "buttons": [
+        "copy",
+        "clear"
+      ],
       "options": []
     },
     {
@@ -207,10 +444,40 @@
       "kind": "text",
       "script": "hash.js",
       "i18n": "hash",
-      "buttons": ["copy", "clear"],
+      "buttons": [
+        "copy",
+        "clear"
+      ],
       "options": [
-        { "type": "select", "id": "algo", "label": "algo", "choices": [["md5", "MD5"], ["sha-1", "SHA-1"], ["sha-256", "SHA-256"], ["sha-512", "SHA-512"]], "hint": "algoHint" },
-        { "type": "checkbox", "id": "upper", "label": "upper" }
+        {
+          "type": "select",
+          "id": "algo",
+          "label": "algo",
+          "choices": [
+            [
+              "md5",
+              "MD5"
+            ],
+            [
+              "sha-1",
+              "SHA-1"
+            ],
+            [
+              "sha-256",
+              "SHA-256"
+            ],
+            [
+              "sha-512",
+              "SHA-512"
+            ]
+          ],
+          "hint": "algoHint"
+        },
+        {
+          "type": "checkbox",
+          "id": "upper",
+          "label": "upper"
+        }
       ]
     },
     {
@@ -220,15 +487,49 @@
       "kind": "text",
       "script": "regex.js",
       "i18n": "regex",
-      "buttons": ["copy", "clear"],
+      "buttons": [
+        "copy",
+        "clear"
+      ],
       "options": [
-        { "type": "text", "id": "pattern", "label": "pattern", "hint": "patternHint" },
-        { "type": "text", "id": "replace", "label": "replace", "hint": "replaceHint" },
-        { "type": "checkbox", "id": "cbG", "label": "cbG", "checked": true },
-        { "type": "checkbox", "id": "cbI", "label": "cbI" },
-        { "type": "checkbox", "id": "cbM", "label": "cbM" },
-        { "type": "checkbox", "id": "cbS", "label": "cbS" },
-        { "type": "checkbox", "id": "cbU", "label": "cbU" }
+        {
+          "type": "text",
+          "id": "pattern",
+          "label": "pattern",
+          "hint": "patternHint"
+        },
+        {
+          "type": "text",
+          "id": "replace",
+          "label": "replace",
+          "hint": "replaceHint"
+        },
+        {
+          "type": "checkbox",
+          "id": "cbG",
+          "label": "cbG",
+          "checked": true
+        },
+        {
+          "type": "checkbox",
+          "id": "cbI",
+          "label": "cbI"
+        },
+        {
+          "type": "checkbox",
+          "id": "cbM",
+          "label": "cbM"
+        },
+        {
+          "type": "checkbox",
+          "id": "cbS",
+          "label": "cbS"
+        },
+        {
+          "type": "checkbox",
+          "id": "cbU",
+          "label": "cbU"
+        }
       ]
     },
     {
@@ -238,13 +539,56 @@
       "kind": "text",
       "script": "uuid.js",
       "i18n": "uuid",
-      "buttons": ["gen", "copy", "clear"],
+      "buttons": [
+        "gen",
+        "copy",
+        "clear"
+      ],
       "hideInput": true,
       "options": [
-        { "type": "select", "id": "type", "label": "type", "choices": [["uuid4", "UUID v4"], ["uuid7", "UUID v7"], ["ulid", "ULID"], ["nanoid", "NanoID"]], "hint": "typeHint" },
-        { "type": "number", "id": "count", "label": "count", "value": 5, "min": 1, "step": 1, "note": "countHint" },
-        { "type": "checkbox", "id": "upper", "label": "upper" },
-        { "type": "checkbox", "id": "nodash", "label": "nodash" }
+        {
+          "type": "select",
+          "id": "type",
+          "label": "type",
+          "choices": [
+            [
+              "uuid4",
+              "UUID v4"
+            ],
+            [
+              "uuid7",
+              "UUID v7"
+            ],
+            [
+              "ulid",
+              "ULID"
+            ],
+            [
+              "nanoid",
+              "NanoID"
+            ]
+          ],
+          "hint": "typeHint"
+        },
+        {
+          "type": "number",
+          "id": "count",
+          "label": "count",
+          "value": 5,
+          "min": 1,
+          "step": 1,
+          "note": "countHint"
+        },
+        {
+          "type": "checkbox",
+          "id": "upper",
+          "label": "upper"
+        },
+        {
+          "type": "checkbox",
+          "id": "nodash",
+          "label": "nodash"
+        }
       ]
     },
     {
@@ -254,7 +598,10 @@
       "kind": "text",
       "script": "diff.js",
       "i18n": "diff",
-      "buttons": ["copy", "clear"],
+      "buttons": [
+        "copy",
+        "clear"
+      ],
       "options": []
     },
     {
@@ -264,9 +611,55 @@
       "kind": "text",
       "script": "case-converter.js",
       "i18n": "case-converter",
-      "buttons": ["copy", "clear"],
+      "buttons": [
+        "copy",
+        "clear"
+      ],
       "options": [
-        { "type": "select", "id": "style", "label": "style", "choices": [["all", "all"], ["camel", "camelCase"], ["pascal", "PascalCase"], ["snake", "snake_case"], ["kebab", "kebab-case"], ["constant", "CONSTANT_CASE"], ["dot", "dot.case"], ["title", "Title Case"], ["screaming", "SCREAMING-KEBAB"]], "hint": "styleHint" }
+        {
+          "type": "select",
+          "id": "style",
+          "label": "style",
+          "choices": [
+            [
+              "all",
+              "all"
+            ],
+            [
+              "camel",
+              "camelCase"
+            ],
+            [
+              "pascal",
+              "PascalCase"
+            ],
+            [
+              "snake",
+              "snake_case"
+            ],
+            [
+              "kebab",
+              "kebab-case"
+            ],
+            [
+              "constant",
+              "CONSTANT_CASE"
+            ],
+            [
+              "dot",
+              "dot.case"
+            ],
+            [
+              "title",
+              "Title Case"
+            ],
+            [
+              "screaming",
+              "SCREAMING-KEBAB"
+            ]
+          ],
+          "hint": "styleHint"
+        }
       ]
     },
     {
@@ -276,10 +669,59 @@
       "kind": "text",
       "script": "radix.js",
       "i18n": "radix",
-      "buttons": ["copy", "clear"],
+      "buttons": [
+        "copy",
+        "clear"
+      ],
       "options": [
-        { "type": "select", "id": "base", "label": "base", "choices": [["auto", "radixAuto"], ["2", "2"], ["8", "8"], ["10", "10"], ["16", "16"], ["36", "36"]], "hint": "baseHint" },
-        { "type": "select", "id": "group", "label": "group", "choices": [["4", "radix4bit"], ["8", "radix8bit"]], "hint": "groupHint" }
+        {
+          "type": "select",
+          "id": "base",
+          "label": "base",
+          "choices": [
+            [
+              "auto",
+              "radixAuto"
+            ],
+            [
+              "2",
+              "2"
+            ],
+            [
+              "8",
+              "8"
+            ],
+            [
+              "10",
+              "10"
+            ],
+            [
+              "16",
+              "16"
+            ],
+            [
+              "36",
+              "36"
+            ]
+          ],
+          "hint": "baseHint"
+        },
+        {
+          "type": "select",
+          "id": "group",
+          "label": "group",
+          "choices": [
+            [
+              "4",
+              "radix4bit"
+            ],
+            [
+              "8",
+              "radix8bit"
+            ]
+          ],
+          "hint": "groupHint"
+        }
       ]
     },
     {
@@ -289,7 +731,10 @@
       "kind": "text",
       "script": "jwt.js",
       "i18n": "jwt",
-      "buttons": ["copy", "clear"],
+      "buttons": [
+        "copy",
+        "clear"
+      ],
       "options": []
     },
     {
@@ -299,11 +744,54 @@
       "kind": "text",
       "script": "csv-json.js",
       "i18n": "csv-json",
-      "buttons": ["copy", "swap", "clear"],
+      "buttons": [
+        "copy",
+        "swap",
+        "clear"
+      ],
       "options": [
-        { "type": "select", "id": "mode", "label": "mode", "choices": [["csv2json", "csv2json"], ["json2csv", "json2csv"]], "hint": "modeHint" },
-        { "type": "select", "id": "delim", "label": "delim", "choices": [["comma", ","], ["tab", "sepTab"], ["semicolon", ";"]], "hint": "delimHint" },
-        { "type": "checkbox", "id": "header", "label": "header", "checked": true }
+        {
+          "type": "select",
+          "id": "mode",
+          "label": "mode",
+          "choices": [
+            [
+              "csv2json",
+              "csv2json"
+            ],
+            [
+              "json2csv",
+              "json2csv"
+            ]
+          ],
+          "hint": "modeHint"
+        },
+        {
+          "type": "select",
+          "id": "delim",
+          "label": "delim",
+          "choices": [
+            [
+              "comma",
+              ","
+            ],
+            [
+              "tab",
+              "sepTab"
+            ],
+            [
+              "semicolon",
+              ";"
+            ]
+          ],
+          "hint": "delimHint"
+        },
+        {
+          "type": "checkbox",
+          "id": "header",
+          "label": "header",
+          "checked": true
+        }
       ]
     },
     {
@@ -728,6 +1216,76 @@
         "pwn"
       ],
       "options": []
+    },
+    {
+      "id": "sitemap-gen",
+      "icon": "🗺️",
+      "cat": "dev",
+      "kind": "text",
+      "script": "sitemap-gen.js",
+      "i18n": "sitemap-gen",
+      "buttons": [
+        "copy",
+        "clear"
+      ],
+      "options": [
+        {
+          "type": "checkbox",
+          "id": "lastmod",
+          "label": "lastmod",
+          "checked": true
+        },
+        {
+          "type": "select",
+          "id": "freq",
+          "label": "freq",
+          "choices": [
+            [
+              "",
+              "freqNone"
+            ],
+            [
+              "daily",
+              "freqDaily"
+            ],
+            [
+              "weekly",
+              "freqWeekly"
+            ],
+            [
+              "monthly",
+              "freqMonthly"
+            ]
+          ],
+          "hint": "freqHint"
+        }
+      ]
+    },
+    {
+      "id": "robots-gen",
+      "icon": "🤖",
+      "cat": "dev",
+      "kind": "text",
+      "script": "robots-gen.js",
+      "i18n": "robots-gen",
+      "buttons": [
+        "copy",
+        "clear"
+      ],
+      "options": [
+        {
+          "type": "checkbox",
+          "id": "aibots",
+          "label": "aibots",
+          "checked": false
+        },
+        {
+          "type": "text",
+          "id": "sitemapurl",
+          "label": "sitemapurl",
+          "placeholder": "sitemapurlPh"
+        }
+      ]
     }
   ]
 }

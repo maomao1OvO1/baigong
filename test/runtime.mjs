@@ -960,5 +960,66 @@ console.log("\n㉖ 本轮新增工具的关键算法");
   }
 }
 
+  // ⑥ sitemap.xml 生成器（XML 转义 · 去重 · 坏行跳过 · lastmod/changefreq 开关）
+  {
+    const { els } = loadTool("sitemap-gen.js",
+      ["input", "output", "status", "copy", "clear", "lastmod", "freq"], {});
+    els.lastmod.checked = false;
+    els.input.value = "https://a.com/?x=1&y=2\nhttps://a.com/\nhttps://a.com\nnot-a-url";
+    els.input.fire("input");
+    const out = els.output.value;
+    const locs = (out.match(/<loc>/g) || []).length;
+
+    if (out.includes("&amp;") && !/&(?!amp;|lt;|gt;|quot;|apos;)/.test(out))
+      ok("sitemap：URL 里的 & 被转义成 &amp;（否则写出的是非法 XML）");
+    else bad("sitemap：XML 转义不对", (out.split("\n").find((l) => l.includes("loc")) || out).slice(0, 160));
+
+    if (locs === 2) ok("sitemap：https://a.com 与 https://a.com/ 视为同一条（去重生效）");
+    else bad("sitemap：去重不对，<loc> 出现 " + locs + " 次", out.slice(0, 200));
+
+    if (!/not-a-url/.test(out)) ok("sitemap：非 URL 行被跳过");
+    else bad("sitemap：坏行混进了输出", out.slice(0, 200));
+
+    if (!out.includes("<lastmod>")) ok("sitemap：未勾选时不写 <lastmod>");
+    else bad("sitemap：lastmod 开关无效", out.slice(0, 160));
+
+    els.lastmod.checked = true; els.freq.value = "weekly"; els.lastmod.fire("change");
+    const out2 = els.output.value;
+    if (out2.includes("<lastmod>") && out2.includes("<changefreq>weekly</changefreq>"))
+      ok("sitemap：勾选后同时写入 lastmod 与 changefreq");
+    else bad("sitemap：lastmod / changefreq 没写进去", out2.slice(0, 220));
+  }
+
+  // ⑦ robots.txt 生成器（组间空行 · Sitemap 必须绝对 URL · 坏行跳过）
+  {
+    const { els } = loadTool("robots-gen.js",
+      ["input", "output", "status", "copy", "clear", "aibots", "sitemapurl"], {});
+    els.input.value = "/admin/\n/tmp\nbad line here";
+    els.input.fire("input");
+    const out = els.output.value;
+    if (out.startsWith("User-agent: *\nAllow: /\nDisallow: /admin/\nDisallow: /tmp\n"))
+      ok("robots：基本结构正确（* 组 + Allow + 两条 Disallow）");
+    else bad("robots：基本结构不对", out.slice(0, 160));
+    if (!out.includes("bad line"))
+      ok("robots：含空格的行被跳过（那多半是粘错了）");
+    else bad("robots：坏行没被跳过", out.slice(0, 160));
+
+    els.aibots.checked = true; els.aibots.fire("change");
+    const out2 = els.output.value;
+    if (/\n\nUser-agent: GPTBot\nDisallow: \/\n/.test(out2) && /\n\nUser-agent: CCBot\n/.test(out2))
+      ok("robots：AI 段独立成组，且与上一组之间有空行（少了空行规则会挂错组）");
+    else bad("robots：AI 段格式不对", out2.slice(0, 320));
+
+    els.sitemapurl.value = "/sitemap.xml"; els.sitemapurl.fire("input");
+    if (!els.output.value.includes("Sitemap:"))
+      ok("robots：相对路径的 sitemap 被拒绝（不输出 Sitemap 行）");
+    else bad("robots：相对路径竟然被接受了", els.output.value.slice(-140));
+
+    els.sitemapurl.value = "https://a.com/sitemap.xml"; els.sitemapurl.fire("input");
+    if (els.output.value.includes("Sitemap: https://a.com/sitemap.xml"))
+      ok("robots：绝对 URL 的 sitemap 正常写入");
+    else bad("robots：绝对 URL 没写进去", els.output.value.slice(-140));
+  }
+
 console.log(`\n结果：${pass} 项通过，${fail} 项失败`);
 process.exit(fail ? 1 : 0);
