@@ -1,5 +1,5 @@
 /* 由 src/build.mjs 生成，请勿直接编辑（改模板去 build.mjs）*/
-const CACHE = "toolpocket-v3";
+const CACHE = "baigong-v4";
 const CORE = [
   "/",
   "/zh/",

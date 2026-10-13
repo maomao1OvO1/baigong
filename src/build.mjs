@@ -941,7 +941,7 @@ for (const lang of LANGS) {
   }, null, 2) + "\n");
 }
 
-const SW_CACHE = "toolpocket-v3";   // 改这里的版本号 = 让所有访客重新拉一次（升级页面/样式时顺手 +1）
+const SW_CACHE = "baigong-v4";   // 改这里的版本号 = 让所有访客重新拉一次（升级页面/样式时顺手 +1）
 const SW_CORE = [
   "/", "/zh/", "/ja/", "/advertise.html", "/zh/advertise.html", "/ja/advertise.html",
   `/assets/style.css?v=${assetV("style.css")}`,
