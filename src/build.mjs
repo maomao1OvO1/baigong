@@ -459,7 +459,16 @@ ${footer(lang)}
 `;
 }
 
-/* ── 首页 ───────────────────────────────────────────────────────────────── */
+/* ── 首页 ─────────────────────────────────────────────────────────────────
+   首页顶部信息条（2026-10-14 · 毛毛：「正顶端写个当前工具数量，再挂一个我的邮箱，
+   点了就是发邮件说加什么工具」）。两个细节：
+   · 工具数用 TOOLS.length 构建时现算 —— 写死数字迟早跟实际对不上（本站已经吃过
+     这个亏：README 里写着 35，实际早就是 37 了）；
+   · 邮箱沿用站内既有做法：HTML 里拆成 data-u / data-d（防垃圾邮件爬虫），点击时由
+     app.js 的事件委托拼成 mailto ⇒ 所以 class 必须带 fb-btn（那是委托的识别标记）；
+     data-subject 让这封信的主题是「工具需求」而不是默认的「问题反馈」，他收信一眼能分。
+   ⚠️ 这段说明**不能写进模板字符串里** —— 模板里的 ${ 后面跟块注释是非法的（会被当成
+      待求值的表达式），整个 build 会直接挂在 SyntaxError 上（2026-10-14 真踩过一次）。 */
 
 function homePage(lang) {
   const t = HOME[lang.code];
@@ -501,6 +510,11 @@ ${head(lang, { out, title: t.title, desc: t.desc, jsonld })}
 ${sourceMark(out)}
 ${mobileTip(lang)}
 ${topbar(lang, out)}
+
+<div class="notice">
+  <span class="n-count">🧰 <b>${TOOLS.length}</b> ${rich(t.countUnit)}</span>
+  <button type="button" class="ghost fb-btn n-add" data-u="${esc(UI.feedbackUser)}" data-d="${esc(UI.feedbackDomain)}" data-subject="ToolPocket tool request">✉️ ${rich(t.addTool)}</button>
+</div>
 
 <main>
   <section class="hero">

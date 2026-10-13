@@ -9,7 +9,9 @@
     "whyHeading": "So what's the catch?",
     "why": "There isn't one. Serving these tools costs us almost nothing, because <b>there is no server doing the work</b> — your browser already knows how to compress a JPEG, convert a format and format JSON. Sites that make you upload are paying for machines to process your files, and that bill is exactly why they cap you, watermark you, or slow you down until you subscribe. We skipped that part: no accounts to sell, no data to broker, no tracking pixels.",
     "safeHeading": "How do I know you're not lying?",
-    "safe": "Don't take our word for it — <b>open any tool, turn off your Wi-Fi, and keep using it.</b> It still works, because nothing was ever being sent. Your files stay on your device; that isn't a promise we're making, it's how the page is built."
+    "safe": "Don't take our word for it — <b>open any tool, turn off your Wi-Fi, and keep using it.</b> It still works, because nothing was ever being sent. Your files stay on your device; that isn't a promise we're making, it's how the page is built.",
+    "countUnit": "tools",
+    "addTool": "Want a tool that isn’t here? Write to me"
   },
   "zh": {
     "title": "不用注册、不用关注公众号的在线工具 | ToolPocket",
@@ -20,7 +22,9 @@
     "whyHeading": "那它图什么？",
     "why": "图的是它真不花钱：<b>没有服务器在替你干活</b>。压图、转格式、格式化 JSON 这些事，你的浏览器本来就会做。那些非让你上传文件的站，是在花钱买机器处理你的文件 —— 所以才有次数限制、水印和「开通会员」的弹窗。这笔成本我们没有，也就没有这些套路：不收账号去卖、不倒腾你的数据、页面里也没有第三方统计脚本。",
     "safeHeading": "凭什么信你？",
-    "safe": "不用信我们，试一下就知道：<b>随便打开一个工具，然后把 Wi-Fi 关掉接着用。</b>它照样能用 —— 因为从头到尾就没有东西往外发。文件一直在你自己设备里，这不是我们的承诺，是它本来的运行方式。"
+    "safe": "不用信我们，试一下就知道：<b>随便打开一个工具，然后把 Wi-Fi 关掉接着用。</b>它照样能用 —— 因为从头到尾就没有东西往外发。文件一直在你自己设备里，这不是我们的承诺，是它本来的运行方式。",
+    "countUnit": "个工具",
+    "addTool": "想加什么工具？写信告诉我"
   },
   "ja": {
     "title": "登録不要・ファイルを送信しない無料オンラインツール | ToolPocket",
@@ -31,6 +35,8 @@
     "whyHeading": "無料で成り立つ理由",
     "why": "処理を行う<b>サーバーが存在しない</b>からです。画像の圧縮も形式の変換も、ブラウザにもともと備わっている機能で足ります。アップロードを求めるサービスは、その処理のためにサーバー代を支払っています。だからこそ回数制限や透かし、会員登録への誘導が生まれます。ここにはその費用がないため、制限もありません。アカウントの販売やデータの提供、広告配信のための追跡も行っていません。",
     "safeHeading": "本当に大丈夫なのか",
-    "safe": "私たちの説明を信じる必要はありません。<b>どれか一つのツールを開き、Wi-Fi を切ってそのまま操作してみてください。</b>問題なく動きます。送信する仕組みがそもそも無いためです。ファイルは端末の中に留まります。これは約束ではなく、このサイトの作りそのものです。"
+    "safe": "私たちの説明を信じる必要はありません。<b>どれか一つのツールを開き、Wi-Fi を切ってそのまま操作してみてください。</b>問題なく動きます。送信する仕組みがそもそも無いためです。ファイルは端末の中に留まります。これは約束ではなく、このサイトの作りそのものです。",
+    "countUnit": "個のツール",
+    "addTool": "欲しいツールがなければメールで教えてください"
   }
 }
