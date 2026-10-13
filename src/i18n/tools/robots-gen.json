@@ -1,7 +1,7 @@
 {
   "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
   "en": {
-    "title": "robots.txt generator (with AI crawler blocking) — ToolPocket",
+    "title": "robots.txt generator (with AI crawler blocking) — Baigong",
     "desc": "Build a valid robots.txt: block paths, optionally block AI crawlers, add your sitemap. Runs entirely in your browser.",
     "h1": "robots.txt generator",
     "lead": "robots.txt looks trivial until the syntax is slightly wrong: groups need a blank line between them, the Sitemap line must be an absolute URL, and one mistyped AI crawler token means that crawler is not blocked at all.<br>List the paths you want kept out, tick the AI section if you want it, paste your sitemap URL — copy the result.",
@@ -34,7 +34,7 @@
     }
   },
   "zh": {
-    "title": "robots.txt 生成器（含 AI 爬虫屏蔽）— ToolPocket",
+    "title": "robots.txt 生成器（含 AI 爬虫屏蔽）— 百工",
     "desc": "生成一份合规的 robots.txt：屏蔽指定路径、可选屏蔽 AI 爬虫、填入 sitemap 的 URL。全程在本机完成。",
     "h1": "robots.txt 生成器",
     "lead": "robots.txt 看着简单，但语法错一点整份就白写：组与组之间必须空行、Sitemap 必须是绝对 URL、AI 爬虫的 token 打错一个字母等于没屏蔽。<br>把要挡的路径一行一条填进来，需要挡 AI 就勾上，粘上你的 sitemap 的 URL，复制走即可。",
@@ -67,7 +67,7 @@
     }
   },
   "ja": {
-    "title": "robots.txt ジェネレーター（AI クローラー遮断つき）— ToolPocket",
+    "title": "robots.txt ジェネレーター（AI クローラー遮断つき）— 百工",
     "desc": "正しい robots.txt を生成。パスの遮断、AI クローラーの遮断（任意）、sitemap の記載に対応。",
     "h1": "robots.txt ジェネレーター",
     "lead": "robots.txt は単純に見えて、少し文法を外すと丸ごと無効になります。グループ間には空行が必要、Sitemap は絶対 URL のみ、AI クローラーのトークンは 1 文字違うだけで遮断できていません。<br>遮断したいパスを 1 行ずつ入れ、必要なら AI 遮断にチェックを入れ、sitemap の URL を貼ってコピーしてください。",

@@ -1,7 +1,7 @@
 {
   "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
   "en": {
-    "title": "Colour contrast checker (WCAG AA / AAA) — ToolPocket",
+    "title": "Colour contrast checker (WCAG AA / AAA) — Baigong",
     "desc": "Work out the contrast ratio of two colours and see whether they pass WCAG AA and AAA for normal and large text. Runs entirely in your browser.",
     "h1": "Colour contrast checker",
     "lead": "Contrast is a number, not a feeling: WCAG asks for 4.5 : 1 on normal text and 3 : 1 on large text, and grey-on-grey very often lands just under the line.<br>Paste your two colours — you get the ratio and the four verdicts, and nothing leaves your browser.",
@@ -37,7 +37,7 @@
     }
   },
   "zh": {
-    "title": "颜色对比度检查（WCAG AA / AAA）— ToolPocket",
+    "title": "颜色对比度检查（WCAG AA / AAA）— 百工",
     "desc": "算出两个颜色的对比度比值，并逐条判定 WCAG AA / AAA 在正常文字与大字下是否达标。全程在浏览器里完成。",
     "h1": "颜色对比度检查",
     "lead": "对比度是个数字，不是感觉：WCAG 要求正常文字 4.5 : 1、大字 3 : 1，而浅灰配中灰经常就卡在线上一点。<br>把两个颜色贴进来，你拿到比值和四条判定 —— 内容不出你的浏览器。",
@@ -73,7 +73,7 @@
     }
   },
   "ja": {
-    "title": "色のコントラスト比チェッカー（WCAG AA / AAA）— ToolPocket",
+    "title": "色のコントラスト比チェッカー（WCAG AA / AAA）— 百工",
     "desc": "2 色のコントラスト比を計算し、通常テキストと大きなテキストで WCAG の AA / AAA を判定します。ブラウザ内だけで動作します。",
     "h1": "色のコントラスト比チェッカー",
     "lead": "コントラストは感覚ではなく数字です。WCAG は通常テキストに 4.5 : 1、大きなテキストに 3 : 1 を求めますが、グレー同士はしばしば基準をわずかに下回ります。<br>2 色を貼り付ければ比と 4 つの判定が出ます。内容はブラウザの外に出ません。",

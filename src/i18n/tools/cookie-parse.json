@@ -1,7 +1,7 @@
 {
   "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
   "en": {
-    "title": "Cookie parser and Set-Cookie security check — ToolPocket",
+    "title": "Cookie parser and Set-Cookie security check — Baigong",
     "desc": "Parse a Cookie request header or a Set-Cookie response header: list every value, decode the attributes and flag the ones that are missing. Nothing is sent anywhere.",
     "h1": "Cookie parser",
     "lead": "Two kinds of input are understood: a Cookie header (what document.cookie prints) becomes a readable list, and a Set-Cookie header gets its attributes decoded and checked.<br>Missing attributes are the dangerous ones — they throw no error, they just quietly remove a layer of protection.",
@@ -48,7 +48,7 @@
     }
   },
   "zh": {
-    "title": "Cookie 解析与 Set-Cookie 安全体检 — ToolPocket",
+    "title": "Cookie 解析与 Set-Cookie 安全体检 — 百工",
     "desc": "解析 Cookie 请求头或 Set-Cookie 响应头：把值列清楚、把属性解出来，并指出缺失的属性。不上传任何内容。",
     "h1": "Cookie 解析",
     "lead": "两种输入都认：Cookie 请求头（也就是 document.cookie 打出来的样子）会列成清单，Set-Cookie 响应头会被解出属性并逐条体检。<br>真正危险的是「缺了属性」—— 它不报错，只是静悄悄地少一层防护。",
@@ -95,7 +95,7 @@
     }
   },
   "ja": {
-    "title": "Cookie 解析と Set-Cookie の安全性チェック — ToolPocket",
+    "title": "Cookie 解析と Set-Cookie の安全性チェック — 百工",
     "desc": "Cookie リクエストヘッダーまたは Set-Cookie レスポンスヘッダーを解析し、値の一覧・属性の展開・不足属性の指摘を行います。どこにも送信しません。",
     "h1": "Cookie 解析",
     "lead": "2 種類の入力を扱えます。Cookie ヘッダー(document.cookie が出力する形)は一覧に、Set-Cookie レスポンスヘッダーは属性を展開して点検します。<br>危険なのは「属性が無い」場合です。エラーは出ず、防御が 1 層静かに減るだけです。",

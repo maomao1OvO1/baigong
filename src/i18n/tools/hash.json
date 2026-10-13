@@ -1,7 +1,7 @@
 {
   "_说明": "哈希计算器 —— MD5 / SHA-1 / SHA-256 / SHA-512 三语文案。",
   "en": {
-    "title": "MD5, SHA-1, SHA-256, SHA-512 Hash Generator Online | ToolPocket",
+    "title": "MD5, SHA-1, SHA-256, SHA-512 Hash Generator Online | Baigong",
     "desc": "Compute MD5, SHA-1, SHA-256 or SHA-512 of any text, in hex and Base64. Runs entirely in your browser — nothing is uploaded.",
     "h1": "Hash generator (MD5 / SHA-1 / SHA-256 / SHA-512)",
     "lead": "MD5, SHA-1, SHA-256 and SHA-512 in one place, in hex and Base64. MD5 is implemented right here, since browsers stopped providing it — computing a checksum shouldn't require sending the file anywhere.",
@@ -30,7 +30,7 @@
     }
   },
   "zh": {
-    "title": "MD5 / SHA-1 / SHA-256 / SHA-512 在线哈希计算 | ToolPocket",
+    "title": "MD5 / SHA-1 / SHA-256 / SHA-512 在线哈希计算 | 百工",
     "desc": "在浏览器本地计算文本的 MD5、SHA-1、SHA-256、SHA-512，同时给出 hex 与 Base64 两种写法，内容不上传。",
     "h1": "哈希计算（MD5 / SHA-1 / SHA-256 / SHA-512）",
     "lead": "MD5、SHA-1、SHA-256、SHA-512 一次算完，同时给 hex 和 Base64。浏览器早就不提供 MD5 了，这里是手写的实现 —— 算个校验值，不该还要把内容发出去。",
@@ -59,7 +59,7 @@
     }
   },
   "ja": {
-    "title": "MD5 / SHA-1 / SHA-256 / SHA-512 ハッシュ生成ツール | ToolPocket",
+    "title": "MD5 / SHA-1 / SHA-256 / SHA-512 ハッシュ生成ツール | 百工",
     "desc": "テキストの MD5・SHA-1・SHA-256・SHA-512 をブラウザ内で計算し、hex と Base64 の両方を表示します。送信は行いません。",
     "h1": "ハッシュ生成（MD5 / SHA-1 / SHA-256 / SHA-512）",
     "lead": "MD5・SHA-1・SHA-256・SHA-512 をまとめて計算し、hex と Base64 の両方を表示します。ブラウザが MD5 を提供しなくなったため、ここでは自前で実装しています。",

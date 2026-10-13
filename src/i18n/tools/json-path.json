@@ -1,7 +1,7 @@
 {
   "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
   "en": {
-    "title": "JSON path extractor — ToolPocket",
+    "title": "JSON path extractor — Baigong",
     "desc": "Pull one field out of a big JSON response, without pasting it into someone's server.",
     "h1": "JSON path extractor",
     "lead": "Your API response is 300 lines and you need one field. Paste the JSON, type a path like <code>data.items[0].title</code>, and get just that value. Supports <code>a.b</code>, <code>a[0]</code>, <code>a[-1]</code> and <code>a[*].b</code>. Nothing leaves the browser — responses usually contain tokens and user data.",
@@ -28,7 +28,7 @@
     }
   },
   "zh": {
-    "title": "JSON 路径取值 — ToolPocket",
+    "title": "JSON 路径取值 — 百工",
     "desc": "从一大段 JSON 里只取出你要的那个字段，数据不出浏览器。",
     "h1": "JSON 路径取值",
     "lead": "接口返回几百行，你只想看其中一个字段？把 JSON 粘进来、写个路径（如 <code>data.items[0].title</code>）就把它单独抠出来。支持 <code>a.b</code>、<code>a[0]</code>、<code>a[-1]</code> 和 <code>a[*].b</code>。数据不出浏览器 —— 接口响应里常带着 token 和用户信息，本来就不该发给陌生网站。",
@@ -55,7 +55,7 @@
     }
   },
   "ja": {
-    "title": "JSON パスで値を取り出す — ToolPocket",
+    "title": "JSON パスで値を取り出す — 百工",
     "desc": "大きな JSON から必要なフィールドだけを取り出します。データは外部に送信しません。",
     "h1": "JSON パスで値を取り出す",
     "lead": "API のレスポンスが何百行もあって、見たいのは 1 つのフィールドだけ。JSON を貼り、<code>data.items[0].title</code> のようなパスを書けばその値だけを取り出せます。<code>a.b</code>・<code>a[0]</code>・<code>a[-1]</code>・<code>a[*].b</code> に対応。データはブラウザから出ません。",

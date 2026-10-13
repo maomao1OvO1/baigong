@@ -1,7 +1,7 @@
 {
   "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
   "en": {
-    "title": "Image to Base64 / data URI converter — ToolPocket",
+    "title": "Image to Base64 / data URI converter — Baigong",
     "desc": "Turn images into data URIs, raw Base64, CSS background-image rules or img tags. Encoding happens in your browser, so the image is never uploaded.",
     "h1": "Image → Base64",
     "lead": "Drop an image and get four ready-to-paste forms: a data URI, raw Base64, a CSS background-image rule, or an img tag.<br>Base64 grows a file by exactly 33% — both sizes are shown side by side so the trade-off is visible.",
@@ -39,7 +39,7 @@
     }
   },
   "zh": {
-    "title": "图片转 Base64 / data URI — ToolPocket",
+    "title": "图片转 Base64 / data URI — 百工",
     "desc": "把图片转成 data URI、纯 Base64、CSS 的 background-image 或 img 标签。编码在浏览器里完成，图片不会被上传。",
     "h1": "图片 → Base64",
     "lead": "把图片拖进来，直接拿到四种可粘的形态：data URI、纯 Base64、CSS 的 background-image、img 标签。<br>Base64 会让体积**精确增加 33%** —— 两个体积并排摆出来，值不值得内联一眼就清楚。",
@@ -77,7 +77,7 @@
     }
   },
   "ja": {
-    "title": "画像を Base64 / data URI に変換 — ToolPocket",
+    "title": "画像を Base64 / data URI に変換 — 百工",
     "desc": "画像を data URI、生の Base64、CSS の background-image、img タグに変換します。変換はブラウザ内で行われ、画像は送信されません。",
     "h1": "画像 → Base64",
     "lead": "画像をドロップすると、そのまま貼れる 4 つの形が出ます。data URI、生の Base64、CSS の background-image、img タグ。<br>Base64 はサイズを**ちょうど 33%** 増やします。両方のサイズを並べて出すので、内联する価値があるか一目で分かります。",

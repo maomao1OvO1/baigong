@@ -1,7 +1,7 @@
 {
   "_说明": "文本处理合集 —— 三语文案。",
   "en": {
-    "title": "Text Tools — Case Converter, Remove Duplicates, Sort, Count | ToolPocket",
+    "title": "Text Tools — Case Converter, Remove Duplicates, Sort, Count | Baigong",
     "desc": "Uppercase, lowercase, title case, reverse, trim, remove duplicate lines, sort lines and count characters — all offline, in your browser.",
     "h1": "Everyday text tools in one place",
     "lead": "The small text jobs: change case, reverse, trim blank lines, remove duplicates, sort lines, count words. Instant results, and your text doesn't end up on a page buried in ads.",
@@ -40,7 +40,7 @@
     }
   },
   "zh": {
-    "title": "文本工具 — 大小写转换 / 去重 / 排序 / 字数统计 | ToolPocket",
+    "title": "文本工具 — 大小写转换 / 去重 / 排序 / 字数统计 | 百工",
     "desc": "转大写、转小写、首字母大写、反序、去空白、删除重复行、按行排序、统计字数 —— 全部在浏览器里离线完成。",
     "h1": "日常文本处理，一个页面搞定",
     "lead": "零碎的文本活：大小写转换、反转、去空行、去重、排序、统计字数。即时出结果，也不用把内容贴进一个满屏广告的页面。",
@@ -79,7 +79,7 @@
     }
   },
   "ja": {
-    "title": "テキストツール — 大文字小文字変換・重複削除・並べ替え・文字数カウント | ToolPocket",
+    "title": "テキストツール — 大文字小文字変換・重複削除・並べ替え・文字数カウント | 百工",
     "desc": "大文字化、小文字化、先頭を大文字、逆順、空白除去、重複行の削除、行の並べ替え、文字数カウント。すべてブラウザ内で完結します。",
     "h1": "日常のテキスト処理を 1 ページに",
     "lead": "ちょっとしたテキスト処理：大文字小文字の変換、反転、空行の除去、重複削除、行の並べ替え、文字数のカウント。広告まみれのページにテキストを貼る必要はありません。",

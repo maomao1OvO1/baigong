@@ -1,7 +1,7 @@
 {
   "_说明": "首页文案（三语）。**这是三套独立写作，不是互译**：\n · 英文市场：痛点是「免费的对价是什么」+ 上传/账号/追踪三件套 ⇒ 主打数据不出设备、没有可卖的账号；\n · 中文市场：痛点是注册、关注公众号、限次数、水印、诱导充会员 ⇒ 逐条点名，说清这里都没有；\n · 日文市场：痛点是对『無料』理由不明的疑虑、個人情報の扱い、回数制限 ⇒ 先行说明无服务器的理由，语气克制具体。\n写作纪律：① 不写我们做不到的事（如『零日志』——访问日志由 CDN 记录，我们只承诺『不追踪、不卖数据』）；\n② 每段都要有具体信息，不堆形容词；③ 三语各自成句，中文不写翻译腔，日文不写中文式敬语。",
   "en": {
-    "title": "ToolPocket — Free tools that never see your files",
+    "title": "Baigong — Free tools that never see your files",
     "desc": "Compress images, convert formats, format JSON, hash text — all inside your browser. No sign-up, no upload, no file limits, nothing tracked.",
     "h1": "Free tools that never see your files",
     "lead": "Most “free online tools” want an account first and your file second. These want neither. Everything runs <b>inside your browser</b>, so your photo, your JSON, your password never leave your device — no sign-up wall, no “3 files per hour”, no tracking script watching what you paste.",
@@ -15,7 +15,7 @@
     "addToolLink": "Write to me"
   },
   "zh": {
-    "title": "不用注册、不用关注公众号的在线工具 | ToolPocket",
+    "title": "不用注册、不用关注公众号的在线工具 | 百工",
     "desc": "图片压缩、格式转换、JSON 格式化、哈希计算 —— 全部在你自己的浏览器里完成。不用注册、文件不上传、不限次数、没有水印。",
     "h1": "不用注册，也不用关注公众号",
     "lead": "那些「免费在线工具」的套路通常是三步：先注册、再关注、最后告诉你今天只剩 2 次。这里一步都没有 —— <b>压缩、转格式、格式化、算哈希全在你自己的浏览器里跑</b>，照片和文件根本不往服务器传，自然也谈不上次数限制、水印和排队。",
@@ -29,7 +29,7 @@
     "addToolLink": "写信告诉我"
   },
   "ja": {
-    "title": "登録不要・ファイルを送信しない無料オンラインツール | ToolPocket",
+    "title": "登録不要・ファイルを送信しない無料オンラインツール | 百工",
     "desc": "画像の圧縮と形式変換、JSON の整形、ハッシュの計算。すべてブラウザ内で処理します。会員登録もアップロードも不要、回数制限もありません。",
     "h1": "登録も、ファイルの送信も要りません",
     "lead": "「無料ツール」の多くは、まず会員登録を求め、次にファイルを預かろうとします。ここではどちらもありません。<b>処理はすべてお使いのブラウザの中で完結する</b>ため、写真も JSON も、入力したパスワードも端末から出ません。1 日 3 枚までといった回数制限や、透かしの類もありません。",

@@ -1,7 +1,7 @@
 {
   "_说明": "单位换算 —— 三语文案。",
   "en": {
-    "title": "Unit Converter — Length, Weight, Data Size, Temperature | ToolPocket",
+    "title": "Unit Converter — Length, Weight, Data Size, Temperature | Baigong",
     "desc": "Convert mm/cm/m/km, inches/feet/miles, grams/ounces/pounds, KB/MB/GB, and Celsius/Fahrenheit/Kelvin — all at once, no upload.",
     "h1": "Unit converter",
     "lead": "Length, weight, data size and temperature in one place — with the conversion factor shown, so you can check the result yourself instead of trusting a black box.",
@@ -35,7 +35,7 @@
     }
   },
   "zh": {
-    "title": "单位换算 — 长度 / 重量 / 数据大小 / 温度 | ToolPocket",
+    "title": "单位换算 — 长度 / 重量 / 数据大小 / 温度 | 百工",
     "desc": "毫米、厘米、米、公里、英寸、英尺、英里、克、盎司、磅、KB、MB、GB、摄氏度、华氏度、开尔文 —— 一次全出，不上传。",
     "h1": "单位换算",
     "lead": "长度、重量、数据大小、温度一站换算，并把换算系数一并写出来 —— 结果对不对，你自己能核对，不用信一个黑盒。",
@@ -69,7 +69,7 @@
     }
   },
   "ja": {
-    "title": "単位変換 — 長さ・重さ・データ容量・温度 | ToolPocket",
+    "title": "単位変換 — 長さ・重さ・データ容量・温度 | 百工",
     "desc": "mm・cm・m・km・インチ・フィート・マイル、グラム・オンス・ポンド、KB・MB・GB、摂氏・華氏・ケルビンを一括変換。アップロード不要。",
     "h1": "単位変換",
     "lead": "長さ・重さ・データ量・温度をまとめて変換し、換算係数も併記します。結果が正しいかどうか、自分の目で確認できます。",

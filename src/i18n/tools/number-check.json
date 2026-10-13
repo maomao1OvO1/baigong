@@ -1,7 +1,7 @@
 {
   "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
   "en": {
-    "title": "Bank card & ID number validator — ToolPocket",
+    "title": "Bank card & ID number validator — Baigong",
     "desc": "Check whether a card number or ID number is structurally valid. Computed on your device.",
     "h1": "Bank card / ID validator",
     "lead": "A single mistyped digit is the most common input error, and check digits exist to catch exactly that. Bank cards use Luhn, Chinese ID numbers use the GB 11643 check digit — both verified here, <b>on your device</b>. A pass means the format is valid; it does not prove the card or number exists.",
@@ -35,7 +35,7 @@
     }
   },
   "zh": {
-    "title": "银行卡 / 身份证校验 — ToolPocket",
+    "title": "银行卡 / 身份证校验 — 百工",
     "desc": "判断银行卡号、身份证号格式是否合法。全程在你设备上算，号码不上传。",
     "h1": "银行卡 / 身份证校验",
     "lead": "录错一位数字是最常见的失误，而校验位就是专门用来抓它的：银行卡走 Luhn 算法，身份证走 GB 11643 的校验码。<b>全程在你设备上算</b>，号码不上传、不保存。校验通过只说明格式合法，不代表这张卡、这个号码真实存在。",
@@ -69,7 +69,7 @@
     }
   },
   "ja": {
-    "title": "銀行カード・身分証番号の検証 — ToolPocket",
+    "title": "銀行カード・身分証番号の検証 — 百工",
     "desc": "カード番号や身分証番号の形式が正しいかを端末内で検証します。",
     "h1": "カード / 身分証番号の検証",
     "lead": "1 桁の打ち間違いは最も多い入力ミスで、チェックディジットはまさにそれを見つけるための仕組みです。銀行カードは Luhn 法、中国の身分証は GB 11643 のチェックコードを使います。<b>計算はすべて端末内</b>で、番号は送信も保存もされません。通過は形式が正しいことのみを示します。",

@@ -1,7 +1,7 @@
 {
   "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
   "en": {
-    "title": "MIME type lookup — extension ⇄ Content-Type — ToolPocket",
+    "title": "MIME type lookup — extension ⇄ Content-Type — Baigong",
     "desc": "Look up the MIME type for an extension, or the extensions for a MIME type, with ready-to-paste Content-Type and accept values. Runs in your browser.",
     "h1": "MIME type lookup",
     "lead": "One box, both directions: type an extension to get its MIME type, or a MIME type to get its extensions.<br>The answers are often counter-intuitive — .js is officially text/javascript, .ico has two accepted spellings, and .yaml still has no single registered type.",
@@ -50,7 +50,7 @@
     }
   },
   "zh": {
-    "title": "MIME 类型速查 —— 扩展名 ⇄ Content-Type — ToolPocket",
+    "title": "MIME 类型速查 —— 扩展名 ⇄ Content-Type — 百工",
     "desc": "输入扩展名查 MIME 类型，或输入 MIME 类型查扩展名，附带可直接粘的 Content-Type 与 accept 写法。全程在浏览器里完成。",
     "h1": "MIME 类型速查",
     "lead": "一个输入框，双向查：填扩展名给你 MIME 类型，填 MIME 类型给你扩展名。<br>答案经常跟直觉相反 —— .js 的正式类型是 text/javascript，.ico 有两种被接受的写法，.yaml 至今没有唯一的注册类型。",
@@ -99,7 +99,7 @@
     }
   },
   "ja": {
-    "title": "MIME タイプ早見 — 拡張子 ⇄ Content-Type — ToolPocket",
+    "title": "MIME タイプ早見 — 拡張子 ⇄ Content-Type — 百工",
     "desc": "拡張子から MIME タイプを、または MIME タイプから拡張子を調べます。そのまま貼れる Content-Type と accept の書き方付き。ブラウザ内だけで動作します。",
     "h1": "MIME タイプ早見",
     "lead": "入力欄は 1 つ、双方向に調べられます。拡張子を入れれば MIME タイプ、MIME タイプを入れれば拡張子が出ます。<br>答えは直感に反することがよくあります。.js の正式な型は text/javascript、.ico には 2 通りの書き方があり、.yaml には今も単一の登録型がありません。",

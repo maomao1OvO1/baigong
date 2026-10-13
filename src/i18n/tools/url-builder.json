@@ -1,7 +1,7 @@
 {
   "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
   "en": {
-    "title": "URL builder — add query parameters safely — ToolPocket",
+    "title": "URL builder — add query parameters safely — Baigong",
     "desc": "Build a URL from a base address plus one key=value per line, with correct percent-encoding and a before/after table for every value.",
     "h1": "URL builder",
     "lead": "First line: the base address. Every line after it: one key=value. Out comes the full URL, with each value shown before and after encoding.<br>Unencoded characters are where hand-built URLs break — a value containing & silently becomes two parameters, and one containing # swallows the rest of the URL.",
@@ -34,7 +34,7 @@
     }
   },
   "zh": {
-    "title": "URL 构造器 —— 安全地加查询参数 — ToolPocket",
+    "title": "URL 构造器 —— 安全地加查询参数 — 百工",
     "desc": "基础地址加每行一个 key=value，拼成完整 URL，并给出每个值编码前后的对照。特殊字符会被正确编码。",
     "h1": "URL 构造器",
     "lead": "第一行写基础地址，后面每行一个 `key=value`，输出完整 URL，并把每个值编码前后的样子对照列出来。<br>手拼 URL 翻车都在编码上：值里有个 `&` 就悄悄变成两个参数，有个 `#` 就把后面整段吞掉。",
@@ -67,7 +67,7 @@
     }
   },
   "ja": {
-    "title": "URL ビルダー — クエリパラメータを安全に付ける — ToolPocket",
+    "title": "URL ビルダー — クエリパラメータを安全に付ける — 百工",
     "desc": "ベースアドレスと 1 行 1 つの key=value から URL を組み立てます。正しいパーセントエンコードと、値ごとの変換前後の対応表付き。",
     "h1": "URL ビルダー",
     "lead": "1 行目にベースアドレス、以降は 1 行に 1 つ `key=value`。完成した URL と、各値のエンコード前後が並びます。<br>手で組んだ URL が壊れるのはエンコードのせいです。値に `&` が入ると黙って 2 つのパラメータになり、`#` が入ると以降が丸ごと飲み込まれます。",

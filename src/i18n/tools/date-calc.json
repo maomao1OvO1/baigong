@@ -1,7 +1,7 @@
 {
   "_说明": "日期计算器 —— 三语文案（含各语言星期名数组）。",
   "en": {
-    "title": "Date Calculator — Days Between Dates & Date Offset | ToolPocket",
+    "title": "Date Calculator — Days Between Dates & Date Offset | Baigong",
     "desc": "Find out how many days away a date is, add or subtract days, and get the weekday, day of year and ISO week number.",
     "h1": "Date calculator",
     "lead": "Find out how many days away a date is, add or subtract days, and get the weekday, day of year and ISO week number. It works in calendar days, so a daylight-saving switch can't turn the answer into a fraction.",
@@ -39,7 +39,7 @@
     }
   },
   "zh": {
-    "title": "日期计算器 —— 相差天数 / 日期加减 | ToolPocket",
+    "title": "日期计算器 —— 相差天数 / 日期加减 | 百工",
     "desc": "算一个日期离今天多少天、加减 N 天是哪天，并给出星期、年内第几天与 ISO 周号。",
     "h1": "日期计算器",
     "lead": "算一个日期离今天多少天、加减 N 天是哪天，并给出星期、年内第几天、ISO 周号。按「日历天」计算，夏令时切换不会让结果变成半天。",
@@ -77,7 +77,7 @@
     }
   },
   "ja": {
-    "title": "日付計算ツール — 日数差と日付の加減算 | ToolPocket",
+    "title": "日付計算ツール — 日数差と日付の加減算 | 百工",
     "desc": "指定した日付が今日から何日後（前）か、N 日後の日付はいつか、曜日・年内通算日・ISO 週番号までまとめて表示します。",
     "h1": "日付計算",
     "lead": "指定した日付が今日から何日後か、N 日後はいつかを計算し、曜日・年内通算日・ISO 週番号も表示します。暦日単位で計算するため、夏時間の切り替えで半日ずれることはありません。",

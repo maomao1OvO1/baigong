@@ -1,7 +1,7 @@
 {
   "_说明": "配色板生成 —— 三语文案。",
   "en": {
-    "title": "Color Palette Generator — Complementary, Analogous & Shades | ToolPocket",
+    "title": "Color Palette Generator — Complementary, Analogous & Shades | Baigong",
     "desc": "Enter a color and get its complement, analogous and triadic partners plus a 7-step lightness ladder — all as copy-ready hex values.",
     "h1": "Color palette generator",
     "lead": "Get a full set of partners for one colour: complement, analogous, triadic, and seven lightness steps of the same hue. Keeps hover, pressed and disabled states on-hue instead of drifting.",
@@ -29,7 +29,7 @@
     }
   },
   "zh": {
-    "title": "配色板生成 —— 互补色 / 类似色 / 明度阶梯 | ToolPocket",
+    "title": "配色板生成 —— 互补色 / 类似色 / 明度阶梯 | 百工",
     "desc": "输入一个颜色，得到它的互补色、类似色、三角色以及 7 档明度阶梯，全部是可直接复制的 hex 值。",
     "h1": "配色板生成",
     "lead": "从一个颜色出发，拿到整套搭配：互补色、类似色、三角色，外加同色相的 7 档明度。hover、按下、禁用这几种状态照它来定，就不会越调越脏。",
@@ -57,7 +57,7 @@
     }
   },
   "ja": {
-    "title": "カラーパレット生成 — 補色・類似色・明度ステップ | ToolPocket",
+    "title": "カラーパレット生成 — 補色・類似色・明度ステップ | 百工",
     "desc": "色を 1 つ入力すると、補色・類似色・トライアドと 7 段階の明度ラダーをコピー可能な hex 値で出力します。",
     "h1": "カラーパレット生成",
     "lead": "1 色から配色一式を得られます。補色・類似色・トライアドと、同じ色相の明度 7 段階。hover・押下・無効状態の色が濁らずに揃います。",

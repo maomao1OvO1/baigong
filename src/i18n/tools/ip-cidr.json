@@ -1,7 +1,7 @@
 {
   "_说明": "IPv4 / CIDR 子网计算 —— 三语文案。",
   "en": {
-    "title": "IP Subnet Calculator — CIDR, Netmask, Host Range | ToolPocket",
+    "title": "IP Subnet Calculator — CIDR, Netmask, Host Range | Baigong",
     "desc": "Enter an IPv4 address with a CIDR prefix and get the network address, broadcast, usable host range, netmask, wildcard mask and binary view.",
     "h1": "IPv4 / CIDR subnet calculator",
     "lead": "Work out a subnet from something like 192.168.1.10/24: network address, broadcast, usable host range, netmask and wildcard mask — plus a plain answer on whether the address is private, loopback or public.",
@@ -41,7 +41,7 @@
     }
   },
   "zh": {
-    "title": "IP 子网计算器 —— CIDR / 掩码 / 可用主机范围 | ToolPocket",
+    "title": "IP 子网计算器 —— CIDR / 掩码 / 可用主机范围 | 百工",
     "desc": "输入带前缀的 IPv4 地址，算出网络地址、广播地址、可用主机范围、掩码、通配符掩码与二进制视图。",
     "h1": "IPv4 / CIDR 子网计算",
     "lead": "输入 192.168.1.10/24 这样的地址，算出网络地址、广播地址、可用主机范围、掩码与反掩码，并直接告诉你它是私有、回环还是公网地址。",
@@ -81,7 +81,7 @@
     }
   },
   "ja": {
-    "title": "IP サブネット計算 — CIDR・ネットマスク・ホスト範囲 | ToolPocket",
+    "title": "IP サブネット計算 — CIDR・ネットマスク・ホスト範囲 | 百工",
     "desc": "CIDR 付きの IPv4 アドレスから、ネットワークアドレス・ブロードキャスト・利用可能ホスト範囲・マスク・バイナリ表示を計算します。",
     "h1": "IPv4 / CIDR サブネット計算",
     "lead": "192.168.1.10/24 のようなアドレスから、ネットワークアドレス・ブロードキャスト・利用可能なホスト範囲・マスク・ワイルドカードマスクを算出します。プライベート／ループバック／グローバルの別も表示します。",

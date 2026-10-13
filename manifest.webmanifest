@@ -1,6 +1,6 @@
 {
-  "name": "ToolPocket — Free tools that never see your files",
-  "short_name": "ToolPocket",
+  "name": "Baigong — Free tools that never see your files",
+  "short_name": "Baigong",
   "description": "Compress images, convert formats, format JSON, hash text — all inside your browser. No sign-up, no upload, no file limits, nothing tracked.",
   "start_url": "/",
   "scope": "/",

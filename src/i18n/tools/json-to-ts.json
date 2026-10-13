@@ -1,7 +1,7 @@
 {
   "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
   "en": {
-    "title": "JSON to TypeScript interface generator — ToolPocket",
+    "title": "JSON to TypeScript interface generator — Baigong",
     "desc": "Turn a JSON sample into TypeScript interfaces: nested types, optional fields and unions, worked out from the real data. Nothing is uploaded.",
     "h1": "JSON → TypeScript",
     "lead": "Stop hand-copying field names. Paste a JSON sample and get TypeScript interfaces with nested types, optional fields and unions,<br>all inferred from the data you actually have — and none of it uploaded anywhere.",
@@ -32,7 +32,7 @@
     }
   },
   "zh": {
-    "title": "JSON 转 TypeScript 类型 — ToolPocket",
+    "title": "JSON 转 TypeScript 类型 — 百工",
     "desc": "把一份 JSON 直接推成 TypeScript 的 interface：嵌套类型、可选字段、联合类型全自动，全部依据你手上的真实数据。不上传任何内容。",
     "h1": "JSON → TypeScript",
     "lead": "别再手抄字段名了。贴一段 JSON，直接拿到 TypeScript 的 interface —— 嵌套类型、可选字段、联合类型都从真实数据结构推出来，<br>而且一个字节都不上传。",
@@ -63,7 +63,7 @@
     }
   },
   "ja": {
-    "title": "JSON から TypeScript の型を生成 — ToolPocket",
+    "title": "JSON から TypeScript の型を生成 — 百工",
     "desc": "JSON のサンプルから TypeScript の interface を生成します。ネストした型・省略可能なフィールド・ユニオン型を実データから推論。アップロードは行いません。",
     "h1": "JSON → TypeScript",
     "lead": "フィールド名を手で写すのはもう終わりにしましょう。JSON を貼り付けるだけで TypeScript の interface が出ます。ネストした型・省略可能なフィールド・ユニオン型は、すべて手元の実データから推論します。<br>しかも 1 バイトもアップロードしません。",

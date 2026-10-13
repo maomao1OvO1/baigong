@@ -1,7 +1,7 @@
 {
   "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
   "en": {
-    "title": "Time zone converter — ToolPocket",
+    "title": "Time zone converter — Baigong",
     "desc": "See one time across nine time zones, with daylight saving handled correctly.",
     "h1": "Time zone converter",
     "lead": "One side is now, the other is what time is it over there. Type a time (or leave it empty for right now) and see it across Beijing, Tokyo, New York, London and five more — with the offset between them. <b>Daylight saving is handled by the browser's own time zone database</b>, the part hand-arithmetic gets wrong twice a year.",
@@ -40,7 +40,7 @@
     }
   },
   "zh": {
-    "title": "时区换算 — ToolPocket",
+    "title": "时区换算 — 百工",
     "desc": "一个时间，同时看九个时区的对应时刻，夏令时自动算对。",
     "h1": "时区换算",
     "lead": "一个是「现在」，一个是「那边几点」。填个时间（留空就是此刻），一次看到北京、东京、纽约、伦敦等九个时区的对应时刻，还标出彼此相差几小时。<b>夏令时按浏览器自带的时区库自动算</b> —— 欧美一年切换两次，手算偏移表迟早出错。",
@@ -79,7 +79,7 @@
     }
   },
   "ja": {
-    "title": "タイムゾーン変換 — ToolPocket",
+    "title": "タイムゾーン変換 — 百工",
     "desc": "1 つの時刻を 9 つのタイムゾーンで表示。夏時間も正しく扱います。",
     "h1": "タイムゾーン変換",
     "lead": "片方は「今」、もう片方は「向こうは何時か」。時刻を入力する（空欄なら現在時刻）と、北京・東京・ニューヨーク・ロンドンなど 9 つのタイムゾーンでの時刻と時差が一度に表示されます。<b>夏時間はブラウザ内蔵のタイムゾーンデータベースで自動計算</b>します。",

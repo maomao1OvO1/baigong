@@ -1,7 +1,7 @@
 {
   "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
   "en": {
-    "title": "chmod calculator — octal ⇄ rwx, with setuid explained — ToolPocket",
+    "title": "chmod calculator — octal ⇄ rwx, with setuid explained — Baigong",
     "desc": "Convert between 755 and rwxr-xr-x, decode setuid / setgid / sticky bits, and see what each digit grants. Paste an ls -l permission string too.",
     "h1": "chmod calculator",
     "lead": "755 everyone knows. The 4 in 4755, the s in rwxr-sr-x and the t in rwxrwxrwt are the ones people have seen but cannot explain — and all three are about privilege.<br>Type either form and get the other, plus a plain description of each digit.",
@@ -51,7 +51,7 @@
     }
   },
   "zh": {
-    "title": "chmod 权限换算 —— 755 ⇄ rwx，含 setuid 说明 — ToolPocket",
+    "title": "chmod 权限换算 —— 755 ⇄ rwx，含 setuid 说明 — 百工",
     "desc": "八进制与 rwx 符号互转，讲清 setuid / setgid / sticky 三个特殊位，并逐位说明每个数字给了什么权限。ls -l 的输出也能直接贴。",
     "h1": "chmod 权限换算",
     "lead": "755 谁都会背，但 4755 里的那个 4、`rwxr-sr-x` 里的 s、`rwxrwxrwt` 里的 t —— 是「见过、说不清」的那几位，而它们全和提权有关。<br>两种写法随便填一种，另一种给你，顺带逐位解释。",
@@ -101,7 +101,7 @@
     }
   },
   "ja": {
-    "title": "chmod 計算 — 755 ⇄ rwx、setuid の説明付き — ToolPocket",
+    "title": "chmod 計算 — 755 ⇄ rwx、setuid の説明付き — 百工",
     "desc": "8 進数と rwx 表記を相互変換し、setuid / setgid / sticky の 3 つの特殊ビットを解説します。ls -l の出力もそのまま貼れます。",
     "h1": "chmod 計算",
     "lead": "755 は誰でも知っています。しかし 4755 の 4、`rwxr-sr-x` の s、`rwxrwxrwt` の t は「見たことはあるが説明できない」ビットで、そのどれもが権限昇格に関わります。<br>どちらかの形式を入れるともう一方が出て、各桁の意味も並びます。",

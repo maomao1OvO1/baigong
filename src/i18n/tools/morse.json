@@ -1,7 +1,7 @@
 {
   "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
   "en": {
-    "title": "Morse code translator (text ⇄ dots and dashes) — ToolPocket",
+    "title": "Morse code translator (text ⇄ dots and dashes) — Baigong",
     "desc": "Encode text to Morse code or decode Morse back to text. Word spacing and unsupported characters are handled explicitly.",
     "h1": "Morse code translator",
     "lead": "Type text to get Morse, or paste dots and dashes to get text back — it works out which direction you meant.<br>Word breaks are where people go wrong: without a separator the whole sentence decodes as one long word, and it still looks plausible.",
@@ -30,7 +30,7 @@
     }
   },
   "zh": {
-    "title": "摩斯电码翻译（文本 ⇄ 点划）— ToolPocket",
+    "title": "摩斯电码翻译（文本 ⇄ 点划）— 百工",
     "desc": "文本转摩斯电码，或把摩斯电码解回文本。词间距与不支持的字符都会明确说明。",
     "h1": "摩斯电码翻译",
     "lead": "输入文本得到摩斯电码，或者把一串点划贴进来解回文本 —— 它会自己判断你要哪个方向。<br>最容易错的地方是**词间距**：少了分隔符，整句话会被解成一个长单词，而结果看着还挺像对的。",
@@ -59,7 +59,7 @@
     }
   },
   "ja": {
-    "title": "モールス信号の変換（テキスト ⇄ 点と線）— ToolPocket",
+    "title": "モールス信号の変換（テキスト ⇄ 点と線）— 百工",
     "desc": "テキストをモールス信号に、またはモールス信号をテキストに変換します。語の区切りと非対応文字は明示します。",
     "h1": "モールス信号の変換",
     "lead": "テキストを入れるとモールス信号に、点と線を貼り付けるとテキストに戻ります。どちらの方向かは自動で判断します。<br>つまずきやすいのは**語の区切り**です。区切りが無いと文全体が 1 つの長い単語として解読され、しかも結果はそれらしく見えます。",

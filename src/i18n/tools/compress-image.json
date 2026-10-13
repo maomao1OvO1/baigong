@@ -1,7 +1,7 @@
 {
   "_说明": "图片压缩 —— 三语文案。ui 里的键是脚本 assets/tools/compress-image.js 直接用的，改名要两处一起改。",
   "en": {
-    "title": "Compress Images Free — No Upload, No Signup, No Limit | ToolPocket",
+    "title": "Compress Images Free — No Upload, No Signup, No Limit | Baigong",
     "desc": "Shrink JPG, PNG and WebP images right in your browser. Batch compress hundreds of photos with no upload and no account.",
     "h1": "Compress images without uploading them",
     "lead": "Shrink a photo without handing it to someone else's server. Your image is decoded, resized and re-encoded in this tab, so a phone photo usually ends up a fraction of its original size — and the original never leaves your device.",
@@ -42,7 +42,7 @@
     }
   },
   "zh": {
-    "title": "在线图片压缩 — 免费、不上传、免注册、不限量 | ToolPocket",
+    "title": "在线图片压缩 — 免费、不上传、免注册、不限量 | 百工",
     "desc": "在浏览器里直接压缩 JPG、PNG、WebP 图片。支持批量，不上传、不注册、没有数量限制。",
     "h1": "压缩图片，不用把它传给别人",
     "lead": "把照片压小，不用先传到别人服务器上。图片在你浏览器里解码、缩放、重新编码，手机拍的原图常常能压到原来的几分之一 —— 原图始终留在你手机里。",
@@ -83,7 +83,7 @@
     }
   },
   "ja": {
-    "title": "画像圧縮 無料 — アップロード不要・登録不要・枚数無制限 | ToolPocket",
+    "title": "画像圧縮 無料 — アップロード不要・登録不要・枚数無制限 | 百工",
     "desc": "JPG・PNG・WebP の画像をブラウザ上でそのまま圧縮。複数枚まとめて処理でき、アップロードも登録も不要です。",
     "h1": "画像を、どこにも送らずに軽くする",
     "lead": "写真を軽くするために、他人のサーバーへ預ける必要はありません。画像はこのタブ内でデコード・縮小・再エンコードされ、スマホで撮った写真は多くの場合、元の数分の一程度になります。元の画像は端末から出ません。",

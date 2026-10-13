@@ -1,7 +1,7 @@
 {
   "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
   "en": {
-    "title": "Numbers to words and Chinese financial capitals — ToolPocket",
+    "title": "Numbers to words and Chinese financial capitals — Baigong",
     "desc": "Turn a number into English words, Chinese reading, or the Chinese financial uppercase used on invoices.",
     "h1": "Numbers to words / Chinese uppercase",
     "lead": "Turn a number into English words, plain Chinese reading, or the <b>Chinese financial uppercase</b> required on invoices and contracts (壹佰贰拾叁万). Hand-writing that form is error-prone in exactly two places: where the zeros go, and where the 万 / 亿 sections break.",
@@ -27,7 +27,7 @@
     }
   },
   "zh": {
-    "title": "数字转中文大写 — ToolPocket",
+    "title": "数字转中文大写 — 百工",
     "desc": "金额转中文财务大写（壹佰贰拾叁）、中文读法与英文读法，报销单和合同上直接用。",
     "h1": "数字转中文大写",
     "lead": "报销单、合同上的金额要写大写，手写最容易错两处：<b>零的位置</b>和<b>万 / 亿的分节</b>。粘个数字，中文大写、中文读法、英文读法、千分位写法一次给全。",
@@ -53,7 +53,7 @@
     }
   },
   "ja": {
-    "title": "数字を英語・中国語の読みに変換 — ToolPocket",
+    "title": "数字を英語・中国語の読みに変換 — 百工",
     "desc": "数値を英語の読み、中国語の読み、または中国語の財務用大字に変換します。",
     "h1": "数字 → 読み / 中国語の大字",
     "lead": "数値を英語の読み、中国語の通常の読み、または請求書や契約書で使う<b>中国語の財務用大字</b>（壹佰贰拾叁万）に変換します。手書きで間違えやすいのは 2 点：ゼロの位置と、万・億の区切りです。",

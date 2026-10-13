@@ -1,7 +1,7 @@
 {
   "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
   "en": {
-    "title": "env file parser and converter (JSON · shell · compose) — ToolPocket",
+    "title": "env file parser and converter (JSON · shell · compose) — Baigong",
     "desc": "Parse a .env file into JSON, shell export statements, a docker-compose environment block or a JavaScript object. Quoting, comments and multi-line values handled.",
     "h1": "env parser",
     "lead": "Turn a .env into whatever the next tool wants: JSON, export statements, a compose block or a JavaScript object.<br>A .env holds your secrets, so this runs entirely in your browser — nothing is uploaded.",
@@ -36,7 +36,7 @@
     }
   },
   "zh": {
-    "title": ".env 解析与转换（JSON · shell · compose）— ToolPocket",
+    "title": ".env 解析与转换（JSON · shell · compose）— 百工",
     "desc": "把 .env 解析成 JSON 对象、shell 的 export 语句、docker-compose 的 environment 段或 JavaScript 对象。引号、注释、跨行值都按真实规则处理。",
     "h1": ".env 解析",
     "lead": "把 .env 转成下一个工具要的样子：JSON、export 语句、compose 段，或者 JavaScript 对象。<br>.env 里装的都是密钥，所以全程在你浏览器里跑 —— 不上传任何内容。",
@@ -71,7 +71,7 @@
     }
   },
   "ja": {
-    "title": ".env の解析と変換（JSON · shell · compose）— ToolPocket",
+    "title": ".env の解析と変換（JSON · shell · compose）— 百工",
     "desc": ".env を JSON オブジェクト、shell の export 文、docker-compose の environment ブロック、JavaScript オブジェクトに変換します。引用符・コメント・複数行の値に対応。",
     "h1": ".env 解析",
     "lead": ".env を次の道具が求める形に変換します。JSON、export 文、compose のブロック、JavaScript オブジェクト。<br>.env には鍵が入っているので、処理はすべてブラウザ内で完結し、どこにも送信しません。",

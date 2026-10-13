@@ -1,4 +1,4 @@
-/* © 2026 ToolPocket · tools.maomaowang.top · 保留所有权利（All rights reserved）
+/* © 2026 Baigong · tools.maomaowang.top · 保留所有权利（All rights reserved）
    本文件为原创代码，未经许可不得复制、镜像或二次发布；删除本声明不改变侵权性质。 */
 /* ============================================================================
    文件：app.js —— 全站小而公共的三件事（小鲸 · 2026-10-12）
@@ -84,7 +84,7 @@
     if (!u || !dom) return;
     e.preventDefault();
     // 按钮可以自带 data-subject（例如搜索空结果那条是"工具需求"，别顶着"问题反馈"发出去）
-    var subject = encodeURIComponent(el.getAttribute("data-subject") || (window.T && window.T.feedbackSubject) || "ToolPocket");
+    var subject = encodeURIComponent(el.getAttribute("data-subject") || (window.T && window.T.feedbackSubject) || "Baigong");
     location.href = "mailto:" + u + "@" + dom + "?subject=" + subject;
   });
 })();

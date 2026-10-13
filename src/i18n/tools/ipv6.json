@@ -1,7 +1,7 @@
 {
   "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
   "en": {
-    "title": "IPv6 address expander & compressor — ToolPocket",
+    "title": "IPv6 address expander & compressor — Baigong",
     "desc": "Expand or compress an IPv6 address and see what kind of address it actually is.",
     "h1": "IPv6 expander / compressor",
     "lead": "Convert between the full and compressed forms of an IPv6 address, and find out whether it's loopback, link-local, unique-local or global. The compression rules and the classifications are exactly where eyeballing fails — :: may only appear once, there must be eight groups, and fe80:: only looks like an ordinary address.",
@@ -29,7 +29,7 @@
     }
   },
   "zh": {
-    "title": "IPv6 地址展开 / 压缩 — ToolPocket",
+    "title": "IPv6 地址展开 / 压缩 — 百工",
     "desc": "IPv6 的完整写法与压缩写法互转，并告诉你它属于回环、链路本地还是全局地址。",
     "h1": "IPv6 展开 / 压缩",
     "lead": "IPv6 的完整写法与压缩写法互转，并说明它是回环、链路本地、唯一本地还是全局地址。压缩规则和分类恰好是肉眼最容易判错的地方 —— <code>::</code> 只能出现一次、必须是八组、<code>fe80::</code> 看着像普通地址其实只在本地链路有效。",
@@ -57,7 +57,7 @@
     }
   },
   "ja": {
-    "title": "IPv6 アドレスの展開・短縮 — ToolPocket",
+    "title": "IPv6 アドレスの展開・短縮 — 百工",
     "desc": "IPv6 の完全表記と短縮表記を相互変換し、アドレスの種別も判定します。",
     "h1": "IPv6 展開 / 短縮",
     "lead": "IPv6 の完全表記と短縮表記を相互変換し、ループバック・リンクローカル・ユニークローカル・グローバルのいずれかを判定します。短縮規則と分類は目視で間違えやすい部分です。<code>::</code> は 1 回のみ、グループは 8 つ必要、<code>fe80::</code> は見た目が普通でもリンク内専用です。",

@@ -1,7 +1,7 @@
 {
   "_说明": "命名风格转换 —— camelCase / snake_case / kebab-case 等三语文案。",
   "en": {
-    "title": "Case Converter — camelCase, snake_case, kebab-case & More | ToolPocket",
+    "title": "Case Converter — camelCase, snake_case, kebab-case & More | Baigong",
     "desc": "Convert text or variable names between camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE and Title Case. Handles acronyms like HTTPServer correctly.",
     "h1": "Naming case converter",
     "lead": "Convert names between camelCase, PascalCase, snake_case, kebab-case and CONSTANT_CASE — with acronyms split the way a person would. HTTPServer becomes http_server, not h_t_t_p_server.",
@@ -27,7 +27,7 @@
     }
   },
   "zh": {
-    "title": "命名风格转换 —— 驼峰 / 下划线 / 连字符 一键互换 | ToolPocket",
+    "title": "命名风格转换 —— 驼峰 / 下划线 / 连字符 一键互换 | 百工",
     "desc": "在 camelCase、PascalCase、snake_case、kebab-case、CONSTANT_CASE、Title Case 之间互转，并正确处理 HTTPServer 这类含缩写的名字。",
     "h1": "命名风格转换",
     "lead": "命名风格互转：camelCase、PascalCase、snake_case、kebab-case、CONSTANT_CASE。缩写按人的习惯拆 —— HTTPServer 会变成 http_server，而不是 h_t_t_p_server。",
@@ -53,7 +53,7 @@
     }
   },
   "ja": {
-    "title": "命名規則コンバーター — camelCase / snake_case / kebab-case | ToolPocket",
+    "title": "命名規則コンバーター — camelCase / snake_case / kebab-case | 百工",
     "desc": "camelCase、PascalCase、snake_case、kebab-case、CONSTANT_CASE、Title Case を相互変換します。HTTPServer のような略語も正しく分割します。",
     "h1": "命名規則の変換",
     "lead": "camelCase・PascalCase・snake_case・kebab-case・CONSTANT_CASE の相互変換。略語は人の感覚で分割します（HTTPServer → http_server。h_t_t_p_server にはなりません）。",

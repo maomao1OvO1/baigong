@@ -1,7 +1,7 @@
 {
   "_说明": "进制转换 —— 2/8/10/16/36 与位视图三语文案。",
   "en": {
-    "title": "Number Base Converter — Binary, Octal, Decimal, Hex (BigInt) | ToolPocket",
+    "title": "Number Base Converter — Binary, Octal, Decimal, Hex (BigInt) | Baigong",
     "desc": "Convert a number between binary, octal, decimal, hexadecimal and base 36, with a grouped bit view. Uses BigInt so long IDs stay exact.",
     "h1": "Base converter (2 / 8 / 10 / 16 / 36)",
     "lead": "Convert between binary, octal, decimal, hex and base 36, with a grouped bit view for reading flags and masks. Long values are handled with BigInt, so an 18-digit ID doesn't quietly lose its last digits.",
@@ -35,7 +35,7 @@
     }
   },
   "zh": {
-    "title": "进制转换 —— 二进制 / 八进制 / 十进制 / 十六进制（BigInt）| ToolPocket",
+    "title": "进制转换 —— 二进制 / 八进制 / 十进制 / 十六进制（BigInt）| 百工",
     "desc": "在二、八、十、十六进制与 36 进制之间转换数字，并给出分组位视图。内部使用 BigInt，长数字不会丢精度。",
     "h1": "进制转换（2 / 8 / 10 / 16 / 36）",
     "lead": "二进制、八进制、十进制、十六进制、36 进制互转，还给一个分组位视图，用来看标志位和掩码。长数字走 BigInt —— 18 位的 ID 不会被悄悄改掉末几位。",
@@ -69,7 +69,7 @@
     }
   },
   "ja": {
-    "title": "基数変換 — 2 / 8 / 10 / 16 進数（BigInt 対応）| ToolPocket",
+    "title": "基数変換 — 2 / 8 / 10 / 16 進数（BigInt 対応）| 百工",
     "desc": "2・8・10・16・36 進数の相互変換とビット表示。BigInt を使うため、桁の多い ID でも値がずれません。",
     "h1": "基数変換（2 / 8 / 10 / 16 / 36）",
     "lead": "2・8・10・16・36 進数の相互変換と、フラグやマスクを読むためのビット表示。桁の多い値は BigInt で扱うため、18 桁の ID でも下位の桁が変わりません。",

@@ -2,10 +2,10 @@
   "_说明": "「广告位招租」页文案（三语）。给潜在广告主看的：我们是谁、有什么流量、位置多大、怎么联系。 slots = 可投放位置表（A/B/C 与 ads.json 的 home-top / tool-* / home-bottom 对应）。",
   "_注意": "当前数字要如实（不要虚报流量）—— 编数据只会让对方第一次沟通就失去信任。等有统计了再填实测值。",
   "en": {
-    "title": "Advertise — ToolPocket | Sponsored placement on a free tools site",
+    "title": "Advertise — Baigong | Sponsored placement on a free tools site",
     "desc": "Put your product in front of developers and designers searching in English, Chinese and Japanese. Static placements only — no tracking scripts, no popups, no layout shift.",
-    "h1": "Advertise on ToolPocket",
-    "lead": "ToolPocket is a free browser-tools site in <b>three languages</b> (English, Chinese, Japanese). The audience arrives from search with a specific task in mind — compressing an image, checking a password, converting a timestamp.",
+    "h1": "Advertise on Baigong",
+    "lead": "Baigong is a free browser-tools site in <b>three languages</b> (English, Chinese, Japanese). The audience arrives from search with a specific task in mind — compressing an image, checking a password, converting a timestamp.",
     "slotsHeading": "Where your ad can appear",
     "slots": [
       [
@@ -91,10 +91,10 @@
     "payNote": "Payment details are shared after we agree on the placement, not published here."
   },
   "zh": {
-    "title": "广告投放 — ToolPocket｜免费工具站的广告位",
+    "title": "广告投放 — 百工｜免费工具站的广告位",
     "desc": "把你的产品放到用中英日三种语言搜索的开发者和设计师面前。只做静态展示：不挂跟踪脚本、不弹窗、不引起布局跳动。",
-    "h1": "在 ToolPocket 投放广告",
-    "lead": "ToolPocket 是一个<b>三语</b>（中 / 英 / 日）浏览器工具站。来访者是从搜索引擎带着明确需求来的 —— 压一张图、查一个密码、转一个时间戳。",
+    "h1": "在 百工 投放广告",
+    "lead": "百工 是一个<b>三语</b>（中 / 英 / 日）浏览器工具站。来访者是从搜索引擎带着明确需求来的 —— 压一张图、查一个密码、转一个时间戳。",
     "slotsHeading": "可以投放的位置",
     "slots": [
       [
@@ -184,10 +184,10 @@
     "payNote": "具体收款信息在你确认投放后再提供（不写在公开页面上）。"
   },
   "ja": {
-    "title": "広告掲載 — ToolPocket｜無料ツールサイトの広告枠",
+    "title": "広告掲載 — 百工｜無料ツールサイトの広告枠",
     "desc": "英語・中国語・日本語で検索する開発者・デザイナーに商品を届けます。静的な掲載のみ：追跡スクリプト、ポップアップ、レイアウトシフトはありません。",
-    "h1": "ToolPocket への広告掲載",
-    "lead": "ToolPocket は<b>3 言語</b>（日本語・英語・中国語）の無料ブラウザツールサイトです。訪問者は検索から、明確な目的を持って来ます — 画像を圧縮する、パスワードを確認する、タイムスタンプを変換する。",
+    "h1": "百工 への広告掲載",
+    "lead": "百工 は<b>3 言語</b>（日本語・英語・中国語）の無料ブラウザツールサイトです。訪問者は検索から、明確な目的を持って来ます — 画像を圧縮する、パスワードを確認する、タイムスタンプを変換する。",
     "slotsHeading": "掲載できる位置",
     "slots": [
       [

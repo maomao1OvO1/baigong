@@ -1,4 +1,4 @@
-/* © 2026 ToolPocket · tools.maomaowang.top · 保留所有权利（All rights reserved）
+/* © 2026 Baigong · tools.maomaowang.top · 保留所有权利（All rights reserved）
    本文件为原创代码，未经许可不得复制、镜像或二次发布；删除本声明不改变侵权性质。 */
 /* ============================================================================
    文件：date-calc.js —— 日期计算器（相差天数 / 加减天数 / 周几与年内序）

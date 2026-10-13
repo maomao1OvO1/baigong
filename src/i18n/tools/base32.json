@@ -1,7 +1,7 @@
 {
   "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
   "en": {
-    "title": "Base32 & Base58 encoder / decoder — ToolPocket",
+    "title": "Base32 & Base58 encoder / decoder — Baigong",
     "desc": "Base32 and Base58 — the two encodings that exist because some characters are easy to misread.",
     "h1": "Base32 & Base58 encode / decode",
     "lead": "Base32 uses only A–Z and 2–7, so nothing looks like something else when you copy it by hand or read it aloud — which is why 2FA secrets use it. Base58 drops the four characters people confuse (0 O I l) and is what Bitcoin addresses use. Both are <b>encodings, not encryption</b>.",
@@ -29,7 +29,7 @@
     }
   },
   "zh": {
-    "title": "Base32 / Base58 编解码 — ToolPocket",
+    "title": "Base32 / Base58 编解码 — 百工",
     "desc": "Base32 用不易看错的字符（2FA 密钥常见），Base58 去掉了 0OIl（比特币地址用它）。",
     "h1": "Base32 / Base58 编解码",
     "lead": "Base32 只用 A–Z 和 2–7，人工抄写、电话口播都不会看错 —— 两步验证密钥用它就是这个原因。Base58 去掉了最容易混的四个字符（0 O I l），比特币地址用的是它。两者都是<b>编码，不是加密</b>。",
@@ -57,7 +57,7 @@
     }
   },
   "ja": {
-    "title": "Base32 / Base58 エンコード・デコード — ToolPocket",
+    "title": "Base32 / Base58 エンコード・デコード — 百工",
     "desc": "読み間違えやすい文字を避けるために存在する 2 つのエンコード方式です。",
     "h1": "Base32 / Base58 の変換",
     "lead": "Base32 は A–Z と 2–7 のみを使うため、手書きや口頭で伝えても取り違えが起きません（2 段階認証のシークレットがこれを使う理由です）。Base58 は紛らわしい 4 文字（0 O I l）を除いたもので、ビットコインのアドレスに使われています。いずれも<b>エンコードであり暗号化ではありません</b>。",

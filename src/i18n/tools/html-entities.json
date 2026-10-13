@@ -1,7 +1,7 @@
 {
   "_说明": "HTML 实体编解码 —— 三语文案。",
   "en": {
-    "title": "HTML Entity Encoder / Decoder — Escape & Unescape Online | ToolPocket",
+    "title": "HTML Entity Encoder / Decoder — Escape & Unescape Online | Baigong",
     "desc": "Escape HTML special characters into entities (&amp; &lt; &gt; &quot;) or decode entities back to text, including numeric and hex forms.",
     "h1": "HTML entity encode / decode",
     "lead": "Escape HTML so it shows up as text instead of being parsed, or read back a string full of &#x4E2D;. Also the quick route to ASCII-only output for an old mail template or API.",
@@ -27,7 +27,7 @@
     }
   },
   "zh": {
-    "title": "HTML 实体编解码 —— 转义与还原 | ToolPocket",
+    "title": "HTML 实体编解码 —— 转义与还原 | 百工",
     "desc": "把 HTML 特殊字符转义成实体（&amp; &lt; &gt; &quot;），或把实体还原成原字符，支持十进制与十六进制写法。",
     "h1": "HTML 实体编码 / 解码",
     "lead": "接口返回里带着 <code>&amp;amp;</code> 这种东西？粘进来一次转干净，也能反着解回去。把 HTML 转义成页面上能安全显示的文字，或者把一串 &#x4E2D; 还原回来。给邮件模板、只吃 ASCII 的老系统输出内容时也用得上。",
@@ -53,7 +53,7 @@
     }
   },
   "ja": {
-    "title": "HTML エンティティ変換 — エスケープと復元 | ToolPocket",
+    "title": "HTML エンティティ変換 — エスケープと復元 | 百工",
     "desc": "HTML の特殊文字をエンティティ（&amp; &lt; &gt; &quot;）に変換したり、数値・16 進表記のエンティティを元の文字に戻します。",
     "h1": "HTML エンティティのエンコード / デコード",
     "lead": "HTML をエスケープして文字として表示させたり、&#x4E2D; のような実体参照を元に戻したりできます。ASCII のみを要求する古いメールテンプレートや API にも。",

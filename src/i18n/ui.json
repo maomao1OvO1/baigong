@@ -5,11 +5,15 @@
     "zh": "中文",
     "ja": "日本語"
   },
-  "brand": "ToolPocket",
+  "brand": {
+    "en": "Baigong",
+    "zh": "百工",
+    "ja": "百工"
+  },
   "footer": {
-    "en": "ToolPocket — your files never leave your device. No upload, no account, no tracking.",
-    "zh": "ToolPocket · 文件不出你的设备 —— 不上传、不注册、不追踪。",
-    "ja": "ToolPocket · ファイルは端末から出ません。送信も登録も、追跡もありません。"
+    "en": "Baigong — your files never leave your device. No upload, no account, no tracking.",
+    "zh": "百工 · 文件不出你的设备 —— 不上传、不注册、不追踪。",
+    "ja": "百工 · ファイルは端末から出ません。送信も登録も、追跡もありません。"
   },
   "nav": {
     "en": "All tools",
@@ -122,9 +126,9 @@
     "ja": "不具合を報告"
   },
   "feedbackSubject": {
-    "en": "ToolPocket feedback",
-    "zh": "ToolPocket 反馈",
-    "ja": "ToolPocket へのフィードバック"
+    "en": "Baigong feedback",
+    "zh": "百工 反馈",
+    "ja": "百工 へのフィードバック"
   },
   "feedbackUser": "hi",
   "feedbackDomain": "maomaowang.top",
@@ -149,15 +153,15 @@
     "ja": "ツールをリクエスト"
   },
   "noResultsSubject": {
-    "en": "ToolPocket tool request",
-    "zh": "ToolPocket 工具需求",
-    "ja": "ToolPocket ツールのリクエスト"
+    "en": "Baigong tool request",
+    "zh": "百工 工具需求",
+    "ja": "百工 ツールのリクエスト"
   },
   "_说明_user": "feedbackUser / feedbackDomain 只服务「反馈」入口（页脚、搜索空结果、404 页）＝ hi@；招租那条线仍用 ad@（在 advertise.json 的 contactUser 里），两条线不要互相串。",
   "copyright": {
-    "en": "© 2026 ToolPocket — all rights reserved. Please don’t republish this site or its code without permission.",
-    "zh": "© 2026 ToolPocket —— 保留所有权利。未经许可，请勿转载或复制本站内容与代码。",
-    "ja": "© 2026 ToolPocket — All rights reserved. 当サイトの内容・コードの無断転載を禁じます。"
+    "en": "© 2026 Baigong — all rights reserved. Please don’t republish this site or its code without permission.",
+    "zh": "© 2026 百工 —— 保留所有权利。未经许可，请勿转载或复制本站内容与代码。",
+    "ja": "© 2026 百工 — All rights reserved. 当サイトの内容・コードの無断転載を禁じます。"
   },
   "cancel": {
     "en": "Cancel",

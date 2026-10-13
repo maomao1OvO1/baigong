@@ -1,7 +1,7 @@
 {
   "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
   "en": {
-    "title": "User-Agent parser — browser, engine, OS, device — ToolPocket",
+    "title": "User-Agent parser — browser, engine, OS, device — Baigong",
     "desc": "Read a User-Agent string: browser and version, rendering engine, operating system, device type and whether it looks like a bot. Parsed in your browser.",
     "h1": "User-Agent parser",
     "lead": "Server logs and bug reports are full of 120-character User-Agent strings. Paste one and get the browser, engine, operating system and device type in plain words.<br>Your own User-Agent is filled in already — and nothing is sent anywhere.",
@@ -41,7 +41,7 @@
     }
   },
   "zh": {
-    "title": "User-Agent 解析 —— 浏览器 / 引擎 / 系统 / 设备 — ToolPocket",
+    "title": "User-Agent 解析 —— 浏览器 / 引擎 / 系统 / 设备 — 百工",
     "desc": "把 User-Agent 拆成人看得懂的信息：浏览器与版本、渲染引擎、操作系统、设备类型，以及它看起来是不是爬虫。全程在浏览器里解析。",
     "h1": "User-Agent 解析",
     "lead": "服务器日志和 bug 反馈里全是 120 个字符的 User-Agent。贴一条进来，直接告诉你浏览器、引擎、系统和设备类型。<br>你自己的 User-Agent 已经填好了 —— 而且什么都没发出去。",
@@ -81,7 +81,7 @@
     }
   },
   "ja": {
-    "title": "User-Agent 解析 — ブラウザ・エンジン・OS・端末 — ToolPocket",
+    "title": "User-Agent 解析 — ブラウザ・エンジン・OS・端末 — 百工",
     "desc": "User-Agent 文字列を読める情報に分解します。ブラウザとバージョン、レンダリングエンジン、OS、端末種別、そしてボットらしさ。解析はブラウザ内で行います。",
     "h1": "User-Agent 解析",
     "lead": "サーバーログやバグ報告は 120 文字の User-Agent であふれています。貼り付ければ、ブラウザ・エンジン・OS・端末種別が言葉で出ます。<br>あなた自身の User-Agent は既に入っています。そしてどこにも送信しません。",

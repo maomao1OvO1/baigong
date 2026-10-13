@@ -1,7 +1,7 @@
 {
   "_说明": "JSON 格式化 —— 三语文案。",
   "en": {
-    "title": "JSON Formatter & Validator Online — No Upload, No Signup | ToolPocket",
+    "title": "JSON Formatter & Validator Online — No Upload, No Signup | Baigong",
     "desc": "Pretty-print, minify and validate JSON in your browser. Clear error messages with the line and column of the problem.",
     "h1": "Format and validate JSON",
     "lead": "Format, minify and validate JSON — and when it's broken, you get the line number instead of a shrug. Especially handy for API responses, which is exactly the kind of text you shouldn't paste into a random website.",
@@ -31,7 +31,7 @@
     }
   },
   "zh": {
-    "title": "在线 JSON 格式化 / 校验 — 不上传、免注册 | ToolPocket",
+    "title": "在线 JSON 格式化 / 校验 — 不上传、免注册 | 百工",
     "desc": "在浏览器里美化、压缩、校验 JSON。出错时告诉你**第几行第几列**，而不是一句看不懂的报错。",
     "h1": "JSON 格式化与校验",
     "lead": "JSON 美化、压缩、校验；格式错了会告诉你具体哪一行。贴接口返回的数据时最省事 —— 而这恰好是最不该发给陌生网站的那类内容。",
@@ -61,7 +61,7 @@
     }
   },
   "ja": {
-    "title": "JSON 整形・検証 オンライン — アップロード不要 | ToolPocket",
+    "title": "JSON 整形・検証 オンライン — アップロード不要 | 百工",
     "desc": "ブラウザ内で JSON を整形・圧縮・検証します。エラー時は行と列を指摘するので、どこを直せばいいか分かります。",
     "h1": "JSON の整形と検証",
     "lead": "JSON の整形・圧縮・検証。壊れている場合はエラー行を示します。API のレスポンスを確認する場面で便利です——そしてそれは、見知らぬサイトに貼るべきではない類のテキストでもあります。",

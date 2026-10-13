@@ -1,7 +1,7 @@
 {
   "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
   "en": {
-    "title": "INI / conf / properties to JSON — ToolPocket",
+    "title": "INI / conf / properties to JSON — Baigong",
     "desc": "Parse INI-style configuration into JSON, with sections kept as objects. Comments, duplicate keys and trailing-comment rules are stated explicitly.",
     "h1": "INI → JSON",
     "lead": "Turn sections and key-value pairs into JSON you can actually work with — with the awkward parts spelled out: which comment characters count, what happens to duplicate keys, and why `#fff` is not a comment.<br>Config files carry passwords and keys, so this runs entirely in your browser.",
@@ -32,7 +32,7 @@
     }
   },
   "zh": {
-    "title": "INI / conf / properties 转 JSON — ToolPocket",
+    "title": "INI / conf / properties 转 JSON — 百工",
     "desc": "把段 + 键值形式的配置解析成 JSON，段保留为对象层级。注释规则、重复键处理、行尾注释的边界都写明白。",
     "h1": "INI → JSON",
     "lead": "把「段 + 键值」变成能直接用的 JSON，并把这些麻烦事讲清楚：哪些字符算注释、重复键怎么处理、以及为什么 `#fff` 不是注释。<br>配置文件里常有密码和密钥，所以全程在你浏览器里跑。",
@@ -63,7 +63,7 @@
     }
   },
   "ja": {
-    "title": "INI / conf / properties を JSON に — ToolPocket",
+    "title": "INI / conf / properties を JSON に — 百工",
     "desc": "セクションとキー値の設定ファイルを JSON に変換します。セクションはオブジェクト階層として保持します。コメント規則・重複キー・行末コメントの境界も明示します。",
     "h1": "INI → JSON",
     "lead": "「セクション + キー値」をそのまま使える JSON に変換し、面倒なところも明示します。どの文字がコメントか、重複キーをどう扱うか、そして `#fff` がなぜコメントにならないか。<br>設定ファイルにはパスワードや鍵が入るため、処理はブラウザ内で完結します。",

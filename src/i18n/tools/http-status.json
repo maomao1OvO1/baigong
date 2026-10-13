@@ -1,7 +1,7 @@
 {
   "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
   "en": {
-    "title": "HTTP status codes explained — ToolPocket",
+    "title": "HTTP status codes explained — Baigong",
     "desc": "Type a status code and find out what it means and whose problem it is.",
     "h1": "HTTP status codes explained",
     "lead": "A 4xx or 5xx shows up in your logs and the first question is whose problem it is. Type the code and get the meaning plus whose side it's on — client or server — with non-official-but-ubiquitous codes flagged as such.<br>Leave it empty for the full list, grouped by class.",
@@ -81,7 +81,7 @@
     }
   },
   "zh": {
-    "title": "HTTP 状态码速查 — ToolPocket",
+    "title": "HTTP 状态码速查 — 百工",
     "desc": "输入一个状态码，看清含义与责任方；留空则列出全部。",
     "h1": "HTTP 状态码速查",
     "lead": "日志里蹦出一个 4xx 或 5xx，第一反应是「这该谁改」？输入码就告诉你含义、责任归谁（客户端还是服务端），还标出哪些是非官方但我们天天见到的码。<br>留空则按类别列出全部，当速查表用。",
@@ -161,7 +161,7 @@
     }
   },
   "ja": {
-    "title": "HTTP ステータスコード早見表 — ToolPocket",
+    "title": "HTTP ステータスコード早見表 — 百工",
     "desc": "コードを入力すると意味と責任の所在が分かります。空欄なら全件表示。",
     "h1": "HTTP ステータスコード早見表",
     "lead": "ログに 4xx や 5xx が出たとき、最初に知りたいのは「どちら側の問題か」。コードを入力すると意味と責任の所在（クライアント側かサーバー側か）を表示します。RFC に無いがよく見るコードにはその旨を付けています。<br>空欄なら分類ごとに全件を一覧表示します。",

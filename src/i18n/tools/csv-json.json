@@ -1,7 +1,7 @@
 {
   "_说明": "CSV ⇄ JSON 互转 —— 三语文案。",
   "en": {
-    "title": "CSV to JSON Converter (and back) — Quotes & Newlines Handled | ToolPocket",
+    "title": "CSV to JSON Converter (and back) — Quotes & Newlines Handled | Baigong",
     "desc": "Convert CSV to JSON or JSON to CSV, with comma/tab/semicolon separators and correct handling of quoted fields, embedded commas and multiline cells.",
     "h1": "CSV ⇄ JSON converter",
     "lead": "CSV to JSON and back, handling the three things that break naive converters: commas inside quoted fields, line breaks inside a cell, and doubled quotes for escaping. An Excel export usually contains all three.",
@@ -35,7 +35,7 @@
     }
   },
   "zh": {
-    "title": "CSV 转 JSON（也能转回来）—— 正确处理引号与换行 | ToolPocket",
+    "title": "CSV 转 JSON（也能转回来）—— 正确处理引号与换行 | 百工",
     "desc": "CSV 与 JSON 互相转换，支持逗号 / 制表符 / 分号分隔，并正确处理引号包裹、字段内逗号与单元格内换行。",
     "h1": "CSV ⇄ JSON 互转",
     "lead": "CSV 与 JSON 互转，专治把简单工具搞崩的三种情况：引号里的逗号、单元格里的换行、两个引号转义成一个。Excel 导出的表格里，往往三种都有。",
@@ -69,7 +69,7 @@
     }
   },
   "ja": {
-    "title": "CSV ⇄ JSON 変換 — 引用符と改行にも対応 | ToolPocket",
+    "title": "CSV ⇄ JSON 変換 — 引用符と改行にも対応 | 百工",
     "desc": "CSV と JSON を相互変換します。カンマ・タブ・セミコロンに対応し、引用符付きフィールド、フィールド内のカンマ、セル内の改行も正しく処理します。",
     "h1": "CSV ⇄ JSON 変換",
     "lead": "CSV と JSON の相互変換。単純なツールが壊れる 3 つのケース——引用符内のカンマ、セル内の改行、二重引用符によるエスケープ——に対応します。Excel の書き出しには概ね 3 つとも含まれます。",

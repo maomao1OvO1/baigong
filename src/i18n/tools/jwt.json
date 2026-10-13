@@ -1,7 +1,7 @@
 {
   "_说明": "JWT 解析 —— 只解码不验签，三语文案。",
   "en": {
-    "title": "JWT Decoder — Read Header & Payload Claims Online | ToolPocket",
+    "title": "JWT Decoder — Read Header & Payload Claims Online | Baigong",
     "desc": "Decode a JSON Web Token: see the header, the payload claims and whether it has expired. Decoding happens in your browser, and note: decoding is not verification.",
     "h1": "JWT decoder",
     "lead": "Read a JSON Web Token's header, payload and expiry without pasting it into someone's analytics dashboard. Decoding happens in this tab — and remember: decoding is not verification. Validate the signature on your own server.",
@@ -32,7 +32,7 @@
     }
   },
   "zh": {
-    "title": "JWT 解析器 —— 在线读取 Header 与 Payload | ToolPocket",
+    "title": "JWT 解析器 —— 在线读取 Header 与 Payload | 百工",
     "desc": "解码 JSON Web Token：查看头部、载荷声明，并判断是否已过期。解码在浏览器本地完成；注意：能解开不等于有效。",
     "h1": "JWT 解析器",
     "lead": "JWT 本质是一串 JSON（头部 + 载荷 + 签名）—— 这里把它解开看清楚，不用贴进别人的分析后台。解码就在这一页完成。另外记住：能解开不等于合法，签名得在你自己的服务端验。",
@@ -63,7 +63,7 @@
     }
   },
   "ja": {
-    "title": "JWT デコーダー — Header と Payload を表示 | ToolPocket",
+    "title": "JWT デコーダー — Header と Payload を表示 | 百工",
     "desc": "JSON Web Token をデコードしてヘッダー・ペイロード・有効期限を確認します。処理はブラウザ内で完結します。デコードは検証ではない点にご注意ください。",
     "h1": "JWT デコーダー",
     "lead": "JWT は JSON（ヘッダー＋ペイロード＋署名）の塊です。ここで中身を読み取れば、他人の解析ダッシュボードに貼る必要はありません。デコードはこのページ内で完結します。なお、デコードは検証ではないため、署名の確認はサーバー側で行ってください。",

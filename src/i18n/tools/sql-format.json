@@ -1,7 +1,7 @@
 {
   "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
   "en": {
-    "title": "SQL formatter — uppercase keywords, readable layout — ToolPocket",
+    "title": "SQL formatter — uppercase keywords, readable layout — Baigong",
     "desc": "Format a single-line SQL statement into something readable: clause per line, conditions indented, keywords uppercased. Strings and comments are left untouched.",
     "h1": "SQL formatter",
     "lead": "SQL pulled out of a log or an ORM is usually one long line. Paste it and get one clause per line, conditions indented, keywords uppercased.<br>Strings and comments are scanned as tokens first, so text inside a literal is never rewritten.",
@@ -30,7 +30,7 @@
     }
   },
   "zh": {
-    "title": "SQL 格式化 —— 关键字大写、排版可读 — ToolPocket",
+    "title": "SQL 格式化 —— 关键字大写、排版可读 — 百工",
     "desc": "把压成一行的 SQL 拆成可读的格式：子句各起一行、条件缩进、关键字统一大写。字符串和注释里的内容原样不动。",
     "h1": "SQL 格式化",
     "lead": "从日志或 ORM 里捞出来的 SQL 通常是一整行。贴进来，得到「一个子句一行、条件缩进、关键字大写」的排版。<br>先做词法扫描再排版，所以字符串字面量里的文字绝不会被改写。",
@@ -59,7 +59,7 @@
     }
   },
   "ja": {
-    "title": "SQL フォーマッター — キーワード大文字・読みやすい整形 — ToolPocket",
+    "title": "SQL フォーマッター — キーワード大文字・読みやすい整形 — 百工",
     "desc": "1 行に潰れた SQL を読みやすく整形します。句ごとに改行、条件はインデント、キーワードは大文字。文字列とコメントの中身は変更しません。",
     "h1": "SQL フォーマッター",
     "lead": "ログや ORM から出てくる SQL はたいてい 1 行です。貼り付ければ、句ごとに改行し、条件をインデントし、キーワードを大文字にした形になります。<br>先に字句解析を行うため、文字列リテラルの中身が書き換わることはありません。",

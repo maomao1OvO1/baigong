@@ -1,7 +1,7 @@
 {
   "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
   "en": {
-    "title": "HTTP response header explainer + security check — ToolPocket",
+    "title": "HTTP response header explainer + security check — Baigong",
     "desc": "Paste response headers and get each one explained, plus a check of the security headers that are missing. Cache headers are decoded in plain words.",
     "h1": "HTTP response header explainer",
     "lead": "Headers are where \"why is this still cached\" and \"why is my cookie being dropped\" get answered — if you can read the abbreviations.<br>Paste a response (status line included) and every header gets a plain-language line, with the missing security headers called out at the end.",
@@ -71,7 +71,7 @@
     }
   },
   "zh": {
-    "title": "HTTP 响应头解读 + 安全体检 — ToolPocket",
+    "title": "HTTP 响应头解读 + 安全体检 — 百工",
     "desc": "把响应头逐条讲清楚，并把缺失的安全头指出来。缓存相关的头会用大白话解释。",
     "h1": "HTTP 响应头解读",
     "lead": "「为什么还是旧的」和「为什么我的 Cookie 被丢了」，答案都在响应头里 —— 前提是看得懂那一堆缩写。<br>把整段响应（含状态行）贴进来，每个头都给一句人话解释，最后把缺失的安全头单独列出来。",
@@ -141,7 +141,7 @@
     }
   },
   "ja": {
-    "title": "HTTP レスポンスヘッダーの解説 + セキュリティ点検 — ToolPocket",
+    "title": "HTTP レスポンスヘッダーの解説 + セキュリティ点検 — 百工",
     "desc": "レスポンスヘッダーを 1 つずつ解説し、不足しているセキュリティヘッダーを指摘します。キャッシュ関連は平易な言葉で説明します。",
     "h1": "HTTP レスポンスヘッダーの解説",
     "lead": "「なぜ古いままなのか」「なぜ Cookie が捨てられるのか」の答えはヘッダーにあります。ただし略語が読めればの話です。<br>レスポンス全体(ステータス行を含む)を貼り付ければ、各ヘッダーに平易な説明が付き、最後に不足しているセキュリティヘッダーが並びます。",

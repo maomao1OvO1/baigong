@@ -1,7 +1,7 @@
 {
   "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
   "en": {
-    "title": "YAML to JSON converter (and back) — ToolPocket",
+    "title": "YAML to JSON converter (and back) — Baigong",
     "desc": "Convert YAML to JSON or JSON to YAML. Unsupported syntax fails loudly instead of guessing.",
     "h1": "YAML ⇄ JSON converter",
     "lead": "The one you reach for when editing a Kubernetes manifest or reading a CI yaml. Covers the common subset: key/value, nested indentation, lists, inline <code>[a, b]</code> / <code>{a: 1}</code>, comments and block scalars.<br>Unsupported syntax — anchors, multiple documents — <b>fails loudly with a line number</b>, because a config that looks right but isn't is far worse than an error.",
@@ -29,7 +29,7 @@
     }
   },
   "zh": {
-    "title": "YAML 转 JSON（也能转回来）— ToolPocket",
+    "title": "YAML 转 JSON（也能转回来）— 百工",
     "desc": "YAML 与 JSON 互转，遇到不支持的语法会明确报错，而不是猜。",
     "h1": "YAML ⇄ JSON 互转",
     "lead": "改 K8s 配置、看 CI 的 yaml 时最需要它。支持常用子集：键值、嵌套缩进、数组、行内写法 <code>[a, b]</code> / <code>{a: 1}</code>、注释、多行文本块。<br>遇到锚点、多文档这些不支持的语法会<b>直接报错并指出行号</b> —— 一份「看起来对、其实错了」的配置，比一个报错危险得多。",
@@ -57,7 +57,7 @@
     }
   },
   "ja": {
-    "title": "YAML を JSON に変換（逆も可）— ToolPocket",
+    "title": "YAML を JSON に変換（逆も可）— 百工",
     "desc": "YAML と JSON の相互変換。未対応の記法は推測せずエラーで知らせます。",
     "h1": "YAML ⇄ JSON 変換",
     "lead": "K8s のマニフェストや CI の yaml を扱うときに。一般的な記法に対応：キーと値、ネストしたインデント、リスト、インラインの <code>[a, b]</code> / <code>{a: 1}</code>、コメント、ブロックスカラー。<br>アンカーや複数ドキュメントなど未対応の記法は<b>行番号付きでエラー</b>にします。一見正しい設定ファイルが実は間違っている、という状態が最も危険だからです。",

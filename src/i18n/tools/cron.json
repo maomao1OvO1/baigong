@@ -1,7 +1,7 @@
 {
   "_说明": "Cron 表达式解析 —— 三语文案。",
   "en": {
-    "title": "Cron Expression Explainer — Next 5 Run Times | ToolPocket",
+    "title": "Cron Expression Explainer — Next 5 Run Times | Baigong",
     "desc": "Paste a 5-field cron expression to see what each field means and the next five times it will run, computed in your local time zone.",
     "h1": "Cron expression explainer",
     "lead": "Paste a cron expression and read it back field by field, with the next five run times in your own time zone. Worth checking before you spend an hour wondering why a job never fired.",
@@ -46,7 +46,7 @@
     }
   },
   "zh": {
-    "title": "Cron 表达式解析 —— 未来 5 次运行时间 | ToolPocket",
+    "title": "Cron 表达式解析 —— 未来 5 次运行时间 | 百工",
     "desc": "贴一条 5 段 cron 表达式，逐段说明含义，并按本地时区算出接下来 5 次运行时间。",
     "h1": "Cron 表达式解析",
     "lead": "贴一条 cron 表达式，逐段翻译成人话，并按你的时区算出接下来 5 次运行时间。省得盯着 5 个星号猜半天，最后才发现是某一格写错了。",
@@ -91,7 +91,7 @@
     }
   },
   "ja": {
-    "title": "Cron 式の解説 — 次回 5 回の実行時刻 | ToolPocket",
+    "title": "Cron 式の解説 — 次回 5 回の実行時刻 | 百工",
     "desc": "5 フィールドの cron 式を貼り付けると、各フィールドの意味と、ローカル時間での次回 5 回の実行時刻を表示します。",
     "h1": "Cron 式エクスプレイナー",
     "lead": "cron 式を貼り付けると、フィールドごとに意味を説明し、お使いのタイムゾーンで次回 5 回の実行時刻を示します。1 つの書き間違いを探して 1 時間を潰す前に。",

@@ -468,7 +468,12 @@ console.log("\n⑯ 版权与来源标记");
     const problems = [];
     if (!html.includes("ts2t:maomaowang:")) problems.push("缺来源标记");
     if (!html.includes('name="author"')) problems.push("缺作者元数据");
-    if (!/© 2026 ToolPocket/.test(html)) problems.push("缺版权文案");
+    /* ⚠️ 品牌名不能写死在这里 —— 它住在 src/i18n/ui.json 的 brand 里（而且分语言）。
+       2026-10-14 从 ToolPocket 改名 Baigong/百工时，这条检查就是写死了旧名才误报的
+       （改名的同一次提交里，检查自己成了"错误来源"）。现在从源头读。 */
+    const brand = JSON.parse(fs.readFileSync(path.join(ROOT, "src", "i18n", "ui.json"), "utf8")).brand;
+    const names = [brand.en, brand.zh, brand.ja].filter(Boolean);
+    if (!names.some((n) => html.includes("© 2026 " + n))) problems.push("缺版权文案");
     if (problems.length) { miss++; bad(`${f}：${problems.join(" · ")}`); }
   }
   if (!miss) ok(`${pages.length} 个代表性页面都有版权 + 作者元数据 + 来源标记`);

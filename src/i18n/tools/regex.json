@@ -1,7 +1,7 @@
 {
   "_说明": "正则测试器 —— 三语文案。",
   "en": {
-    "title": "Regex Tester Online — Live Match & Replace Preview | ToolPocket",
+    "title": "Regex Tester Online — Live Match & Replace Preview | Baigong",
     "desc": "Test a regular expression against your own text: see every match with line numbers and capture groups, plus a replace preview. Runs locally, nothing is sent.",
     "h1": "Regular expression tester",
     "lead": "Test a regular expression against your own text: every match listed with its line number, position and capture groups. Worth doing locally when the text is a log line — those tend to contain customer data.",
@@ -40,7 +40,7 @@
     }
   },
   "zh": {
-    "title": "在线正则测试器 —— 实时匹配与替换预览 | ToolPocket",
+    "title": "在线正则测试器 —— 实时匹配与替换预览 | 百工",
     "desc": "用你自己的文本测试正则：列出每一处匹配的行号、位置与捕获组，并预览替换结果。全程本地运行，文本不外传。",
     "h1": "正则表达式测试器",
     "lead": "用你自己的文本试正则：每一处匹配的行号、位置、捕获组都列出来。日志这类文本尤其适合在这里试 —— 里面常有客户信息，不适合贴到别人的网站上。",
@@ -79,7 +79,7 @@
     }
   },
   "ja": {
-    "title": "正規表現テスター — リアルタイム一致と置換プレビュー | ToolPocket",
+    "title": "正規表現テスター — リアルタイム一致と置換プレビュー | 百工",
     "desc": "手持ちのテキストで正規表現を試せます。一致箇所・行番号・キャプチャグループを一覧表示し、置換結果もプレビューできます。処理は端末内で完結します。",
     "h1": "正規表現テスター",
     "lead": "手元のテキストで正規表現を試せます。一致箇所を行番号・位置・キャプチャグループ付きで一覧表示します。ログには顧客情報が含まれることが多く、外部サイトに貼るのは避けたいところです。",

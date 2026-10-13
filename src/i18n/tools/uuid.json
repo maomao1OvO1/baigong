@@ -1,7 +1,7 @@
 {
   "_说明": "唯一 ID 生成器 —— UUID v4/v7 · ULID · NanoID 三语文案。",
   "en": {
-    "title": "UUID v4 / v7, ULID & NanoID Generator | ToolPocket",
+    "title": "UUID v4 / v7, ULID & NanoID Generator | Baigong",
     "desc": "Generate up to 100 unique IDs at once: UUID v4, time-sortable UUID v7, ULID or NanoID. Copy them all with one click. Generated in your browser.",
     "h1": "UUID / ULID / NanoID generator",
     "lead": "Generate UUID v4, time-sortable UUID v7, ULID or NanoID — up to 100 at a time. The randomness comes from the browser's cryptographic source, not Math.random.",
@@ -31,7 +31,7 @@
     }
   },
   "zh": {
-    "title": "UUID v4 / v7、ULID、NanoID 在线生成器 | ToolPocket",
+    "title": "UUID v4 / v7、ULID、NanoID 在线生成器 | 百工",
     "desc": "一次生成最多 100 个唯一 ID：UUID v4、可按时间排序的 UUID v7、ULID 或 NanoID，一键全选复制。全部在浏览器里生成。",
     "h1": "UUID / ULID / NanoID 生成器",
     "lead": "生成 UUID v4、可按时间排序的 v7、ULID、NanoID，一次最多 100 个。随机源是浏览器的加密级随机数，不是 Math.random。",
@@ -61,7 +61,7 @@
     }
   },
   "ja": {
-    "title": "UUID v4 / v7・ULID・NanoID 生成ツール | ToolPocket",
+    "title": "UUID v4 / v7・ULID・NanoID 生成ツール | 百工",
     "desc": "最大 100 個の一意な ID をまとめて生成：UUID v4、時刻順に並ぶ UUID v7、ULID、NanoID。ワンクリックでコピーできます。",
     "h1": "UUID / ULID / NanoID 生成",
     "lead": "UUID v4、時刻順に並ぶ UUID v7、ULID、NanoID を最大 100 個まで生成します。乱数は Math.random ではなく、ブラウザの暗号学的乱数から取得します。",

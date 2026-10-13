@@ -85,7 +85,7 @@ function inject(file) {
   const d = new Date();
   const stamp = d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
   const meta = [
-    text("Software", "ToolPocket"),
+    text("Software", "Baigong"),
     text("Author", "tools.maomaowang.top"),
     // 非标准键 + base64 值：看着像构建信息，实际是"来源 + 日期"的签名
     text("ts2t", Buffer.from(`tools.maomaowang.top::${stamp}`).toString("base64")),

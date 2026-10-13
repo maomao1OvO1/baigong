@@ -1,7 +1,7 @@
 {
   "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
   "en": {
-    "title": "Markdown table of contents generator (GitHub anchors) — ToolPocket",
+    "title": "Markdown table of contents generator (GitHub anchors) — Baigong",
     "desc": "Build a linked table of contents from your Markdown headings, with GitHub-style anchors and duplicate handling. Code blocks are skipped, so shell comments stay out.",
     "h1": "Markdown table of contents generator",
     "lead": "A table of contents is just a link list — and the hard part is the anchor. GitHub lowercases the heading, drops punctuation, turns every space into a hyphen and appends -1 to duplicates; write it by hand and half the links quietly do nothing.<br>Paste your Markdown, and code blocks get skipped so a shell comment never turns into an entry.",
@@ -36,7 +36,7 @@
     }
   },
   "zh": {
-    "title": "Markdown 目录（TOC）生成器（GitHub 锚点规则）— ToolPocket",
+    "title": "Markdown 目录（TOC）生成器（GitHub 锚点规则）— 百工",
     "desc": "从 Markdown 的标题生成带链接的目录，锚点按 GitHub 规则处理重名。代码块会被跳过，shell 注释不会混进来。",
     "h1": "Markdown 目录生成器",
     "lead": "目录本质上就是一串链接，难的地方全在锚点上：GitHub 会把标题转小写、去掉标点、每个空格换成一个连字符，重名的还要加 -1 —— 手写的话，一半的链接点下去是没反应的。<br>把 Markdown 贴进来，代码块会跳过，shell 注释不会变成目录项。",
@@ -71,7 +71,7 @@
     }
   },
   "ja": {
-    "title": "Markdown 目次（TOC）生成ツール（GitHub のアンカー規則）— ToolPocket",
+    "title": "Markdown 目次（TOC）生成ツール（GitHub のアンカー規則）— 百工",
     "desc": "Markdown の見出しからリンク付きの目次を作ります。アンカーは GitHub の規則どおり、重複も処理します。コードブロックは飛ばすのでシェルのコメントは混じりません。",
     "h1": "Markdown 目次生成ツール",
     "lead": "目次の実体はリンクの一覧で、難しいのはアンカーです。GitHub は見出しを小文字にし、約物を落とし、空白を 1 つずつハイフンに変え、重複には -1 を付けます。手で書くと半分のリンクが黙って反応しません。<br>Markdown を貼り付けてください。コードブロックは飛ばすので、シェルのコメントが目次に入ることはありません。",

@@ -1,7 +1,7 @@
 {
   "_说明": "文本对比（逐行差异）—— 三语文案。",
   "en": {
-    "title": "Text Diff Online — Compare Two Texts Line by Line | ToolPocket",
+    "title": "Text Diff Online — Compare Two Texts Line by Line | Baigong",
     "desc": "Compare two blocks of text and see which lines were added, removed or unchanged. Line-based diff computed locally in your browser.",
     "h1": "Text diff (line by line)",
     "lead": "Compare two versions line by line and see what actually changed — including the invisible differences (a trailing space, a Windows line ending) that make two identical-looking lines behave differently.",
@@ -27,7 +27,7 @@
     }
   },
   "zh": {
-    "title": "在线文本对比 —— 逐行找出差异 | ToolPocket",
+    "title": "在线文本对比 —— 逐行找出差异 | 百工",
     "desc": "对比两段文本，逐行标出新增、删除与未变动的行。差异在本机浏览器里算，文本不会上传。",
     "h1": "文本对比（逐行）",
     "lead": "两段文本逐行对比，看清到底哪里变了 —— 连看不见的差异也揪得出来：行尾多一个空格、换行符是 Windows 的。这种「看着一样、其实不一样」最容易误事。",
@@ -53,7 +53,7 @@
     }
   },
   "ja": {
-    "title": "テキスト差分ツール — 2 つのテキストを行単位で比較 | ToolPocket",
+    "title": "テキスト差分ツール — 2 つのテキストを行単位で比較 | 百工",
     "desc": "2 つのテキストを比較し、追加・削除・変更なしの行を表示します。差分はブラウザ内で計算され、送信されません。",
     "h1": "テキスト差分（行単位）",
     "lead": "2 つのテキストを行単位で比較し、実際に変わった箇所を示します。行末の空白や Windows の改行コードなど、目に見えない違いも見つけられます。",

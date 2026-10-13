@@ -1,7 +1,7 @@
 {
   "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
   "en": {
-    "title": "Markdown table formatter and generator — ToolPocket",
+    "title": "Markdown table formatter and generator — Baigong",
     "desc": "Line up a messy Markdown table, or turn CSV / TSV / pipe-separated data into one. Column widths are measured in display width, so CJK text lines up too.",
     "h1": "Markdown table formatter",
     "lead": "Paste a crooked table — or raw CSV, TSV or pipe-separated rows — and get a table that is actually lined up.<br>Widths are measured in display columns, because a Chinese character takes two of them, which is exactly where other formatters go wrong.",
@@ -34,7 +34,7 @@
     }
   },
   "zh": {
-    "title": "Markdown 表格对齐与生成 — ToolPocket",
+    "title": "Markdown 表格对齐与生成 — 百工",
     "desc": "把写歪的 Markdown 表格重新对齐，或把 CSV / TSV / 竖线分隔的数据直接变成表格。列宽按显示宽度算，中文也能对齐。",
     "h1": "Markdown 表格对齐",
     "lead": "贴一段歪掉的表格，或者别的格式的原始数据（CSV / TSV / 竖线分隔），拿回一张真正对齐的表。<br>列宽按**显示宽度**算 —— 一个汉字占两格，而这正是别的格式化工具会错的地方。",
@@ -67,7 +67,7 @@
     }
   },
   "ja": {
-    "title": "Markdown テーブルの整形と生成 — ToolPocket",
+    "title": "Markdown テーブルの整形と生成 — 百工",
     "desc": "崩れた Markdown テーブルを揃え直したり、CSV / TSV / パイプ区切りのデータから表を作ります。列幅は表示幅で計算するため、日本語や中国語も揃います。",
     "h1": "Markdown テーブル整形",
     "lead": "崩れた表、あるいは生のデータ(CSV / TSV / パイプ区切り)を貼り付けると、きちんと揃った表になります。<br>列幅は**表示幅**で計算します。全角文字は 2 桁を占めるのに 1 文字と数えられる——そこが他の整形ツールが崩れる原因です。",

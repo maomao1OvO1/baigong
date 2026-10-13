@@ -1,13 +1,18 @@
 {
   "_说明": "全站文案 · 三语（小鲸 2026-10-11）。原则：不逐字对译 —— 每种语言都按母语者平时的说法写，句子可以不一样长，但口气要一致：直白、站在用户这边、有点态度，不骂具体竞品。改完跑 node src/build.mjs 重新生成。",
-
-  "langName": { "en": "English", "zh": "中文", "ja": "日本語" },
-
-  "brand": "ToolPocket",
-
+  "langName": {
+    "en": "English",
+    "zh": "中文",
+    "ja": "日本語"
+  },
+  "brand": {
+    "en": "Baigong",
+    "zh": "百工",
+    "ja": "百工"
+  },
   "home": {
     "en": {
-      "title": "ToolPocket — Free Tools That Never Upload Your Files",
+      "title": "Baigong — Free Tools That Never Upload Your Files",
       "desc": "Compress images, convert formats, encode text — all inside your browser. No account, no upload, no limits. Close the tab and nothing leaves your device.",
       "h1": "Tools that don't want your email address",
       "lead": "Most free tools ask for an account first and your files second. These don't. Every tool on this page runs <b>inside your browser</b>, so your files never touch a server — no signup, no “3 files per hour”, no queue.",
@@ -18,7 +23,7 @@
       "safe": "Don't take our word for it — <b>turn off your Wi-Fi after the page loads and keep using it</b>. Nothing is uploaded, stored or logged. If that matters to you (private photos, ID scans, client work under NDA), you're in the right place."
     },
     "zh": {
-      "title": "ToolPocket — 不上传文件的免费在线工具",
+      "title": "百工 — 不上传文件的免费在线工具",
       "desc": "图片压缩、格式转换、文本编码，全部在浏览器里完成。不用注册、不上传、无限制。关掉标签页，什么都没留下。",
       "h1": "不跟你要邮箱的工具",
       "lead": "大多数「免费工具」先跟你要账号，再跟你要文件。这里不要。这个页面上的每个工具都<b>跑在你自己浏览器里</b>，文件根本不经过服务器 —— 不用注册、没有「每小时 3 张」、也不用排队。",
@@ -29,7 +34,7 @@
       "safe": "别信我们说的 —— <b>页面加载完之后把 Wi-Fi 关掉，接着用</b>。不上传、不保存、不记录。如果你在意这个（私人照片、证件扫描件、签了保密协议的活），你来对地方了。"
     },
     "ja": {
-      "title": "ToolPocket — ファイルをアップロードしない無料ツール",
+      "title": "百工 — ファイルをアップロードしない無料ツール",
       "desc": "画像圧縮・形式変換・テキストのエンコードを、ブラウザの中だけで。登録不要、アップロード不要、制限なし。タブを閉じれば端末には何も残りません。",
       "h1": "メールアドレスを聞いてこないツール",
       "lead": "世の中の「無料ツール」は、まずアカウントを求めてきます。ここでは求めません。このページのツールは、すべて<b>お使いのブラウザの中で</b>動きます。ファイルがサーバーを経由することはありません。登録も、たったの 3 枚までといった制限も、順番待ちもありません。",
@@ -40,10 +45,9 @@
       "safe": "私たちの言葉を信じる必要はありません。<b>ページを開いたあと、Wi-Fi を切ってそのまま使ってみてください。</b>送信も保存も記録もしていません。プライベートな写真、身分証のスキャン、NDA のかかったお仕事——そういうものを扱う方にこそ使っていただきたいツールです。"
     }
   },
-
   "tool_compress": {
     "en": {
-      "title": "Compress Images Free — No Upload, No Signup, No Limit | ToolPocket",
+      "title": "Compress Images Free — No Upload, No Signup, No Limit | Baigong",
       "desc": "Shrink JPG, PNG and WebP files right in your browser. Batch compress hundreds of photos with no upload and no account. Your images never leave your device.",
       "h1": "Compress images without uploading them",
       "lead": "Drop your photos in and they get smaller <b>right here</b>. No account, no upload, no “upgrade to remove the watermark”, no daily cap. Handy when a form says your file is too big.",
@@ -66,15 +70,30 @@
       "failed": "Couldn't read this file in the browser.",
       "faqHeading": "Questions people actually ask",
       "faq": [
-        ["How much smaller will they get?", "Typically 50–85% off a JPEG photo at 72% quality. It depends on the original — screenshots and PNGs sometimes shrink a lot more."],
-        ["Does it work on a phone?", "Yes, and phone photos are the case it helps most: 12-megapixel shots often drop from 4 MB to a few hundred KB."],
-        ["Why does the quality slider do nothing with PNG?", "PNG is lossless, so there's no quality to trade away. For photos, pick JPEG or WebP."],
-        ["Is there a batch limit?", "No. Pick 300 files if you want. It's your processor doing the work, so it's about a second or two per image."],
-        ["Do I need to keep the tab open?", "Yes — the compression happens on your device, so the page has to be running. Nothing is uploaded, so there's no server job to come back to."]
+        [
+          "How much smaller will they get?",
+          "Typically 50–85% off a JPEG photo at 72% quality. It depends on the original — screenshots and PNGs sometimes shrink a lot more."
+        ],
+        [
+          "Does it work on a phone?",
+          "Yes, and phone photos are the case it helps most: 12-megapixel shots often drop from 4 MB to a few hundred KB."
+        ],
+        [
+          "Why does the quality slider do nothing with PNG?",
+          "PNG is lossless, so there's no quality to trade away. For photos, pick JPEG or WebP."
+        ],
+        [
+          "Is there a batch limit?",
+          "No. Pick 300 files if you want. It's your processor doing the work, so it's about a second or two per image."
+        ],
+        [
+          "Do I need to keep the tab open?",
+          "Yes — the compression happens on your device, so the page has to be running. Nothing is uploaded, so there's no server job to come back to."
+        ]
       ]
     },
     "zh": {
-      "title": "在线图片压缩 — 免费、不上传、免注册、不限量 | ToolPocket",
+      "title": "在线图片压缩 — 免费、不上传、免注册、不限量 | 百工",
       "desc": "在浏览器里直接压缩 JPG、PNG、WebP 图片。支持批量，不上传、不注册、没有数量限制。照片不会离开你的设备。",
       "h1": "压缩图片，不用把它传给别人",
       "lead": "照片拖进来，就在<b>这儿</b>变小。不用账号、不用上传、没有「升级会员去水印」、也没有每天几张的限制。碰上「文件太大传不上去」的时候正好用。",
@@ -97,15 +116,30 @@
       "failed": "这个文件浏览器读不了。",
       "faqHeading": "真会有人问的问题",
       "faq": [
-        ["能压小多少？", "JPEG 照片在 72% 质量下通常小 50~85%，具体看原图 —— 截图和 PNG 有时能小得多。"],
-        ["手机上能用吗？", "能，而且手机照片是最受益的：1200 万像素的照片经常从 4 MB 掉到几百 KB。"],
-        ["为什么选 PNG 时质量滑块没反应？", "PNG 是无损格式，没有「画质」可以牺牲。要压照片就选 JPEG 或 WebP。"],
-        ["一次能压多少张？", "不限。300 张也行 —— 活是你自己的处理器在干，一张大概一两秒。"],
-        ["必须一直开着这个页面吗？", "是的，压缩是在你设备上跑的，所以页面得开着。也正因为不上传，没有「服务器那边慢慢处理」这回事。"]
+        [
+          "能压小多少？",
+          "JPEG 照片在 72% 质量下通常小 50~85%，具体看原图 —— 截图和 PNG 有时能小得多。"
+        ],
+        [
+          "手机上能用吗？",
+          "能，而且手机照片是最受益的：1200 万像素的照片经常从 4 MB 掉到几百 KB。"
+        ],
+        [
+          "为什么选 PNG 时质量滑块没反应？",
+          "PNG 是无损格式，没有「画质」可以牺牲。要压照片就选 JPEG 或 WebP。"
+        ],
+        [
+          "一次能压多少张？",
+          "不限。300 张也行 —— 活是你自己的处理器在干，一张大概一两秒。"
+        ],
+        [
+          "必须一直开着这个页面吗？",
+          "是的，压缩是在你设备上跑的，所以页面得开着。也正因为不上传，没有「服务器那边慢慢处理」这回事。"
+        ]
       ]
     },
     "ja": {
-      "title": "画像圧縮 無料 — アップロード不要・登録不要・枚数無制限 | ToolPocket",
+      "title": "画像圧縮 無料 — アップロード不要・登録不要・枚数無制限 | 百工",
       "desc": "JPG・PNG・WebP の画像をブラウザの中でそのまま圧縮。複数枚まとめて処理できます。アップロードも登録も不要、枚数の上限もありません。写真は端末の外に出ません。",
       "h1": "画像を、どこにも送らずに軽くする",
       "lead": "写真をドロップすると、<b>その場で</b>軽くなります。アカウントも、アップロードも、「透かしを消すにはアップグレード」も、1 日の枚数制限もありません。「ファイルサイズが大きすぎます」と言われたときにどうぞ。",
@@ -128,11 +162,26 @@
       "failed": "このファイルはブラウザで読み込めませんでした。",
       "faqHeading": "よくある質問",
       "faq": [
-        ["どのくらい軽くなりますか？", "JPEG 写真を画質 72% で処理した場合、おおむね 50〜85% の削減です。元画像によりますが、スクリーンショットや PNG のほうが大きく減ることもあります。"],
-        ["スマートフォンでも使えますか？", "使えます。むしろスマートフォンの写真こそ効果的で、1200 万画素の写真が 4 MB から数百 KB になることも珍しくありません。"],
-        ["PNG だと画質スライダーが効かないのはなぜ？", "PNG は可逆圧縮で、犠牲にできる「画質」が存在しないためです。写真を軽くしたいときは JPEG か WebP を選んでください。"],
-        ["まとめて何枚まで処理できますか？", "上限はありません。300 枚でも構いません。処理はお使いの端末が行うので、1 枚あたり 1〜2 秒が目安です。"],
-        ["ページは開いたままにしておく必要がありますか？", "はい。圧縮は端末側で行われるため、ページを開いている必要があります。逆に言えば、アップロードしていないので「サーバー側で処理中」という状態も存在しません。"]
+        [
+          "どのくらい軽くなりますか？",
+          "JPEG 写真を画質 72% で処理した場合、おおむね 50〜85% の削減です。元画像によりますが、スクリーンショットや PNG のほうが大きく減ることもあります。"
+        ],
+        [
+          "スマートフォンでも使えますか？",
+          "使えます。むしろスマートフォンの写真こそ効果的で、1200 万画素の写真が 4 MB から数百 KB になることも珍しくありません。"
+        ],
+        [
+          "PNG だと画質スライダーが効かないのはなぜ？",
+          "PNG は可逆圧縮で、犠牲にできる「画質」が存在しないためです。写真を軽くしたいときは JPEG か WebP を選んでください。"
+        ],
+        [
+          "まとめて何枚まで処理できますか？",
+          "上限はありません。300 枚でも構いません。処理はお使いの端末が行うので、1 枚あたり 1〜2 秒が目安です。"
+        ],
+        [
+          "ページは開いたままにしておく必要がありますか？",
+          "はい。圧縮は端末側で行われるため、ページを開いている必要があります。逆に言えば、アップロードしていないので「サーバー側で処理中」という状態も存在しません。"
+        ]
       ]
     }
   }

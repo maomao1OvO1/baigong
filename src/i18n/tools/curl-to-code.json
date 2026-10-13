@@ -1,7 +1,7 @@
 {
   "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
   "en": {
-    "title": "curl to code converter (fetch · axios · Python) — ToolPocket",
+    "title": "curl to code converter (fetch · axios · Python) — Baigong",
     "desc": "Turn a curl command into JavaScript fetch, axios or Python requests code. Headers, body, auth and cookies are carried over. Nothing is uploaded.",
     "h1": "curl → code",
     "lead": "You copied a request as curl; now you need it as code. Paste it and get JavaScript fetch, axios or Python requests — with every header carried over.<br>Missed headers are the classic bug: drop Content-Type and the server parses your JSON as a form, then reports an error that looks like your own mistake. Nothing leaves your browser.",
@@ -37,7 +37,7 @@
     }
   },
   "zh": {
-    "title": "curl 转代码（fetch · axios · Python）— ToolPocket",
+    "title": "curl 转代码（fetch · axios · Python）— 百工",
     "desc": "把 curl 命令转成 JavaScript fetch、axios 或 Python requests 代码。请求头、body、认证、Cookie 一并带过去。不上传任何内容。",
     "h1": "curl → 代码",
     "lead": "刚从浏览器「Copy as cURL」抄下来一条请求，现在要把它变成代码。贴进来，直接给你 JavaScript 的 fetch、axios 或 Python 的 requests 写法，每一个请求头都不会漏。<br>漏头是最经典的坑：Content-Type 一丢，服务端会把 JSON 当表单解析，然后报一个看起来像你自己写错的错。内容不出你的浏览器。",
@@ -73,7 +73,7 @@
     }
   },
   "ja": {
-    "title": "curl からコードへ変換（fetch · axios · Python）— ToolPocket",
+    "title": "curl からコードへ変換（fetch · axios · Python）— 百工",
     "desc": "curl コマンドを JavaScript の fetch、axios、Python の requests のコードに変換します。ヘッダー・body・認証・Cookie もそのまま引き継ぎます。アップロードは行いません。",
     "h1": "curl → コード",
     "lead": "ブラウザの「Copy as cURL」でコピーしたリクエストを、コードにしたい。貼り付ければ JavaScript の fetch、axios、Python の requests の形で出ます。ヘッダーは 1 つも落としません。<br>ヘッダーの取りこぼしは定番のバグです。Content-Type が消えると、サーバーは JSON をフォームとして解釈し、自分のミスに見えるエラーを返してきます。内容はブラウザの外に出ません。",

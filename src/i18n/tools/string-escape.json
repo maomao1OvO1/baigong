@@ -1,7 +1,7 @@
 {
   "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
   "en": {
-    "title": "String escape / unescape — JSON, JS, SQL, HTML, URL, regex — ToolPocket",
+    "title": "String escape / unescape — JSON, JS, SQL, HTML, URL, regex — Baigong",
     "desc": "Escape a string for JSON, JavaScript, SQL, HTML, URLs or regex — and turn it back.",
     "h1": "String escape / unescape",
     "lead": "The same string has six different correct spellings depending on where it goes. JSON cannot contain a raw newline or an unescaped quote; SQL needs single quotes doubled, not backslashed; a regex needs a pile of characters backslashed. This does it in one shot — and can turn any of them back into readable text.",
@@ -38,7 +38,7 @@
     }
   },
   "zh": {
-    "title": "字符串转义 / 反转义 — JSON、JS、SQL、HTML、URL、正则 — ToolPocket",
+    "title": "字符串转义 / 反转义 — JSON、JS、SQL、HTML、URL、正则 — 百工",
     "desc": "同一个字符串在六种地方有六种写法，一次转对，也能反着解回来。",
     "h1": "字符串转义 / 反转义",
     "lead": "同一个字符串，放进不同的地方有不同的正确写法：JSON 里不能有裸换行、也不能有没转义的双引号；SQL 里单引号要写成两个而不是加反斜杠；正则里一堆符号都得加反斜杠。这里一次转对，也能把任何一种解回原文。",
@@ -75,7 +75,7 @@
     }
   },
   "ja": {
-    "title": "文字列のエスケープ / 解除 — JSON・JS・SQL・HTML・URL・正規表現 — ToolPocket",
+    "title": "文字列のエスケープ / 解除 — JSON・JS・SQL・HTML・URL・正規表現 — 百工",
     "desc": "同じ文字列でも場所によって正しい書き方は 6 通り。まとめて変換し、元に戻せます。",
     "h1": "文字列のエスケープ / 解除",
     "lead": "同じ文字列でも、置く場所によって正しい書き方は異なります。JSON では生の改行や未エスケープの引用符が使えず、SQL では単引用符を 2 つ重ねる（バックスラッシュではない）必要があり、正規表現では多くの記号をエスケープします。ここでは一度に正しく変換でき、逆方向にも戻せます。",

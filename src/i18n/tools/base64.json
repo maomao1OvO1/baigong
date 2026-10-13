@@ -1,7 +1,7 @@
 {
   "_说明": "Base64 编解码 —— 三语文案。",
   "en": {
-    "title": "Base64 Encode / Decode Online — UTF-8 Safe, No Upload | ToolPocket",
+    "title": "Base64 Encode / Decode Online — UTF-8 Safe, No Upload | Baigong",
     "desc": "Encode text to Base64 or decode it back, with full UTF-8 support (Chinese, Japanese, emoji). Runs in your browser, no signup.",
     "h1": "Base64 encode and decode",
     "lead": "Encode or decode Base64 that doesn't mangle non-English text. Many converters hand your string straight to the browser's raw encoder, which only understands Latin-1 — so Chinese, Japanese and emoji come out as question marks. This one converts through UTF-8 first.",
@@ -30,7 +30,7 @@
     }
   },
   "zh": {
-    "title": "在线 Base64 编码解码 — 中文不乱码、不上传 | ToolPocket",
+    "title": "在线 Base64 编码解码 — 中文不乱码、不上传 | 百工",
     "desc": "文本转 Base64、Base64 转回文本，完整支持 UTF-8（中文、日文、emoji）。在浏览器里完成，不用注册。",
     "h1": "Base64 编码 / 解码",
     "lead": "Base64 编码解码，中文和 emoji 不会变成「？？？」。很多在线工具直接调浏览器的原始接口，非英文内容一进去就乱码；这里是先按 UTF-8 转好再编码，所以不会。",
@@ -59,7 +59,7 @@
     }
   },
   "ja": {
-    "title": "Base64 エンコード・デコード オンライン — UTF-8 対応 | ToolPocket",
+    "title": "Base64 エンコード・デコード オンライン — UTF-8 対応 | 百工",
     "desc": "テキストを Base64 に変換、または元に戻します。UTF-8 に完全対応（日本語・中国語・絵文字）。ブラウザ内で完結、登録不要。",
     "h1": "Base64 のエンコードとデコード",
     "lead": "日本語や絵文字が壊れない Base64 変換です。多くのツールはブラウザの生の関数をそのまま使うため、非 ASCII 文字が「?」に化けます。ここでは UTF-8 を経由して処理します。",

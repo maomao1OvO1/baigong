@@ -1,7 +1,7 @@
 {
   "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
   "en": {
-    "title": "Character-level text diff — ToolPocket",
+    "title": "Character-level text diff — Baigong",
     "desc": "Compare two pieces of text character by character and see exactly which characters changed, marked as [-removed-] and {+added+}.",
     "h1": "Character-level text diff",
     "lead": "The line-by-line comparison tells you which lines changed. This one tells you which characters changed inside a line — the difference between catching a wrong punctuation mark and being told the whole line is new.<br>Put both versions in the box, separated by a line of ===.",
@@ -33,7 +33,7 @@
     }
   },
   "zh": {
-    "title": "字符级文本对比 — ToolPocket",
+    "title": "字符级文本对比 — 百工",
     "desc": "把两段文本逐字符比对，精确指出改动了哪几个字，用 [-删除-] 与 {+新增+} 标出来。",
     "h1": "字符级文本对比",
     "lead": "逐行对比告诉你「哪几行变了」，这个告诉你「这一行里到底改了哪几个字」—— 一个标点写错 vs「整行都是新的」，差别就在这里。<br>两个版本放进同一个框，中间用一行 === 隔开。",
@@ -65,7 +65,7 @@
     }
   },
   "ja": {
-    "title": "文字単位の差分比較 — ToolPocket",
+    "title": "文字単位の差分比較 — 百工",
     "desc": "2 つのテキストを 1 文字ずつ比較し、変更された文字を [-削除-] と {+追加+} で示します。",
     "h1": "文字単位の差分比較",
     "lead": "行単位の比較は「どの行が変わったか」を教えます。こちらは「その行の中のどの文字が変わったか」を教えます。句読点 1 つの違いと「行が丸ごと新しい」の差はここにあります。<br>2 つの版を同じ欄に入れ、間に === の 1 行を挟んでください。",

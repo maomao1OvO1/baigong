@@ -1,4 +1,4 @@
-/* © 2026 ToolPocket · tools.maomaowang.top · 保留所有权利（All rights reserved）
+/* © 2026 Baigong · tools.maomaowang.top · 保留所有权利（All rights reserved）
    本文件为原创代码，未经许可不得复制、镜像或二次发布；删除本声明不改变侵权性质。 */
 /* ============================================================================
    文件：text-tools.js —— 文本处理合集（大小写 / 反序 / 去空格 / 去重 / 排序 / 统计）

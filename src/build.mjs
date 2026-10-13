@@ -1,5 +1,5 @@
 /* ============================================================================
-   文件：build.mjs —— ToolPocket 静态站生成器（小鲸 · 2026-10-11 重构为数据驱动）
+   文件：build.mjs —— Baigong 静态站生成器（小鲸 · 2026-10-11 重构为数据驱动）
    干什么：读 tools.json（工具清单）+ i18n/（三语文案）→ 生成三语全部页面 + sitemap。
    为什么要生成而不是手写：
      · 7 个工具 × 3 种语言 = 21 个工具页。手写就要维护 21 份几乎一样的 HTML —— 那就是屎山。
@@ -134,7 +134,7 @@ function topbar(lang, out) {
     ? ""
     : `<a class="ad-link" href="${pathOf(lang, "advertise.html")}">${ADVERTISE_LABEL[lang.code]}</a>`;
   return `<header class="top">
-  <a class="brand" href="${pathOf(lang, "index.html")}">🧰 ${UI.brand}</a>
+  <a class="brand" href="${pathOf(lang, "index.html")}">🧰 ${UI.brand[lang.code]}</a>
   <nav class="langs">${adLink}${links}</nav>
 </header>`;
 }
@@ -154,7 +154,7 @@ const sourceMark = (page) => {
   const stamp = "ts2t-" + page.replace(/\\/g, "-").replace(/\.html$/, "");
   return `<!--
   ================================================================
-  © 2026 ToolPocket · tools.maomaowang.top · 原创作品，保留所有权利
+  © 2026 Baigong · tools.maomaowang.top · 原创作品，保留所有权利
   本页由作者独立开发并持续维护。未经授权复制、镜像、二次发布本页
   内容或代码均属侵权；页面内含来源标记（${stamp}），可追溯出处。
   legacy-build-id: 746f6f6c732e6d616f6d616f77616e672e746f703a3a323032362d31302d3132
@@ -495,7 +495,7 @@ ${footer(lang)}
 function homePage(lang) {
   const t = HOME[lang.code];
   const out = "index.html";
-  const jsonld = { "@context": "https://schema.org", "@type": "WebSite", name: UI.brand, url: SITE + "/" };
+  const jsonld = { "@context": "https://schema.org", "@type": "WebSite", name: UI.brand[lang.code], url: SITE + "/" };
 
   /** 一张工具卡（分组里复用同一个模板，避免两处写法漂移） */
   const card = (tool) => {
@@ -550,7 +550,7 @@ ${adSlot(lang, "home-top")}
 ${groupsHtml}
 
   <section class="suggest">
-    <p><span class="s-count">🧰 <b>${TOOLS.length}</b> ${rich(t.countUnit)}</span><span class="s-sep">·</span>${rich(t.addTool)} <button type="button" class="linklike fb-btn" data-u="${esc(UI.feedbackUser)}" data-d="${esc(UI.feedbackDomain)}" data-subject="ToolPocket tool request">${rich(t.addToolLink)}</button></p>
+    <p><span class="s-count">🧰 <b>${TOOLS.length}</b> ${rich(t.countUnit)}</span><span class="s-sep">·</span>${rich(t.addTool)} <button type="button" class="linklike fb-btn" data-u="${esc(UI.feedbackUser)}" data-d="${esc(UI.feedbackDomain)}" data-subject="Baigong tool request">${rich(t.addToolLink)}</button></p>
   </section>
 
   <section class="why">
@@ -639,9 +639,9 @@ function notFoundPage() {
   }).join("\n");
 
   const titles = JSON.stringify({
-    en: "Page not found — ToolPocket",
-    zh: "页面不存在 —— ToolPocket",
-    ja: "ページが見つかりません — ToolPocket",
+    en: "Page not found — Baigong",
+    zh: "页面不存在 —— 百工",
+    ja: "ページが見つかりません — 百工",
   });
 
   return `<!DOCTYPE html>
@@ -649,7 +649,7 @@ function notFoundPage() {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Page not found — ToolPocket</title>
+<title>Page not found — Baigong</title>
 <meta name="robots" content="noindex">
 <link rel="stylesheet" href="${asset("style.css")}?v=${assetV("style.css")}">
 <meta name="theme-color" content="#2563eb">
@@ -661,7 +661,7 @@ function notFoundPage() {
 <body>
 ${sourceMark("404.html")}
 <header class="top">
-  <a class="brand" href="${pathOf(LANGS[0], "index.html")}">🧰 ${UI.brand}</a>
+  <a class="brand" href="${pathOf(LANGS[0], "index.html")}">🧰 ${UI.brand.en}</a>
   <nav class="langs" id="nfLangs"></nav>
 </header>
 
@@ -924,7 +924,8 @@ for (const lang of LANGS) {
   const dir = lang.dir ? lang.dir + "/" : "";
   write(dir + "manifest.webmanifest", JSON.stringify({
     name: HOME[lang.code].title,
-    short_name: "ToolPocket",
+    // 主屏图标下面显示的就是它 —— 中文用户看到「百工」、英文用户看到 Baigong（与顶栏一致）
+    short_name: UI.brand[lang.code],
     description: HOME[lang.code].desc,
     start_url: "/" + dir,
     scope: "/",

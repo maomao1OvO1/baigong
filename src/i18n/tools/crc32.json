@@ -1,7 +1,7 @@
 {
   "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
   "en": {
-    "title": "CRC-32 / CRC-32C / Adler-32 checksum calculator — ToolPocket",
+    "title": "CRC-32 / CRC-32C / Adler-32 checksum calculator — Baigong",
     "desc": "Compute the CRC-32, CRC-32C and Adler-32 checksums of text or of a hex byte string. Runs entirely in your browser.",
     "h1": "CRC-32 / Adler-32 checksum",
     "lead": "Three checksums that turn up everywhere and are rarely recognised: ZIP and PNG carry CRC-32, gzip and zlib streams carry Adler-32, and CRC-32C is used by iSCSI and several storage systems.<br>Paste text, or switch to hex mode for raw bytes — nothing is uploaded.",
@@ -34,7 +34,7 @@
     }
   },
   "zh": {
-    "title": "CRC-32 / CRC-32C / Adler-32 校验和计算 — ToolPocket",
+    "title": "CRC-32 / CRC-32C / Adler-32 校验和计算 — 百工",
     "desc": "算出一段文本或一串十六进制字节的 CRC-32、CRC-32C 与 Adler-32 校验和。全程在浏览器里完成。",
     "h1": "CRC-32 / Adler-32 校验和",
     "lead": "三个到处冒出来、却很少有人认得的值：ZIP 和 PNG 里是 CRC-32，gzip / zlib 流尾部是 Adler-32，iSCSI 与若干存储系统用 CRC-32C。<br>贴文本，或者切到十六进制模式贴原始字节 —— 不上传任何内容。",
@@ -67,7 +67,7 @@
     }
   },
   "ja": {
-    "title": "CRC-32 / CRC-32C / Adler-32 チェックサム計算 — ToolPocket",
+    "title": "CRC-32 / CRC-32C / Adler-32 チェックサム計算 — 百工",
     "desc": "テキストまたは 16 進数のバイト列から CRC-32、CRC-32C、Adler-32 のチェックサムを計算します。ブラウザ内だけで動作します。",
     "h1": "CRC-32 / Adler-32 チェックサム",
     "lead": "どこにでも現れるのに、あまり認識されていない 3 つの値。ZIP と PNG は CRC-32、gzip / zlib のストリームは Adler-32、iSCSI やいくつかのストレージは CRC-32C を使います。<br>テキストを貼るか、16 進数モードで生のバイト列を貼ってください。どこにも送信しません。",
