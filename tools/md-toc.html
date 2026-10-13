@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Markdown table of contents generator (GitHub anchors) — ToolPocket</title>
+<meta name="description" content="Build a linked table of contents from your Markdown headings, with GitHub-style anchors and duplicate handling. Code blocks are skipped, so shell comments stay out.">
+<link rel="canonical" href="https://tools.maomaowang.top/tools/md-toc.html">
+<meta property="og:title" content="Markdown table of contents generator (GitHub anchors) — ToolPocket">
+<meta property="og:description" content="Build a linked table of contents from your Markdown headings, with GitHub-style anchors and duplicate handling. Code blocks are skipped, so shell comments stay out.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/tools/md-toc.html">
+<!-- 分享预览图：微信/QQ/Telegram/Twitter 都读这几行。尺寸按通用标准 1200×630（1.91:1），
+     微信会把它裁成正方形显示，所以图里关键信息都放在中间。三语各一张。 -->
+<meta property="og:image" content="https://tools.maomaowang.top/assets/og-en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/md-toc.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/md-toc.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/md-toc.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/md-toc.html">
+<link rel="stylesheet" href="/assets/style.css?v=558fbd6b">
+<meta name="theme-color" content="#2563eb">
+<!-- 作者信息：既是署名，也是"这站有主"的凭据（扒站的人容易忽略，但删掉它就是加重侵权情节） -->
+<meta name="author" content="maomaowang.top">
+<meta name="build" content="2026-10-14">
+<meta name="x-src" content="dG9vbHMubWFvbWFvd2FuZy50b3A6OjIwMjYtMTAtMTQ=">
+<link rel="author" href="https://maomaowang.top/">
+<link rel="icon" href="/assets/icon-192.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Markdown table of contents generator","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Build a linked table of contents from your Markdown headings, with GitHub-style anchors and duplicate handling. Code blocks are skipped, so shell comments stay out."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why does my link do nothing when I click it?","acceptedAnswer":{"@type":"Answer","text":"Almost always one of three things: the anchor keeps punctuation that GitHub strips, capital letters that GitHub lowercases, or it collides with an earlier identical heading — GitHub then points the second one at name-1. This tool follows GitHub's rules on all three."}},{"@type":"Question","name":"Do Chinese, Japanese and Korean headings work?","acceptedAnswer":{"@type":"Answer","text":"Yes. GitHub keeps CJK characters in the anchor exactly as written and only lowercases and strips punctuation, so the anchor is the heading text itself. That is also why this tool never transliterates a heading."}},{"@type":"Question","name":"Will the same Markdown work on GitLab or Notion?","acceptedAnswer":{"@type":"Answer","text":"Not always — each platform has its own anchor rules, and GitLab in particular differs. This tool follows GitHub, which is the most common target. If a link fails elsewhere, that is the other platform's rule, not a bug here."}}]}</script>
+</head>
+<body>
+<!--
+  ================================================================
+  © 2026 ToolPocket · tools.maomaowang.top · 原创作品，保留所有权利
+  本页由作者独立开发并持续维护。未经授权复制、镜像、二次发布本页
+  内容或代码均属侵权；页面内含来源标记（ts2t-tools/md-toc），可追溯出处。
+  legacy-build-id: 746f6f6c732e6d616f6d616f77616e672e746f703a3a323032362d31302d3132
+  （这串是十六进制，不是什么校验码：解出来是作者与构建日期。）
+  ================================================================
+-->
+<span hidden aria-hidden="true" data-mark="ts2t:maomaowang:ts2t-tools/md-toc"></span>
+<!-- stats-endpoint: gbbyf.znbznbjnat.gbc   (rot13, 2024 年就在用的老写法) -->
+<div class="mobile-tip" id="mobileTip" hidden>
+  <span>📱 It works on a phone, but desktop Chrome handles large images and batch jobs far better.</span>
+  <button type="button" id="tipClose" class="tip-close">Got it</button>
+</div>
+<header class="top">
+  <a class="brand" href="/index.html">🧰 ToolPocket</a>
+  <nav class="langs"><a class="ad-link" href="/advertise.html">Advertise</a><a href="/tools/md-toc.html" class="on" aria-current="page">English</a><a href="/zh/tools/md-toc.html">中文</a><a href="/ja/tools/md-toc.html">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/index.html">← All tools</a></p>
+  <h1>Markdown table of contents generator</h1>
+  <p class="lead">A table of contents is just a link list — and the hard part is the anchor. GitHub lowercases the heading, drops punctuation, turns every space into a hyphen and appends -1 to duplicates; write it by hand and half the links quietly do nothing.<br>Paste your Markdown, and code blocks get skipped so a shell comment never turns into an entry.</p>
+
+  <p class="badge-line"><span class="pill">Runs 100% in your browser — nothing is uploaded, stored, or kept.</span></p>
+
+<div class="panel">
+<label class="row lbl" for="input">Input</label>
+  <textarea id="input" class="tall" placeholder="# Title
+
+## Section
+
+```sh
+# this is a comment, not a heading
+```"></textarea>
+  <div class="opts">
+<label class="row"><span class="lbl">List style</span><select id="liststyle"><option value="dash">Bulleted (-)</option><option value="number">Numbered (1.)</option></select></label>
+    <span class="hint">Both render the same way; pick whichever reads better in the raw file.</span>
+<label class="row check"><input type="checkbox" id="links" checked><span>Link every entry to its anchor</span></label>
+<label class="row"><span class="lbl">Deepest level to include</span><input type="range" id="maxdepth" min="1" max="6" value="3"><span class="badge" id="maxdepthVal"></span></label>
+    <span class="hint">Levels are counted from the shallowest heading in the document, not from #.</span>
+  </div>
+<label class="row lbl" for="output">Result</label>
+  <textarea id="output" readonly placeholder="Your table of contents appears here"></textarea>
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">Copy result</button>
+    <button class="ghost" id="clear">Clear</button>
+  </div>
+</div>
+
+<aside class="ad ad-tool-game">
+  <span class="ad-label">From the maker</span>
+  <span class="ad-ico" aria-hidden="true">🎮</span>
+  <div class="ad-body">
+    <b>A tower-defence game, in your browser</b>
+    <p>Built from scratch by the same developer — no engine, no assets from a store.</p>
+  </div>
+  <a class="ad-cta" href="https://maomaowang.top/games/td/source/game.html">Play it →</a>
+</aside>
+
+  <section class="faq">
+    <h2>FAQ</h2>
+    <details><summary>Why does my link do nothing when I click it?</summary><p>Almost always one of three things: the anchor keeps punctuation that GitHub strips, capital letters that GitHub lowercases, or it collides with an earlier identical heading — GitHub then points the second one at name-1. This tool follows GitHub's rules on all three.</p></details>
+    <details><summary>Do Chinese, Japanese and Korean headings work?</summary><p>Yes. GitHub keeps CJK characters in the anchor exactly as written and only lowercases and strips punctuation, so the anchor is the heading text itself. That is also why this tool never transliterates a heading.</p></details>
+    <details><summary>Will the same Markdown work on GitLab or Notion?</summary><p>Not always — each platform has its own anchor rules, and GitLab in particular differs. This tool follows GitHub, which is the most common target. If a link fails elsewhere, that is the other platform's rule, not a bug here.</p></details>
+  </section>
+
+</main>
+
+<footer>
+  <p>ToolPocket — your files never leave your device. No upload, no account, no tracking.</p>
+  <p class="copy">© 2026 ToolPocket — all rights reserved. Please don’t republish this site or its code without permission.</p>
+  <p class="fb">
+    <span>Found a bug? Tell me — I read every message.</span>
+    <button type="button" class="ghost fb-btn" id="feedbackBtn" data-u="hi" data-d="maomaowang.top">Report a bug</button>
+  </p>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = "{\"langName\":\"English\",\"footer\":\"ToolPocket — your files never leave your device. No upload, no account, no tracking.\",\"nav\":\"All tools\",\"backToTools\":\"← All tools\",\"copy\":\"Copy result\",\"swap\":\"Swap\",\"clear\":\"Clear\",\"download\":\"Download\",\"copied\":\"Copied to clipboard\",\"copyFail\":\"Copying was blocked by the browser — select the text and copy it manually\",\"inputLabel\":\"Input\",\"outputLabel\":\"Result\",\"privacyNote\":\"Runs 100% in your browser — nothing is uploaded, stored, or kept.\",\"searchPlaceholder\":\"Search tools — try “compress”, “json”, “password”…\",\"noResults\":\"Nothing matched. Try another word — “compress”, “hash”, “json”…\",\"mobileTip\":\"📱 It works on a phone, but desktop Chrome handles large images and batch jobs far better.\",\"mobileTipClose\":\"Got it\",\"desktopHeading\":\"Better on desktop\",\"installApp\":\"Install as desktop app\",\"installHint\":\"Open this site in desktop Chrome or Edge, then click the install icon at the right of the address bar. It becomes its own window and keeps working with no network at all — no installer to download, no account.\",\"installed\":\"Already installed\",\"offlineNote\":\"After that, the tools work with the network switched off — which makes sense, since they were never using it.\",\"feedbackAsk\":\"Found a bug? Tell me — I read every message.\",\"feedbackButton\":\"Report a bug\",\"feedbackSubject\":\"ToolPocket feedback\",\"noResultsAsk\":\"Can't find it? Tell me what you were looking for — I read every message.\",\"feedbackAskHome\":\"Found a bug, or want a tool that isn't here yet? Tell me — I read every message.\",\"feedbackButtonHome\":\"Send an email\",\"noResultsBtn\":\"Request a tool\",\"noResultsSubject\":\"ToolPocket tool request\",\"copyright\":\"© 2026 ToolPocket — all rights reserved. Please don’t republish this site or its code without permission.\",\"cancel\":\"Cancel\",\"confirmOk\":\"OK\",\"clearAsk\":\"Clear what you typed? This can't be undone.\",\"clearOk\":\"Clear\",\"inputPh\":\"# Title\\n\\n## Section\\n\\n```sh\\n# this is a comment, not a heading\\n```\",\"outputPh\":\"Your table of contents appears here\",\"liststyle\":\"List style\",\"listDash\":\"Bulleted (-)\",\"listNumber\":\"Numbered (1.)\",\"liststyleHint\":\"Both render the same way; pick whichever reads better in the raw file.\",\"links\":\"Link every entry to its anchor\",\"maxdepth\":\"Deepest level to include\",\"maxdepthHint\":\"Levels are counted from the shallowest heading in the document, not from #.\",\"statOk\":\"{n} headings · {d} levels deep\",\"statNone\":\"No headings found — only lines starting with # outside code blocks count.\",\"statEmpty\":\"Paste Markdown to get started\",\"nothingToCopy\":\"Nothing to copy yet\"}";</script>
+<script src="/assets/tools/_shared.js?v=62a587aa" defer></script>
+<!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
+<script src="/assets/tools/md-toc.js?v=765a53aa" defer></script>
+<script src="/assets/app.js?v=dd536e7e" defer></script>
+</body>
+</html>

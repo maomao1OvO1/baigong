@@ -1021,5 +1021,177 @@ console.log("\n㉖ 本轮新增工具的关键算法");
     else bad("robots：绝对 URL 没写进去", els.output.value.slice(-140));
   }
 
+console.log("\n㉗ 第三批新工具的关键算法（WCAG 对比度 · JSON→TypeScript · Markdown 目录）");
+{
+  const ui = (name) => { const j = JSON.parse(fs.readFileSync(path.join(ROOT, "src/i18n/tools", name + ".json"), "utf8")); return j.en.ui; };
+  const U = (n, extra) => Object.assign(readUi("en"), ui(n), extra || {});
+
+  // ① 颜色对比度（WCAG 公式端点 · 卡线判定 · 颜色写法识别）
+  {
+    const { els } = loadTool("contrast.js",
+      ["input", "output", "status", "copy", "clear"], U("contrast"), {});
+
+    // 黑白是公式的已知端点：算错一点点这里就露馅
+    els.input.value = "#000000\n#ffffff"; els.input.fire("input");
+    if (els.output.value.includes("21.00"))
+      ok("contrast：黑白 = 21.00 : 1（WCAG 公式端点，权重或伽马写错必崩）");
+    else bad("contrast：黑白比值不对", els.output.value.slice(0, 140));
+
+    // #777777 对白 = 4.478，卡在 4.5 线下 —— 正是「看着挺清楚、其实不达标」的典型
+    els.input.value = "#777777\n#ffffff"; els.input.fire("input");
+    const out777 = els.output.value;
+    if (out777.includes("4.48") && out777.includes("FAIL"))
+      ok("contrast：#777777 对白 = 4.48 : 1，AA 判不通过（卡线不放水）");
+    else bad("contrast：卡线判定不对", out777.slice(0, 220));
+
+    // #767676 对白 = 4.542，刚好过 AA；但 AAA 要 7，仍然不过 ⇒ 两档门槛必须分开判
+    els.input.value = "#767676\n#ffffff"; els.input.fire("input");
+    const out767 = els.output.value;
+    if (out767.includes("4.54") && out767.includes("PASS") && out767.includes("FAIL"))
+      ok("contrast：#767676 对白 = 4.54 : 1，AA 过而 AAA 不过（两档门槛分开判）");
+    else bad("contrast：#767676 的两档判定不对", out767.slice(0, 240));
+
+    // 三位缩写与 rgb() 写法都要认，结果必须一致
+    els.input.value = "#000\n#fff"; els.input.fire("input");
+    const shortOut = els.output.value;
+    els.input.value = "rgb(0,0,0)\nrgb(255,255,255)"; els.input.fire("input");
+    if (shortOut.includes("21.00") && els.output.value.includes("21.00"))
+      ok("contrast：#000 缩写与 rgb(0,0,0) 都认，且结果同为 21.00");
+    else bad("contrast：颜色写法识别不全", shortOut.slice(0, 120) + " || " + els.output.value.slice(0, 120));
+
+    // 认不出的颜色必须报错，绝不悄悄按黑色算出一个看着正常的数
+    els.input.value = "not-a-colour\n#fff"; els.input.fire("input");
+    if (els.output.value === "" && els.status.className.includes("err"))
+      ok("contrast：认不出的颜色明确报错，不硬算一个结果糊弄");
+    else bad("contrast：坏颜色没有报错", els.status.textContent);
+
+    // 只写一行时背景默认白 —— 页面首屏（默认黑白）就靠这条
+    els.input.value = "#000000"; els.input.fire("input");
+    if (els.output.value.includes("#ffffff") && els.output.value.includes("21.00"))
+      ok("contrast：只写一行前景色时，背景自动按白色算");
+    else bad("contrast：单行输入的默认背景不对", els.output.value.slice(0, 160));
+  }
+
+  // ② JSON → TypeScript（类型推断 · 可选字段 · 联合类型 · 老实说 unknown）
+  {
+    const { els } = loadTool("json-to-ts.js",
+      ["input", "output", "status", "copy", "clear", "rootname", "optional"], U("json-to-ts"), {});
+
+    // 同 md-toc：复选框的默认勾选状态来自 tools.json 的 checked，测试环境不读它 ⇒ 显式打开
+    els.optional.checked = true; els.optional.fire("change");
+
+    els.input.value = JSON.stringify({ id: 1, name: "Ada", tags: ["admin"], meta: { active: true } });
+    els.input.fire("input");
+    const out = els.output.value;
+    if (/interface Root \{/.test(out) && /id: number;/.test(out) && /name: string;/.test(out) && /tags: string\[\];/.test(out))
+      ok("json-to-ts：基本类型与数组推对了（number / string / string[]）");
+    else bad("json-to-ts：基本类型推断不对", out.slice(0, 280));
+
+    // 嵌套对象的名字带父名前缀（RootMeta 而不是裸 Meta）—— 免得两个父对象里同名字段撞名
+    if (/meta: RootMeta;/.test(out) && /interface RootMeta \{/.test(out))
+      ok("json-to-ts：嵌套对象单独出 interface，名字带父名前缀（RootMeta）");
+    else bad("json-to-ts：嵌套对象没生成 interface", out.slice(0, 280));
+
+    // 数组里每个对象的字段不完全一样 ⇒ 只在部分元素里出现的键要标可选
+    els.input.value = JSON.stringify([{ a: 1, b: 2 }, { a: 3 }]);
+    els.input.fire("input");
+    const out2 = els.output.value;
+    if (/a: number;/.test(out2) && /b\?: number;/.test(out2))
+      ok("json-to-ts：部分元素缺的键标成 b?，都有的保持必选（这才是接口真实形态）");
+    else bad("json-to-ts：可选字段标记不对", out2.slice(0, 280));
+
+    // 同字段不同类型 ⇒ 必须给联合，不许塌成 any
+    els.input.value = JSON.stringify([{ v: "x" }, { v: 1 }]);
+    els.input.fire("input");
+    const out3 = els.output.value;
+    if (/v: string \| number;/.test(out3) && !/\bany\b/.test(out3))
+      ok("json-to-ts：同字段多类型输出 string | number（不塌成 any 把错误往后推）");
+    else bad("json-to-ts：联合类型不对", out3.slice(0, 280));
+
+    els.input.value = JSON.stringify({ list: [] }); els.input.fire("input");
+    if (/list: unknown\[\];/.test(els.output.value))
+      ok("json-to-ts：空数组诚实输出 unknown[]（不编一个 any[]）");
+    else bad("json-to-ts：空数组类型不对", els.output.value.slice(0, 220));
+
+    // 含连字符的键不加引号的话，生成的 .ts 根本编译不过
+    els.input.value = JSON.stringify({ "weird-key": 1 }); els.input.fire("input");
+    if (/"weird-key": number;/.test(els.output.value))
+      ok("json-to-ts：非法标识符的键名自动加引号（否则生成的 TS 编译不过）");
+    else bad("json-to-ts：非法键名没加引号", els.output.value.slice(0, 220));
+
+    els.input.value = "{ not json"; els.input.fire("input");
+    if (els.output.value === "" && els.status.className.includes("err"))
+      ok("json-to-ts：非法 JSON 明确报错，不吐半成品");
+    else bad("json-to-ts：非法 JSON 没报错", els.status.textContent);
+
+    // 关掉开关 ⇒ 全部按必选输出
+    els.input.value = JSON.stringify([{ a: 1, b: 2 }, { a: 3 }]);
+    els.optional.checked = false; els.optional.fire("change");
+    if (!/b\?:/.test(els.output.value))
+      ok("json-to-ts：关掉可选开关后不再输出问号");
+    else bad("json-to-ts：可选开关无效", els.output.value.slice(0, 220));
+  }
+
+  // ③ Markdown 目录（层级 · 代码块跳过 · GitHub 锚点规则 · 深度截断）
+  {
+    const { els } = loadTool("md-toc.js",
+      ["input", "output", "status", "copy", "clear", "liststyle", "links", "maxdepth"], U("md-toc"), {});
+
+    // ⚠️ 测试环境里的复选框**默认不是勾选的**（页面上的默认勾选来自 tools.json 的 checked，
+    //    测试不读它）⇒ 依赖默认勾选的用例必须先显式打开，否则会误报「功能没生效」。
+    els.links.checked = true; els.links.fire("change");
+
+    els.input.value = "# Title\n\n## Section\n\n### Sub\n"; els.input.fire("input");
+    const out = els.output.value;
+    if (/^- \[Title\]\(#title\)$/m.test(out) && /^ {2}- \[Section\]\(#section\)$/m.test(out) && /^ {4}- \[Sub\]\(#sub\)$/m.test(out))
+      ok("md-toc：缩进（每层 2 格）与锚点链接都对");
+    else bad("md-toc：目录格式不对", out.slice(0, 220));
+
+    // 围栏里的 # 是注释 —— 按行首匹配就会多出一堆假条目
+    els.input.value = "# Real\n\n```sh\n# just a comment\n```\n\n## Also real\n"; els.input.fire("input");
+    const out2 = els.output.value;
+    if (out2.includes("Real") && out2.includes("Also real") && !out2.includes("just a comment"))
+      ok("md-toc：围栏代码块里的 # 注释不算标题");
+    else bad("md-toc：代码块没跳过", out2.slice(0, 240));
+
+    // 中文锚点原样保留、大写转小写、空格转连字符（GitHub 规则）
+    els.input.value = "# 中文标题\n\n## Hello World\n"; els.input.fire("input");
+    const out3 = els.output.value;
+    if (out3.includes("(#中文标题)") && out3.includes("(#hello-world)"))
+      ok("md-toc：中文锚点原样保留，空格转连字符并转小写（GitHub 规则）");
+    else bad("md-toc：锚点规则不对", out3.slice(0, 240));
+
+    els.input.value = "# Name\n\n# Name\n"; els.input.fire("input");
+    if (els.output.value.includes("(#name-1)"))
+      ok("md-toc：重名标题第二个加 -1（不加的话链接点不动）");
+    else bad("md-toc：重名标题没加后缀", els.output.value.slice(0, 180));
+
+    // 锚点是按「渲染后的文字」算的 ⇒ ** 与 ` 这些标记不能算进去
+    els.input.value = "# **Bold** and `code`\n"; els.input.fire("input");
+    if (els.output.value.includes("#bold-and-code"))
+      ok("md-toc：行内标记（粗体 / 反引号）从锚点里剔除");
+    else bad("md-toc：行内标记没清理", els.output.value.slice(0, 180));
+
+    els.input.value = "# A\n\n## B\n\n### C\n";
+    els.maxdepth.value = "2"; els.maxdepth.fire("input");
+    if (els.output.value.includes("[B]") && !els.output.value.includes("[C]"))
+      ok("md-toc：深度滑块真的截断（第 3 级被排除）");
+    else bad("md-toc：深度限制无效", els.output.value.slice(0, 180));
+
+    els.maxdepth.value = "6"; els.liststyle.value = "number"; els.liststyle.fire("change");
+    if (/^1\. \[A\]/m.test(els.output.value))
+      ok("md-toc：有序列表样式生效");
+    else bad("md-toc：有序列没生效", els.output.value.slice(0, 180));
+
+    // 文档从 ## 开始时按最浅标题对齐 —— 否则整份目录会白缩进一层
+    // （先把列表样式切回无序：上面那条用例改成过 number，不停在这会串味）
+    els.liststyle.value = "dash"; els.liststyle.fire("change");
+    els.input.value = "## Only\n\n### Deep\n"; els.input.fire("input");
+    if (/^- \[Only\]/m.test(els.output.value))
+      ok("md-toc：从 ## 开始的文档按最浅标题对齐，不整体多缩一层");
+    else bad("md-toc：层级归一化不对", els.output.value.slice(0, 180));
+  }
+}
+
 console.log(`\n结果：${pass} 项通过，${fail} 项失败`);
 process.exit(fail ? 1 : 0);

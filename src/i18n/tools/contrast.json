@@ -1,0 +1,111 @@
+{
+  "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
+  "en": {
+    "title": "Colour contrast checker (WCAG AA / AAA) — ToolPocket",
+    "desc": "Work out the contrast ratio of two colours and see whether they pass WCAG AA and AAA for normal and large text. Runs entirely in your browser.",
+    "h1": "Colour contrast checker",
+    "lead": "Contrast is a number, not a feeling: WCAG asks for 4.5 : 1 on normal text and 3 : 1 on large text, and grey-on-grey very often lands just under the line.<br>Paste your two colours — you get the ratio and the four verdicts, and nothing leaves your browser.",
+    "faq": [
+      [
+        "What counts as large text?",
+        "18.66px (14pt) and bold, or 24px (18pt) and above at any weight. The bar is lower — 3 : 1 instead of 4.5 : 1 — because larger glyphs are easier to make out."
+      ],
+      [
+        "Why is the best possible ratio 21 : 1 instead of infinity?",
+        "Black on white is 21 : 1. Both luminances get 0.05 added before the division, which keeps every result inside 1 : 1 – 21 : 1 and makes the formula symmetric: the lighter colour can be written first or second and the answer is the same."
+      ],
+      [
+        "Can it check the contrast of my whole page?",
+        "No — it works on the two colours you hand it. A page can pass here and still fail in practice, and the usual reason is text sitting on a background image or a gradient."
+      ]
+    ],
+    "ui": {
+      "inputPh": "#000000\n#ffffff\n(first line foreground, second line background — leave the background out and white is assumed)",
+      "outputPh": "The ratio and the four WCAG verdicts appear here",
+      "head": "{fg} foreground on {bg} background — contrast {ratio} : 1",
+      "rowNormalAA": "Normal text · AA (needs {need} : 1)",
+      "rowNormalAAA": "Normal text · AAA (needs {need} : 1)",
+      "rowLargeAA": "Large text · AA (needs {need} : 1)",
+      "rowLargeAAA": "Large text · AAA (needs {need} : 1)",
+      "pass": "PASS",
+      "fail": "FAIL",
+      "noteLarge": "Large text = {px1} and bold, or {px2} and above at any weight.",
+      "badColor": "Not a colour I can read: {s}",
+      "statOk": "ratio {ratio} : 1 · {ok} of {all} checks passed",
+      "statEmpty": "Give me two colours — this line is bright enough to read",
+      "nothingToCopy": "Nothing to copy yet"
+    }
+  },
+  "zh": {
+    "title": "颜色对比度检查（WCAG AA / AAA）— ToolPocket",
+    "desc": "算出两个颜色的对比度比值，并逐条判定 WCAG AA / AAA 在正常文字与大字下是否达标。全程在浏览器里完成。",
+    "h1": "颜色对比度检查",
+    "lead": "对比度是个数字，不是感觉：WCAG 要求正常文字 4.5 : 1、大字 3 : 1，而浅灰配中灰经常就卡在线上一点。<br>把两个颜色贴进来，你拿到比值和四条判定 —— 内容不出你的浏览器。",
+    "faq": [
+      [
+        "什么算「大字」？",
+        "18.66px（14pt）加粗，或者 24px（18pt）以上不限字重。门槛更低（3 : 1 而不是 4.5 : 1），因为字大了本来就更好认。"
+      ],
+      [
+        "为什么最好的比值是 21 : 1，而不是无穷大？",
+        "黑白配就是 21 : 1。两个亮度在相除之前都加了 0.05，这让结果始终落在 1 : 1 – 21 : 1 之间，也让公式对称：浅色写在前面还是写在后面，结论一样。"
+      ],
+      [
+        "它能检查我整个页面的对比度吗？",
+        "不能 —— 它只算你交给它的两个颜色。页面在这里达标，实际仍可能不达标，最常见的原因是文字压在背景图或渐变上。"
+      ]
+    ],
+    "ui": {
+      "inputPh": "#000000\n#ffffff\n（第一行前景色，第二行背景色 —— 背景留空就按白色算）",
+      "outputPh": "对比度比值和四条 WCAG 判定显示在这里",
+      "head": "{fg} 前景 · {bg} 背景 —— 对比度 {ratio} : 1",
+      "rowNormalAA": "正常文字 AA（需 {need} : 1）",
+      "rowNormalAAA": "正常文字 AAA（需 {need} : 1）",
+      "rowLargeAA": "大字 AA（需 {need} : 1）",
+      "rowLargeAAA": "大字 AAA（需 {need} : 1）",
+      "pass": "通过",
+      "fail": "不通过",
+      "noteLarge": "大字 = {px1} 且加粗，或 {px2} 以上不限字重。",
+      "badColor": "认不出的颜色：{s}",
+      "statOk": "比值 {ratio} : 1 · {all} 项里过了 {ok} 项",
+      "statEmpty": "给我两个颜色 —— 这一行本身就够亮，看得清",
+      "nothingToCopy": "还没有可复制的内容"
+    }
+  },
+  "ja": {
+    "title": "色のコントラスト比チェッカー（WCAG AA / AAA）— ToolPocket",
+    "desc": "2 色のコントラスト比を計算し、通常テキストと大きなテキストで WCAG の AA / AAA を判定します。ブラウザ内だけで動作します。",
+    "h1": "色のコントラスト比チェッカー",
+    "lead": "コントラストは感覚ではなく数字です。WCAG は通常テキストに 4.5 : 1、大きなテキストに 3 : 1 を求めますが、グレー同士はしばしば基準をわずかに下回ります。<br>2 色を貼り付ければ比と 4 つの判定が出ます。内容はブラウザの外に出ません。",
+    "faq": [
+      [
+        "「大きなテキスト」の定義は？",
+        "18.66px（14pt）の太字、または 24px（18pt）以上（太さは問いません）。文字が大きいぶん読みやすいので、基準は 3 : 1 と緩くなります。"
+      ],
+      [
+        "最良の比が 21 : 1 で、無限大にならないのはなぜ？",
+        "黒と白が 21 : 1 です。割り算の前に両方の輝度へ 0.05 を足すため、結果は必ず 1 : 1 〜 21 : 1 に収まり、式も対称になります（明るい色を先に書いても後ろに書いても同じ答えです）。"
+      ],
+      [
+        "ページ全体のコントラストを判定できますか？",
+        "いいえ。判定するのは渡した 2 色だけです。ここで合格しても、文字が背景画像やグラデーションの上にあると実際には不合格になります。"
+      ]
+    ],
+    "ui": {
+      "inputPh": "#000000\n#ffffff\n（1 行目が前景色、2 行目が背景色。背景を省略すると白として計算します）",
+      "outputPh": "コントラスト比と 4 つの WCAG 判定がここに出ます",
+      "head": "{fg} 前景 / {bg} 背景 — コントラスト {ratio} : 1",
+      "rowNormalAA": "通常テキスト AA（{need} : 1 以上）",
+      "rowNormalAAA": "通常テキスト AAA（{need} : 1 以上）",
+      "rowLargeAA": "大きなテキスト AA（{need} : 1 以上）",
+      "rowLargeAAA": "大きなテキスト AAA（{need} : 1 以上）",
+      "pass": "合格",
+      "fail": "不合格",
+      "noteLarge": "大きなテキスト = {px1} かつ太字、または {px2} 以上（太さは問いません）。",
+      "badColor": "色として読み取れません：{s}",
+      "statOk": "比 {ratio} : 1 · {all} 項目中 {ok} 項目が合格",
+      "statEmpty": "2 色を入力してください — この行は十分に明るく読めます",
+      "nothingToCopy": "コピーできる内容がまだありません"
+    }
+  }
+}

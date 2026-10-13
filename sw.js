@@ -11,7 +11,7 @@ const CORE = [
   "/assets/app.js?v=dd536e7e",
   "/assets/search.js?v=57c6f6fe",
   "/assets/tools/_shared.js?v=62a587aa",
-  "/assets/search.json?v=9ec74a40",
+  "/assets/search.json?v=076cc311",
   "/assets/icon-192.png",
   "/assets/icon-512.png",
   "/assets/apple-touch-icon.png"

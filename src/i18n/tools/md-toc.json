@@ -1,0 +1,108 @@
+{
+  "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
+  "en": {
+    "title": "Markdown table of contents generator (GitHub anchors) — ToolPocket",
+    "desc": "Build a linked table of contents from your Markdown headings, with GitHub-style anchors and duplicate handling. Code blocks are skipped, so shell comments stay out.",
+    "h1": "Markdown table of contents generator",
+    "lead": "A table of contents is just a link list — and the hard part is the anchor. GitHub lowercases the heading, drops punctuation, turns every space into a hyphen and appends -1 to duplicates; write it by hand and half the links quietly do nothing.<br>Paste your Markdown, and code blocks get skipped so a shell comment never turns into an entry.",
+    "faq": [
+      [
+        "Why does my link do nothing when I click it?",
+        "Almost always one of three things: the anchor keeps punctuation that GitHub strips, capital letters that GitHub lowercases, or it collides with an earlier identical heading — GitHub then points the second one at name-1. This tool follows GitHub's rules on all three."
+      ],
+      [
+        "Do Chinese, Japanese and Korean headings work?",
+        "Yes. GitHub keeps CJK characters in the anchor exactly as written and only lowercases and strips punctuation, so the anchor is the heading text itself. That is also why this tool never transliterates a heading."
+      ],
+      [
+        "Will the same Markdown work on GitLab or Notion?",
+        "Not always — each platform has its own anchor rules, and GitLab in particular differs. This tool follows GitHub, which is the most common target. If a link fails elsewhere, that is the other platform's rule, not a bug here."
+      ]
+    ],
+    "ui": {
+      "inputPh": "# Title\n\n## Section\n\n```sh\n# this is a comment, not a heading\n```",
+      "outputPh": "Your table of contents appears here",
+      "liststyle": "List style",
+      "listDash": "Bulleted (-)",
+      "listNumber": "Numbered (1.)",
+      "liststyleHint": "Both render the same way; pick whichever reads better in the raw file.",
+      "links": "Link every entry to its anchor",
+      "maxdepth": "Deepest level to include",
+      "maxdepthHint": "Levels are counted from the shallowest heading in the document, not from #.",
+      "statOk": "{n} headings · {d} levels deep",
+      "statNone": "No headings found — only lines starting with # outside code blocks count.",
+      "statEmpty": "Paste Markdown to get started",
+      "nothingToCopy": "Nothing to copy yet"
+    }
+  },
+  "zh": {
+    "title": "Markdown 目录（TOC）生成器（GitHub 锚点规则）— ToolPocket",
+    "desc": "从 Markdown 的标题生成带链接的目录，锚点按 GitHub 规则处理重名。代码块会被跳过，shell 注释不会混进来。",
+    "h1": "Markdown 目录生成器",
+    "lead": "目录本质上就是一串链接，难的地方全在锚点上：GitHub 会把标题转小写、去掉标点、每个空格换成一个连字符，重名的还要加 -1 —— 手写的话，一半的链接点下去是没反应的。<br>把 Markdown 贴进来，代码块会跳过，shell 注释不会变成目录项。",
+    "faq": [
+      [
+        "为什么我的目录点下去没反应？",
+        "九成是三种情况之一：锚点里留了 GitHub 会去掉的标点、留了会被转成小写的大写字母、或者和前面某个同名标题撞了 —— 撞名时 GitHub 会把第二个指向 name-1。这三条本工具都按 GitHub 的规则处理。"
+      ],
+      [
+        "中文标题能用吗？",
+        "能。GitHub 的锚点对中日韩文字是原样保留，只做小写和去标点，所以「中文标题」的锚点就是 #中文标题。这也是本工具不把标题音译或转写的原因。"
+      ],
+      [
+        "同一份 Markdown 在 GitLab 或 Notion 上也能用吗？",
+        "不一定 —— 各家锚点规则不一样，GitLab 差别尤其明显。本工具按 GitHub 走，那是最常见的去处。在别处点不动，是那家的规则问题，不是这里算错了。"
+      ]
+    ],
+    "ui": {
+      "inputPh": "# 标题\n\n## 小节\n\n```sh\n# 这是注释，不是标题\n```",
+      "outputPh": "生成的目录显示在这里",
+      "liststyle": "列表样式",
+      "listDash": "无序（-）",
+      "listNumber": "有序（1.）",
+      "liststyleHint": "两种渲染出来一样，挑一个在源码里更好读的就行。",
+      "links": "每一条都带上锚点链接",
+      "maxdepth": "最深包含到第几级",
+      "maxdepthHint": "层级按文档里最浅的那个标题对齐，不是按 # 的个数。",
+      "statOk": "{n} 个标题 · 最深 {d} 级",
+      "statNone": "没找到标题 —— 只有代码块之外、以 # 开头的行才算。",
+      "statEmpty": "先把 Markdown 贴进来",
+      "nothingToCopy": "还没有可复制的内容"
+    }
+  },
+  "ja": {
+    "title": "Markdown 目次（TOC）生成ツール（GitHub のアンカー規則）— ToolPocket",
+    "desc": "Markdown の見出しからリンク付きの目次を作ります。アンカーは GitHub の規則どおり、重複も処理します。コードブロックは飛ばすのでシェルのコメントは混じりません。",
+    "h1": "Markdown 目次生成ツール",
+    "lead": "目次の実体はリンクの一覧で、難しいのはアンカーです。GitHub は見出しを小文字にし、約物を落とし、空白を 1 つずつハイフンに変え、重複には -1 を付けます。手で書くと半分のリンクが黙って反応しません。<br>Markdown を貼り付けてください。コードブロックは飛ばすので、シェルのコメントが目次に入ることはありません。",
+    "faq": [
+      [
+        "目次をクリックしても反応しないのはなぜ？",
+        "ほぼ次の 3 つのどれかです。GitHub が落とす約物がアンカーに残っている、GitHub が小文字にする大文字が残っている、あるいは前の同名見出しと衝突している（衝突時 GitHub は 2 つ目を name-1 に向けます）。本ツールはこの 3 つすべてを GitHub の規則どおりに処理します。"
+      ],
+      [
+        "日本語や中国語の見出しでも動きますか？",
+        "動きます。GitHub のアンカーは CJK 文字をそのまま残し、小文字化と約物の除去だけを行うので、「日本語の見出し」のアンカーは #日本語の見出し になります。本ツールが音訳や転写をしないのはそのためです。"
+      ],
+      [
+        "同じ Markdown は GitLab や Notion でも使えますか？",
+        "必ずしも使えません。各サービスのアンカー規則は異なり、GitLab は特に差が大きいです。本ツールは最も一般的な GitHub に合わせています。他の場所で反応しない場合は、そのサービスの規則によるもので、ここが間違っているわけではありません。"
+      ]
+    ],
+    "ui": {
+      "inputPh": "# 見出し\n\n## セクション\n\n```sh\n# これはコメントで、見出しではありません\n```",
+      "outputPh": "生成した目次がここに出ます",
+      "liststyle": "リストの形式",
+      "listDash": "箇条書き（-）",
+      "listNumber": "番号付き（1.）",
+      "liststyleHint": "どちらも表示結果は同じです。生のファイルで読みやすいほうを選んでください。",
+      "links": "各項目にアンカーリンクを付ける",
+      "maxdepth": "含める最大の深さ",
+      "maxdepthHint": "深さは文書内で最も浅い見出しを基準に数えます（# の個数ではありません）。",
+      "statOk": "見出し {n} 個 · 最深 {d} 段",
+      "statNone": "見出しが見つかりません。コードブロックの外で # から始まる行だけが対象です。",
+      "statEmpty": "まず Markdown を貼り付けてください",
+      "nothingToCopy": "コピーできる内容がまだありません"
+    }
+  }
+}

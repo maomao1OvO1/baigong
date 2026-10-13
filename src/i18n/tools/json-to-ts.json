@@ -1,0 +1,96 @@
+{
+  "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
+  "en": {
+    "title": "JSON to TypeScript interface generator — ToolPocket",
+    "desc": "Turn a JSON sample into TypeScript interfaces: nested types, optional fields and unions, worked out from the real data. Nothing is uploaded.",
+    "h1": "JSON → TypeScript",
+    "lead": "Stop hand-copying field names. Paste a JSON sample and get TypeScript interfaces with nested types, optional fields and unions,<br>all inferred from the data you actually have — and none of it uploaded anywhere.",
+    "faq": [
+      [
+        "Where do the optional (?) fields come from?",
+        "From your data. When an array holds several objects and a key is missing from some of them, that key is marked optional — which is what the real API does. Untick the option to make every field required instead."
+      ],
+      [
+        "What happens when one field is a string in one element and a number in another?",
+        "You get a union: string | number. That is deliberate — collapsing it to any would just move the error to wherever you use the type."
+      ],
+      [
+        "Why unknown[] for an empty array?",
+        "An empty array carries no information about its elements, so there is nothing honest to infer. unknown[] forces you to say what goes in it, while any[] silently lets anything through."
+      ]
+    ],
+    "ui": {
+      "inputPh": "Paste JSON here, e.g.\n{\"id\": 1, \"name\": \"Ada\", \"tags\": [\"admin\"]}",
+      "outputPh": "TypeScript interfaces appear here",
+      "rootname": "Name of the root interface",
+      "rootnamePh": "Root",
+      "optional": "Mark fields that are missing from some elements as optional (?)",
+      "errJson": "Not valid JSON: {msg}",
+      "statOk": "{n} interfaces · {m} fields",
+      "statEmpty": "Paste some JSON to get started",
+      "nothingToCopy": "Nothing to copy yet"
+    }
+  },
+  "zh": {
+    "title": "JSON 转 TypeScript 类型 — ToolPocket",
+    "desc": "把一份 JSON 直接推成 TypeScript 的 interface：嵌套类型、可选字段、联合类型全自动，全部依据你手上的真实数据。不上传任何内容。",
+    "h1": "JSON → TypeScript",
+    "lead": "别再手抄字段名了。贴一段 JSON，直接拿到 TypeScript 的 interface —— 嵌套类型、可选字段、联合类型都从真实数据结构推出来，<br>而且一个字节都不上传。",
+    "faq": [
+      [
+        "那些带 ? 的可选字段是怎么来的？",
+        "从你的数据里来的。数组里放了多个对象时，某个键只在其中一部分出现，它就会被标成可选 —— 这就是接口的真实样子。不想要的话，把那个开关关掉，就全部按必选输出。"
+      ],
+      [
+        "同一个字段在一个元素里是字符串、在另一个里是数字，会怎样？",
+        "输出联合类型：string | number。这是刻意的 —— 塌缩成 any 只是把错误往后推到你用它的地方。"
+      ],
+      [
+        "空数组为什么给 unknown[]？",
+        "空数组不带任何元素信息，没有诚实的答案可推。unknown[] 逼你说清里面装什么，而 any[] 会让什么都悄悄通过。"
+      ]
+    ],
+    "ui": {
+      "inputPh": "把 JSON 贴进来，例如\n{\"id\": 1, \"name\": \"Ada\", \"tags\": [\"admin\"]}",
+      "outputPh": "生成的 TypeScript interface 显示在这里",
+      "rootname": "根 interface 的名字",
+      "rootnamePh": "Root",
+      "optional": "不是每个元素都有的字段，标成可选（?）",
+      "errJson": "不是合法的 JSON：{msg}",
+      "statOk": "{n} 个 interface · {m} 个字段",
+      "statEmpty": "先贴一段 JSON",
+      "nothingToCopy": "还没有可复制的内容"
+    }
+  },
+  "ja": {
+    "title": "JSON から TypeScript の型を生成 — ToolPocket",
+    "desc": "JSON のサンプルから TypeScript の interface を生成します。ネストした型・省略可能なフィールド・ユニオン型を実データから推論。アップロードは行いません。",
+    "h1": "JSON → TypeScript",
+    "lead": "フィールド名を手で写すのはもう終わりにしましょう。JSON を貼り付けるだけで TypeScript の interface が出ます。ネストした型・省略可能なフィールド・ユニオン型は、すべて手元の実データから推論します。<br>しかも 1 バイトもアップロードしません。",
+    "faq": [
+      [
+        "? が付いた省略可能なフィールドはどこから来ますか？",
+        "あなたのデータからです。配列に複数のオブジェクトが入っていて、あるキーが一部にしか無い場合、そのキーは省略可能として扱われます。これが実際の API の姿です。スイッチを切れば、すべて必須として出力します。"
+      ],
+      [
+        "同じフィールドが、ある要素では文字列、別の要素では数値のときは？",
+        "ユニオン型 string | number になります。これは意図した動作です。any に潰すと、型を使う場所へエラーを先送りするだけだからです。"
+      ],
+      [
+        "空の配列が unknown[] になるのはなぜ？",
+        "空の配列には要素の情報が何もないため、正直に推論できる答えがありません。unknown[] は中身を書くよう促し、any[] は何でも黙って通してしまいます。"
+      ]
+    ],
+    "ui": {
+      "inputPh": "JSON を貼り付けてください（例）\n{\"id\": 1, \"name\": \"Ada\", \"tags\": [\"admin\"]}",
+      "outputPh": "生成した TypeScript interface がここに出ます",
+      "rootname": "ルート interface の名前",
+      "rootnamePh": "Root",
+      "optional": "一部の要素にしか無いフィールドを省略可能（?）にする",
+      "errJson": "正しい JSON ではありません：{msg}",
+      "statOk": "interface {n} 個 · フィールド {m} 個",
+      "statEmpty": "まず JSON を貼り付けてください",
+      "nothingToCopy": "コピーできる内容がまだありません"
+    }
+  }
+}

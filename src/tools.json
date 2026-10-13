@@ -1286,6 +1286,91 @@
           "placeholder": "sitemapurlPh"
         }
       ]
+    },
+    {
+      "id": "contrast",
+      "icon": "🎚️",
+      "cat": "color",
+      "kind": "text",
+      "script": "contrast.js",
+      "i18n": "contrast",
+      "buttons": [
+        "copy",
+        "clear"
+      ],
+      "options": []
+    },
+    {
+      "id": "json-to-ts",
+      "icon": "🧬",
+      "cat": "dev",
+      "kind": "text",
+      "script": "json-to-ts.js",
+      "i18n": "json-to-ts",
+      "buttons": [
+        "copy",
+        "clear"
+      ],
+      "options": [
+        {
+          "type": "text",
+          "id": "rootname",
+          "label": "rootname",
+          "placeholder": "rootnamePh"
+        },
+        {
+          "type": "checkbox",
+          "id": "optional",
+          "label": "optional",
+          "checked": true
+        }
+      ]
+    },
+    {
+      "id": "md-toc",
+      "icon": "📑",
+      "cat": "text",
+      "kind": "text",
+      "script": "md-toc.js",
+      "i18n": "md-toc",
+      "buttons": [
+        "copy",
+        "clear"
+      ],
+      "options": [
+        {
+          "type": "select",
+          "id": "liststyle",
+          "label": "liststyle",
+          "choices": [
+            [
+              "dash",
+              "listDash"
+            ],
+            [
+              "number",
+              "listNumber"
+            ]
+          ],
+          "hint": "liststyleHint"
+        },
+        {
+          "type": "checkbox",
+          "id": "links",
+          "label": "links",
+          "checked": true
+        },
+        {
+          "type": "range",
+          "id": "maxdepth",
+          "label": "maxdepth",
+          "min": 1,
+          "max": 6,
+          "value": 3,
+          "showValue": "maxdepthVal",
+          "hint": "maxdepthHint"
+        }
+      ]
     }
   ]
 }

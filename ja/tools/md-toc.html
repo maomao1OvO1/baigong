@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Markdown 目次（TOC）生成ツール（GitHub のアンカー規則）— ToolPocket</title>
+<meta name="description" content="Markdown の見出しからリンク付きの目次を作ります。アンカーは GitHub の規則どおり、重複も処理します。コードブロックは飛ばすのでシェルのコメントは混じりません。">
+<link rel="canonical" href="https://tools.maomaowang.top/ja/tools/md-toc.html">
+<meta property="og:title" content="Markdown 目次（TOC）生成ツール（GitHub のアンカー規則）— ToolPocket">
+<meta property="og:description" content="Markdown の見出しからリンク付きの目次を作ります。アンカーは GitHub の規則どおり、重複も処理します。コードブロックは飛ばすのでシェルのコメントは混じりません。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/ja/tools/md-toc.html">
+<!-- 分享预览图：微信/QQ/Telegram/Twitter 都读这几行。尺寸按通用标准 1200×630（1.91:1），
+     微信会把它裁成正方形显示，所以图里关键信息都放在中间。三语各一张。 -->
+<meta property="og:image" content="https://tools.maomaowang.top/assets/og-ja.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/md-toc.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/md-toc.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/md-toc.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/md-toc.html">
+<link rel="stylesheet" href="/assets/style.css?v=558fbd6b">
+<meta name="theme-color" content="#2563eb">
+<!-- 作者信息：既是署名，也是"这站有主"的凭据（扒站的人容易忽略，但删掉它就是加重侵权情节） -->
+<meta name="author" content="maomaowang.top">
+<meta name="build" content="2026-10-14">
+<meta name="x-src" content="dG9vbHMubWFvbWFvd2FuZy50b3A6OjIwMjYtMTAtMTQ=">
+<link rel="author" href="https://maomaowang.top/">
+<link rel="icon" href="/assets/icon-192.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/ja/manifest.webmanifest">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Markdown 目次生成ツール","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Markdown の見出しからリンク付きの目次を作ります。アンカーは GitHub の規則どおり、重複も処理します。コードブロックは飛ばすのでシェルのコメントは混じりません。"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"目次をクリックしても反応しないのはなぜ？","acceptedAnswer":{"@type":"Answer","text":"ほぼ次の 3 つのどれかです。GitHub が落とす約物がアンカーに残っている、GitHub が小文字にする大文字が残っている、あるいは前の同名見出しと衝突している（衝突時 GitHub は 2 つ目を name-1 に向けます）。本ツールはこの 3 つすべてを GitHub の規則どおりに処理します。"}},{"@type":"Question","name":"日本語や中国語の見出しでも動きますか？","acceptedAnswer":{"@type":"Answer","text":"動きます。GitHub のアンカーは CJK 文字をそのまま残し、小文字化と約物の除去だけを行うので、「日本語の見出し」のアンカーは #日本語の見出し になります。本ツールが音訳や転写をしないのはそのためです。"}},{"@type":"Question","name":"同じ Markdown は GitLab や Notion でも使えますか？","acceptedAnswer":{"@type":"Answer","text":"必ずしも使えません。各サービスのアンカー規則は異なり、GitLab は特に差が大きいです。本ツールは最も一般的な GitHub に合わせています。他の場所で反応しない場合は、そのサービスの規則によるもので、ここが間違っているわけではありません。"}}]}</script>
+</head>
+<body>
+<!--
+  ================================================================
+  © 2026 ToolPocket · tools.maomaowang.top · 原创作品，保留所有权利
+  本页由作者独立开发并持续维护。未经授权复制、镜像、二次发布本页
+  内容或代码均属侵权；页面内含来源标记（ts2t-tools/md-toc），可追溯出处。
+  legacy-build-id: 746f6f6c732e6d616f6d616f77616e672e746f703a3a323032362d31302d3132
+  （这串是十六进制，不是什么校验码：解出来是作者与构建日期。）
+  ================================================================
+-->
+<span hidden aria-hidden="true" data-mark="ts2t:maomaowang:ts2t-tools/md-toc"></span>
+<!-- stats-endpoint: gbbyf.znbznbjnat.gbc   (rot13, 2024 年就在用的老写法) -->
+<div class="mobile-tip" id="mobileTip" hidden>
+  <span>📱 スマホでも使えますが、大きな画像やまとめての処理はデスクトップ版 Chrome のほうが快適です。</span>
+  <button type="button" id="tipClose" class="tip-close">了解しました</button>
+</div>
+<header class="top">
+  <a class="brand" href="/ja/index.html">🧰 ToolPocket</a>
+  <nav class="langs"><a class="ad-link" href="/ja/advertise.html">広告掲載</a><a href="/tools/md-toc.html">English</a><a href="/zh/tools/md-toc.html">中文</a><a href="/ja/tools/md-toc.html" class="on" aria-current="page">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/ja/index.html">← ツール一覧</a></p>
+  <h1>Markdown 目次生成ツール</h1>
+  <p class="lead">目次の実体はリンクの一覧で、難しいのはアンカーです。GitHub は見出しを小文字にし、約物を落とし、空白を 1 つずつハイフンに変え、重複には -1 を付けます。手で書くと半分のリンクが黙って反応しません。<br>Markdown を貼り付けてください。コードブロックは飛ばすので、シェルのコメントが目次に入ることはありません。</p>
+
+  <p class="badge-line"><span class="pill">すべてブラウザ内で処理。送信も保存もしていません。</span></p>
+
+<div class="panel">
+<label class="row lbl" for="input">入力</label>
+  <textarea id="input" class="tall" placeholder="# 見出し
+
+## セクション
+
+```sh
+# これはコメントで、見出しではありません
+```"></textarea>
+  <div class="opts">
+<label class="row"><span class="lbl">リストの形式</span><select id="liststyle"><option value="dash">箇条書き（-）</option><option value="number">番号付き（1.）</option></select></label>
+    <span class="hint">どちらも表示結果は同じです。生のファイルで読みやすいほうを選んでください。</span>
+<label class="row check"><input type="checkbox" id="links" checked><span>各項目にアンカーリンクを付ける</span></label>
+<label class="row"><span class="lbl">含める最大の深さ</span><input type="range" id="maxdepth" min="1" max="6" value="3"><span class="badge" id="maxdepthVal"></span></label>
+    <span class="hint">深さは文書内で最も浅い見出しを基準に数えます（# の個数ではありません）。</span>
+  </div>
+<label class="row lbl" for="output">結果</label>
+  <textarea id="output" readonly placeholder="生成した目次がここに出ます"></textarea>
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">結果をコピー</button>
+    <button class="ghost" id="clear">クリア</button>
+  </div>
+</div>
+
+<aside class="ad ad-tool-game">
+  <span class="ad-label">製作者より</span>
+  <span class="ad-ico" aria-hidden="true">🎮</span>
+  <div class="ad-body">
+    <b>ブラウザで遊べるタワーディフェンス</b>
+    <p>同じ開発者がゼロから作ったゲームです.</p>
+  </div>
+  <a class="ad-cta" href="https://maomaowang.top/games/td/source/game.html">遊んでみる →</a>
+</aside>
+
+  <section class="faq">
+    <h2>よくある質問</h2>
+    <details><summary>目次をクリックしても反応しないのはなぜ？</summary><p>ほぼ次の 3 つのどれかです。GitHub が落とす約物がアンカーに残っている、GitHub が小文字にする大文字が残っている、あるいは前の同名見出しと衝突している（衝突時 GitHub は 2 つ目を name-1 に向けます）。本ツールはこの 3 つすべてを GitHub の規則どおりに処理します。</p></details>
+    <details><summary>日本語や中国語の見出しでも動きますか？</summary><p>動きます。GitHub のアンカーは CJK 文字をそのまま残し、小文字化と約物の除去だけを行うので、「日本語の見出し」のアンカーは #日本語の見出し になります。本ツールが音訳や転写をしないのはそのためです。</p></details>
+    <details><summary>同じ Markdown は GitLab や Notion でも使えますか？</summary><p>必ずしも使えません。各サービスのアンカー規則は異なり、GitLab は特に差が大きいです。本ツールは最も一般的な GitHub に合わせています。他の場所で反応しない場合は、そのサービスの規則によるもので、ここが間違っているわけではありません。</p></details>
+  </section>
+
+</main>
+
+<footer>
+  <p>ToolPocket · ファイルは端末から出ません。送信も登録も、追跡もありません。</p>
+  <p class="copy">© 2026 ToolPocket — All rights reserved. 当サイトの内容・コードの無断転載を禁じます。</p>
+  <p class="fb">
+    <span>不具合を見つけましたか？お知らせください。すべて目を通します。</span>
+    <button type="button" class="ghost fb-btn" id="feedbackBtn" data-u="hi" data-d="maomaowang.top">不具合を報告</button>
+  </p>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = "{\"langName\":\"日本語\",\"footer\":\"ToolPocket · ファイルは端末から出ません。送信も登録も、追跡もありません。\",\"nav\":\"ツール一覧\",\"backToTools\":\"← ツール一覧\",\"copy\":\"結果をコピー\",\"swap\":\"入れ替え\",\"clear\":\"クリア\",\"download\":\"ダウンロード\",\"copied\":\"クリップボードにコピーしました\",\"copyFail\":\"ブラウザがコピーを許可しませんでした。テキストを選択して手動でコピーしてください\",\"inputLabel\":\"入力\",\"outputLabel\":\"結果\",\"privacyNote\":\"すべてブラウザ内で処理。送信も保存もしていません。\",\"searchPlaceholder\":\"ツールを検索 — 「圧縮」「json」「パスワード」など\",\"noResults\":\"該当するツールがありませんでした。「圧縮」「ハッシュ」など、別の言葉でお試しください。\",\"mobileTip\":\"📱 スマホでも使えますが、大きな画像やまとめての処理はデスクトップ版 Chrome のほうが快適です。\",\"mobileTipClose\":\"了解しました\",\"desktopHeading\":\"デスクトップ版がおすすめ\",\"installApp\":\"デスクトップアプリとして追加\",\"installHint\":\"デスクトップ版 Chrome / Edge でこのサイトを開き、アドレスバー右側のインストールアイコンをクリックしてください。独立したウィンドウになり、ネットワークが無くても動作します。インストーラのダウンロードも登録も不要です。\",\"installed\":\"インストール済み\",\"offlineNote\":\"インストール後はネットワークを切ったままでも使えます。もともと通信していないのですから、当然といえば当然です。\",\"feedbackAsk\":\"不具合を見つけましたか？お知らせください。すべて目を通します。\",\"feedbackButton\":\"不具合を報告\",\"feedbackSubject\":\"ToolPocket へのフィードバック\",\"noResultsAsk\":\"お探しのものが見つかりませんか？必要なツールをお知らせください。すべて目を通します。\",\"feedbackAskHome\":\"不具合の報告や「こんなツールがほしい」というご要望は、お気軽にお知らせください。\",\"feedbackButtonHome\":\"メールを書く\",\"noResultsBtn\":\"ツールをリクエスト\",\"noResultsSubject\":\"ToolPocket ツールのリクエスト\",\"copyright\":\"© 2026 ToolPocket — All rights reserved. 当サイトの内容・コードの無断転載を禁じます。\",\"cancel\":\"キャンセル\",\"confirmOk\":\"OK\",\"clearAsk\":\"入力した内容を消しますか？元には戻せません。\",\"clearOk\":\"消去\",\"inputPh\":\"# 見出し\\n\\n## セクション\\n\\n```sh\\n# これはコメントで、見出しではありません\\n```\",\"outputPh\":\"生成した目次がここに出ます\",\"liststyle\":\"リストの形式\",\"listDash\":\"箇条書き（-）\",\"listNumber\":\"番号付き（1.）\",\"liststyleHint\":\"どちらも表示結果は同じです。生のファイルで読みやすいほうを選んでください。\",\"links\":\"各項目にアンカーリンクを付ける\",\"maxdepth\":\"含める最大の深さ\",\"maxdepthHint\":\"深さは文書内で最も浅い見出しを基準に数えます（# の個数ではありません）。\",\"statOk\":\"見出し {n} 個 · 最深 {d} 段\",\"statNone\":\"見出しが見つかりません。コードブロックの外で # から始まる行だけが対象です。\",\"statEmpty\":\"まず Markdown を貼り付けてください\",\"nothingToCopy\":\"コピーできる内容がまだありません\"}";</script>
+<script src="/assets/tools/_shared.js?v=62a587aa" defer></script>
+<!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
+<script src="/assets/tools/md-toc.js?v=765a53aa" defer></script>
+<script src="/assets/app.js?v=dd536e7e" defer></script>
+</body>
+</html>

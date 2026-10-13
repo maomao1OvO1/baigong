@@ -92,7 +92,7 @@
   </section>
 
   <section class="group">
-    <h2><span class="g-ico">✍️</span>文本与数据<span class="g-count">11</span></h2>
+    <h2><span class="g-ico">✍️</span>文本与数据<span class="g-count">12</span></h2>
     <ul class="grid">
       <li><a href="/zh/tools/markdown.html">
         <span class="ico">📝</span>
@@ -149,11 +149,16 @@
         <b>URL 编码 / 解码</b>
         <span class="sub">URL 和查询串的百分号编解码。特意把「整个网址编码」和「只编码一个参数值」分开 —— 回调地址接不上，九成是这两种混着用了。</span>
       </a></li>
+      <li><a href="/zh/tools/md-toc.html">
+        <span class="ico">📑</span>
+        <b>Markdown 目录生成器</b>
+        <span class="sub">目录本质上就是一串链接，难的地方全在锚点上：GitHub 会把标题转小写、去掉标点、每个空格换成一个连字符，重名的还要加 -1 —— 手写的话，一半的链接点下去是没反应的。把 Mark…</span>
+      </a></li>
     </ul>
   </section>
 
   <section class="group">
-    <h2><span class="g-ico">⌨️</span>开发者<span class="g-count">15</span></h2>
+    <h2><span class="g-ico">⌨️</span>开发者<span class="g-count">16</span></h2>
     <ul class="grid">
       <li><a href="/zh/tools/json-path.html">
         <span class="ico">🎯</span>
@@ -230,11 +235,16 @@
         <b>robots.txt 生成器</b>
         <span class="sub">robots.txt 看着简单，但语法错一点整份就白写：组与组之间必须空行、Sitemap 必须是绝对 URL、AI 爬虫的 token 打错一个字母等于没屏蔽。把要挡的路径一行一条填…</span>
       </a></li>
+      <li><a href="/zh/tools/json-to-ts.html">
+        <span class="ico">🧬</span>
+        <b>JSON → TypeScript</b>
+        <span class="sub">别再手抄字段名了。贴一段 JSON，直接拿到 TypeScript 的 interface —— 嵌套类型、可选字段、联合类型都从真实数据结构推出来，而且一个字节都不上传。</span>
+      </a></li>
     </ul>
   </section>
 
   <section class="group">
-    <h2><span class="g-ico">🎨</span>颜色<span class="g-count">2</span></h2>
+    <h2><span class="g-ico">🎨</span>颜色<span class="g-count">3</span></h2>
     <ul class="grid">
       <li><a href="/zh/tools/color-palette.html">
         <span class="ico">🎨</span>
@@ -245,6 +255,11 @@
         <span class="ico">🌈</span>
         <b>颜色转换 —— HEX / RGB / HSL</b>
         <span class="sub">颜色在 HEX、RGB、HSL 之间互转，一次把三种写法都摆出来 —— 把设计稿里的 HSL 值落到 CSS 时，这样最省事。</span>
+      </a></li>
+      <li><a href="/zh/tools/contrast.html">
+        <span class="ico">🎚️</span>
+        <b>颜色对比度检查</b>
+        <span class="sub">对比度是个数字，不是感觉：WCAG 要求正常文字 4.5 : 1、大字 3 : 1，而浅灰配中灰经常就卡在线上一点。把两个颜色贴进来，你拿到比值和四条判定 —— 内容不出你的浏览器。</span>
       </a></li>
     </ul>
   </section>
@@ -297,7 +312,7 @@
   </section>
 
   <section class="suggest">
-    <p><span class="s-count">🧰 <b>37</b> 个工具</span><span class="s-sep">·</span>想要什么工具？ <button type="button" class="linklike fb-btn" data-u="hi" data-d="maomaowang.top" data-subject="ToolPocket tool request">写信告诉我</button></p>
+    <p><span class="s-count">🧰 <b>40</b> 个工具</span><span class="s-sep">·</span>想要什么工具？ <button type="button" class="linklike fb-btn" data-u="hi" data-d="maomaowang.top" data-subject="ToolPocket tool request">写信告诉我</button></p>
   </section>
 
   <section class="why">
@@ -341,7 +356,7 @@
 <!-- 搜索索引的绝对路径：/zh/ 与 /ja/ 页面用相对路径会 404（2026-10-12 修） -->
 <script>
   window.T = {"langName":"中文","footer":"ToolPocket · 文件不出你的设备 —— 不上传、不注册、不追踪。","nav":"全部工具","backToTools":"← 全部工具","copy":"复制结果","swap":"互换","clear":"清空","download":"下载","copied":"已复制到剪贴板","copyFail":"浏览器拦住了自动复制 —— 手动选中再复制即可","inputLabel":"输入","outputLabel":"结果","privacyNote":"全程在你浏览器里跑完 —— 不上传、不保存、不留底。","searchPlaceholder":"搜索工具 —— 试试「压缩」「json」「密码」…","noResults":"没找到匹配的工具。换个说法试试，比如「压缩」「哈希」「json」。","mobileTip":"📱 手机上能用，但<b>桌面版 Chrome 更顺</b> —— 大图压缩、批量处理快很多。","mobileTipClose":"知道了","desktopHeading":"桌面端更好用","installApp":"装成桌面应用","installHint":"用桌面版 Chrome / Edge 打开本页，点地址栏右侧的「安装」图标 —— 它会变成一个独立窗口，断网也能继续用。不用下载安装包，也不用登录。","installed":"已安装","offlineNote":"装好之后，断网也能照常用 —— 本来这些活就是在你机器上干的，跟网络没关系。","feedbackAsk":"发现 bug 了？告诉我 —— 每封都看。","feedbackButton":"反馈 bug","feedbackSubject":"ToolPocket 反馈","noResultsAsk":"没找到你想要的？告诉我你需要什么工具 —— 每条都会看。","feedbackAskHome":"发现 bug 了？或者想要某个还没有的工具？直接说 —— 每封都看。","feedbackButtonHome":"写封邮件","noResultsBtn":"提个需求","noResultsSubject":"ToolPocket 工具需求","copyright":"© 2026 ToolPocket —— 保留所有权利。未经许可，请勿转载或复制本站内容与代码。","cancel":"取消","confirmOk":"确定","clearAsk":"清空刚输入的内容？这一步没法撤销。","clearOk":"清空"};
-  window.TP_INDEX_URL = "/assets/search.json?v=9ec74a40";
+  window.TP_INDEX_URL = "/assets/search.json?v=076cc311";
 </script>
 <script src="/assets/search.js?v=57c6f6fe" defer></script>
 <script>
