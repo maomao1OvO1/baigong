@@ -34,7 +34,7 @@
     {
       "id": "json-path",
       "icon": "🎯",
-      "cat": "dev",
+      "cat": "data",
       "kind": "text",
       "script": "json-path.js",
       "i18n": "json-path",
@@ -105,7 +105,7 @@
     {
       "id": "yaml-json",
       "icon": "📄",
-      "cat": "dev",
+      "cat": "data",
       "kind": "text",
       "script": "yaml-json.js",
       "i18n": "yaml-json",
@@ -135,7 +135,7 @@
     {
       "id": "http-status",
       "icon": "🚦",
-      "cat": "dev",
+      "cat": "web",
       "kind": "text",
       "script": "http-status.js",
       "i18n": "http-status",
@@ -264,7 +264,7 @@
     {
       "id": "base32",
       "icon": "🔣",
-      "cat": "dev",
+      "cat": "code",
       "kind": "text",
       "script": "base32.js",
       "i18n": "base32",
@@ -302,7 +302,7 @@
     {
       "id": "ipv6",
       "icon": "🛰️",
-      "cat": "dev",
+      "cat": "web",
       "kind": "text",
       "script": "ipv6.js",
       "i18n": "ipv6",
@@ -373,7 +373,7 @@
     },
     {
       "id": "url-parser",
-      "cat": "dev",
+      "cat": "web",
       "icon": "🧭",
       "kind": "text",
       "script": "url-parser.js",
@@ -413,7 +413,7 @@
     },
     {
       "id": "ip-cidr",
-      "cat": "dev",
+      "cat": "web",
       "icon": "🌐",
       "kind": "text",
       "script": "ip-cidr.js",
@@ -426,7 +426,7 @@
     },
     {
       "id": "cron",
-      "cat": "dev",
+      "cat": "devops",
       "icon": "⏰",
       "kind": "text",
       "script": "cron.js",
@@ -439,7 +439,7 @@
     },
     {
       "id": "hash",
-      "cat": "dev",
+      "cat": "code",
       "icon": "🔐",
       "kind": "text",
       "script": "hash.js",
@@ -482,7 +482,7 @@
     },
     {
       "id": "regex",
-      "cat": "dev",
+      "cat": "text",
       "icon": "🧪",
       "kind": "text",
       "script": "regex.js",
@@ -534,7 +534,7 @@
     },
     {
       "id": "uuid",
-      "cat": "dev",
+      "cat": "code",
       "icon": "🆔",
       "kind": "text",
       "script": "uuid.js",
@@ -664,7 +664,7 @@
     },
     {
       "id": "radix",
-      "cat": "dev",
+      "cat": "code",
       "icon": "🔢",
       "kind": "text",
       "script": "radix.js",
@@ -726,7 +726,7 @@
     },
     {
       "id": "jwt",
-      "cat": "dev",
+      "cat": "security",
       "icon": "🎫",
       "kind": "text",
       "script": "jwt.js",
@@ -739,7 +739,7 @@
     },
     {
       "id": "csv-json",
-      "cat": "text",
+      "cat": "data",
       "icon": "📊",
       "kind": "text",
       "script": "csv-json.js",
@@ -887,7 +887,7 @@
     },
     {
       "id": "base64",
-      "cat": "text",
+      "cat": "code",
       "icon": "🔠",
       "kind": "text",
       "script": "base64.js",
@@ -918,7 +918,7 @@
     },
     {
       "id": "json-format",
-      "cat": "text",
+      "cat": "data",
       "icon": "🧩",
       "kind": "text",
       "script": "json-format.js",
@@ -1071,7 +1071,7 @@
     },
     {
       "id": "url-codec",
-      "cat": "text",
+      "cat": "code",
       "icon": "🔗",
       "kind": "text",
       "script": "url-codec.js",
@@ -1220,7 +1220,7 @@
     {
       "id": "sitemap-gen",
       "icon": "🗺️",
-      "cat": "dev",
+      "cat": "devops",
       "kind": "text",
       "script": "sitemap-gen.js",
       "i18n": "sitemap-gen",
@@ -1264,7 +1264,7 @@
     {
       "id": "robots-gen",
       "icon": "🤖",
-      "cat": "dev",
+      "cat": "devops",
       "kind": "text",
       "script": "robots-gen.js",
       "i18n": "robots-gen",
@@ -1303,7 +1303,7 @@
     {
       "id": "json-to-ts",
       "icon": "🧬",
-      "cat": "dev",
+      "cat": "data",
       "kind": "text",
       "script": "json-to-ts.js",
       "i18n": "json-to-ts",
@@ -1375,7 +1375,7 @@
     {
       "id": "curl-to-code",
       "icon": "🔁",
-      "cat": "dev",
+      "cat": "devops",
       "kind": "text",
       "script": "curl-to-code.js",
       "i18n": "curl-to-code",
@@ -1408,7 +1408,7 @@
     {
       "id": "mime-lookup",
       "icon": "📎",
-      "cat": "dev",
+      "cat": "web",
       "kind": "text",
       "script": "mime-lookup.js",
       "i18n": "mime-lookup",
@@ -1421,7 +1421,7 @@
     {
       "id": "ua-parse",
       "icon": "🕵️",
-      "cat": "dev",
+      "cat": "web",
       "kind": "text",
       "script": "ua-parse.js",
       "i18n": "ua-parse",
@@ -1434,7 +1434,7 @@
     {
       "id": "sql-format",
       "icon": "🧾",
-      "cat": "dev",
+      "cat": "data",
       "kind": "text",
       "script": "sql-format.js",
       "i18n": "sql-format",
@@ -1460,7 +1460,7 @@
     {
       "id": "http-headers",
       "icon": "🧭",
-      "cat": "dev",
+      "cat": "web",
       "kind": "text",
       "script": "http-headers.js",
       "i18n": "http-headers",
@@ -1523,7 +1523,7 @@
     {
       "id": "env-parse",
       "icon": "🔐",
-      "cat": "dev",
+      "cat": "devops",
       "kind": "text",
       "script": "env-parse.js",
       "i18n": "env-parse",
@@ -1560,7 +1560,7 @@
     {
       "id": "url-builder",
       "icon": "🧱",
-      "cat": "text",
+      "cat": "web",
       "kind": "text",
       "script": "url-builder.js",
       "i18n": "url-builder",
@@ -1580,7 +1580,7 @@
     {
       "id": "crc32",
       "icon": "🧮",
-      "cat": "dev",
+      "cat": "code",
       "kind": "text",
       "script": "crc32.js",
       "i18n": "crc32",
@@ -1663,7 +1663,7 @@
     {
       "id": "morse",
       "icon": "📡",
-      "cat": "text",
+      "cat": "code",
       "kind": "text",
       "script": "morse.js",
       "i18n": "morse",
@@ -1676,7 +1676,7 @@
     {
       "id": "ini-parse",
       "icon": "⚙️",
-      "cat": "dev",
+      "cat": "data",
       "kind": "text",
       "script": "ini-parse.js",
       "i18n": "ini-parse",

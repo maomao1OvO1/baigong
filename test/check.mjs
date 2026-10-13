@@ -894,5 +894,35 @@ console.log("\n⑳ 文案注入体检（window.T 必须是对象，不能是字�
   else bad("404 页的文案注入不全（三语：" + hasThree + " · 挂载语句：" + hasMount + "）");
 }
 
+console.log("\n㉑ 首页分类体检（cat 必须合法、每组非空、不被「更多」兜底捡走）");
+{
+  /* 为什么要查：cat 写错或漏填时，工具会被兜底塞进「更多」组，首页看起来"少了一个工具"，
+     而且不报错 —— 加工具时最容易犯这个错（毛毛 2026-10-14：「东西堆的太杂了」，重分过一次）。
+     ⚠️ cat 的合法值直接从 build.mjs 的 CATS 里抠出来，不在测试里硬编码一份 ——
+        硬编码的清单迟早和源头对不上，那时检查会变成误报源头。 */
+  const buildSrc = fs.readFileSync(path.join(ROOT, "src", "build.mjs"), "utf8");
+  const block = /const CATS = \[([\s\S]*?)\n\];/.exec(buildSrc);
+  if (!block) {
+    bad("在 build.mjs 里找不到 CATS 定义（检查无法进行）");
+  } else {
+    const catIds = [...block[1].matchAll(/id:\s*"([a-z]+)"/g)].map((m) => m[1]);
+    const TOOLS_J = JSON.parse(fs.readFileSync(path.join(ROOT, "src", "tools.json"), "utf8")).tools;
+
+    const illegal = TOOLS_J.filter((t) => catIds.indexOf(t.cat) < 0);
+    if (!illegal.length) ok(`${TOOLS_J.length} 个工具的 cat 全在 ${catIds.length} 个合法分类里`);
+    else bad("有工具的 cat 不合法（会掉进「更多」组）", illegal.map((t) => t.id + "→" + t.cat).join(" "));
+
+    const empty = catIds.filter((id) => !TOOLS_J.some((t) => t.cat === id));
+    if (!empty.length) ok("每个分类都至少有一个工具（不会出现空标题）");
+    else bad("有分类是空的", empty.join(" "));
+
+    // 分组要真的起到「分流」作用：最大一组不该超过总数的一半
+    const counts = catIds.map((id) => ({ id, n: TOOLS_J.filter((t) => t.cat === id).length }));
+    const max = counts.reduce((a, b) => (b.n > a.n ? b : a));
+    if (max.n <= Math.ceil(TOOLS_J.length / 3)) ok(`最大一组 ${max.id} 有 ${max.n} 个（未超过总数的三分之一）`);
+    else bad(`分类失衡：${max.id} 一组就有 ${max.n} 个（共 ${TOOLS_J.length} 个），用户扫不动`);
+  }
+}
+
 console.log(`\n结果：${pass} 项通过，${fail} 项失败`);
 process.exit(fail ? 1 : 0);

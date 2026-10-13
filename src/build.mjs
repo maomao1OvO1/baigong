@@ -252,18 +252,27 @@ const CONTACT_SCRIPT = `<script>
 </script>`;
 
 
-/* ── 首页分类（2026-10-12 新增）────────────────────────────────────────────
-   为什么分组：工具越加越多（现在 35 个），一屏平铺会变成"一堵墙"——
-   访客扫不到自己要的东西，也看不见广告位。按用途分组后一屏能扫完。
+/* ── 首页分类 ──────────────────────────────────────────────────────────────
+   为什么分组：工具越加越多，一屏平铺会变成"一堵墙"——访客扫不到自己要的东西。
    分类名直接写在这里而不进 ui.json：它只服务首页这一处，放本地比散在三个语言文件里更好维护。
-   tools.json 里每个工具的 cat 字段与此处的 id 一一对应（加工具时别忘了填 cat）。 */
+   tools.json 里每个工具的 cat 字段与此处的 id 一一对应（加工具时别忘了填 cat）。
+
+   2026-10-14 毛毛：「东西堆的太杂了」⇒ 从 6 组拆成 9 组。
+   原来的问题是**两组吃掉大半**：dev 24 个、text 16 个（合计 40/55），等于没分。
+   拆法是按「用户想干什么」而不是按技术栈分：把「开发」拆成
+   编码与哈希 / 网络与网站 / 开发与运维 / 数据与格式；把「文本与数据」拆成
+   文本与 Markdown / 数据与格式。
+   现在最大一组 11 个，最小 3 个 —— 一屏能扫完。 */
 const CATS = [
-  { id: "image",    icon: "🖼️", name: { en: "Images", zh: "图片", ja: "画像" } },
-  { id: "text",     icon: "✍️", name: { en: "Text & data", zh: "文本与数据", ja: "テキストとデータ" } },
-  { id: "dev",      icon: "⌨️", name: { en: "Developer", zh: "开发者", ja: "開発者向け" } },
-  { id: "color",    icon: "🎨", name: { en: "Colour", zh: "颜色", ja: "カラー" } },
+  { id: "text",     icon: "✍️", name: { en: "Text & Markdown", zh: "文本与 Markdown", ja: "テキストと Markdown" } },
+  { id: "data",     icon: "🧩", name: { en: "Data & formats", zh: "数据与格式", ja: "データとフォーマット" } },
+  { id: "code",     icon: "🔤", name: { en: "Encoding & hashing", zh: "编码与哈希", ja: "エンコードとハッシュ" } },
+  { id: "web",      icon: "🌐", name: { en: "Web & network", zh: "网络与网站", ja: "ウェブとネットワーク" } },
+  { id: "devops",   icon: "⌨️", name: { en: "Dev & ops", zh: "开发与运维", ja: "開発と運用" } },
+  { id: "security", icon: "🔒", name: { en: "Security & permissions", zh: "安全与权限", ja: "セキュリティと権限" } },
   { id: "time",     icon: "🕒", name: { en: "Time & units", zh: "时间与单位", ja: "時間と単位" } },
-  { id: "security", icon: "🔒", name: { en: "Security", zh: "安全", ja: "セキュリティ" } },
+  { id: "color",    icon: "🎨", name: { en: "Colour", zh: "颜色", ja: "カラー" } },
+  { id: "image",    icon: "🖼️", name: { en: "Images", zh: "图片", ja: "画像" } },
 ];
 
 /** 顶栏的「广告位招租」入口文案 —— 广告主是站点的另一类访客，得让他们一眼找到入口 */

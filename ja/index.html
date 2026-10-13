@@ -76,28 +76,7 @@
 </aside>
 
   <section class="group">
-    <h2><span class="g-ico">🖼️</span>画像<span class="g-count">3</span></h2>
-    <ul class="grid">
-      <li><a href="/ja/tools/compress-image.html">
-        <span class="ico">🗜️</span>
-        <b>画像を、どこにも送らずに軽くする</b>
-        <span class="sub">写真を軽くするために、他人のサーバーへ預ける必要はありません。画像はこのタブ内でデコード・縮小・再エンコードされ、スマホで撮った写真は多くの場合、元の数分の一程度になります。元の画像は…</span>
-      </a></li>
-      <li><a href="/ja/tools/convert-image.html">
-        <span class="ico">🔄</span>
-        <b>アップロードせずに画像形式を変換</b>
-        <span class="sub">HEIC・PNG・JPEG・WebP をアップロードせずに相互変換します。パソコンで開けないスマホの写真、JPEG しか受け付けないサイト——よくある 2 つの場面のために。</span>
-      </a></li>
-      <li><a href="/ja/tools/base64-image.html">
-        <span class="ico">🖼️</span>
-        <b>画像 → Base64</b>
-        <span class="sub">画像をドロップすると、そのまま貼れる 4 つの形が出ます。data URI、生の Base64、CSS の background-image、img タグ。Base64 はサイズを**…</span>
-      </a></li>
-    </ul>
-  </section>
-
-  <section class="group">
-    <h2><span class="g-ico">✍️</span>テキストとデータ<span class="g-count">16</span></h2>
+    <h2><span class="g-ico">✍️</span>テキストと Markdown<span class="g-count">11</span></h2>
     <ul class="grid">
       <li><a href="/ja/tools/markdown.html">
         <span class="ico">📝</span>
@@ -119,6 +98,11 @@
         <b>HTML エンティティのエンコード / デコード</b>
         <span class="sub">HTML をエスケープして文字として表示させたり、&#x4E2D; のような実体参照を元に戻したりできます。ASCII のみを要求する古いメールテンプレートや API にも。</span>
       </a></li>
+      <li><a href="/ja/tools/regex.html">
+        <span class="ico">🧪</span>
+        <b>正規表現テスター</b>
+        <span class="sub">手元のテキストで正規表現を試せます。一致箇所を行番号・位置・キャプチャグループ付きで一覧表示します。ログには顧客情報が含まれることが多く、外部サイトに貼るのは避けたいところです。</span>
+      </a></li>
       <li><a href="/ja/tools/diff.html">
         <span class="ico">🆚</span>
         <b>テキスト差分（行単位）</b>
@@ -129,30 +113,10 @@
         <b>命名規則の変換</b>
         <span class="sub">camelCase・PascalCase・snake_case・kebab-case・CONSTANT_CASE の相互変換。略語は人の感覚で分割します（HTTPServer → ht…</span>
       </a></li>
-      <li><a href="/ja/tools/csv-json.html">
-        <span class="ico">📊</span>
-        <b>CSV ⇄ JSON 変換</b>
-        <span class="sub">CSV と JSON の相互変換。単純なツールが壊れる 3 つのケース——引用符内のカンマ、セル内の改行、二重引用符によるエスケープ——に対応します。Excel の書き出しには概ね 3…</span>
-      </a></li>
-      <li><a href="/ja/tools/base64.html">
-        <span class="ico">🔠</span>
-        <b>Base64 のエンコードとデコード</b>
-        <span class="sub">日本語や絵文字が壊れない Base64 変換です。多くのツールはブラウザの生の関数をそのまま使うため、非 ASCII 文字が「?」に化けます。ここでは UTF-8 を経由して処理します…</span>
-      </a></li>
-      <li><a href="/ja/tools/json-format.html">
-        <span class="ico">🧩</span>
-        <b>JSON の整形と検証</b>
-        <span class="sub">JSON の整形・圧縮・検証。壊れている場合はエラー行を示します。API のレスポンスを確認する場面で便利です——そしてそれは、見知らぬサイトに貼るべきではない類のテキストでもあります…</span>
-      </a></li>
       <li><a href="/ja/tools/text-tools.html">
         <span class="ico">✍️</span>
         <b>日常のテキスト処理を 1 ページに</b>
         <span class="sub">ちょっとしたテキスト処理：大文字小文字の変換、反転、空行の除去、重複削除、行の並べ替え、文字数のカウント。広告まみれのページにテキストを貼る必要はありません。</span>
-      </a></li>
-      <li><a href="/ja/tools/url-codec.html">
-        <span class="ico">🔗</span>
-        <b>URL のエンコードとデコード</b>
-        <span class="sub">URL とクエリ文字列のパーセントエンコード／デコード。「URL 全体を変換」と「値だけを変換」を分けています。コールバック URL が動かなくなる原因は、たいていこの混同です。</span>
       </a></li>
       <li><a href="/ja/tools/md-toc.html">
         <span class="ico">📑</span>
@@ -164,26 +128,16 @@
         <b>Markdown テーブル整形</b>
         <span class="sub">崩れた表、あるいは生のデータ(CSV / TSV / パイプ区切り)を貼り付けると、きちんと揃った表になります。列幅は**表示幅**で計算します。全角文字は 2 桁を占めるのに 1 文…</span>
       </a></li>
-      <li><a href="/ja/tools/url-builder.html">
-        <span class="ico">🧱</span>
-        <b>URL ビルダー</b>
-        <span class="sub">1 行目にベースアドレス、以降は 1 行に 1 つ `key=value`。完成した URL と、各値のエンコード前後が並びます。手で組んだ URL が壊れるのはエンコードのせいです。…</span>
-      </a></li>
       <li><a href="/ja/tools/text-diff-char.html">
         <span class="ico">🔬</span>
         <b>文字単位の差分比較</b>
         <span class="sub">行単位の比較は「どの行が変わったか」を教えます。こちらは「その行の中のどの文字が変わったか」を教えます。句読点 1 つの違いと「行が丸ごと新しい」の差はここにあります。2 つの版を同じ…</span>
       </a></li>
-      <li><a href="/ja/tools/morse.html">
-        <span class="ico">📡</span>
-        <b>モールス信号の変換</b>
-        <span class="sub">テキストを入れるとモールス信号に、点と線を貼り付けるとテキストに戻ります。どちらの方向かは自動で判断します。つまずきやすいのは**語の区切り**です。区切りが無いと文全体が 1 つの長…</span>
-      </a></li>
     </ul>
   </section>
 
   <section class="group">
-    <h2><span class="g-ico">⌨️</span>開発者向け<span class="g-count">24</span></h2>
+    <h2><span class="g-ico">🧩</span>データとフォーマット<span class="g-count">7</span></h2>
     <ul class="grid">
       <li><a href="/ja/tools/json-path.html">
         <span class="ico">🎯</span>
@@ -195,15 +149,87 @@
         <b>YAML ⇄ JSON 変換</b>
         <span class="sub">K8s のマニフェストや CI の yaml を扱うときに。一般的な記法に対応：キーと値、ネストしたインデント、リスト、インラインの [a, b] / {a: 1}、コメント、ブロック…</span>
       </a></li>
-      <li><a href="/ja/tools/http-status.html">
-        <span class="ico">🚦</span>
-        <b>HTTP ステータスコード早見表</b>
-        <span class="sub">ログに 4xx や 5xx が出たとき、最初に知りたいのは「どちら側の問題か」。コードを入力すると意味と責任の所在（クライアント側かサーバー側か）を表示します。RFC に無いがよく見る…</span>
+      <li><a href="/ja/tools/csv-json.html">
+        <span class="ico">📊</span>
+        <b>CSV ⇄ JSON 変換</b>
+        <span class="sub">CSV と JSON の相互変換。単純なツールが壊れる 3 つのケース——引用符内のカンマ、セル内の改行、二重引用符によるエスケープ——に対応します。Excel の書き出しには概ね 3…</span>
       </a></li>
+      <li><a href="/ja/tools/json-format.html">
+        <span class="ico">🧩</span>
+        <b>JSON の整形と検証</b>
+        <span class="sub">JSON の整形・圧縮・検証。壊れている場合はエラー行を示します。API のレスポンスを確認する場面で便利です——そしてそれは、見知らぬサイトに貼るべきではない類のテキストでもあります…</span>
+      </a></li>
+      <li><a href="/ja/tools/json-to-ts.html">
+        <span class="ico">🧬</span>
+        <b>JSON → TypeScript</b>
+        <span class="sub">フィールド名を手で写すのはもう終わりにしましょう。JSON を貼り付けるだけで TypeScript の interface が出ます。ネストした型・省略可能なフィールド・ユニオン型は…</span>
+      </a></li>
+      <li><a href="/ja/tools/sql-format.html">
+        <span class="ico">🧾</span>
+        <b>SQL フォーマッター</b>
+        <span class="sub">ログや ORM から出てくる SQL はたいてい 1 行です。貼り付ければ、句ごとに改行し、条件をインデントし、キーワードを大文字にした形になります。先に字句解析を行うため、文字列リテ…</span>
+      </a></li>
+      <li><a href="/ja/tools/ini-parse.html">
+        <span class="ico">⚙️</span>
+        <b>INI → JSON</b>
+        <span class="sub">「セクション + キー値」をそのまま使える JSON に変換し、面倒なところも明示します。どの文字がコメントか、重複キーをどう扱うか、そして `#fff` がなぜコメントにならないか。…</span>
+      </a></li>
+    </ul>
+  </section>
+
+  <section class="group">
+    <h2><span class="g-ico">🔤</span>エンコードとハッシュ<span class="g-count">8</span></h2>
+    <ul class="grid">
       <li><a href="/ja/tools/base32.html">
         <span class="ico">🔣</span>
         <b>Base32 / Base58 の変換</b>
         <span class="sub">Base32 は A–Z と 2–7 のみを使うため、手書きや口頭で伝えても取り違えが起きません（2 段階認証のシークレットがこれを使う理由です）。Base58 は紛らわしい 4 文字…</span>
+      </a></li>
+      <li><a href="/ja/tools/hash.html">
+        <span class="ico">🔐</span>
+        <b>ハッシュ生成（MD5 / SHA-1 / SHA-256 / SHA-512）</b>
+        <span class="sub">MD5・SHA-1・SHA-256・SHA-512 をまとめて計算し、hex と Base64 の両方を表示します。ブラウザが MD5 を提供しなくなったため、ここでは自前で実装してい…</span>
+      </a></li>
+      <li><a href="/ja/tools/uuid.html">
+        <span class="ico">🆔</span>
+        <b>UUID / ULID / NanoID 生成</b>
+        <span class="sub">UUID v4、時刻順に並ぶ UUID v7、ULID、NanoID を最大 100 個まで生成します。乱数は Math.random ではなく、ブラウザの暗号学的乱数から取得します。</span>
+      </a></li>
+      <li><a href="/ja/tools/radix.html">
+        <span class="ico">🔢</span>
+        <b>基数変換（2 / 8 / 10 / 16 / 36）</b>
+        <span class="sub">2・8・10・16・36 進数の相互変換と、フラグやマスクを読むためのビット表示。桁の多い値は BigInt で扱うため、18 桁の ID でも下位の桁が変わりません。</span>
+      </a></li>
+      <li><a href="/ja/tools/base64.html">
+        <span class="ico">🔠</span>
+        <b>Base64 のエンコードとデコード</b>
+        <span class="sub">日本語や絵文字が壊れない Base64 変換です。多くのツールはブラウザの生の関数をそのまま使うため、非 ASCII 文字が「?」に化けます。ここでは UTF-8 を経由して処理します…</span>
+      </a></li>
+      <li><a href="/ja/tools/url-codec.html">
+        <span class="ico">🔗</span>
+        <b>URL のエンコードとデコード</b>
+        <span class="sub">URL とクエリ文字列のパーセントエンコード／デコード。「URL 全体を変換」と「値だけを変換」を分けています。コールバック URL が動かなくなる原因は、たいていこの混同です。</span>
+      </a></li>
+      <li><a href="/ja/tools/crc32.html">
+        <span class="ico">🧮</span>
+        <b>CRC-32 / Adler-32 チェックサム</b>
+        <span class="sub">どこにでも現れるのに、あまり認識されていない 3 つの値。ZIP と PNG は CRC-32、gzip / zlib のストリームは Adler-32、iSCSI やいくつかのストレ…</span>
+      </a></li>
+      <li><a href="/ja/tools/morse.html">
+        <span class="ico">📡</span>
+        <b>モールス信号の変換</b>
+        <span class="sub">テキストを入れるとモールス信号に、点と線を貼り付けるとテキストに戻ります。どちらの方向かは自動で判断します。つまずきやすいのは**語の区切り**です。区切りが無いと文全体が 1 つの長…</span>
+      </a></li>
+    </ul>
+  </section>
+
+  <section class="group">
+    <h2><span class="g-ico">🌐</span>ウェブとネットワーク<span class="g-count">8</span></h2>
+    <ul class="grid">
+      <li><a href="/ja/tools/http-status.html">
+        <span class="ico">🚦</span>
+        <b>HTTP ステータスコード早見表</b>
+        <span class="sub">ログに 4xx や 5xx が出たとき、最初に知りたいのは「どちら側の問題か」。コードを入力すると意味と責任の所在（クライアント側かサーバー側か）を表示します。RFC に無いがよく見る…</span>
       </a></li>
       <li><a href="/ja/tools/ipv6.html">
         <span class="ico">🛰️</span>
@@ -220,35 +246,36 @@
         <b>IPv4 / CIDR サブネット計算</b>
         <span class="sub">192.168.1.10/24 のようなアドレスから、ネットワークアドレス・ブロードキャスト・利用可能なホスト範囲・マスク・ワイルドカードマスクを算出します。プライベート／ループバック…</span>
       </a></li>
+      <li><a href="/ja/tools/mime-lookup.html">
+        <span class="ico">📎</span>
+        <b>MIME タイプ早見</b>
+        <span class="sub">入力欄は 1 つ、双方向に調べられます。拡張子を入れれば MIME タイプ、MIME タイプを入れれば拡張子が出ます。答えは直感に反することがよくあります。.js の正式な型は tex…</span>
+      </a></li>
+      <li><a href="/ja/tools/ua-parse.html">
+        <span class="ico">🕵️</span>
+        <b>User-Agent 解析</b>
+        <span class="sub">サーバーログやバグ報告は 120 文字の User-Agent であふれています。貼り付ければ、ブラウザ・エンジン・OS・端末種別が言葉で出ます。あなた自身の User-Agent は…</span>
+      </a></li>
+      <li><a href="/ja/tools/http-headers.html">
+        <span class="ico">🧭</span>
+        <b>HTTP レスポンスヘッダーの解説</b>
+        <span class="sub">「なぜ古いままなのか」「なぜ Cookie が捨てられるのか」の答えはヘッダーにあります。ただし略語が読めればの話です。レスポンス全体(ステータス行を含む)を貼り付ければ、各ヘッダーに…</span>
+      </a></li>
+      <li><a href="/ja/tools/url-builder.html">
+        <span class="ico">🧱</span>
+        <b>URL ビルダー</b>
+        <span class="sub">1 行目にベースアドレス、以降は 1 行に 1 つ `key=value`。完成した URL と、各値のエンコード前後が並びます。手で組んだ URL が壊れるのはエンコードのせいです。…</span>
+      </a></li>
+    </ul>
+  </section>
+
+  <section class="group">
+    <h2><span class="g-ico">⌨️</span>開発と運用<span class="g-count">5</span></h2>
+    <ul class="grid">
       <li><a href="/ja/tools/cron.html">
         <span class="ico">⏰</span>
         <b>Cron 式エクスプレイナー</b>
         <span class="sub">cron 式を貼り付けると、フィールドごとに意味を説明し、お使いのタイムゾーンで次回 5 回の実行時刻を示します。1 つの書き間違いを探して 1 時間を潰す前に。</span>
-      </a></li>
-      <li><a href="/ja/tools/hash.html">
-        <span class="ico">🔐</span>
-        <b>ハッシュ生成（MD5 / SHA-1 / SHA-256 / SHA-512）</b>
-        <span class="sub">MD5・SHA-1・SHA-256・SHA-512 をまとめて計算し、hex と Base64 の両方を表示します。ブラウザが MD5 を提供しなくなったため、ここでは自前で実装してい…</span>
-      </a></li>
-      <li><a href="/ja/tools/regex.html">
-        <span class="ico">🧪</span>
-        <b>正規表現テスター</b>
-        <span class="sub">手元のテキストで正規表現を試せます。一致箇所を行番号・位置・キャプチャグループ付きで一覧表示します。ログには顧客情報が含まれることが多く、外部サイトに貼るのは避けたいところです。</span>
-      </a></li>
-      <li><a href="/ja/tools/uuid.html">
-        <span class="ico">🆔</span>
-        <b>UUID / ULID / NanoID 生成</b>
-        <span class="sub">UUID v4、時刻順に並ぶ UUID v7、ULID、NanoID を最大 100 個まで生成します。乱数は Math.random ではなく、ブラウザの暗号学的乱数から取得します。</span>
-      </a></li>
-      <li><a href="/ja/tools/radix.html">
-        <span class="ico">🔢</span>
-        <b>基数変換（2 / 8 / 10 / 16 / 36）</b>
-        <span class="sub">2・8・10・16・36 進数の相互変換と、フラグやマスクを読むためのビット表示。桁の多い値は BigInt で扱うため、18 桁の ID でも下位の桁が変わりません。</span>
-      </a></li>
-      <li><a href="/ja/tools/jwt.html">
-        <span class="ico">🎫</span>
-        <b>JWT デコーダー</b>
-        <span class="sub">JWT は JSON（ヘッダー＋ペイロード＋署名）の塊です。ここで中身を読み取れば、他人の解析ダッシュボードに貼る必要はありません。デコードはこのページ内で完結します。なお、デコードは…</span>
       </a></li>
       <li><a href="/ja/tools/sitemap-gen.html">
         <span class="ico">🗺️</span>
@@ -260,71 +287,51 @@
         <b>robots.txt ジェネレーター</b>
         <span class="sub">robots.txt は単純に見えて、少し文法を外すと丸ごと無効になります。グループ間には空行が必要、Sitemap は絶対 URL のみ、AI クローラーのトークンは 1 文字違うだ…</span>
       </a></li>
-      <li><a href="/ja/tools/json-to-ts.html">
-        <span class="ico">🧬</span>
-        <b>JSON → TypeScript</b>
-        <span class="sub">フィールド名を手で写すのはもう終わりにしましょう。JSON を貼り付けるだけで TypeScript の interface が出ます。ネストした型・省略可能なフィールド・ユニオン型は…</span>
-      </a></li>
       <li><a href="/ja/tools/curl-to-code.html">
         <span class="ico">🔁</span>
         <b>curl → コード</b>
         <span class="sub">ブラウザの「Copy as cURL」でコピーしたリクエストを、コードにしたい。貼り付ければ JavaScript の fetch、axios、Python の requests の形…</span>
-      </a></li>
-      <li><a href="/ja/tools/mime-lookup.html">
-        <span class="ico">📎</span>
-        <b>MIME タイプ早見</b>
-        <span class="sub">入力欄は 1 つ、双方向に調べられます。拡張子を入れれば MIME タイプ、MIME タイプを入れれば拡張子が出ます。答えは直感に反することがよくあります。.js の正式な型は tex…</span>
-      </a></li>
-      <li><a href="/ja/tools/ua-parse.html">
-        <span class="ico">🕵️</span>
-        <b>User-Agent 解析</b>
-        <span class="sub">サーバーログやバグ報告は 120 文字の User-Agent であふれています。貼り付ければ、ブラウザ・エンジン・OS・端末種別が言葉で出ます。あなた自身の User-Agent は…</span>
-      </a></li>
-      <li><a href="/ja/tools/sql-format.html">
-        <span class="ico">🧾</span>
-        <b>SQL フォーマッター</b>
-        <span class="sub">ログや ORM から出てくる SQL はたいてい 1 行です。貼り付ければ、句ごとに改行し、条件をインデントし、キーワードを大文字にした形になります。先に字句解析を行うため、文字列リテ…</span>
-      </a></li>
-      <li><a href="/ja/tools/http-headers.html">
-        <span class="ico">🧭</span>
-        <b>HTTP レスポンスヘッダーの解説</b>
-        <span class="sub">「なぜ古いままなのか」「なぜ Cookie が捨てられるのか」の答えはヘッダーにあります。ただし略語が読めればの話です。レスポンス全体(ステータス行を含む)を貼り付ければ、各ヘッダーに…</span>
       </a></li>
       <li><a href="/ja/tools/env-parse.html">
         <span class="ico">🔐</span>
         <b>.env 解析</b>
         <span class="sub">.env を次の道具が求める形に変換します。JSON、export 文、compose のブロック、JavaScript オブジェクト。.env には鍵が入っているので、処理はすべてブ…</span>
       </a></li>
-      <li><a href="/ja/tools/crc32.html">
-        <span class="ico">🧮</span>
-        <b>CRC-32 / Adler-32 チェックサム</b>
-        <span class="sub">どこにでも現れるのに、あまり認識されていない 3 つの値。ZIP と PNG は CRC-32、gzip / zlib のストリームは Adler-32、iSCSI やいくつかのストレ…</span>
-      </a></li>
-      <li><a href="/ja/tools/ini-parse.html">
-        <span class="ico">⚙️</span>
-        <b>INI → JSON</b>
-        <span class="sub">「セクション + キー値」をそのまま使える JSON に変換し、面倒なところも明示します。どの文字がコメントか、重複キーをどう扱うか、そして `#fff` がなぜコメントにならないか。…</span>
-      </a></li>
     </ul>
   </section>
 
   <section class="group">
-    <h2><span class="g-ico">🎨</span>カラー<span class="g-count">3</span></h2>
+    <h2><span class="g-ico">🔒</span>セキュリティと権限<span class="g-count">6</span></h2>
     <ul class="grid">
-      <li><a href="/ja/tools/color-palette.html">
-        <span class="ico">🎨</span>
-        <b>カラーパレット生成</b>
-        <span class="sub">1 色から配色一式を得られます。補色・類似色・トライアドと、同じ色相の明度 7 段階。hover・押下・無効状態の色が濁らずに揃います。</span>
+      <li><a href="/ja/tools/number-check.html">
+        <span class="ico">💳</span>
+        <b>カード / 身分証番号の検証</b>
+        <span class="sub">1 桁の打ち間違いは最も多い入力ミスで、チェックディジットはまさにそれを見つけるための仕組みです。銀行カードは Luhn 法、中国の身分証は GB 11643 のチェックコードを使いま…</span>
       </a></li>
-      <li><a href="/ja/tools/color-converter.html">
-        <span class="ico">🌈</span>
-        <b>カラー変換 — HEX / RGB / HSL</b>
-        <span class="sub">色を HEX・RGB・HSL の間で変換し、3 つの表記を同時に表示します。デザインの HSL 値を CSS に落とし込むときに便利です。</span>
+      <li><a href="/ja/tools/jwt.html">
+        <span class="ico">🎫</span>
+        <b>JWT デコーダー</b>
+        <span class="sub">JWT は JSON（ヘッダー＋ペイロード＋署名）の塊です。ここで中身を読み取れば、他人の解析ダッシュボードに貼る必要はありません。デコードはこのページ内で完結します。なお、デコードは…</span>
       </a></li>
-      <li><a href="/ja/tools/contrast.html">
-        <span class="ico">🎚️</span>
-        <b>色のコントラスト比チェッカー</b>
-        <span class="sub">コントラストは感覚ではなく数字です。WCAG は通常テキストに 4.5 : 1、大きなテキストに 3 : 1 を求めますが、グレー同士はしばしば基準をわずかに下回ります。2 色を貼り付…</span>
+      <li><a href="/ja/tools/password-gen.html">
+        <span class="ico">🔑</span>
+        <b>パスワード生成</b>
+        <span class="sub">ブラウザの暗号学的乱数でパスワードを生成します。紛らわしい文字（0 と O、1 と l）を除外するオプション付き。口頭で伝えたり、テレビのリモコンで入力したりする場面で役立ちます。</span>
+      </a></li>
+      <li><a href="/ja/tools/password-strength.html">
+        <span class="ico">🛡️</span>
+        <b>パスワード強度チェック</b>
+        <span class="sub">パスワードが総当たり攻撃にどれだけ耐えるか、そして何が弱点か（繰り返し、キーボード配列、誕生日、電話番号）を確認できます。漏洩照合は明示的に確認した場合のみ実行され、ハッシュの先頭 5…</span>
+      </a></li>
+      <li><a href="/ja/tools/cookie-parse.html">
+        <span class="ico">🍪</span>
+        <b>Cookie 解析</b>
+        <span class="sub">2 種類の入力を扱えます。Cookie ヘッダー(document.cookie が出力する形)は一覧に、Set-Cookie レスポンスヘッダーは属性を展開して点検します。危険なのは…</span>
+      </a></li>
+      <li><a href="/ja/tools/chmod-calc.html">
+        <span class="ico">🔓</span>
+        <b>chmod 計算</b>
+        <span class="sub">755 は誰でも知っています。しかし 4755 の 4、`rwxr-sr-x` の s、`rwxrwxrwt` の t は「見たことはあるが説明できない」ビットで、そのどれもが権限昇格…</span>
       </a></li>
     </ul>
   </section>
@@ -356,32 +363,43 @@
   </section>
 
   <section class="group">
-    <h2><span class="g-ico">🔒</span>セキュリティ<span class="g-count">5</span></h2>
+    <h2><span class="g-ico">🎨</span>カラー<span class="g-count">3</span></h2>
     <ul class="grid">
-      <li><a href="/ja/tools/number-check.html">
-        <span class="ico">💳</span>
-        <b>カード / 身分証番号の検証</b>
-        <span class="sub">1 桁の打ち間違いは最も多い入力ミスで、チェックディジットはまさにそれを見つけるための仕組みです。銀行カードは Luhn 法、中国の身分証は GB 11643 のチェックコードを使いま…</span>
+      <li><a href="/ja/tools/color-palette.html">
+        <span class="ico">🎨</span>
+        <b>カラーパレット生成</b>
+        <span class="sub">1 色から配色一式を得られます。補色・類似色・トライアドと、同じ色相の明度 7 段階。hover・押下・無効状態の色が濁らずに揃います。</span>
       </a></li>
-      <li><a href="/ja/tools/password-gen.html">
-        <span class="ico">🔑</span>
-        <b>パスワード生成</b>
-        <span class="sub">ブラウザの暗号学的乱数でパスワードを生成します。紛らわしい文字（0 と O、1 と l）を除外するオプション付き。口頭で伝えたり、テレビのリモコンで入力したりする場面で役立ちます。</span>
+      <li><a href="/ja/tools/color-converter.html">
+        <span class="ico">🌈</span>
+        <b>カラー変換 — HEX / RGB / HSL</b>
+        <span class="sub">色を HEX・RGB・HSL の間で変換し、3 つの表記を同時に表示します。デザインの HSL 値を CSS に落とし込むときに便利です。</span>
       </a></li>
-      <li><a href="/ja/tools/password-strength.html">
-        <span class="ico">🛡️</span>
-        <b>パスワード強度チェック</b>
-        <span class="sub">パスワードが総当たり攻撃にどれだけ耐えるか、そして何が弱点か（繰り返し、キーボード配列、誕生日、電話番号）を確認できます。漏洩照合は明示的に確認した場合のみ実行され、ハッシュの先頭 5…</span>
+      <li><a href="/ja/tools/contrast.html">
+        <span class="ico">🎚️</span>
+        <b>色のコントラスト比チェッカー</b>
+        <span class="sub">コントラストは感覚ではなく数字です。WCAG は通常テキストに 4.5 : 1、大きなテキストに 3 : 1 を求めますが、グレー同士はしばしば基準をわずかに下回ります。2 色を貼り付…</span>
       </a></li>
-      <li><a href="/ja/tools/cookie-parse.html">
-        <span class="ico">🍪</span>
-        <b>Cookie 解析</b>
-        <span class="sub">2 種類の入力を扱えます。Cookie ヘッダー(document.cookie が出力する形)は一覧に、Set-Cookie レスポンスヘッダーは属性を展開して点検します。危険なのは…</span>
+    </ul>
+  </section>
+
+  <section class="group">
+    <h2><span class="g-ico">🖼️</span>画像<span class="g-count">3</span></h2>
+    <ul class="grid">
+      <li><a href="/ja/tools/compress-image.html">
+        <span class="ico">🗜️</span>
+        <b>画像を、どこにも送らずに軽くする</b>
+        <span class="sub">写真を軽くするために、他人のサーバーへ預ける必要はありません。画像はこのタブ内でデコード・縮小・再エンコードされ、スマホで撮った写真は多くの場合、元の数分の一程度になります。元の画像は…</span>
       </a></li>
-      <li><a href="/ja/tools/chmod-calc.html">
-        <span class="ico">🔓</span>
-        <b>chmod 計算</b>
-        <span class="sub">755 は誰でも知っています。しかし 4755 の 4、`rwxr-sr-x` の s、`rwxrwxrwt` の t は「見たことはあるが説明できない」ビットで、そのどれもが権限昇格…</span>
+      <li><a href="/ja/tools/convert-image.html">
+        <span class="ico">🔄</span>
+        <b>アップロードせずに画像形式を変換</b>
+        <span class="sub">HEIC・PNG・JPEG・WebP をアップロードせずに相互変換します。パソコンで開けないスマホの写真、JPEG しか受け付けないサイト——よくある 2 つの場面のために。</span>
+      </a></li>
+      <li><a href="/ja/tools/base64-image.html">
+        <span class="ico">🖼️</span>
+        <b>画像 → Base64</b>
+        <span class="sub">画像をドロップすると、そのまま貼れる 4 つの形が出ます。data URI、生の Base64、CSS の background-image、img タグ。Base64 はサイズを**…</span>
       </a></li>
     </ul>
   </section>

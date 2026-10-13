@@ -76,28 +76,7 @@
 </aside>
 
   <section class="group">
-    <h2><span class="g-ico">🖼️</span>图片<span class="g-count">3</span></h2>
-    <ul class="grid">
-      <li><a href="/zh/tools/compress-image.html">
-        <span class="ico">🗜️</span>
-        <b>压缩图片，不用把它传给别人</b>
-        <span class="sub">把照片压小，不用先传到别人服务器上。图片在你浏览器里解码、缩放、重新编码，手机拍的原图常常能压到原来的几分之一 —— 原图始终留在你手机里。</span>
-      </a></li>
-      <li><a href="/zh/tools/convert-image.html">
-        <span class="ico">🔄</span>
-        <b>换图片格式，不用先上传</b>
-        <span class="sub">HEIC、PNG、JPEG、WebP 互相转换，不用上传。专治两种常见情况：手机拍的照片在电脑上打不开、某个网站只收 JPEG。</span>
-      </a></li>
-      <li><a href="/zh/tools/base64-image.html">
-        <span class="ico">🖼️</span>
-        <b>图片 → Base64</b>
-        <span class="sub">把图片拖进来，直接拿到四种可粘的形态：data URI、纯 Base64、CSS 的 background-image、img 标签。Base64 会让体积**精确增加 33%** —…</span>
-      </a></li>
-    </ul>
-  </section>
-
-  <section class="group">
-    <h2><span class="g-ico">✍️</span>文本与数据<span class="g-count">16</span></h2>
+    <h2><span class="g-ico">✍️</span>文本与 Markdown<span class="g-count">11</span></h2>
     <ul class="grid">
       <li><a href="/zh/tools/markdown.html">
         <span class="ico">📝</span>
@@ -119,6 +98,11 @@
         <b>HTML 实体编码 / 解码</b>
         <span class="sub">接口返回里带着 &amp;amp; 这种东西？粘进来一次转干净，也能反着解回去。把 HTML 转义成页面上能安全显示的文字，或者把一串 &#x4E2D; 还原回来。给邮件模板、只吃 A…</span>
       </a></li>
+      <li><a href="/zh/tools/regex.html">
+        <span class="ico">🧪</span>
+        <b>正则表达式测试器</b>
+        <span class="sub">用你自己的文本试正则：每一处匹配的行号、位置、捕获组都列出来。日志这类文本尤其适合在这里试 —— 里面常有客户信息，不适合贴到别人的网站上。</span>
+      </a></li>
       <li><a href="/zh/tools/diff.html">
         <span class="ico">🆚</span>
         <b>文本对比（逐行）</b>
@@ -129,30 +113,10 @@
         <b>命名风格转换</b>
         <span class="sub">命名风格互转：camelCase、PascalCase、snake_case、kebab-case、CONSTANT_CASE。缩写按人的习惯拆 —— HTTPServer 会变成 h…</span>
       </a></li>
-      <li><a href="/zh/tools/csv-json.html">
-        <span class="ico">📊</span>
-        <b>CSV ⇄ JSON 互转</b>
-        <span class="sub">CSV 与 JSON 互转，专治把简单工具搞崩的三种情况：引号里的逗号、单元格里的换行、两个引号转义成一个。Excel 导出的表格里，往往三种都有。</span>
-      </a></li>
-      <li><a href="/zh/tools/base64.html">
-        <span class="ico">🔠</span>
-        <b>Base64 编码 / 解码</b>
-        <span class="sub">Base64 编码解码，中文和 emoji 不会变成「？？？」。很多在线工具直接调浏览器的原始接口，非英文内容一进去就乱码；这里是先按 UTF-8 转好再编码，所以不会。</span>
-      </a></li>
-      <li><a href="/zh/tools/json-format.html">
-        <span class="ico">🧩</span>
-        <b>JSON 格式化与校验</b>
-        <span class="sub">JSON 美化、压缩、校验；格式错了会告诉你具体哪一行。贴接口返回的数据时最省事 —— 而这恰好是最不该发给陌生网站的那类内容。</span>
-      </a></li>
       <li><a href="/zh/tools/text-tools.html">
         <span class="ico">✍️</span>
         <b>日常文本处理，一个页面搞定</b>
         <span class="sub">零碎的文本活：大小写转换、反转、去空行、去重、排序、统计字数。即时出结果，也不用把内容贴进一个满屏广告的页面。</span>
-      </a></li>
-      <li><a href="/zh/tools/url-codec.html">
-        <span class="ico">🔗</span>
-        <b>URL 编码 / 解码</b>
-        <span class="sub">URL 和查询串的百分号编解码。特意把「整个网址编码」和「只编码一个参数值」分开 —— 回调地址接不上，九成是这两种混着用了。</span>
       </a></li>
       <li><a href="/zh/tools/md-toc.html">
         <span class="ico">📑</span>
@@ -164,26 +128,16 @@
         <b>Markdown 表格对齐</b>
         <span class="sub">贴一段歪掉的表格，或者别的格式的原始数据（CSV / TSV / 竖线分隔），拿回一张真正对齐的表。列宽按**显示宽度**算 —— 一个汉字占两格，而这正是别的格式化工具会错的地方。</span>
       </a></li>
-      <li><a href="/zh/tools/url-builder.html">
-        <span class="ico">🧱</span>
-        <b>URL 构造器</b>
-        <span class="sub">第一行写基础地址，后面每行一个 `key=value`，输出完整 URL，并把每个值编码前后的样子对照列出来。手拼 URL 翻车都在编码上：值里有个 `&` 就悄悄变成两个参数，有个 …</span>
-      </a></li>
       <li><a href="/zh/tools/text-diff-char.html">
         <span class="ico">🔬</span>
         <b>字符级文本对比</b>
         <span class="sub">逐行对比告诉你「哪几行变了」，这个告诉你「这一行里到底改了哪几个字」—— 一个标点写错 vs「整行都是新的」，差别就在这里。两个版本放进同一个框，中间用一行 === 隔开。</span>
       </a></li>
-      <li><a href="/zh/tools/morse.html">
-        <span class="ico">📡</span>
-        <b>摩斯电码翻译</b>
-        <span class="sub">输入文本得到摩斯电码，或者把一串点划贴进来解回文本 —— 它会自己判断你要哪个方向。最容易错的地方是**词间距**：少了分隔符，整句话会被解成一个长单词，而结果看着还挺像对的。</span>
-      </a></li>
     </ul>
   </section>
 
   <section class="group">
-    <h2><span class="g-ico">⌨️</span>开发者<span class="g-count">24</span></h2>
+    <h2><span class="g-ico">🧩</span>数据与格式<span class="g-count">7</span></h2>
     <ul class="grid">
       <li><a href="/zh/tools/json-path.html">
         <span class="ico">🎯</span>
@@ -195,15 +149,87 @@
         <b>YAML ⇄ JSON 互转</b>
         <span class="sub">改 K8s 配置、看 CI 的 yaml 时最需要它。支持常用子集：键值、嵌套缩进、数组、行内写法 [a, b] / {a: 1}、注释、多行文本块。遇到锚点、多文档这些不支持的语法会…</span>
       </a></li>
-      <li><a href="/zh/tools/http-status.html">
-        <span class="ico">🚦</span>
-        <b>HTTP 状态码速查</b>
-        <span class="sub">日志里蹦出一个 4xx 或 5xx，第一反应是「这该谁改」？输入码就告诉你含义、责任归谁（客户端还是服务端），还标出哪些是非官方但我们天天见到的码。留空则按类别列出全部，当速查表用。</span>
+      <li><a href="/zh/tools/csv-json.html">
+        <span class="ico">📊</span>
+        <b>CSV ⇄ JSON 互转</b>
+        <span class="sub">CSV 与 JSON 互转，专治把简单工具搞崩的三种情况：引号里的逗号、单元格里的换行、两个引号转义成一个。Excel 导出的表格里，往往三种都有。</span>
       </a></li>
+      <li><a href="/zh/tools/json-format.html">
+        <span class="ico">🧩</span>
+        <b>JSON 格式化与校验</b>
+        <span class="sub">JSON 美化、压缩、校验；格式错了会告诉你具体哪一行。贴接口返回的数据时最省事 —— 而这恰好是最不该发给陌生网站的那类内容。</span>
+      </a></li>
+      <li><a href="/zh/tools/json-to-ts.html">
+        <span class="ico">🧬</span>
+        <b>JSON → TypeScript</b>
+        <span class="sub">别再手抄字段名了。贴一段 JSON，直接拿到 TypeScript 的 interface —— 嵌套类型、可选字段、联合类型都从真实数据结构推出来，而且一个字节都不上传。</span>
+      </a></li>
+      <li><a href="/zh/tools/sql-format.html">
+        <span class="ico">🧾</span>
+        <b>SQL 格式化</b>
+        <span class="sub">从日志或 ORM 里捞出来的 SQL 通常是一整行。贴进来，得到「一个子句一行、条件缩进、关键字大写」的排版。先做词法扫描再排版，所以字符串字面量里的文字绝不会被改写。</span>
+      </a></li>
+      <li><a href="/zh/tools/ini-parse.html">
+        <span class="ico">⚙️</span>
+        <b>INI → JSON</b>
+        <span class="sub">把「段 + 键值」变成能直接用的 JSON，并把这些麻烦事讲清楚：哪些字符算注释、重复键怎么处理、以及为什么 `#fff` 不是注释。配置文件里常有密码和密钥，所以全程在你浏览器里跑。</span>
+      </a></li>
+    </ul>
+  </section>
+
+  <section class="group">
+    <h2><span class="g-ico">🔤</span>编码与哈希<span class="g-count">8</span></h2>
+    <ul class="grid">
       <li><a href="/zh/tools/base32.html">
         <span class="ico">🔣</span>
         <b>Base32 / Base58 编解码</b>
         <span class="sub">Base32 只用 A–Z 和 2–7，人工抄写、电话口播都不会看错 —— 两步验证密钥用它就是这个原因。Base58 去掉了最容易混的四个字符（0 O I l），比特币地址用的是它。…</span>
+      </a></li>
+      <li><a href="/zh/tools/hash.html">
+        <span class="ico">🔐</span>
+        <b>哈希计算（MD5 / SHA-1 / SHA-256 / SHA-512）</b>
+        <span class="sub">MD5、SHA-1、SHA-256、SHA-512 一次算完，同时给 hex 和 Base64。浏览器早就不提供 MD5 了，这里是手写的实现 —— 算个校验值，不该还要把内容发出去。</span>
+      </a></li>
+      <li><a href="/zh/tools/uuid.html">
+        <span class="ico">🆔</span>
+        <b>UUID / ULID / NanoID 生成器</b>
+        <span class="sub">生成 UUID v4、可按时间排序的 v7、ULID、NanoID，一次最多 100 个。随机源是浏览器的加密级随机数，不是 Math.random。</span>
+      </a></li>
+      <li><a href="/zh/tools/radix.html">
+        <span class="ico">🔢</span>
+        <b>进制转换（2 / 8 / 10 / 16 / 36）</b>
+        <span class="sub">二进制、八进制、十进制、十六进制、36 进制互转，还给一个分组位视图，用来看标志位和掩码。长数字走 BigInt —— 18 位的 ID 不会被悄悄改掉末几位。</span>
+      </a></li>
+      <li><a href="/zh/tools/base64.html">
+        <span class="ico">🔠</span>
+        <b>Base64 编码 / 解码</b>
+        <span class="sub">Base64 编码解码，中文和 emoji 不会变成「？？？」。很多在线工具直接调浏览器的原始接口，非英文内容一进去就乱码；这里是先按 UTF-8 转好再编码，所以不会。</span>
+      </a></li>
+      <li><a href="/zh/tools/url-codec.html">
+        <span class="ico">🔗</span>
+        <b>URL 编码 / 解码</b>
+        <span class="sub">URL 和查询串的百分号编解码。特意把「整个网址编码」和「只编码一个参数值」分开 —— 回调地址接不上，九成是这两种混着用了。</span>
+      </a></li>
+      <li><a href="/zh/tools/crc32.html">
+        <span class="ico">🧮</span>
+        <b>CRC-32 / Adler-32 校验和</b>
+        <span class="sub">三个到处冒出来、却很少有人认得的值：ZIP 和 PNG 里是 CRC-32，gzip / zlib 流尾部是 Adler-32，iSCSI 与若干存储系统用 CRC-32C。贴文本，或…</span>
+      </a></li>
+      <li><a href="/zh/tools/morse.html">
+        <span class="ico">📡</span>
+        <b>摩斯电码翻译</b>
+        <span class="sub">输入文本得到摩斯电码，或者把一串点划贴进来解回文本 —— 它会自己判断你要哪个方向。最容易错的地方是**词间距**：少了分隔符，整句话会被解成一个长单词，而结果看着还挺像对的。</span>
+      </a></li>
+    </ul>
+  </section>
+
+  <section class="group">
+    <h2><span class="g-ico">🌐</span>网络与网站<span class="g-count">8</span></h2>
+    <ul class="grid">
+      <li><a href="/zh/tools/http-status.html">
+        <span class="ico">🚦</span>
+        <b>HTTP 状态码速查</b>
+        <span class="sub">日志里蹦出一个 4xx 或 5xx，第一反应是「这该谁改」？输入码就告诉你含义、责任归谁（客户端还是服务端），还标出哪些是非官方但我们天天见到的码。留空则按类别列出全部，当速查表用。</span>
       </a></li>
       <li><a href="/zh/tools/ipv6.html">
         <span class="ico">🛰️</span>
@@ -220,35 +246,36 @@
         <b>IPv4 / CIDR 子网计算</b>
         <span class="sub">输入 192.168.1.10/24 这样的地址，算出网络地址、广播地址、可用主机范围、掩码与反掩码，并直接告诉你它是私有、回环还是公网地址。</span>
       </a></li>
+      <li><a href="/zh/tools/mime-lookup.html">
+        <span class="ico">📎</span>
+        <b>MIME 类型速查</b>
+        <span class="sub">一个输入框，双向查：填扩展名给你 MIME 类型，填 MIME 类型给你扩展名。答案经常跟直觉相反 —— .js 的正式类型是 text/javascript，.ico 有两种被接受的…</span>
+      </a></li>
+      <li><a href="/zh/tools/ua-parse.html">
+        <span class="ico">🕵️</span>
+        <b>User-Agent 解析</b>
+        <span class="sub">服务器日志和 bug 反馈里全是 120 个字符的 User-Agent。贴一条进来，直接告诉你浏览器、引擎、系统和设备类型。你自己的 User-Agent 已经填好了 —— 而且什么…</span>
+      </a></li>
+      <li><a href="/zh/tools/http-headers.html">
+        <span class="ico">🧭</span>
+        <b>HTTP 响应头解读</b>
+        <span class="sub">「为什么还是旧的」和「为什么我的 Cookie 被丢了」，答案都在响应头里 —— 前提是看得懂那一堆缩写。把整段响应（含状态行）贴进来，每个头都给一句人话解释，最后把缺失的安全头单独列…</span>
+      </a></li>
+      <li><a href="/zh/tools/url-builder.html">
+        <span class="ico">🧱</span>
+        <b>URL 构造器</b>
+        <span class="sub">第一行写基础地址，后面每行一个 `key=value`，输出完整 URL，并把每个值编码前后的样子对照列出来。手拼 URL 翻车都在编码上：值里有个 `&` 就悄悄变成两个参数，有个 …</span>
+      </a></li>
+    </ul>
+  </section>
+
+  <section class="group">
+    <h2><span class="g-ico">⌨️</span>开发与运维<span class="g-count">5</span></h2>
+    <ul class="grid">
       <li><a href="/zh/tools/cron.html">
         <span class="ico">⏰</span>
         <b>Cron 表达式解析</b>
         <span class="sub">贴一条 cron 表达式，逐段翻译成人话，并按你的时区算出接下来 5 次运行时间。省得盯着 5 个星号猜半天，最后才发现是某一格写错了。</span>
-      </a></li>
-      <li><a href="/zh/tools/hash.html">
-        <span class="ico">🔐</span>
-        <b>哈希计算（MD5 / SHA-1 / SHA-256 / SHA-512）</b>
-        <span class="sub">MD5、SHA-1、SHA-256、SHA-512 一次算完，同时给 hex 和 Base64。浏览器早就不提供 MD5 了，这里是手写的实现 —— 算个校验值，不该还要把内容发出去。</span>
-      </a></li>
-      <li><a href="/zh/tools/regex.html">
-        <span class="ico">🧪</span>
-        <b>正则表达式测试器</b>
-        <span class="sub">用你自己的文本试正则：每一处匹配的行号、位置、捕获组都列出来。日志这类文本尤其适合在这里试 —— 里面常有客户信息，不适合贴到别人的网站上。</span>
-      </a></li>
-      <li><a href="/zh/tools/uuid.html">
-        <span class="ico">🆔</span>
-        <b>UUID / ULID / NanoID 生成器</b>
-        <span class="sub">生成 UUID v4、可按时间排序的 v7、ULID、NanoID，一次最多 100 个。随机源是浏览器的加密级随机数，不是 Math.random。</span>
-      </a></li>
-      <li><a href="/zh/tools/radix.html">
-        <span class="ico">🔢</span>
-        <b>进制转换（2 / 8 / 10 / 16 / 36）</b>
-        <span class="sub">二进制、八进制、十进制、十六进制、36 进制互转，还给一个分组位视图，用来看标志位和掩码。长数字走 BigInt —— 18 位的 ID 不会被悄悄改掉末几位。</span>
-      </a></li>
-      <li><a href="/zh/tools/jwt.html">
-        <span class="ico">🎫</span>
-        <b>JWT 解析器</b>
-        <span class="sub">JWT 本质是一串 JSON（头部 + 载荷 + 签名）—— 这里把它解开看清楚，不用贴进别人的分析后台。解码就在这一页完成。另外记住：能解开不等于合法，签名得在你自己的服务端验。</span>
       </a></li>
       <li><a href="/zh/tools/sitemap-gen.html">
         <span class="ico">🗺️</span>
@@ -260,71 +287,51 @@
         <b>robots.txt 生成器</b>
         <span class="sub">robots.txt 看着简单，但语法错一点整份就白写：组与组之间必须空行、Sitemap 必须是绝对 URL、AI 爬虫的 token 打错一个字母等于没屏蔽。把要挡的路径一行一条填…</span>
       </a></li>
-      <li><a href="/zh/tools/json-to-ts.html">
-        <span class="ico">🧬</span>
-        <b>JSON → TypeScript</b>
-        <span class="sub">别再手抄字段名了。贴一段 JSON，直接拿到 TypeScript 的 interface —— 嵌套类型、可选字段、联合类型都从真实数据结构推出来，而且一个字节都不上传。</span>
-      </a></li>
       <li><a href="/zh/tools/curl-to-code.html">
         <span class="ico">🔁</span>
         <b>curl → 代码</b>
         <span class="sub">刚从浏览器「Copy as cURL」抄下来一条请求，现在要把它变成代码。贴进来，直接给你 JavaScript 的 fetch、axios 或 Python 的 requests 写…</span>
-      </a></li>
-      <li><a href="/zh/tools/mime-lookup.html">
-        <span class="ico">📎</span>
-        <b>MIME 类型速查</b>
-        <span class="sub">一个输入框，双向查：填扩展名给你 MIME 类型，填 MIME 类型给你扩展名。答案经常跟直觉相反 —— .js 的正式类型是 text/javascript，.ico 有两种被接受的…</span>
-      </a></li>
-      <li><a href="/zh/tools/ua-parse.html">
-        <span class="ico">🕵️</span>
-        <b>User-Agent 解析</b>
-        <span class="sub">服务器日志和 bug 反馈里全是 120 个字符的 User-Agent。贴一条进来，直接告诉你浏览器、引擎、系统和设备类型。你自己的 User-Agent 已经填好了 —— 而且什么…</span>
-      </a></li>
-      <li><a href="/zh/tools/sql-format.html">
-        <span class="ico">🧾</span>
-        <b>SQL 格式化</b>
-        <span class="sub">从日志或 ORM 里捞出来的 SQL 通常是一整行。贴进来，得到「一个子句一行、条件缩进、关键字大写」的排版。先做词法扫描再排版，所以字符串字面量里的文字绝不会被改写。</span>
-      </a></li>
-      <li><a href="/zh/tools/http-headers.html">
-        <span class="ico">🧭</span>
-        <b>HTTP 响应头解读</b>
-        <span class="sub">「为什么还是旧的」和「为什么我的 Cookie 被丢了」，答案都在响应头里 —— 前提是看得懂那一堆缩写。把整段响应（含状态行）贴进来，每个头都给一句人话解释，最后把缺失的安全头单独列…</span>
       </a></li>
       <li><a href="/zh/tools/env-parse.html">
         <span class="ico">🔐</span>
         <b>.env 解析</b>
         <span class="sub">把 .env 转成下一个工具要的样子：JSON、export 语句、compose 段，或者 JavaScript 对象。.env 里装的都是密钥，所以全程在你浏览器里跑 —— 不上传…</span>
       </a></li>
-      <li><a href="/zh/tools/crc32.html">
-        <span class="ico">🧮</span>
-        <b>CRC-32 / Adler-32 校验和</b>
-        <span class="sub">三个到处冒出来、却很少有人认得的值：ZIP 和 PNG 里是 CRC-32，gzip / zlib 流尾部是 Adler-32，iSCSI 与若干存储系统用 CRC-32C。贴文本，或…</span>
-      </a></li>
-      <li><a href="/zh/tools/ini-parse.html">
-        <span class="ico">⚙️</span>
-        <b>INI → JSON</b>
-        <span class="sub">把「段 + 键值」变成能直接用的 JSON，并把这些麻烦事讲清楚：哪些字符算注释、重复键怎么处理、以及为什么 `#fff` 不是注释。配置文件里常有密码和密钥，所以全程在你浏览器里跑。</span>
-      </a></li>
     </ul>
   </section>
 
   <section class="group">
-    <h2><span class="g-ico">🎨</span>颜色<span class="g-count">3</span></h2>
+    <h2><span class="g-ico">🔒</span>安全与权限<span class="g-count">6</span></h2>
     <ul class="grid">
-      <li><a href="/zh/tools/color-palette.html">
-        <span class="ico">🎨</span>
-        <b>配色板生成</b>
-        <span class="sub">从一个颜色出发，拿到整套搭配：互补色、类似色、三角色，外加同色相的 7 档明度。hover、按下、禁用这几种状态照它来定，就不会越调越脏。</span>
+      <li><a href="/zh/tools/number-check.html">
+        <span class="ico">💳</span>
+        <b>银行卡 / 身份证校验</b>
+        <span class="sub">录错一位数字是最常见的失误，而校验位就是专门用来抓它的：银行卡走 Luhn 算法，身份证走 GB 11643 的校验码。全程在你设备上算，号码不上传、不保存。校验通过只说明格式合法，不…</span>
       </a></li>
-      <li><a href="/zh/tools/color-converter.html">
-        <span class="ico">🌈</span>
-        <b>颜色转换 —— HEX / RGB / HSL</b>
-        <span class="sub">颜色在 HEX、RGB、HSL 之间互转，一次把三种写法都摆出来 —— 把设计稿里的 HSL 值落到 CSS 时，这样最省事。</span>
+      <li><a href="/zh/tools/jwt.html">
+        <span class="ico">🎫</span>
+        <b>JWT 解析器</b>
+        <span class="sub">JWT 本质是一串 JSON（头部 + 载荷 + 签名）—— 这里把它解开看清楚，不用贴进别人的分析后台。解码就在这一页完成。另外记住：能解开不等于合法，签名得在你自己的服务端验。</span>
       </a></li>
-      <li><a href="/zh/tools/contrast.html">
-        <span class="ico">🎚️</span>
-        <b>颜色对比度检查</b>
-        <span class="sub">对比度是个数字，不是感觉：WCAG 要求正常文字 4.5 : 1、大字 3 : 1，而浅灰配中灰经常就卡在线上一点。把两个颜色贴进来，你拿到比值和四条判定 —— 内容不出你的浏览器。</span>
+      <li><a href="/zh/tools/password-gen.html">
+        <span class="ico">🔑</span>
+        <b>密码生成器</b>
+        <span class="sub">用浏览器的加密级随机数生成密码，可以排除容易看错的字符（0 和 O、1 和 l）—— 要念给别人听，或者在电视遥控器上输入时，这个选项很救急。</span>
+      </a></li>
+      <li><a href="/zh/tools/password-strength.html">
+        <span class="ico">🛡️</span>
+        <b>密码强度检测</b>
+        <span class="sub">看清一个密码在暴力猜测下能撑多久，以及它弱在哪：重复字符、键盘连按、生日、手机号。泄露查询必须你手动确认才会联网，而且只发哈希的前 5 位，别的什么都不发。</span>
+      </a></li>
+      <li><a href="/zh/tools/cookie-parse.html">
+        <span class="ico">🍪</span>
+        <b>Cookie 解析</b>
+        <span class="sub">两种输入都认：Cookie 请求头（也就是 document.cookie 打出来的样子）会列成清单，Set-Cookie 响应头会被解出属性并逐条体检。真正危险的是「缺了属性」—— …</span>
+      </a></li>
+      <li><a href="/zh/tools/chmod-calc.html">
+        <span class="ico">🔓</span>
+        <b>chmod 权限换算</b>
+        <span class="sub">755 谁都会背，但 4755 里的那个 4、`rwxr-sr-x` 里的 s、`rwxrwxrwt` 里的 t —— 是「见过、说不清」的那几位，而它们全和提权有关。两种写法随便填一…</span>
       </a></li>
     </ul>
   </section>
@@ -356,32 +363,43 @@
   </section>
 
   <section class="group">
-    <h2><span class="g-ico">🔒</span>安全<span class="g-count">5</span></h2>
+    <h2><span class="g-ico">🎨</span>颜色<span class="g-count">3</span></h2>
     <ul class="grid">
-      <li><a href="/zh/tools/number-check.html">
-        <span class="ico">💳</span>
-        <b>银行卡 / 身份证校验</b>
-        <span class="sub">录错一位数字是最常见的失误，而校验位就是专门用来抓它的：银行卡走 Luhn 算法，身份证走 GB 11643 的校验码。全程在你设备上算，号码不上传、不保存。校验通过只说明格式合法，不…</span>
+      <li><a href="/zh/tools/color-palette.html">
+        <span class="ico">🎨</span>
+        <b>配色板生成</b>
+        <span class="sub">从一个颜色出发，拿到整套搭配：互补色、类似色、三角色，外加同色相的 7 档明度。hover、按下、禁用这几种状态照它来定，就不会越调越脏。</span>
       </a></li>
-      <li><a href="/zh/tools/password-gen.html">
-        <span class="ico">🔑</span>
-        <b>密码生成器</b>
-        <span class="sub">用浏览器的加密级随机数生成密码，可以排除容易看错的字符（0 和 O、1 和 l）—— 要念给别人听，或者在电视遥控器上输入时，这个选项很救急。</span>
+      <li><a href="/zh/tools/color-converter.html">
+        <span class="ico">🌈</span>
+        <b>颜色转换 —— HEX / RGB / HSL</b>
+        <span class="sub">颜色在 HEX、RGB、HSL 之间互转，一次把三种写法都摆出来 —— 把设计稿里的 HSL 值落到 CSS 时，这样最省事。</span>
       </a></li>
-      <li><a href="/zh/tools/password-strength.html">
-        <span class="ico">🛡️</span>
-        <b>密码强度检测</b>
-        <span class="sub">看清一个密码在暴力猜测下能撑多久，以及它弱在哪：重复字符、键盘连按、生日、手机号。泄露查询必须你手动确认才会联网，而且只发哈希的前 5 位，别的什么都不发。</span>
+      <li><a href="/zh/tools/contrast.html">
+        <span class="ico">🎚️</span>
+        <b>颜色对比度检查</b>
+        <span class="sub">对比度是个数字，不是感觉：WCAG 要求正常文字 4.5 : 1、大字 3 : 1，而浅灰配中灰经常就卡在线上一点。把两个颜色贴进来，你拿到比值和四条判定 —— 内容不出你的浏览器。</span>
       </a></li>
-      <li><a href="/zh/tools/cookie-parse.html">
-        <span class="ico">🍪</span>
-        <b>Cookie 解析</b>
-        <span class="sub">两种输入都认：Cookie 请求头（也就是 document.cookie 打出来的样子）会列成清单，Set-Cookie 响应头会被解出属性并逐条体检。真正危险的是「缺了属性」—— …</span>
+    </ul>
+  </section>
+
+  <section class="group">
+    <h2><span class="g-ico">🖼️</span>图片<span class="g-count">3</span></h2>
+    <ul class="grid">
+      <li><a href="/zh/tools/compress-image.html">
+        <span class="ico">🗜️</span>
+        <b>压缩图片，不用把它传给别人</b>
+        <span class="sub">把照片压小，不用先传到别人服务器上。图片在你浏览器里解码、缩放、重新编码，手机拍的原图常常能压到原来的几分之一 —— 原图始终留在你手机里。</span>
       </a></li>
-      <li><a href="/zh/tools/chmod-calc.html">
-        <span class="ico">🔓</span>
-        <b>chmod 权限换算</b>
-        <span class="sub">755 谁都会背，但 4755 里的那个 4、`rwxr-sr-x` 里的 s、`rwxrwxrwt` 里的 t —— 是「见过、说不清」的那几位，而它们全和提权有关。两种写法随便填一…</span>
+      <li><a href="/zh/tools/convert-image.html">
+        <span class="ico">🔄</span>
+        <b>换图片格式，不用先上传</b>
+        <span class="sub">HEIC、PNG、JPEG、WebP 互相转换，不用上传。专治两种常见情况：手机拍的照片在电脑上打不开、某个网站只收 JPEG。</span>
+      </a></li>
+      <li><a href="/zh/tools/base64-image.html">
+        <span class="ico">🖼️</span>
+        <b>图片 → Base64</b>
+        <span class="sub">把图片拖进来，直接拿到四种可粘的形态：data URI、纯 Base64、CSS 的 background-image、img 标签。Base64 会让体积**精确增加 33%** —…</span>
       </a></li>
     </ul>
   </section>
