@@ -1482,6 +1482,100 @@
         "clear"
       ],
       "options": []
+    },
+    {
+      "id": "md-table",
+      "icon": "📐",
+      "cat": "text",
+      "kind": "text",
+      "script": "md-table.js",
+      "i18n": "md-table",
+      "buttons": [
+        "copy",
+        "clear"
+      ],
+      "options": [
+        {
+          "type": "select",
+          "id": "align",
+          "label": "align",
+          "choices": [
+            [
+              "none",
+              "alignNone"
+            ],
+            [
+              "left",
+              "alignLeft"
+            ],
+            [
+              "center",
+              "alignCenter"
+            ],
+            [
+              "right",
+              "alignRight"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "env-parse",
+      "icon": "🔐",
+      "cat": "dev",
+      "kind": "text",
+      "script": "env-parse.js",
+      "i18n": "env-parse",
+      "buttons": [
+        "copy",
+        "clear"
+      ],
+      "options": [
+        {
+          "type": "select",
+          "id": "format",
+          "label": "format",
+          "choices": [
+            [
+              "json",
+              "fmtJson"
+            ],
+            [
+              "shell",
+              "fmtShell"
+            ],
+            [
+              "compose",
+              "fmtCompose"
+            ],
+            [
+              "js",
+              "fmtJs"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "url-builder",
+      "icon": "🧱",
+      "cat": "text",
+      "kind": "text",
+      "script": "url-builder.js",
+      "i18n": "url-builder",
+      "buttons": [
+        "copy",
+        "clear"
+      ],
+      "options": [
+        {
+          "type": "checkbox",
+          "id": "plus",
+          "label": "plus",
+          "checked": false
+        }
+      ]
     }
   ]
 }

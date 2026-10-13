@@ -92,7 +92,7 @@
   </section>
 
   <section class="group">
-    <h2><span class="g-ico">✍️</span>文本与数据<span class="g-count">12</span></h2>
+    <h2><span class="g-ico">✍️</span>文本与数据<span class="g-count">14</span></h2>
     <ul class="grid">
       <li><a href="/zh/tools/markdown.html">
         <span class="ico">📝</span>
@@ -154,11 +154,21 @@
         <b>Markdown 目录生成器</b>
         <span class="sub">目录本质上就是一串链接，难的地方全在锚点上：GitHub 会把标题转小写、去掉标点、每个空格换成一个连字符，重名的还要加 -1 —— 手写的话，一半的链接点下去是没反应的。把 Mark…</span>
       </a></li>
+      <li><a href="/zh/tools/md-table.html">
+        <span class="ico">📐</span>
+        <b>Markdown 表格对齐</b>
+        <span class="sub">贴一段歪掉的表格，或者别的格式的原始数据（CSV / TSV / 竖线分隔），拿回一张真正对齐的表。列宽按**显示宽度**算 —— 一个汉字占两格，而这正是别的格式化工具会错的地方。</span>
+      </a></li>
+      <li><a href="/zh/tools/url-builder.html">
+        <span class="ico">🧱</span>
+        <b>URL 构造器</b>
+        <span class="sub">第一行写基础地址，后面每行一个 `key=value`，输出完整 URL，并把每个值编码前后的样子对照列出来。手拼 URL 翻车都在编码上：值里有个 `&` 就悄悄变成两个参数，有个 …</span>
+      </a></li>
     </ul>
   </section>
 
   <section class="group">
-    <h2><span class="g-ico">⌨️</span>开发者<span class="g-count">21</span></h2>
+    <h2><span class="g-ico">⌨️</span>开发者<span class="g-count">22</span></h2>
     <ul class="grid">
       <li><a href="/zh/tools/json-path.html">
         <span class="ico">🎯</span>
@@ -265,6 +275,11 @@
         <b>HTTP 响应头解读</b>
         <span class="sub">「为什么还是旧的」和「为什么我的 Cookie 被丢了」，答案都在响应头里 —— 前提是看得懂那一堆缩写。把整段响应（含状态行）贴进来，每个头都给一句人话解释，最后把缺失的安全头单独列…</span>
       </a></li>
+      <li><a href="/zh/tools/env-parse.html">
+        <span class="ico">🔐</span>
+        <b>.env 解析</b>
+        <span class="sub">把 .env 转成下一个工具要的样子：JSON、export 语句、compose 段，或者 JavaScript 对象。.env 里装的都是密钥，所以全程在你浏览器里跑 —— 不上传…</span>
+      </a></li>
     </ul>
   </section>
 
@@ -342,7 +357,7 @@
   </section>
 
   <section class="suggest">
-    <p><span class="s-count">🧰 <b>46</b> 个工具</span><span class="s-sep">·</span>想要什么工具？ <button type="button" class="linklike fb-btn" data-u="hi" data-d="maomaowang.top" data-subject="ToolPocket tool request">写信告诉我</button></p>
+    <p><span class="s-count">🧰 <b>49</b> 个工具</span><span class="s-sep">·</span>想要什么工具？ <button type="button" class="linklike fb-btn" data-u="hi" data-d="maomaowang.top" data-subject="ToolPocket tool request">写信告诉我</button></p>
   </section>
 
   <section class="why">
@@ -386,7 +401,7 @@
 <!-- 搜索索引的绝对路径：/zh/ 与 /ja/ 页面用相对路径会 404（2026-10-12 修） -->
 <script>
   window.T = {"langName":"中文","footer":"ToolPocket · 文件不出你的设备 —— 不上传、不注册、不追踪。","nav":"全部工具","backToTools":"← 全部工具","copy":"复制结果","swap":"互换","clear":"清空","download":"下载","copied":"已复制到剪贴板","copyFail":"浏览器拦住了自动复制 —— 手动选中再复制即可","inputLabel":"输入","outputLabel":"结果","privacyNote":"全程在你浏览器里跑完 —— 不上传、不保存、不留底。","searchPlaceholder":"搜索工具 —— 试试「压缩」「json」「密码」…","noResults":"没找到匹配的工具。换个说法试试，比如「压缩」「哈希」「json」。","mobileTip":"📱 手机上能用，但<b>桌面版 Chrome 更顺</b> —— 大图压缩、批量处理快很多。","mobileTipClose":"知道了","desktopHeading":"桌面端更好用","installApp":"装成桌面应用","installHint":"用桌面版 Chrome / Edge 打开本页，点地址栏右侧的「安装」图标 —— 它会变成一个独立窗口，断网也能继续用。不用下载安装包，也不用登录。","installed":"已安装","offlineNote":"装好之后，断网也能照常用 —— 本来这些活就是在你机器上干的，跟网络没关系。","feedbackAsk":"发现 bug 了？告诉我 —— 每封都看。","feedbackButton":"反馈 bug","feedbackSubject":"ToolPocket 反馈","noResultsAsk":"没找到你想要的？告诉我你需要什么工具 —— 每条都会看。","feedbackAskHome":"发现 bug 了？或者想要某个还没有的工具？直接说 —— 每封都看。","feedbackButtonHome":"写封邮件","noResultsBtn":"提个需求","noResultsSubject":"ToolPocket 工具需求","copyright":"© 2026 ToolPocket —— 保留所有权利。未经许可，请勿转载或复制本站内容与代码。","cancel":"取消","confirmOk":"确定","clearAsk":"清空刚输入的内容？这一步没法撤销。","clearOk":"清空"};
-  window.TP_INDEX_URL = "/assets/search.json?v=87e671aa";
+  window.TP_INDEX_URL = "/assets/search.json?v=6baf377e";
 </script>
 <script src="/assets/search.js?v=57c6f6fe" defer></script>
 <script>

@@ -1,0 +1,102 @@
+{
+  "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
+  "en": {
+    "title": "Markdown table formatter and generator — ToolPocket",
+    "desc": "Line up a messy Markdown table, or turn CSV / TSV / pipe-separated data into one. Column widths are measured in display width, so CJK text lines up too.",
+    "h1": "Markdown table formatter",
+    "lead": "Paste a crooked table — or raw CSV, TSV or pipe-separated rows — and get a table that is actually lined up.<br>Widths are measured in display columns, because a Chinese character takes two of them, which is exactly where other formatters go wrong.",
+    "faq": [
+      [
+        "Why do my tables look lined up in the editor but crooked when rendered?",
+        "Because the source is aligned by space count while the rendering uses display width. CJK characters, full-width punctuation and emoji occupy two columns but count as one character. Aligning by character count makes the source look tidy and the output look wrong — this tool measures the real display width instead."
+      ],
+      [
+        "It mangled a cell that contained a pipe character.",
+        "In Markdown a literal pipe inside a cell has to be written \\|, and this tool understands that escape and keeps it. If a cell arrived unescaped, the parser cannot tell a delimiter from content — no tool can, because that information is simply not in the text."
+      ],
+      [
+        "What alignment options are there?",
+        "Left, centre and right, written as the colon forms (:---, :---:, ---:) that most Markdown flavours support. Centring is done by padding cells rather than by changing the separator, so the table stays valid even in renderers that ignore alignment."
+      ]
+    ],
+    "ui": {
+      "inputPh": "| Name | Description |\n|---|---|\n| tool | a small tool |\n\nor raw data:\nName,Description\ntool,a small tool",
+      "outputPh": "The aligned table appears here",
+      "align": "Alignment",
+      "alignNone": "Default (---)",
+      "alignLeft": "Left (:---)",
+      "alignCenter": "Centre (:---:)",
+      "alignRight": "Right (---:)",
+      "statOk": "{r} rows · {c} columns · separator detected: {d}",
+      "statEmpty": "Paste a table or some data to get started",
+      "errNothing": "Nothing table-shaped in there",
+      "nothingToCopy": "Nothing to copy yet"
+    }
+  },
+  "zh": {
+    "title": "Markdown 表格对齐与生成 — ToolPocket",
+    "desc": "把写歪的 Markdown 表格重新对齐，或把 CSV / TSV / 竖线分隔的数据直接变成表格。列宽按显示宽度算，中文也能对齐。",
+    "h1": "Markdown 表格对齐",
+    "lead": "贴一段歪掉的表格，或者别的格式的原始数据（CSV / TSV / 竖线分隔），拿回一张真正对齐的表。<br>列宽按**显示宽度**算 —— 一个汉字占两格，而这正是别的格式化工具会错的地方。",
+    "faq": [
+      [
+        "为什么我的表格在编辑器里看着对齐，渲染出来是歪的？",
+        "因为源码是按字符数补空格的，而渲染看的是显示宽度。中文、全角标点、emoji 都占两格却只算一个字符 —— 按字符数对齐的结果就是「源码整齐、渲染错位」。本工具数的是真实显示宽度。"
+      ],
+      [
+        "有个格子里含竖线，结果被拆成两列了。",
+        "Markdown 里格子内的竖线必须写成 `\\|`，本工具认这个转义并会保留它。如果粘进来的内容本来就没转义，那解析器无法区分「分隔符」和「内容」—— 换成任何工具都一样，因为这个信息在文本里根本不存在。"
+      ],
+      [
+        "对齐方式有哪些？",
+        "左、居中、右三种，写成 `:---`、`:---:`、`---:` 这几种大多数 Markdown 方言都认的形式。居中是通过补空格实现的，不去改分隔符，所以在忽略对齐的渲染器里也不会出错。"
+      ]
+    ],
+    "ui": {
+      "inputPh": "| 名称 | 说明 |\n|---|---|\n| tool | 这是一个工具 |\n\n或者原始数据：\n名称,说明\ntool,这是一个工具",
+      "outputPh": "对齐后的表格显示在这里",
+      "align": "对齐方式",
+      "alignNone": "默认（---）",
+      "alignLeft": "左对齐（:---）",
+      "alignCenter": "居中（:---:）",
+      "alignRight": "右对齐（---:）",
+      "statOk": "{r} 行 · {c} 列 · 识别到的分隔符：{d}",
+      "statEmpty": "先把表格或数据贴进来",
+      "errNothing": "这里没有像表格的内容",
+      "nothingToCopy": "还没有可复制的内容"
+    }
+  },
+  "ja": {
+    "title": "Markdown テーブルの整形と生成 — ToolPocket",
+    "desc": "崩れた Markdown テーブルを揃え直したり、CSV / TSV / パイプ区切りのデータから表を作ります。列幅は表示幅で計算するため、日本語や中国語も揃います。",
+    "h1": "Markdown テーブル整形",
+    "lead": "崩れた表、あるいは生のデータ(CSV / TSV / パイプ区切り)を貼り付けると、きちんと揃った表になります。<br>列幅は**表示幅**で計算します。全角文字は 2 桁を占めるのに 1 文字と数えられる——そこが他の整形ツールが崩れる原因です。",
+    "faq": [
+      [
+        "エディタでは揃って見えるのに、表示すると崩れるのはなぜ？",
+        "ソースは文字数で空白を足しているのに対し、表示は表示幅で揃えるからです。日本語や中国語、全角記号、絵文字は 2 桁を占めますが 1 文字として数えられます。文字数で揃えると「ソースは綺麗、表示は崩れ」になります。本ツールは実際の表示幅を数えます。"
+      ],
+      [
+        "セルにパイプ記号が入っていて 2 列に割れました。",
+        "Markdown ではセル内のパイプは `\\|` と書く必要があり、本ツールはそのエスケープを理解して保持します。元のテキストにエスケープが無い場合、解析側は「区切り」と「中身」を区別できません。テキストにその情報が存在しないため、どのツールでも同じです。"
+      ],
+      [
+        "揃え方は何がありますか？",
+        "左寄せ・中央・右寄せの 3 つで、多くの方言が対応する `:---`、`:---:`、`---:` の形で出力します。中央寄せは空白で調整し、区切り行の記号は変えないため、揃えを無視するレンダラーでも壊れません。"
+      ]
+    ],
+    "ui": {
+      "inputPh": "| 名称 | 説明 |\n|---|---|\n| tool | これはツールです |\n\nまたは生データ:\n名称,説明\ntool,これはツールです",
+      "outputPh": "揃えた表がここに出ます",
+      "align": "揃え方",
+      "alignNone": "既定（---）",
+      "alignLeft": "左寄せ（:---）",
+      "alignCenter": "中央（:---:）",
+      "alignRight": "右寄せ（---:）",
+      "statOk": "{r} 行 · {c} 列 · 判別した区切り: {d}",
+      "statEmpty": "まず表かデータを貼り付けてください",
+      "errNothing": "表らしき内容がありません",
+      "nothingToCopy": "コピーできる内容がまだありません"
+    }
+  }
+}

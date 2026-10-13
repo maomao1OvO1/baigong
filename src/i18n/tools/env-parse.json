@@ -1,0 +1,108 @@
+{
+  "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
+  "en": {
+    "title": "env file parser and converter (JSON · shell · compose) — ToolPocket",
+    "desc": "Parse a .env file into JSON, shell export statements, a docker-compose environment block or a JavaScript object. Quoting, comments and multi-line values handled.",
+    "h1": "env parser",
+    "lead": "Turn a .env into whatever the next tool wants: JSON, export statements, a compose block or a JavaScript object.<br>A .env holds your secrets, so this runs entirely in your browser — nothing is uploaded.",
+    "faq": [
+      [
+        "Which odd bits of .env syntax are handled?",
+        "An export prefix, single quotes (taken literally, as the shell does), double quotes (\\n and \\t escapes are honoured, and the value may span several lines), unquoted values with a trailing # comment, and keys containing dots. What is not done: variable interpolation — ${OTHER} is left exactly as written, because resolving it depends on the runtime environment."
+      ],
+      [
+        "The output still contains my real secrets. What should I watch out for?",
+        "That converting a file does not declassify it. The commonest leak path is a key pasted into a commit, an issue or a chat message after a conversion like this. If a key ever lands somewhere it should not, rotate it — deleting the message is not enough."
+      ],
+      [
+        "Why does the shell output wrap every value in single quotes?",
+        "Because that is the only form that survives every value literally. Without quoting, spaces split a value and $, backticks and ! get expanded by the shell; double quotes would still expand $. The one special case is an apostrophe, written as '\\'' — which is why the output looks like that."
+      ]
+    ],
+    "ui": {
+      "inputPh": "# database\nexport DATABASE_URL=\"postgres://user:pass@localhost:5432/db\"\nAPI_KEY='sk-live-abc123'\nDEBUG=false   # trailing comment\n\n# a multi-line value is legal inside double quotes\nCERT=\"-----BEGIN-----\nline2\n-----END-----\"",
+      "outputPh": "The converted result appears here",
+      "format": "Output format",
+      "fmtJson": "JSON object",
+      "fmtShell": "shell export",
+      "fmtCompose": "docker-compose environment",
+      "fmtJs": "JavaScript object",
+      "statOk": "{n} variables",
+      "statSkipped": "{n} lines skipped (not KEY=VALUE)",
+      "statMulti": "{n} multi-line values",
+      "statEmpty": "Paste a .env file to get started",
+      "errNothing": "No KEY=VALUE lines found in there",
+      "nothingToCopy": "Nothing to copy yet"
+    }
+  },
+  "zh": {
+    "title": ".env 解析与转换（JSON · shell · compose）— ToolPocket",
+    "desc": "把 .env 解析成 JSON 对象、shell 的 export 语句、docker-compose 的 environment 段或 JavaScript 对象。引号、注释、跨行值都按真实规则处理。",
+    "h1": ".env 解析",
+    "lead": "把 .env 转成下一个工具要的样子：JSON、export 语句、compose 段，或者 JavaScript 对象。<br>.env 里装的都是密钥，所以全程在你浏览器里跑 —— 不上传任何内容。",
+    "faq": [
+      [
+        "哪些 .env 的古怪写法它认？",
+        "`export` 前缀、单引号（照 shell 规则原样取值）、双引号（认 `\\n` `\\t` 转义，且值**可以跨行**）、无引号值后面跟的 `#` 行尾注释、含点号的键名。**不做**的是变量插值 —— `${OTHER}` 保持原样，因为它取决于运行环境。"
+      ],
+      [
+        "转出来的结果里还是明文密钥，要注意什么？",
+        "要注意「转换不等于脱敏」。最常见的泄漏路径就是：转完之后把密钥粘进了提交、工单或聊天窗口。密钥一旦落到不该在的地方，正确做法是**轮换**它，删掉消息并不够。"
+      ],
+      [
+        "为什么 shell 格式的每个值都用单引号包起来？",
+        "因为只有这种写法能让任何值都原样保留。不加引号时空格会切开值，`$`、反引号、`!` 会被 shell 展开；双引号也挡不住 `$`。唯一的特例是值里的单引号本身，写成 `'\\''` —— 输出里看着别扭就是这么来的。"
+      ]
+    ],
+    "ui": {
+      "inputPh": "# 数据库\nexport DATABASE_URL=\"postgres://user:pass@localhost:5432/db\"\nAPI_KEY='sk-live-abc123'\nDEBUG=false   # 行尾注释\n\n# 双引号里允许跨行\nCERT=\"-----BEGIN-----\nline2\n-----END-----\"",
+      "outputPh": "转换结果显示在这里",
+      "format": "输出格式",
+      "fmtJson": "JSON 对象",
+      "fmtShell": "shell export",
+      "fmtCompose": "docker-compose environment",
+      "fmtJs": "JavaScript 对象",
+      "statOk": "{n} 个变量",
+      "statSkipped": "{n} 行被跳过（不是 KEY=VALUE）",
+      "statMulti": "{n} 个跨行值",
+      "statEmpty": "先把 .env 贴进来",
+      "errNothing": "这里没有 KEY=VALUE 形式的行",
+      "nothingToCopy": "还没有可复制的内容"
+    }
+  },
+  "ja": {
+    "title": ".env の解析と変換（JSON · shell · compose）— ToolPocket",
+    "desc": ".env を JSON オブジェクト、shell の export 文、docker-compose の environment ブロック、JavaScript オブジェクトに変換します。引用符・コメント・複数行の値に対応。",
+    "h1": ".env 解析",
+    "lead": ".env を次の道具が求める形に変換します。JSON、export 文、compose のブロック、JavaScript オブジェクト。<br>.env には鍵が入っているので、処理はすべてブラウザ内で完結し、どこにも送信しません。",
+    "faq": [
+      [
+        "どんな .env の書き方に対応していますか？",
+        "`export` 接頭辞、単一引用符(shell と同じく中身をそのまま)、二重引用符(`\\n` `\\t` のエスケープを解釈し、値は**複数行**にまたがれます)、引用符なしの値に続く `#` 行末コメント、ドットを含むキー名。**行わない**のは変数展開です —— `${OTHER}` はそのまま残します。実行時の環境に依存するためです。"
+      ],
+      [
+        "変換結果には鍵が平文のまま残ります。注意点は？",
+        "「変換しても機密性は下がらない」ということです。最も多い漏洩経路は、変換後にコミットやチケット、チャットへ貼ってしまうことです。しかるべき場所に鍵が渡ってしまったら、正しい対処は**ローテーション**であり、メッセージの削除では足りません。"
+      ],
+      [
+        "shell 形式で値がすべて単一引用符で囲まれるのはなぜ？",
+        "それだけが、どの値でもそのまま保てる書き方だからです。引用符なしでは空白が値を分割し、`$`、バッククォート、`!` は shell が展開します。二重引用符でも `$` は防げません。唯一の例外は値に含まれる単一引用符で、`'\\''` と書きます。見た目が妙なのはそのためです。"
+      ]
+    ],
+    "ui": {
+      "inputPh": "# データベース\nexport DATABASE_URL=\"postgres://user:pass@localhost:5432/db\"\nAPI_KEY='sk-live-abc123'\nDEBUG=false   # 行末コメント\n\n# 二重引用符の中では複数行も可\nCERT=\"-----BEGIN-----\nline2\n-----END-----\"",
+      "outputPh": "変換結果がここに出ます",
+      "format": "出力形式",
+      "fmtJson": "JSON オブジェクト",
+      "fmtShell": "shell export",
+      "fmtCompose": "docker-compose environment",
+      "fmtJs": "JavaScript オブジェクト",
+      "statOk": "変数 {n} 個",
+      "statSkipped": "{n} 行をスキップ(KEY=VALUE ではありません)",
+      "statMulti": "複数行の値 {n} 個",
+      "statEmpty": "まず .env を貼り付けてください",
+      "errNothing": "KEY=VALUE 形式の行が見つかりません",
+      "nothingToCopy": "コピーできる内容がまだありません"
+    }
+  }
+}

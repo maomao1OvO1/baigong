@@ -1,0 +1,102 @@
+{
+  "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
+  "en": {
+    "title": "URL builder — add query parameters safely — ToolPocket",
+    "desc": "Build a URL from a base address plus one key=value per line, with correct percent-encoding and a before/after table for every value.",
+    "h1": "URL builder",
+    "lead": "First line: the base address. Every line after it: one key=value. Out comes the full URL, with each value shown before and after encoding.<br>Unencoded characters are where hand-built URLs break — a value containing & silently becomes two parameters, and one containing # swallows the rest of the URL.",
+    "faq": [
+      [
+        "Should spaces be encoded as %20 or as +?",
+        "It depends on where the value lands. In a query string parsed as application/x-www-form-urlencoded, + means a space. Everywhere else — path segments, fragments, and APIs that decode by hand — + is a literal plus sign. The toggle is there because only the receiving side knows which convention it follows."
+      ],
+      [
+        "Why was a parameter already in my URL not re-encoded?",
+        "On purpose. Decoding and re-encoding is not a round trip: a + in an existing value turns into a real space, and an already-encoded value gets double-encoded, which breaks signatures and tokens. Existing parameters are passed through byte for byte; only the ones you add are encoded."
+      ],
+      [
+        "Which characters actually need encoding?",
+        "Reserved ones: & separates parameters, = separates key from value, # starts the fragment, ? starts the query, % introduces an escape. Space, plus and non-ASCII characters are also unsafe in practice — some servers, proxies and log pipelines cut a URL at the first one they dislike. This tool flags any value containing them."
+      ]
+    ],
+    "ui": {
+      "inputPh": "https://example.com/search\nq=coffee mug\npage=2\ntags=a&b\n\n# lines starting with # are notes and are skipped",
+      "outputPh": "The finished URL, plus a before/after table",
+      "plus": "Encode spaces as + (form style) instead of %20",
+      "tableTitle": "what each value became",
+      "riskyNote": "note: {s} contains characters that have meaning inside a URL — they are encoded above, and that encoding is what keeps the URL from breaking apart",
+      "schemeNote": "note: the base address has no http:// or https:// prefix — a URL without a scheme is not absolute, and some clients will treat it as a relative path",
+      "rawTitle": "length of the finished URL",
+      "chars": "characters",
+      "statOk": "{n} parameters · {m} added here",
+      "statEmpty": "First line: the base address. Then one key=value per line.",
+      "nothingToCopy": "Nothing to copy yet"
+    }
+  },
+  "zh": {
+    "title": "URL 构造器 —— 安全地加查询参数 — ToolPocket",
+    "desc": "基础地址加每行一个 key=value，拼成完整 URL，并给出每个值编码前后的对照。特殊字符会被正确编码。",
+    "h1": "URL 构造器",
+    "lead": "第一行写基础地址，后面每行一个 `key=value`，输出完整 URL，并把每个值编码前后的样子对照列出来。<br>手拼 URL 翻车都在编码上：值里有个 `&` 就悄悄变成两个参数，有个 `#` 就把后面整段吞掉。",
+    "faq": [
+      [
+        "空格该编成 %20 还是 + ？",
+        "看这个值最终落在哪儿。在按 application/x-www-form-urlencoded 解析的查询串里，`+` 表示空格；但路径段、锚点、以及自己手动解码的接口里，`+` 就是个加号。做成开关是因为只有接收方知道它按哪种约定解析。"
+      ],
+      [
+        "为什么原 URL 里已有的参数没有被重新编码？",
+        "故意的。解码再编码不是往返：原有值里的 `+` 会变成真空格，已经编码过的值会被**二次编码**，签名和 token 当场就废。所以已有参数按字节原样带过去，只对你新加的参数做编码。"
+      ],
+      [
+        "到底哪些字符需要编码？",
+        "保留字符：`&` 分隔参数、`=` 分隔键值、`#` 开锚点、`?` 开查询串、`%` 是转义前缀。空格、加号和所有非 ASCII 字符在实际链路里也不安全 —— 某些服务端、代理和日志管道遇到它们就把 URL 截断。本工具会把含这些字符的值单独点出来。"
+      ]
+    ],
+    "ui": {
+      "inputPh": "https://example.com/search\nq=中文 关键词\npage=2\ntags=a&b\n\n# 以 # 开头的行是说明，会被跳过",
+      "outputPh": "拼好的 URL，以及编码前后对照",
+      "plus": "空格编成 + （表单风格）而不是 %20",
+      "tableTitle": "每个值变成了什么",
+      "riskyNote": "提醒：{s} 里含有在 URL 中有特殊含义的字符 —— 上面已经编码，正是这层编码保证了 URL 不会被拆坏",
+      "schemeNote": "提醒：基础地址没有 http:// 或 https:// 前缀 —— 没有协议头的 URL 不是绝对地址，有些客户端会把它当成相对路径",
+      "rawTitle": "成品 URL 的长度",
+      "chars": "个字符",
+      "statOk": "共 {n} 个参数 · 本次新增 {m} 个",
+      "statEmpty": "第一行写基础地址，之后每行一个 key=value",
+      "nothingToCopy": "还没有可复制的内容"
+    }
+  },
+  "ja": {
+    "title": "URL ビルダー — クエリパラメータを安全に付ける — ToolPocket",
+    "desc": "ベースアドレスと 1 行 1 つの key=value から URL を組み立てます。正しいパーセントエンコードと、値ごとの変換前後の対応表付き。",
+    "h1": "URL ビルダー",
+    "lead": "1 行目にベースアドレス、以降は 1 行に 1 つ `key=value`。完成した URL と、各値のエンコード前後が並びます。<br>手で組んだ URL が壊れるのはエンコードのせいです。値に `&` が入ると黙って 2 つのパラメータになり、`#` が入ると以降が丸ごと飲み込まれます。",
+    "faq": [
+      [
+        "空白は %20 と + のどちらにすべき？",
+        "値がどこで解釈されるかによります。application/x-www-form-urlencoded として解析されるクエリ文字列では `+` が空白を意味しますが、パス部分やフラグメント、自前でデコードする API では `+` はただのプラス記号です。どちらの規約かは受け取る側しか知らないため、切り替えを用意しています。"
+      ],
+      [
+        "元の URL にあったパラメータが再エンコードされないのはなぜ？",
+        "意図的です。デコードして再エンコードするのは往復になりません。既存の値の `+` は本物の空白になり、すでにエンコード済みの値は**二重エンコード**され、署名やトークンがその場で壊れます。既存のパラメータはバイト単位でそのまま通し、新しく追加した分だけをエンコードします。"
+      ],
+      [
+        "どの文字をエンコードする必要がありますか？",
+        "予約文字です。`&` はパラメータの区切り、`=` はキーと値の区切り、`#` はフラグメントの開始、`?` はクエリの開始、`%` はエスケープの導入です。空白・プラス・非 ASCII 文字も実際の経路では安全ではありません。サーバーやプロキシ、ログ基盤がそこで URL を切ることがあります。本ツールは該当する値を個別に指摘します。"
+      ]
+    ],
+    "ui": {
+      "inputPh": "https://example.com/search\nq=日本語 キーワード\npage=2\ntags=a&b\n\n# # で始まる行はメモとして扱い、無視します",
+      "outputPh": "完成した URL と、変換前後の対応表",
+      "plus": "空白を + にする（フォーム形式。%20 ではなく）",
+      "tableTitle": "各値がどうなったか",
+      "riskyNote": "注意: {s} に URL 内で特別な意味を持つ文字が含まれています。上でエンコード済みで、この処理が URL の崩壊を防いでいます",
+      "schemeNote": "注意: ベースアドレスに http:// や https:// がありません。スキームの無い URL は絶対アドレスではなく、相対パスとして扱うクライアントもあります",
+      "rawTitle": "完成した URL の長さ",
+      "chars": "文字",
+      "statOk": "パラメータ {n} 個 · 今回追加 {m} 個",
+      "statEmpty": "1 行目にベースアドレス、以降は 1 行に 1 つ key=value",
+      "nothingToCopy": "コピーできる内容がまだありません"
+    }
+  }
+}

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>.env 解析与转换（JSON · shell · compose）— ToolPocket</title>
+<meta name="description" content="把 .env 解析成 JSON 对象、shell 的 export 语句、docker-compose 的 environment 段或 JavaScript 对象。引号、注释、跨行值都按真实规则处理。">
+<link rel="canonical" href="https://tools.maomaowang.top/zh/tools/env-parse.html">
+<meta property="og:title" content=".env 解析与转换（JSON · shell · compose）— ToolPocket">
+<meta property="og:description" content="把 .env 解析成 JSON 对象、shell 的 export 语句、docker-compose 的 environment 段或 JavaScript 对象。引号、注释、跨行值都按真实规则处理。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/zh/tools/env-parse.html">
+<!-- 分享预览图：微信/QQ/Telegram/Twitter 都读这几行。尺寸按通用标准 1200×630（1.91:1），
+     微信会把它裁成正方形显示，所以图里关键信息都放在中间。三语各一张。 -->
+<meta property="og:image" content="https://tools.maomaowang.top/assets/og-zh.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/env-parse.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/env-parse.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/env-parse.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/env-parse.html">
+<link rel="stylesheet" href="/assets/style.css?v=558fbd6b">
+<meta name="theme-color" content="#2563eb">
+<!-- 作者信息：既是署名，也是"这站有主"的凭据（扒站的人容易忽略，但删掉它就是加重侵权情节） -->
+<meta name="author" content="maomaowang.top">
+<meta name="build" content="2026-10-14">
+<meta name="x-src" content="dG9vbHMubWFvbWFvd2FuZy50b3A6OjIwMjYtMTAtMTQ=">
+<link rel="author" href="https://maomaowang.top/">
+<link rel="icon" href="/assets/icon-192.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/zh/manifest.webmanifest">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":".env 解析","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"把 .env 解析成 JSON 对象、shell 的 export 语句、docker-compose 的 environment 段或 JavaScript 对象。引号、注释、跨行值都按真实规则处理。"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"哪些 .env 的古怪写法它认？","acceptedAnswer":{"@type":"Answer","text":"`export` 前缀、单引号（照 shell 规则原样取值）、双引号（认 `\\n` `\\t` 转义，且值**可以跨行**）、无引号值后面跟的 `#` 行尾注释、含点号的键名。**不做**的是变量插值 —— `${OTHER}` 保持原样，因为它取决于运行环境。"}},{"@type":"Question","name":"转出来的结果里还是明文密钥，要注意什么？","acceptedAnswer":{"@type":"Answer","text":"要注意「转换不等于脱敏」。最常见的泄漏路径就是：转完之后把密钥粘进了提交、工单或聊天窗口。密钥一旦落到不该在的地方，正确做法是**轮换**它，删掉消息并不够。"}},{"@type":"Question","name":"为什么 shell 格式的每个值都用单引号包起来？","acceptedAnswer":{"@type":"Answer","text":"因为只有这种写法能让任何值都原样保留。不加引号时空格会切开值，`$`、反引号、`!` 会被 shell 展开；双引号也挡不住 `$`。唯一的特例是值里的单引号本身，写成 `'\\''` —— 输出里看着别扭就是这么来的。"}}]}</script>
+</head>
+<body>
+<!--
+  ================================================================
+  © 2026 ToolPocket · tools.maomaowang.top · 原创作品，保留所有权利
+  本页由作者独立开发并持续维护。未经授权复制、镜像、二次发布本页
+  内容或代码均属侵权；页面内含来源标记（ts2t-tools/env-parse），可追溯出处。
+  legacy-build-id: 746f6f6c732e6d616f6d616f77616e672e746f703a3a323032362d31302d3132
+  （这串是十六进制，不是什么校验码：解出来是作者与构建日期。）
+  ================================================================
+-->
+<span hidden aria-hidden="true" data-mark="ts2t:maomaowang:ts2t-tools/env-parse"></span>
+<!-- stats-endpoint: gbbyf.znbznbjnat.gbc   (rot13, 2024 年就在用的老写法) -->
+<div class="mobile-tip" id="mobileTip" hidden>
+  <span>📱 手机上能用，但<b>桌面版 Chrome 更顺</b> —— 大图压缩、批量处理快很多。</span>
+  <button type="button" id="tipClose" class="tip-close">知道了</button>
+</div>
+<header class="top">
+  <a class="brand" href="/zh/index.html">🧰 ToolPocket</a>
+  <nav class="langs"><a class="ad-link" href="/zh/advertise.html">广告位招租</a><a href="/tools/env-parse.html">English</a><a href="/zh/tools/env-parse.html" class="on" aria-current="page">中文</a><a href="/ja/tools/env-parse.html">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/zh/index.html">← 全部工具</a></p>
+  <h1>.env 解析</h1>
+  <p class="lead">把 .env 转成下一个工具要的样子：JSON、export 语句、compose 段，或者 JavaScript 对象。<br>.env 里装的都是密钥，所以全程在你浏览器里跑 —— 不上传任何内容。</p>
+
+  <p class="badge-line"><span class="pill">全程在你浏览器里跑完 —— 不上传、不保存、不留底。</span></p>
+
+<div class="panel">
+<label class="row lbl" for="input">输入</label>
+  <textarea id="input" class="tall" placeholder="# 数据库
+export DATABASE_URL=&quot;postgres://user:pass@localhost:5432/db&quot;
+API_KEY='sk-live-abc123'
+DEBUG=false   # 行尾注释
+
+# 双引号里允许跨行
+CERT=&quot;-----BEGIN-----
+line2
+-----END-----&quot;"></textarea>
+  <div class="opts">
+<label class="row"><span class="lbl">输出格式</span><select id="format"><option value="json">JSON 对象</option><option value="shell">shell export</option><option value="compose">docker-compose environment</option><option value="js">JavaScript 对象</option></select></label>
+  </div>
+<label class="row lbl" for="output">结果</label>
+  <textarea id="output" readonly placeholder="转换结果显示在这里"></textarea>
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">复制结果</button>
+    <button class="ghost" id="clear">清空</button>
+  </div>
+</div>
+
+<aside class="ad ad-tool-game">
+  <span class="ad-label">自己人做的</span>
+  <span class="ad-ico" aria-hidden="true">🎮</span>
+  <div class="ad-body">
+    <b>🎮 自己写的小游戏合集</b>
+    <p>塔防、2048、五子棋、打字测试、猜数字…都是一个人从零写的，没有用现成引擎。</p>
+  </div>
+  <a class="ad-cta" href="https://maomaowang.top/games.html">去玩两把 →</a>
+</aside>
+
+  <section class="faq">
+    <h2>常见问题</h2>
+    <details><summary>哪些 .env 的古怪写法它认？</summary><p>`export` 前缀、单引号（照 shell 规则原样取值）、双引号（认 `\n` `\t` 转义，且值**可以跨行**）、无引号值后面跟的 `#` 行尾注释、含点号的键名。**不做**的是变量插值 —— `${OTHER}` 保持原样，因为它取决于运行环境。</p></details>
+    <details><summary>转出来的结果里还是明文密钥，要注意什么？</summary><p>要注意「转换不等于脱敏」。最常见的泄漏路径就是：转完之后把密钥粘进了提交、工单或聊天窗口。密钥一旦落到不该在的地方，正确做法是**轮换**它，删掉消息并不够。</p></details>
+    <details><summary>为什么 shell 格式的每个值都用单引号包起来？</summary><p>因为只有这种写法能让任何值都原样保留。不加引号时空格会切开值，`$`、反引号、`!` 会被 shell 展开；双引号也挡不住 `$`。唯一的特例是值里的单引号本身，写成 `'\''` —— 输出里看着别扭就是这么来的。</p></details>
+  </section>
+
+</main>
+
+<footer>
+  <p>ToolPocket · 文件不出你的设备 —— 不上传、不注册、不追踪。</p>
+  <p class="copy">© 2026 ToolPocket —— 保留所有权利。未经许可，请勿转载或复制本站内容与代码。</p>
+  <p class="fb">
+    <span>发现 bug 了？告诉我 —— 每封都看。</span>
+    <button type="button" class="ghost fb-btn" id="feedbackBtn" data-u="hi" data-d="maomaowang.top">反馈 bug</button>
+  </p>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = "{\"langName\":\"中文\",\"footer\":\"ToolPocket · 文件不出你的设备 —— 不上传、不注册、不追踪。\",\"nav\":\"全部工具\",\"backToTools\":\"← 全部工具\",\"copy\":\"复制结果\",\"swap\":\"互换\",\"clear\":\"清空\",\"download\":\"下载\",\"copied\":\"已复制到剪贴板\",\"copyFail\":\"浏览器拦住了自动复制 —— 手动选中再复制即可\",\"inputLabel\":\"输入\",\"outputLabel\":\"结果\",\"privacyNote\":\"全程在你浏览器里跑完 —— 不上传、不保存、不留底。\",\"searchPlaceholder\":\"搜索工具 —— 试试「压缩」「json」「密码」…\",\"noResults\":\"没找到匹配的工具。换个说法试试，比如「压缩」「哈希」「json」。\",\"mobileTip\":\"📱 手机上能用，但<b>桌面版 Chrome 更顺</b> —— 大图压缩、批量处理快很多。\",\"mobileTipClose\":\"知道了\",\"desktopHeading\":\"桌面端更好用\",\"installApp\":\"装成桌面应用\",\"installHint\":\"用桌面版 Chrome / Edge 打开本页，点地址栏右侧的「安装」图标 —— 它会变成一个独立窗口，断网也能继续用。不用下载安装包，也不用登录。\",\"installed\":\"已安装\",\"offlineNote\":\"装好之后，断网也能照常用 —— 本来这些活就是在你机器上干的，跟网络没关系。\",\"feedbackAsk\":\"发现 bug 了？告诉我 —— 每封都看。\",\"feedbackButton\":\"反馈 bug\",\"feedbackSubject\":\"ToolPocket 反馈\",\"noResultsAsk\":\"没找到你想要的？告诉我你需要什么工具 —— 每条都会看。\",\"feedbackAskHome\":\"发现 bug 了？或者想要某个还没有的工具？直接说 —— 每封都看。\",\"feedbackButtonHome\":\"写封邮件\",\"noResultsBtn\":\"提个需求\",\"noResultsSubject\":\"ToolPocket 工具需求\",\"copyright\":\"© 2026 ToolPocket —— 保留所有权利。未经许可，请勿转载或复制本站内容与代码。\",\"cancel\":\"取消\",\"confirmOk\":\"确定\",\"clearAsk\":\"清空刚输入的内容？这一步没法撤销。\",\"clearOk\":\"清空\",\"inputPh\":\"# 数据库\\nexport DATABASE_URL=\\\"postgres://user:pass@localhost:5432/db\\\"\\nAPI_KEY='sk-live-abc123'\\nDEBUG=false   # 行尾注释\\n\\n# 双引号里允许跨行\\nCERT=\\\"-----BEGIN-----\\nline2\\n-----END-----\\\"\",\"outputPh\":\"转换结果显示在这里\",\"format\":\"输出格式\",\"fmtJson\":\"JSON 对象\",\"fmtShell\":\"shell export\",\"fmtCompose\":\"docker-compose environment\",\"fmtJs\":\"JavaScript 对象\",\"statOk\":\"{n} 个变量\",\"statSkipped\":\"{n} 行被跳过（不是 KEY=VALUE）\",\"statMulti\":\"{n} 个跨行值\",\"statEmpty\":\"先把 .env 贴进来\",\"errNothing\":\"这里没有 KEY=VALUE 形式的行\",\"nothingToCopy\":\"还没有可复制的内容\"}";</script>
+<script src="/assets/tools/_shared.js?v=62a587aa" defer></script>
+<!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
+<script src="/assets/tools/env-parse.js?v=a545c41d" defer></script>
+<script src="/assets/app.js?v=dd536e7e" defer></script>
+</body>
+</html>

@@ -1440,5 +1440,117 @@ console.log("\n㉙ 第五批新工具的关键算法（SQL 格式化 · HTTP 头
   }
 }
 
+console.log("\n㉚ 第六批新工具的关键算法（Markdown 表格 · .env 解析 · URL 构造）");
+{
+  const ui = (name) => { const j = JSON.parse(fs.readFileSync(path.join(ROOT, "src/i18n/tools", name + ".json"), "utf8")); return j.en.ui; };
+  const U = (n, extra) => Object.assign(readUi("en"), ui(n), extra || {});
+
+  // ① Markdown 表格（显示宽度 · 转义竖线 · CSV 输入 · 列数补齐）
+  {
+    const { els } = loadTool("md-table.js",
+      ["input", "output", "status", "copy", "clear", "align"], U("md-table"), {});
+
+    els.input.value = "| a | 中文 |\n|---|---|\n| b | x |"; els.input.fire("input");
+    const out = els.output.value;
+    /* ⚠️ 这条断言就是在测「显示宽度」：中文占 2 格，所以第二列宽 4。
+       按字符数算的实现在这里会输出 `| b | x   |`（少一格），一测就露。 */
+    if (/^\| a   \| 中文 \|$/m.test(out) && /^\| b   \| x    \|$/m.test(out))
+      ok("md-table：列宽按显示宽度算（中文占 2 格），中英混排也能对齐");
+    else bad("md-table：显示宽度对齐不对", out);
+
+    // 格子里转义的竖线是内容：必须**原样带着 `\|` 出去**，还原成裸 | 会把表格撑坏
+    els.input.value = "| a | b \\| c |\n|---|---|\n| 1 | 2 |"; els.input.fire("input");
+    const esc = els.output.value;
+    if (esc.split("\n")[0] === "| a   | b \\| c |")
+      ok("md-table：格子里转义的竖线原样保留（还原成裸 | 会让表格多出一列）");
+    else bad("md-table：转义竖线处理不对", esc);
+
+    els.input.value = "name,note\ntool,\"has, comma\"\nother,plain"; els.input.fire("input");
+    const csv = els.output.value;
+    if (/^\| name\s+\| note\s+\|$/m.test(csv) && csv.includes("has, comma"))
+      ok("md-table：CSV 输入识别引号包裹（引号里的逗号不算分隔）");
+    else bad("md-table：CSV 解析不对", csv);
+
+    els.input.value = "| a | b |\n|---|---|\n| 1 |"; els.input.fire("input");
+    if (/^\| 1   \|     \|$/m.test(els.output.value))
+      ok("md-table：短行自动补空列，生成的表格不会缺列");
+    else bad("md-table：列数补齐不对", els.output.value);
+  }
+
+  // ② .env 解析（引号规则 · 跨行值 · 注释 · 四种输出）
+  {
+    const { els } = loadTool("env-parse.js",
+      ["input", "output", "status", "copy", "clear", "format"], U("env-parse"), {});
+
+    els.input.value = "# note\nA=1\nexport B=\"two\"\nC='three'\nD=multi   # tail comment";
+    els.input.fire("input");
+    const json = els.output.value;
+    if (json.includes('"A": "1"') && json.includes('"B": "two"') && json.includes('"C": "three"') && json.includes('"D": "multi"'))
+      ok(".env：export 前缀、单双引号、无引号值的行尾注释都解析正确");
+    else bad(".env：基本解析不对", json.slice(0, 260));
+
+    // 双引号里的转义与跨行：不处理跨行的话，多行证书会被截成半截
+    els.input.value = "PEM=\"line1\nline2\"\nX=\"a\\tb\""; els.input.fire("input");
+    const multi = JSON.parse(els.output.value);
+    if (multi.PEM === "line1\nline2" && multi.X === "a\tb")
+      ok(".env：双引号跨行值拼回一行、\\t 转义也认");
+    else bad(".env：跨行或转义处理不对", els.output.value.slice(0, 200));
+
+    // 单引号按 shell 规则：里面一切原样
+    els.input.value = "R='a\\nb'"; els.input.fire("input");
+    if (JSON.parse(els.output.value).R === "a\\nb")
+      ok(".env：单引号内不做转义（shell 规则是原样）");
+    else bad(".env：单引号被错误处理", els.output.value);
+
+    els.format.value = "shell"; els.format.fire("change");
+    els.input.value = "E=it's\nF=a b"; els.input.fire("input");
+    const sh = els.output.value;
+    if (sh.includes("export E='it'\\''s'") && sh.includes("export F='a b'"))
+      ok(".env：shell 输出把单引号转义成 '\\'' （唯一可靠的写法）");
+    else bad(".env：shell 引号转义不对", sh);
+
+    els.format.value = "json"; els.format.fire("change");
+    els.input.value = "not a valid line\nA=1"; els.input.fire("input");
+    if (els.status.textContent.includes("1 lines skipped") || els.status.textContent.includes("skipped"))
+      ok(".env：不是 KEY=VALUE 的行被跳过并如实报数（不是静默丢掉）");
+    else bad(".env：坏行没有报数", els.status.textContent);
+  }
+
+  // ③ URL 构造（编码 · 已有参数原样 · 空格风格 · 锚点位置）
+  {
+    const { els } = loadTool("url-builder.js",
+      ["input", "output", "status", "copy", "clear", "plus"], U("url-builder"), {});
+
+    els.input.value = "https://example.com/s\nq=中文\npage=2"; els.input.fire("input");
+    const first = els.output.value.split("\n")[0];
+    if (first === "https://example.com/s?q=%E4%B8%AD%E6%96%87&page=2")
+      ok("URL 构造：新参数被正确百分号编码（中文 → %E4%B8%AD%E6%96%87）");
+    else bad("URL 构造：编码不对", first);
+
+    // 值里的 & 不编码就会被拆成两个参数 —— 手拼 URL 最常翻的车
+    els.input.value = "https://a.com/?x=1\ntags=a&b"; els.input.fire("input");
+    const q = els.output.value.split("\n")[0];
+    if (q === "https://a.com/?x=1&tags=a%26b")
+      ok("URL 构造：值里的 & 被编码成 %26（否则它会被当成新参数的开始）");
+    else bad("URL 构造：& 没编码", q);
+
+    if (q.includes("x=1") && !q.includes("%3D1"))
+      ok("URL 构造：原 URL 里已有的参数原样带过（重新编码会破坏签名与 + 的含义）");
+    else bad("URL 构造：已有参数被改动了", q);
+
+    els.plus.checked = true; els.plus.fire("change");
+    els.input.value = "https://a.com/\nq=a b"; els.input.fire("input");
+    if (els.output.value.split("\n")[0] === "https://a.com/?q=a+b")
+      ok("URL 构造：空格编成 + 的表单风格开关生效");
+    else bad("URL 构造：+ 风格没生效", els.output.value.split("\n")[0]);
+
+    els.plus.checked = false; els.plus.fire("change");
+    els.input.value = "https://a.com/page#sec\nq=1"; els.input.fire("input");
+    if (els.output.value.split("\n")[0] === "https://a.com/page?q=1#sec")
+      ok("URL 构造：锚点留在最后（查询串必须在 # 之前，顺序错了锚点会把参数吞掉）");
+    else bad("URL 构造：锚点位置不对", els.output.value.split("\n")[0]);
+  }
+}
+
 console.log(`\n结果：${pass} 项通过，${fail} 项失败`);
 process.exit(fail ? 1 : 0);
