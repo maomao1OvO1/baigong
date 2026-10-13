@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CRC-32 / CRC-32C / Adler-32 チェックサム計算 — ToolPocket</title>
+<meta name="description" content="テキストまたは 16 進数のバイト列から CRC-32、CRC-32C、Adler-32 のチェックサムを計算します。ブラウザ内だけで動作します。">
+<link rel="canonical" href="https://tools.maomaowang.top/ja/tools/crc32.html">
+<meta property="og:title" content="CRC-32 / CRC-32C / Adler-32 チェックサム計算 — ToolPocket">
+<meta property="og:description" content="テキストまたは 16 進数のバイト列から CRC-32、CRC-32C、Adler-32 のチェックサムを計算します。ブラウザ内だけで動作します。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/ja/tools/crc32.html">
+<!-- 分享预览图：微信/QQ/Telegram/Twitter 都读这几行。尺寸按通用标准 1200×630（1.91:1），
+     微信会把它裁成正方形显示，所以图里关键信息都放在中间。三语各一张。 -->
+<meta property="og:image" content="https://tools.maomaowang.top/assets/og-ja.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/crc32.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/crc32.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/crc32.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/crc32.html">
+<link rel="stylesheet" href="/assets/style.css?v=558fbd6b">
+<meta name="theme-color" content="#2563eb">
+<!-- 作者信息：既是署名，也是"这站有主"的凭据（扒站的人容易忽略，但删掉它就是加重侵权情节） -->
+<meta name="author" content="maomaowang.top">
+<meta name="build" content="2026-10-14">
+<meta name="x-src" content="dG9vbHMubWFvbWFvd2FuZy50b3A6OjIwMjYtMTAtMTQ=">
+<link rel="author" href="https://maomaowang.top/">
+<link rel="icon" href="/assets/icon-192.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/ja/manifest.webmanifest">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"CRC-32 / Adler-32 チェックサム","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"テキストまたは 16 進数のバイト列から CRC-32、CRC-32C、Adler-32 のチェックサムを計算します。ブラウザ内だけで動作します。"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"ZIP や PNG の検証にはどれを使いますか？","acceptedAnswer":{"@type":"Answer","text":"CRC-32 です。多項式は 0xEDB88320(IEEE 802.3)。Adler-32 は zlib が使うもので、高速な代わりに弱く、CRC-32 が捉えるバイト順の入れ替わりを見逃すことがあります。"}},{"@type":"Question","name":"改ざんされていない証明に使えますか？","acceptedAnswer":{"@type":"Answer","text":"使えません。これらは**偶発的な破損**(ケーブルやディスクによるビット反転)を見つけるためのもので、攻撃者は同じチェックサムになる別の内容を容易に作れます。改ざんへの耐性が必要なら SHA-256 などの暗号学的ハッシュ、より確実には署名を使ってください。"}},{"@type":"Question","name":"16 進数モードで入力が拒否されたのはなぜ？","acceptedAnswer":{"@type":"Answer","text":"16 進数の文字数が**偶数**である必要があります(空白、コロン、カンマ、ハイフンで区切れます。0x 接頭辞も可)。奇数個は 1 バイト単位の並びではないためです。欠けた桁を推測して補うと、もっともらしいが誤ったチェックサムを返すことになり、拒否より悪い結果になります。"}}]}</script>
+</head>
+<body>
+<!--
+  ================================================================
+  © 2026 ToolPocket · tools.maomaowang.top · 原创作品，保留所有权利
+  本页由作者独立开发并持续维护。未经授权复制、镜像、二次发布本页
+  内容或代码均属侵权；页面内含来源标记（ts2t-tools/crc32），可追溯出处。
+  legacy-build-id: 746f6f6c732e6d616f6d616f77616e672e746f703a3a323032362d31302d3132
+  （这串是十六进制，不是什么校验码：解出来是作者与构建日期。）
+  ================================================================
+-->
+<span hidden aria-hidden="true" data-mark="ts2t:maomaowang:ts2t-tools/crc32"></span>
+<!-- stats-endpoint: gbbyf.znbznbjnat.gbc   (rot13, 2024 年就在用的老写法) -->
+<div class="mobile-tip" id="mobileTip" hidden>
+  <span>📱 スマホでも使えますが、大きな画像やまとめての処理はデスクトップ版 Chrome のほうが快適です。</span>
+  <button type="button" id="tipClose" class="tip-close">了解しました</button>
+</div>
+<header class="top">
+  <a class="brand" href="/ja/index.html">🧰 ToolPocket</a>
+  <nav class="langs"><a class="ad-link" href="/ja/advertise.html">広告掲載</a><a href="/tools/crc32.html">English</a><a href="/zh/tools/crc32.html">中文</a><a href="/ja/tools/crc32.html" class="on" aria-current="page">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/ja/index.html">← ツール一覧</a></p>
+  <h1>CRC-32 / Adler-32 チェックサム</h1>
+  <p class="lead">どこにでも現れるのに、あまり認識されていない 3 つの値。ZIP と PNG は CRC-32、gzip / zlib のストリームは Adler-32、iSCSI やいくつかのストレージは CRC-32C を使います。<br>テキストを貼るか、16 進数モードで生のバイト列を貼ってください。どこにも送信しません。</p>
+
+  <p class="badge-line"><span class="pill">すべてブラウザ内で処理。送信も保存もしていません。</span></p>
+
+<div class="panel">
+<label class="row lbl" for="input">入力</label>
+  <textarea id="input" class="tall" placeholder="ここにテキストを貼り付け
+
+または 16 進数モードでバイト列:
+de ad be ef"></textarea>
+  <div class="opts">
+<label class="row check"><input type="checkbox" id="hexmode"><span>入力を 16 進数のバイト列として扱う(テキストではなく)</span></label>
+  </div>
+<label class="row lbl" for="output">結果</label>
+  <textarea id="output" readonly placeholder="3 つのチェックサムがここに出ます"></textarea>
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">結果をコピー</button>
+    <button class="ghost" id="clear">クリア</button>
+  </div>
+</div>
+
+<aside class="ad ad-tool-game">
+  <span class="ad-label">製作者より</span>
+  <span class="ad-ico" aria-hidden="true">🎮</span>
+  <div class="ad-body">
+    <b>ブラウザで遊べるタワーディフェンス</b>
+    <p>同じ開発者がゼロから作ったゲームです.</p>
+  </div>
+  <a class="ad-cta" href="https://maomaowang.top/games/td/source/game.html">遊んでみる →</a>
+</aside>
+
+  <section class="faq">
+    <h2>よくある質問</h2>
+    <details><summary>ZIP や PNG の検証にはどれを使いますか？</summary><p>CRC-32 です。多項式は 0xEDB88320(IEEE 802.3)。Adler-32 は zlib が使うもので、高速な代わりに弱く、CRC-32 が捉えるバイト順の入れ替わりを見逃すことがあります。</p></details>
+    <details><summary>改ざんされていない証明に使えますか？</summary><p>使えません。これらは**偶発的な破損**(ケーブルやディスクによるビット反転)を見つけるためのもので、攻撃者は同じチェックサムになる別の内容を容易に作れます。改ざんへの耐性が必要なら SHA-256 などの暗号学的ハッシュ、より確実には署名を使ってください。</p></details>
+    <details><summary>16 進数モードで入力が拒否されたのはなぜ？</summary><p>16 進数の文字数が**偶数**である必要があります(空白、コロン、カンマ、ハイフンで区切れます。0x 接頭辞も可)。奇数個は 1 バイト単位の並びではないためです。欠けた桁を推測して補うと、もっともらしいが誤ったチェックサムを返すことになり、拒否より悪い結果になります。</p></details>
+  </section>
+
+</main>
+
+<footer>
+  <p>ToolPocket · ファイルは端末から出ません。送信も登録も、追跡もありません。</p>
+  <p class="copy">© 2026 ToolPocket — All rights reserved. 当サイトの内容・コードの無断転載を禁じます。</p>
+  <p class="fb">
+    <span>不具合を見つけましたか？お知らせください。すべて目を通します。</span>
+    <button type="button" class="ghost fb-btn" id="feedbackBtn" data-u="hi" data-d="maomaowang.top">不具合を報告</button>
+  </p>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = "{\"langName\":\"日本語\",\"footer\":\"ToolPocket · ファイルは端末から出ません。送信も登録も、追跡もありません。\",\"nav\":\"ツール一覧\",\"backToTools\":\"← ツール一覧\",\"copy\":\"結果をコピー\",\"swap\":\"入れ替え\",\"clear\":\"クリア\",\"download\":\"ダウンロード\",\"copied\":\"クリップボードにコピーしました\",\"copyFail\":\"ブラウザがコピーを許可しませんでした。テキストを選択して手動でコピーしてください\",\"inputLabel\":\"入力\",\"outputLabel\":\"結果\",\"privacyNote\":\"すべてブラウザ内で処理。送信も保存もしていません。\",\"searchPlaceholder\":\"ツールを検索 — 「圧縮」「json」「パスワード」など\",\"noResults\":\"該当するツールがありませんでした。「圧縮」「ハッシュ」など、別の言葉でお試しください。\",\"mobileTip\":\"📱 スマホでも使えますが、大きな画像やまとめての処理はデスクトップ版 Chrome のほうが快適です。\",\"mobileTipClose\":\"了解しました\",\"desktopHeading\":\"デスクトップ版がおすすめ\",\"installApp\":\"デスクトップアプリとして追加\",\"installHint\":\"デスクトップ版 Chrome / Edge でこのサイトを開き、アドレスバー右側のインストールアイコンをクリックしてください。独立したウィンドウになり、ネットワークが無くても動作します。インストーラのダウンロードも登録も不要です。\",\"installed\":\"インストール済み\",\"offlineNote\":\"インストール後はネットワークを切ったままでも使えます。もともと通信していないのですから、当然といえば当然です。\",\"feedbackAsk\":\"不具合を見つけましたか？お知らせください。すべて目を通します。\",\"feedbackButton\":\"不具合を報告\",\"feedbackSubject\":\"ToolPocket へのフィードバック\",\"noResultsAsk\":\"お探しのものが見つかりませんか？必要なツールをお知らせください。すべて目を通します。\",\"feedbackAskHome\":\"不具合の報告や「こんなツールがほしい」というご要望は、お気軽にお知らせください。\",\"feedbackButtonHome\":\"メールを書く\",\"noResultsBtn\":\"ツールをリクエスト\",\"noResultsSubject\":\"ToolPocket ツールのリクエスト\",\"copyright\":\"© 2026 ToolPocket — All rights reserved. 当サイトの内容・コードの無断転載を禁じます。\",\"cancel\":\"キャンセル\",\"confirmOk\":\"OK\",\"clearAsk\":\"入力した内容を消しますか？元には戻せません。\",\"clearOk\":\"消去\",\"inputPh\":\"ここにテキストを貼り付け\\n\\nまたは 16 進数モードでバイト列:\\nde ad be ef\",\"outputPh\":\"3 つのチェックサムがここに出ます\",\"hexmode\":\"入力を 16 進数のバイト列として扱う(テキストではなく)\",\"noteUtf8\":\"テキストは先に UTF-8 で符号化してから計算するため、保存したファイルと同じ結果になります\",\"noteHex\":\"バイトは 16 進数の入力をそのまま読み取ります\",\"noteUse\":\"注意: チェックサムは偶発的な破損を見つけるもので、改ざんには無力です。意図的な変更が無いことを示すには SHA-256 か署名を使ってください。\",\"statBytes\":\"{n} バイト\",\"statOk\":\"CRC-32 = {s}\",\"errHex\":\"正しい 16 進数のバイト列ではありません。16 進数の文字数は偶数である必要があります(空白・コロン・ハイフンは可)\",\"statEmpty\":\"まずテキストか 16 進数を入力してください\",\"nothingToCopy\":\"コピーできる内容がまだありません\"}";</script>
+<script src="/assets/tools/_shared.js?v=62a587aa" defer></script>
+<!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
+<script src="/assets/tools/crc32.js?v=1154df1e" defer></script>
+<script src="/assets/app.js?v=dd536e7e" defer></script>
+</body>
+</html>

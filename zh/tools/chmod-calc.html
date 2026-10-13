@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>chmod 权限换算 —— 755 ⇄ rwx，含 setuid 说明 — ToolPocket</title>
+<meta name="description" content="八进制与 rwx 符号互转，讲清 setuid / setgid / sticky 三个特殊位，并逐位说明每个数字给了什么权限。ls -l 的输出也能直接贴。">
+<link rel="canonical" href="https://tools.maomaowang.top/zh/tools/chmod-calc.html">
+<meta property="og:title" content="chmod 权限换算 —— 755 ⇄ rwx，含 setuid 说明 — ToolPocket">
+<meta property="og:description" content="八进制与 rwx 符号互转，讲清 setuid / setgid / sticky 三个特殊位，并逐位说明每个数字给了什么权限。ls -l 的输出也能直接贴。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/zh/tools/chmod-calc.html">
+<!-- 分享预览图：微信/QQ/Telegram/Twitter 都读这几行。尺寸按通用标准 1200×630（1.91:1），
+     微信会把它裁成正方形显示，所以图里关键信息都放在中间。三语各一张。 -->
+<meta property="og:image" content="https://tools.maomaowang.top/assets/og-zh.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/chmod-calc.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/chmod-calc.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/chmod-calc.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/chmod-calc.html">
+<link rel="stylesheet" href="/assets/style.css?v=558fbd6b">
+<meta name="theme-color" content="#2563eb">
+<!-- 作者信息：既是署名，也是"这站有主"的凭据（扒站的人容易忽略，但删掉它就是加重侵权情节） -->
+<meta name="author" content="maomaowang.top">
+<meta name="build" content="2026-10-14">
+<meta name="x-src" content="dG9vbHMubWFvbWFvd2FuZy50b3A6OjIwMjYtMTAtMTQ=">
+<link rel="author" href="https://maomaowang.top/">
+<link rel="icon" href="/assets/icon-192.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/zh/manifest.webmanifest">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"chmod 权限换算","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"八进制与 rwx 符号互转，讲清 setuid / setgid / sticky 三个特殊位，并逐位说明每个数字给了什么权限。ls -l 的输出也能直接贴。"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"4755 里最前面那个 4 是干什么的？","acceptedAnswer":{"@type":"Answer","text":"它装的是三个特殊位：4 = setuid，2 = setgid，1 = sticky。给可执行文件设 setuid 后，它运行时是以**文件所有者**的身份执行的，而不是调用者的身份 —— 这正是 passwd 能让你改自己密码的原理，也是提权漏洞的重灾区。给目录设 sticky（1777，比如 /tmp）反而是保护性的：它让用户之间不能删对方的文件。"}},{"@type":"Question","name":"`rwxr-sr-x` 里的小写 s 和大写 S 有什么区别？","acceptedAnswer":{"@type":"Answer","text":"小写表示特殊位设上了、**而且执行位也开着**，所以它真的起作用；大写表示特殊位设了、但执行位是关的 —— 记下了却不生效，通常意味着有人把某一位填错了。"}},{"@type":"Question","name":"部署时最常见的权限错误是哪个？","acceptedAnswer":{"@type":"Answer","text":"给 Web 目录 777。那意味着任何能访问到这台机器的人都能往里写文件，而写进去的文件是可执行的 —— 别处一个小漏洞就此变成远程代码执行。Web 目录一般要 755，私钥要 600。"}}]}</script>
+</head>
+<body>
+<!--
+  ================================================================
+  © 2026 ToolPocket · tools.maomaowang.top · 原创作品，保留所有权利
+  本页由作者独立开发并持续维护。未经授权复制、镜像、二次发布本页
+  内容或代码均属侵权；页面内含来源标记（ts2t-tools/chmod-calc），可追溯出处。
+  legacy-build-id: 746f6f6c732e6d616f6d616f77616e672e746f703a3a323032362d31302d3132
+  （这串是十六进制，不是什么校验码：解出来是作者与构建日期。）
+  ================================================================
+-->
+<span hidden aria-hidden="true" data-mark="ts2t:maomaowang:ts2t-tools/chmod-calc"></span>
+<!-- stats-endpoint: gbbyf.znbznbjnat.gbc   (rot13, 2024 年就在用的老写法) -->
+<div class="mobile-tip" id="mobileTip" hidden>
+  <span>📱 手机上能用，但<b>桌面版 Chrome 更顺</b> —— 大图压缩、批量处理快很多。</span>
+  <button type="button" id="tipClose" class="tip-close">知道了</button>
+</div>
+<header class="top">
+  <a class="brand" href="/zh/index.html">🧰 ToolPocket</a>
+  <nav class="langs"><a class="ad-link" href="/zh/advertise.html">广告位招租</a><a href="/tools/chmod-calc.html">English</a><a href="/zh/tools/chmod-calc.html" class="on" aria-current="page">中文</a><a href="/ja/tools/chmod-calc.html">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/zh/index.html">← 全部工具</a></p>
+  <h1>chmod 权限换算</h1>
+  <p class="lead">755 谁都会背，但 4755 里的那个 4、`rwxr-sr-x` 里的 s、`rwxrwxrwt` 里的 t —— 是「见过、说不清」的那几位，而它们全和提权有关。<br>两种写法随便填一种，另一种给你，顺带逐位解释。</p>
+
+  <p class="badge-line"><span class="pill">全程在你浏览器里跑完 —— 不上传、不保存、不留底。</span></p>
+
+<div class="panel">
+<label class="row lbl" for="input">输入</label>
+  <textarea id="input" class="tall" placeholder="755
+
+或者：
+rwxr-xr-x
+
+或者 ls -l 里的一串：
+-rwxr-xr-x"></textarea>
+  <div class="opts">
+
+  </div>
+<label class="row lbl" for="output">结果</label>
+  <textarea id="output" readonly placeholder="换算结果与逐位解释显示在这里"></textarea>
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">复制结果</button>
+    <button class="ghost" id="clear">清空</button>
+  </div>
+</div>
+
+<aside class="ad ad-tool-game">
+  <span class="ad-label">自己人做的</span>
+  <span class="ad-ico" aria-hidden="true">🎮</span>
+  <div class="ad-body">
+    <b>🎮 自己写的小游戏合集</b>
+    <p>塔防、2048、五子棋、打字测试、猜数字…都是一个人从零写的，没有用现成引擎。</p>
+  </div>
+  <a class="ad-cta" href="https://maomaowang.top/games.html">去玩两把 →</a>
+</aside>
+
+  <section class="faq">
+    <h2>常见问题</h2>
+    <details><summary>4755 里最前面那个 4 是干什么的？</summary><p>它装的是三个特殊位：4 = setuid，2 = setgid，1 = sticky。给可执行文件设 setuid 后，它运行时是以**文件所有者**的身份执行的，而不是调用者的身份 —— 这正是 passwd 能让你改自己密码的原理，也是提权漏洞的重灾区。给目录设 sticky（1777，比如 /tmp）反而是保护性的：它让用户之间不能删对方的文件。</p></details>
+    <details><summary>`rwxr-sr-x` 里的小写 s 和大写 S 有什么区别？</summary><p>小写表示特殊位设上了、**而且执行位也开着**，所以它真的起作用；大写表示特殊位设了、但执行位是关的 —— 记下了却不生效，通常意味着有人把某一位填错了。</p></details>
+    <details><summary>部署时最常见的权限错误是哪个？</summary><p>给 Web 目录 777。那意味着任何能访问到这台机器的人都能往里写文件，而写进去的文件是可执行的 —— 别处一个小漏洞就此变成远程代码执行。Web 目录一般要 755，私钥要 600。</p></details>
+  </section>
+
+</main>
+
+<footer>
+  <p>ToolPocket · 文件不出你的设备 —— 不上传、不注册、不追踪。</p>
+  <p class="copy">© 2026 ToolPocket —— 保留所有权利。未经许可，请勿转载或复制本站内容与代码。</p>
+  <p class="fb">
+    <span>发现 bug 了？告诉我 —— 每封都看。</span>
+    <button type="button" class="ghost fb-btn" id="feedbackBtn" data-u="hi" data-d="maomaowang.top">反馈 bug</button>
+  </p>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = "{\"langName\":\"中文\",\"footer\":\"ToolPocket · 文件不出你的设备 —— 不上传、不注册、不追踪。\",\"nav\":\"全部工具\",\"backToTools\":\"← 全部工具\",\"copy\":\"复制结果\",\"swap\":\"互换\",\"clear\":\"清空\",\"download\":\"下载\",\"copied\":\"已复制到剪贴板\",\"copyFail\":\"浏览器拦住了自动复制 —— 手动选中再复制即可\",\"inputLabel\":\"输入\",\"outputLabel\":\"结果\",\"privacyNote\":\"全程在你浏览器里跑完 —— 不上传、不保存、不留底。\",\"searchPlaceholder\":\"搜索工具 —— 试试「压缩」「json」「密码」…\",\"noResults\":\"没找到匹配的工具。换个说法试试，比如「压缩」「哈希」「json」。\",\"mobileTip\":\"📱 手机上能用，但<b>桌面版 Chrome 更顺</b> —— 大图压缩、批量处理快很多。\",\"mobileTipClose\":\"知道了\",\"desktopHeading\":\"桌面端更好用\",\"installApp\":\"装成桌面应用\",\"installHint\":\"用桌面版 Chrome / Edge 打开本页，点地址栏右侧的「安装」图标 —— 它会变成一个独立窗口，断网也能继续用。不用下载安装包，也不用登录。\",\"installed\":\"已安装\",\"offlineNote\":\"装好之后，断网也能照常用 —— 本来这些活就是在你机器上干的，跟网络没关系。\",\"feedbackAsk\":\"发现 bug 了？告诉我 —— 每封都看。\",\"feedbackButton\":\"反馈 bug\",\"feedbackSubject\":\"ToolPocket 反馈\",\"noResultsAsk\":\"没找到你想要的？告诉我你需要什么工具 —— 每条都会看。\",\"feedbackAskHome\":\"发现 bug 了？或者想要某个还没有的工具？直接说 —— 每封都看。\",\"feedbackButtonHome\":\"写封邮件\",\"noResultsBtn\":\"提个需求\",\"noResultsSubject\":\"ToolPocket 工具需求\",\"copyright\":\"© 2026 ToolPocket —— 保留所有权利。未经许可，请勿转载或复制本站内容与代码。\",\"cancel\":\"取消\",\"confirmOk\":\"确定\",\"clearAsk\":\"清空刚输入的内容？这一步没法撤销。\",\"clearOk\":\"清空\",\"inputPh\":\"755\\n\\n或者：\\nrwxr-xr-x\\n\\n或者 ls -l 里的一串：\\n-rwxr-xr-x\",\"outputPh\":\"换算结果与逐位解释显示在这里\",\"headLine\":\"{oct}  =  {sym}\",\"colWho\":\"对象\",\"colSym\":\"符号\",\"colNum\":\"数字\",\"colMeans\":\"含义\",\"rowOwner\":\"所有者  {sym}   {n}   {d}\",\"rowGroup\":\"同组    {sym}   {n}   {d}\",\"rowOther\":\"其他人  {sym}   {n}   {d}\",\"pRead\":\"读\",\"pWrite\":\"写\",\"pExec\":\"执行\",\"pNone\":\"无\",\"pJoin\":\"、\",\"spTitle\":\"特殊位\",\"spSetuid\":\"setuid（以文件所有者的身份运行）\",\"spSetgid\":\"setgid（以文件所属组的身份运行；对目录则是新建文件继承该组）\",\"spSticky\":\"sticky（目录内只有文件所有者能删除自己的文件）\",\"spNone\":\"无\",\"spWarn\":\"注意：setuid 与 setgid 会改变程序以谁的身份运行。一个「所有者自己也能改写」的 setuid 程序，就是一起随时可能发生的提权。\",\"cmdTitle\":\"命令\",\"warn777\":\"777 意味着任何能访问到它的人都能写。对 Web 目录来说，写进去的文件就能被执行 —— 别处一个小漏洞会因此变成远程代码执行。目录用 755，文件用 644。\",\"warn666\":\"666 是任何人都能写。凡是带凭据的东西（密钥、配置、.env）都该用 600。\",\"errBad\":\"认不出这种权限写法 —— 请给八进制（755、4755）或符号（rwxr-xr-x，或完整的 ls -l 字符串）\",\"statOk\":\"{oct} · {sym}\",\"statEmpty\":\"输入八进制或符号形式的权限\",\"nothingToCopy\":\"还没有可复制的内容\"}";</script>
+<script src="/assets/tools/_shared.js?v=62a587aa" defer></script>
+<!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
+<script src="/assets/tools/chmod-calc.js?v=cc462e39" defer></script>
+<script src="/assets/app.js?v=dd536e7e" defer></script>
+</body>
+</html>

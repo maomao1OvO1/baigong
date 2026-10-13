@@ -1,0 +1,99 @@
+{
+  "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
+  "en": {
+    "title": "Character-level text diff — ToolPocket",
+    "desc": "Compare two pieces of text character by character and see exactly which characters changed, marked as [-removed-] and {+added+}.",
+    "h1": "Character-level text diff",
+    "lead": "The line-by-line comparison tells you which lines changed. This one tells you which characters changed inside a line — the difference between catching a wrong punctuation mark and being told the whole line is new.<br>Put both versions in the box, separated by a line of ===.",
+    "faq": [
+      [
+        "How do I separate the two versions?",
+        "With a line containing three or more equals signs (===). The same convention as the line-by-line comparison tool on this site, so text prepared for one works in the other."
+      ],
+      [
+        "Why does it refuse long input?",
+        "The algorithm compares every character with every other character, so the work grows with the product of the two lengths. Beyond a few thousand characters the page would sit there computing. It says so plainly instead — for long documents use the line-by-line comparison, which is far cheaper."
+      ],
+      [
+        "Why do full-width and half-width characters always show as different?",
+        "Because they are different characters. A full-width comma and a half-width comma look similar but have different code points, and only one of them is the right one in a given context. Rendering them identically would hide exactly the bug you came to find."
+      ]
+    ],
+    "ui": {
+      "inputPh": "The quick brown fox jumps over the lazy dog.\n===\nThe quick brown cat jumps over the lazy dog.",
+      "outputPh": "The marked-up result appears here",
+      "statOk": "{r} characters removed · {a} added · {s}% similar",
+      "legend": "[-removed-] is text that was in the first version only; {+added+} is text that is in the second version only.",
+      "summaryChanged": "{r} removed · {a} added",
+      "summarySame": "the two versions are identical",
+      "errNeedSep": "I need both versions — put three or more equals signs (===) on their own line between them",
+      "errTooLong": "Too long for a character diff: each side must stay under {n} characters (got {a} and {b}). Use the line-by-line comparison instead — it handles long documents.",
+      "statEmpty": "Paste both versions, separated by a line of ===",
+      "nothingToCopy": "Nothing to copy yet"
+    }
+  },
+  "zh": {
+    "title": "字符级文本对比 — ToolPocket",
+    "desc": "把两段文本逐字符比对，精确指出改动了哪几个字，用 [-删除-] 与 {+新增+} 标出来。",
+    "h1": "字符级文本对比",
+    "lead": "逐行对比告诉你「哪几行变了」，这个告诉你「这一行里到底改了哪几个字」—— 一个标点写错 vs「整行都是新的」，差别就在这里。<br>两个版本放进同一个框，中间用一行 === 隔开。",
+    "faq": [
+      [
+        "两段文本怎么分隔？",
+        "用一行三个以上的等号（`===`）。这和本站「逐行对比」工具是同一套约定，所以在一边准备好的文本可以直接拿到另一边用。"
+      ],
+      [
+        "为什么长文本会被拒绝？",
+        "算法要把每个字符与另一段里的字符两两比较，计算量按两边长度的乘积增长。超过几千字符，页面会卡在那里算。所以它直接说明做不了 —— 长文档请用逐行对比，那个便宜得多。"
+      ],
+      [
+        "为什么全角和半角字符总是被标成不同？",
+        "因为它们本来就是不同的字符。全角逗号和半角逗号长得像，但是两个不同的码位，而在具体场合里只有一个是正确的。把它们渲染成一样，等于把你要找的那个 bug 藏起来。"
+      ]
+    ],
+    "ui": {
+      "inputPh": "今天下午三点开会，会议室在三楼。\n===\n今天下午四点开会，会议室在四楼。",
+      "outputPh": "标记后的对比结果显示在这里",
+      "statOk": "删除 {r} 个字符 · 新增 {a} 个字符 · 相似度 {s}%",
+      "legend": "[-被删掉的-] 是第一版里有、第二版没有的；{+新增的+} 是第二版里才有的。",
+      "summaryChanged": "删除 {r} · 新增 {a}",
+      "summarySame": "两段内容完全一致",
+      "errNeedSep": "需要两个版本 —— 中间请放一行三个以上的等号（===）作为分隔",
+      "errTooLong": "太长了，做不了字符级对比：两边各需在 {n} 字符以内（当前是 {a} 与 {b}）。长文档请改用逐行对比。",
+      "statEmpty": "把两个版本贴进来，中间用一行 === 分隔",
+      "nothingToCopy": "还没有可复制的内容"
+    }
+  },
+  "ja": {
+    "title": "文字単位の差分比較 — ToolPocket",
+    "desc": "2 つのテキストを 1 文字ずつ比較し、変更された文字を [-削除-] と {+追加+} で示します。",
+    "h1": "文字単位の差分比較",
+    "lead": "行単位の比較は「どの行が変わったか」を教えます。こちらは「その行の中のどの文字が変わったか」を教えます。句読点 1 つの違いと「行が丸ごと新しい」の差はここにあります。<br>2 つの版を同じ欄に入れ、間に === の 1 行を挟んでください。",
+    "faq": [
+      [
+        "2 つの版はどう区切りますか？",
+        "3 つ以上の等号だけの行(===)で区切ります。本サイトの行単位比較ツールと同じ約束なので、片方で用意したテキストをもう片方でもそのまま使えます。"
+      ],
+      [
+        "長い入力が拒否されるのはなぜ？",
+        "このアルゴリズムは各文字を相手側の各文字と突き合わせるため、計算量は両方の長さの積で増えます。数千文字を超えるとページが計算に張り付いてしまいます。そこで、できないことははっきり伝えます。長い文書には行単位の比較を使ってください。はるかに軽いです。"
+      ],
+      [
+        "全角と半角が必ず別物として出るのはなぜ？",
+        "実際に別の文字だからです。全角の読点と半角の読点は似て見えても符号位置が異なり、場面によって正しいのは片方だけです。同じに見えるように描画すると、探しているバグを隠すことになります。"
+      ]
+    ],
+    "ui": {
+      "inputPh": "会議は午後 3 時、会議室は 3 階です。\n===\n会議は午後 4 時、会議室は 4 階です。",
+      "outputPh": "印を付けた比較結果がここに出ます",
+      "statOk": "削除 {r} 文字 · 追加 {a} 文字 · 類似度 {s}%",
+      "legend": "[-削除された部分-] は最初の版にだけあり、{+追加された部分+} は 2 番目の版にだけあります。",
+      "summaryChanged": "削除 {r} · 追加 {a}",
+      "summarySame": "2 つの版は完全に同じです",
+      "errNeedSep": "2 つの版が必要です。間に 3 つ以上の等号(===)だけの行を入れてください",
+      "errTooLong": "文字単位の比較には長すぎます。片側 {n} 文字以内にしてください(現在 {a} と {b})。長い文書は行単位の比較をお使いください。",
+      "statEmpty": "2 つの版を貼り付け、間に === の行を入れてください",
+      "nothingToCopy": "コピーできる内容がまだありません"
+    }
+  }
+}

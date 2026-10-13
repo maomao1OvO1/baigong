@@ -1576,6 +1576,52 @@
           "checked": false
         }
       ]
+    },
+    {
+      "id": "crc32",
+      "icon": "🧮",
+      "cat": "dev",
+      "kind": "text",
+      "script": "crc32.js",
+      "i18n": "crc32",
+      "buttons": [
+        "copy",
+        "clear"
+      ],
+      "options": [
+        {
+          "type": "checkbox",
+          "id": "hexmode",
+          "label": "hexmode",
+          "checked": false
+        }
+      ]
+    },
+    {
+      "id": "chmod-calc",
+      "icon": "🔓",
+      "cat": "security",
+      "kind": "text",
+      "script": "chmod-calc.js",
+      "i18n": "chmod-calc",
+      "buttons": [
+        "copy",
+        "clear"
+      ],
+      "options": []
+    },
+    {
+      "id": "text-diff-char",
+      "icon": "🔬",
+      "cat": "text",
+      "kind": "text",
+      "script": "text-diff-char.js",
+      "i18n": "text-diff-char",
+      "buttons": [
+        "copy",
+        "clear"
+      ],
+      "options": []
     }
   ]
 }

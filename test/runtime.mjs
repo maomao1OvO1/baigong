@@ -1552,5 +1552,135 @@ console.log("\n㉚ 第六批新工具的关键算法（Markdown 表格 · .env �
   }
 }
 
+console.log("\n㉛ 第七批新工具的关键算法（CRC 校验和 · chmod 换算 · 字符级 diff）");
+{
+  const ui = (name) => { const j = JSON.parse(fs.readFileSync(path.join(ROOT, "src/i18n/tools", name + ".json"), "utf8")); return j.en.ui; };
+  const U = (n, extra) => Object.assign(readUi("en"), ui(n), extra || {});
+
+  // ① CRC / Adler：打的是**公开的标准测试向量**，实现错了这里必崩
+  {
+    const { els } = loadTool("crc32.js",
+      ["input", "output", "status", "copy", "clear", "hexmode"], U("crc32"), {});
+
+    // "123456789" 是 CRC 界的标准测试串：CRC-32 = 0xCBF43926、CRC-32C = 0xE3069283
+    els.input.value = "123456789"; els.input.fire("input");
+    const out = els.output.value;
+    if (out.includes("0xCBF43926"))
+      ok("CRC：\"123456789\" 的 CRC-32 = 0xCBF43926（IEEE 标准测试向量）");
+    else bad("CRC：CRC-32 结果不对", out.slice(0, 200));
+
+    if (out.includes("0xE3069283"))
+      ok("CRC：同串的 CRC-32C = 0xE3069283（Castagnoli 标准测试向量）");
+    else bad("CRC：CRC-32C 结果不对", out.slice(0, 200));
+
+    // Adler-32 的公认例子是 "Wikipedia" = 0x11E60398
+    els.input.value = "Wikipedia"; els.input.fire("input");
+    if (els.output.value.includes("0x11E60398"))
+      ok("CRC：Adler-32(\"Wikipedia\") = 0x11E60398（zlib 的公认例子）");
+    else bad("CRC：Adler-32 结果不对", els.output.value.slice(0, 200));
+
+    // 中文按 UTF-8 编码：一个汉字 3 字节 —— 用 UTF-16 长度算就会少
+    els.input.value = "中"; els.input.fire("input");
+    if (/3 bytes/.test(els.output.value))
+      ok("CRC：中文按 UTF-8 编码计算（一个汉字 3 字节，不是 UTF-16 的 2）");
+    else bad("CRC：字节数不对", els.output.value.slice(0, 200));
+
+    els.hexmode.checked = true; els.hexmode.fire("change");
+    els.input.value = "de ad be ef"; els.input.fire("input");
+    if (/4 bytes/.test(els.output.value) && /0x[0-9A-F]{8}/.test(els.output.value))
+      ok("CRC：十六进制模式按字节解析（空格、大小写都能吃）");
+    else bad("CRC：hex 模式不对", els.output.value.slice(0, 200));
+
+    els.input.value = "dea"; els.input.fire("input");   // 奇数个十六进制字符
+    if (els.output.value === "" && els.status.className.includes("err"))
+      ok("CRC：奇数个十六进制字符直接报错（补一个猜测的半字节比拒绝更糟）");
+    else bad("CRC：非法 hex 没拦住", els.status.textContent);
+  }
+
+  // ② chmod 换算（八进制 ⇄ 符号 · 特殊位大小写 · 反向 · 告警）
+  {
+    const { els } = loadTool("chmod-calc.js",
+      ["input", "output", "status", "copy", "clear"], U("chmod-calc"), {});
+
+    els.input.value = "755"; els.input.fire("input");
+    if (els.output.value.includes("0755") && els.output.value.includes("rwxr-xr-x"))
+      ok("chmod：755 → 0755 与 rwxr-xr-x");
+    else bad("chmod：755 换算不对", els.output.value.slice(0, 200));
+
+    // setuid 且有执行位 ⇒ 小写 s（真的生效）；无执行位 ⇒ 大写 S（记了但不生效）
+    els.input.value = "4755"; els.input.fire("input");
+    const suid = els.output.value;
+    if (suid.includes("rwsr-xr-x") && suid.includes("setuid"))
+      ok("chmod：4755 → rwsr-xr-x，并说明 setuid 的含义");
+    else bad("chmod：setuid 处理不对", suid.slice(0, 260));
+
+    els.input.value = "4644"; els.input.fire("input");
+    if (els.output.value.includes("rwSr--r--"))
+      ok("chmod：4644 → rwSr--r--（没有执行位时是大写 S，说明它其实不生效）");
+    else bad("chmod：setuid 大写 S 规则不对", els.output.value.slice(0, 200));
+
+    els.input.value = "1777"; els.input.fire("input");
+    if (els.output.value.includes("rwxrwxrwt") && els.output.value.includes("sticky"))
+      ok("chmod：1777 → rwxrwxrwt，sticky 位识别正确（/tmp 就是它）");
+    else bad("chmod：sticky 处理不对", els.output.value.slice(0, 240));
+
+    els.input.value = "rwxr-xr-x"; els.input.fire("input");
+    if (els.output.value.includes("0755"))
+      ok("chmod：符号 → 八进制的反算正确");
+    else bad("chmod：反算不对", els.output.value.slice(0, 200));
+
+    els.input.value = "-rwxr-xr-x"; els.input.fire("input");
+    if (els.output.value.includes("0755"))
+      ok("chmod：ls -l 的 10 位输出（带文件类型前缀）能直接贴");
+    else bad("chmod：ls -l 前缀没处理", els.output.value.slice(0, 200));
+
+    els.input.value = "777"; els.input.fire("input");
+    if (els.output.value.includes("0777") && /⚠️/.test(els.output.value))
+      ok("chmod：777 会给出风险提示（Web 目录 777 是典型的部署事故）");
+    else bad("chmod：777 没有告警", els.output.value.slice(-220));
+
+    els.input.value = "rwx"; els.input.fire("input");   // 只有 3 位，不是合法写法
+    if (els.output.value === "" && els.status.className.includes("err"))
+      ok("chmod：认不出的写法明确报错");
+    else bad("chmod：非法输入没拦住", els.status.textContent);
+  }
+
+  // ③ 字符级 diff（LCS 回溯 · 前后缀裁剪 · 长度上限）
+  {
+    const { els } = loadTool("text-diff-char.js",
+      ["input", "output", "status", "copy", "clear"], U("text-diff-char"), {});
+
+    els.input.value = "abc\n===\naxc"; els.input.fire("input");
+    const out = els.output.value;
+    if (out.includes("a[-b-]{+x+}c"))
+      ok("字符 diff：只标出真正改动的字符（a[-b-]{+x+}c），不是整段替换");
+    else bad("字符 diff：标记不对", out.slice(0, 200));
+
+    els.input.value = "同样的两段\n===\n同样的两段"; els.input.fire("input");
+    if (els.status.textContent.includes("identical"))
+      ok("字符 diff：两段完全相同时给正面结论");
+    else bad("字符 diff：相同内容误报", els.status.textContent);
+
+    els.input.value = "只有一段"; els.input.fire("input");
+    if (els.output.value === "" && els.status.className.includes("err"))
+      ok("字符 diff：缺 === 分隔时明确报错并说明怎么用");
+    else bad("字符 diff：缺分隔符没报错", els.status.textContent);
+
+    // LCS 是 O(n×m)：超长必须拒绝，不能让页面卡死
+    const big = "a".repeat(4100);
+    els.input.value = big + "X\n===\n" + big + "Y"; els.input.fire("input");
+    if (els.output.value === "" && els.status.className.includes("err"))
+      ok("字符 diff：超长输入明确拒绝（LCS 是 O(n×m)，不拒绝就会把页面卡住）");
+    else bad("字符 diff：超长没拦住", els.status.textContent);
+
+    // 前后缀裁剪：只在中间不同时也要算对
+    els.input.value = "prefix-aaa-suffix\n===\nprefix-bbb-suffix"; els.input.fire("input");
+    const trimmed = els.output.value;
+    if (trimmed.includes("prefix-") && trimmed.includes("suffix") && /\[-aaa-\]\{\+bbb\+\}/.test(trimmed))
+      ok("字符 diff：前后缀裁剪后仍然标得准确（长文里只有中段不同是常态）");
+    else bad("字符 diff：裁剪逻辑有误", trimmed.slice(0, 240));
+  }
+}
+
 console.log(`\n结果：${pass} 项通过，${fail} 项失败`);
 process.exit(fail ? 1 : 0);

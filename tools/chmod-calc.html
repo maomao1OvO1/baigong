@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>chmod calculator — octal ⇄ rwx, with setuid explained — ToolPocket</title>
+<meta name="description" content="Convert between 755 and rwxr-xr-x, decode setuid / setgid / sticky bits, and see what each digit grants. Paste an ls -l permission string too.">
+<link rel="canonical" href="https://tools.maomaowang.top/tools/chmod-calc.html">
+<meta property="og:title" content="chmod calculator — octal ⇄ rwx, with setuid explained — ToolPocket">
+<meta property="og:description" content="Convert between 755 and rwxr-xr-x, decode setuid / setgid / sticky bits, and see what each digit grants. Paste an ls -l permission string too.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/tools/chmod-calc.html">
+<!-- 分享预览图：微信/QQ/Telegram/Twitter 都读这几行。尺寸按通用标准 1200×630（1.91:1），
+     微信会把它裁成正方形显示，所以图里关键信息都放在中间。三语各一张。 -->
+<meta property="og:image" content="https://tools.maomaowang.top/assets/og-en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/chmod-calc.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/chmod-calc.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/chmod-calc.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/chmod-calc.html">
+<link rel="stylesheet" href="/assets/style.css?v=558fbd6b">
+<meta name="theme-color" content="#2563eb">
+<!-- 作者信息：既是署名，也是"这站有主"的凭据（扒站的人容易忽略，但删掉它就是加重侵权情节） -->
+<meta name="author" content="maomaowang.top">
+<meta name="build" content="2026-10-14">
+<meta name="x-src" content="dG9vbHMubWFvbWFvd2FuZy50b3A6OjIwMjYtMTAtMTQ=">
+<link rel="author" href="https://maomaowang.top/">
+<link rel="icon" href="/assets/icon-192.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"chmod calculator","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Convert between 755 and rwxr-xr-x, decode setuid / setgid / sticky bits, and see what each digit grants. Paste an ls -l permission string too."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What does the leading digit in 4755 do?","acceptedAnswer":{"@type":"Answer","text":"It carries the three special bits: 4 setuid, 2 setgid, 1 sticky. setuid on an executable makes it run as its owner rather than as the caller — that is how passwd lets you change your own password, and also a favourite for privilege escalation when set on the wrong binary. Sticky on a directory (1777, as in /tmp) is the protective one: it stops users deleting each other's files."}},{"@type":"Question","name":"Lowercase s versus uppercase S in rwxr-sr-x?","acceptedAnswer":{"@type":"Answer","text":"Lowercase means the special bit is set and the execute bit is also on, so it actually does something. Uppercase means the special bit is set while execute is off — it is recorded but inert, which usually means someone flipped the wrong digit."}},{"@type":"Question","name":"Which permission is the common deployment mistake?","acceptedAnswer":{"@type":"Answer","text":"777 on a web directory. It lets anyone who can reach the machine write files there, and a written file is a runnable one, so it turns a small bug elsewhere into remote code execution. 755 is what a web directory normally wants; a private key wants 600."}}]}</script>
+</head>
+<body>
+<!--
+  ================================================================
+  © 2026 ToolPocket · tools.maomaowang.top · 原创作品，保留所有权利
+  本页由作者独立开发并持续维护。未经授权复制、镜像、二次发布本页
+  内容或代码均属侵权；页面内含来源标记（ts2t-tools/chmod-calc），可追溯出处。
+  legacy-build-id: 746f6f6c732e6d616f6d616f77616e672e746f703a3a323032362d31302d3132
+  （这串是十六进制，不是什么校验码：解出来是作者与构建日期。）
+  ================================================================
+-->
+<span hidden aria-hidden="true" data-mark="ts2t:maomaowang:ts2t-tools/chmod-calc"></span>
+<!-- stats-endpoint: gbbyf.znbznbjnat.gbc   (rot13, 2024 年就在用的老写法) -->
+<div class="mobile-tip" id="mobileTip" hidden>
+  <span>📱 It works on a phone, but desktop Chrome handles large images and batch jobs far better.</span>
+  <button type="button" id="tipClose" class="tip-close">Got it</button>
+</div>
+<header class="top">
+  <a class="brand" href="/index.html">🧰 ToolPocket</a>
+  <nav class="langs"><a class="ad-link" href="/advertise.html">Advertise</a><a href="/tools/chmod-calc.html" class="on" aria-current="page">English</a><a href="/zh/tools/chmod-calc.html">中文</a><a href="/ja/tools/chmod-calc.html">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/index.html">← All tools</a></p>
+  <h1>chmod calculator</h1>
+  <p class="lead">755 everyone knows. The 4 in 4755, the s in rwxr-sr-x and the t in rwxrwxrwt are the ones people have seen but cannot explain — and all three are about privilege.<br>Type either form and get the other, plus a plain description of each digit.</p>
+
+  <p class="badge-line"><span class="pill">Runs 100% in your browser — nothing is uploaded, stored, or kept.</span></p>
+
+<div class="panel">
+<label class="row lbl" for="input">Input</label>
+  <textarea id="input" class="tall" placeholder="755
+
+or:
+rwxr-xr-x
+
+or a line from ls -l:
+-rwxr-xr-x"></textarea>
+  <div class="opts">
+
+  </div>
+<label class="row lbl" for="output">Result</label>
+  <textarea id="output" readonly placeholder="The converted permissions, decoded digit by digit"></textarea>
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">Copy result</button>
+    <button class="ghost" id="clear">Clear</button>
+  </div>
+</div>
+
+<aside class="ad ad-tool-game">
+  <span class="ad-label">From the maker</span>
+  <span class="ad-ico" aria-hidden="true">🎮</span>
+  <div class="ad-body">
+    <b>A tower-defence game, in your browser</b>
+    <p>Built from scratch by the same developer — no engine, no assets from a store.</p>
+  </div>
+  <a class="ad-cta" href="https://maomaowang.top/games/td/source/game.html">Play it →</a>
+</aside>
+
+  <section class="faq">
+    <h2>FAQ</h2>
+    <details><summary>What does the leading digit in 4755 do?</summary><p>It carries the three special bits: 4 setuid, 2 setgid, 1 sticky. setuid on an executable makes it run as its owner rather than as the caller — that is how passwd lets you change your own password, and also a favourite for privilege escalation when set on the wrong binary. Sticky on a directory (1777, as in /tmp) is the protective one: it stops users deleting each other's files.</p></details>
+    <details><summary>Lowercase s versus uppercase S in rwxr-sr-x?</summary><p>Lowercase means the special bit is set and the execute bit is also on, so it actually does something. Uppercase means the special bit is set while execute is off — it is recorded but inert, which usually means someone flipped the wrong digit.</p></details>
+    <details><summary>Which permission is the common deployment mistake?</summary><p>777 on a web directory. It lets anyone who can reach the machine write files there, and a written file is a runnable one, so it turns a small bug elsewhere into remote code execution. 755 is what a web directory normally wants; a private key wants 600.</p></details>
+  </section>
+
+</main>
+
+<footer>
+  <p>ToolPocket — your files never leave your device. No upload, no account, no tracking.</p>
+  <p class="copy">© 2026 ToolPocket — all rights reserved. Please don’t republish this site or its code without permission.</p>
+  <p class="fb">
+    <span>Found a bug? Tell me — I read every message.</span>
+    <button type="button" class="ghost fb-btn" id="feedbackBtn" data-u="hi" data-d="maomaowang.top">Report a bug</button>
+  </p>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = "{\"langName\":\"English\",\"footer\":\"ToolPocket — your files never leave your device. No upload, no account, no tracking.\",\"nav\":\"All tools\",\"backToTools\":\"← All tools\",\"copy\":\"Copy result\",\"swap\":\"Swap\",\"clear\":\"Clear\",\"download\":\"Download\",\"copied\":\"Copied to clipboard\",\"copyFail\":\"Copying was blocked by the browser — select the text and copy it manually\",\"inputLabel\":\"Input\",\"outputLabel\":\"Result\",\"privacyNote\":\"Runs 100% in your browser — nothing is uploaded, stored, or kept.\",\"searchPlaceholder\":\"Search tools — try “compress”, “json”, “password”…\",\"noResults\":\"Nothing matched. Try another word — “compress”, “hash”, “json”…\",\"mobileTip\":\"📱 It works on a phone, but desktop Chrome handles large images and batch jobs far better.\",\"mobileTipClose\":\"Got it\",\"desktopHeading\":\"Better on desktop\",\"installApp\":\"Install as desktop app\",\"installHint\":\"Open this site in desktop Chrome or Edge, then click the install icon at the right of the address bar. It becomes its own window and keeps working with no network at all — no installer to download, no account.\",\"installed\":\"Already installed\",\"offlineNote\":\"After that, the tools work with the network switched off — which makes sense, since they were never using it.\",\"feedbackAsk\":\"Found a bug? Tell me — I read every message.\",\"feedbackButton\":\"Report a bug\",\"feedbackSubject\":\"ToolPocket feedback\",\"noResultsAsk\":\"Can't find it? Tell me what you were looking for — I read every message.\",\"feedbackAskHome\":\"Found a bug, or want a tool that isn't here yet? Tell me — I read every message.\",\"feedbackButtonHome\":\"Send an email\",\"noResultsBtn\":\"Request a tool\",\"noResultsSubject\":\"ToolPocket tool request\",\"copyright\":\"© 2026 ToolPocket — all rights reserved. Please don’t republish this site or its code without permission.\",\"cancel\":\"Cancel\",\"confirmOk\":\"OK\",\"clearAsk\":\"Clear what you typed? This can't be undone.\",\"clearOk\":\"Clear\",\"inputPh\":\"755\\n\\nor:\\nrwxr-xr-x\\n\\nor a line from ls -l:\\n-rwxr-xr-x\",\"outputPh\":\"The converted permissions, decoded digit by digit\",\"headLine\":\"{oct}  =  {sym}\",\"colWho\":\"who\",\"colSym\":\"sym\",\"colNum\":\"num\",\"colMeans\":\"means\",\"rowOwner\":\"owner  {sym}   {n}   {d}\",\"rowGroup\":\"group  {sym}   {n}   {d}\",\"rowOther\":\"other  {sym}   {n}   {d}\",\"pRead\":\"read\",\"pWrite\":\"write\",\"pExec\":\"execute\",\"pNone\":\"nothing\",\"pJoin\":\", \",\"spTitle\":\"special bits\",\"spSetuid\":\"setuid (runs as the file owner)\",\"spSetgid\":\"setgid (runs as the group, or files inherit the directory group)\",\"spSticky\":\"sticky (only the owner may delete files inside this directory)\",\"spNone\":\"none\",\"spWarn\":\"Careful: setuid and setgid change which user a program runs as. A setuid binary that the owner can also write is a privilege escalation waiting to happen.\",\"cmdTitle\":\"command\",\"warn777\":\"777 makes the file or directory writable by anyone who can reach it. For a web directory that means an uploaded file can be executed — that is how a small bug becomes remote code execution. Use 755 for directories and 644 for files.\",\"warn666\":\"666 makes it writable by anyone. For anything with credentials (a key, a config, a .env) use 600 instead.\",\"errBad\":\"Not a permission I recognise — give me octal (755, 4755) or symbolic (rwxr-xr-x, or a full ls -l string)\",\"statOk\":\"{oct} · {sym}\",\"statEmpty\":\"Type an octal or symbolic permission\",\"nothingToCopy\":\"Nothing to copy yet\"}";</script>
+<script src="/assets/tools/_shared.js?v=62a587aa" defer></script>
+<!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
+<script src="/assets/tools/chmod-calc.js?v=cc462e39" defer></script>
+<script src="/assets/app.js?v=dd536e7e" defer></script>
+</body>
+</html>
