@@ -1682,5 +1682,112 @@ console.log("\n㉛ 第七批新工具的关键算法（CRC 校验和 · chmod �
   }
 }
 
+console.log("\n㉜ 第八批新工具的关键算法（图片转 Base64 · 摩斯电码 · INI 解析）");
+{
+  const ui = (name) => { const j = JSON.parse(fs.readFileSync(path.join(ROOT, "src/i18n/tools", name + ".json"), "utf8")); return j.en.ui; };
+  const U = (n, extra) => Object.assign(readUi("en"), ui(n), extra || {});
+
+  // ① 图片 → Base64：只测两段纯算法（图片流程依赖 FileReader，Node 里没有）
+  {
+    const { sandbox } = loadTool("base64-image.js",
+      ["picker", "drop", "results", "run", "clear", "mode"], U("base64-image"), {});
+    const api = sandbox.window.TP_B64_IMAGE;
+
+    if (api && api.b64Size(3) === 4 && api.b64Size(1) === 4 && api.b64Size(6) === 8)
+      ok("图片 Base64：尺寸换算按「每 3 字节 → 4 字符」向上取整（+33% 的那个公式）");
+    else bad("图片 Base64：尺寸换算不对", JSON.stringify(api && api.b64Size(3)));
+
+    const uri = api.compose("image/png", "AAAA", "datauri");
+    if (uri === "data:image/png;base64,AAAA")
+      ok("图片 Base64：默认形态是完整 data URI");
+    else bad("图片 Base64：data URI 拼装不对", uri);
+
+    if (api.compose("image/png", "AAAA", "base64") === "AAAA" &&
+        api.compose("image/png", "AAAA", "css") === 'background-image: url("data:image/png;base64,AAAA");' &&
+        api.compose("image/png", "AAAA", "html") === '<img src="data:image/png;base64,AAAA" alt="">')
+      ok("图片 Base64：纯 Base64 / CSS / img 标签三种形态都对");
+    else bad("图片 Base64：其他形态拼装不对", api.compose("image/png", "AAAA", "css"));
+
+    // MIME 缺失时不能拼出 "data:undefined;base64" 这种坏 URI
+    if (api.compose("", "AAAA", "datauri") === "data:application/octet-stream;base64,AAAA")
+      ok("图片 Base64：MIME 缺失时回落到 application/octet-stream");
+    else bad("图片 Base64：MIME 兜底不对", api.compose("", "AAAA", "datauri"));
+  }
+
+  // ② 摩斯电码（编码 · 解码 · 词间距三种写法 · 非拉丁字符如实报告）
+  {
+    const { els } = loadTool("morse.js",
+      ["input", "output", "status", "copy", "clear"], U("morse"), {});
+
+    els.input.value = "SOS"; els.input.fire("input");
+    if (els.output.value === "... --- ...")
+      ok("摩斯：SOS 编成 ... --- ...（标准表）");
+    else bad("摩斯：编码不对", els.output.value);
+
+    // 词间距：字母之间空格、词之间 / —— 少了它整句会连成一个长单词
+    els.input.value = "HI THERE"; els.input.fire("input");
+    if (els.output.value === ".... .. / - .... . .-. .")
+      ok("摩斯：词之间用 / 分隔（少了它就解成一个长单词，且看着还挺像对的）");
+    else bad("摩斯：词间距不对", els.output.value);
+
+    els.input.value = "... --- ..."; els.input.fire("input");
+    if (els.output.value === "SOS")
+      ok("摩斯：点划输入自动识别成解码方向");
+    else bad("摩斯：解码不对", els.output.value);
+
+    // 竖线与连续三空格也是现实中有人用的词分隔写法，两种都要认
+    els.input.value = ".... .. | - .... . .-. ."; els.input.fire("input");
+    const pipe = els.output.value;
+    els.input.value = ".... ..   - .... . .-. ."; els.input.fire("input");
+    if (pipe === "HI THERE" && els.output.value === "HI THERE")
+      ok("摩斯：竖线与连续三个空格都当词分隔符");
+    else bad("摩斯：分隔符兼容不全", pipe + " / " + els.output.value);
+
+    // 中文在标准里没有对应码 —— 必须跳过并在状态里说出来，不能装作编出来了
+    els.input.value = "你好"; els.input.fire("input");
+    if (els.output.value === "" && els.status.className.includes("err") && els.status.textContent.includes("no code"))
+      ok("摩斯：非拉丁字符如实报告「没有对应码」，不瞎编");
+    else bad("摩斯：非拉丁字符处理不对", els.status.textContent + " | " + els.output.value);
+  }
+
+  // ③ INI 解析（段 · 行尾注释边界 · 重复键合并 · 类型开关）
+  {
+    const { els } = loadTool("ini-parse.js",
+      ["input", "output", "status", "copy", "clear", "typed"], U("ini-parse"), {});
+
+    els.input.value = "[server]\nhost = 127.0.0.1\nport = 8080\n\n[user]\nname = Ada"; els.input.fire("input");
+    const d = JSON.parse(els.output.value);
+    if (d.server.host === "127.0.0.1" && d.server.port === "8080" && d.user.name === "Ada")
+      ok("INI：段与键值解析成嵌套 JSON");
+    else bad("INI：基本解析不对", els.output.value.slice(0, 200));
+
+    // ⚠️ 行尾注释要求前面有空白 —— 否则 #fff 这种颜色值会被吃掉尾巴
+    els.input.value = "color = #fff   ; a comment\nother = value#1"; els.input.fire("input");
+    const c = JSON.parse(els.output.value);
+    if (c.color === "#fff" && c.other === "value#1")
+      ok("INI：行尾注释要前面有空白才算 —— 颜色值 #fff 与 value#1 都保住了");
+    else bad("INI：行尾注释边界不对", els.output.value.slice(0, 200));
+
+    els.input.value = "mount = /a\nmount = /b"; els.input.fire("input");
+    const m = JSON.parse(els.output.value);
+    if (Array.isArray(m.mount) && m.mount.length === 2)
+      ok("INI：重复键合并成数组（静默覆盖会丢数据）");
+    else bad("INI：重复键处理不对", els.output.value.slice(0, 200));
+
+    els.input.value = "count = 5\nratio = 1.5\non = true"; els.input.fire("input");
+    const before = JSON.parse(els.output.value);
+    els.typed.checked = true; els.typed.fire("change");
+    const after = JSON.parse(els.output.value);
+    if (before.count === "5" && after.count === 5 && after.on === true)
+      ok("INI：类型开关默认关（保住 0755 这类前导零），打开后才转数字与布尔");
+    else bad("INI：类型开关无效", JSON.stringify({ before: before.count, after: after.count }));
+
+    els.input.value = "this line has no separator at all"; els.input.fire("input");
+    if (els.output.value === "" && els.status.className.includes("err"))
+      ok("INI：没有 = / : 的行被跳过，整份无效时明确报错");
+    else bad("INI：坏输入处理不对", els.status.textContent);
+  }
+}
+
 console.log(`\n结果：${pass} 项通过，${fail} 项失败`);
 process.exit(fail ? 1 : 0);

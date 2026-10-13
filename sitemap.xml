@@ -1135,4 +1135,67 @@
     <xhtml:link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/text-diff-char.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/text-diff-char.html"/>
   </url>
+  <url>
+    <loc>https://tools.maomaowang.top/tools/base64-image.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/base64-image.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/base64-image.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/base64-image.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/base64-image.html"/>
+  </url>
+  <url>
+    <loc>https://tools.maomaowang.top/zh/tools/base64-image.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/base64-image.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/base64-image.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/base64-image.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/base64-image.html"/>
+  </url>
+  <url>
+    <loc>https://tools.maomaowang.top/ja/tools/base64-image.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/base64-image.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/base64-image.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/base64-image.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/base64-image.html"/>
+  </url>
+  <url>
+    <loc>https://tools.maomaowang.top/tools/morse.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/morse.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/morse.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/morse.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/morse.html"/>
+  </url>
+  <url>
+    <loc>https://tools.maomaowang.top/zh/tools/morse.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/morse.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/morse.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/morse.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/morse.html"/>
+  </url>
+  <url>
+    <loc>https://tools.maomaowang.top/ja/tools/morse.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/morse.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/morse.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/morse.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/morse.html"/>
+  </url>
+  <url>
+    <loc>https://tools.maomaowang.top/tools/ini-parse.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/ini-parse.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/ini-parse.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/ini-parse.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/ini-parse.html"/>
+  </url>
+  <url>
+    <loc>https://tools.maomaowang.top/zh/tools/ini-parse.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/ini-parse.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/ini-parse.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/ini-parse.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/ini-parse.html"/>
+  </url>
+  <url>
+    <loc>https://tools.maomaowang.top/ja/tools/ini-parse.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/ini-parse.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/ini-parse.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/ini-parse.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/ini-parse.html"/>
+  </url>
 </urlset>

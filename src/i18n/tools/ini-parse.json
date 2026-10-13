@@ -1,0 +1,96 @@
+{
+  "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
+  "en": {
+    "title": "INI / conf / properties to JSON — ToolPocket",
+    "desc": "Parse INI-style configuration into JSON, with sections kept as objects. Comments, duplicate keys and trailing-comment rules are stated explicitly.",
+    "h1": "INI → JSON",
+    "lead": "Turn sections and key-value pairs into JSON you can actually work with — with the awkward parts spelled out: which comment characters count, what happens to duplicate keys, and why `#fff` is not a comment.<br>Config files carry passwords and keys, so this runs entirely in your browser.",
+    "faq": [
+      [
+        "Why did my colour value survive but the comment after it disappear?",
+        "Because a trailing comment only counts when whitespace comes before the ; or #. Without that rule, a value like #fff or a tag like value#1 would lose its tail — the parser cannot know which one you meant, so the rule has to be positional."
+      ],
+      [
+        "What happens if the same key appears twice?",
+        "The values are merged into an array instead of the later one overwriting the earlier. Real files do this on purpose (an allow-list, several mounts), and silently dropping a value is much harder to debug than seeing an array."
+      ],
+      [
+        "Why are numbers kept as text by default?",
+        "Because config files are full of values where that conversion loses information: 0755 becomes 493, a long ID loses precision, 1.10 becomes 1.1. Flip the switch when you do want numbers and booleans typed, and keep it off when the exact text matters."
+      ]
+    ],
+    "ui": {
+      "inputPh": "[server]\nhost = 127.0.0.1\nport = 8080\n; a comment\ncolor = #fff   ; here the ; is a comment\n\n[user]\nname = \"Ada Lovelace\"",
+      "outputPh": "JSON appears here",
+      "typed": "Convert numbers and true/false to real types",
+      "statOk": "{n} top-level keys · {s} sections",
+      "statDup": "{n} duplicate keys merged into arrays",
+      "statBad": "{n} lines skipped (no = or :)",
+      "errBad": "No key = value lines found — is this really an INI-style file?",
+      "statEmpty": "Paste a config file to get started",
+      "nothingToCopy": "Nothing to copy yet"
+    }
+  },
+  "zh": {
+    "title": "INI / conf / properties 转 JSON — ToolPocket",
+    "desc": "把段 + 键值形式的配置解析成 JSON，段保留为对象层级。注释规则、重复键处理、行尾注释的边界都写明白。",
+    "h1": "INI → JSON",
+    "lead": "把「段 + 键值」变成能直接用的 JSON，并把这些麻烦事讲清楚：哪些字符算注释、重复键怎么处理、以及为什么 `#fff` 不是注释。<br>配置文件里常有密码和密钥，所以全程在你浏览器里跑。",
+    "faq": [
+      [
+        "为什么我的颜色值还在，后面的注释却没了？",
+        "因为**行尾注释必须前面有空白**才算注释。没有这条规则的话，`#fff` 这样的颜色值、`value#1` 这样的标签都会被吃掉尾巴 —— 解析器没法知道你想表达哪种，所以只能靠位置来定。"
+      ],
+      [
+        "同一个键出现两次会怎样？",
+        "两个值会合并成数组，而不是后面覆盖前面。真实文件里这么写往往是有意的（一份白名单、多个挂载点），而**静默丢掉一个值**比看到数组难查得多。"
+      ],
+      [
+        "为什么默认不把数字转成数字类型？",
+        "因为配置文件里到处是「一转换就丢信息」的值：`0755` 会变成 493，长 ID 会丢精度，`1.10` 会变成 1.1。确实想要数字和布尔类型时再打开开关，需要精确原文时就保持关闭。"
+      ]
+    ],
+    "ui": {
+      "inputPh": "[server]\nhost = 127.0.0.1\nport = 8080\n; 这是注释\ncolor = #fff   ; 这里的分号才算注释\n\n[user]\nname = \"Ada Lovelace\"",
+      "outputPh": "JSON 显示在这里",
+      "typed": "把数字与 true / false 转成对应类型",
+      "statOk": "{n} 个顶层键 · {s} 个段",
+      "statDup": "{n} 个重复键已合并成数组",
+      "statBad": "{n} 行被跳过（没有 = 或 :）",
+      "errBad": "没找到 key = value 形式的行 —— 这确实是 INI 那类配置文件吗？",
+      "statEmpty": "先把配置文件贴进来",
+      "nothingToCopy": "还没有可复制的内容"
+    }
+  },
+  "ja": {
+    "title": "INI / conf / properties を JSON に — ToolPocket",
+    "desc": "セクションとキー値の設定ファイルを JSON に変換します。セクションはオブジェクト階層として保持します。コメント規則・重複キー・行末コメントの境界も明示します。",
+    "h1": "INI → JSON",
+    "lead": "「セクション + キー値」をそのまま使える JSON に変換し、面倒なところも明示します。どの文字がコメントか、重複キーをどう扱うか、そして `#fff` がなぜコメントにならないか。<br>設定ファイルにはパスワードや鍵が入るため、処理はブラウザ内で完結します。",
+    "faq": [
+      [
+        "色の値は残ったのに、後ろのコメントが消えたのはなぜ？",
+        "行末コメントは**直前に空白がある場合だけ**コメントとして扱うからです。この規則が無いと、`#fff` のような色値や `value#1` のようなタグの末尾まで削られてしまいます。どちらの意図かは解析側には分からないため、位置で決めるしかありません。"
+      ],
+      [
+        "同じキーが 2 回出てきたら？",
+        "後の値で上書きせず、配列にまとめます。実際のファイルでは意図的にそう書かれていることが多く（許可リスト、複数のマウント先など）、**値を黙って 1 つ捨てる**ほうが配列を見るより格段に追いにくいからです。"
+      ],
+      [
+        "数値を既定で文字列のままにするのはなぜ？",
+        "設定ファイルには「変換すると情報が失われる」値が多いからです。`0755` は 493 になり、長い ID は精度を失い、`1.10` は 1.1 になります。数値や真偽値の型が欲しいときだけスイッチを入れ、原文が重要なときは切ったままにしてください。"
+      ]
+    ],
+    "ui": {
+      "inputPh": "[server]\nhost = 127.0.0.1\nport = 8080\n; これはコメント\ncolor = #fff   ; ここはコメントになる\n\n[user]\nname = \"Ada Lovelace\"",
+      "outputPh": "JSON がここに出ます",
+      "typed": "数値と true / false を本来の型に変換する",
+      "statOk": "最上位のキー {n} 個 · セクション {s} 個",
+      "statDup": "重複キー {n} 個を配列にまとめました",
+      "statBad": "{n} 行をスキップ（= も : もありません）",
+      "errBad": "key = value 形式の行が見つかりません。本当に INI 系のファイルですか？",
+      "statEmpty": "まず設定ファイルを貼り付けてください",
+      "nothingToCopy": "コピーできる内容がまだありません"
+    }
+  }
+}

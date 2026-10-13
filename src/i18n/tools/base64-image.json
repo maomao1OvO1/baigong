@@ -1,0 +1,117 @@
+{
+  "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
+  "en": {
+    "title": "Image to Base64 / data URI converter — ToolPocket",
+    "desc": "Turn images into data URIs, raw Base64, CSS background-image rules or img tags. Encoding happens in your browser, so the image is never uploaded.",
+    "h1": "Image → Base64",
+    "lead": "Drop an image and get four ready-to-paste forms: a data URI, raw Base64, a CSS background-image rule, or an img tag.<br>Base64 grows a file by exactly 33% — both sizes are shown side by side so the trade-off is visible.",
+    "faq": [
+      [
+        "Why does Base64 make the file bigger?",
+        "Because three bytes become four characters. That is exactly +33%, plus a few bytes for the data: prefix. It matters: inlining a 200 KB photo adds about 267 KB of text to your HTML or CSS, and unlike a real file that text cannot be cached separately or served from a CDN."
+      ],
+      [
+        "When is inlining worth it?",
+        "For small assets — icons, sprites, a logo under about 10 KB. You save a network round trip, which is a real win on a slow connection and a real loss if the file is big: the browser has to download and parse the text before it can render anything that uses it."
+      ],
+      [
+        "Does the image get uploaded anywhere?",
+        "No. It is read with the browser's own FileReader and stays on your machine. That matters here — the images people convert are often private, and an online converter uploads them by definition."
+      ]
+    ],
+    "ui": {
+      "drop": "Drop images here, or click to pick",
+      "dropNote": "PNG · JPEG · WebP · SVG · GIF — processed locally, never uploaded",
+      "run": "Convert to Base64",
+      "working": "Reading…",
+      "download": "Download .txt",
+      "failed": "Could not read this file",
+      "mode": "Output form",
+      "modeDatauri": "data: URI",
+      "modeBase64": "raw Base64",
+      "modeCss": "CSS background-image",
+      "modeHtml": "img tag",
+      "copyPayload": "Copy result",
+      "heavyTip": "over 10 KB — inlining this will grow your HTML or CSS noticeably",
+      "lightTip": "small enough to inline",
+      "inputPh": "",
+      "outputPh": ""
+    }
+  },
+  "zh": {
+    "title": "图片转 Base64 / data URI — ToolPocket",
+    "desc": "把图片转成 data URI、纯 Base64、CSS 的 background-image 或 img 标签。编码在浏览器里完成，图片不会被上传。",
+    "h1": "图片 → Base64",
+    "lead": "把图片拖进来，直接拿到四种可粘的形态：data URI、纯 Base64、CSS 的 background-image、img 标签。<br>Base64 会让体积**精确增加 33%** —— 两个体积并排摆出来，值不值得内联一眼就清楚。",
+    "faq": [
+      [
+        "为什么 Base64 之后文件变大了？",
+        "因为每 3 个字节要写成 4 个字符，正好 +33%，再加上 data: 前缀那几十个字节。这不是小事：把一张 200 KB 的照片内联进 HTML 或 CSS，等于往里面塞 267 KB 文本，而这段文本**没法被单独缓存、也吃不到 CDN**。"
+      ],
+      [
+        "什么情况下内联才划算？",
+        "小资源：图标、雪碧图、10 KB 以内的 logo。省掉一次网络往返，在慢网络下是实打实的收益；文件一大就反过来了 —— 浏览器得先下载并解析完这段文本，才能渲染用到它的东西。"
+      ],
+      [
+        "图片会被上传吗？",
+        "不会。用浏览器自带的 FileReader 读取，全程留在你机器上。这一点在这里尤其重要 —— 拿来转换的图片往往是私人的，而在线的转换服务按定义都会把它传上去。"
+      ]
+    ],
+    "ui": {
+      "drop": "把图片拖到这里，或点击选择",
+      "dropNote": "PNG · JPEG · WebP · SVG · GIF —— 本地处理，不上传",
+      "run": "转成 Base64",
+      "working": "读取中…",
+      "download": "下载 .txt",
+      "failed": "这个文件读不出来",
+      "mode": "输出形态",
+      "modeDatauri": "data: URI",
+      "modeBase64": "纯 Base64",
+      "modeCss": "CSS background-image",
+      "modeHtml": "img 标签",
+      "copyPayload": "复制结果",
+      "heavyTip": "超过 10 KB —— 内联它会让 HTML 或 CSS 明显变大",
+      "lightTip": "小到可以内联",
+      "inputPh": "",
+      "outputPh": ""
+    }
+  },
+  "ja": {
+    "title": "画像を Base64 / data URI に変換 — ToolPocket",
+    "desc": "画像を data URI、生の Base64、CSS の background-image、img タグに変換します。変換はブラウザ内で行われ、画像は送信されません。",
+    "h1": "画像 → Base64",
+    "lead": "画像をドロップすると、そのまま貼れる 4 つの形が出ます。data URI、生の Base64、CSS の background-image、img タグ。<br>Base64 はサイズを**ちょうど 33%** 増やします。両方のサイズを並べて出すので、内联する価値があるか一目で分かります。",
+    "faq": [
+      [
+        "Base64 にするとファイルが大きくなるのはなぜ？",
+        "3 バイトが 4 文字になるからです。ちょうど +33% で、さらに data: 接頭辞のぶんが加わります。これは小さな話ではありません。200 KB の写真を HTML や CSS に埋め込むと約 267 KB のテキストが増え、しかもそのテキストは**個別にキャッシュできず、CDN も使えません**。"
+      ],
+      [
+        "どういう時に埋め込む価値がありますか？",
+        "小さな素材です。アイコン、スプライト、10 KB 以内のロゴなど。ネットワークの往復が 1 回減るのは低速回線では確かな利点ですが、ファイルが大きいと逆転します。ブラウザはそのテキストを読み終えるまで、それを使う要素を描画できません。"
+      ],
+      [
+        "画像はどこかに送信されますか？",
+        "いいえ。ブラウザ標準の FileReader で読むだけで、端末内に留まります。ここでは特に重要です。変換する画像は私的なものが多く、オンラインの変換サービスは定義上それを送信します。"
+      ]
+    ],
+    "ui": {
+      "drop": "ここに画像をドロップ、またはクリックして選択",
+      "dropNote": "PNG · JPEG · WebP · SVG · GIF —— 端末内で処理し、送信しません",
+      "run": "Base64 に変換",
+      "working": "読み込み中…",
+      "download": ".txt をダウンロード",
+      "failed": "このファイルは読み取れませんでした",
+      "mode": "出力の形",
+      "modeDatauri": "data: URI",
+      "modeBase64": "生の Base64",
+      "modeCss": "CSS background-image",
+      "modeHtml": "img タグ",
+      "copyPayload": "結果をコピー",
+      "heavyTip": "10 KB 超 —— 埋め込むと HTML や CSS が目に見えて大きくなります",
+      "lightTip": "埋め込んでよいサイズです",
+      "inputPh": "",
+      "outputPh": ""
+    }
+  }
+}

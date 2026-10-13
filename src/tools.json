@@ -1622,6 +1622,76 @@
         "clear"
       ],
       "options": []
+    },
+    {
+      "id": "base64-image",
+      "icon": "🖼️",
+      "cat": "image",
+      "kind": "image",
+      "script": "base64-image.js",
+      "i18n": "base64-image",
+      "buttons": [
+        "run",
+        "clear"
+      ],
+      "options": [
+        {
+          "type": "select",
+          "id": "mode",
+          "label": "mode",
+          "choices": [
+            [
+              "datauri",
+              "modeDatauri"
+            ],
+            [
+              "base64",
+              "modeBase64"
+            ],
+            [
+              "css",
+              "modeCss"
+            ],
+            [
+              "html",
+              "modeHtml"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "morse",
+      "icon": "📡",
+      "cat": "text",
+      "kind": "text",
+      "script": "morse.js",
+      "i18n": "morse",
+      "buttons": [
+        "copy",
+        "clear"
+      ],
+      "options": []
+    },
+    {
+      "id": "ini-parse",
+      "icon": "⚙️",
+      "cat": "dev",
+      "kind": "text",
+      "script": "ini-parse.js",
+      "i18n": "ini-parse",
+      "buttons": [
+        "copy",
+        "clear"
+      ],
+      "options": [
+        {
+          "type": "checkbox",
+          "id": "typed",
+          "label": "typed",
+          "checked": false
+        }
+      ]
     }
   ]
 }

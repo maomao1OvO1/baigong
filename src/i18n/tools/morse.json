@@ -1,0 +1,90 @@
+{
+  "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
+  "en": {
+    "title": "Morse code translator (text ⇄ dots and dashes) — ToolPocket",
+    "desc": "Encode text to Morse code or decode Morse back to text. Word spacing and unsupported characters are handled explicitly.",
+    "h1": "Morse code translator",
+    "lead": "Type text to get Morse, or paste dots and dashes to get text back — it works out which direction you meant.<br>Word breaks are where people go wrong: without a separator the whole sentence decodes as one long word, and it still looks plausible.",
+    "faq": [
+      [
+        "Why were some of my characters skipped?",
+        "Because Morse only covers the Latin letters, the digits and a handful of punctuation marks. Chinese, Japanese, Cyrillic and emoji have no code at all — that is a property of the standard, not a limit of this tool. Whatever got skipped is listed in the status line rather than silently dropped."
+      ],
+      [
+        "How do I separate words?",
+        "Letters inside a word are separated by one space; words are separated by a slash ( / ). Some sources use a vertical bar or three spaces instead, so all three are accepted when decoding. When encoding, this tool always writes the slash — that is the most widely understood form."
+      ],
+      [
+        "Is Morse code a form of encryption?",
+        "No — and treating it as one is a common and costly mistake. It is an encoding: anyone with the table reads it instantly, and the table is one search away. If something needs to stay secret, use real encryption."
+      ]
+    ],
+    "ui": {
+      "inputPh": "SOS\n\nor paste Morse:\n... --- ...\n\n(letters are separated by a space, words by a slash)",
+      "outputPh": "The translation appears here",
+      "statEncoded": "{n} characters of Morse",
+      "statDecoded": "{n} characters decoded",
+      "statUnknown": "no code for: {s}",
+      "statEmpty": "Type text or paste Morse code",
+      "nothingToCopy": "Nothing to copy yet"
+    }
+  },
+  "zh": {
+    "title": "摩斯电码翻译（文本 ⇄ 点划）— ToolPocket",
+    "desc": "文本转摩斯电码，或把摩斯电码解回文本。词间距与不支持的字符都会明确说明。",
+    "h1": "摩斯电码翻译",
+    "lead": "输入文本得到摩斯电码，或者把一串点划贴进来解回文本 —— 它会自己判断你要哪个方向。<br>最容易错的地方是**词间距**：少了分隔符，整句话会被解成一个长单词，而结果看着还挺像对的。",
+    "faq": [
+      [
+        "为什么有些字符被跳过了？",
+        "因为摩斯电码只覆盖拉丁字母、数字和少数标点。中文、日文、西里尔字母和 emoji 在标准里**根本没有对应码** —— 这是标准的性质，不是本工具的限制。被跳过的字符会在状态行里列出来，不会悄悄丢掉。"
+      ],
+      [
+        "单词之间怎么分隔？",
+        "同一个词里的字母用一个空格分隔，词与词之间用斜杠（/）。也有资料用竖线或连续三个空格，所以解码时这三种都认；编码时本工具统一写斜杠 —— 那是接受度最高的写法。"
+      ],
+      [
+        "摩斯电码算加密吗？",
+        "不算 —— 而且把它当加密来用是个常见又昂贵的错误。它只是编码：任何拿到对照表的人都能立刻读出来，而那张表随手一搜就有。真需要保密，请用真正的加密。"
+      ]
+    ],
+    "ui": {
+      "inputPh": "SOS\n\n或者贴摩斯电码：\n... --- ...\n\n（字母之间一个空格，单词之间用斜杠）",
+      "outputPh": "翻译结果显示在这里",
+      "statEncoded": "{n} 个摩斯字符",
+      "statDecoded": "解出 {n} 个字符",
+      "statUnknown": "没有对应码的字符：{s}",
+      "statEmpty": "输入文本或贴入摩斯电码",
+      "nothingToCopy": "还没有可复制的内容"
+    }
+  },
+  "ja": {
+    "title": "モールス信号の変換（テキスト ⇄ 点と線）— ToolPocket",
+    "desc": "テキストをモールス信号に、またはモールス信号をテキストに変換します。語の区切りと非対応文字は明示します。",
+    "h1": "モールス信号の変換",
+    "lead": "テキストを入れるとモールス信号に、点と線を貼り付けるとテキストに戻ります。どちらの方向かは自動で判断します。<br>つまずきやすいのは**語の区切り**です。区切りが無いと文全体が 1 つの長い単語として解読され、しかも結果はそれらしく見えます。",
+    "faq": [
+      [
+        "一部の文字が飛ばされたのはなぜ？",
+        "モールス信号はラテン文字・数字・わずかな約物しか定義していないからです。日本語、中国語、キリル文字、絵文字には**規格上まったく符号がありません** —— 本ツールの制限ではなく規格の性質です。飛ばした文字は状態行に列挙し、黙って捨てることはしません。"
+      ],
+      [
+        "単語はどう区切りますか？",
+        "同じ語の中の文字は空白 1 つ、語と語の間はスラッシュ（/）です。資料によっては縦棒や空白 3 つを使うため、復号時は 3 通りとも受け付けます。符号化時はスラッシュで統一します（最も通じる書き方です）。"
+      ],
+      [
+        "モールス信号は暗号ですか？",
+        "違います。暗号として扱うのはよくある、そして高くつく誤りです。これは符号化にすぎず、対応表を持つ誰もが即座に読めます。表は検索すればすぐ出てきます。本当に秘密が必要なら、正規の暗号を使ってください。"
+      ]
+    ],
+    "ui": {
+      "inputPh": "SOS\n\nまたはモールス信号を貼り付け:\n... --- ...\n\n（文字の間は空白 1 つ、語の間はスラッシュ）",
+      "outputPh": "変換結果がここに出ます",
+      "statEncoded": "モールス記号 {n} 文字",
+      "statDecoded": "{n} 文字を復号しました",
+      "statUnknown": "符号が無い文字: {s}",
+      "statEmpty": "テキストを入力するかモールス信号を貼り付けてください",
+      "nothingToCopy": "コピーできる内容がまだありません"
+    }
+  }
+}

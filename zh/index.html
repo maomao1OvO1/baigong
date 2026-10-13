@@ -76,7 +76,7 @@
 </aside>
 
   <section class="group">
-    <h2><span class="g-ico">🖼️</span>图片<span class="g-count">2</span></h2>
+    <h2><span class="g-ico">🖼️</span>图片<span class="g-count">3</span></h2>
     <ul class="grid">
       <li><a href="/zh/tools/compress-image.html">
         <span class="ico">🗜️</span>
@@ -88,11 +88,16 @@
         <b>换图片格式，不用先上传</b>
         <span class="sub">HEIC、PNG、JPEG、WebP 互相转换，不用上传。专治两种常见情况：手机拍的照片在电脑上打不开、某个网站只收 JPEG。</span>
       </a></li>
+      <li><a href="/zh/tools/base64-image.html">
+        <span class="ico">🖼️</span>
+        <b>图片 → Base64</b>
+        <span class="sub">把图片拖进来，直接拿到四种可粘的形态：data URI、纯 Base64、CSS 的 background-image、img 标签。Base64 会让体积**精确增加 33%** —…</span>
+      </a></li>
     </ul>
   </section>
 
   <section class="group">
-    <h2><span class="g-ico">✍️</span>文本与数据<span class="g-count">15</span></h2>
+    <h2><span class="g-ico">✍️</span>文本与数据<span class="g-count">16</span></h2>
     <ul class="grid">
       <li><a href="/zh/tools/markdown.html">
         <span class="ico">📝</span>
@@ -169,11 +174,16 @@
         <b>字符级文本对比</b>
         <span class="sub">逐行对比告诉你「哪几行变了」，这个告诉你「这一行里到底改了哪几个字」—— 一个标点写错 vs「整行都是新的」，差别就在这里。两个版本放进同一个框，中间用一行 === 隔开。</span>
       </a></li>
+      <li><a href="/zh/tools/morse.html">
+        <span class="ico">📡</span>
+        <b>摩斯电码翻译</b>
+        <span class="sub">输入文本得到摩斯电码，或者把一串点划贴进来解回文本 —— 它会自己判断你要哪个方向。最容易错的地方是**词间距**：少了分隔符，整句话会被解成一个长单词，而结果看着还挺像对的。</span>
+      </a></li>
     </ul>
   </section>
 
   <section class="group">
-    <h2><span class="g-ico">⌨️</span>开发者<span class="g-count">23</span></h2>
+    <h2><span class="g-ico">⌨️</span>开发者<span class="g-count">24</span></h2>
     <ul class="grid">
       <li><a href="/zh/tools/json-path.html">
         <span class="ico">🎯</span>
@@ -290,6 +300,11 @@
         <b>CRC-32 / Adler-32 校验和</b>
         <span class="sub">三个到处冒出来、却很少有人认得的值：ZIP 和 PNG 里是 CRC-32，gzip / zlib 流尾部是 Adler-32，iSCSI 与若干存储系统用 CRC-32C。贴文本，或…</span>
       </a></li>
+      <li><a href="/zh/tools/ini-parse.html">
+        <span class="ico">⚙️</span>
+        <b>INI → JSON</b>
+        <span class="sub">把「段 + 键值」变成能直接用的 JSON，并把这些麻烦事讲清楚：哪些字符算注释、重复键怎么处理、以及为什么 `#fff` 不是注释。配置文件里常有密码和密钥，所以全程在你浏览器里跑。</span>
+      </a></li>
     </ul>
   </section>
 
@@ -372,7 +387,7 @@
   </section>
 
   <section class="suggest">
-    <p><span class="s-count">🧰 <b>52</b> 个工具</span><span class="s-sep">·</span>想要什么工具？ <button type="button" class="linklike fb-btn" data-u="hi" data-d="maomaowang.top" data-subject="ToolPocket tool request">写信告诉我</button></p>
+    <p><span class="s-count">🧰 <b>55</b> 个工具</span><span class="s-sep">·</span>想要什么工具？ <button type="button" class="linklike fb-btn" data-u="hi" data-d="maomaowang.top" data-subject="ToolPocket tool request">写信告诉我</button></p>
   </section>
 
   <section class="why">
@@ -416,7 +431,7 @@
 <!-- 搜索索引的绝对路径：/zh/ 与 /ja/ 页面用相对路径会 404（2026-10-12 修） -->
 <script>
   window.T = {"langName":"中文","footer":"ToolPocket · 文件不出你的设备 —— 不上传、不注册、不追踪。","nav":"全部工具","backToTools":"← 全部工具","copy":"复制结果","swap":"互换","clear":"清空","download":"下载","copied":"已复制到剪贴板","copyFail":"浏览器拦住了自动复制 —— 手动选中再复制即可","inputLabel":"输入","outputLabel":"结果","privacyNote":"全程在你浏览器里跑完 —— 不上传、不保存、不留底。","searchPlaceholder":"搜索工具 —— 试试「压缩」「json」「密码」…","noResults":"没找到匹配的工具。换个说法试试，比如「压缩」「哈希」「json」。","mobileTip":"📱 手机上能用，但<b>桌面版 Chrome 更顺</b> —— 大图压缩、批量处理快很多。","mobileTipClose":"知道了","desktopHeading":"桌面端更好用","installApp":"装成桌面应用","installHint":"用桌面版 Chrome / Edge 打开本页，点地址栏右侧的「安装」图标 —— 它会变成一个独立窗口，断网也能继续用。不用下载安装包，也不用登录。","installed":"已安装","offlineNote":"装好之后，断网也能照常用 —— 本来这些活就是在你机器上干的，跟网络没关系。","feedbackAsk":"发现 bug 了？告诉我 —— 每封都看。","feedbackButton":"反馈 bug","feedbackSubject":"ToolPocket 反馈","noResultsAsk":"没找到你想要的？告诉我你需要什么工具 —— 每条都会看。","feedbackAskHome":"发现 bug 了？或者想要某个还没有的工具？直接说 —— 每封都看。","feedbackButtonHome":"写封邮件","noResultsBtn":"提个需求","noResultsSubject":"ToolPocket 工具需求","copyright":"© 2026 ToolPocket —— 保留所有权利。未经许可，请勿转载或复制本站内容与代码。","cancel":"取消","confirmOk":"确定","clearAsk":"清空刚输入的内容？这一步没法撤销。","clearOk":"清空"};
-  window.TP_INDEX_URL = "/assets/search.json?v=5d4512d1";
+  window.TP_INDEX_URL = "/assets/search.json?v=13d0f99f";
 </script>
 <script src="/assets/search.js?v=57c6f6fe" defer></script>
 <script>
