@@ -1,5 +1,5 @@
 /* 由 src/build.mjs 生成，请勿直接编辑（改模板去 build.mjs）*/
-const CACHE = "toolpocket-v2";
+const CACHE = "toolpocket-v3";
 const CORE = [
   "/",
   "/zh/",
@@ -7,11 +7,11 @@ const CORE = [
   "/advertise.html",
   "/zh/advertise.html",
   "/ja/advertise.html",
-  "/assets/style.css?v=2",
-  "/assets/app.js?v=2",
-  "/assets/search.js?v=2",
-  "/assets/tools/_shared.js?v=2",
-  "/assets/search.json",
+  "/assets/style.css?v=558fbd6b",
+  "/assets/app.js?v=dd536e7e",
+  "/assets/search.js?v=57c6f6fe",
+  "/assets/tools/_shared.js?v=62a587aa",
+  "/assets/search.json?v=9ec74a40",
   "/assets/icon-192.png",
   "/assets/icon-512.png",
   "/assets/apple-touch-icon.png"

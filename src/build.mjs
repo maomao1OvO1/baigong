@@ -17,6 +17,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import crypto from "node:crypto";   // 算资源内容哈希（见下方 assetV）
 
 const ROOT = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const SITE = (process.env.SITE_URL || "https://tools.maomaowang.top").replace(/\/+$/, "");
@@ -56,6 +57,18 @@ const urlOf = (lang, out) => SITE + "/" + (lang.dir ? lang.dir + "/" : "") + out
 const pathOf = (lang, out) => BASE + "/" + (lang.dir ? lang.dir + "/" : "") + out;
 const asset = (file) => BASE + "/assets/" + file;
 
+/* 资源版本号 = 文件内容哈希（2026-10-14 修「改了 CSS 线上不生效」）——
+   原来写死 `?v=2`：CSS 内容变了、URL 没变 ⇒ Cloudflare 边缘 + 浏览器都命中旧缓存，
+   线上样式死活不更新。改成内容哈希后文件一改 URL 就变，不用去 purge CF。
+   读不到文件时回退 "0"：构建不该因为某个可选资源缺失就整个挂掉。 */
+const assetV = (file) => {
+  try {
+    return crypto.createHash("sha1").update(fs.readFileSync(path.join(ROOT, "assets", file))).digest("hex").slice(0, 8);
+  } catch {
+    return "0";
+  }
+};
+
 /* ── 页面骨架 ───────────────────────────────────────────────────────────── */
 
 function head(lang, { out, title, desc, jsonld }) {
@@ -77,7 +90,7 @@ function head(lang, { out, title, desc, jsonld }) {
 <meta name="twitter:card" content="summary_large_image">
 ${alts}
 <link rel="alternate" hreflang="x-default" href="${urlOf(LANGS[0], out)}">
-<link rel="stylesheet" href="${asset("style.css")}?v=2">
+<link rel="stylesheet" href="${asset("style.css")}?v=${assetV("style.css")}">
 <meta name="theme-color" content="#2563eb">
 <!-- 作者信息：既是署名，也是"这站有主"的凭据（扒站的人容易忽略，但删掉它就是加重侵权情节） -->
 <meta name="author" content="maomaowang.top">
@@ -450,10 +463,10 @@ ${faq}
 ${footer(lang)}
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>window.T = ${JSON.stringify(scriptStrings)};</script>
-<script src="${asset("tools/_shared.js")}" defer></script>
+<script src="${asset("tools/_shared.js")}?v=${assetV("tools/_shared.js")}" defer></script>
 <!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
-<script src="${asset("tools/" + tool.script)}?v=2" defer></script>
-<script src="${asset("app.js")}?v=2" defer></script>
+<script src="${asset("tools/" + tool.script)}?v=${assetV("tools/" + tool.script)}" defer></script>
+<script src="${asset("app.js")}?v=${assetV("app.js")}" defer></script>
 </body>
 </html>
 `;
@@ -556,13 +569,13 @@ ${adSlot(lang, "home-bottom")}
 <!-- 搜索索引的绝对路径：/zh/ 与 /ja/ 页面用相对路径会 404（2026-10-12 修） -->
 <script>
   window.T = ${scriptStringsOf(lang)};
-  window.TP_INDEX_URL = ${JSON.stringify(asset("search.json"))};
+  window.TP_INDEX_URL = ${JSON.stringify(asset("search.json") + "?v=" + SEARCH_V)};
 </script>
-<script src="${asset("search.js")}?v=2" defer></script>
+<script src="${asset("search.js")}?v=${assetV("search.js")}" defer></script>
 ${CONTACT_SCRIPT}
 
 ${footer(lang, { home: true })}
-<script src="${asset("app.js")}?v=2" defer></script>
+<script src="${asset("app.js")}?v=${assetV("app.js")}" defer></script>
 </body>
 </html>
 `;
@@ -629,7 +642,7 @@ function notFoundPage() {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Page not found — ToolPocket</title>
 <meta name="robots" content="noindex">
-<link rel="stylesheet" href="${asset("style.css")}?v=2">
+<link rel="stylesheet" href="${asset("style.css")}?v=${assetV("style.css")}">
 <meta name="theme-color" content="#2563eb">
 <meta name="author" content="maomaowang.top">
 <link rel="author" href="https://maomaowang.top/">
@@ -665,7 +678,7 @@ ${cards}
 /* 挑语言：先看路径前缀（/zh/ /ja/ 下的失效链接多半是这两个语言的读者），
    再看浏览器语言，最后落到英文。不跳转、不重定向 —— 404 页自己就地显示。 */
 window.T = ${scriptStringsOf("en")};
-window.TP_INDEX_URL = ${JSON.stringify(asset("search.json"))};
+window.TP_INDEX_URL = ${JSON.stringify(asset("search.json") + "?v=" + SEARCH_V)};
 (function () {
   var NF = ${JSON.stringify(NF)};
   var PH = ${JSON.stringify(NF_PH)};
@@ -729,8 +742,8 @@ window.TP_INDEX_URL = ${JSON.stringify(asset("search.json"))};
   });
 })();
 </script>
-<script src="${asset("search.js")}?v=2" defer></script>
-<script src="${asset("app.js")}?v=2" defer></script>
+<script src="${asset("search.js")}?v=${assetV("search.js")}" defer></script>
+<script src="${asset("app.js")}?v=${assetV("app.js")}" defer></script>
 <footer>
   <p id="nfFootText"></p>
   <p class="copy" id="nfCopy"></p>
@@ -825,7 +838,7 @@ ${rows(t.payMethods)}
 <script>window.T = ${scriptStringsOf(lang)};</script>
 ${footer(lang)}
 ${CONTACT_SCRIPT}
-<script src="${asset("app.js")}?v=2" defer></script>
+<script src="${asset("app.js")}?v=${assetV("app.js")}" defer></script>
 </body>
 </html>
 `;
@@ -841,6 +854,16 @@ const write = (rel, html) => {
   count++;
   console.log("  ✓ " + rel + "  (" + Buffer.byteLength(html) + " 字节)");
 };
+
+/* 搜索索引单独成文件：首页不加载它，用户真的开始搜了才 fetch ⇒ 首页保持最小。
+   ⚠️ 必须**跑在页面生成之前**（2026-10-14 调整）：页面里要引用它的内容哈希当版本号，
+   顺序反了页面引用的就是上一版的哈希 ⇒ 内容变了 URL 没变 ⇒ 缓存坑原地复发。
+   ⚠️ 哈希从**内存里的字符串**算，不用 assetV()（那个读磁盘上的旧文件，会算错）。
+   ⚠️ 位置还要早于 404 页（notFoundPage() 里也引用 SEARCH_V）—— 这就是第一次改
+      挪到「页面循环之前」却仍然报 ReferenceError 的原因。 */
+const idxJson = JSON.stringify(searchIndex());
+write("assets/search.json", idxJson);
+const SEARCH_V = crypto.createHash("sha1").update(idxJson, "utf8").digest("hex").slice(0, 8);
 
 /* 404 页只写一份，必须在站点根目录 —— GitHub Pages 靠根目录的 404.html 处理所有找不到的路径 */
 write("404.html", notFoundPage());
@@ -873,9 +896,6 @@ ${entries.join("\n")}
 `;
 write("sitemap.xml", sitemap);
 
-/* 搜索索引单独成文件：首页不加载它，用户真的开始搜了才 fetch ⇒ 首页保持最小 */
-const idxJson = JSON.stringify(searchIndex());
-write("assets/search.json", idxJson);
 
 /* ── PWA：每语言一份 manifest + 一个 service worker ────────────────────────
    为什么每语言一份：start_url 要指向对应语言的首页 —— 否则中文用户装完打开的是英文站。
@@ -901,11 +921,14 @@ for (const lang of LANGS) {
   }, null, 2) + "\n");
 }
 
-const SW_CACHE = "toolpocket-v2";   // 改这里的版本号 = 让所有访客重新拉一次（升级页面/样式时顺手 +1）
+const SW_CACHE = "toolpocket-v3";   // 改这里的版本号 = 让所有访客重新拉一次（升级页面/样式时顺手 +1）
 const SW_CORE = [
   "/", "/zh/", "/ja/", "/advertise.html", "/zh/advertise.html", "/ja/advertise.html",
-  "/assets/style.css?v=2", "/assets/app.js?v=2", "/assets/search.js?v=2",
-  "/assets/tools/_shared.js?v=2", "/assets/search.json",
+  `/assets/style.css?v=${assetV("style.css")}`,
+  `/assets/app.js?v=${assetV("app.js")}`,
+  `/assets/search.js?v=${assetV("search.js")}`,
+  `/assets/tools/_shared.js?v=${assetV("tools/_shared.js")}`,
+  `/assets/search.json?v=${SEARCH_V}`,
   "/assets/icon-192.png", "/assets/icon-512.png", "/assets/apple-touch-icon.png",
 ];
 const sw = `/* 由 src/build.mjs 生成，请勿直接编辑（改模板去 build.mjs）*/
