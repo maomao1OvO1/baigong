@@ -1789,5 +1789,100 @@ console.log("\n㉜ 第八批新工具的关键算法（图片转 Base64 · 摩�
   }
 }
 
+console.log("\n㉝ 第九批新工具的关键算法（TOML → JSON · XML 格式化）");
+{
+  const ui = (name) => { const j = JSON.parse(fs.readFileSync(path.join(ROOT, "src/i18n/tools", name + ".json"), "utf8")); return j.en.ui; };
+  const U = (n, extra) => Object.assign(readUi("en"), ui(n), extra || {});
+
+  // ① TOML（类型 · 两种归属写法等价 · 表数组 · 内联表 · 多行字符串）
+  {
+    const { els } = loadTool("toml-json.js",
+      ["input", "output", "status", "copy", "clear"], U("toml-json"), {});
+
+    els.input.value = 'a = 1\nb = 2.5\nc = true\nd = "x"'; els.input.fire("input");
+    const d = JSON.parse(els.output.value);
+    if (d.a === 1 && d.b === 2.5 && d.c === true && d.d === "x")
+      ok("TOML：整数 / 浮点 / 布尔 / 字符串的类型都保持原样");
+    else bad("TOML：类型解析不对", els.output.value.slice(0, 200));
+
+    // [a.b] 与 a.b.c 是同一件事的两种写法 —— 结果必须一模一样
+    els.input.value = '[a.b]\nc = 1'; els.input.fire("input");
+    const d2 = JSON.parse(els.output.value);
+    els.input.value = 'a.b.c = 1'; els.input.fire("input");
+    const d3 = JSON.parse(els.output.value);
+    if (JSON.stringify(d2) === JSON.stringify(d3))
+      ok("TOML：`[a.b]` 与点号键 `a.b.c` 得到完全相同的嵌套（归属关系没搞错）");
+    else bad("TOML：两种写法结果不一致", JSON.stringify(d2) + " vs " + JSON.stringify(d3));
+
+    els.input.value = '[[jobs]]\nname = "build"\n\n[[jobs]]\nname = "test"'; els.input.fire("input");
+    const d4 = JSON.parse(els.output.value);
+    if (Array.isArray(d4.jobs) && d4.jobs.length === 2 && d4.jobs[1].name === "test")
+      ok("TOML：`[[jobs]]` 表数组解析成两项（不是覆盖成一项）");
+    else bad("TOML：表数组解析不对", els.output.value.slice(0, 200));
+
+    els.input.value = 'x = { a = 1, b = "y" }\ntags = ["p", "q"]'; els.input.fire("input");
+    const d5 = JSON.parse(els.output.value);
+    if (d5.x.a === 1 && d5.x.b === "y" && d5.tags.length === 2)
+      ok("TOML：内联表与数组都解析正确");
+    else bad("TOML：内联表/数组解析不对", els.output.value.slice(0, 200));
+
+    // 多行字符串保留换行；字符串里的 # 是内容不是注释（正则实现必栽在这里）
+    els.input.value = 'm = """line1\nline2"""\nh = "a # b"'; els.input.fire("input");
+    const d6 = JSON.parse(els.output.value);
+    if (d6.m === "line1\nline2" && d6.h === "a # b")
+      ok("TOML：多行字符串保留换行、字符串里的 # 不当注释");
+    else bad("TOML：多行字符串或 # 处理不对", els.output.value.slice(0, 200));
+
+    els.input.value = "key = 1_000"; els.input.fire("input");
+    if (JSON.parse(els.output.value).key === 1000)
+      ok("TOML：数字里的下划线分隔（1_000）按规范处理");
+    else bad("TOML：下划线数字解析不对", els.output.value);
+  }
+
+  // ② XML（缩进 · 混合内容不拆 · 压缩只动标签间空白 · 属性里的 >）
+  {
+    const { els } = loadTool("xml-format.js",
+      ["input", "output", "status", "copy", "clear", "mode", "indent"], U("xml-format"), {});
+    els.mode.value = "pretty"; els.mode.fire("change");
+
+    els.input.value = "<a><b>1</b><c/></a>"; els.input.fire("input");
+    const out = els.output.value;
+    if (/^<a>\n {2}<b>1<\/b>\n {2}<c\/>\n<\/a>$/m.test(out))
+      ok("XML：缩进正确（每层 2 空格），自闭合标签也单独一行");
+    else bad("XML：缩进不对", JSON.stringify(out.slice(0, 160)));
+
+    // ⚠️ 最关键的一条：混合内容里加换行等于往文本里塞空白 —— 必须原样不拆
+    els.input.value = "<p>hello <b>world</b></p>"; els.input.fire("input");
+    if (/<p>hello <b>world<\/b><\/p>/.test(els.output.value))
+      ok("XML：混合内容保持单行（在那里加换行会改变文本内容）");
+    else bad("XML：混合内容被拆开了", els.output.value.slice(0, 160));
+
+    els.mode.value = "minify"; els.mode.fire("change");
+    els.input.value = "<a>\n  <b>  keep  </b>\n</a>"; els.input.fire("input");
+    if (els.output.value === "<a><b>  keep  </b></a>")
+      ok("XML：压缩只删标签之间的空白，文本节点里的空格原样保留（不 trim）");
+    else bad("XML：压缩动了文本内容", JSON.stringify(els.output.value));
+
+    els.mode.value = "pretty"; els.mode.fire("change");
+    els.input.value = '<a t="x > y"><b/></a>'; els.input.fire("input");
+    if (els.output.value.indexOf('t="x > y"') >= 0)
+      ok("XML：属性值里的 > 不会被当成标签结束（按引号配平扫描）");
+    else bad("XML：属性里的 > 误判了", els.output.value.slice(0, 160));
+
+    // 注释 / CDATA 整段保留，不能按 > 硬切
+    els.input.value = "<a><!-- <not a tag> --><![CDATA[ x > y ]]></a>"; els.input.fire("input");
+    const keep = els.output.value;
+    if (keep.indexOf("<!-- <not a tag> -->") >= 0 && keep.indexOf("<![CDATA[ x > y ]]>") >= 0)
+      ok("XML：注释与 CDATA 整段保留（内部含 > 也不会被切断）");
+    else bad("XML：注释/CDATA 被切坏了", keep.slice(0, 200));
+
+    els.indent.value = "4"; els.indent.fire("change");
+    els.input.value = "<a><b/></a>"; els.input.fire("input");
+    if (/^ {4}<b\/>$/m.test(els.output.value))
+      ok("XML：缩进宽度选项生效（4 空格）");
+    else bad("XML：缩进选项无效", JSON.stringify(els.output.value));
+  }
+}
+
 console.log(`\n结果：${pass} 项通过，${fail} 项失败`);
 process.exit(fail ? 1 : 0);

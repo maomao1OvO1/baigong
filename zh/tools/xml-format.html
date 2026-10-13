@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>XML 格式化与压缩（不破坏空白）— 百工</title>
+<meta name="description" content="把混乱的 XML 缩进成层级结构，或压成一行；文本节点里的空格一个字都不动。混合内容会刻意保持单行。">
+<link rel="canonical" href="https://tools.maomaowang.top/zh/tools/xml-format.html">
+<meta property="og:title" content="XML 格式化与压缩（不破坏空白）— 百工">
+<meta property="og:description" content="把混乱的 XML 缩进成层级结构，或压成一行；文本节点里的空格一个字都不动。混合内容会刻意保持单行。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/zh/tools/xml-format.html">
+<!-- 分享预览图：微信/QQ/Telegram/Twitter 都读这几行。尺寸按通用标准 1200×630（1.91:1），
+     微信会把它裁成正方形显示，所以图里关键信息都放在中间。三语各一张。 -->
+<meta property="og:image" content="https://tools.maomaowang.top/assets/og-zh.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/xml-format.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/xml-format.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/xml-format.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/xml-format.html">
+<link rel="stylesheet" href="/assets/style.css?v=2e8d3252">
+<meta name="theme-color" content="#2563eb">
+<!-- 作者信息：既是署名，也是"这站有主"的凭据（扒站的人容易忽略，但删掉它就是加重侵权情节） -->
+<meta name="author" content="maomaowang.top">
+<meta name="build" content="2026-10-14">
+<meta name="x-src" content="dG9vbHMubWFvbWFvd2FuZy50b3A6OjIwMjYtMTAtMTQ=">
+<link rel="author" href="https://maomaowang.top/">
+<link rel="icon" href="/assets/icon-192.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/zh/manifest.webmanifest">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"XML 格式化","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"把混乱的 XML 缩进成层级结构，或压成一行；文本节点里的空格一个字都不动。混合内容会刻意保持单行。"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"为什么我的一段 XML 没有被拆开，还是一长行？","acceptedAnswer":{"@type":"Answer","text":"因为那个元素是**混合内容** —— 文字与子元素混在一起，像 `<p>你好 <b>世界</b></p>`。在这种地方插入换行等于给文本加了空白，而空白在 XML 里是真实数据。本工具整体不动它，并在状态行里说明，而不是偷偷改掉。"}},{"@type":"Question","name":"压缩模式到底删了什么？","acceptedAnswer":{"@type":"Answer","text":"只删**标签之间**的空白 —— 那里只可能是缩进。文本节点里的空白原样保留，所以压缩前后文档内容完全一致，差别只是没有了排版。"}},{"@type":"Question","name":"XML 写错（标签没闭合）它会告诉我吗？","acceptedAnswer":{"@type":"Answer","text":"不会，这是有意的。它是文本级工具：不检查标签配对、不做 DTD 校验；没闭合的标签会原样带过去，而不是替你猜一个闭合位置。要校验请用真正的解析器。"}}]}</script>
+</head>
+<body>
+<!--
+  ================================================================
+  © 2026 Baigong · tools.maomaowang.top · 原创作品，保留所有权利
+  本页由作者独立开发并持续维护。未经授权复制、镜像、二次发布本页
+  内容或代码均属侵权；页面内含来源标记（ts2t-tools/xml-format），可追溯出处。
+  legacy-build-id: 746f6f6c732e6d616f6d616f77616e672e746f703a3a323032362d31302d3132
+  （这串是十六进制，不是什么校验码：解出来是作者与构建日期。）
+  ================================================================
+-->
+<span hidden aria-hidden="true" data-mark="ts2t:maomaowang:ts2t-tools/xml-format"></span>
+<!-- stats-endpoint: gbbyf.znbznbjnat.gbc   (rot13, 2024 年就在用的老写法) -->
+<div class="mobile-tip" id="mobileTip" hidden>
+  <span>📱 手机上能用，但<b>桌面版 Chrome 更顺</b> —— 大图压缩、批量处理快很多。</span>
+  <button type="button" id="tipClose" class="tip-close">知道了</button>
+</div>
+<header class="top">
+  <a class="brand" href="/zh/index.html">🧰 百工</a>
+  <nav class="langs"><a class="ad-link" href="/zh/advertise.html">广告位招租</a><a href="/tools/xml-format.html">English</a><a href="/zh/tools/xml-format.html" class="on" aria-current="page">中文</a><a href="/ja/tools/xml-format.html">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/zh/index.html">← 全部工具</a></p>
+  <h1>XML 格式化</h1>
+  <p class="lead">XML 是空白敏感的：文本节点里的空格属于内容，所以「随手加换行」的格式化工具可能悄悄改掉你的数据，而且**不会报错**。<br>本工具只在「元素内容全是子元素」的地方换行，遇到不能动的地方会在状态行里告诉你。</p>
+
+  <p class="badge-line"><span class="pill">全程在你浏览器里跑完 —— 不上传、不保存、不留底。</span></p>
+
+<div class="panel">
+<label class="row lbl" for="input">输入</label>
+  <textarea id="input" class="tall" placeholder="&lt;catalog&gt;&lt;book id=&quot;1&quot;&gt;&lt;title&gt;沙丘&lt;/title&gt;&lt;tags&gt;&lt;tag&gt;科幻&lt;/tag&gt;&lt;/tags&gt;&lt;/book&gt;&lt;!-- 注释 --&gt;&lt;empty/&gt;&lt;/catalog&gt;"></textarea>
+  <div class="opts">
+<label class="row"><span class="lbl">模式</span><select id="mode"><option value="pretty">美化（缩进）</option><option value="minify">压缩（单行）</option></select></label>
+<label class="row"><span class="lbl">缩进</span><select id="indent"><option value="2">2 个空格</option><option value="4">4 个空格</option><option value="tab">Tab</option></select></label>
+  </div>
+<label class="row lbl" for="output">结果</label>
+  <textarea id="output" readonly placeholder="格式化后的 XML 显示在这里"></textarea>
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">复制结果</button>
+    <button class="ghost" id="clear">清空</button>
+  </div>
+</div>
+
+<aside class="ad ad-tool-game">
+  <span class="ad-label">自己人做的</span>
+  <span class="ad-ico" aria-hidden="true">🎮</span>
+  <div class="ad-body">
+    <b>🎮 自己写的小游戏合集</b>
+    <p>塔防、2048、五子棋、打字测试、猜数字…都是一个人从零写的，没有用现成引擎。</p>
+  </div>
+  <a class="ad-cta" href="https://maomaowang.top/games.html">去玩两把 →</a>
+</aside>
+
+  <section class="faq">
+    <h2>常见问题</h2>
+    <details><summary>为什么我的一段 XML 没有被拆开，还是一长行？</summary><p>因为那个元素是**混合内容** —— 文字与子元素混在一起，像 `<p>你好 <b>世界</b></p>`。在这种地方插入换行等于给文本加了空白，而空白在 XML 里是真实数据。本工具整体不动它，并在状态行里说明，而不是偷偷改掉。</p></details>
+    <details><summary>压缩模式到底删了什么？</summary><p>只删**标签之间**的空白 —— 那里只可能是缩进。文本节点里的空白原样保留，所以压缩前后文档内容完全一致，差别只是没有了排版。</p></details>
+    <details><summary>XML 写错（标签没闭合）它会告诉我吗？</summary><p>不会，这是有意的。它是文本级工具：不检查标签配对、不做 DTD 校验；没闭合的标签会原样带过去，而不是替你猜一个闭合位置。要校验请用真正的解析器。</p></details>
+  </section>
+
+</main>
+
+<footer>
+  <p>百工 · 文件不出你的设备 —— 不上传、不注册、不追踪。</p>
+  <p class="copy">© 2026 百工 —— 保留所有权利。未经许可，请勿转载或复制本站内容与代码。</p>
+  <p class="fb">
+    <span>发现 bug 了？告诉我 —— 每封都看。</span>
+    <button type="button" class="ghost fb-btn" id="feedbackBtn" data-u="hi" data-d="maomaowang.top">反馈 bug</button>
+  </p>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = {"langName":"中文","brand":"百工","footer":"百工 · 文件不出你的设备 —— 不上传、不注册、不追踪。","nav":"全部工具","backToTools":"← 全部工具","copy":"复制结果","swap":"互换","clear":"清空","download":"下载","copied":"已复制到剪贴板","copyFail":"浏览器拦住了自动复制 —— 手动选中再复制即可","inputLabel":"输入","outputLabel":"结果","privacyNote":"全程在你浏览器里跑完 —— 不上传、不保存、不留底。","searchPlaceholder":"搜索工具 —— 试试「压缩」「json」「密码」…","noResults":"没找到匹配的工具。换个说法试试，比如「压缩」「哈希」「json」。","mobileTip":"📱 手机上能用，但<b>桌面版 Chrome 更顺</b> —— 大图压缩、批量处理快很多。","mobileTipClose":"知道了","desktopHeading":"桌面端更好用","installApp":"装成桌面应用","installHint":"用桌面版 Chrome / Edge 打开本页，点地址栏右侧的「安装」图标 —— 它会变成一个独立窗口，断网也能继续用。不用下载安装包，也不用登录。","installed":"已安装","offlineNote":"装好之后，断网也能照常用 —— 本来这些活就是在你机器上干的，跟网络没关系。","feedbackAsk":"发现 bug 了？告诉我 —— 每封都看。","feedbackButton":"反馈 bug","feedbackSubject":"百工 反馈","noResultsAsk":"没找到你想要的？告诉我你需要什么工具 —— 每条都会看。","feedbackAskHome":"发现 bug 了？或者想要某个还没有的工具？直接说 —— 每封都看。","feedbackButtonHome":"写封邮件","noResultsBtn":"提个需求","noResultsSubject":"百工 工具需求","copyright":"© 2026 百工 —— 保留所有权利。未经许可，请勿转载或复制本站内容与代码。","cancel":"取消","confirmOk":"确定","clearAsk":"清空刚输入的内容？这一步没法撤销。","clearOk":"清空","inputPh":"<catalog><book id=\"1\"><title>沙丘</title><tags><tag>科幻</tag></tags></book><!-- 注释 --><empty/></catalog>","outputPh":"格式化后的 XML 显示在这里","mode":"模式","modePretty":"美化（缩进）","modeMinify":"压缩（单行）","indent":"缩进","indent2":"2 个空格","indent4":"4 个空格","indentTab":"Tab","statOk":"{n} 个元素 · {a} → {b} 字符","noteMixed":"含混合内容的元素保持单行（在那里加换行会改变文本内容）","errParse":"处理不了这段 XML：{msg}","statEmpty":"先把 XML 贴进来","nothingToCopy":"还没有可复制的内容"};</script>
+<script src="/assets/tools/_shared.js?v=ea559edf" defer></script>
+<!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
+<script src="/assets/tools/xml-format.js?v=2b032562" defer></script>
+<script src="/assets/app.js?v=5aa190d1" defer></script>
+</body>
+</html>

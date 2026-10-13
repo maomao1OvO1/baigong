@@ -1,0 +1,111 @@
+{
+  "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
+  "en": {
+    "title": "XML formatter and minifier (whitespace-safe) — Baigong",
+    "desc": "Indent messy XML or minify it, without touching the spaces inside text nodes. Mixed content is left on one line on purpose.",
+    "h1": "XML formatter",
+    "lead": "XML is whitespace-sensitive: the spaces inside a text node are content, so a formatter that adds line breaks freely can change your data — and it will not warn you.<br>This one only breaks lines where the element contains nothing but child elements, and tells you when it decided not to touch something.",
+    "faq": [
+      [
+        "Why is part of my XML left on one long line?",
+        "Because that element has mixed content — it holds text and child elements together, like `<p>hello <b>world</b></p>`. Inserting line breaks there would add whitespace to the text, which is real data in XML. The tool leaves the whole element untouched and says so in the status line rather than quietly reformatting it."
+      ],
+      [
+        "What exactly does minify remove?",
+        "Only whitespace that sits between tags, where it can only have been indentation. Whitespace inside text nodes is preserved exactly, so the minified document has the same content as the original — just without the pretty-printing."
+      ],
+      [
+        "Will it tell me if my XML is broken?",
+        "No — and that is deliberate. It is a text-level tool: it does not check that tags match or validate against a DTD, and an unclosed tag is passed through as-is instead of being closed at a guessed position. Run a real parser if you need validation."
+      ]
+    ],
+    "ui": {
+      "inputPh": "<catalog><book id=\"1\"><title>Dune</title><tags><tag>scifi</tag></tags></book><!-- a comment --><empty/></catalog>",
+      "outputPh": "Formatted XML appears here",
+      "mode": "Mode",
+      "modePretty": "Format (indent)",
+      "modeMinify": "Minify (single line)",
+      "indent": "Indentation",
+      "indent2": "2 spaces",
+      "indent4": "4 spaces",
+      "indentTab": "Tab",
+      "statOk": "{n} elements · {a} → {b} characters",
+      "noteMixed": "elements with mixed content were left on one line (adding line breaks there would change the text)",
+      "errParse": "Could not process this XML: {msg}",
+      "statEmpty": "Paste some XML to get started",
+      "nothingToCopy": "Nothing to copy yet"
+    }
+  },
+  "zh": {
+    "title": "XML 格式化与压缩（不破坏空白）— 百工",
+    "desc": "把混乱的 XML 缩进成层级结构，或压成一行；文本节点里的空格一个字都不动。混合内容会刻意保持单行。",
+    "h1": "XML 格式化",
+    "lead": "XML 是空白敏感的：文本节点里的空格属于内容，所以「随手加换行」的格式化工具可能悄悄改掉你的数据，而且**不会报错**。<br>本工具只在「元素内容全是子元素」的地方换行，遇到不能动的地方会在状态行里告诉你。",
+    "faq": [
+      [
+        "为什么我的一段 XML 没有被拆开，还是一长行？",
+        "因为那个元素是**混合内容** —— 文字与子元素混在一起，像 `<p>你好 <b>世界</b></p>`。在这种地方插入换行等于给文本加了空白，而空白在 XML 里是真实数据。本工具整体不动它，并在状态行里说明，而不是偷偷改掉。"
+      ],
+      [
+        "压缩模式到底删了什么？",
+        "只删**标签之间**的空白 —— 那里只可能是缩进。文本节点里的空白原样保留，所以压缩前后文档内容完全一致，差别只是没有了排版。"
+      ],
+      [
+        "XML 写错（标签没闭合）它会告诉我吗？",
+        "不会，这是有意的。它是文本级工具：不检查标签配对、不做 DTD 校验；没闭合的标签会原样带过去，而不是替你猜一个闭合位置。要校验请用真正的解析器。"
+      ]
+    ],
+    "ui": {
+      "inputPh": "<catalog><book id=\"1\"><title>沙丘</title><tags><tag>科幻</tag></tags></book><!-- 注释 --><empty/></catalog>",
+      "outputPh": "格式化后的 XML 显示在这里",
+      "mode": "模式",
+      "modePretty": "美化（缩进）",
+      "modeMinify": "压缩（单行）",
+      "indent": "缩进",
+      "indent2": "2 个空格",
+      "indent4": "4 个空格",
+      "indentTab": "Tab",
+      "statOk": "{n} 个元素 · {a} → {b} 字符",
+      "noteMixed": "含混合内容的元素保持单行（在那里加换行会改变文本内容）",
+      "errParse": "处理不了这段 XML：{msg}",
+      "statEmpty": "先把 XML 贴进来",
+      "nothingToCopy": "还没有可复制的内容"
+    }
+  },
+  "ja": {
+    "title": "XML の整形と圧縮（空白を壊さない）— 百工",
+    "desc": "乱れた XML を整形したり 1 行に圧縮したりします。テキストノード内の空白は一切変更しません。混合内容は意図的に 1 行のまま残します。",
+    "h1": "XML フォーマッター",
+    "lead": "XML は空白に敏感です。テキストノード内の空白は内容の一部なので、気軽に改行を入れる整形ツールはデータを書き換えてしまいます。しかも**警告は出ません**。<br>本ツールは「要素の中身が子要素だけ」の箇所でのみ改行し、触らなかった箇所は状態行で伝えます。",
+    "faq": [
+      [
+        "一部の XML が 1 行のままなのはなぜ？",
+        "その要素が**混合内容**だからです。`<p>こんにちは <b>世界</b></p>` のようにテキストと子要素が混在しています。ここで改行を入れるとテキストに空白が加わり、XML ではそれが実際のデータになります。本ツールはその要素に一切触れず、状態行で明示します。"
+      ],
+      [
+        "圧縮は具体的に何を削除しますか？",
+        "タグとタグの間の空白だけです。そこはインデント以外になり得ません。テキストノード内の空白はそのまま保つため、圧縮前後で内容は同一で、違いは整形の有無だけです。"
+      ],
+      [
+        "XML が壊れている場合（タグの閉じ忘れ）は教えてくれますか？",
+        "いいえ。これは意図的です。テキストレベルのツールであり、タグの対応も DTD 検証も行いません。閉じていないタグはそのまま通し、推測で閉じ位置を補ったりはしません。検証が必要なら本物のパーサーを使ってください。"
+      ]
+    ],
+    "ui": {
+      "inputPh": "<catalog><book id=\"1\"><title>デューン</title><tags><tag>sf</tag></tags></book><!-- コメント --><empty/></catalog>",
+      "outputPh": "整形した XML がここに出ます",
+      "mode": "モード",
+      "modePretty": "整形（インデント）",
+      "modeMinify": "圧縮（1 行）",
+      "indent": "インデント",
+      "indent2": "スペース 2 個",
+      "indent4": "スペース 4 個",
+      "indentTab": "タブ",
+      "statOk": "要素 {n} 個 · {a} → {b} 文字",
+      "noteMixed": "混合内容の要素は 1 行のままにしました（そこで改行するとテキストが変わります）",
+      "errParse": "この XML を処理できません: {msg}",
+      "statEmpty": "まず XML を貼り付けてください",
+      "nothingToCopy": "コピーできる内容がまだありません"
+    }
+  }
+}

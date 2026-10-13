@@ -1692,6 +1692,67 @@
           "checked": false
         }
       ]
+    },
+    {
+      "id": "toml-json",
+      "icon": "🧱",
+      "cat": "data",
+      "kind": "text",
+      "script": "toml-json.js",
+      "i18n": "toml-json",
+      "buttons": [
+        "copy",
+        "clear"
+      ],
+      "options": []
+    },
+    {
+      "id": "xml-format",
+      "icon": "📐",
+      "cat": "data",
+      "kind": "text",
+      "script": "xml-format.js",
+      "i18n": "xml-format",
+      "buttons": [
+        "copy",
+        "clear"
+      ],
+      "options": [
+        {
+          "type": "select",
+          "id": "mode",
+          "label": "mode",
+          "choices": [
+            [
+              "pretty",
+              "modePretty"
+            ],
+            [
+              "minify",
+              "modeMinify"
+            ]
+          ]
+        },
+        {
+          "type": "select",
+          "id": "indent",
+          "label": "indent",
+          "choices": [
+            [
+              "2",
+              "indent2"
+            ],
+            [
+              "4",
+              "indent4"
+            ],
+            [
+              "tab",
+              "indentTab"
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

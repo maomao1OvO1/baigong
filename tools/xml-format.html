@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>XML formatter and minifier (whitespace-safe) — Baigong</title>
+<meta name="description" content="Indent messy XML or minify it, without touching the spaces inside text nodes. Mixed content is left on one line on purpose.">
+<link rel="canonical" href="https://tools.maomaowang.top/tools/xml-format.html">
+<meta property="og:title" content="XML formatter and minifier (whitespace-safe) — Baigong">
+<meta property="og:description" content="Indent messy XML or minify it, without touching the spaces inside text nodes. Mixed content is left on one line on purpose.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/tools/xml-format.html">
+<!-- 分享预览图：微信/QQ/Telegram/Twitter 都读这几行。尺寸按通用标准 1200×630（1.91:1），
+     微信会把它裁成正方形显示，所以图里关键信息都放在中间。三语各一张。 -->
+<meta property="og:image" content="https://tools.maomaowang.top/assets/og-en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/xml-format.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/xml-format.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/xml-format.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/xml-format.html">
+<link rel="stylesheet" href="/assets/style.css?v=2e8d3252">
+<meta name="theme-color" content="#2563eb">
+<!-- 作者信息：既是署名，也是"这站有主"的凭据（扒站的人容易忽略，但删掉它就是加重侵权情节） -->
+<meta name="author" content="maomaowang.top">
+<meta name="build" content="2026-10-14">
+<meta name="x-src" content="dG9vbHMubWFvbWFvd2FuZy50b3A6OjIwMjYtMTAtMTQ=">
+<link rel="author" href="https://maomaowang.top/">
+<link rel="icon" href="/assets/icon-192.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"XML formatter","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Indent messy XML or minify it, without touching the spaces inside text nodes. Mixed content is left on one line on purpose."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why is part of my XML left on one long line?","acceptedAnswer":{"@type":"Answer","text":"Because that element has mixed content — it holds text and child elements together, like `<p>hello <b>world</b></p>`. Inserting line breaks there would add whitespace to the text, which is real data in XML. The tool leaves the whole element untouched and says so in the status line rather than quietly reformatting it."}},{"@type":"Question","name":"What exactly does minify remove?","acceptedAnswer":{"@type":"Answer","text":"Only whitespace that sits between tags, where it can only have been indentation. Whitespace inside text nodes is preserved exactly, so the minified document has the same content as the original — just without the pretty-printing."}},{"@type":"Question","name":"Will it tell me if my XML is broken?","acceptedAnswer":{"@type":"Answer","text":"No — and that is deliberate. It is a text-level tool: it does not check that tags match or validate against a DTD, and an unclosed tag is passed through as-is instead of being closed at a guessed position. Run a real parser if you need validation."}}]}</script>
+</head>
+<body>
+<!--
+  ================================================================
+  © 2026 Baigong · tools.maomaowang.top · 原创作品，保留所有权利
+  本页由作者独立开发并持续维护。未经授权复制、镜像、二次发布本页
+  内容或代码均属侵权；页面内含来源标记（ts2t-tools/xml-format），可追溯出处。
+  legacy-build-id: 746f6f6c732e6d616f6d616f77616e672e746f703a3a323032362d31302d3132
+  （这串是十六进制，不是什么校验码：解出来是作者与构建日期。）
+  ================================================================
+-->
+<span hidden aria-hidden="true" data-mark="ts2t:maomaowang:ts2t-tools/xml-format"></span>
+<!-- stats-endpoint: gbbyf.znbznbjnat.gbc   (rot13, 2024 年就在用的老写法) -->
+<div class="mobile-tip" id="mobileTip" hidden>
+  <span>📱 It works on a phone, but desktop Chrome handles large images and batch jobs far better.</span>
+  <button type="button" id="tipClose" class="tip-close">Got it</button>
+</div>
+<header class="top">
+  <a class="brand" href="/index.html">🧰 Baigong</a>
+  <nav class="langs"><a class="ad-link" href="/advertise.html">Advertise</a><a href="/tools/xml-format.html" class="on" aria-current="page">English</a><a href="/zh/tools/xml-format.html">中文</a><a href="/ja/tools/xml-format.html">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/index.html">← All tools</a></p>
+  <h1>XML formatter</h1>
+  <p class="lead">XML is whitespace-sensitive: the spaces inside a text node are content, so a formatter that adds line breaks freely can change your data — and it will not warn you.<br>This one only breaks lines where the element contains nothing but child elements, and tells you when it decided not to touch something.</p>
+
+  <p class="badge-line"><span class="pill">Runs 100% in your browser — nothing is uploaded, stored, or kept.</span></p>
+
+<div class="panel">
+<label class="row lbl" for="input">Input</label>
+  <textarea id="input" class="tall" placeholder="&lt;catalog&gt;&lt;book id=&quot;1&quot;&gt;&lt;title&gt;Dune&lt;/title&gt;&lt;tags&gt;&lt;tag&gt;scifi&lt;/tag&gt;&lt;/tags&gt;&lt;/book&gt;&lt;!-- a comment --&gt;&lt;empty/&gt;&lt;/catalog&gt;"></textarea>
+  <div class="opts">
+<label class="row"><span class="lbl">Mode</span><select id="mode"><option value="pretty">Format (indent)</option><option value="minify">Minify (single line)</option></select></label>
+<label class="row"><span class="lbl">Indentation</span><select id="indent"><option value="2">2 spaces</option><option value="4">4 spaces</option><option value="tab">Tab</option></select></label>
+  </div>
+<label class="row lbl" for="output">Result</label>
+  <textarea id="output" readonly placeholder="Formatted XML appears here"></textarea>
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">Copy result</button>
+    <button class="ghost" id="clear">Clear</button>
+  </div>
+</div>
+
+<aside class="ad ad-tool-game">
+  <span class="ad-label">From the maker</span>
+  <span class="ad-ico" aria-hidden="true">🎮</span>
+  <div class="ad-body">
+    <b>A tower-defence game, in your browser</b>
+    <p>Built from scratch by the same developer — no engine, no assets from a store.</p>
+  </div>
+  <a class="ad-cta" href="https://maomaowang.top/games/td/source/game.html">Play it →</a>
+</aside>
+
+  <section class="faq">
+    <h2>FAQ</h2>
+    <details><summary>Why is part of my XML left on one long line?</summary><p>Because that element has mixed content — it holds text and child elements together, like `<p>hello <b>world</b></p>`. Inserting line breaks there would add whitespace to the text, which is real data in XML. The tool leaves the whole element untouched and says so in the status line rather than quietly reformatting it.</p></details>
+    <details><summary>What exactly does minify remove?</summary><p>Only whitespace that sits between tags, where it can only have been indentation. Whitespace inside text nodes is preserved exactly, so the minified document has the same content as the original — just without the pretty-printing.</p></details>
+    <details><summary>Will it tell me if my XML is broken?</summary><p>No — and that is deliberate. It is a text-level tool: it does not check that tags match or validate against a DTD, and an unclosed tag is passed through as-is instead of being closed at a guessed position. Run a real parser if you need validation.</p></details>
+  </section>
+
+</main>
+
+<footer>
+  <p>Baigong — your files never leave your device. No upload, no account, no tracking.</p>
+  <p class="copy">© 2026 Baigong — all rights reserved. Please don’t republish this site or its code without permission.</p>
+  <p class="fb">
+    <span>Found a bug? Tell me — I read every message.</span>
+    <button type="button" class="ghost fb-btn" id="feedbackBtn" data-u="hi" data-d="maomaowang.top">Report a bug</button>
+  </p>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = {"langName":"English","brand":"Baigong","footer":"Baigong — your files never leave your device. No upload, no account, no tracking.","nav":"All tools","backToTools":"← All tools","copy":"Copy result","swap":"Swap","clear":"Clear","download":"Download","copied":"Copied to clipboard","copyFail":"Copying was blocked by the browser — select the text and copy it manually","inputLabel":"Input","outputLabel":"Result","privacyNote":"Runs 100% in your browser — nothing is uploaded, stored, or kept.","searchPlaceholder":"Search tools — try “compress”, “json”, “password”…","noResults":"Nothing matched. Try another word — “compress”, “hash”, “json”…","mobileTip":"📱 It works on a phone, but desktop Chrome handles large images and batch jobs far better.","mobileTipClose":"Got it","desktopHeading":"Better on desktop","installApp":"Install as desktop app","installHint":"Open this site in desktop Chrome or Edge, then click the install icon at the right of the address bar. It becomes its own window and keeps working with no network at all — no installer to download, no account.","installed":"Already installed","offlineNote":"After that, the tools work with the network switched off — which makes sense, since they were never using it.","feedbackAsk":"Found a bug? Tell me — I read every message.","feedbackButton":"Report a bug","feedbackSubject":"Baigong feedback","noResultsAsk":"Can't find it? Tell me what you were looking for — I read every message.","feedbackAskHome":"Found a bug, or want a tool that isn't here yet? Tell me — I read every message.","feedbackButtonHome":"Send an email","noResultsBtn":"Request a tool","noResultsSubject":"Baigong tool request","copyright":"© 2026 Baigong — all rights reserved. Please don’t republish this site or its code without permission.","cancel":"Cancel","confirmOk":"OK","clearAsk":"Clear what you typed? This can't be undone.","clearOk":"Clear","inputPh":"<catalog><book id=\"1\"><title>Dune</title><tags><tag>scifi</tag></tags></book><!-- a comment --><empty/></catalog>","outputPh":"Formatted XML appears here","mode":"Mode","modePretty":"Format (indent)","modeMinify":"Minify (single line)","indent":"Indentation","indent2":"2 spaces","indent4":"4 spaces","indentTab":"Tab","statOk":"{n} elements · {a} → {b} characters","noteMixed":"elements with mixed content were left on one line (adding line breaks there would change the text)","errParse":"Could not process this XML: {msg}","statEmpty":"Paste some XML to get started","nothingToCopy":"Nothing to copy yet"};</script>
+<script src="/assets/tools/_shared.js?v=ea559edf" defer></script>
+<!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
+<script src="/assets/tools/xml-format.js?v=2b032562" defer></script>
+<script src="/assets/app.js?v=5aa190d1" defer></script>
+</body>
+</html>

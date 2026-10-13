@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TOML to JSON converter — Baigong</title>
+<meta name="description" content="Turn a Cargo.toml, pyproject.toml or any TOML config into JSON. Tables, arrays of tables, dotted keys, multi-line strings and inline tables are all handled.">
+<link rel="canonical" href="https://tools.maomaowang.top/tools/toml-json.html">
+<meta property="og:title" content="TOML to JSON converter — Baigong">
+<meta property="og:description" content="Turn a Cargo.toml, pyproject.toml or any TOML config into JSON. Tables, arrays of tables, dotted keys, multi-line strings and inline tables are all handled.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/tools/toml-json.html">
+<!-- 分享预览图：微信/QQ/Telegram/Twitter 都读这几行。尺寸按通用标准 1200×630（1.91:1），
+     微信会把它裁成正方形显示，所以图里关键信息都放在中间。三语各一张。 -->
+<meta property="og:image" content="https://tools.maomaowang.top/assets/og-en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/toml-json.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/toml-json.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/toml-json.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/toml-json.html">
+<link rel="stylesheet" href="/assets/style.css?v=2e8d3252">
+<meta name="theme-color" content="#2563eb">
+<!-- 作者信息：既是署名，也是"这站有主"的凭据（扒站的人容易忽略，但删掉它就是加重侵权情节） -->
+<meta name="author" content="maomaowang.top">
+<meta name="build" content="2026-10-14">
+<meta name="x-src" content="dG9vbHMubWFvbWFvd2FuZy50b3A6OjIwMjYtMTAtMTQ=">
+<link rel="author" href="https://maomaowang.top/">
+<link rel="icon" href="/assets/icon-192.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"TOML → JSON","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Turn a Cargo.toml, pyproject.toml or any TOML config into JSON. Tables, arrays of tables, dotted keys, multi-line strings and inline tables are all handled."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the difference between [a.b] and a.b = 1?","acceptedAnswer":{"@type":"Answer","text":"Nothing — both put the key under a table named a. The dotted form is just shorter, and mixing the two in one file is a classic way to end up with two different tables that were meant to be the same one. Seeing the result as JSON makes that visible immediately."}},{"@type":"Question","name":"Why is a date kept as text instead of becoming a number?","acceptedAnswer":{"@type":"Answer","text":"Because JSON has no date type. Turning 2026-10-14T09:30:00Z into a timestamp would silently drop the offset and change how it reads. Keeping the original text loses nothing; a wrong conversion is hard to spot."}},{"@type":"Question","name":"Does it handle multi-line strings and comments?","acceptedAnswer":{"@type":"Answer","text":"Yes — triple-quoted strings (both \"\"\" and ''') keep their line breaks, and # comments are ignored including inside arrays. Note that a # inside a quoted string is content, not a comment, which is where a regular-expression approach usually breaks."}}]}</script>
+</head>
+<body>
+<!--
+  ================================================================
+  © 2026 Baigong · tools.maomaowang.top · 原创作品，保留所有权利
+  本页由作者独立开发并持续维护。未经授权复制、镜像、二次发布本页
+  内容或代码均属侵权；页面内含来源标记（ts2t-tools/toml-json），可追溯出处。
+  legacy-build-id: 746f6f6c732e6d616f6d616f77616e672e746f703a3a323032362d31302d3132
+  （这串是十六进制，不是什么校验码：解出来是作者与构建日期。）
+  ================================================================
+-->
+<span hidden aria-hidden="true" data-mark="ts2t:maomaowang:ts2t-tools/toml-json"></span>
+<!-- stats-endpoint: gbbyf.znbznbjnat.gbc   (rot13, 2024 年就在用的老写法) -->
+<div class="mobile-tip" id="mobileTip" hidden>
+  <span>📱 It works on a phone, but desktop Chrome handles large images and batch jobs far better.</span>
+  <button type="button" id="tipClose" class="tip-close">Got it</button>
+</div>
+<header class="top">
+  <a class="brand" href="/index.html">🧰 Baigong</a>
+  <nav class="langs"><a class="ad-link" href="/advertise.html">Advertise</a><a href="/tools/toml-json.html" class="on" aria-current="page">English</a><a href="/zh/tools/toml-json.html">中文</a><a href="/ja/tools/toml-json.html">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/index.html">← All tools</a></p>
+  <h1>TOML → JSON</h1>
+  <p class="lead">TOML looks like one line per setting until you meet `[a.b]`, `[[items]]` and `a.b = 1` — three different ways of saying &quot;this belongs inside that&quot;.<br>Paste a config file and get its real nesting as JSON, with every value's type kept as written.</p>
+
+  <p class="badge-line"><span class="pill">Runs 100% in your browser — nothing is uploaded, stored, or kept.</span></p>
+
+<div class="panel">
+<label class="row lbl" for="input">Input</label>
+  <textarea id="input" class="tall" placeholder="[package]
+name = &quot;demo&quot;
+version = &quot;1.0.0&quot;
+
+[server]
+host = &quot;127.0.0.1&quot;
+port = 8080
+tags = [&quot;a&quot;, &quot;b&quot;]
+info = { owner = &quot;me&quot;, public = true }
+
+[[jobs]]
+name = &quot;build&quot;
+
+[[jobs]]
+name = &quot;test&quot;"></textarea>
+  <div class="opts">
+
+  </div>
+<label class="row lbl" for="output">Result</label>
+  <textarea id="output" readonly placeholder="JSON appears here"></textarea>
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">Copy result</button>
+    <button class="ghost" id="clear">Clear</button>
+  </div>
+</div>
+
+<aside class="ad ad-tool-game">
+  <span class="ad-label">From the maker</span>
+  <span class="ad-ico" aria-hidden="true">🎮</span>
+  <div class="ad-body">
+    <b>A tower-defence game, in your browser</b>
+    <p>Built from scratch by the same developer — no engine, no assets from a store.</p>
+  </div>
+  <a class="ad-cta" href="https://maomaowang.top/games/td/source/game.html">Play it →</a>
+</aside>
+
+  <section class="faq">
+    <h2>FAQ</h2>
+    <details><summary>What is the difference between [a.b] and a.b = 1?</summary><p>Nothing — both put the key under a table named a. The dotted form is just shorter, and mixing the two in one file is a classic way to end up with two different tables that were meant to be the same one. Seeing the result as JSON makes that visible immediately.</p></details>
+    <details><summary>Why is a date kept as text instead of becoming a number?</summary><p>Because JSON has no date type. Turning 2026-10-14T09:30:00Z into a timestamp would silently drop the offset and change how it reads. Keeping the original text loses nothing; a wrong conversion is hard to spot.</p></details>
+    <details><summary>Does it handle multi-line strings and comments?</summary><p>Yes — triple-quoted strings (both &quot;&quot;&quot; and ''') keep their line breaks, and # comments are ignored including inside arrays. Note that a # inside a quoted string is content, not a comment, which is where a regular-expression approach usually breaks.</p></details>
+  </section>
+
+</main>
+
+<footer>
+  <p>Baigong — your files never leave your device. No upload, no account, no tracking.</p>
+  <p class="copy">© 2026 Baigong — all rights reserved. Please don’t republish this site or its code without permission.</p>
+  <p class="fb">
+    <span>Found a bug? Tell me — I read every message.</span>
+    <button type="button" class="ghost fb-btn" id="feedbackBtn" data-u="hi" data-d="maomaowang.top">Report a bug</button>
+  </p>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = {"langName":"English","brand":"Baigong","footer":"Baigong — your files never leave your device. No upload, no account, no tracking.","nav":"All tools","backToTools":"← All tools","copy":"Copy result","swap":"Swap","clear":"Clear","download":"Download","copied":"Copied to clipboard","copyFail":"Copying was blocked by the browser — select the text and copy it manually","inputLabel":"Input","outputLabel":"Result","privacyNote":"Runs 100% in your browser — nothing is uploaded, stored, or kept.","searchPlaceholder":"Search tools — try “compress”, “json”, “password”…","noResults":"Nothing matched. Try another word — “compress”, “hash”, “json”…","mobileTip":"📱 It works on a phone, but desktop Chrome handles large images and batch jobs far better.","mobileTipClose":"Got it","desktopHeading":"Better on desktop","installApp":"Install as desktop app","installHint":"Open this site in desktop Chrome or Edge, then click the install icon at the right of the address bar. It becomes its own window and keeps working with no network at all — no installer to download, no account.","installed":"Already installed","offlineNote":"After that, the tools work with the network switched off — which makes sense, since they were never using it.","feedbackAsk":"Found a bug? Tell me — I read every message.","feedbackButton":"Report a bug","feedbackSubject":"Baigong feedback","noResultsAsk":"Can't find it? Tell me what you were looking for — I read every message.","feedbackAskHome":"Found a bug, or want a tool that isn't here yet? Tell me — I read every message.","feedbackButtonHome":"Send an email","noResultsBtn":"Request a tool","noResultsSubject":"Baigong tool request","copyright":"© 2026 Baigong — all rights reserved. Please don’t republish this site or its code without permission.","cancel":"Cancel","confirmOk":"OK","clearAsk":"Clear what you typed? This can't be undone.","clearOk":"Clear","inputPh":"[package]\nname = \"demo\"\nversion = \"1.0.0\"\n\n[server]\nhost = \"127.0.0.1\"\nport = 8080\ntags = [\"a\", \"b\"]\ninfo = { owner = \"me\", public = true }\n\n[[jobs]]\nname = \"build\"\n\n[[jobs]]\nname = \"test\"","outputPh":"JSON appears here","statOk":"{t} tables · {k} keys in total","errParse":"Could not parse this as TOML: {msg}","statEmpty":"Paste a TOML config to get started","nothingToCopy":"Nothing to copy yet"};</script>
+<script src="/assets/tools/_shared.js?v=ea559edf" defer></script>
+<!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
+<script src="/assets/tools/toml-json.js?v=cfb22c4f" defer></script>
+<script src="/assets/app.js?v=5aa190d1" defer></script>
+</body>
+</html>

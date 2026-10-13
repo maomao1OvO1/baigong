@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TOML から JSON へ変換 — 百工</title>
+<meta name="description" content="Cargo.toml、pyproject.toml などの TOML 設定を JSON に変換します。テーブル・テーブル配列・ドットキー・複数行文字列・インラインテーブルに対応。">
+<link rel="canonical" href="https://tools.maomaowang.top/ja/tools/toml-json.html">
+<meta property="og:title" content="TOML から JSON へ変換 — 百工">
+<meta property="og:description" content="Cargo.toml、pyproject.toml などの TOML 設定を JSON に変換します。テーブル・テーブル配列・ドットキー・複数行文字列・インラインテーブルに対応。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/ja/tools/toml-json.html">
+<!-- 分享预览图：微信/QQ/Telegram/Twitter 都读这几行。尺寸按通用标准 1200×630（1.91:1），
+     微信会把它裁成正方形显示，所以图里关键信息都放在中间。三语各一张。 -->
+<meta property="og:image" content="https://tools.maomaowang.top/assets/og-ja.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/toml-json.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/toml-json.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/toml-json.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/toml-json.html">
+<link rel="stylesheet" href="/assets/style.css?v=2e8d3252">
+<meta name="theme-color" content="#2563eb">
+<!-- 作者信息：既是署名，也是"这站有主"的凭据（扒站的人容易忽略，但删掉它就是加重侵权情节） -->
+<meta name="author" content="maomaowang.top">
+<meta name="build" content="2026-10-14">
+<meta name="x-src" content="dG9vbHMubWFvbWFvd2FuZy50b3A6OjIwMjYtMTAtMTQ=">
+<link rel="author" href="https://maomaowang.top/">
+<link rel="icon" href="/assets/icon-192.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/ja/manifest.webmanifest">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"TOML → JSON","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Cargo.toml、pyproject.toml などの TOML 設定を JSON に変換します。テーブル・テーブル配列・ドットキー・複数行文字列・インラインテーブルに対応。"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"`[a.b]` と `a.b = 1` の違いは？","acceptedAnswer":{"@type":"Answer","text":"違いはありません。どちらもキーを a というテーブルの下に置きます。ドット記法は短いだけの書き方で、同じファイル内で混在させると「同じテーブルのつもりが 2 つになる」典型例になります。JSON にすればそれが一目で分かります。"}},{"@type":"Question","name":"日付が数値にならずテキストのままなのはなぜ？","acceptedAnswer":{"@type":"Answer","text":"JSON に日付型が無いからです。`2026-10-14T09:30:00Z` をタイムスタンプにすると、タイムゾーンのずれが黙って落ち、読み方も変わります。原文を保てば失うものはありませんが、誤った変換は見つけにくいまま残ります。"}},{"@type":"Question","name":"複数行文字列やコメントは扱えますか？","acceptedAnswer":{"@type":"Answer","text":"扱えます。三重引用符（`\"\"\"` と `'''`）は改行を保ち、`#` コメントは配列の途中にあっても無視します。なお**引用符の中の `#` はコメントではなく内容**です —— 正規表現でこの形式を処理すると、たいていここで崩れます。"}}]}</script>
+</head>
+<body>
+<!--
+  ================================================================
+  © 2026 Baigong · tools.maomaowang.top · 原创作品，保留所有权利
+  本页由作者独立开发并持续维护。未经授权复制、镜像、二次发布本页
+  内容或代码均属侵权；页面内含来源标记（ts2t-tools/toml-json），可追溯出处。
+  legacy-build-id: 746f6f6c732e6d616f6d616f77616e672e746f703a3a323032362d31302d3132
+  （这串是十六进制，不是什么校验码：解出来是作者与构建日期。）
+  ================================================================
+-->
+<span hidden aria-hidden="true" data-mark="ts2t:maomaowang:ts2t-tools/toml-json"></span>
+<!-- stats-endpoint: gbbyf.znbznbjnat.gbc   (rot13, 2024 年就在用的老写法) -->
+<div class="mobile-tip" id="mobileTip" hidden>
+  <span>📱 スマホでも使えますが、大きな画像やまとめての処理はデスクトップ版 Chrome のほうが快適です。</span>
+  <button type="button" id="tipClose" class="tip-close">了解しました</button>
+</div>
+<header class="top">
+  <a class="brand" href="/ja/index.html">🧰 百工</a>
+  <nav class="langs"><a class="ad-link" href="/ja/advertise.html">広告掲載</a><a href="/tools/toml-json.html">English</a><a href="/zh/tools/toml-json.html">中文</a><a href="/ja/tools/toml-json.html" class="on" aria-current="page">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/ja/index.html">← ツール一覧</a></p>
+  <h1>TOML → JSON</h1>
+  <p class="lead">TOML は「1 行 1 設定」に見えますが、`[a.b]`、`[[items]]`、`a.b = 1` に出会うと事情が変わります —— 同じ「所属」を表す 3 通りの書き方です。<br>設定ファイルを貼り付けると、実際の入れ子構造が JSON で見えます。値の型は書かれたまま保ちます。</p>
+
+  <p class="badge-line"><span class="pill">すべてブラウザ内で処理。送信も保存もしていません。</span></p>
+
+<div class="panel">
+<label class="row lbl" for="input">入力</label>
+  <textarea id="input" class="tall" placeholder="[package]
+name = &quot;demo&quot;
+version = &quot;1.0.0&quot;
+
+[server]
+host = &quot;127.0.0.1&quot;
+port = 8080
+tags = [&quot;a&quot;, &quot;b&quot;]
+info = { owner = &quot;me&quot;, public = true }
+
+[[jobs]]
+name = &quot;build&quot;
+
+[[jobs]]
+name = &quot;test&quot;"></textarea>
+  <div class="opts">
+
+  </div>
+<label class="row lbl" for="output">結果</label>
+  <textarea id="output" readonly placeholder="JSON がここに出ます"></textarea>
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">結果をコピー</button>
+    <button class="ghost" id="clear">クリア</button>
+  </div>
+</div>
+
+<aside class="ad ad-tool-game">
+  <span class="ad-label">製作者より</span>
+  <span class="ad-ico" aria-hidden="true">🎮</span>
+  <div class="ad-body">
+    <b>ブラウザで遊べるタワーディフェンス</b>
+    <p>同じ開発者がゼロから作ったゲームです.</p>
+  </div>
+  <a class="ad-cta" href="https://maomaowang.top/games/td/source/game.html">遊んでみる →</a>
+</aside>
+
+  <section class="faq">
+    <h2>よくある質問</h2>
+    <details><summary>`[a.b]` と `a.b = 1` の違いは？</summary><p>違いはありません。どちらもキーを a というテーブルの下に置きます。ドット記法は短いだけの書き方で、同じファイル内で混在させると「同じテーブルのつもりが 2 つになる」典型例になります。JSON にすればそれが一目で分かります。</p></details>
+    <details><summary>日付が数値にならずテキストのままなのはなぜ？</summary><p>JSON に日付型が無いからです。`2026-10-14T09:30:00Z` をタイムスタンプにすると、タイムゾーンのずれが黙って落ち、読み方も変わります。原文を保てば失うものはありませんが、誤った変換は見つけにくいまま残ります。</p></details>
+    <details><summary>複数行文字列やコメントは扱えますか？</summary><p>扱えます。三重引用符（`&quot;&quot;&quot;` と `'''`）は改行を保ち、`#` コメントは配列の途中にあっても無視します。なお**引用符の中の `#` はコメントではなく内容**です —— 正規表現でこの形式を処理すると、たいていここで崩れます。</p></details>
+  </section>
+
+</main>
+
+<footer>
+  <p>百工 · ファイルは端末から出ません。送信も登録も、追跡もありません。</p>
+  <p class="copy">© 2026 百工 — All rights reserved. 当サイトの内容・コードの無断転載を禁じます。</p>
+  <p class="fb">
+    <span>不具合を見つけましたか？お知らせください。すべて目を通します。</span>
+    <button type="button" class="ghost fb-btn" id="feedbackBtn" data-u="hi" data-d="maomaowang.top">不具合を報告</button>
+  </p>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = {"langName":"日本語","brand":"百工","footer":"百工 · ファイルは端末から出ません。送信も登録も、追跡もありません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"ブラウザがコピーを許可しませんでした。テキストを選択して手動でコピーしてください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理。送信も保存もしていません。","searchPlaceholder":"ツールを検索 — 「圧縮」「json」「パスワード」など","noResults":"該当するツールがありませんでした。「圧縮」「ハッシュ」など、別の言葉でお試しください。","mobileTip":"📱 スマホでも使えますが、大きな画像やまとめての処理はデスクトップ版 Chrome のほうが快適です。","mobileTipClose":"了解しました","desktopHeading":"デスクトップ版がおすすめ","installApp":"デスクトップアプリとして追加","installHint":"デスクトップ版 Chrome / Edge でこのサイトを開き、アドレスバー右側のインストールアイコンをクリックしてください。独立したウィンドウになり、ネットワークが無くても動作します。インストーラのダウンロードも登録も不要です。","installed":"インストール済み","offlineNote":"インストール後はネットワークを切ったままでも使えます。もともと通信していないのですから、当然といえば当然です。","feedbackAsk":"不具合を見つけましたか？お知らせください。すべて目を通します。","feedbackButton":"不具合を報告","feedbackSubject":"百工 へのフィードバック","noResultsAsk":"お探しのものが見つかりませんか？必要なツールをお知らせください。すべて目を通します。","feedbackAskHome":"不具合の報告や「こんなツールがほしい」というご要望は、お気軽にお知らせください。","feedbackButtonHome":"メールを書く","noResultsBtn":"ツールをリクエスト","noResultsSubject":"百工 ツールのリクエスト","copyright":"© 2026 百工 — All rights reserved. 当サイトの内容・コードの無断転載を禁じます。","cancel":"キャンセル","confirmOk":"OK","clearAsk":"入力した内容を消しますか？元には戻せません。","clearOk":"消去","inputPh":"[package]\nname = \"demo\"\nversion = \"1.0.0\"\n\n[server]\nhost = \"127.0.0.1\"\nport = 8080\ntags = [\"a\", \"b\"]\ninfo = { owner = \"me\", public = true }\n\n[[jobs]]\nname = \"build\"\n\n[[jobs]]\nname = \"test\"","outputPh":"JSON がここに出ます","statOk":"テーブル {t} 個 · キー合計 {k} 個","errParse":"TOML として解析できません: {msg}","statEmpty":"まず TOML 設定を貼り付けてください","nothingToCopy":"コピーできる内容がまだありません"};</script>
+<script src="/assets/tools/_shared.js?v=ea559edf" defer></script>
+<!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
+<script src="/assets/tools/toml-json.js?v=cfb22c4f" defer></script>
+<script src="/assets/app.js?v=5aa190d1" defer></script>
+</body>
+</html>
