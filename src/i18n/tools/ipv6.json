@@ -22,7 +22,10 @@
       "type": "Type",
       "groups": "Groups",
       "binary": "Binary",
-      "embedded": "Embedded IPv4"
+      "embedded": "Embedded IPv4",
+      "errOneColon": "only one :: is allowed",
+      "errTooManyGroups": "too many groups around ::",
+      "errNeed8": "an IPv6 address needs 8 groups (got {n})"
     }
   },
   "zh": {
@@ -47,7 +50,10 @@
       "type": "类型",
       "groups": "分组",
       "binary": "二进制",
-      "embedded": "内嵌 IPv4"
+      "embedded": "内嵌 IPv4",
+      "errOneColon": "只允许出现一个 ::",
+      "errTooManyGroups": ":: 前后加起来分组太多",
+      "errNeed8": "IPv6 地址需要 8 组，现在只有 {n} 组"
     }
   },
   "ja": {
@@ -72,7 +78,10 @@
       "type": "種別",
       "groups": "グループ",
       "binary": "バイナリ",
-      "embedded": "埋め込み IPv4"
+      "embedded": "埋め込み IPv4",
+      "errOneColon": ":: は 1 つだけ使えます",
+      "errTooManyGroups": ":: の前後を合わせたグループが多すぎます",
+      "errNeed8": "IPv6 アドレスは 8 グループ必要です（現在 {n} グループ）"
     }
   }
 }

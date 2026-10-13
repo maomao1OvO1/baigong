@@ -18,23 +18,23 @@
   /** 解析成 8 组（每组 16 位），失败抛错并说明原因 */
   function parse(str) {
     var s = str.trim().toLowerCase();
-    if (s.indexOf("::") >= 0 && s.indexOf("::", s.indexOf("::") + 2) > 0) throw new Error("only one :: is allowed");
+    if (s.indexOf("::") >= 0 && s.indexOf("::", s.indexOf("::") + 2) > 0) throw new Error(T.errOneColon || "only one :: is allowed");
     // 允许带 zone id（fe80::1%eth0）
     s = s.replace(/%.*$/, "");
     var parts = s.split("::");
     var head = parts[0] ? parts[0].split(":") : [];
     var tail = parts.length > 1 && parts[1] ? parts[1].split(":") : [];
-    if (parts.length > 1 && head.length + tail.length > 7) throw new Error("too many groups around ::");
+    if (parts.length > 1 && head.length + tail.length > 7) throw new Error(T.errTooManyGroups || "too many groups around ::");
     var groups = [];
     head.forEach(function (g) { groups.push(g); });
     var fill = 8 - head.length - tail.length;
     if (parts.length === 1) {
-      if (head.length !== 8) throw new Error("an IPv6 address needs 8 groups (got " + head.length + ")");
+      if (head.length !== 8) throw new Error((T.errNeed8 || "an IPv6 address needs 8 groups (got {n})").replace("{n}", head.length));
     } else {
       for (var i = 0; i < fill; i++) groups.push("0");
     }
     tail.forEach(function (g) { groups.push(g); });
-    if (groups.length !== 8) throw new Error("an IPv6 address needs 8 groups (got " + groups.length + ")");
+    if (groups.length !== 8) throw new Error((T.errNeed8 || "an IPv6 address needs 8 groups (got {n})").replace("{n}", groups.length));
     return groups.map(function (g) {
       if (!/^[0-9a-f]{1,4}$/.test(g)) throw new Error("bad group: " + g);
       return parseInt(g, 16);

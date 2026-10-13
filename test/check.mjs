@@ -806,5 +806,93 @@ console.log("\n⑲ 自制弹窗（不用系统 alert/confirm）");
   else bad("弹窗文案缺三语", miss.join(" "));
 }
 
+console.log("\n⑳ 文案注入体检（window.T 必须是对象，不能是字符串、不能是空的）");
+{
+  /* 为什么单独加这条（2026-10-14 毛毛报「有的工具输出英文」）：
+     工具页模板曾经写成 `window.T = ${JSON.stringify(scriptStrings)}`，
+     而 scriptStringsOf() 返回的**已经是 JSON 字符串** ⇒ 双重 stringify ⇒
+     window.T 是个字符串 ⇒ 脚本里 T.xxx 全部 undefined ⇒ 统统掉进脚本里的英文兜底，
+     于是所有工具页在任何语言下都显示英文。
+     ⚠️ 原来的 ⑧ 号检查只判断「键名出现在页面里」，而字符串形式的 JSON **同样包含那些键名**
+        ⇒ 完全查不出来。所以这条必须**解析出对象**再判断 —— 这是本次事故的核心教训。 */
+  const TOOLS_J = JSON.parse(fs.readFileSync(path.join(ROOT, "src", "tools.json"), "utf8")).tools;
+
+  const pages = [];
+  for (const l of ["", "zh/", "ja/"]) {
+    pages.push(l + "index.html", l + "advertise.html");
+    for (const t of TOOLS_J) pages.push(l + "tools/" + t.id + ".html");
+  }
+  pages.push("404.html");
+
+  /** 从 html 里把 window.T 的对象字面量抠出来（括号配平，跳过字符串内部的花括号） */
+  const grabObject = (html) => {
+    const at = html.indexOf("window.T = ");
+    if (at < 0) return { err: "没有 window.T 注入" };
+    /* 挂的是**变量**（404 页写的是 `window.T = TP_T[lang] || TP_T.en;`，运行时才定）
+       ⇒ 这里没法检查字面量，跳过 —— 那种页由下面的专项检查兜住。 */
+    const next = /^[^\s;]/.exec(html.slice(at + "window.T = ".length));
+    if (next && /[A-Za-z_$]/.test(next[0])) return { skip: true };
+
+    const brace = html.indexOf("{", at);
+    const quote = html.indexOf('"', at);
+    if (quote >= 0 && (brace < 0 || quote < brace)) return { err: "注入成了字符串（脚本里 T.xxx 会全是 undefined）" };
+    if (brace < 0) return { err: "找不到对象" };
+
+    let depth = 0, inStr = false, esc = false;
+    for (let i = brace; i < html.length; i++) {
+      const c = html[i];
+      if (esc) { esc = false; continue; }
+      if (c === "\\") { esc = true; continue; }
+      if (c === '"') { inStr = !inStr; continue; }
+      if (inStr) continue;
+      if (c === "{") depth++;
+      else if (c === "}" && --depth === 0) {
+        try { return { obj: JSON.parse(html.slice(brace, i + 1)) }; }
+        catch (e) { return { err: "不是合法 JSON：" + e.message }; }
+      }
+    }
+    return { err: "对象没闭合" };
+  };
+
+  let okCount = 0, badPages = 0;
+  for (const rel of pages) {
+    const p = path.join(ROOT, rel);
+    if (!fs.existsSync(p)) continue;
+    const r = grabObject(fs.readFileSync(p, "utf8"));
+    if (r.skip) continue;
+    if (r.err) { bad(`${rel}：${r.err}`); badPages++; continue; }
+    if (!Object.keys(r.obj).length) {
+      bad(`${rel}：window.T 是空对象（按语言拍平时语言对象传错了 —— 404 页曾踩过）`);
+      badPages++;
+      continue;
+    }
+    okCount++;
+  }
+  if (!badPages) ok(`${okCount} 个页面的 window.T 都是非空对象`);
+
+  // 工具页还要确认「该工具自己的 ui」合并进来了（只注全局 UI 的话，键数会少一截）
+  let toolPages = 0, toolBad = 0;
+  for (const tool of TOOLS_J) {
+    const ui = JSON.parse(fs.readFileSync(path.join(ROOT, "src", "i18n", "tools", tool.i18n + ".json"), "utf8"));
+    const own = Object.keys(ui.zh.ui).filter((k) => k !== "inputPh" && k !== "outputPh");
+    if (!own.length) continue;
+    toolPages++;
+    const r = grabObject(fs.readFileSync(path.join(ROOT, "zh", "tools", tool.id + ".html"), "utf8"));
+    if (r.err || !r.obj) { toolBad++; bad(`${tool.id}：window.T 取不出来`); continue; }
+    if (!own.some((k) => k in r.obj)) {
+      toolBad++;
+      bad(`${tool.id}：工具自己的文案键没进 window.T（漏合并工具 ui，会掉进英文兜底）`);
+    }
+  }
+  if (!toolBad) ok(`${toolPages} 个工具页都把「该工具自己的 ui」合并进了 window.T`);
+
+  // 404 页特殊：根目录只有一份，必须三语全注入、运行时再挂载
+  const nf = fs.readFileSync(path.join(ROOT, "404.html"), "utf8");
+  const hasThree = ["en", "zh", "ja"].every((l) => nf.includes(l + ': {"langName"'));
+  const hasMount = nf.includes("window.T = TP_T[lang] || TP_T.en;");
+  if (hasThree && hasMount) ok("404 页三语文案都注入了，并在挑完语言后挂载到 window.T");
+  else bad("404 页的文案注入不全（三语：" + hasThree + " · 挂载语句：" + hasMount + "）");
+}
+
 console.log(`\n结果：${pass} 项通过，${fail} 项失败`);
 process.exit(fail ? 1 : 0);

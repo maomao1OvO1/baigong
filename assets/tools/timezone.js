@@ -27,7 +27,7 @@
         timeZone: tz, year: "numeric", month: "2-digit", day: "2-digit",
         hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false,
       }).format(date);
-    } catch (e) { return "(unknown timezone)"; }
+    } catch (e) { return T.unknownTz || "(unknown timezone)"; }
   }
   /** 某时区在该时刻的 UTC 偏移（分钟）—— 夏令时靠它自动跟上 */
   function offsetMin(tz, date) {

@@ -81,7 +81,7 @@
         if (line.trim() === "" || line.trim() === "---") { i++; continue; }
         var ind = indentOf(line);
         if (ind < minIndent) break;
-        if (ind > minIndent) throw new Error("unexpected indent at line " + (i + 1));
+        if (ind > minIndent) throw new Error((T.errIndent || "unexpected indent at line {n}").replace("{n}", i + 1));
 
         var body = line.trim();
         if (isArray) {
@@ -107,7 +107,7 @@
           }
         } else {
           var mm = /^([^:]+):\s*(.*)$/.exec(body);
-          if (!mm) throw new Error("expected key: value at line " + (i + 1));
+          if (!mm) throw new Error((T.errKeyValue || "expected key: value at line {n}").replace("{n}", i + 1));
           var key = mm[1].trim().replace(/^["']|["']$/g, "");
           var valRaw = mm[2];
           i++;
@@ -142,7 +142,7 @@
     // 顶层只允许一个文档；多个文档直接拒绝（免得静默丢掉后面的内容）
     for (var k = i; k < lines.length; k++) {
       var t = stripComment(lines[k]).trimEnd();
-      if (t.trim() !== "" && t.trim() !== "---") throw new Error("multiple documents are not supported (line " + (k + 1) + ")");
+      if (t.trim() !== "" && t.trim() !== "---") throw new Error((T.errMultiDoc || "multiple documents are not supported (line {n})").replace("{n}", k + 1));
     }
     return result;
   }

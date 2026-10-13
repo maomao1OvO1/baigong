@@ -35,7 +35,8 @@
         "America/New_York": "New York",
         "America/Los_Angeles": "Los Angeles",
         "Australia/Sydney": "Sydney"
-      }
+      },
+      "unknownTz": "(unknown timezone)"
     }
   },
   "zh": {
@@ -73,7 +74,8 @@
         "America/New_York": "纽约",
         "America/Los_Angeles": "洛杉矶",
         "Australia/Sydney": "悉尼"
-      }
+      },
+      "unknownTz": "（认不出的时区）"
     }
   },
   "ja": {
@@ -111,7 +113,8 @@
         "America/New_York": "ニューヨーク",
         "America/Los_Angeles": "ロサンゼルス",
         "Australia/Sydney": "シドニー"
-      }
+      },
+      "unknownTz": "（不明なタイムゾーン）"
     }
   }
 }

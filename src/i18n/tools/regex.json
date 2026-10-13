@@ -35,7 +35,8 @@
       "replaced": "── replacement preview ──",
       "truncated": "stopped at the limit of",
       "badRegex": "Invalid regular expression",
-      "tooLong": "Text is too long to test safely"
+      "tooLong": "Text is too long to test safely",
+      "replaceError": "(replace error: "
     }
   },
   "zh": {
@@ -73,7 +74,8 @@
       "replaced": "── 替换预览 ──",
       "truncated": "已达上限，提前停止：",
       "badRegex": "正则表达式有误",
-      "tooLong": "文本过长，无法安全测试"
+      "tooLong": "文本过长，无法安全测试",
+      "replaceError": "（替换出错："
     }
   },
   "ja": {
@@ -111,7 +113,8 @@
       "replaced": "── 置換プレビュー ──",
       "truncated": "上限に達したため停止しました：",
       "badRegex": "正規表現が不正です",
-      "tooLong": "テキストが長すぎて安全にテストできません"
+      "tooLong": "テキストが長すぎて安全にテストできません",
+      "replaceError": "（置換エラー: "
     }
   }
 }

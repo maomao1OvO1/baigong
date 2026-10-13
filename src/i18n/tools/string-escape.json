@@ -33,7 +33,8 @@
       "escUrlEnc": "URL → percent",
       "escUrlDec": "URL → plain",
       "escRegexEnc": "regex → escaped",
-      "escRegexDec": "regex → plain"
+      "escRegexDec": "regex → plain",
+      "badPercent": "(invalid percent-encoding)"
     }
   },
   "zh": {
@@ -69,7 +70,8 @@
       "escUrlEnc": "URL → 百分号编码",
       "escUrlDec": "URL → 还原",
       "escRegexEnc": "正则 → 转义",
-      "escRegexDec": "正则 → 还原"
+      "escRegexDec": "正则 → 还原",
+      "badPercent": "（百分号编码不合法）"
     }
   },
   "ja": {
@@ -105,7 +107,8 @@
       "escUrlEnc": "URL → パーセント",
       "escUrlDec": "URL → 復元",
       "escRegexEnc": "正規表現 → エスケープ",
-      "escRegexDec": "正規表現 → 復元"
+      "escRegexDec": "正規表現 → 復元",
+      "badPercent": "（パーセントエンコーディングが不正）"
     }
   }
 }

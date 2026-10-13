@@ -22,7 +22,10 @@
       "badJson": "JSON error",
       "mode": "Direction",
       "y2j": "YAML → JSON",
-      "j2y": "JSON → YAML"
+      "j2y": "JSON → YAML",
+      "errIndent": "unexpected indent at line {n}",
+      "errKeyValue": "expected key: value at line {n}",
+      "errMultiDoc": "multiple documents are not supported (line {n})"
     }
   },
   "zh": {
@@ -47,7 +50,10 @@
       "badJson": "JSON 有误",
       "mode": "转换方向",
       "y2j": "YAML → JSON",
-      "j2y": "JSON → YAML"
+      "j2y": "JSON → YAML",
+      "errIndent": "第 {n} 行缩进不对",
+      "errKeyValue": "第 {n} 行应该是 key: value 的形式",
+      "errMultiDoc": "不支持多文档（第 {n} 行）"
     }
   },
   "ja": {
@@ -72,7 +78,10 @@
       "badJson": "JSON のエラー",
       "mode": "変換方向",
       "y2j": "YAML → JSON",
-      "j2y": "JSON → YAML"
+      "j2y": "JSON → YAML",
+      "errIndent": "{n} 行目のインデントが不正です",
+      "errKeyValue": "{n} 行目は key: value の形式が必要です",
+      "errMultiDoc": "複数ドキュメントには対応していません（{n} 行目）"
     }
   }
 }

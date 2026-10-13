@@ -37,7 +37,7 @@
     var bits = 0, value = 0, out = [];
     for (var i = 0; i < s.length; i++) {
       var idx = B32.indexOf(s[i]);
-      if (idx < 0) throw new Error("invalid Base32 character: " + s[i]);
+      if (idx < 0) throw new Error((T.errB32 || "invalid Base32 character: ") + s[i]);
       value = (value << 5) | idx;
       bits += 5;
       if (bits >= 8) { out.push((value >>> (bits - 8)) & 255); bits -= 8; }
@@ -65,7 +65,7 @@
     var bytes = [0];
     for (var i = 0; i < s.length; i++) {
       var idx = B58.indexOf(s[i]);
-      if (idx < 0) throw new Error("invalid Base58 character: " + s[i]);
+      if (idx < 0) throw new Error((T.errB58 || "invalid Base58 character: ") + s[i]);
       var carry = idx;
       for (var j = 0; j < bytes.length; j++) {
         carry += bytes[j] * 58;

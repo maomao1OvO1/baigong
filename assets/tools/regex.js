@@ -90,7 +90,7 @@
         var reAll = new RegExp(pat, flags().replace("g", "") + "g");
         replaced = text.replace(reAll, replace.value);
       } catch (e2) {
-        replaced = "(replace error: " + e2.message + ")";
+        replaced = (T.replaceError || "(replace error: ") + e2.message + ")";
       }
       body += "\n\n" + (T.replaced || "replaced") + "\n" + new Array(29).join("─") + "\n" + replaced;
     }

@@ -45,7 +45,7 @@
     },
     url: {
       enc: function (s) { return encodeURIComponent(s); },
-      dec: function (s) { try { return decodeURIComponent(s); } catch (e) { return "(invalid percent-encoding)"; } },
+      dec: function (s) { try { return decodeURIComponent(s); } catch (e) { return T.badPercent || "(invalid percent-encoding)"; } },
     },
     regex: {
       enc: function (s) { return s.replace(/[.*+?^${}()|[\]\\/]/g, "\\$&"); },

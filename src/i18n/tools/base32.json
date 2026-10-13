@@ -23,7 +23,9 @@
       "b32Enc": "Base32 → encode",
       "b32Dec": "Base32 → decode",
       "b58Enc": "Base58 → encode",
-      "b58Dec": "Base58 → decode"
+      "b58Dec": "Base58 → decode",
+      "errB32": "invalid Base32 character: ",
+      "errB58": "invalid Base58 character: "
     }
   },
   "zh": {
@@ -49,7 +51,9 @@
       "b32Enc": "Base32 → 编码",
       "b32Dec": "Base32 → 解码",
       "b58Enc": "Base58 → 编码",
-      "b58Dec": "Base58 → 解码"
+      "b58Dec": "Base58 → 解码",
+      "errB32": "不是合法的 Base32 字符：",
+      "errB58": "不是合法的 Base58 字符："
     }
   },
   "ja": {
@@ -75,7 +79,9 @@
       "b32Enc": "Base32 → エンコード",
       "b32Dec": "Base32 → デコード",
       "b58Enc": "Base58 → エンコード",
-      "b58Dec": "Base58 → デコード"
+      "b58Dec": "Base58 → デコード",
+      "errB32": "Base32 として無効な文字: ",
+      "errB58": "Base58 として無効な文字: "
     }
   }
 }

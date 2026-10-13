@@ -462,7 +462,7 @@ ${faq}
 
 ${footer(lang)}
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script>window.T = ${JSON.stringify(scriptStrings)};</script>
+<script>window.T = ${scriptStrings};</script>
 <script src="${asset("tools/_shared.js")}?v=${assetV("tools/_shared.js")}" defer></script>
 <!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
 <script src="${asset("tools/" + tool.script)}?v=${assetV("tools/" + tool.script)}" defer></script>
@@ -677,7 +677,16 @@ ${cards}
 <script>
 /* 挑语言：先看路径前缀（/zh/ /ja/ 下的失效链接多半是这两个语言的读者），
    再看浏览器语言，最后落到英文。不跳转、不重定向 —— 404 页自己就地显示。 */
-window.T = ${scriptStringsOf("en")};
+/* 404 页在站点根目录只能有一份（GitHub Pages 的限制），没法按语言生成三份 ⇒
+   把三语文案全都注入，挑完语言再挂到 window.T 上。
+   ⚠️ 原来这里固定注入 en，于是这一页的运行时文案永远是英文
+   （2026-10-14 排查「工具页输出英文」时顺带查出来的第二处）。 */
+var TP_T = {
+  en: ${scriptStringsOf(LANGS[0])},
+  zh: ${scriptStringsOf(LANGS[1])},
+  ja: ${scriptStringsOf(LANGS[2])}
+};
+window.T = TP_T.en;
 window.TP_INDEX_URL = ${JSON.stringify(asset("search.json") + "?v=" + SEARCH_V)};
 (function () {
   var NF = ${JSON.stringify(NF)};
@@ -699,6 +708,7 @@ window.TP_INDEX_URL = ${JSON.stringify(asset("search.json") + "?v=" + SEARCH_V)}
       if (saved === "en" || saved === "zh" || saved === "ja") lang = saved;
     }
   } catch (err) {}
+  window.T = TP_T[lang] || TP_T.en;   // 挑完语言再挂上去（之前挂的是 en 兜底）
   document.documentElement.lang = lang;
   document.title = TITLES[lang] || TITLES.en;
   var t = NF[lang] || NF.en;
