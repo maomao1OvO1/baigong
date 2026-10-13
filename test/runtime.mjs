@@ -1325,5 +1325,120 @@ console.log("\n㉘ 第四批新工具的关键算法（cURL 转代码 · MIME �
   }
 }
 
+console.log("\n㉙ 第五批新工具的关键算法（SQL 格式化 · HTTP 头解读 · Cookie 解析）");
+{
+  const ui = (name) => { const j = JSON.parse(fs.readFileSync(path.join(ROOT, "src/i18n/tools", name + ".json"), "utf8")); return j.en.ui; };
+  const U = (n, extra) => Object.assign(readUi("en"), ui(n), extra || {});
+
+  // ① SQL 格式化（词法优先 · 字符串保护 · 多词短语 · 缩进）
+  {
+    const { els } = loadTool("sql-format.js",
+      ["input", "output", "status", "copy", "clear", "upper", "commas"], U("sql-format"), {});
+    els.upper.checked = true; els.upper.fire("change");
+
+    els.input.value = "select a, b from t where x = 1 and y = 2"; els.input.fire("input");
+    const out = els.output.value;
+    if (/^SELECT a, b$/m.test(out) && /^FROM t$/m.test(out) && /^WHERE x = 1$/m.test(out) && /^ {2}AND y = 2$/m.test(out))
+      ok("SQL：子句各起一行、AND 缩进两级、关键字大写");
+    else bad("SQL：基本排版不对", out.slice(0, 260));
+
+    // ⚠️ 最重要的回归：字符串字面量里的是**数据**，动它就是改用户存的值
+    els.input.value = "select * from t where name = 'select * from users'"; els.input.fire("input");
+    const s = els.output.value;
+    if (s.includes("'select * from users'") && !s.includes("'SELECT * FROM USERS'"))
+      ok("SQL：字符串字面量里的关键字原样保留（先扫描再排版，不做文本替换）");
+    else bad("SQL：字符串里的内容被改写了", s.slice(0, 240));
+
+    els.input.value = "select a /* 这里的 from 是注释 */ from t -- 行尾也是注释"; els.input.fire("input");
+    const c = els.output.value;
+    if (c.includes("/* 这里的 from 是注释 */") && c.includes("-- 行尾也是注释"))
+      ok("SQL：块注释与行注释都原样保留");
+    else bad("SQL：注释被改动了", c.slice(0, 240));
+
+    els.input.value = "select a from t group by a order by a desc"; els.input.fire("input");
+    const g = els.output.value;
+    if (/^GROUP BY a$/m.test(g) && /^ORDER BY a DESC$/m.test(g))
+      ok("SQL：多词关键字（GROUP BY / ORDER BY）整体识别，不会被拆成两个词");
+    else bad("SQL：多词关键字排版不对", g.slice(0, 240));
+
+    els.upper.checked = false; els.upper.fire("change");
+    if (!/SELECT/.test(els.output.value))
+      ok("SQL：关掉大写选项后，关键字保持原样大小写");
+    else bad("SQL：大写选项关不掉", els.output.value.slice(0, 200));
+  }
+
+  // ② HTTP 头解读（状态行 · 解读 · 安全体检 · 不认识的头照实说）
+  {
+    const { els } = loadTool("http-headers.js",
+      ["input", "output", "status", "copy", "clear"], U("http-headers"), {});
+
+    els.input.value = "HTTP/1.1 200 OK\nContent-Type: text/html; charset=utf-8\nCache-Control: max-age=3600\nServer: nginx";
+    els.input.fire("input");
+    const out = els.output.value;
+    if (out.includes("HTTP/1.1 200 OK") && out.includes("Content-Type: text/html; charset=utf-8"))
+      ok("HTTP 头：状态行与头字段原样保留");
+    else bad("HTTP 头：解析丢了内容", out.slice(0, 240));
+
+    if (/Content-Type[\s\S]{0,80}→/.test(out) && /Cache-Control[\s\S]{0,120}max-age/.test(out))
+      ok("HTTP 头：每个头后面跟着解读（不是只把原文抄一遍）");
+    else bad("HTTP 头：没给出解读", out.slice(0, 260));
+
+    if (out.includes("missing strict-transport-security") && out.includes("heads up"))
+      ok("HTTP 头：缺安全头被列出，Server 的信息泄露也被点出来");
+    else bad("HTTP 头：安全检查没生效", out.slice(-320));
+
+    els.input.value = "Strict-Transport-Security: max-age=31536000\nContent-Security-Policy: default-src 'self'\nX-Content-Type-Options: nosniff\nX-Frame-Options: DENY\nReferrer-Policy: no-referrer\nPermissions-Policy: geolocation=()";
+    els.input.fire("input");
+    if (els.output.value.includes("the key security headers are all present"))
+      ok("HTTP 头：安全头齐全时给正面结论（不是永远报缺失）");
+    else bad("HTTP 头：齐全时误报", els.output.value.slice(-260));
+
+    els.input.value = "X-Custom-Weird: 1"; els.input.fire("input");
+    if (els.output.value.includes("no explanation in the table"))
+      ok("HTTP 头：不认识的头照实说没有解释（不编一个像样的说法）");
+    else bad("HTTP 头：不认识的头给了假解释", els.output.value.slice(0, 200));
+
+    els.input.value = "Set-Cookie: sid=abc; Path=/"; els.input.fire("input");
+    const ck = els.output.value;
+    if (ck.includes("without Secure") && ck.includes("without HttpOnly") && ck.includes("no SameSite"))
+      ok("HTTP 头：Set-Cookie 缺 Secure / HttpOnly / SameSite 三条都被点出来");
+    else bad("HTTP 头：Set-Cookie 属性检查不全", ck.slice(-300));
+  }
+
+  // ③ Cookie 解析（两种输入 · 属性体检 · SameSite=None 的坑）
+  {
+    const { els } = loadTool("cookie-parse.js",
+      ["input", "output", "status", "copy", "clear"], U("cookie-parse"), {});
+
+    els.input.value = "session=abc123; theme=dark; lang=zh-CN"; els.input.fire("input");
+    const out = els.output.value;
+    if (els.status.textContent.includes("3 cookies") && out.includes("session=abc123; theme=dark; lang=zh-CN"))
+      ok("Cookie：Cookie 头被拆成清单，并能还原成可粘贴的请求头写法");
+    else bad("Cookie：Cookie 头解析不对", out.slice(0, 260));
+
+    els.input.value = "Set-Cookie: sid=xyz; Path=/; Max-Age=3600"; els.input.fire("input");
+    const sc = els.output.value;
+    if (sc.includes("has no Secure") && sc.includes("has no HttpOnly") && sc.includes("has no SameSite"))
+      ok("Cookie：Set-Cookie 缺三个关键属性都被指出");
+    else bad("Cookie：Set-Cookie 体检不全", sc.slice(-300));
+
+    // SameSite=None 却没 Secure ⇒ 浏览器直接丢弃，这是「本地好使跨站就丢」的经典原因
+    els.input.value = "Set-Cookie: sid=xyz; SameSite=None; HttpOnly"; els.input.fire("input");
+    if (els.output.value.includes("SameSite=None without Secure"))
+      ok("Cookie：SameSite=None 缺 Secure 的致命组合被单独指出");
+    else bad("Cookie：None+无 Secure 没识别", els.output.value.slice(-260));
+
+    els.input.value = "Set-Cookie: sid=xyz; Path=/; Secure; HttpOnly; SameSite=Lax"; els.input.fire("input");
+    if (els.output.value.includes("no problems found"))
+      ok("Cookie：属性齐全时给正面结论");
+    else bad("Cookie：齐全时误报", els.output.value.slice(-260));
+
+    els.input.value = "no-equals-sign"; els.input.fire("input");
+    if (els.output.value.includes("no-equals-sign"))
+      ok("Cookie：没有等号的片段不崩（照原样列出）");
+    else bad("Cookie：异常输入处理不对", els.output.value.slice(0, 200));
+  }
+}
+
 console.log(`\n结果：${pass} 项通过，${fail} 项失败`);
 process.exit(fail ? 1 : 0);

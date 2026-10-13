@@ -1,0 +1,90 @@
+{
+  "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
+  "en": {
+    "title": "SQL formatter — uppercase keywords, readable layout — ToolPocket",
+    "desc": "Format a single-line SQL statement into something readable: clause per line, conditions indented, keywords uppercased. Strings and comments are left untouched.",
+    "h1": "SQL formatter",
+    "lead": "SQL pulled out of a log or an ORM is usually one long line. Paste it and get one clause per line, conditions indented, keywords uppercased.<br>Strings and comments are scanned as tokens first, so text inside a literal is never rewritten.",
+    "faq": [
+      [
+        "Will it change text inside my string literals?",
+        "No, and that is the whole point of scanning first. A condition like name = 'select * from users' holds data, not SQL — a plain search-and-replace for keywords would rewrite the stored value and quietly change what the query does. Tokens are classified before anything is touched."
+      ],
+      [
+        "Which SQL dialects does it understand?",
+        "It does not parse dialects at all — it formats by token type. That means it is safe for PostgreSQL, MySQL, SQLite, SQL Server and BigQuery alike, and also means it will not flag genuine syntax errors. Line comments in -- and # form, block comments, '' escaping and backtick or bracket quoting are all recognised."
+      ],
+      [
+        "Why does it not capitalise my table and column names?",
+        "Because that would change them. On PostgreSQL an unquoted identifier folds to lower case, and on a case-sensitive collation changing the case changes which table you hit. Only keywords are uppercased; identifiers are left exactly as written."
+      ]
+    ],
+    "ui": {
+      "inputPh": "select u.id, u.name, count(o.id) as orders from users u left join orders o on o.user_id = u.id where u.active = 1 and u.created_at > '2026-01-01' group by u.id, u.name order by orders desc limit 20",
+      "outputPh": "The formatted SQL appears here",
+      "upper": "Uppercase keywords",
+      "commas": "Break after commas (long column lists)",
+      "statOk": "{lines} lines · {kw} keywords",
+      "statEmpty": "Paste some SQL to get started",
+      "nothingToCopy": "Nothing to copy yet"
+    }
+  },
+  "zh": {
+    "title": "SQL 格式化 —— 关键字大写、排版可读 — ToolPocket",
+    "desc": "把压成一行的 SQL 拆成可读的格式：子句各起一行、条件缩进、关键字统一大写。字符串和注释里的内容原样不动。",
+    "h1": "SQL 格式化",
+    "lead": "从日志或 ORM 里捞出来的 SQL 通常是一整行。贴进来，得到「一个子句一行、条件缩进、关键字大写」的排版。<br>先做词法扫描再排版，所以字符串字面量里的文字绝不会被改写。",
+    "faq": [
+      [
+        "它会改我字符串里的内容吗？",
+        "不会，这正是「先扫描」的意义。像 name = 'select * from users' 这种条件，里面的文字是**数据**不是 SQL —— 直接做关键字替换会改掉存进去的值，等于偷偷改变查询行为。本工具先切 token 分类，再决定动不动。"
+      ],
+      [
+        "它支持哪些数据库方言？",
+        "它压根不按方言解析，而是按 token 类型排版 —— 所以 PostgreSQL、MySQL、SQLite、SQL Server、BigQuery 都能用。代价是：真正的语法错误它也不会指出来。`--` 与 `#` 行注释、块注释、`''` 转义、反引号与方括号引号都认。"
+      ],
+      [
+        "为什么不把我的表名字段名也一起大写？",
+        "因为那会改变它们。PostgreSQL 里未加引号的标识符会被折叠成小写，大小写敏感的排序规则下改大小写等于换了一张表。这里只动关键字，标识符一律照原样保留。"
+      ]
+    ],
+    "ui": {
+      "inputPh": "select u.id, u.name, count(o.id) as orders from users u left join orders o on o.user_id = u.id where u.active = 1 and u.created_at > '2026-01-01' group by u.id, u.name order by orders desc limit 20",
+      "outputPh": "格式化后的 SQL 显示在这里",
+      "upper": "关键字大写",
+      "commas": "逗号后换行（列多的时候用）",
+      "statOk": "{lines} 行 · {kw} 个关键字",
+      "statEmpty": "先把 SQL 贴进来",
+      "nothingToCopy": "还没有可复制的内容"
+    }
+  },
+  "ja": {
+    "title": "SQL フォーマッター — キーワード大文字・読みやすい整形 — ToolPocket",
+    "desc": "1 行に潰れた SQL を読みやすく整形します。句ごとに改行、条件はインデント、キーワードは大文字。文字列とコメントの中身は変更しません。",
+    "h1": "SQL フォーマッター",
+    "lead": "ログや ORM から出てくる SQL はたいてい 1 行です。貼り付ければ、句ごとに改行し、条件をインデントし、キーワードを大文字にした形になります。<br>先に字句解析を行うため、文字列リテラルの中身が書き換わることはありません。",
+    "faq": [
+      [
+        "文字列の中のテキストは変更されますか？",
+        "されません。そこが「先に解析する」理由です。name = 'select * from users' のような条件のうち、内側の文字は SQL ではなく**データ**です。単純な置換でキーワードを大文字にすると、保存された値まで書き換わり、クエリの挙動が静かに変わります。本ツールはトークンに分けてから判断します。"
+      ],
+      [
+        "どのデータベース方言に対応していますか？",
+        "方言による解析は行わず、トークンの種類で整形します。そのため PostgreSQL、MySQL、SQLite、SQL Server、BigQuery のいずれでも使えます。代わりに、本当の構文エラーは指摘できません。`--` と `#` の行コメント、ブロックコメント、`''` のエスケープ、バッククォートと角括弧の引用符に対応しています。"
+      ],
+      [
+        "テーブル名や列名が大文字にならないのはなぜ？",
+        "大文字にすると意味が変わるからです。PostgreSQL では引用符なしの識別子は小文字に畳まれ、大文字小文字を区別する照合順序では参照先のテーブルが変わります。本ツールはキーワードだけを大文字にし、識別子はそのまま残します。"
+      ]
+    ],
+    "ui": {
+      "inputPh": "select u.id, u.name, count(o.id) as orders from users u left join orders o on o.user_id = u.id where u.active = 1 and u.created_at > '2026-01-01' group by u.id, u.name order by orders desc limit 20",
+      "outputPh": "整形した SQL がここに出ます",
+      "upper": "キーワードを大文字にする",
+      "commas": "カンマの後で改行（列が多いとき）",
+      "statOk": "{lines} 行 · キーワード {kw} 個",
+      "statEmpty": "まず SQL を貼り付けてください",
+      "nothingToCopy": "コピーできる内容がまだありません"
+    }
+  }
+}

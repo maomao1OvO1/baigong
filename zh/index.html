@@ -158,7 +158,7 @@
   </section>
 
   <section class="group">
-    <h2><span class="g-ico">⌨️</span>开发者<span class="g-count">19</span></h2>
+    <h2><span class="g-ico">⌨️</span>开发者<span class="g-count">21</span></h2>
     <ul class="grid">
       <li><a href="/zh/tools/json-path.html">
         <span class="ico">🎯</span>
@@ -255,6 +255,16 @@
         <b>User-Agent 解析</b>
         <span class="sub">服务器日志和 bug 反馈里全是 120 个字符的 User-Agent。贴一条进来，直接告诉你浏览器、引擎、系统和设备类型。你自己的 User-Agent 已经填好了 —— 而且什么…</span>
       </a></li>
+      <li><a href="/zh/tools/sql-format.html">
+        <span class="ico">🧾</span>
+        <b>SQL 格式化</b>
+        <span class="sub">从日志或 ORM 里捞出来的 SQL 通常是一整行。贴进来，得到「一个子句一行、条件缩进、关键字大写」的排版。先做词法扫描再排版，所以字符串字面量里的文字绝不会被改写。</span>
+      </a></li>
+      <li><a href="/zh/tools/http-headers.html">
+        <span class="ico">🧭</span>
+        <b>HTTP 响应头解读</b>
+        <span class="sub">「为什么还是旧的」和「为什么我的 Cookie 被丢了」，答案都在响应头里 —— 前提是看得懂那一堆缩写。把整段响应（含状态行）贴进来，每个头都给一句人话解释，最后把缺失的安全头单独列…</span>
+      </a></li>
     </ul>
   </section>
 
@@ -306,7 +316,7 @@
   </section>
 
   <section class="group">
-    <h2><span class="g-ico">🔒</span>安全<span class="g-count">3</span></h2>
+    <h2><span class="g-ico">🔒</span>安全<span class="g-count">4</span></h2>
     <ul class="grid">
       <li><a href="/zh/tools/number-check.html">
         <span class="ico">💳</span>
@@ -323,11 +333,16 @@
         <b>密码强度检测</b>
         <span class="sub">看清一个密码在暴力猜测下能撑多久，以及它弱在哪：重复字符、键盘连按、生日、手机号。泄露查询必须你手动确认才会联网，而且只发哈希的前 5 位，别的什么都不发。</span>
       </a></li>
+      <li><a href="/zh/tools/cookie-parse.html">
+        <span class="ico">🍪</span>
+        <b>Cookie 解析</b>
+        <span class="sub">两种输入都认：Cookie 请求头（也就是 document.cookie 打出来的样子）会列成清单，Set-Cookie 响应头会被解出属性并逐条体检。真正危险的是「缺了属性」—— …</span>
+      </a></li>
     </ul>
   </section>
 
   <section class="suggest">
-    <p><span class="s-count">🧰 <b>43</b> 个工具</span><span class="s-sep">·</span>想要什么工具？ <button type="button" class="linklike fb-btn" data-u="hi" data-d="maomaowang.top" data-subject="ToolPocket tool request">写信告诉我</button></p>
+    <p><span class="s-count">🧰 <b>46</b> 个工具</span><span class="s-sep">·</span>想要什么工具？ <button type="button" class="linklike fb-btn" data-u="hi" data-d="maomaowang.top" data-subject="ToolPocket tool request">写信告诉我</button></p>
   </section>
 
   <section class="why">
@@ -371,7 +386,7 @@
 <!-- 搜索索引的绝对路径：/zh/ 与 /ja/ 页面用相对路径会 404（2026-10-12 修） -->
 <script>
   window.T = {"langName":"中文","footer":"ToolPocket · 文件不出你的设备 —— 不上传、不注册、不追踪。","nav":"全部工具","backToTools":"← 全部工具","copy":"复制结果","swap":"互换","clear":"清空","download":"下载","copied":"已复制到剪贴板","copyFail":"浏览器拦住了自动复制 —— 手动选中再复制即可","inputLabel":"输入","outputLabel":"结果","privacyNote":"全程在你浏览器里跑完 —— 不上传、不保存、不留底。","searchPlaceholder":"搜索工具 —— 试试「压缩」「json」「密码」…","noResults":"没找到匹配的工具。换个说法试试，比如「压缩」「哈希」「json」。","mobileTip":"📱 手机上能用，但<b>桌面版 Chrome 更顺</b> —— 大图压缩、批量处理快很多。","mobileTipClose":"知道了","desktopHeading":"桌面端更好用","installApp":"装成桌面应用","installHint":"用桌面版 Chrome / Edge 打开本页，点地址栏右侧的「安装」图标 —— 它会变成一个独立窗口，断网也能继续用。不用下载安装包，也不用登录。","installed":"已安装","offlineNote":"装好之后，断网也能照常用 —— 本来这些活就是在你机器上干的，跟网络没关系。","feedbackAsk":"发现 bug 了？告诉我 —— 每封都看。","feedbackButton":"反馈 bug","feedbackSubject":"ToolPocket 反馈","noResultsAsk":"没找到你想要的？告诉我你需要什么工具 —— 每条都会看。","feedbackAskHome":"发现 bug 了？或者想要某个还没有的工具？直接说 —— 每封都看。","feedbackButtonHome":"写封邮件","noResultsBtn":"提个需求","noResultsSubject":"ToolPocket 工具需求","copyright":"© 2026 ToolPocket —— 保留所有权利。未经许可，请勿转载或复制本站内容与代码。","cancel":"取消","confirmOk":"确定","clearAsk":"清空刚输入的内容？这一步没法撤销。","clearOk":"清空"};
-  window.TP_INDEX_URL = "/assets/search.json?v=c169c677";
+  window.TP_INDEX_URL = "/assets/search.json?v=87e671aa";
 </script>
 <script src="/assets/search.js?v=57c6f6fe" defer></script>
 <script>

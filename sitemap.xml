@@ -946,4 +946,67 @@
     <xhtml:link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/ua-parse.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/ua-parse.html"/>
   </url>
+  <url>
+    <loc>https://tools.maomaowang.top/tools/sql-format.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/sql-format.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/sql-format.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/sql-format.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/sql-format.html"/>
+  </url>
+  <url>
+    <loc>https://tools.maomaowang.top/zh/tools/sql-format.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/sql-format.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/sql-format.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/sql-format.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/sql-format.html"/>
+  </url>
+  <url>
+    <loc>https://tools.maomaowang.top/ja/tools/sql-format.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/sql-format.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/sql-format.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/sql-format.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/sql-format.html"/>
+  </url>
+  <url>
+    <loc>https://tools.maomaowang.top/tools/http-headers.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/http-headers.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/http-headers.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/http-headers.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/http-headers.html"/>
+  </url>
+  <url>
+    <loc>https://tools.maomaowang.top/zh/tools/http-headers.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/http-headers.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/http-headers.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/http-headers.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/http-headers.html"/>
+  </url>
+  <url>
+    <loc>https://tools.maomaowang.top/ja/tools/http-headers.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/http-headers.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/http-headers.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/http-headers.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/http-headers.html"/>
+  </url>
+  <url>
+    <loc>https://tools.maomaowang.top/tools/cookie-parse.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/cookie-parse.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/cookie-parse.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/cookie-parse.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/cookie-parse.html"/>
+  </url>
+  <url>
+    <loc>https://tools.maomaowang.top/zh/tools/cookie-parse.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/cookie-parse.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/cookie-parse.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/cookie-parse.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/cookie-parse.html"/>
+  </url>
+  <url>
+    <loc>https://tools.maomaowang.top/ja/tools/cookie-parse.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/cookie-parse.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/cookie-parse.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/cookie-parse.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/cookie-parse.html"/>
+  </url>
 </urlset>

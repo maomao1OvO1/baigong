@@ -1430,6 +1430,58 @@
         "clear"
       ],
       "options": []
+    },
+    {
+      "id": "sql-format",
+      "icon": "🧾",
+      "cat": "dev",
+      "kind": "text",
+      "script": "sql-format.js",
+      "i18n": "sql-format",
+      "buttons": [
+        "copy",
+        "clear"
+      ],
+      "options": [
+        {
+          "type": "checkbox",
+          "id": "upper",
+          "label": "upper",
+          "checked": true
+        },
+        {
+          "type": "checkbox",
+          "id": "commas",
+          "label": "commas",
+          "checked": false
+        }
+      ]
+    },
+    {
+      "id": "http-headers",
+      "icon": "🧭",
+      "cat": "dev",
+      "kind": "text",
+      "script": "http-headers.js",
+      "i18n": "http-headers",
+      "buttons": [
+        "copy",
+        "clear"
+      ],
+      "options": []
+    },
+    {
+      "id": "cookie-parse",
+      "icon": "🍪",
+      "cat": "security",
+      "kind": "text",
+      "script": "cookie-parse.js",
+      "i18n": "cookie-parse",
+      "buttons": [
+        "copy",
+        "clear"
+      ],
+      "options": []
     }
   ]
 }

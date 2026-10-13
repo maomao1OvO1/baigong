@@ -1,0 +1,144 @@
+{
+  "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
+  "en": {
+    "title": "Cookie parser and Set-Cookie security check — ToolPocket",
+    "desc": "Parse a Cookie request header or a Set-Cookie response header: list every value, decode the attributes and flag the ones that are missing. Nothing is sent anywhere.",
+    "h1": "Cookie parser",
+    "lead": "Two kinds of input are understood: a Cookie header (what document.cookie prints) becomes a readable list, and a Set-Cookie header gets its attributes decoded and checked.<br>Missing attributes are the dangerous ones — they throw no error, they just quietly remove a layer of protection.",
+    "faq": [
+      [
+        "Which attribute actually matters most?",
+        "HttpOnly for session cookies. Without it every script on the page can read the value, so a single XSS is enough to walk away with the session. Secure comes next: it keeps the cookie off plain HTTP requests. SameSite is the one people forget — and SameSite=None without Secure means the browser discards the cookie outright, which is the classic \"it works on localhost, not cross-site\" bug."
+      ],
+      [
+        "Are there limits on how big a cookie can be?",
+        "Yes, roughly 4 KB per cookie including the name and attributes, and browsers also cap how many cookies a single domain may set (often around 180). Anything larger is silently dropped — and because it is silent, the failure looks like a random logout rather than an error."
+      ],
+      [
+        "Does this tool validate or use the cookie?",
+        "No. It only parses the text you paste, and nothing is sent or requested — a cookie is a session credential, so it should never be handed to an online service for decoding."
+      ]
+    ],
+    "ui": {
+      "inputPh": "session=abc123; theme=dark; lang=zh-CN\n\nor a Set-Cookie line:\nSet-Cookie: sid=xyz; Path=/; Secure; HttpOnly; SameSite=Lax; Max-Age=3600",
+      "outputPh": "The parsed cookies appear here",
+      "statHeader": "{n} cookies · {m} characters in total",
+      "statSetCookie": "{n} Set-Cookie lines · {m} advisories",
+      "rowName": "name: {s}",
+      "rowValue": "value: {s}",
+      "attrTitle": "attributes",
+      "adviceTitle": "advisories",
+      "adviceOk": "no problems found in the attributes",
+      "advNotSecure": "{s} has no Secure — it is also sent over plain HTTP, where anyone on the path can read it",
+      "advNotHttpOnly": "{s} has no HttpOnly — page scripts can read this value, so one XSS is enough to steal the session",
+      "advNoSameSite": "{s} has no SameSite — the browser default (Lax in Chrome) is not guaranteed by the spec",
+      "advNoneNoSecure": "{s} is SameSite=None without Secure — browsers discard this cookie",
+      "advTooLong": "{s} is {n} characters — over the ~4 KB limit, so browsers may drop it silently",
+      "headerOut": "as a Cookie header",
+      "longestOut": "longest value",
+      "chars": "chars",
+      "ageSec": "{n} seconds",
+      "ageMin": "about {n} minutes",
+      "ageHour": "about {n} hours",
+      "ageDay": "about {n} days",
+      "ageExpired": "{n} seconds (already expired)",
+      "errNothing": "Nothing that looks like a cookie in there",
+      "statEmpty": "Paste a Cookie header or a Set-Cookie line",
+      "nothingToCopy": "Nothing to copy yet"
+    }
+  },
+  "zh": {
+    "title": "Cookie 解析与 Set-Cookie 安全体检 — ToolPocket",
+    "desc": "解析 Cookie 请求头或 Set-Cookie 响应头：把值列清楚、把属性解出来，并指出缺失的属性。不上传任何内容。",
+    "h1": "Cookie 解析",
+    "lead": "两种输入都认：Cookie 请求头（也就是 document.cookie 打出来的样子）会列成清单，Set-Cookie 响应头会被解出属性并逐条体检。<br>真正危险的是「缺了属性」—— 它不报错，只是静悄悄地少一层防护。",
+    "faq": [
+      [
+        "哪个属性最关键？",
+        "会话 Cookie 的 HttpOnly 最要紧。没有它，页面里任何脚本都能读到值，一次 XSS 就能把会话带走。其次是 Secure：少了它，明文 HTTP 请求也会带上这个 Cookie。最容易被忽略的是 SameSite —— 而 `SameSite=None` 却没配 Secure 时，浏览器会直接丢弃它，这正是「本地好使、跨站就丢」的经典 bug。"
+      ],
+      [
+        "Cookie 有大小限制吗？",
+        "有，单个 Cookie 大致 4 KB（含名字与属性），同一域名下的个数也有上限（常见说法是 180 个左右）。超了会被静默丢弃 —— 因为是静默的，表现出来就像「随机掉登录」，而不像一个报错。"
+      ],
+      [
+        "这个工具会验证或使用我的 Cookie 吗？",
+        "不会。它只解析你贴进来的文本，不发请求、不上传 —— Cookie 是会话凭据，本来就不该交给任何在线服务去解码。"
+      ]
+    ],
+    "ui": {
+      "inputPh": "session=abc123; theme=dark; lang=zh-CN\n\n或者一行 Set-Cookie：\nSet-Cookie: sid=xyz; Path=/; Secure; HttpOnly; SameSite=Lax; Max-Age=3600",
+      "outputPh": "解析结果与体检建议显示在这里",
+      "statHeader": "共 {n} 个 Cookie · 合计 {m} 字符",
+      "statSetCookie": "{n} 行 Set-Cookie · {m} 条建议",
+      "rowName": "名字: {s}",
+      "rowValue": "值: {s}",
+      "attrTitle": "属性",
+      "adviceTitle": "体检建议",
+      "adviceOk": "属性上没发现问题",
+      "advNotSecure": "{s} 缺 Secure：明文 HTTP 请求也会带上它，链路上谁都能读",
+      "advNotHttpOnly": "{s} 缺 HttpOnly：页面脚本能读走这个值，一次 XSS 就够偷走会话",
+      "advNoSameSite": "{s} 没写 SameSite：现在靠浏览器默认值（Chrome 是 Lax），但规范并不保证",
+      "advNoneNoSecure": "{s} 是 SameSite=None 却没配 Secure —— 浏览器会直接丢弃这个 Cookie",
+      "advTooLong": "{s} 有 {n} 个字符，超过约 4 KB 的上限，浏览器可能静默丢掉",
+      "headerOut": "Cookie 请求头写法",
+      "longestOut": "最长的值",
+      "chars": "字符",
+      "ageSec": "{n} 秒",
+      "ageMin": "约 {n} 分钟",
+      "ageHour": "约 {n} 小时",
+      "ageDay": "约 {n} 天",
+      "ageExpired": "{n} 秒（已经过期）",
+      "errNothing": "这里没有看起来像 Cookie 的内容",
+      "statEmpty": "把 Cookie 请求头或 Set-Cookie 行贴进来",
+      "nothingToCopy": "还没有可复制的内容"
+    }
+  },
+  "ja": {
+    "title": "Cookie 解析と Set-Cookie の安全性チェック — ToolPocket",
+    "desc": "Cookie リクエストヘッダーまたは Set-Cookie レスポンスヘッダーを解析し、値の一覧・属性の展開・不足属性の指摘を行います。どこにも送信しません。",
+    "h1": "Cookie 解析",
+    "lead": "2 種類の入力を扱えます。Cookie ヘッダー(document.cookie が出力する形)は一覧に、Set-Cookie レスポンスヘッダーは属性を展開して点検します。<br>危険なのは「属性が無い」場合です。エラーは出ず、防御が 1 層静かに減るだけです。",
+    "faq": [
+      [
+        "最も重要な属性はどれ？",
+        "セッション Cookie なら HttpOnly です。無いとページ上のどのスクリプトからも値を読めるため、XSS 1 回でセッションを持ち去られます。次に Secure。無いと平文 HTTP のリクエストにも付いてしまいます。忘れられがちなのは SameSite で、`SameSite=None` なのに Secure が無いとブラウザはその Cookie を破棄します。これが「ローカルでは動くがクロスサイトで消える」典型的なバグです。"
+      ],
+      [
+        "Cookie のサイズ制限はありますか？",
+        "あります。1 つの Cookie は名前と属性を含めておよそ 4 KB、同一ドメインで設定できる個数にも上限があります(一般には 180 個前後)。超えた分は静かに破棄され、エラーではなく「たまにログアウトする」ような挙動になります。"
+      ],
+      [
+        "このツールは Cookie を検証したり使ったりしますか？",
+        "しません。貼り付けたテキストを解析するだけで、リクエストも送信もしません。Cookie はセッションの資格情報であり、オンラインサービスに渡してデコードさせるべきものではありません。"
+      ]
+    ],
+    "ui": {
+      "inputPh": "session=abc123; theme=dark; lang=zh-CN\n\nまたは Set-Cookie の 1 行:\nSet-Cookie: sid=xyz; Path=/; Secure; HttpOnly; SameSite=Lax; Max-Age=3600",
+      "outputPh": "解析結果と点検結果がここに出ます",
+      "statHeader": "Cookie {n} 個 · 合計 {m} 文字",
+      "statSetCookie": "Set-Cookie {n} 行 · 提言 {m} 件",
+      "rowName": "名前: {s}",
+      "rowValue": "値: {s}",
+      "attrTitle": "属性",
+      "adviceTitle": "点検結果",
+      "adviceOk": "属性に問題は見つかりません",
+      "advNotSecure": "{s} に Secure がありません。平文 HTTP でも送信され、経路上の誰でも読めます",
+      "advNotHttpOnly": "{s} に HttpOnly がありません。スクリプトから読めるため、XSS 1 回でセッションが盗まれます",
+      "advNoSameSite": "{s} に SameSite の指定がありません。ブラウザ既定(Chrome は Lax)に依存していますが、仕様で保証されていません",
+      "advNoneNoSecure": "{s} は SameSite=None なのに Secure がありません。ブラウザはこの Cookie を破棄します",
+      "advTooLong": "{s} は {n} 文字で、約 4 KB の上限を超えています。ブラウザが黙って捨てる可能性があります",
+      "headerOut": "Cookie ヘッダーとしての書き方",
+      "longestOut": "最長の値",
+      "chars": "文字",
+      "ageSec": "{n} 秒",
+      "ageMin": "約 {n} 分",
+      "ageHour": "約 {n} 時間",
+      "ageDay": "約 {n} 日",
+      "ageExpired": "{n} 秒(すでに期限切れ)",
+      "errNothing": "Cookie らしき内容がありません",
+      "statEmpty": "Cookie ヘッダーか Set-Cookie の行を貼り付けてください",
+      "nothingToCopy": "コピーできる内容がまだありません"
+    }
+  }
+}

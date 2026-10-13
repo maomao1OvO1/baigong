@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HTTP 响应头解读 + 安全体检 — ToolPocket</title>
+<meta name="description" content="把响应头逐条讲清楚，并把缺失的安全头指出来。缓存相关的头会用大白话解释。">
+<link rel="canonical" href="https://tools.maomaowang.top/zh/tools/http-headers.html">
+<meta property="og:title" content="HTTP 响应头解读 + 安全体检 — ToolPocket">
+<meta property="og:description" content="把响应头逐条讲清楚，并把缺失的安全头指出来。缓存相关的头会用大白话解释。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/zh/tools/http-headers.html">
+<!-- 分享预览图：微信/QQ/Telegram/Twitter 都读这几行。尺寸按通用标准 1200×630（1.91:1），
+     微信会把它裁成正方形显示，所以图里关键信息都放在中间。三语各一张。 -->
+<meta property="og:image" content="https://tools.maomaowang.top/assets/og-zh.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/http-headers.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/http-headers.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/http-headers.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/http-headers.html">
+<link rel="stylesheet" href="/assets/style.css?v=558fbd6b">
+<meta name="theme-color" content="#2563eb">
+<!-- 作者信息：既是署名，也是"这站有主"的凭据（扒站的人容易忽略，但删掉它就是加重侵权情节） -->
+<meta name="author" content="maomaowang.top">
+<meta name="build" content="2026-10-14">
+<meta name="x-src" content="dG9vbHMubWFvbWFvd2FuZy50b3A6OjIwMjYtMTAtMTQ=">
+<link rel="author" href="https://maomaowang.top/">
+<link rel="icon" href="/assets/icon-192.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/zh/manifest.webmanifest">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"HTTP 响应头解读","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"把响应头逐条讲清楚，并把缺失的安全头指出来。缓存相关的头会用大白话解释。"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"页面还是旧版本，我该看哪个头？","acceptedAnswer":{"@type":"Answer","text":"先看 Cache-Control，再看 Age 和 ETag。max-age 是「多少秒内算新鲜」，no-cache 是「每次用之前都要问一次」，no-store 是「压根别存」，Age 很大说明你读的是 CDN 缓存的旧副本。immutable 则是「max-age 期间别再问了」—— 带版本号的长缓存资源就靠它。"}},{"@type":"Question","name":"为什么要专门检查安全头？","acceptedAnswer":{"@type":"Answer","text":"因为少了它不会报错、不写日志，你只是静悄悄地少了一层防护。没有 HttpOnly 的 Cookie，页面里任何一段脚本都能读走（包括被 XSS 注入的那段）；没有 Strict-Transport-Security 的站点，用户第一次访问仍可能被降级到明文 HTTP。"}},{"@type":"Question","name":"它说某个头「没有解释」，是坏了吗？","acceptedAnswer":{"@type":"Answer","text":"不是。本工具只解释收录过的常见头，其余的照原样列出。给不认识的头编一个听起来很专业的说法，比老实说不知道更糟。"}}]}</script>
+</head>
+<body>
+<!--
+  ================================================================
+  © 2026 ToolPocket · tools.maomaowang.top · 原创作品，保留所有权利
+  本页由作者独立开发并持续维护。未经授权复制、镜像、二次发布本页
+  内容或代码均属侵权；页面内含来源标记（ts2t-tools/http-headers），可追溯出处。
+  legacy-build-id: 746f6f6c732e6d616f6d616f77616e672e746f703a3a323032362d31302d3132
+  （这串是十六进制，不是什么校验码：解出来是作者与构建日期。）
+  ================================================================
+-->
+<span hidden aria-hidden="true" data-mark="ts2t:maomaowang:ts2t-tools/http-headers"></span>
+<!-- stats-endpoint: gbbyf.znbznbjnat.gbc   (rot13, 2024 年就在用的老写法) -->
+<div class="mobile-tip" id="mobileTip" hidden>
+  <span>📱 手机上能用，但<b>桌面版 Chrome 更顺</b> —— 大图压缩、批量处理快很多。</span>
+  <button type="button" id="tipClose" class="tip-close">知道了</button>
+</div>
+<header class="top">
+  <a class="brand" href="/zh/index.html">🧰 ToolPocket</a>
+  <nav class="langs"><a class="ad-link" href="/zh/advertise.html">广告位招租</a><a href="/tools/http-headers.html">English</a><a href="/zh/tools/http-headers.html" class="on" aria-current="page">中文</a><a href="/ja/tools/http-headers.html">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/zh/index.html">← 全部工具</a></p>
+  <h1>HTTP 响应头解读</h1>
+  <p class="lead">「为什么还是旧的」和「为什么我的 Cookie 被丢了」，答案都在响应头里 —— 前提是看得懂那一堆缩写。<br>把整段响应（含状态行）贴进来，每个头都给一句人话解释，最后把缺失的安全头单独列出来。</p>
+
+  <p class="badge-line"><span class="pill">全程在你浏览器里跑完 —— 不上传、不保存、不留底。</span></p>
+
+<div class="panel">
+<label class="row lbl" for="input">输入</label>
+  <textarea id="input" class="tall" placeholder="HTTP/1.1 200 OK
+Content-Type: text/html; charset=utf-8
+Cache-Control: max-age=3600
+ETag: &quot;abc123&quot;
+Set-Cookie: sid=xyz; Path=/; HttpOnly"></textarea>
+  <div class="opts">
+
+  </div>
+<label class="row lbl" for="output">结果</label>
+  <textarea id="output" readonly placeholder="每个头的解释，末尾附安全体检"></textarea>
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">复制结果</button>
+    <button class="ghost" id="clear">清空</button>
+  </div>
+</div>
+
+<aside class="ad ad-tool-game">
+  <span class="ad-label">自己人做的</span>
+  <span class="ad-ico" aria-hidden="true">🎮</span>
+  <div class="ad-body">
+    <b>🎮 自己写的小游戏合集</b>
+    <p>塔防、2048、五子棋、打字测试、猜数字…都是一个人从零写的，没有用现成引擎。</p>
+  </div>
+  <a class="ad-cta" href="https://maomaowang.top/games.html">去玩两把 →</a>
+</aside>
+
+  <section class="faq">
+    <h2>常见问题</h2>
+    <details><summary>页面还是旧版本，我该看哪个头？</summary><p>先看 Cache-Control，再看 Age 和 ETag。max-age 是「多少秒内算新鲜」，no-cache 是「每次用之前都要问一次」，no-store 是「压根别存」，Age 很大说明你读的是 CDN 缓存的旧副本。immutable 则是「max-age 期间别再问了」—— 带版本号的长缓存资源就靠它。</p></details>
+    <details><summary>为什么要专门检查安全头？</summary><p>因为少了它不会报错、不写日志，你只是静悄悄地少了一层防护。没有 HttpOnly 的 Cookie，页面里任何一段脚本都能读走（包括被 XSS 注入的那段）；没有 Strict-Transport-Security 的站点，用户第一次访问仍可能被降级到明文 HTTP。</p></details>
+    <details><summary>它说某个头「没有解释」，是坏了吗？</summary><p>不是。本工具只解释收录过的常见头，其余的照原样列出。给不认识的头编一个听起来很专业的说法，比老实说不知道更糟。</p></details>
+  </section>
+
+</main>
+
+<footer>
+  <p>ToolPocket · 文件不出你的设备 —— 不上传、不注册、不追踪。</p>
+  <p class="copy">© 2026 ToolPocket —— 保留所有权利。未经许可，请勿转载或复制本站内容与代码。</p>
+  <p class="fb">
+    <span>发现 bug 了？告诉我 —— 每封都看。</span>
+    <button type="button" class="ghost fb-btn" id="feedbackBtn" data-u="hi" data-d="maomaowang.top">反馈 bug</button>
+  </p>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = "{\"langName\":\"中文\",\"footer\":\"ToolPocket · 文件不出你的设备 —— 不上传、不注册、不追踪。\",\"nav\":\"全部工具\",\"backToTools\":\"← 全部工具\",\"copy\":\"复制结果\",\"swap\":\"互换\",\"clear\":\"清空\",\"download\":\"下载\",\"copied\":\"已复制到剪贴板\",\"copyFail\":\"浏览器拦住了自动复制 —— 手动选中再复制即可\",\"inputLabel\":\"输入\",\"outputLabel\":\"结果\",\"privacyNote\":\"全程在你浏览器里跑完 —— 不上传、不保存、不留底。\",\"searchPlaceholder\":\"搜索工具 —— 试试「压缩」「json」「密码」…\",\"noResults\":\"没找到匹配的工具。换个说法试试，比如「压缩」「哈希」「json」。\",\"mobileTip\":\"📱 手机上能用，但<b>桌面版 Chrome 更顺</b> —— 大图压缩、批量处理快很多。\",\"mobileTipClose\":\"知道了\",\"desktopHeading\":\"桌面端更好用\",\"installApp\":\"装成桌面应用\",\"installHint\":\"用桌面版 Chrome / Edge 打开本页，点地址栏右侧的「安装」图标 —— 它会变成一个独立窗口，断网也能继续用。不用下载安装包，也不用登录。\",\"installed\":\"已安装\",\"offlineNote\":\"装好之后，断网也能照常用 —— 本来这些活就是在你机器上干的，跟网络没关系。\",\"feedbackAsk\":\"发现 bug 了？告诉我 —— 每封都看。\",\"feedbackButton\":\"反馈 bug\",\"feedbackSubject\":\"ToolPocket 反馈\",\"noResultsAsk\":\"没找到你想要的？告诉我你需要什么工具 —— 每条都会看。\",\"feedbackAskHome\":\"发现 bug 了？或者想要某个还没有的工具？直接说 —— 每封都看。\",\"feedbackButtonHome\":\"写封邮件\",\"noResultsBtn\":\"提个需求\",\"noResultsSubject\":\"ToolPocket 工具需求\",\"copyright\":\"© 2026 ToolPocket —— 保留所有权利。未经许可，请勿转载或复制本站内容与代码。\",\"cancel\":\"取消\",\"confirmOk\":\"确定\",\"clearAsk\":\"清空刚输入的内容？这一步没法撤销。\",\"clearOk\":\"清空\",\"inputPh\":\"HTTP/1.1 200 OK\\nContent-Type: text/html; charset=utf-8\\nCache-Control: max-age=3600\\nETag: \\\"abc123\\\"\\nSet-Cookie: sid=xyz; Path=/; HttpOnly\",\"outputPh\":\"每个头的解释，末尾附安全体检\",\"noNote\":\"表里没有这个头的解释（原样列出，不猜）\",\"secTitle\":\"安全体检\",\"secOk\":\"关键安全头都在\",\"secMissing\":\"缺 {s}\",\"advHsts\":\"—— 加上它，浏览器以后只用 HTTPS 访问本站，包括第一次访问\",\"advCsp\":\"—— 限定页面能加载哪些脚本与资源；挡 XSS 最有效的一层\",\"advNosniff\":\"—— 禁止浏览器猜内容类型；少了它，上传的图片可能被当成脚本执行\",\"advFrame\":\"—— 禁止别的站点用 iframe 嵌你的页面（防点击劫持）\",\"advReferrer\":\"—— 决定每次跳转带出去多少来源信息\",\"advPermissions\":\"—— 关掉自己用不上的浏览器能力（摄像头 / 麦克风 / 定位）\",\"advCookieSecure\":\"Cookie 缺 Secure：明文 HTTP 请求也会带上它，链路上谁都能读\",\"advCookieHttpOnly\":\"Cookie 缺 HttpOnly：页面脚本能读走它，一次 XSS 就够偷走会话\",\"advCookieSameSite\":\"Cookie 没写 SameSite：现在靠浏览器默认值（Chrome 是 Lax），但规范并不保证\",\"advCookieNoneNeedsSecure\":\"SameSite=None 却没配 Secure —— 浏览器会**直接丢弃**这个 Cookie\",\"leakNote\":\"提醒：{s} 会暴露你用的后端与版本，正式环境建议去掉或改成通用值\",\"statOk\":\"{n} 个头 · {m} 条建议\",\"statEmpty\":\"先把响应头贴进来\",\"errNothing\":\"这里没有看起来像 HTTP 头的内容\",\"nothingToCopy\":\"还没有可复制的内容\",\"hdr_content_type\":\"响应体的类型与字符编码。缺 charset 时浏览器自己猜，中文日文可能就猜成乱码。\",\"hdr_content_encoding\":\"响应体的压缩方式（gzip / br / zstd）。你保存下来的原始字节仍是压缩状态。\",\"hdr_content_length\":\"响应体字节数。写错会导致响应被截断，表现像文件坏了而不是报错。\",\"hdr_vary\":\"哪些请求头的变化会影响响应。缺 Vary: Accept-Encoding 时，CDN 可能把 gzip 的内容发给只要明文的客户端。\",\"hdr_cache_control\":\"缓存策略：max-age 是多少秒内算新鲜；no-cache 是每次用前先问；no-store 是压根别存；immutable 是 max-age 内别再问。\",\"hdr_etag\":\"这一版内容的指纹。下次请求带上 If-None-Match，一致就回 304 不带响应体 —— 重校验就是这么省流量的。\",\"hdr_last_modified\":\"内容最后修改时间。比 ETag 弱：精度只到秒，而且文件被 touch 过（内容没变）也会显得更新了。\",\"hdr_age\":\"CDN 或代理已经缓存这份副本多久了。Age 很大说明你读到的是缓存，不是刚生成的。\",\"hdr_expires\":\"老一代的过期写法。只要有 Cache-Control 就基本被忽略，别只靠它。\",\"hdr_date\":\"服务端生成响应时的时钟。Age 与新鲜度都参照它算，服务器时间不准会连带缓存出问题。\",\"hdr_cf_cache_status\":\"Cloudflare 的判定：HIT（命中边缘缓存）/ MISS / REVALIDATED / DYNAMIC。文件明明上线了却还是旧的，常常就是这里。\",\"hdr_location\":\"接下来去哪儿 —— 3xx 重定向和 201 Created 会用到它。\",\"hdr_set_cookie\":\"写入一个 Cookie。属性才是关键：HttpOnly 挡住脚本，Secure 挡住明文 HTTP，SameSite 决定跨站是否发送，而没有 Max-Age 或 Expires 的话关掉浏览器就没了。\",\"hdr_server\":\"应答的服务器软件。对探测你的人来说，这也是免费情报。\",\"hdr_x_powered_by\":\"网站背后的框架或语言，白送的。正式环境一般建议去掉。\",\"hdr_strict_transport_security\":\"让浏览器在一段时间内对本域只用 HTTPS，堵住降级攻击。\",\"hdr_content_security_policy\":\"一份白名单，规定脚本、样式等资源只能从哪儿加载。反 XSS 最强的头。\",\"hdr_x_content_type_options\":\"配 nosniff 用：浏览器不再猜内容类型；没有它，一个文件可能被嗅探成你完全没打算的类型。\",\"hdr_x_frame_options\":\"deny 或 sameorigin：谁可以把本页放进 iframe。是 CSP frame-ancestors 的前辈写法。\",\"hdr_referrer_policy\":\"每次发出请求时，带多少来源地址出去。\",\"hdr_permissions_policy\":\"对本页及其内嵌框架开关浏览器能力。\",\"hdr_access_control_allow_origin\":\"跨域（CORS）：哪些来源可以在浏览器里读这个响应。公开 API 用通配符没问题，带凭据的场景就不能用。\",\"hdr_transfer_encoding\":\"响应体在传输层怎么分块。排查代理问题时，端到端与逐跳的区别很关键。\",\"hdr_connection\":\"keep-alive 这类逐跳指令。由浏览器负责设置，应用不该去动它。\",\"hdr_alt_svc\":\"告知备用接入点，通常是基于 QUIC 的 HTTP/3。\",\"hdr_retry_after\":\"配合 429 或 503 用：告诉对方多少秒后再来。\",\"hdr_www_authenticate\":\"配合 401 用：服务端要求哪种认证方式。\"}";</script>
+<script src="/assets/tools/_shared.js?v=62a587aa" defer></script>
+<!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
+<script src="/assets/tools/http-headers.js?v=5b44dc5b" defer></script>
+<script src="/assets/app.js?v=dd536e7e" defer></script>
+</body>
+</html>
