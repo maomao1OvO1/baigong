@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JSON Schema 検証（よく使う範囲）— 百工</title>
+<meta name="description" content="JSON Schema でデータを検証し、合わない箇所をパス付きで列挙します。期待した型・欠けているフィールド・範囲外の値が分かります。">
+<link rel="canonical" href="https://tools.maomaowang.top/ja/tools/json-schema.html">
+<meta property="og:title" content="JSON Schema 検証（よく使う範囲）— 百工">
+<meta property="og:description" content="JSON Schema でデータを検証し、合わない箇所をパス付きで列挙します。期待した型・欠けているフィールド・範囲外の値が分かります。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/ja/tools/json-schema.html">
+<!-- 分享预览图：微信/QQ/Telegram/Twitter 都读这几行。尺寸按通用标准 1200×630（1.91:1），
+     微信会把它裁成正方形显示，所以图里关键信息都放在中间。三语各一张。 -->
+<meta property="og:image" content="https://tools.maomaowang.top/assets/og-ja.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/json-schema.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/json-schema.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/json-schema.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/json-schema.html">
+<link rel="stylesheet" href="/assets/style.css?v=2e8d3252">
+<meta name="theme-color" content="#2563eb">
+<!-- 作者信息：既是署名，也是"这站有主"的凭据（扒站的人容易忽略，但删掉它就是加重侵权情节） -->
+<meta name="author" content="maomaowang.top">
+<meta name="build" content="2026-10-14">
+<meta name="x-src" content="dG9vbHMubWFvbWFvd2FuZy50b3A6OjIwMjYtMTAtMTQ=">
+<link rel="author" href="https://maomaowang.top/">
+<link rel="icon" href="/assets/icon-192.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/ja/manifest.webmanifest">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"JSON Schema 検証","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"JSON Schema でデータを検証し、合わない箇所をパス付きで列挙します。期待した型・欠けているフィールド・範囲外の値が分かります。"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"対応しているキーワードは？","acceptedAnswer":{"@type":"Answer","text":"`type`（配列形式を含む）、`required`、`properties`、`items`、`enum`、`minimum`、`maximum`、`minLength`、`maxLength`、`pattern`、`minItems`、`maxItems`、そして `additionalProperties: false` です。実務の検証の大半をカバーします。`$ref` は解決せず、`format`（email や date-time）の意味的な検証も行いません。"}},{"@type":"Question","name":"schema に $ref があるとどうなりますか？","acceptedAnswer":{"@type":"Answer","text":"結果に「この部分は検証していない」と**明示**します。黙って通すことはしません。理解できない規則を飛ばす検証器は、検証器が無いより有害です。データは問題ないと誤解し、実際には何も確認されていないからです。"}},{"@type":"Question","name":"エラーにパスを付けるのはなぜ？","acceptedAnswer":{"@type":"Answer","text":"入れ子の配列を含む文書では「型が違います」だけでは探す場所が分からないからです。`data.items[2].price` のようなパスがあれば、5 分の探索が 1 行の修正になります。"}}]}</script>
+</head>
+<body>
+<!--
+  ================================================================
+  © 2026 Baigong · tools.maomaowang.top · 原创作品，保留所有权利
+  本页由作者独立开发并持续维护。未经授权复制、镜像、二次发布本页
+  内容或代码均属侵权；页面内含来源标记（ts2t-tools/json-schema），可追溯出处。
+  legacy-build-id: 746f6f6c732e6d616f6d616f77616e672e746f703a3a323032362d31302d3132
+  （这串是十六进制，不是什么校验码：解出来是作者与构建日期。）
+  ================================================================
+-->
+<span hidden aria-hidden="true" data-mark="ts2t:maomaowang:ts2t-tools/json-schema"></span>
+<!-- stats-endpoint: gbbyf.znbznbjnat.gbc   (rot13, 2024 年就在用的老写法) -->
+<div class="mobile-tip" id="mobileTip" hidden>
+  <span>📱 スマホでも使えますが、大きな画像やまとめての処理はデスクトップ版 Chrome のほうが快適です。</span>
+  <button type="button" id="tipClose" class="tip-close">了解しました</button>
+</div>
+<header class="top">
+  <a class="brand" href="/ja/index.html">🧰 百工</a>
+  <nav class="langs"><a class="ad-link" href="/ja/advertise.html">広告掲載</a><a href="/tools/json-schema.html">English</a><a href="/zh/tools/json-schema.html">中文</a><a href="/ja/tools/json-schema.html" class="on" aria-current="page">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/ja/index.html">← ツール一覧</a></p>
+  <h1>JSON Schema 検証</h1>
+  <p class="lead">API が想定外の返し方をしたとき、まず知りたいのは「仕様違反か」「自分の読み違いか」です。<br>schema、=== の行、データの順に貼り付けると、不一致がパス・期待値・実際の値つきで出ます。</p>
+
+  <p class="badge-line"><span class="pill">すべてブラウザ内で処理。送信も保存もしていません。</span></p>
+
+<div class="panel">
+<label class="row lbl" for="input">入力</label>
+  <textarea id="input" class="tall" placeholder="{
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;required&quot;: [&quot;id&quot;, &quot;name&quot;],
+  &quot;properties&quot;: {
+    &quot;id&quot;: { &quot;type&quot;: &quot;integer&quot;, &quot;minimum&quot;: 1 },
+    &quot;name&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;: 2 },
+    &quot;tags&quot;: { &quot;type&quot;: &quot;array&quot;, &quot;items&quot;: { &quot;type&quot;: &quot;string&quot; } }
+  }
+}
+===
+{ &quot;id&quot;: 0, &quot;tags&quot;: [&quot;a&quot;, 3] }"></textarea>
+  <div class="opts">
+
+  </div>
+<label class="row lbl" for="output">結果</label>
+  <textarea id="output" readonly placeholder="検証結果がここに出ます"></textarea>
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">結果をコピー</button>
+    <button class="ghost" id="clear">クリア</button>
+  </div>
+</div>
+
+<aside class="ad ad-tool-game">
+  <span class="ad-label">製作者より</span>
+  <span class="ad-ico" aria-hidden="true">🎮</span>
+  <div class="ad-body">
+    <b>ブラウザで遊べるタワーディフェンス</b>
+    <p>同じ開発者がゼロから作ったゲームです.</p>
+  </div>
+  <a class="ad-cta" href="https://maomaowang.top/games/td/source/game.html">遊んでみる →</a>
+</aside>
+
+  <section class="faq">
+    <h2>よくある質問</h2>
+    <details><summary>対応しているキーワードは？</summary><p>`type`（配列形式を含む）、`required`、`properties`、`items`、`enum`、`minimum`、`maximum`、`minLength`、`maxLength`、`pattern`、`minItems`、`maxItems`、そして `additionalProperties: false` です。実務の検証の大半をカバーします。`$ref` は解決せず、`format`（email や date-time）の意味的な検証も行いません。</p></details>
+    <details><summary>schema に $ref があるとどうなりますか？</summary><p>結果に「この部分は検証していない」と**明示**します。黙って通すことはしません。理解できない規則を飛ばす検証器は、検証器が無いより有害です。データは問題ないと誤解し、実際には何も確認されていないからです。</p></details>
+    <details><summary>エラーにパスを付けるのはなぜ？</summary><p>入れ子の配列を含む文書では「型が違います」だけでは探す場所が分からないからです。`data.items[2].price` のようなパスがあれば、5 分の探索が 1 行の修正になります。</p></details>
+  </section>
+
+</main>
+
+<footer>
+  <p>百工 · ファイルは端末から出ません。送信も登録も、追跡もありません。</p>
+  <p class="copy">© 2026 百工 — All rights reserved. 当サイトの内容・コードの無断転載を禁じます。</p>
+  <p class="fb">
+    <span>不具合を見つけましたか？お知らせください。すべて目を通します。</span>
+    <button type="button" class="ghost fb-btn" id="feedbackBtn" data-u="hi" data-d="maomaowang.top">不具合を報告</button>
+  </p>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = {"langName":"日本語","brand":"百工","footer":"百工 · ファイルは端末から出ません。送信も登録も、追跡もありません。","nav":"ツール一覧","backToTools":"← ツール一覧","copy":"結果をコピー","swap":"入れ替え","clear":"クリア","download":"ダウンロード","copied":"クリップボードにコピーしました","copyFail":"ブラウザがコピーを許可しませんでした。テキストを選択して手動でコピーしてください","inputLabel":"入力","outputLabel":"結果","privacyNote":"すべてブラウザ内で処理。送信も保存もしていません。","searchPlaceholder":"ツールを検索 — 「圧縮」「json」「パスワード」など","noResults":"該当するツールがありませんでした。「圧縮」「ハッシュ」など、別の言葉でお試しください。","mobileTip":"📱 スマホでも使えますが、大きな画像やまとめての処理はデスクトップ版 Chrome のほうが快適です。","mobileTipClose":"了解しました","desktopHeading":"デスクトップ版がおすすめ","installApp":"デスクトップアプリとして追加","installHint":"デスクトップ版 Chrome / Edge でこのサイトを開き、アドレスバー右側のインストールアイコンをクリックしてください。独立したウィンドウになり、ネットワークが無くても動作します。インストーラのダウンロードも登録も不要です。","installed":"インストール済み","offlineNote":"インストール後はネットワークを切ったままでも使えます。もともと通信していないのですから、当然といえば当然です。","feedbackAsk":"不具合を見つけましたか？お知らせください。すべて目を通します。","feedbackButton":"不具合を報告","feedbackSubject":"百工 へのフィードバック","noResultsAsk":"お探しのものが見つかりませんか？必要なツールをお知らせください。すべて目を通します。","feedbackAskHome":"不具合の報告や「こんなツールがほしい」というご要望は、お気軽にお知らせください。","feedbackButtonHome":"メールを書く","noResultsBtn":"ツールをリクエスト","noResultsSubject":"百工 ツールのリクエスト","copyright":"© 2026 百工 — All rights reserved. 当サイトの内容・コードの無断転載を禁じます。","cancel":"キャンセル","confirmOk":"OK","clearAsk":"入力した内容を消しますか？元には戻せません。","clearOk":"消去","inputPh":"{\n  \"type\": \"object\",\n  \"required\": [\"id\", \"name\"],\n  \"properties\": {\n    \"id\": { \"type\": \"integer\", \"minimum\": 1 },\n    \"name\": { \"type\": \"string\", \"minLength\": 2 },\n    \"tags\": { \"type\": \"array\", \"items\": { \"type\": \"string\" } }\n  }\n}\n===\n{ \"id\": 0, \"tags\": [\"a\", 3] }","outputPh":"検証結果がここに出ます","passLine":"適合 — データは schema に一致します。","failLine":"{n} 件の問題:","msgType":"{p}: 期待 {want}、実際 {got}","msgRequired":"{p}: 必須フィールドがありません","msgEnum":"{p}: 許可された値 {s} に含まれません","msgMin":"{p}: {v} は最小値 {n} 未満です","msgMax":"{p}: {v} は最大値 {n} を超えています","msgMinLen":"{p}: 長さ {v} は minLength {n} 未満です","msgMaxLen":"{p}: 長さ {v} は maxLength {n} を超えています","msgPattern":"{p}: 正規表現 {s} に一致しません","msgPatternBad":"{p}: schema 内の正規表現 {s} 自体が不正です","msgMinItems":"{p}: {v} 件で minItems {n} 未満です","msgMaxItems":"{p}: {v} 件で maxItems {n} を超えています","msgAdditional":"{p}: schema が許可していないフィールドです（additionalProperties が false）","noteRef":"{p}: `$ref` {s} は**解決していません** — この部分は未検証です","moreErrors":"…ほか {n} 件","statPass":"適合","statFail":"{n} 件の問題","errNeedSep":"2 つの部分が必要です。間に 3 つ以上の等号（===）だけの行を入れてください","errSchema":"schema が正しい JSON ではありません: {msg}","errData":"データが正しい JSON ではありません: {msg}","statEmpty":"schema、=== の行、データの順に貼り付けてください","nothingToCopy":"コピーできる内容がまだありません"};</script>
+<script src="/assets/tools/_shared.js?v=ea559edf" defer></script>
+<!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
+<script src="/assets/tools/json-schema.js?v=663abd9d" defer></script>
+<script src="/assets/app.js?v=5aa190d1" defer></script>
+</body>
+</html>

@@ -1978,5 +1978,98 @@ console.log("\n㉞ 第十批新工具的关键算法（CSV → SQL · JSON 差�
   }
 }
 
+console.log("\n㉟ 第十一批新工具的关键算法（JSON Schema 校验 · SVG 压缩）");
+{
+  const ui = (name) => { const j = JSON.parse(fs.readFileSync(path.join(ROOT, "src/i18n/tools", name + ".json"), "utf8")); return j.en.ui; };
+  const U = (n, extra) => Object.assign(readUi("en"), ui(n), extra || {});
+
+  // ① JSON Schema 校验（路径 · 类型 · required · 范围 · $ref 明说未解析）
+  {
+    const { els } = loadTool("json-schema.js",
+      ["input", "output", "status", "copy", "clear"], U("json-schema"), {});
+
+    const schema = '{"type":"object","required":["id"],"properties":{"id":{"type":"integer","minimum":1},"name":{"type":"string","minLength":2}}}';
+
+    els.input.value = schema + '\n===\n{"id": 5, "name": "Ada"}'; els.input.fire("input");
+    if (els.output.value.includes("Valid") && els.status.className.includes("ok"))
+      ok("Schema：完全符合时给正面结论（不是永远报错）");
+    else bad("Schema：符合的数据被误报", els.output.value.slice(0, 200));
+
+    els.input.value = schema + '\n===\n{"id": 0}'; els.input.fire("input");
+    const out = els.output.value;
+    if (out.includes("id") && out.includes("1") && /below/i.test(out))
+      ok("Schema：越界值指出路径与最小值（id: 0 < minimum 1）");
+    else bad("Schema：越界没报对", out.slice(0, 240));
+
+    els.input.value = schema + '\n===\n{"name": "Ada"}'; els.input.fire("input");
+    if (/id/.test(els.output.value) && /missing/i.test(els.output.value))
+      ok("Schema：缺必需字段能被指出");
+    else bad("Schema：required 没生效", els.output.value.slice(0, 200));
+
+    els.input.value = schema + '\n===\n{"id": "5"}'; els.input.fire("input");
+    if (/expected integer, got string/i.test(els.output.value))
+      ok("Schema：类型不符报出「期望什么、实际什么」");
+    else bad("Schema：类型错误描述不对", els.output.value.slice(0, 200));
+
+    // 嵌套数组里的错误必须带下标 —— 只说「类型不对」等于没说
+    els.input.value = '{"type":"array","items":{"type":"object","properties":{"p":{"type":"number"}}}}\n===\n[{"p":1},{"p":"x"}]';
+    els.input.fire("input");
+    if (/\[1\]\.p/.test(els.output.value))
+      ok("Schema：嵌套数组的错误带下标路径（[1].p），不是只说「类型不对」");
+    else bad("Schema：路径不对", els.output.value.slice(0, 240));
+
+    els.input.value = '{"type":"object","properties":{"a":{"type":"number"}},"additionalProperties":false}\n===\n{"a":1,"b":2}';
+    els.input.fire("input");
+    if (/b/.test(els.output.value) && /additionalProperties/i.test(els.output.value))
+      ok("Schema：additionalProperties: false 能抓出多余字段");
+    else bad("Schema：多余字段没抓到", els.output.value.slice(0, 240));
+
+    // ⚠️ $ref 不解析时必须**明说**，不能装作验过了
+    els.input.value = '{"$ref":"#/definitions/x"}\n===\n{"anything":1}'; els.input.fire("input");
+    if (/NOT resolved|\$ref/.test(els.output.value) && /unchecked/i.test(els.output.value))
+      ok("Schema：$ref 明确标注「未解析、这部分没校验」（假装通过比不校验更糟）");
+    else bad("Schema：$ref 没有明说", els.output.value.slice(0, 200));
+
+    els.input.value = schema; els.input.fire("input");
+    if (els.status.className.includes("err"))
+      ok("Schema：缺 === 分隔时明确报错");
+    else bad("Schema：缺分隔符没报错", els.status.textContent);
+  }
+
+  // ② SVG 压缩（去注释 · 去标签间空白 · 文本节点原样 · viewBox）
+  {
+    const { els } = loadTool("svg-preview.js",
+      ["input", "output", "status", "copy", "clear"], U("svg-preview"), {});
+
+    els.input.value = '<svg >\n  <!-- exported -->\n  <path d="M0 0"/>\n</svg>'; els.input.fire("input");
+    const out = els.output.value;
+    if (!out.includes("<!--") && out.includes('<path d="M0 0"/>') && out.length < els.input.value.length)
+      ok("SVG：注释与标签间空白被去掉，路径原样保留");
+    else bad("SVG：压缩结果不对", out.slice(0, 200));
+
+    // ⚠️ 文本节点是内容：`<text>  hi  </text>` 里那两对空格必须留着
+    els.input.value = "<svg><text>  hi  </text></svg>"; els.input.fire("input");
+    if (els.output.value.includes("<text>  hi  </text>"))
+      ok("SVG：文本节点里的空格原样保留（<text> 的内容是文字，不是缩进）");
+    else bad("SVG：文本内容被改了", JSON.stringify(els.output.value));
+
+    els.input.value = '<svg   width="24"   height="24">\n<path d="M0 0"/>\n</svg>'; els.input.fire("input");
+    if (/<svg width="24" height="24">/.test(els.output.value))
+      ok("SVG：标签内部属性之间的连续空白折成一个空格");
+    else bad("SVG：标签内空白没折叠", els.output.value.slice(0, 160));
+
+    els.input.value = '<svg width="24" height="24" viewBox="0 0 24 24"><path d="M0 0" /></svg>';
+    els.input.fire("input");
+    if (/24/.test(els.status.textContent) && /viewBox/i.test(els.status.textContent))
+      ok("SVG：从源码里读出尺寸与 viewBox 并报告");
+    else bad("SVG：尺寸没读出来", els.status.textContent);
+
+    els.input.value = "<div>not an svg</div>"; els.input.fire("input");
+    if (els.output.value === "" && els.status.className.includes("err"))
+      ok("SVG：不是 SVG 时明确报错（不硬压一个出来）");
+    else bad("SVG：非 SVG 输入没拦住", els.status.textContent);
+  }
+}
+
 console.log(`\n结果：${pass} 项通过，${fail} 项失败`);
 process.exit(fail ? 1 : 0);

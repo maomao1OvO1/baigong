@@ -1817,6 +1817,32 @@
         "clear"
       ],
       "options": []
+    },
+    {
+      "id": "json-schema",
+      "icon": "✅",
+      "cat": "data",
+      "kind": "text",
+      "script": "json-schema.js",
+      "i18n": "json-schema",
+      "buttons": [
+        "copy",
+        "clear"
+      ],
+      "options": []
+    },
+    {
+      "id": "svg-preview",
+      "icon": "🖌️",
+      "cat": "image",
+      "kind": "text",
+      "script": "svg-preview.js",
+      "i18n": "svg-preview",
+      "buttons": [
+        "copy",
+        "clear"
+      ],
+      "options": []
     }
   ]
 }

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JSON Schema validator (common subset) — Baigong</title>
+<meta name="description" content="Check a JSON document against a JSON Schema and get a path-by-path list of what does not match: expected type, missing fields, out-of-range values.">
+<link rel="canonical" href="https://tools.maomaowang.top/tools/json-schema.html">
+<meta property="og:title" content="JSON Schema validator (common subset) — Baigong">
+<meta property="og:description" content="Check a JSON document against a JSON Schema and get a path-by-path list of what does not match: expected type, missing fields, out-of-range values.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/tools/json-schema.html">
+<!-- 分享预览图：微信/QQ/Telegram/Twitter 都读这几行。尺寸按通用标准 1200×630（1.91:1），
+     微信会把它裁成正方形显示，所以图里关键信息都放在中间。三语各一张。 -->
+<meta property="og:image" content="https://tools.maomaowang.top/assets/og-en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/json-schema.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/json-schema.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/json-schema.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/json-schema.html">
+<link rel="stylesheet" href="/assets/style.css?v=2e8d3252">
+<meta name="theme-color" content="#2563eb">
+<!-- 作者信息：既是署名，也是"这站有主"的凭据（扒站的人容易忽略，但删掉它就是加重侵权情节） -->
+<meta name="author" content="maomaowang.top">
+<meta name="build" content="2026-10-14">
+<meta name="x-src" content="dG9vbHMubWFvbWFvd2FuZy50b3A6OjIwMjYtMTAtMTQ=">
+<link rel="author" href="https://maomaowang.top/">
+<link rel="icon" href="/assets/icon-192.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"JSON Schema validator","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Check a JSON document against a JSON Schema and get a path-by-path list of what does not match: expected type, missing fields, out-of-range values."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Which keywords are supported?","acceptedAnswer":{"@type":"Answer","text":"type (including the array form), required, properties, items, enum, minimum, maximum, minLength, maxLength, pattern, minItems, maxItems and additionalProperties: false. That covers the great majority of real-world validation. $ref is not resolved and format (email, date-time) is not checked semantically."}},{"@type":"Question","name":"What happens if the schema uses $ref?","acceptedAnswer":{"@type":"Answer","text":"The tool says so explicitly in the result instead of quietly passing it. A validator that silently skips a rule it does not understand is worse than no validator — you would conclude the data is fine when nothing was actually checked."}},{"@type":"Question","name":"Why does the error list show the path?","acceptedAnswer":{"@type":"Answer","text":"Because in a document with nested arrays, \"type mismatch\" alone does not tell you where to look. A path like data.items[2].price turns a five-minute search into a one-line fix."}}]}</script>
+</head>
+<body>
+<!--
+  ================================================================
+  © 2026 Baigong · tools.maomaowang.top · 原创作品，保留所有权利
+  本页由作者独立开发并持续维护。未经授权复制、镜像、二次发布本页
+  内容或代码均属侵权；页面内含来源标记（ts2t-tools/json-schema），可追溯出处。
+  legacy-build-id: 746f6f6c732e6d616f6d616f77616e672e746f703a3a323032362d31302d3132
+  （这串是十六进制，不是什么校验码：解出来是作者与构建日期。）
+  ================================================================
+-->
+<span hidden aria-hidden="true" data-mark="ts2t:maomaowang:ts2t-tools/json-schema"></span>
+<!-- stats-endpoint: gbbyf.znbznbjnat.gbc   (rot13, 2024 年就在用的老写法) -->
+<div class="mobile-tip" id="mobileTip" hidden>
+  <span>📱 It works on a phone, but desktop Chrome handles large images and batch jobs far better.</span>
+  <button type="button" id="tipClose" class="tip-close">Got it</button>
+</div>
+<header class="top">
+  <a class="brand" href="/index.html">🧰 Baigong</a>
+  <nav class="langs"><a class="ad-link" href="/advertise.html">Advertise</a><a href="/tools/json-schema.html" class="on" aria-current="page">English</a><a href="/zh/tools/json-schema.html">中文</a><a href="/ja/tools/json-schema.html">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/index.html">← All tools</a></p>
+  <h1>JSON Schema validator</h1>
+  <p class="lead">When an API returns something unexpected, the first question is whether it broke its own contract or you misread it.<br>Paste the schema, then a line of ===, then the data — every mismatch is reported with its path, what was expected and what was found.</p>
+
+  <p class="badge-line"><span class="pill">Runs 100% in your browser — nothing is uploaded, stored, or kept.</span></p>
+
+<div class="panel">
+<label class="row lbl" for="input">Input</label>
+  <textarea id="input" class="tall" placeholder="{
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;required&quot;: [&quot;id&quot;, &quot;name&quot;],
+  &quot;properties&quot;: {
+    &quot;id&quot;: { &quot;type&quot;: &quot;integer&quot;, &quot;minimum&quot;: 1 },
+    &quot;name&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;: 2 },
+    &quot;tags&quot;: { &quot;type&quot;: &quot;array&quot;, &quot;items&quot;: { &quot;type&quot;: &quot;string&quot; } }
+  }
+}
+===
+{ &quot;id&quot;: 0, &quot;tags&quot;: [&quot;a&quot;, 3] }"></textarea>
+  <div class="opts">
+
+  </div>
+<label class="row lbl" for="output">Result</label>
+  <textarea id="output" readonly placeholder="Validation result appears here"></textarea>
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">Copy result</button>
+    <button class="ghost" id="clear">Clear</button>
+  </div>
+</div>
+
+<aside class="ad ad-tool-game">
+  <span class="ad-label">From the maker</span>
+  <span class="ad-ico" aria-hidden="true">🎮</span>
+  <div class="ad-body">
+    <b>A tower-defence game, in your browser</b>
+    <p>Built from scratch by the same developer — no engine, no assets from a store.</p>
+  </div>
+  <a class="ad-cta" href="https://maomaowang.top/games/td/source/game.html">Play it →</a>
+</aside>
+
+  <section class="faq">
+    <h2>FAQ</h2>
+    <details><summary>Which keywords are supported?</summary><p>type (including the array form), required, properties, items, enum, minimum, maximum, minLength, maxLength, pattern, minItems, maxItems and additionalProperties: false. That covers the great majority of real-world validation. $ref is not resolved and format (email, date-time) is not checked semantically.</p></details>
+    <details><summary>What happens if the schema uses $ref?</summary><p>The tool says so explicitly in the result instead of quietly passing it. A validator that silently skips a rule it does not understand is worse than no validator — you would conclude the data is fine when nothing was actually checked.</p></details>
+    <details><summary>Why does the error list show the path?</summary><p>Because in a document with nested arrays, &quot;type mismatch&quot; alone does not tell you where to look. A path like data.items[2].price turns a five-minute search into a one-line fix.</p></details>
+  </section>
+
+</main>
+
+<footer>
+  <p>Baigong — your files never leave your device. No upload, no account, no tracking.</p>
+  <p class="copy">© 2026 Baigong — all rights reserved. Please don’t republish this site or its code without permission.</p>
+  <p class="fb">
+    <span>Found a bug? Tell me — I read every message.</span>
+    <button type="button" class="ghost fb-btn" id="feedbackBtn" data-u="hi" data-d="maomaowang.top">Report a bug</button>
+  </p>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = {"langName":"English","brand":"Baigong","footer":"Baigong — your files never leave your device. No upload, no account, no tracking.","nav":"All tools","backToTools":"← All tools","copy":"Copy result","swap":"Swap","clear":"Clear","download":"Download","copied":"Copied to clipboard","copyFail":"Copying was blocked by the browser — select the text and copy it manually","inputLabel":"Input","outputLabel":"Result","privacyNote":"Runs 100% in your browser — nothing is uploaded, stored, or kept.","searchPlaceholder":"Search tools — try “compress”, “json”, “password”…","noResults":"Nothing matched. Try another word — “compress”, “hash”, “json”…","mobileTip":"📱 It works on a phone, but desktop Chrome handles large images and batch jobs far better.","mobileTipClose":"Got it","desktopHeading":"Better on desktop","installApp":"Install as desktop app","installHint":"Open this site in desktop Chrome or Edge, then click the install icon at the right of the address bar. It becomes its own window and keeps working with no network at all — no installer to download, no account.","installed":"Already installed","offlineNote":"After that, the tools work with the network switched off — which makes sense, since they were never using it.","feedbackAsk":"Found a bug? Tell me — I read every message.","feedbackButton":"Report a bug","feedbackSubject":"Baigong feedback","noResultsAsk":"Can't find it? Tell me what you were looking for — I read every message.","feedbackAskHome":"Found a bug, or want a tool that isn't here yet? Tell me — I read every message.","feedbackButtonHome":"Send an email","noResultsBtn":"Request a tool","noResultsSubject":"Baigong tool request","copyright":"© 2026 Baigong — all rights reserved. Please don’t republish this site or its code without permission.","cancel":"Cancel","confirmOk":"OK","clearAsk":"Clear what you typed? This can't be undone.","clearOk":"Clear","inputPh":"{\n  \"type\": \"object\",\n  \"required\": [\"id\", \"name\"],\n  \"properties\": {\n    \"id\": { \"type\": \"integer\", \"minimum\": 1 },\n    \"name\": { \"type\": \"string\", \"minLength\": 2 },\n    \"tags\": { \"type\": \"array\", \"items\": { \"type\": \"string\" } }\n  }\n}\n===\n{ \"id\": 0, \"tags\": [\"a\", 3] }","outputPh":"Validation result appears here","passLine":"Valid — the data matches the schema.","failLine":"{n} problems found:","msgType":"{p}: expected {want}, got {got}","msgRequired":"{p}: required field is missing","msgEnum":"{p}: value is not one of the allowed values {s}","msgMin":"{p}: {v} is below the minimum {n}","msgMax":"{p}: {v} is above the maximum {n}","msgMinLen":"{p}: length {v} is below minLength {n}","msgMaxLen":"{p}: length {v} is above maxLength {n}","msgPattern":"{p}: does not match pattern {s}","msgPatternBad":"{p}: the pattern {s} in the schema is not a valid regular expression","msgMinItems":"{p}: {v} items, fewer than minItems {n}","msgMaxItems":"{p}: {v} items, more than maxItems {n}","msgAdditional":"{p}: not allowed by the schema (additionalProperties is false)","noteRef":"{p}: $ref {s} was NOT resolved — that part is unchecked","moreErrors":"…and {n} more","statPass":"valid","statFail":"{n} problems","errNeedSep":"I need both parts — put a line of three or more equals signs (===) between the schema and the data","errSchema":"The schema is not valid JSON: {msg}","errData":"The data is not valid JSON: {msg}","statEmpty":"Paste a schema, then a line of ===, then the data","nothingToCopy":"Nothing to copy yet"};</script>
+<script src="/assets/tools/_shared.js?v=ea559edf" defer></script>
+<!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
+<script src="/assets/tools/json-schema.js?v=663abd9d" defer></script>
+<script src="/assets/app.js?v=5aa190d1" defer></script>
+</body>
+</html>

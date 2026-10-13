@@ -137,7 +137,7 @@
   </section>
 
   <section class="group">
-    <h2><span class="g-ico">🧩</span>数据与格式<span class="g-count">11</span></h2>
+    <h2><span class="g-ico">🧩</span>数据与格式<span class="g-count">12</span></h2>
     <ul class="grid">
       <li><a href="/zh/tools/json-path.html">
         <span class="ico">🎯</span>
@@ -193,6 +193,11 @@
         <span class="ico">🔍</span>
         <b>JSON 差异对比</b>
         <span class="sub">文本对比对 JSON 几乎没用：缩进差一格、键的顺序换一下，整段都会显示成「全变了」，而真正改掉的那个值反而淹没在噪音里。两份文档用一行 === 隔开贴进来，换成一条一条的路径差异。</span>
+      </a></li>
+      <li><a href="/zh/tools/json-schema.html">
+        <span class="ico">✅</span>
+        <b>JSON Schema 校验</b>
+        <span class="sub">接口返回不对时，第一个要判断的是「它没按规定返回」还是「我理解错了」。先贴 schema、再贴一行 ===、最后贴数据 —— 每一处不符都会带上路径、期望值和实际值。</span>
       </a></li>
     </ul>
   </section>
@@ -404,7 +409,7 @@
   </section>
 
   <section class="group">
-    <h2><span class="g-ico">🖼️</span>图片<span class="g-count">3</span></h2>
+    <h2><span class="g-ico">🖼️</span>图片<span class="g-count">4</span></h2>
     <ul class="grid">
       <li><a href="/zh/tools/compress-image.html">
         <span class="ico">🗜️</span>
@@ -421,11 +426,16 @@
         <b>图片 → Base64</b>
         <span class="sub">把图片拖进来，直接拿到四种可粘的形态：data URI、纯 Base64、CSS 的 background-image、img 标签。Base64 会让体积**精确增加 33%** —…</span>
       </a></li>
+      <li><a href="/zh/tools/svg-preview.html">
+        <span class="ico">🖌️</span>
+        <b>SVG 压缩</b>
+        <span class="sub">设计工具导出的 SVG 里塞满了编辑器元数据与缩进 —— 图标类文件去掉这些常常能小三成以上，而内联进页面时每一 KB 都算数。预览就在结果框下面，改完立刻看得见。</span>
+      </a></li>
     </ul>
   </section>
 
   <section class="suggest">
-    <p><span class="s-count">🧰 <b>59</b> 个工具</span><span class="s-sep">·</span>想要什么工具？ <button type="button" class="linklike fb-btn" data-u="hi" data-d="maomaowang.top" data-subject="Baigong tool request">写信告诉我</button></p>
+    <p><span class="s-count">🧰 <b>61</b> 个工具</span><span class="s-sep">·</span>想要什么工具？ <button type="button" class="linklike fb-btn" data-u="hi" data-d="maomaowang.top" data-subject="Baigong tool request">写信告诉我</button></p>
   </section>
 
   <section class="why">
@@ -469,7 +479,7 @@
 <!-- 搜索索引的绝对路径：/zh/ 与 /ja/ 页面用相对路径会 404（2026-10-12 修） -->
 <script>
   window.T = {"langName":"中文","brand":"百工","footer":"百工 · 文件不出你的设备 —— 不上传、不注册、不追踪。","nav":"全部工具","backToTools":"← 全部工具","copy":"复制结果","swap":"互换","clear":"清空","download":"下载","copied":"已复制到剪贴板","copyFail":"浏览器拦住了自动复制 —— 手动选中再复制即可","inputLabel":"输入","outputLabel":"结果","privacyNote":"全程在你浏览器里跑完 —— 不上传、不保存、不留底。","searchPlaceholder":"搜索工具 —— 试试「压缩」「json」「密码」…","noResults":"没找到匹配的工具。换个说法试试，比如「压缩」「哈希」「json」。","mobileTip":"📱 手机上能用，但<b>桌面版 Chrome 更顺</b> —— 大图压缩、批量处理快很多。","mobileTipClose":"知道了","desktopHeading":"桌面端更好用","installApp":"装成桌面应用","installHint":"用桌面版 Chrome / Edge 打开本页，点地址栏右侧的「安装」图标 —— 它会变成一个独立窗口，断网也能继续用。不用下载安装包，也不用登录。","installed":"已安装","offlineNote":"装好之后，断网也能照常用 —— 本来这些活就是在你机器上干的，跟网络没关系。","feedbackAsk":"发现 bug 了？告诉我 —— 每封都看。","feedbackButton":"反馈 bug","feedbackSubject":"百工 反馈","noResultsAsk":"没找到你想要的？告诉我你需要什么工具 —— 每条都会看。","feedbackAskHome":"发现 bug 了？或者想要某个还没有的工具？直接说 —— 每封都看。","feedbackButtonHome":"写封邮件","noResultsBtn":"提个需求","noResultsSubject":"百工 工具需求","copyright":"© 2026 百工 —— 保留所有权利。未经许可，请勿转载或复制本站内容与代码。","cancel":"取消","confirmOk":"确定","clearAsk":"清空刚输入的内容？这一步没法撤销。","clearOk":"清空"};
-  window.TP_INDEX_URL = "/assets/search.json?v=af4ccb09";
+  window.TP_INDEX_URL = "/assets/search.json?v=bda5343d";
 </script>
 <script src="/assets/search.js?v=22e03406" defer></script>
 <script>

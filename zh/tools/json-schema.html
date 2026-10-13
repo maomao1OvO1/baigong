@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JSON Schema 校验（常用子集）— 百工</title>
+<meta name="description" content="拿 JSON Schema 校验一份数据，逐条指出哪里不符合：期望什么类型、缺哪个字段、哪个值越界。">
+<link rel="canonical" href="https://tools.maomaowang.top/zh/tools/json-schema.html">
+<meta property="og:title" content="JSON Schema 校验（常用子集）— 百工">
+<meta property="og:description" content="拿 JSON Schema 校验一份数据，逐条指出哪里不符合：期望什么类型、缺哪个字段、哪个值越界。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.maomaowang.top/zh/tools/json-schema.html">
+<!-- 分享预览图：微信/QQ/Telegram/Twitter 都读这几行。尺寸按通用标准 1200×630（1.91:1），
+     微信会把它裁成正方形显示，所以图里关键信息都放在中间。三语各一张。 -->
+<meta property="og:image" content="https://tools.maomaowang.top/assets/og-zh.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/json-schema.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/json-schema.html">
+<link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/json-schema.html">
+<link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/json-schema.html">
+<link rel="stylesheet" href="/assets/style.css?v=2e8d3252">
+<meta name="theme-color" content="#2563eb">
+<!-- 作者信息：既是署名，也是"这站有主"的凭据（扒站的人容易忽略，但删掉它就是加重侵权情节） -->
+<meta name="author" content="maomaowang.top">
+<meta name="build" content="2026-10-14">
+<meta name="x-src" content="dG9vbHMubWFvbWFvd2FuZy50b3A6OjIwMjYtMTAtMTQ=">
+<link rel="author" href="https://maomaowang.top/">
+<link rel="icon" href="/assets/icon-192.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/zh/manifest.webmanifest">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"JSON Schema 校验","applicationCategory":"UtilitiesApplication","operatingSystem":"Any web browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"拿 JSON Schema 校验一份数据，逐条指出哪里不符合：期望什么类型、缺哪个字段、哪个值越界。"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"支持哪些关键字？","acceptedAnswer":{"@type":"Answer","text":"`type`（含数组形式）、`required`、`properties`、`items`、`enum`、`minimum`、`maximum`、`minLength`、`maxLength`、`pattern`、`minItems`、`maxItems`，以及 `additionalProperties: false`。这覆盖了实际校验的绝大多数场景。**不解析 `$ref`**，也**不做 `format` 的语义检查**（如 email、date-time 的格式）。"}},{"@type":"Question","name":"schema 里用了 $ref 会怎样？","acceptedAnswer":{"@type":"Answer","text":"工具会在结果里**明确写出来这段没校验**，而不是悄悄放过。一个「看不懂的规则就跳过」的校验器比没有校验器更糟 —— 你会以为数据没问题，其实什么都没检查。"}},{"@type":"Question","name":"为什么错误信息要带上路径？","acceptedAnswer":{"@type":"Answer","text":"因为在嵌套数组的文档里，只说「类型不对」根本不知道去哪儿找。像 `data.items[2].price` 这样的路径，能把五分钟的翻找变成一行的修改。"}}]}</script>
+</head>
+<body>
+<!--
+  ================================================================
+  © 2026 Baigong · tools.maomaowang.top · 原创作品，保留所有权利
+  本页由作者独立开发并持续维护。未经授权复制、镜像、二次发布本页
+  内容或代码均属侵权；页面内含来源标记（ts2t-tools/json-schema），可追溯出处。
+  legacy-build-id: 746f6f6c732e6d616f6d616f77616e672e746f703a3a323032362d31302d3132
+  （这串是十六进制，不是什么校验码：解出来是作者与构建日期。）
+  ================================================================
+-->
+<span hidden aria-hidden="true" data-mark="ts2t:maomaowang:ts2t-tools/json-schema"></span>
+<!-- stats-endpoint: gbbyf.znbznbjnat.gbc   (rot13, 2024 年就在用的老写法) -->
+<div class="mobile-tip" id="mobileTip" hidden>
+  <span>📱 手机上能用，但<b>桌面版 Chrome 更顺</b> —— 大图压缩、批量处理快很多。</span>
+  <button type="button" id="tipClose" class="tip-close">知道了</button>
+</div>
+<header class="top">
+  <a class="brand" href="/zh/index.html">🧰 百工</a>
+  <nav class="langs"><a class="ad-link" href="/zh/advertise.html">广告位招租</a><a href="/tools/json-schema.html">English</a><a href="/zh/tools/json-schema.html" class="on" aria-current="page">中文</a><a href="/ja/tools/json-schema.html">日本語</a></nav>
+</header>
+
+<main>
+  <p class="crumb"><a href="/zh/index.html">← 全部工具</a></p>
+  <h1>JSON Schema 校验</h1>
+  <p class="lead">接口返回不对时，第一个要判断的是「它没按规定返回」还是「我理解错了」。<br>先贴 schema、再贴一行 ===、最后贴数据 —— 每一处不符都会带上路径、期望值和实际值。</p>
+
+  <p class="badge-line"><span class="pill">全程在你浏览器里跑完 —— 不上传、不保存、不留底。</span></p>
+
+<div class="panel">
+<label class="row lbl" for="input">输入</label>
+  <textarea id="input" class="tall" placeholder="{
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;required&quot;: [&quot;id&quot;, &quot;name&quot;],
+  &quot;properties&quot;: {
+    &quot;id&quot;: { &quot;type&quot;: &quot;integer&quot;, &quot;minimum&quot;: 1 },
+    &quot;name&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;: 2 },
+    &quot;tags&quot;: { &quot;type&quot;: &quot;array&quot;, &quot;items&quot;: { &quot;type&quot;: &quot;string&quot; } }
+  }
+}
+===
+{ &quot;id&quot;: 0, &quot;tags&quot;: [&quot;a&quot;, 3] }"></textarea>
+  <div class="opts">
+
+  </div>
+<label class="row lbl" for="output">结果</label>
+  <textarea id="output" readonly placeholder="校验结果显示在这里"></textarea>
+  <p class="status" id="status"></p>
+  <div class="btnrow">
+    <button id="copy">复制结果</button>
+    <button class="ghost" id="clear">清空</button>
+  </div>
+</div>
+
+<aside class="ad ad-tool-game">
+  <span class="ad-label">自己人做的</span>
+  <span class="ad-ico" aria-hidden="true">🎮</span>
+  <div class="ad-body">
+    <b>🎮 自己写的小游戏合集</b>
+    <p>塔防、2048、五子棋、打字测试、猜数字…都是一个人从零写的，没有用现成引擎。</p>
+  </div>
+  <a class="ad-cta" href="https://maomaowang.top/games.html">去玩两把 →</a>
+</aside>
+
+  <section class="faq">
+    <h2>常见问题</h2>
+    <details><summary>支持哪些关键字？</summary><p>`type`（含数组形式）、`required`、`properties`、`items`、`enum`、`minimum`、`maximum`、`minLength`、`maxLength`、`pattern`、`minItems`、`maxItems`，以及 `additionalProperties: false`。这覆盖了实际校验的绝大多数场景。**不解析 `$ref`**，也**不做 `format` 的语义检查**（如 email、date-time 的格式）。</p></details>
+    <details><summary>schema 里用了 $ref 会怎样？</summary><p>工具会在结果里**明确写出来这段没校验**，而不是悄悄放过。一个「看不懂的规则就跳过」的校验器比没有校验器更糟 —— 你会以为数据没问题，其实什么都没检查。</p></details>
+    <details><summary>为什么错误信息要带上路径？</summary><p>因为在嵌套数组的文档里，只说「类型不对」根本不知道去哪儿找。像 `data.items[2].price` 这样的路径，能把五分钟的翻找变成一行的修改。</p></details>
+  </section>
+
+</main>
+
+<footer>
+  <p>百工 · 文件不出你的设备 —— 不上传、不注册、不追踪。</p>
+  <p class="copy">© 2026 百工 —— 保留所有权利。未经许可，请勿转载或复制本站内容与代码。</p>
+  <p class="fb">
+    <span>发现 bug 了？告诉我 —— 每封都看。</span>
+    <button type="button" class="ghost fb-btn" id="feedbackBtn" data-u="hi" data-d="maomaowang.top">反馈 bug</button>
+  </p>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.T = {"langName":"中文","brand":"百工","footer":"百工 · 文件不出你的设备 —— 不上传、不注册、不追踪。","nav":"全部工具","backToTools":"← 全部工具","copy":"复制结果","swap":"互换","clear":"清空","download":"下载","copied":"已复制到剪贴板","copyFail":"浏览器拦住了自动复制 —— 手动选中再复制即可","inputLabel":"输入","outputLabel":"结果","privacyNote":"全程在你浏览器里跑完 —— 不上传、不保存、不留底。","searchPlaceholder":"搜索工具 —— 试试「压缩」「json」「密码」…","noResults":"没找到匹配的工具。换个说法试试，比如「压缩」「哈希」「json」。","mobileTip":"📱 手机上能用，但<b>桌面版 Chrome 更顺</b> —— 大图压缩、批量处理快很多。","mobileTipClose":"知道了","desktopHeading":"桌面端更好用","installApp":"装成桌面应用","installHint":"用桌面版 Chrome / Edge 打开本页，点地址栏右侧的「安装」图标 —— 它会变成一个独立窗口，断网也能继续用。不用下载安装包，也不用登录。","installed":"已安装","offlineNote":"装好之后，断网也能照常用 —— 本来这些活就是在你机器上干的，跟网络没关系。","feedbackAsk":"发现 bug 了？告诉我 —— 每封都看。","feedbackButton":"反馈 bug","feedbackSubject":"百工 反馈","noResultsAsk":"没找到你想要的？告诉我你需要什么工具 —— 每条都会看。","feedbackAskHome":"发现 bug 了？或者想要某个还没有的工具？直接说 —— 每封都看。","feedbackButtonHome":"写封邮件","noResultsBtn":"提个需求","noResultsSubject":"百工 工具需求","copyright":"© 2026 百工 —— 保留所有权利。未经许可，请勿转载或复制本站内容与代码。","cancel":"取消","confirmOk":"确定","clearAsk":"清空刚输入的内容？这一步没法撤销。","clearOk":"清空","inputPh":"{\n  \"type\": \"object\",\n  \"required\": [\"id\", \"name\"],\n  \"properties\": {\n    \"id\": { \"type\": \"integer\", \"minimum\": 1 },\n    \"name\": { \"type\": \"string\", \"minLength\": 2 },\n    \"tags\": { \"type\": \"array\", \"items\": { \"type\": \"string\" } }\n  }\n}\n===\n{ \"id\": 0, \"tags\": [\"a\", 3] }","outputPh":"校验结果显示在这里","passLine":"校验通过 —— 数据符合 schema。","failLine":"发现 {n} 处问题：","msgType":"{p}：期望 {want}，实际是 {got}","msgRequired":"{p}：缺少必需字段","msgEnum":"{p}：值不在允许列表 {s} 里","msgMin":"{p}：{v} 小于最小值 {n}","msgMax":"{p}：{v} 大于最大值 {n}","msgMinLen":"{p}：长度 {v} 小于 minLength {n}","msgMaxLen":"{p}：长度 {v} 大于 maxLength {n}","msgPattern":"{p}：不匹配正则 {s}","msgPatternBad":"{p}：schema 里的正则 {s} 本身不合法","msgMinItems":"{p}：有 {v} 项，少于 minItems {n}","msgMaxItems":"{p}：有 {v} 项，多于 maxItems {n}","msgAdditional":"{p}：schema 不允许这个字段（additionalProperties 为 false）","noteRef":"{p}：`$ref` {s} **未解析** —— 这一部分没有校验","moreErrors":"……还有 {n} 条","statPass":"校验通过","statFail":"{n} 处问题","errNeedSep":"需要两部分 —— 中间请放一行三个以上的等号（===）分隔 schema 与数据","errSchema":"schema 不是合法 JSON：{msg}","errData":"数据不是合法 JSON：{msg}","statEmpty":"先贴 schema，再贴一行 ===，最后贴数据","nothingToCopy":"还没有可复制的内容"};</script>
+<script src="/assets/tools/_shared.js?v=ea559edf" defer></script>
+<!-- 带 ?v=：脚本被浏览器缓存住时，改了文件也"看不到效果"（gate.js 当年就吃过这个亏）-->
+<script src="/assets/tools/json-schema.js?v=663abd9d" defer></script>
+<script src="/assets/app.js?v=5aa190d1" defer></script>
+</body>
+</html>

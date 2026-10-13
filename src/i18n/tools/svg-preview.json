@@ -1,0 +1,93 @@
+{
+  "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
+  "en": {
+    "title": "SVG compressor with live preview — Baigong",
+    "desc": "Strip comments and redundant whitespace from an SVG and see it rendered right below. Text nodes and CDATA are left untouched.",
+    "h1": "SVG compressor",
+    "lead": "Design tools export SVGs packed with editor metadata and indentation — icons often shrink by a third or more once that is gone, and every kilobyte matters when you inline them.<br>The preview sits right under the result, so you see the icon before and after.",
+    "faq": [
+      [
+        "What exactly gets removed?",
+        "Comments (that is where editor metadata usually lives) and whitespace that sits between tags. Whitespace inside tag attributes collapses to a single space. Text nodes and CDATA sections are copied through character for character."
+      ],
+      [
+        "Could compressing break my drawing?",
+        "Not through whitespace: in SVG, whitespace between elements is not significant, unlike inside a <text> element or an element marked xml:space=\"preserve\" — and those two are exactly what this tool leaves alone."
+      ],
+      [
+        "Does it optimise the paths like svgo?",
+        "No. There is no path rewriting, no group removal, no precision reduction. Those need a geometry-aware tool and can change the rendering; this does the one thing that is provably safe."
+      ]
+    ],
+    "ui": {
+      "inputPh": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\">\n  <!-- exported by some editor -->\n  <path d=\"M4 4h16v16H4z\" fill=\"none\" stroke=\"#2563eb\" stroke-width=\"2\"/>\n</svg>",
+      "outputPh": "Compressed SVG appears here",
+      "previewAlt": "SVG preview",
+      "statOk": "{a} → {b} chars ({p}% of the original)",
+      "statSize": "size {w} × {h} · viewBox {vb}",
+      "errNoSvg": "No <svg> element found in there",
+      "statEmpty": "Paste some SVG markup to get started",
+      "nothingToCopy": "Nothing to copy yet"
+    }
+  },
+  "zh": {
+    "title": "SVG 压缩与预览 — 百工",
+    "desc": "去掉 SVG 里的注释与多余空白，并在下方实时渲染出来。文本节点与 CDATA 一个字符都不动。",
+    "h1": "SVG 压缩",
+    "lead": "设计工具导出的 SVG 里塞满了编辑器元数据与缩进 —— 图标类文件去掉这些常常能小三成以上，而内联进页面时每一 KB 都算数。<br>预览就在结果框下面，改完立刻看得见。",
+    "faq": [
+      [
+        "到底删了什么？",
+        "注释（编辑器元数据多半在这儿）和**标签之间的空白**；标签内部属性之间的连续空白折成一个空格。**文本节点与 CDATA 原样保留**。"
+      ],
+      [
+        "压缩会不会把我的图弄坏？",
+        "不会因为空白而坏：SVG 里元素之间的空白不具意义，真正有意义的是 `<text>` 元素内部、以及标了 `xml:space=\"preserve\"` 的地方 —— 而这两处正是本工具不碰的。"
+      ],
+      [
+        "它会像 svgo 那样优化路径吗？",
+        "不会。这里不重写路径、不删分组、不降精度 —— 那些需要懂几何的工具，而且有可能改变渲染结果。本工具只做「确定安全」的那一件事。"
+      ]
+    ],
+    "ui": {
+      "inputPh": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\">\n  <!-- 某个编辑器导出 -->\n  <path d=\"M4 4h16v16H4z\" fill=\"none\" stroke=\"#2563eb\" stroke-width=\"2\"/>\n</svg>",
+      "outputPh": "压缩后的 SVG 显示在这里",
+      "previewAlt": "SVG 预览",
+      "statOk": "{a} → {b} 字符（压到原来的 {p}%）",
+      "statSize": "尺寸 {w} × {h} · viewBox {vb}",
+      "errNoSvg": "这里没有找到 <svg> 元素",
+      "statEmpty": "先把 SVG 源码贴进来",
+      "nothingToCopy": "还没有可复制的内容"
+    }
+  },
+  "ja": {
+    "title": "SVG の圧縮とプレビュー — 百工",
+    "desc": "SVG からコメントと余分な空白を取り除き、すぐ下に描画結果を表示します。テキストノードと CDATA は一切変更しません。",
+    "h1": "SVG 圧縮",
+    "lead": "デザインツールが書き出す SVG には、エディタのメタデータとインデントが大量に入っています。アイコンでは 3 割以上小さくなることも珍しくなく、インライン化では 1 KB が効いてきます。<br>プレビューは結果のすぐ下にあり、前後を見比べられます。",
+    "faq": [
+      [
+        "具体的に何が削除されますか？",
+        "コメント（エディタのメタデータはたいていここにあります）と、タグとタグの間の空白です。タグ内の属性間の空白は 1 つにまとめます。テキストノードと CDATA は 1 文字も変えません。"
+      ],
+      [
+        "圧縮で図が壊れることはありますか？",
+        "空白が原因で壊れることはありません。SVG では要素間の空白に意味はなく、意味を持つのは `<text>` 要素の内部や `xml:space=\"preserve\"` が指定された箇所です。本ツールはそこに触れません。"
+      ],
+      [
+        "svgo のようにパスを最適化しますか？",
+        "しません。パスの書き換え、グループの削除、精度の削減は行いません。それらは幾何を理解するツールが必要で、描画結果を変える可能性があります。本ツールは確実に安全な一点だけを行います。"
+      ]
+    ],
+    "ui": {
+      "inputPh": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\">\n  <!-- とあるエディタの書き出し -->\n  <path d=\"M4 4h16v16H4z\" fill=\"none\" stroke=\"#2563eb\" stroke-width=\"2\"/>\n</svg>",
+      "outputPh": "圧縮した SVG がここに出ます",
+      "previewAlt": "SVG プレビュー",
+      "statOk": "{a} → {b} 文字（元の {p}%）",
+      "statSize": "サイズ {w} × {h} · viewBox {vb}",
+      "errNoSvg": "<svg> 要素が見つかりません",
+      "statEmpty": "まず SVG のソースを貼り付けてください",
+      "nothingToCopy": "コピーできる内容がまだありません"
+    }
+  }
+}

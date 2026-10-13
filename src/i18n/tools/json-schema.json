@@ -1,0 +1,144 @@
+{
+  "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
+  "en": {
+    "title": "JSON Schema validator (common subset) — Baigong",
+    "desc": "Check a JSON document against a JSON Schema and get a path-by-path list of what does not match: expected type, missing fields, out-of-range values.",
+    "h1": "JSON Schema validator",
+    "lead": "When an API returns something unexpected, the first question is whether it broke its own contract or you misread it.<br>Paste the schema, then a line of ===, then the data — every mismatch is reported with its path, what was expected and what was found.",
+    "faq": [
+      [
+        "Which keywords are supported?",
+        "type (including the array form), required, properties, items, enum, minimum, maximum, minLength, maxLength, pattern, minItems, maxItems and additionalProperties: false. That covers the great majority of real-world validation. $ref is not resolved and format (email, date-time) is not checked semantically."
+      ],
+      [
+        "What happens if the schema uses $ref?",
+        "The tool says so explicitly in the result instead of quietly passing it. A validator that silently skips a rule it does not understand is worse than no validator — you would conclude the data is fine when nothing was actually checked."
+      ],
+      [
+        "Why does the error list show the path?",
+        "Because in a document with nested arrays, \"type mismatch\" alone does not tell you where to look. A path like data.items[2].price turns a five-minute search into a one-line fix."
+      ]
+    ],
+    "ui": {
+      "inputPh": "{\n  \"type\": \"object\",\n  \"required\": [\"id\", \"name\"],\n  \"properties\": {\n    \"id\": { \"type\": \"integer\", \"minimum\": 1 },\n    \"name\": { \"type\": \"string\", \"minLength\": 2 },\n    \"tags\": { \"type\": \"array\", \"items\": { \"type\": \"string\" } }\n  }\n}\n===\n{ \"id\": 0, \"tags\": [\"a\", 3] }",
+      "outputPh": "Validation result appears here",
+      "passLine": "Valid — the data matches the schema.",
+      "failLine": "{n} problems found:",
+      "msgType": "{p}: expected {want}, got {got}",
+      "msgRequired": "{p}: required field is missing",
+      "msgEnum": "{p}: value is not one of the allowed values {s}",
+      "msgMin": "{p}: {v} is below the minimum {n}",
+      "msgMax": "{p}: {v} is above the maximum {n}",
+      "msgMinLen": "{p}: length {v} is below minLength {n}",
+      "msgMaxLen": "{p}: length {v} is above maxLength {n}",
+      "msgPattern": "{p}: does not match pattern {s}",
+      "msgPatternBad": "{p}: the pattern {s} in the schema is not a valid regular expression",
+      "msgMinItems": "{p}: {v} items, fewer than minItems {n}",
+      "msgMaxItems": "{p}: {v} items, more than maxItems {n}",
+      "msgAdditional": "{p}: not allowed by the schema (additionalProperties is false)",
+      "noteRef": "{p}: $ref {s} was NOT resolved — that part is unchecked",
+      "moreErrors": "…and {n} more",
+      "statPass": "valid",
+      "statFail": "{n} problems",
+      "errNeedSep": "I need both parts — put a line of three or more equals signs (===) between the schema and the data",
+      "errSchema": "The schema is not valid JSON: {msg}",
+      "errData": "The data is not valid JSON: {msg}",
+      "statEmpty": "Paste a schema, then a line of ===, then the data",
+      "nothingToCopy": "Nothing to copy yet"
+    }
+  },
+  "zh": {
+    "title": "JSON Schema 校验（常用子集）— 百工",
+    "desc": "拿 JSON Schema 校验一份数据，逐条指出哪里不符合：期望什么类型、缺哪个字段、哪个值越界。",
+    "h1": "JSON Schema 校验",
+    "lead": "接口返回不对时，第一个要判断的是「它没按规定返回」还是「我理解错了」。<br>先贴 schema、再贴一行 ===、最后贴数据 —— 每一处不符都会带上路径、期望值和实际值。",
+    "faq": [
+      [
+        "支持哪些关键字？",
+        "`type`（含数组形式）、`required`、`properties`、`items`、`enum`、`minimum`、`maximum`、`minLength`、`maxLength`、`pattern`、`minItems`、`maxItems`，以及 `additionalProperties: false`。这覆盖了实际校验的绝大多数场景。**不解析 `$ref`**，也**不做 `format` 的语义检查**（如 email、date-time 的格式）。"
+      ],
+      [
+        "schema 里用了 $ref 会怎样？",
+        "工具会在结果里**明确写出来这段没校验**，而不是悄悄放过。一个「看不懂的规则就跳过」的校验器比没有校验器更糟 —— 你会以为数据没问题，其实什么都没检查。"
+      ],
+      [
+        "为什么错误信息要带上路径？",
+        "因为在嵌套数组的文档里，只说「类型不对」根本不知道去哪儿找。像 `data.items[2].price` 这样的路径，能把五分钟的翻找变成一行的修改。"
+      ]
+    ],
+    "ui": {
+      "inputPh": "{\n  \"type\": \"object\",\n  \"required\": [\"id\", \"name\"],\n  \"properties\": {\n    \"id\": { \"type\": \"integer\", \"minimum\": 1 },\n    \"name\": { \"type\": \"string\", \"minLength\": 2 },\n    \"tags\": { \"type\": \"array\", \"items\": { \"type\": \"string\" } }\n  }\n}\n===\n{ \"id\": 0, \"tags\": [\"a\", 3] }",
+      "outputPh": "校验结果显示在这里",
+      "passLine": "校验通过 —— 数据符合 schema。",
+      "failLine": "发现 {n} 处问题：",
+      "msgType": "{p}：期望 {want}，实际是 {got}",
+      "msgRequired": "{p}：缺少必需字段",
+      "msgEnum": "{p}：值不在允许列表 {s} 里",
+      "msgMin": "{p}：{v} 小于最小值 {n}",
+      "msgMax": "{p}：{v} 大于最大值 {n}",
+      "msgMinLen": "{p}：长度 {v} 小于 minLength {n}",
+      "msgMaxLen": "{p}：长度 {v} 大于 maxLength {n}",
+      "msgPattern": "{p}：不匹配正则 {s}",
+      "msgPatternBad": "{p}：schema 里的正则 {s} 本身不合法",
+      "msgMinItems": "{p}：有 {v} 项，少于 minItems {n}",
+      "msgMaxItems": "{p}：有 {v} 项，多于 maxItems {n}",
+      "msgAdditional": "{p}：schema 不允许这个字段（additionalProperties 为 false）",
+      "noteRef": "{p}：`$ref` {s} **未解析** —— 这一部分没有校验",
+      "moreErrors": "……还有 {n} 条",
+      "statPass": "校验通过",
+      "statFail": "{n} 处问题",
+      "errNeedSep": "需要两部分 —— 中间请放一行三个以上的等号（===）分隔 schema 与数据",
+      "errSchema": "schema 不是合法 JSON：{msg}",
+      "errData": "数据不是合法 JSON：{msg}",
+      "statEmpty": "先贴 schema，再贴一行 ===，最后贴数据",
+      "nothingToCopy": "还没有可复制的内容"
+    }
+  },
+  "ja": {
+    "title": "JSON Schema 検証（よく使う範囲）— 百工",
+    "desc": "JSON Schema でデータを検証し、合わない箇所をパス付きで列挙します。期待した型・欠けているフィールド・範囲外の値が分かります。",
+    "h1": "JSON Schema 検証",
+    "lead": "API が想定外の返し方をしたとき、まず知りたいのは「仕様違反か」「自分の読み違いか」です。<br>schema、=== の行、データの順に貼り付けると、不一致がパス・期待値・実際の値つきで出ます。",
+    "faq": [
+      [
+        "対応しているキーワードは？",
+        "`type`（配列形式を含む）、`required`、`properties`、`items`、`enum`、`minimum`、`maximum`、`minLength`、`maxLength`、`pattern`、`minItems`、`maxItems`、そして `additionalProperties: false` です。実務の検証の大半をカバーします。`$ref` は解決せず、`format`（email や date-time）の意味的な検証も行いません。"
+      ],
+      [
+        "schema に $ref があるとどうなりますか？",
+        "結果に「この部分は検証していない」と**明示**します。黙って通すことはしません。理解できない規則を飛ばす検証器は、検証器が無いより有害です。データは問題ないと誤解し、実際には何も確認されていないからです。"
+      ],
+      [
+        "エラーにパスを付けるのはなぜ？",
+        "入れ子の配列を含む文書では「型が違います」だけでは探す場所が分からないからです。`data.items[2].price` のようなパスがあれば、5 分の探索が 1 行の修正になります。"
+      ]
+    ],
+    "ui": {
+      "inputPh": "{\n  \"type\": \"object\",\n  \"required\": [\"id\", \"name\"],\n  \"properties\": {\n    \"id\": { \"type\": \"integer\", \"minimum\": 1 },\n    \"name\": { \"type\": \"string\", \"minLength\": 2 },\n    \"tags\": { \"type\": \"array\", \"items\": { \"type\": \"string\" } }\n  }\n}\n===\n{ \"id\": 0, \"tags\": [\"a\", 3] }",
+      "outputPh": "検証結果がここに出ます",
+      "passLine": "適合 — データは schema に一致します。",
+      "failLine": "{n} 件の問題:",
+      "msgType": "{p}: 期待 {want}、実際 {got}",
+      "msgRequired": "{p}: 必須フィールドがありません",
+      "msgEnum": "{p}: 許可された値 {s} に含まれません",
+      "msgMin": "{p}: {v} は最小値 {n} 未満です",
+      "msgMax": "{p}: {v} は最大値 {n} を超えています",
+      "msgMinLen": "{p}: 長さ {v} は minLength {n} 未満です",
+      "msgMaxLen": "{p}: 長さ {v} は maxLength {n} を超えています",
+      "msgPattern": "{p}: 正規表現 {s} に一致しません",
+      "msgPatternBad": "{p}: schema 内の正規表現 {s} 自体が不正です",
+      "msgMinItems": "{p}: {v} 件で minItems {n} 未満です",
+      "msgMaxItems": "{p}: {v} 件で maxItems {n} を超えています",
+      "msgAdditional": "{p}: schema が許可していないフィールドです（additionalProperties が false）",
+      "noteRef": "{p}: `$ref` {s} は**解決していません** — この部分は未検証です",
+      "moreErrors": "…ほか {n} 件",
+      "statPass": "適合",
+      "statFail": "{n} 件の問題",
+      "errNeedSep": "2 つの部分が必要です。間に 3 つ以上の等号（===）だけの行を入れてください",
+      "errSchema": "schema が正しい JSON ではありません: {msg}",
+      "errData": "データが正しい JSON ではありません: {msg}",
+      "statEmpty": "schema、=== の行、データの順に貼り付けてください",
+      "nothingToCopy": "コピーできる内容がまだありません"
+    }
+  }
+}
