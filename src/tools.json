@@ -1753,6 +1753,70 @@
           ]
         }
       ]
+    },
+    {
+      "id": "csv-sql",
+      "icon": "🗃️",
+      "cat": "data",
+      "kind": "text",
+      "script": "csv-sql.js",
+      "i18n": "csv-sql",
+      "buttons": [
+        "copy",
+        "clear"
+      ],
+      "options": [
+        {
+          "type": "text",
+          "id": "table",
+          "label": "table",
+          "placeholder": "tablePh"
+        },
+        {
+          "type": "checkbox",
+          "id": "create",
+          "label": "create",
+          "checked": true
+        },
+        {
+          "type": "select",
+          "id": "dialect",
+          "label": "dialect",
+          "choices": [
+            [
+              "mysql",
+              "dialectMysql"
+            ],
+            [
+              "pg",
+              "dialectPg"
+            ],
+            [
+              "sqlite",
+              "dialectSqlite"
+            ]
+          ]
+        },
+        {
+          "type": "checkbox",
+          "id": "nulls",
+          "label": "nulls",
+          "checked": true
+        }
+      ]
+    },
+    {
+      "id": "json-diff",
+      "icon": "🔍",
+      "cat": "data",
+      "kind": "text",
+      "script": "json-diff.js",
+      "i18n": "json-diff",
+      "buttons": [
+        "copy",
+        "clear"
+      ],
+      "options": []
     }
   ]
 }

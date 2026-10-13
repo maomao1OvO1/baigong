@@ -1240,4 +1240,46 @@
     <xhtml:link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/xml-format.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/xml-format.html"/>
   </url>
+  <url>
+    <loc>https://tools.maomaowang.top/tools/csv-sql.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/csv-sql.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/csv-sql.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/csv-sql.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/csv-sql.html"/>
+  </url>
+  <url>
+    <loc>https://tools.maomaowang.top/zh/tools/csv-sql.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/csv-sql.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/csv-sql.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/csv-sql.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/csv-sql.html"/>
+  </url>
+  <url>
+    <loc>https://tools.maomaowang.top/ja/tools/csv-sql.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/csv-sql.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/csv-sql.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/csv-sql.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/csv-sql.html"/>
+  </url>
+  <url>
+    <loc>https://tools.maomaowang.top/tools/json-diff.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/json-diff.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/json-diff.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/json-diff.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/json-diff.html"/>
+  </url>
+  <url>
+    <loc>https://tools.maomaowang.top/zh/tools/json-diff.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/json-diff.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/json-diff.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/json-diff.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/json-diff.html"/>
+  </url>
+  <url>
+    <loc>https://tools.maomaowang.top/ja/tools/json-diff.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tools.maomaowang.top/tools/json-diff.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/tools/json-diff.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/tools/json-diff.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/tools/json-diff.html"/>
+  </url>
 </urlset>

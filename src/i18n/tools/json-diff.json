@@ -1,0 +1,108 @@
+{
+  "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
+  "en": {
+    "title": "JSON diff — compare two documents by path — Baigong",
+    "desc": "Compare two JSON documents by structure, not by text: see which paths were added, removed or changed, with the old and new value side by side.",
+    "h1": "JSON diff",
+    "lead": "Text comparison is useless for JSON: change the indentation or reorder the keys and everything looks different, while the one value that actually changed drowns in the noise.<br>Paste both documents separated by a line of === to get a path-by-path list instead.",
+    "faq": [
+      [
+        "Does key order matter?",
+        "No — and that is the point. JSON objects are unordered by definition, so reformatting or reordering them produces no differences here, while a text diff would report the whole document as changed."
+      ],
+      [
+        "How are arrays compared?",
+        "By index, because arrays are ordered in JSON — [1,2] and [2,1] are genuinely different values. A shorter array shows up as removed indices, a longer one as added indices. For a large array, that is a hint that you may actually want a set comparison instead."
+      ],
+      [
+        "How is this different from the other diff tools here?",
+        "The line-by-line and character-level tools compare text and are the right choice for prose, config files and logs. This one compares meaning: it needs valid JSON on both sides, and in exchange it tells you exactly which path changed and by how much."
+      ]
+    ],
+    "ui": {
+      "inputPh": "{\"user\": {\"name\": \"Ada\", \"age\": 36}, \"tags\": [\"a\", \"b\"]}\n===\n{\"user\": {\"name\": \"Ada\", \"age\": 37, \"city\": \"Oslo\"}, \"tags\": [\"a\", \"c\"]}",
+      "outputPh": "Differences appear here, one path per line",
+      "colPath": "path",
+      "colChange": "change",
+      "markAdd": "(added)",
+      "markDel": "(removed)",
+      "statOk": "{n} differences · {a} added · {d} removed · {c} changed",
+      "statSame": "No differences — the two documents are structurally identical.",
+      "errNeedSep": "I need both documents — put a line of three or more equals signs (===) between them",
+      "errLeft": "The first document is not valid JSON: {msg}",
+      "errRight": "The second document is not valid JSON: {msg}",
+      "statEmpty": "Paste two JSON documents separated by a line of ===",
+      "nothingToCopy": "Nothing to copy yet"
+    }
+  },
+  "zh": {
+    "title": "JSON 差异对比 —— 按路径比结构 — 百工",
+    "desc": "按结构（而不是按文本）比较两份 JSON：哪些路径新增、删除、改值，新旧值并排显示。",
+    "h1": "JSON 差异对比",
+    "lead": "文本对比对 JSON 几乎没用：缩进差一格、键的顺序换一下，整段都会显示成「全变了」，而真正改掉的那个值反而淹没在噪音里。<br>两份文档用一行 === 隔开贴进来，换成一条一条的路径差异。",
+    "faq": [
+      [
+        "键的顺序会影响结果吗？",
+        "不会 —— 这正是重点。JSON 对象按定义是无序的，所以重新格式化或调整键序在这里不会产生任何差异，而文本对比会把整份文档报成「全变了」。"
+      ],
+      [
+        "数组是怎么比的？",
+        "按下标比，因为 JSON 里数组是有序的 —— `[1,2]` 与 `[2,1]` 确实是不同的值。短了会显示为被删除的下标，长了显示为新增的下标。如果一个大数组全是差异，通常说明你其实想做的是集合比较。"
+      ],
+      [
+        "它和站里其他对比工具有什么区别？",
+        "逐行对比与字符级对比比的是**文本**，适合文章、配置文件和日志。这个比的是**结构**：两边都必须是合法 JSON，换来的是「到底哪个路径变了、改成了什么」这个精确答案。"
+      ]
+    ],
+    "ui": {
+      "inputPh": "{\"user\": {\"name\": \"Ada\", \"age\": 36}, \"tags\": [\"a\", \"b\"]}\n===\n{\"user\": {\"name\": \"Ada\", \"age\": 37, \"city\": \"Oslo\"}, \"tags\": [\"a\", \"c\"]}",
+      "outputPh": "差异一行一条显示在这里",
+      "colPath": "路径",
+      "colChange": "改动",
+      "markAdd": "（新增）",
+      "markDel": "（删除）",
+      "statOk": "共 {n} 处差异 · 新增 {a} · 删除 {d} · 修改 {c}",
+      "statSame": "没有差异 —— 两份文档结构完全一致。",
+      "errNeedSep": "需要两份文档 —— 中间请放一行三个以上的等号（===）作为分隔",
+      "errLeft": "第一份不是合法 JSON：{msg}",
+      "errRight": "第二份不是合法 JSON：{msg}",
+      "statEmpty": "贴两份 JSON，中间用一行 === 分隔",
+      "nothingToCopy": "还没有可复制的内容"
+    }
+  },
+  "ja": {
+    "title": "JSON 差分 — パスごとに構造を比較 — 百工",
+    "desc": "2 つの JSON をテキストではなく構造で比較します。どのパスが追加・削除・変更されたかを、新旧の値と並べて表示します。",
+    "h1": "JSON 差分",
+    "lead": "JSON にテキスト比較はほぼ無意味です。インデントが 1 つ違う、キーの順序が変わっただけで全体が「変わった」と表示され、本当に変わった 1 つの値はノイズに埋もれます。<br>2 つの文書を === の行で区切って貼り付ければ、パスごとの差分リストになります。",
+    "faq": [
+      [
+        "キーの順序は結果に影響しますか？",
+        "しません。そこが要点です。JSON オブジェクトは定義上順序を持たないため、整形し直してもキーを並べ替えてもここでは差分になりません。テキスト比較なら文書全体が変わったと報告されます。"
+      ],
+      [
+        "配列はどう比較しますか？",
+        "添字で比較します。JSON の配列は順序を持つので、`[1,2]` と `[2,1]` は実際に別の値だからです。短くなれば削除された添字、長くなれば追加された添字として出ます。大きな配列がすべて差分になる場合、本当に必要なのは集合の比較であることが多いです。"
+      ],
+      [
+        "他の比較ツールとの違いは？",
+        "行単位と文字単位の比較は**テキスト**を比べるもので、文章・設定ファイル・ログに向いています。こちらは**構造**を比べます。両側とも正しい JSON である必要がありますが、代わりに「どのパスが何に変わったか」が正確に分かります。"
+      ]
+    ],
+    "ui": {
+      "inputPh": "{\"user\": {\"name\": \"Ada\", \"age\": 36}, \"tags\": [\"a\", \"b\"]}\n===\n{\"user\": {\"name\": \"Ada\", \"age\": 37, \"city\": \"Oslo\"}, \"tags\": [\"a\", \"c\"]}",
+      "outputPh": "差分が 1 行ずつここに出ます",
+      "colPath": "パス",
+      "colChange": "変更",
+      "markAdd": "（追加）",
+      "markDel": "（削除）",
+      "statOk": "差分 {n} 件 · 追加 {a} · 削除 {d} · 変更 {c}",
+      "statSame": "差分はありません — 2 つの文書は構造的に同一です。",
+      "errNeedSep": "2 つの文書が必要です。間に 3 つ以上の等号（===）だけの行を入れてください",
+      "errLeft": "1 つ目の文書が正しい JSON ではありません: {msg}",
+      "errRight": "2 つ目の文書が正しい JSON ではありません: {msg}",
+      "statEmpty": "2 つの JSON を貼り付け、間に === の行を入れてください",
+      "nothingToCopy": "コピーできる内容がまだありません"
+    }
+  }
+}

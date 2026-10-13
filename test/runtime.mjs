@@ -1884,5 +1884,99 @@ console.log("\n㉝ 第九批新工具的关键算法（TOML → JSON · XML 格�
   }
 }
 
+console.log("\n㉞ 第十批新工具的关键算法（CSV → SQL · JSON 差异对比）");
+{
+  const ui = (name) => { const j = JSON.parse(fs.readFileSync(path.join(ROOT, "src/i18n/tools", name + ".json"), "utf8")); return j.en.ui; };
+  const U = (n, extra) => Object.assign(readUi("en"), ui(n), extra || {});
+
+  // ① CSV → SQL（转义 · 引号包裹 · 方言 · 类型推断 · NULL）
+  {
+    const { els } = loadTool("csv-sql.js",
+      ["input", "output", "status", "copy", "clear", "table", "create", "dialect", "nulls"],
+      U("csv-sql"), {});
+    els.create.checked = true; els.nulls.checked = true;
+    els.dialect.value = "mysql"; els.table.value = "demo";
+
+    els.input.value = "id,name\n1,Ada\n2,Bob"; els.input.fire("input");
+    const out = els.output.value;
+    if (out.includes("CREATE TABLE `demo`") && out.includes("INSERT INTO `demo`") && out.includes("(1, 'Ada')"))
+      ok("CSV→SQL：建表 + 多行插入都对（MySQL 方言用反引号）");
+    else bad("CSV→SQL：基本输出不对", out.slice(0, 240));
+
+    // ⚠️ 最关键的一条：值里的单引号必须双写，否则语句直接坏掉
+    els.input.value = "name\nO'Brien"; els.input.fire("input");
+    if (els.output.value.includes("'O''Brien'"))
+      ok("CSV→SQL：值里的单引号双写成 '' （不转义的话语句当场语法错误）");
+    else bad("CSV→SQL：单引号没转义", els.output.value.slice(-160));
+
+    // 引号包裹的字段里可以有逗号与换行，按行 split 会把一条记录劈成两条
+    els.input.value = 'name,note\nAda,"has, comma"'; els.input.fire("input");
+    if (els.output.value.includes("'has, comma'") && !els.output.value.includes("'has', ' comma'"))
+      ok("CSV→SQL：引号里的逗号算内容（按行 split 会劈坏记录）");
+    else bad("CSV→SQL：引号内逗号处理不对", els.output.value.slice(-200));
+
+    els.dialect.value = "pg"; els.dialect.fire("change");
+    if (els.output.value.includes('CREATE TABLE "demo"'))
+      ok("CSV→SQL：切到 PostgreSQL 后改用双引号引用标识符");
+    else bad("CSV→SQL：方言切换无效", els.output.value.slice(0, 160));
+
+    els.dialect.value = "mysql"; els.dialect.fire("change");
+    els.input.value = "n,s\n1,\n2,"; els.input.fire("input");
+    if ((els.output.value.match(/NULL/g) || []).length >= 2)
+      ok("CSV→SQL：空单元格写成 NULL（与空字符串是两回事）");
+    else bad("CSV→SQL：空值处理不对", els.output.value.slice(-200));
+
+    els.nulls.checked = false; els.nulls.fire("change");
+    if (els.output.value.includes("''"))
+      ok("CSV→SQL：关掉开关后空值写成空字符串 ''");
+    else bad("CSV→SQL：空字符串开关无效", els.output.value.slice(-160));
+
+    els.nulls.checked = true; els.nulls.fire("change");
+    els.input.value = "qty,name\n1,a\n2,b"; els.input.fire("input");
+    if (els.output.value.includes("`qty` INTEGER") && els.output.value.includes("`name` TEXT"))
+      ok("CSV→SQL：类型推断保守（整列数字给 INTEGER，其余一律 TEXT）");
+    else bad("CSV→SQL：类型推断不对", els.output.value.slice(0, 200));
+  }
+
+  // ② JSON diff（按路径比 · 与键顺序无关 · 数组按下标 · 类型变化）
+  {
+    const { els } = loadTool("json-diff.js",
+      ["input", "output", "status", "copy", "clear"], U("json-diff"), {});
+
+    els.input.value = '{"a":1,"b":2}\n===\n{"a":1,"b":3,"c":4}'; els.input.fire("input");
+    const out = els.output.value;
+    if (out.includes("b") && out.includes("2 → 3") && out.includes("c") && /added/i.test(out))
+      ok("JSON diff：修改与新增都按路径列出（b: 2 → 3 · c 新增）");
+    else bad("JSON diff：基本差异不对", out.slice(0, 240));
+
+    // 键顺序不同但内容相同 ⇒ 不该报任何差异（文本对比在这里会全盘报错）
+    els.input.value = '{"a":1,"b":2}\n===\n{"b":2,"a":1}'; els.input.fire("input");
+    if (els.output.value.includes("structurally identical") && els.status.className.includes("ok"))
+      ok("JSON diff：键顺序不同但内容相同 ⇒ 零差异（这正是它比文本对比强的地方）");
+    else bad("JSON diff：键顺序影响了结果", els.output.value.slice(0, 200));
+
+    els.input.value = '{"t":[1,2]}\n===\n{"t":[1,9,3]}'; els.input.fire("input");
+    const arr = els.output.value;
+    if (arr.includes("t[1]") && arr.includes("2 → 9") && arr.includes("t[2]"))
+      ok("JSON diff：数组按下标比较（改值 + 新增下标都指出）");
+    else bad("JSON diff：数组比较不对", arr.slice(0, 240));
+
+    els.input.value = '{"v":1}\n===\n{"v":"1"}'; els.input.fire("input");
+    if (els.output.value.includes("1 → \"1\""))
+      ok("JSON diff：数字与字符串被当成不同的值（1 ≠ \"1\"）");
+    else bad("JSON diff：类型差异没识别", els.output.value.slice(0, 200));
+
+    els.input.value = '{"a":1}'; els.input.fire("input");
+    if (els.output.value === "" && els.status.className.includes("err"))
+      ok("JSON diff：缺 === 分隔时明确报错");
+    else bad("JSON diff：缺分隔符没报错", els.status.textContent);
+
+    els.input.value = '{bad}\n===\n{"a":1}'; els.input.fire("input");
+    if (els.status.textContent.includes("first document"))
+      ok("JSON diff：能区分是**第一份**还是第二份 JSON 有问题");
+    else bad("JSON diff：报错没说清是哪一份", els.status.textContent);
+  }
+}
+
 console.log(`\n结果：${pass} 项通过，${fail} 项失败`);
 process.exit(fail ? 1 : 0);

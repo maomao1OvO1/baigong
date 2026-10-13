@@ -1,0 +1,111 @@
+{
+  "_说明": "三语文案。中文按中文习惯写，英文日文各自成句，不做字面直译。",
+  "en": {
+    "title": "CSV to SQL generator (CREATE TABLE + INSERT) — Baigong",
+    "desc": "Turn a CSV into runnable SQL: a CREATE TABLE statement and a multi-row INSERT. Quotes are escaped, identifiers are dialect-aware, empty cells become NULL.",
+    "h1": "CSV → SQL",
+    "lead": "Paste a CSV (first row is the header) and get SQL you can run: a CREATE TABLE plus one multi-row INSERT.<br>Hand-writing this is where injection accidents happen — a value containing an apostrophe, like O'Brien, breaks the statement unless it is doubled.",
+    "faq": [
+      [
+        "Why is my apostrophe breaking the statement?",
+        "Because a single quote inside a SQL string literal has to be written twice: O'Brien becomes 'O''Brien'. It is the single most common way hand-built INSERT statements fail, and the failure looks like a syntax error far from the real cause. This tool escapes every value."
+      ],
+      [
+        "Empty cells — NULL or empty string?",
+        "NULL by default, because the two mean different things in a database and guessing wrong is hard to notice after the import. There is a switch if you need empty strings instead; it applies to cells that are empty or whitespace-only."
+      ],
+      [
+        "How are column types decided?",
+        "Conservatively. A column becomes INTEGER only if every value is an integer, REAL if every value is numeric, and TEXT otherwise. CSV carries no type information, and values like 0755 or 1.10 lose information when treated as numbers — so anything uncertain stays text."
+      ]
+    ],
+    "ui": {
+      "inputPh": "id,name,note\n1,Ada,first\n2,O'Brien,\"has, comma\"\n3,,empty above",
+      "outputPh": "SQL appears here",
+      "table": "Table name",
+      "tablePh": "my_table",
+      "create": "Also generate CREATE TABLE",
+      "dialect": "Dialect (identifier quoting)",
+      "dialectMysql": "MySQL (backticks)",
+      "dialectPg": "PostgreSQL (double quotes)",
+      "dialectSqlite": "SQLite (double quotes)",
+      "nulls": "Treat empty cells as NULL (off = empty string)",
+      "statOk": "{r} rows · {c} columns · table {t}",
+      "errBad": "No CSV rows found in there",
+      "statEmpty": "Paste a CSV to get started",
+      "nothingToCopy": "Nothing to copy yet"
+    }
+  },
+  "zh": {
+    "title": "CSV 生成 SQL（建表 + 插入）— 百工",
+    "desc": "把 CSV 转成可直接执行的 SQL：建表语句 + 多行插入语句。引号会转义、标识符按方言引用、空单元格写成 NULL。",
+    "h1": "CSV → SQL",
+    "lead": "粘一份 CSV（第一行是表头），拿回能直接跑的 SQL：一条建表语句 + 一条多行插入语句。<br>手写这段正是注入事故的高发区 —— 值里有单引号（比如 O'Brien）而没写成两个，整条语句当场报错。",
+    "faq": [
+      [
+        "为什么我的单引号会让语句报错？",
+        "因为 SQL 字符串字面量里的单引号要写成两个：O'Brien 得写成 'O''Brien'。这是手拼 INSERT 最常见的失败方式，而且报的错往往离真正的原因很远。本工具会把每个值都转义。"
+      ],
+      [
+        "空单元格写成 NULL 还是空字符串？",
+        "默认 NULL，因为这两者在数据库里含义不同，猜错了导入之后很难发现。需要空字符串就把那个开关关掉；它只作用于「空的或只有空白」的单元格。"
+      ],
+      [
+        "列的类型是怎么定的？",
+        "保守地定。整列都是整数才给 INTEGER，都是数字给 REAL，其余一律 TEXT。CSV 本身不带类型信息，而 `0755`、`1.10` 这类值当数字处理会丢信息 —— 所以拿不准的一律留文本。"
+      ]
+    ],
+    "ui": {
+      "inputPh": "id,name,note\n1,Ada,第一行\n2,O'Brien,\"含,逗号\"\n3,,上面那个是空值",
+      "outputPh": "SQL 语句显示在这里",
+      "table": "表名",
+      "tablePh": "my_table",
+      "create": "同时生成 CREATE TABLE",
+      "dialect": "方言（标识符引用符号）",
+      "dialectMysql": "MySQL（反引号）",
+      "dialectPg": "PostgreSQL（双引号）",
+      "dialectSqlite": "SQLite（双引号）",
+      "nulls": "空单元格写成 NULL（关掉则写空字符串）",
+      "statOk": "{r} 行 · {c} 列 · 表名 {t}",
+      "errBad": "这里没有解析出任何 CSV 行",
+      "statEmpty": "先把 CSV 贴进来",
+      "nothingToCopy": "还没有可复制的内容"
+    }
+  },
+  "ja": {
+    "title": "CSV から SQL を生成（CREATE TABLE + INSERT）— 百工",
+    "desc": "CSV を実行可能な SQL に変換します。CREATE TABLE と複数行 INSERT。引用符はエスケープし、識別子は方言に合わせ、空セルは NULL にします。",
+    "h1": "CSV → SQL",
+    "lead": "CSV（1 行目が見出し）を貼り付けると、そのまま実行できる SQL が出ます。CREATE TABLE と 1 本の複数行 INSERT です。<br>手書きが事故りやすいのはここです。O'Brien のようにアポストロフィを含む値を二重にしないと、文が壊れます。",
+    "faq": [
+      [
+        "アポストロフィで文が壊れるのはなぜ？",
+        "SQL の文字列リテラル内の単一引用符は 2 つ重ねて書く必要があるからです。O'Brien は 'O''Brien' になります。手組みの INSERT が失敗する最も多い原因で、しかもエラーは本当の原因から離れた場所に出ます。本ツールはすべての値をエスケープします。"
+      ],
+      [
+        "空のセルは NULL と空文字のどちらになりますか？",
+        "既定では NULL です。データベースでは意味が異なり、取り違えるとインポート後に気づきにくいためです。空文字が必要ならスイッチを切ってください。対象は「空、または空白だけ」のセルです。"
+      ],
+      [
+        "列の型はどう決めていますか？",
+        "保守的に決めています。すべて整数なら INTEGER、すべて数値なら REAL、それ以外は TEXT です。CSV に型情報は無く、`0755` や `1.10` を数値として扱うと情報が失われます。判断がつかないものはテキストのままにします。"
+      ]
+    ],
+    "ui": {
+      "inputPh": "id,name,note\n1,Ada,1 行目\n2,O'Brien,\"カンマ, を含む\"\n3,,上が空の値",
+      "outputPh": "SQL がここに出ます",
+      "table": "テーブル名",
+      "tablePh": "my_table",
+      "create": "CREATE TABLE も生成する",
+      "dialect": "方言（識別子の引用符）",
+      "dialectMysql": "MySQL（バッククォート）",
+      "dialectPg": "PostgreSQL（二重引用符）",
+      "dialectSqlite": "SQLite（二重引用符）",
+      "nulls": "空セルを NULL にする（切ると空文字）",
+      "statOk": "{r} 行 · {c} 列 · テーブル {t}",
+      "errBad": "CSV の行を解析できませんでした",
+      "statEmpty": "まず CSV を貼り付けてください",
+      "nothingToCopy": "コピーできる内容がまだありません"
+    }
+  }
+}
