@@ -11,7 +11,8 @@
     "safeHeading": "How do I know you're not lying?",
     "safe": "Don't take our word for it — <b>open any tool, turn off your Wi-Fi, and keep using it.</b> It still works, because nothing was ever being sent. Your files stay on your device; that isn't a promise we're making, it's how the page is built.",
     "countUnit": "tools",
-    "addTool": "Want a tool that isn’t here? Write to me"
+    "addTool": "Want a tool that isn’t here?",
+    "addToolLink": "Write to me"
   },
   "zh": {
     "title": "不用注册、不用关注公众号的在线工具 | ToolPocket",
@@ -24,7 +25,8 @@
     "safeHeading": "凭什么信你？",
     "safe": "不用信我们，试一下就知道：<b>随便打开一个工具，然后把 Wi-Fi 关掉接着用。</b>它照样能用 —— 因为从头到尾就没有东西往外发。文件一直在你自己设备里，这不是我们的承诺，是它本来的运行方式。",
     "countUnit": "个工具",
-    "addTool": "想加什么工具？写信告诉我"
+    "addTool": "想要什么工具？",
+    "addToolLink": "写信告诉我"
   },
   "ja": {
     "title": "登録不要・ファイルを送信しない無料オンラインツール | ToolPocket",
@@ -37,6 +39,7 @@
     "safeHeading": "本当に大丈夫なのか",
     "safe": "私たちの説明を信じる必要はありません。<b>どれか一つのツールを開き、Wi-Fi を切ってそのまま操作してみてください。</b>問題なく動きます。送信する仕組みがそもそも無いためです。ファイルは端末の中に留まります。これは約束ではなく、このサイトの作りそのものです。",
     "countUnit": "個のツール",
-    "addTool": "欲しいツールがなければメールで教えてください"
+    "addTool": "欲しいツールがありませんか？",
+    "addToolLink": "メールで教えてください"
   }
 }

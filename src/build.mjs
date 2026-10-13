@@ -511,11 +511,6 @@ ${sourceMark(out)}
 ${mobileTip(lang)}
 ${topbar(lang, out)}
 
-<div class="notice">
-  <span class="n-count">🧰 <b>${TOOLS.length}</b> ${rich(t.countUnit)}</span>
-  <button type="button" class="ghost fb-btn n-add" data-u="${esc(UI.feedbackUser)}" data-d="${esc(UI.feedbackDomain)}" data-subject="ToolPocket tool request">✉️ ${rich(t.addTool)}</button>
-</div>
-
 <main>
   <section class="hero">
     <h1>${rich(t.h1)}</h1>
@@ -531,6 +526,10 @@ ${topbar(lang, out)}
 ${adSlot(lang, "home-top")}
 
 ${groupsHtml}
+
+  <section class="suggest">
+    <p><span class="s-count">🧰 <b>${TOOLS.length}</b> ${rich(t.countUnit)}</span><span class="s-sep">·</span>${rich(t.addTool)} <button type="button" class="linklike fb-btn" data-u="${esc(UI.feedbackUser)}" data-d="${esc(UI.feedbackDomain)}" data-subject="ToolPocket tool request">${rich(t.addToolLink)}</button></p>
+  </section>
 
   <section class="why">
     <h2>${rich(t.whyHeading)}</h2>

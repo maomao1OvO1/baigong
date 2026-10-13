@@ -399,17 +399,18 @@ footer .copy { margin-top: 8px; font-size: 12px; color: var(--muted); opacity: .
   .tp-print-sig::after { content: "\74 \6f \6f \6c \73 \2e \6d \61 \6f \6d \61 \6f \77 \61 \6e \67 \2e \74 \6f \70 "; }
 }
 
-/* ── 首页顶部信息条（2026-10-14）：当前工具数 + 提工具入口 ──────────────
-   位置跟着 .top 与 main 一样限制在 --maxw 内，保持左边缘对齐；
-   站内规则「阴影只留给 toast 一处」，所以这里靠细边框 + 浅底色分层。 */
-.notice {
-  max-width: var(--maxw); margin: 0 auto 4px;
-  padding: 9px 14px;
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 10px; flex-wrap: wrap;
-  border: 1px solid var(--line); border-radius: var(--radius);
-  background: var(--soft);
-  font-size: 13.5px; color: var(--muted);
+/* ── 工具列表下方的「提工具」提示（2026-10-14 改版）─────────────────────
+   毛毛反馈：原来那条顶部信息条太抢眼（「不要让用户第一眼看到」），横幅样式也不好看。
+   现在挪到「扫完所有工具之后」—— 用户没找到自己要的，正好看到这一句，动线顺；
+   视觉刻意做轻：小字 + 次要色 + 居中，链接用带下划线的文字而不是按钮，
+   跟其它区块拉开层次，但不抢视线。 */
+.suggest { margin: 44px 0 0; text-align: center; }
+.suggest p { margin: 0; font-size: 13.5px; color: var(--muted); }
+.suggest .s-count b { color: var(--fg); }
+.suggest .s-sep { margin: 0 7px; opacity: .5; }
+.suggest .linklike {
+  background: none; border: 0; padding: 0; margin: 0;
+  font: inherit; cursor: pointer;
+  color: var(--brand); text-decoration: underline; text-underline-offset: 3px;
 }
-.notice .n-count b { color: var(--fg); font-size: 15px; }
-.notice .n-add { font-size: 13.5px; padding: 5px 11px; cursor: pointer; }
+.suggest .linklike:hover { opacity: .78; }
