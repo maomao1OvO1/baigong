@@ -1,37 +1,19 @@
 /* © 2026 Baigong · tools.maomaowang.top · 保留所有权利（All rights reserved）
    本文件为原创代码，未经许可不得复制、镜像或二次发布；删除本声明不改变侵权性质。 */
 /* ============================================================================
-   文件：app.js —— 全站小而公共的三件事（小鲸 · 2026-10-12）
-   干什么：① 手机端提示条（推荐用桌面 Chrome，可关闭并记住选择）
-           ② 把站点注册成 PWA（装成桌面应用 / 离线可用）
-           ③ 「装成桌面应用」按钮：接住浏览器的 beforeinstallprompt 事件
-   为什么合在一个文件：三件事都只有几十行，各开一个请求反而更慢；这个文件全站共用、浏览器缓存一次。
-   注意：这里**不碰任何用户数据** —— 只用 localStorage 记住"提示条已关闭"这一件事。
+   文件：app.js —— 全站小而公共的几件事（小鲸 · 2026-10-12 · 2026-10-15 修订）
+   干什么：① 把站点注册成 PWA（装成桌面应用 / 离线可用）
+           ② 「装成桌面应用」按钮：接住浏览器的 beforeinstallprompt 事件
+           ③ 页脚反馈入口：事件委托拼 mailto（防垃圾邮件爬虫）
+   为什么合在一个文件：几件事都只有几十行，各开一个请求反而更慢；这个文件全站共用、浏览器缓存一次。
+   注意：这里**不碰任何用户数据** —— 全站零埋点、零上报（唯一的位置信息类请求在工具页里，且只在用户主动点时才发）。
+   2026-10-15 变更：删掉「手机端提示条」逻辑（原来在手机上劝访客改用桌面 Chrome）。
+       理由见 src/build.mjs 里 mobileTip 那段注释 —— 手机端适配做完了，不该再劝退。
    ============================================================================ */
 (function () {
   "use strict";
 
-  /* ── ① 手机提示条 ────────────────────────────────────────────────────
-     为什么只提示、不拦：工具在手机上确实能用（都是纯前端），只是大图压缩这类活会慢。
-     拦人就成流氓了；给一句实话 + 一个「知道了」，关掉之后不再出现。 */
-  var tip = document.getElementById("mobileTip");
-  if (tip) {
-    var KEY = "tp_mobile_tip_closed";
-    var closed = false;
-    try { closed = localStorage.getItem(KEY) === "1"; } catch (e) { /* 隐私模式下取不到，就当没关过 */ }
-    if (closed) {
-      tip.hidden = true;
-    } else if (window.matchMedia && window.matchMedia("(max-width: 720px)").matches) {
-      tip.hidden = false;                       // 只在小屏（手机）上冒出来
-    }
-    var btn = document.getElementById("tipClose");
-    if (btn) btn.addEventListener("click", function () {
-      tip.hidden = true;
-      try { localStorage.setItem(KEY, "1"); } catch (e) { /* 存不了就算了，下次再提示一次 */ }
-    });
-  }
-
-  /* ── ② 注册 service worker（PWA）─────────────────────────────────────
+  /* ── ① 注册 service worker（PWA）─────────────────────────────────────
      装成桌面应用后要能离线用，靠的就是它。注册失败不能影响正常浏览，所以整段都吞异常。 */
   if ("serviceWorker" in navigator && location.protocol === "https:") {
     window.addEventListener("load", function () {
@@ -39,7 +21,7 @@
     });
   }
 
-  /* ── ③ 「装成桌面应用」按钮 ──────────────────────────────────────────
+  /* ── ② 「装成桌面应用」按钮 ──────────────────────────────────────────
      beforeinstallprompt 只在「可以安装」时由 Chrome/Edge 触发：
      桌面端打开、且还没装过。所以按钮默认是隐藏的 —— 能装才出现，不能装就别给假承诺。 */
   var installBtn = document.getElementById("installApp");
@@ -70,7 +52,7 @@
     if (window.matchMedia("(display-mode: standalone)").matches) installBtn.hidden = true;
   }
 
-  /* ── ④ 页脚反馈入口 ──────────────────────────────────────────────────
+  /* ── ③ 页脚反馈入口 ──────────────────────────────────────────────────
      报 bug、想要新工具都可以从这儿写信。做成 mailto 而不是表单：静态站没有后端，
      表单要么收不到、要么得引第三方服务（那就违背全站「零外部请求」这条了）。
      邮箱拆成 data-u / data-d，点了才拼 —— 明文写在 href 里会被垃圾邮件爬虫秒收。 */

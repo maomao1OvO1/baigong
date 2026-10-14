@@ -21,12 +21,12 @@
 <link rel="alternate" hreflang="zh-Hans" href="https://tools.maomaowang.top/zh/index.html">
 <link rel="alternate" hreflang="ja" href="https://tools.maomaowang.top/ja/index.html">
 <link rel="alternate" hreflang="x-default" href="https://tools.maomaowang.top/index.html">
-<link rel="stylesheet" href="/assets/style.css?v=2e8d3252">
+<link rel="stylesheet" href="/assets/style.css?v=d09b1bff">
 <meta name="theme-color" content="#2563eb">
 <!-- 作者信息：既是署名，也是"这站有主"的凭据（扒站的人容易忽略，但删掉它就是加重侵权情节） -->
 <meta name="author" content="maomaowang.top">
-<meta name="build" content="2026-10-14">
-<meta name="x-src" content="dG9vbHMubWFvbWFvd2FuZy50b3A6OjIwMjYtMTAtMTQ=">
+<meta name="build" content="2026-10-15">
+<meta name="x-src" content="dG9vbHMubWFvbWFvd2FuZy50b3A6OjIwMjYtMTAtMTU=">
 <link rel="author" href="https://maomaowang.top/">
 <link rel="icon" href="/assets/icon-192.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
@@ -45,10 +45,6 @@
 -->
 <span hidden aria-hidden="true" data-mark="ts2t:maomaowang:ts2t-index"></span>
 <!-- stats-endpoint: gbbyf.znbznbjnat.gbc   (rot13, 2024 年就在用的老写法) -->
-<div class="mobile-tip" id="mobileTip" hidden>
-  <span>📱 It works on a phone, but desktop Chrome handles large images and batch jobs far better.</span>
-  <button type="button" id="tipClose" class="tip-close">Got it</button>
-</div>
 <header class="top">
   <a class="brand" href="/index.html">🧰 Baigong</a>
   <nav class="langs"><a class="ad-link" href="/advertise.html">Advertise</a><a href="/index.html" class="on" aria-current="page">English</a><a href="/zh/index.html">中文</a><a href="/ja/index.html">日本語</a></nav>
@@ -466,12 +462,17 @@
   <a class="ad-cta" href="/advertise.html">See the media kit →</a>
 </aside>
 
-  <!-- 桌面端引导（2026-10-12 毛毛要求）：说明怎么装成桌面应用 + 断网也能用。
+  <!-- 安装引导（2026-10-12 加 · 2026-10-15 补手机端一套文案）：
+       同一件事在两端说法完全不同 —— 桌面是「用 Chrome / Edge 打开，点地址栏右边的安装图标」，
+       手机是「点浏览器菜单里的添加到主屏幕」。所以放两套、由 CSS 按断点切换显示，
+       不靠 JS 猜 UA：断点跟布局走更准，而且窗口一缩放就立刻换过来。
        按钮默认隐藏，只有浏览器真的可以安装（beforeinstallprompt）时才由 app.js 显示出来 ——
-       不给"点了没反应"的假按钮。 -->
+       不给"点了没反应"的假按钮。（Android Chrome 也会触发这个事件，所以手机上按钮一样有用。） -->
   <section class="install">
-    <h2>Better on desktop</h2>
-    <p id="installNote">Open this site in desktop Chrome or Edge, then click the install icon at the right of the address bar. It becomes its own window and keeps working with no network at all — no installer to download, no account.</p>
+    <h2 class="only-wide">Better on desktop</h2>
+    <p class="only-wide" id="installNote">Open this site in desktop Chrome or Edge, then click the install icon at the right of the address bar. It becomes its own window and keeps working with no network at all — no installer to download, no account.</p>
+    <h2 class="only-narrow">Keep it on your home screen</h2>
+    <p class="only-narrow">Tap the browser menu and choose “Add to Home screen”. It opens in its own window like an app, and the tools keep working with no network at all.</p>
     <p class="note">After that, the tools work with the network switched off — which makes sense, since they were never using it.</p>
     <div class="btnrow"><button id="installApp" hidden>Install as desktop app</button></div>
   </section>
@@ -479,7 +480,7 @@
 
 <!-- 搜索索引的绝对路径：/zh/ 与 /ja/ 页面用相对路径会 404（2026-10-12 修） -->
 <script>
-  window.T = {"langName":"English","brand":"Baigong","footer":"Baigong — your files never leave your device. No upload, no account, no tracking.","nav":"All tools","backToTools":"← All tools","copy":"Copy result","swap":"Swap","clear":"Clear","download":"Download","copied":"Copied to clipboard","copyFail":"Copying was blocked by the browser — select the text and copy it manually","inputLabel":"Input","outputLabel":"Result","privacyNote":"Runs 100% in your browser — nothing is uploaded, stored, or kept.","searchPlaceholder":"Search tools — try “compress”, “json”, “password”…","noResults":"Nothing matched. Try another word — “compress”, “hash”, “json”…","mobileTip":"📱 It works on a phone, but desktop Chrome handles large images and batch jobs far better.","mobileTipClose":"Got it","desktopHeading":"Better on desktop","installApp":"Install as desktop app","installHint":"Open this site in desktop Chrome or Edge, then click the install icon at the right of the address bar. It becomes its own window and keeps working with no network at all — no installer to download, no account.","installed":"Already installed","offlineNote":"After that, the tools work with the network switched off — which makes sense, since they were never using it.","feedbackAsk":"Found a bug? Tell me — I read every message.","feedbackButton":"Report a bug","feedbackSubject":"Baigong feedback","noResultsAsk":"Can't find it? Tell me what you were looking for — I read every message.","feedbackAskHome":"Found a bug, or want a tool that isn't here yet? Tell me — I read every message.","feedbackButtonHome":"Send an email","noResultsBtn":"Request a tool","noResultsSubject":"Baigong tool request","copyright":"© 2026 Baigong — all rights reserved. Please don’t republish this site or its code without permission.","cancel":"Cancel","confirmOk":"OK","clearAsk":"Clear what you typed? This can't be undone.","clearOk":"Clear"};
+  window.T = {"langName":"English","brand":"Baigong","footer":"Baigong — your files never leave your device. No upload, no account, no tracking.","nav":"All tools","backToTools":"← All tools","copy":"Copy result","swap":"Swap","clear":"Clear","download":"Download","copied":"Copied to clipboard","copyFail":"Copying was blocked by the browser — select the text and copy it manually","inputLabel":"Input","outputLabel":"Result","privacyNote":"Runs 100% in your browser — nothing is uploaded, stored, or kept.","searchPlaceholder":"Search tools — try “compress”, “json”, “password”…","noResults":"Nothing matched. Try another word — “compress”, “hash”, “json”…","desktopHeading":"Better on desktop","mobileHeading":"Keep it on your home screen","mobileInstallHint":"Tap the browser menu and choose “Add to Home screen”. It opens in its own window like an app, and the tools keep working with no network at all.","installApp":"Install as desktop app","installHint":"Open this site in desktop Chrome or Edge, then click the install icon at the right of the address bar. It becomes its own window and keeps working with no network at all — no installer to download, no account.","installed":"Already installed","offlineNote":"After that, the tools work with the network switched off — which makes sense, since they were never using it.","feedbackAsk":"Found a bug? Tell me — I read every message.","feedbackButton":"Report a bug","feedbackSubject":"Baigong feedback","noResultsAsk":"Can't find it? Tell me what you were looking for — I read every message.","feedbackAskHome":"Found a bug, or want a tool that isn't here yet? Tell me — I read every message.","feedbackButtonHome":"Send an email","noResultsBtn":"Request a tool","noResultsSubject":"Baigong tool request","copyright":"© 2026 Baigong — all rights reserved. Please don’t republish this site or its code without permission.","cancel":"Cancel","confirmOk":"OK","clearAsk":"Clear what you typed? This can't be undone.","clearOk":"Clear"};
   window.TP_INDEX_URL = "/assets/search.json?v=bda5343d";
 </script>
 <script src="/assets/search.js?v=22e03406" defer></script>
@@ -498,6 +499,6 @@
     <button type="button" class="ghost fb-btn" id="feedbackBtn" data-u="hi" data-d="maomaowang.top">Send an email</button>
   </p>
 </footer>
-<script src="/assets/app.js?v=5aa190d1" defer></script>
+<script src="/assets/app.js?v=84128bd1" defer></script>
 </body>
 </html>

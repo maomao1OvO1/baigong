@@ -112,12 +112,13 @@ ${alts}
 <script type="application/ld+json">${JSON.stringify(jsonld)}</script>`;
 }
 
-/** 手机端提示条（2026-10-12）：手机上能用，但大图压缩这类活桌面 Chrome 明显更顺。
-    只提示、不拦人；点「知道了」后 app.js 会用 localStorage 记住，不再出现。 */
-const mobileTip = (lang) => `<div class="mobile-tip" id="mobileTip" hidden>
-  <span>${rich(UI.mobileTip[lang.code])}</span>
-  <button type="button" id="tipClose" class="tip-close">${rich(UI.mobileTipClose[lang.code])}</button>
-</div>`;
+/** 手机端提示条 —— 2026-10-15 已移除。
+    它原本在手机上劝访客「用桌面版 Chrome 更顺」（2026-10-12 加的），
+    但本站这一轮把手机端适配做完整了，再挂一条劝退横幅就自相矛盾：
+    页面自己说「手机能用」，最顶上却说「你最好换电脑」。
+    毛毛 2026-10-15 的要求就是「适配电脑端和手机端」，所以这条连同它的样式、
+    app.js 里的显隐逻辑、ui.json 里的三语文案一并删掉。
+    ⚠️ 要找回旧版：`git log -- assets/app.js` 里能翻到 2026-10-15 之前的版本。 */
 
 /** 注入给页面脚本的文案对象（window.T）：全局 UI 按当前语言拍平 + 该工具自己的 ui。
    ⚠️ 为什么每个页面都得注入：搜索框的「没找到」、安装提示、复制失败这些提示语，
@@ -457,7 +458,6 @@ ${head_html}
 </head>
 <body>
 ${sourceMark(out)}
-${mobileTip(lang)}
 ${topbar(lang, out)}
 
 <main>
@@ -539,7 +539,6 @@ ${head(lang, { out, title: t.title, desc: t.desc, jsonld })}
 </head>
 <body>
 ${sourceMark(out)}
-${mobileTip(lang)}
 ${topbar(lang, out)}
 
 <main>
@@ -573,12 +572,17 @@ ${adSlot(lang, "home-self")}
 
 ${adSlot(lang, "home-bottom")}
 
-  <!-- 桌面端引导（2026-10-12 毛毛要求）：说明怎么装成桌面应用 + 断网也能用。
+  <!-- 安装引导（2026-10-12 加 · 2026-10-15 补手机端一套文案）：
+       同一件事在两端说法完全不同 —— 桌面是「用 Chrome / Edge 打开，点地址栏右边的安装图标」，
+       手机是「点浏览器菜单里的添加到主屏幕」。所以放两套、由 CSS 按断点切换显示，
+       不靠 JS 猜 UA：断点跟布局走更准，而且窗口一缩放就立刻换过来。
        按钮默认隐藏，只有浏览器真的可以安装（beforeinstallprompt）时才由 app.js 显示出来 ——
-       不给"点了没反应"的假按钮。 -->
+       不给"点了没反应"的假按钮。（Android Chrome 也会触发这个事件，所以手机上按钮一样有用。） -->
   <section class="install">
-    <h2>${rich(UI.desktopHeading[lang.code])}</h2>
-    <p id="installNote">${rich(UI.installHint[lang.code])}</p>
+    <h2 class="only-wide">${rich(UI.desktopHeading[lang.code])}</h2>
+    <p class="only-wide" id="installNote">${rich(UI.installHint[lang.code])}</p>
+    <h2 class="only-narrow">${rich(UI.mobileHeading[lang.code])}</h2>
+    <p class="only-narrow">${rich(UI.mobileInstallHint[lang.code])}</p>
     <p class="note">${rich(UI.offlineNote[lang.code])}</p>
     <div class="btnrow"><button id="installApp" hidden>${rich(UI.installApp[lang.code])}</button></div>
   </section>
@@ -800,7 +804,6 @@ ${head(lang, { out, title: t.title, desc: t.desc, jsonld })}
 </head>
 <body>
 ${sourceMark(out)}
-${mobileTip(lang)}
 ${topbar(lang, out)}
 
 <main>

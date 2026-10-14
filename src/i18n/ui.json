@@ -80,20 +80,20 @@
     "zh": "没找到匹配的工具。换个说法试试，比如「压缩」「哈希」「json」。",
     "ja": "該当するツールがありませんでした。「圧縮」「ハッシュ」など、別の言葉でお試しください。"
   },
-  "mobileTip": {
-    "en": "📱 It works on a phone, but desktop Chrome handles large images and batch jobs far better.",
-    "zh": "📱 手机上能用，但<b>桌面版 Chrome 更顺</b> —— 大图压缩、批量处理快很多。",
-    "ja": "📱 スマホでも使えますが、大きな画像やまとめての処理はデスクトップ版 Chrome のほうが快適です。"
-  },
-  "mobileTipClose": {
-    "en": "Got it",
-    "zh": "知道了",
-    "ja": "了解しました"
-  },
   "desktopHeading": {
     "en": "Better on desktop",
     "zh": "桌面端更好用",
     "ja": "デスクトップ版がおすすめ"
+  },
+  "mobileHeading": {
+    "en": "Keep it on your home screen",
+    "zh": "装到手机主屏幕",
+    "ja": "ホーム画面に追加できます"
+  },
+  "mobileInstallHint": {
+    "en": "Tap the browser menu and choose “Add to Home screen”. It opens in its own window like an app, and the tools keep working with no network at all.",
+    "zh": "点浏览器菜单里的「添加到主屏幕」—— 它会像 App 一样独立窗口打开，断网也能继续用。不用下载安装包，也不用登录。",
+    "ja": "ブラウザのメニューから「ホーム画面に追加」を選んでください。アプリのように独立したウィンドウで開き、ネットワークが無くても動作します。"
   },
   "installApp": {
     "en": "Install as desktop app",

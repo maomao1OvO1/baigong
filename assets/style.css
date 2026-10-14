@@ -325,29 +325,35 @@ footer .copy { margin-top: 8px; font-size: 12px; color: var(--muted); opacity: .
 .modal-row { display: flex; gap: 10px; justify-content: flex-end; }
 .modal-row button { min-width: 84px; }
 
-/* ── 宽屏：只把网格铺成两列，正文仍保持窄栏（窄栏更像阅读，也更简约）── */
+/* ── 宽屏（平板横屏 / 小笔记本）：把网格铺成两列，正文仍保持窄栏 ──
+   窄栏更像阅读，也更符合本站的简约定位，所以这一档只动网格、不动容器宽度。 */
 @media (min-width: 680px) {
   h1 { font-size: 36px; }
   .grid { grid-template-columns: 1fr 1fr; }
 }
 
-/* ── 手机端提示条（2026-10-12 毛毛要求：推荐用桌面 Chrome 访问）──
-   只在 ≤720px 的屏幕上由 app.js 显示；点「知道了」写进 localStorage，之后不再出现。
-   样式上刻意做得像"一行说明"而不是弹窗 —— 它是建议，不是拦截。 */
-.mobile-tip {
-  display: flex; align-items: center; gap: 12px;
-  max-width: var(--maxw); margin: 16px auto 0; padding: 12px 14px;
-  border: 1px solid var(--line); border-radius: var(--radius); background: var(--soft);
-  font-size: 13px; line-height: 1.6;
+/* ══════════════════════════════════════════════════════════════════════════
+   桌面宽屏档（2026-10-15 新增 · 毛毛要求「适配电脑端」）
+   问题：工具从 25 涨到 61 个，而容器一直卡在 760px —— 在 1440 / 1920 的屏幕上
+        左右各空掉一大块（1920 屏左右各留 580px），网格只有两列，看完要滚很久。
+   做法：按屏幕宽度分三档放宽容器 + 加一列，**只加列不加卡片宽度**：
+         容器 760→900→980→1120，列数 2→2→3→3，单列始终 300~360px 的舒适区间。
+   注意（踩坑提示）：容器放宽后**正文段落要单独限宽** —— 一行 1100px 的字，
+        回到行首要扭头，读起来很累。所以「容器宽、文字窄」是这一档的核心规则。
+   ══════════════════════════════════════════════════════════════════════════ */
+@media (min-width: 860px) {
+  :root { --maxw: 900px; }          /* 平板横屏 / 小笔记本：少一点两侧留白 */
+  .hero .lead, .why p, .faq details p, .install p, .suggest p { max-width: 760px; }
 }
-.mobile-tip[hidden] { display: none; }
-.mobile-tip span { flex: 1; min-width: 0; }
-.tip-close {
-  flex: 0 0 auto; font: inherit; font-size: 12.5px; font-weight: 600;
-  padding: 8px 13px; border: 1px solid var(--line); border-radius: 8px;
-  background: var(--bg); color: var(--fg); cursor: pointer; transition: border-color .15s;
+
+@media (min-width: 1080px) {
+  :root { --maxw: 980px; }
+  .grid { grid-template-columns: repeat(3, 1fr); }
 }
-.tip-close:hover { border-color: var(--fg); }
+
+@media (min-width: 1440px) {
+  :root { --maxw: 1120px; }          /* 大显示器：一行放三个工具卡片，仍不挤 */
+}
 
 /* ── 「桌面端更好用 / 装成桌面应用」（只在首页）──
    和 .why 一样用一条细线分隔：说明归说明，不和工具列表抢注意力。 */
@@ -356,6 +362,20 @@ footer .copy { margin-top: 8px; font-size: 12px; color: var(--muted); opacity: .
 .install p { color: var(--muted); font-size: 14px; }
 .install #installNote { color: var(--fg); }
 .install .btnrow { margin-top: 16px; }
+
+/* ── 两端说法不同的内容：只在某一端显示（2026-10-15 新增）──
+   典型场景就是上面这个安装引导 —— 桌面端教「点地址栏右边的安装图标」，
+   手机端教「点浏览器菜单 → 添加到主屏幕」，同一件事两套说法。
+   用 CSS 断点切换、不用 JS 猜 UA：断点跟布局走，窗口一缩放立刻换过来。
+   ⚠️ 末尾那条 [hidden] 必须留在本段**之后** —— 否则 .only-wide 的 display:block
+   会盖掉 hidden 属性（app.js 装完 App 后要收起那段说明文字，靠的就是它）。 */
+.only-narrow { display: block; }
+.only-wide { display: none; }
+@media (min-width: 680px) {
+  .only-narrow { display: none; }
+  .only-wide { display: block; }
+}
+[hidden] { display: none; }
 
 /* ══════════════════════════════════════════════════════════════════════════
    移动端适配（2026-10-12 补 · 毛毛：「手机端没有适配，只有网页端适配了 UI」）
@@ -388,8 +408,6 @@ footer .copy { margin-top: 8px; font-size: 12px; color: var(--muted); opacity: .
   table.spec td:first-child { width: auto; }
   /* 长串（URL、哈希、代码）不许把页面撑宽 */
   code, .grid .sub, .searchresults .s-meta span { overflow-wrap: anywhere; }
-  .mobile-tip { margin-top: 12px; font-size: 12.5px; padding: 11px 12px; }
-  .tip-close { min-height: 44px; padding: 11px 14px; }   /* 触控目标 */
   .install { margin-top: 34px; }
   .nf-code { font-size: 46px; }
 }
