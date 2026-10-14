@@ -69,6 +69,14 @@ const assetV = (file) => {
   }
 };
 
+/* ── 搜索引擎站点验证 ───────────────────────────────────────────────────────
+   Bing Webmaster Tools 的所有权凭证 —— 2026-10-14 毛毛在站长工具点验证时拿到的。
+   ⚠️ 验证通过后**不要删**：删掉这段 meta，Bing 那边会掉验证，之后站长工具里的
+      抓取数据、sitemap 提交记录都会跟着失效。
+   为什么注入到**每个页面**而不只是首页：Bing 会抽查站点里的其它页面来确认凭证一致，
+   只放首页在某些情况下会被判为验证失败。 */
+const BING_VERIFY = "1E22346415E3867381DC30DBA44A4860";
+
 /* ── 页面骨架 ───────────────────────────────────────────────────────────── */
 
 function head(lang, { out, title, desc, jsonld }) {
@@ -77,6 +85,7 @@ function head(lang, { out, title, desc, jsonld }) {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
+<meta name="msvalidate.01" content="${BING_VERIFY}">
 <link rel="canonical" href="${urlOf(lang, out)}">
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(desc)}">
