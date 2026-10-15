@@ -54,15 +54,34 @@ node test/runtime.mjs   # 在 Node 里真跑一遍工具脚本，断言输出结
 
 ```
 assets/          样式与前端脚本（全站共用一份 CSS）
-  tools/         37 个工具各自的实现
+  tools/         61 个工具各自的实现
 src/
   build.mjs      静态站生成器（读数据 → 出页面）
+  indexnow-push.mjs  发版后通知搜索引擎（读 sitemap → 推 IndexNow）
   tools.json     工具注册表（全站唯一数据源）
   i18n/          三语文案
   make-icons.mjs 图标生成（手写 PNG 编码，无第三方依赖）
 test/            上线前的自动检查
 tools/           生成出来的工具页（构建产物）
+gsc-checklist.html  站长自用的收录清单页（noindex；不用了可直接删）
 ```
+
+## 发版流程（改完站点后照着做）
+
+```bash
+node src/build.mjs            # 1. 生成全部页面（含 sitemap.xml、sw.js）
+node test/check.mjs           # 2. 结构与文案检查
+node test/runtime.mjs         # 3. 工具运行时用例
+git add -A && git commit && git push   # 4. 上线（GitHub Pages 自动部署）
+node src/indexnow-push.mjs    # 5. 通知搜索引擎「有新内容了」
+```
+
+第 5 步会把 sitemap 里的全部 URL 一次性推给 **IndexNow**，Bing / Yandex 这类引擎
+当天就能知道有新页面（否则只能等它们按自己的节奏来抓，几天到几周）。
+
+> ⚠️ **Google 不参与 IndexNow** —— 主流引擎里只有它没接这个接口。
+> Google 那边只有两条路：等 sitemap 被定期重抓（慢），或者在 Google Search Console
+> 里对具体网址手动点「请求编入索引」（快，但要人工操作）。
 
 ## 关于本项目
 
