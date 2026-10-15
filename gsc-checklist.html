@@ -6,10 +6,10 @@
 <title>GSC 收录清单 · 站长自用</title>
 <!-- 站长自用的临时工具页：点一下就复制，省得在手机上一个个手打网址。
      加 noindex 是为了别让它自己被搜索引擎收了（它不在 sitemap 里，也不该进）。
-     用完可以删：直接删掉这个文件再推一次即可，不影响站点任何功能。 -->
+     用完可以删：删掉这个文件再推一次即可，不影响站点任何功能。 -->
 <meta name="robots" content="noindex, nofollow">
 <style>
-  /* 手机优先：按钮做大，手指好点；字号不缩到 16px 以下，避免手机上自动放大 */
+  /* 手机优先：按钮做大手指好点；字号不低于 16px，避免手机上被自动放大 */
   * { box-sizing: border-box; }
   body {
     margin: 0; padding: 16px 16px 64px;
@@ -18,9 +18,13 @@
   }
   h1 { font-size: 19px; margin: 6px 0 4px; }
   .hint { color: #6b7280; font-size: 13.5px; margin: 0 0 16px; }
-  .hint b { color: #17181c; }
+  .top-tip {
+    background: #fff; border: 1px solid #e9ebef; border-radius: 12px;
+    padding: 12px 14px; margin: 0 0 16px; font-size: 13.5px; color: #4b5563;
+  }
+  .top-tip b { color: #17181c; }
 
-  /* 「一次复制全部」：最显眼的动作放在最上面 */
+  /* 「一次复制全部」：最显眼的动作放最上面 */
   .copy-all {
     display: block; width: 100%; padding: 15px; margin: 0 0 8px;
     border: 0; border-radius: 12px; background: #2563eb; color: #fff;
@@ -46,6 +50,7 @@
   .url {
     font: 12.5px/1.55 ui-monospace, SFMono-Regular, Menlo, monospace;
     word-break: break-all; color: #4b5563; margin: 8px 0 0;
+    -webkit-user-select: all; user-select: all;   /* 长按可整条选中，复制也不难 */
   }
   .ops { display: flex; gap: 8px; margin-top: 11px; }
   button.copy, a.open {
@@ -55,75 +60,133 @@
   button.copy { border: 1px solid #2563eb; background: #fff; color: #2563eb; }
   button.copy.done { background: #16794c; border-color: #16794c; color: #fff; }
   a.open { flex: 0 0 86px; border: 1px solid #e9ebef; color: #6b7280; background: #fff; }
-  .top-tip {
-    background: #fff; border: 1px solid #e9ebef; border-radius: 12px;
-    padding: 12px 14px; margin: 0 0 16px; font-size: 13.5px; color: #4b5563;
-  }
-  .top-tip b { color: #17181c; }
 </style>
 </head>
 <body>
 <h1>GSC 收录清单</h1>
-<p class="hint">站长自用 · 点一下自动复制 · 点过的会变绿</p>
+<p class="hint">站长自用 · 点「复制」自动进剪贴板 · 点过的会变绿</p>
 
 <div class="top-tip">
   <b>用法</b>：点「复制」→ 切到 Google Search Console →
   顶部搜索框长按<b>粘贴</b> → 回车 → 等几秒 → 点面板<b>右上角</b>「请求编入索引」。
 </div>
 
-<button class="copy-all" id="copyAll">📋 一次复制全部 10 条</button>
-<p class="all-note" id="allNote">（复制后每次粘贴会拿到一条，适合连着做）</p>
+<button class="copy-all" id="copyAll" type="button">📋 一次复制全部 10 条</button>
+<p class="all-note" id="allNote">（复制后粘到别处会一次出现 10 行，再逐条贴进 GSC）</p>
 
-<ol id="list"></ol>
+<!-- 10 条网址是**静态写好**的：就算 JS 完全没跑起来，也能看到、也能长按复制 -->
+<ol id="list">
+  <li data-path="compress-image">
+    <div class="row"><span class="no">1</span><span class="name">图片压缩</span></div>
+    <p class="url">https://tools.maomaowang.top/tools/compress-image.html</p>
+    <div class="ops">
+      <button class="copy" type="button" data-url="https://tools.maomaowang.top/tools/compress-image.html">复制</button>
+      <a class="open" href="https://tools.maomaowang.top/tools/compress-image.html" target="_blank" rel="noopener">看看</a>
+    </div>
+  </li>
+  <li data-path="json-format">
+    <div class="row"><span class="no">2</span><span class="name">JSON 格式化 / 校验</span></div>
+    <p class="url">https://tools.maomaowang.top/tools/json-format.html</p>
+    <div class="ops">
+      <button class="copy" type="button" data-url="https://tools.maomaowang.top/tools/json-format.html">复制</button>
+      <a class="open" href="https://tools.maomaowang.top/tools/json-format.html" target="_blank" rel="noopener">看看</a>
+    </div>
+  </li>
+  <li data-path="password-gen">
+    <div class="row"><span class="no">3</span><span class="name">密码生成器</span></div>
+    <p class="url">https://tools.maomaowang.top/tools/password-gen.html</p>
+    <div class="ops">
+      <button class="copy" type="button" data-url="https://tools.maomaowang.top/tools/password-gen.html">复制</button>
+      <a class="open" href="https://tools.maomaowang.top/tools/password-gen.html" target="_blank" rel="noopener">看看</a>
+    </div>
+  </li>
+  <li data-path="base64">
+    <div class="row"><span class="no">4</span><span class="name">Base64 编解码</span></div>
+    <p class="url">https://tools.maomaowang.top/tools/base64.html</p>
+    <div class="ops">
+      <button class="copy" type="button" data-url="https://tools.maomaowang.top/tools/base64.html">复制</button>
+      <a class="open" href="https://tools.maomaowang.top/tools/base64.html" target="_blank" rel="noopener">看看</a>
+    </div>
+  </li>
+  <li data-path="uuid">
+    <div class="row"><span class="no">5</span><span class="name">UUID / ULID 生成</span></div>
+    <p class="url">https://tools.maomaowang.top/tools/uuid.html</p>
+    <div class="ops">
+      <button class="copy" type="button" data-url="https://tools.maomaowang.top/tools/uuid.html">复制</button>
+      <a class="open" href="https://tools.maomaowang.top/tools/uuid.html" target="_blank" rel="noopener">看看</a>
+    </div>
+  </li>
+  <li data-path="hash">
+    <div class="row"><span class="no">6</span><span class="name">哈希生成（MD5 / SHA）</span></div>
+    <p class="url">https://tools.maomaowang.top/tools/hash.html</p>
+    <div class="ops">
+      <button class="copy" type="button" data-url="https://tools.maomaowang.top/tools/hash.html">复制</button>
+      <a class="open" href="https://tools.maomaowang.top/tools/hash.html" target="_blank" rel="noopener">看看</a>
+    </div>
+  </li>
+  <li data-path="regex">
+    <div class="row"><span class="no">7</span><span class="name">正则表达式测试</span></div>
+    <p class="url">https://tools.maomaowang.top/tools/regex.html</p>
+    <div class="ops">
+      <button class="copy" type="button" data-url="https://tools.maomaowang.top/tools/regex.html">复制</button>
+      <a class="open" href="https://tools.maomaowang.top/tools/regex.html" target="_blank" rel="noopener">看看</a>
+    </div>
+  </li>
+  <li data-path="jwt">
+    <div class="row"><span class="no">8</span><span class="name">JWT 解码</span></div>
+    <p class="url">https://tools.maomaowang.top/tools/jwt.html</p>
+    <div class="ops">
+      <button class="copy" type="button" data-url="https://tools.maomaowang.top/tools/jwt.html">复制</button>
+      <a class="open" href="https://tools.maomaowang.top/tools/jwt.html" target="_blank" rel="noopener">看看</a>
+    </div>
+  </li>
+  <li data-path="cron">
+    <div class="row"><span class="no">9</span><span class="name">Cron 表达式</span></div>
+    <p class="url">https://tools.maomaowang.top/tools/cron.html</p>
+    <div class="ops">
+      <button class="copy" type="button" data-url="https://tools.maomaowang.top/tools/cron.html">复制</button>
+      <a class="open" href="https://tools.maomaowang.top/tools/cron.html" target="_blank" rel="noopener">看看</a>
+    </div>
+  </li>
+  <li data-path="json-to-ts">
+    <div class="row"><span class="no">10</span><span class="name">JSON 转 TypeScript</span></div>
+    <p class="url">https://tools.maomaowang.top/tools/json-to-ts.html</p>
+    <div class="ops">
+      <button class="copy" type="button" data-url="https://tools.maomaowang.top/tools/json-to-ts.html">复制</button>
+      <a class="open" href="https://tools.maomaowang.top/tools/json-to-ts.html" target="_blank" rel="noopener">看看</a>
+    </div>
+  </li>
+</ol>
 
 <script>
 /* ============================================================================
-   文件：gsc-checklist.html —— 站长自用的「GSC 请求收录」清单页（小鲸 · 2026-10-15）
-   干什么：把 10 个待收录的工具页网址列出来，点一下就复制到剪贴板，
-           省得在手机上一个个手打；点过的条目自动变绿并存进度，明天接着点不会乱。
-   为什么这么写：
-     ① 用 navigator.clipboard 复制 —— 但它只在 HTTPS 下可用，而且失败时会抛异常，
-        所以留了 execCommand('copy') 的兜底（老浏览器 / 非安全上下文时走它）；
-     ② 进度用 localStorage 存 —— 纯本地、不上传任何东西，符合本站「零埋点」的一贯做法；
-     ③ 加 noindex：这页是站长工具，不该自己被搜索引擎收录。
-   注意：这是临时页，用完删掉文件再推一次即可，不依赖它也能正常收录。
+   文件：gsc-checklist.html 的增强脚本（小鲸 · 2026-10-15）
+   干什么：给已经静态渲染好的清单加两件事 ——「点一下复制」和「点过的变绿」。
+   为什么这么写（踩坑记录）：
+     ① 整张清单**故意不用 JS 生成** —— 第一版是 JS 渲染的，那样 JS 一旦没跑起来
+        页面就是空白，而站长要的就是"看到网址"。静态优先、JS 只做增强。
+     ② 复制优先用 navigator.clipboard，失败退回 execCommand('copy')：
+        clipboard API 只在 HTTPS 下可用，还得是用户手势触发，不兜底会有点不动的情况。
+     ③ 进度存 localStorage，纯本地、不上传 —— 明天接着点不会乱。
    ============================================================================ */
 (function () {
   "use strict";
 
-  /* 待收录的 10 个工具页（顺序 = 建议的收录优先级） */
-  var ITEMS = [
-    { path: "compress-image", name: "图片压缩" },
-    { path: "json-format",    name: "JSON 格式化 / 校验" },
-    { path: "password-gen",   name: "密码生成器" },
-    { path: "base64",         name: "Base64 编解码" },
-    { path: "uuid",           name: "UUID / ULID 生成" },
-    { path: "hash",           name: "哈希生成（MD5/SHA）" },
-    { path: "regex",          name: "正则表达式测试" },
-    { path: "jwt",            name: "JWT 解码" },
-    { path: "cron",           name: "Cron 表达式" },
-    { path: "json-to-ts",     name: "JSON 转 TypeScript" }
-  ];
-  var PREFIX = "https://tools.maomaowang.top/tools/";
-  var DONE_KEY = "mm_gsc_done_20261015";   // 进度存这里
-
-  /* ── 读进度（隐私模式取不到就当作空） ── */
+  var DONE_KEY = "mm_gsc_done_20261015";
   var done = {};
-  try {
-    done = JSON.parse(localStorage.getItem(DONE_KEY) || "{}") || {};
-  } catch (e) {
-    done = {};
-  }
+  try { done = JSON.parse(localStorage.getItem(DONE_KEY) || "{}") || {}; } catch (e) { done = {}; }
   function saveDone() {
     try { localStorage.setItem(DONE_KEY, JSON.stringify(done)); } catch (e) { /* 存不了就算了 */ }
   }
 
-  /* ── 复制：优先 clipboard API，失败退回 execCommand ── */
+  /* ── 复制：先试新版 API，不行再退回老办法 ── */
   function copyText(text) {
     return new Promise(function (resolve) {
       if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard.writeText(text).then(function () { resolve(true); },
-                                                  function () { resolve(fallback(text)); });
+        navigator.clipboard.writeText(text).then(
+          function () { resolve(true); },
+          function () { resolve(fallback(text)); }
+        );
       } else {
         resolve(fallback(text));
       }
@@ -146,55 +209,47 @@
     }
   }
 
-  /* ── 渲染列表 ── */
-  var list = document.getElementById("list");
-  ITEMS.forEach(function (it, i) {
-    var url = PREFIX + it.path + ".html";
-    var li = document.createElement("li");
-    if (done[it.path]) li.className = "done";
-    li.innerHTML =
-      '<div class="row"><span class="no">' + (i + 1) + '</span>' +
-      '<span class="name"></span></div>' +
-      '<p class="url"></p>' +
-      '<div class="ops"><button class="copy" type="button">复制</button>' +
-      '<a class="open" href="" target="_blank" rel="noopener">看看</a></div>';
-    li.querySelector(".name").textContent = it.name;
-    li.querySelector(".url").textContent = url;
-    var a = li.querySelector(".open");
-    a.href = url;
-    var btn = li.querySelector(".copy");
-    if (done[it.path]) { btn.textContent = "✓ 已复制过"; btn.classList.add("done"); }
-
+  /* ── 给每条挂上「复制」按钮 ── */
+  document.querySelectorAll("li[data-path]").forEach(function (li) {
+    var path = li.getAttribute("data-path");
+    var btn = li.querySelector("button.copy");
+    if (done[path]) {
+      li.classList.add("done");
+      btn.classList.add("done");
+      btn.textContent = "✓ 已复制过";
+    }
     btn.addEventListener("click", function () {
-      copyText(url).then(function (ok) {
-        btn.textContent = ok ? "✓ 已复制，去粘贴" : "复制失败，请长按上面网址";
-        btn.classList.add("done");
-        li.classList.add("done");
-        done[it.path] = 1;
-        saveDone();
+      copyText(btn.getAttribute("data-url")).then(function (ok) {
         if (ok) {
+          li.classList.add("done");
+          btn.classList.add("done");
           btn.textContent = "✓ 已复制";
+          done[path] = 1;
+          saveDone();
           setTimeout(function () { btn.textContent = "再复制一次"; }, 2600);
+        } else {
+          /* 复制失败时明确告诉他怎么办，别让他反复点一个不动的按钮 */
+          btn.textContent = "请长按上面的网址复制";
         }
       });
     });
-    list.appendChild(li);
   });
 
-  /* ── 「一次复制全部」：用换行分隔，粘贴时会拿回多行 ── */
+  /* ── 「一次复制全部」：换行分隔 ── */
   document.getElementById("copyAll").addEventListener("click", function () {
-    var all = ITEMS.map(function (it) { return PREFIX + it.path + ".html"; }).join("\n");
     var btn = this;
+    var all = Array.prototype.map.call(
+      document.querySelectorAll("li[data-path] .url"),
+      function (el) { return el.textContent.trim(); }
+    ).join("\n");
     copyText(all).then(function (ok) {
       if (ok) {
         btn.textContent = "✓ 10 条已全部复制";
         document.getElementById("allNote").textContent =
-          "已复制 10 行。粘贴到别处会一次出现 10 条，逐条复制粘贴到 GSC 即可。";
-        setTimeout(function () {
-          btn.textContent = "📋 一次复制全部 10 条";
-        }, 2800);
+          "已复制 10 行 —— 粘到备忘录/聊天里会一次出现 10 条，再逐条贴进 GSC。";
+        setTimeout(function () { btn.textContent = "📋 一次复制全部 10 条"; }, 2800);
       } else {
-        btn.textContent = "复制失败，请逐条复制";
+        btn.textContent = "复制失败，请逐条长按网址复制";
       }
     });
   });
